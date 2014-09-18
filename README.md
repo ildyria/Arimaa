@@ -1,14 +1,15 @@
-Le jeu Arimaa
+#Projet Arimaa
 
-Etat de gros L'art (ce qui a deja etait fait)
+*Objectif à court terme : définir le cahier des charges*
 
-Choix techniques
--> CdCf
--> Langage
-	> GCC
-	> OpenMP
-	> MPI
-	> Github
-	> Linux
-
-Grid 5000
+**Liste des tâches :**
+- Etat de l'art (ce qui a deja etait fait) *(Benoît)*
+- Choix techniques
+  - C++
+  - GCC
+  - OpenMP *(Mikaïl)*
+  - MPI *(Baptiste)*
+  - Github
+  - Linux
+- Grid 5000 *(Dan)*
+- Cahier des charges
