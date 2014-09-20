@@ -1,0 +1,79 @@
+Compte-rendu de la première réunion : Mercredi 10 Septembre 2014
+
+Rendez-vous avec CR (Nikos pas là) et un intervenant extérieur qui n’a pas parlé.
+
+Explications sur la nature du projet, et des objectifs que ce soit à court terme ou à long terme.
+
+Sur quel jeu allons nous travailler : proposition d’Arimaa, même si les propositions restent ouvertes. Choix d’Arimaa et initialisation au jeu (sic) sur internet et en vrai.
+
+Gabriel va coder une application en C++ modélisant le jeu le week-end du 20 septembre. 
+
+Choix du C++ en priorité car ls applications seraient plus facile à coder pour nous (surtout pour Gabriel parce qu’il aime pas JAVA --’   , surtout pour les cours de C++ que nous avons en ce moment)
+Mais il sera possible d’intégrer des bouts de codes dans d’autres langages selon ce qui sera intéressant pour nous
+
+Quel logiciel allons nous utiliser pour la parallélisation ? OpenMP semble pas mal, étude de la question par Baptiste et Mikail
+
+Utilisation de Grid5000, un cluster de 5000 machines virtuelles dans le réseau de recherche INRIA français (inscription sous CR). L’intéret est d’utiliser une puissance de calcul plus importante pour les calculs d’arimaa. Dan doit vérifier la compatibilité de Grid5000 avec les technologies choisies.
+
+Utilisation de Microsoft Project pour gérer les taches du projet (apparement conseillé dans les cours de gestion mais pas encore fait).
+
+proposition de CR pour la Forge de l’INSA, mais refus pour cause d’instabilité de l’ENT et du réseau INSA.
+Utilisation du git privé de benoit : https://github.com/ildyria/Arimaa
+
+Le but des premières réunions est d’établir au plus vite le cahier des charges, pour pouvoir commencer l’étude préliminaire. Le premier compte-rendu est déjà à rendre en Octobre.
+
+Note : notre groupe ne contient que 5 personnes, donc seulement 2 ne partiront pas pour le second semestre. Possibilité de l’ajout d’une nouvelle personne pour le semestre suivant, mais volonté d’essayer de boucler le plus de choses dans le premier semestre (sinon yen a qui vont douiller).
+
+----------------------------------------------------------------------------------------------------------------------------
+Utilisation de Grid5000, un cluster de 5000 machines virtuelles dans le réseau de recherche INRIA français (inscription sous CR). L’intéret est d’utiliser une puissance de calcul plus importante pour les calculs d’arimaa. Dan doit vérifier la compatibilité de Grid5000 avec les technologies choisies.
+
+Grid5000 et OpenMP
+Extrait d’un rapport de l’INRIA avant la construction de Grid5000
+<<GRID’5000 constituerait la version p ´erenne, `a grande ´echelle, de la plate-
+forme VTHD ´evoqu ´ee plus haut : il s’agit d’une plate-forme mat ´erielle et
+logicielle, interconnectant `a tr`es haut d ´ebit une dizaine de grappes de PC
+de grande taille. Pour fixer un ordre de grandeur, chaque grappe pourrait
+comprendre 500 unit ´es de calcul, d’o`u le total de 5000 qui donne le nom
+de code du projet GRID’5000 initialement propos ´e par Franck Cappello et
+Michel Cosnard.
+Les centres qui pourraient accueillir les grappes de PC seraient typique-
+ment les laboratoires de recherche en informatique des R ´eseaux Th ´ematiques
+Pluridisciplinaires RTP
+Calcul `a hautes performances et calcul r ´eparti
+et RTP
+R ´eseaux de communication
+du STIC-CNRS, liste qui englobe des ´equipes is-
+sues de la plupart des unit ´es de recherche de l’INRIA. La liste des sites
+pourrait comprendre Besan ¸con, Bordeaux, Grenoble, Lille, Lyon, Nancy, Or-
+say, Rennes, Rocquencourt, Nice et Toulouse, soit onze villes couvrant le
+territoire national de fa ¸con compl`ete.
+Plusieurs de ces sites disposent d ´ej`a de grappes de PC, plus ou moins
+r ´ecentes. Pour ceux-ci, il s’agit de bˆatir sur l’existant, et d’apporter des
+10
+compl ´ements mat ´eriels. En particulier, le site de Grenoble dispose d ´ej`a de
+plusieurs centaines de processeurs, qui ont vocation `a constituer une partie
+de la grappe du site. Le site d’Orsay va ˆetre dot ´e d’une grosse grappe (entre
+500 et 1000 unit ´es de calcul) dans le cadre de l’ACI Masses de Donn ´ees
+(projet Grid Explorer).
+Pour transformer cette collection de grappes en grille exp ´erimentale, il
+faut souligner l’absolue n ´ecessit ´e d’un r ´eseau tr`es rapide interconnectant les
+grappes. Renater (avec un r ´eseau priv ´e virtuel) pourrait fournir le haut d ´ebit
+n ´ecessaire.>>
+http://www.telecom-valley.fr/sites/default/files/files/Grid5000%20-%20N_%20Niclausse.pdf
+diapo expliquant plus précisément ce qu’est Grid5000 et les récentes améliorations.
+
+Grid'5000 publication : Gyrokinetic Semi-Lagrangian Parallel Simulation using a Hybrid OpenMP/MPI Programming
+
+------------------------------------------------------------------------------------------------------------------
+Pour initialiser Git à partir de rien :
+- installer Git
+- mkdir dossier
+- git clone (adresse clone à droite du repository sur le site de Git
+- git status pour checker
+
+Pour bosser sur Git :
+- git pull pour récupérer la merde des autres
+- git add (nom fichier)
+- git commit -m "le nom de mon commit"
+- git push origin master / git push
+- git push (nom fichier)
