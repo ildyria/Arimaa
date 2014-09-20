@@ -4,6 +4,7 @@
 #include "InputHandler.h"
 #include "ResourceManager.h"
 #include "ConfigOptions.h"
+#include "BoardAlignedSprite.h"
 
 class GameScreen :
 	public Screen
@@ -19,4 +20,6 @@ public:
 private:
 	InputHandler* m_iHandler;
 	sf::Sprite m_background;
+
+	BoardAlignedSprite m_cursor;
 };

@@ -29,7 +29,8 @@ namespace sfmlop
 	/// \param v The vector to multiply (it will not be altered in any way).
 	/// \param coefficient a number that will multiply v's coordinates.
 	/// \returns The vector v*coefficient;
-	inline sf::Vector2f multiply(const sf::Vector2f v, float coefficient) { return sf::Vector2f(v.x * coefficient, v.y  * coefficient); }
+	template<typename T>
+	inline sf::Vector2<T> multiply(const sf::Vector2<T> v, T coefficient) { return sf::Vector2<T>(v.x * coefficient, v.y  * coefficient); }
 
 	/// \brief Returns the division of the given vector by the given divider.
 	/// \param v The vector to divide (it will not be altered in any way).

@@ -12,6 +12,7 @@ const sf::Color ResourceManager::DEFAULT_TRANSPARENT_COLOR(255,255,255);
 
 sf::Image* ResourceManager::getImage(std::string imageFile)
 {
+	imageFile = IMAGE_DIR + imageFile;
 	if(images.find(imageFile) == images.end()) //the image is not already loaded
 	{
 		if(!images[imageFile].LoadFromFile(imageFile)) //the image loads (or tries to)
@@ -33,7 +34,7 @@ sf::Image* ResourceManager::getImage(std::string imageFile, sf::Color transparen
 
 sf::Font* ResourceManager::getFont(std::string fontFile)
 {
-
+	fontFile = FONT_DIR + fontFile;
 	if(fonts.find(fontFile) == fonts.end()) //the font is not already loaded
 	{
 		if(!fonts[fontFile].LoadFromFile(fontFile)) //the image loads (or tries to)
