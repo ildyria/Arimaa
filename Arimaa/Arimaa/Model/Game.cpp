@@ -2,7 +2,7 @@
 
 int Game::m_maxPieceCount[NB_PIECES] = { 8, 2, 2, 2, 1, 1 };
 
-Game::Game(void) : m_activePlayer(GOLD), m_movesLeft(4), m_hasStarted(0)
+Game::Game(void) : m_activePlayer(STARTING_PLAYER), m_movesLeft(4), m_hasStarted(0)
 {
 	for(int i = 0; i < NB_PIECES; ++i)
 		m_pieceCount[i] = 0;
@@ -25,7 +25,7 @@ bool Game::place(Piece* p, Square s)
 
 bool Game::remove(Square s)
 {
-	if(!m_hasStarted)
+	if(!m_hasStarted) // if we are not started yet
 	{
 		bool res = !m_board.isFree(s) && m_board.getPiece(s)->getColor() == m_activePlayer; //if there is a piece here and it belongs to the right player
 		if(res)
@@ -38,10 +38,26 @@ bool Game::remove(Square s)
 	return false;
 }
 
-bool Game::play(Move& m)
+bool Game::endPlacement()
+{
+	if(m_hasStarted) //if the placement is already over
+		return false;
+
+	for(int i = 0; i < NB_PIECES; ++i)
+		if(m_pieceCount[i] < m_maxPieceCount[i]) //all pieces haven't been placed yet 
+			return false;
+
+	//if all pieces have been placed :
+	nextTurn();
+	return true;
+}
+
+bool Game::play(Move& m, bool applyDeaths)
 {
 	if(m_hasStarted && m.execute(m_board, m_activePlayer, m_movesLeft)) //the move could be performed
 	{
+		if(applyDeaths)
+			m_board.applyDeaths();
 		if(m_movesLeft == 0)
 			nextTurn();
 		return true;
@@ -59,7 +75,30 @@ void Game::nextTurn()
 
 	if(!m_hasStarted)
 	{
-		for(int i = 0; i < NB_PIECES; ++i)
-			m_pieceCount[i] = 0;
+		if(m_activePlayer == STARTING_PLAYER) //both players placed their pieces
+			m_hasStarted = true;
+		else //olny the starting player placed his pawns
+		{
+			for(int i = 0; i < NB_PIECES; ++i)
+				m_pieceCount[i] = 0;
+		}
 	}
+}
+
+bool Game::isWon()
+{
+	//Checks winning by reaching the goal
+	int goalY;
+	if(m_activePlayer == GOLD)
+		goalY = 7;
+	else //SILVER
+		goalY = 0;
+	for(int i = 0; i < BOARD_SIZE; ++i) //going through each square of the goal
+	{
+		Piece* p = m_board.getPiece(Square(i, goalY));
+		if(p != NULL && p->getColor() == m_activePlayer && p->getType() == RABBIT) //if there is a piece, it belongs to the player, and it's a rabbit 
+			return true;
+	}
+
+	return false;
 }

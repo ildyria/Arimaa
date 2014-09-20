@@ -30,7 +30,7 @@ Board::~Board(void)
 
 bool Board::placePiece(Piece* p, Square s)
 {
-	if(!isFree(s))
+	if(!isFree(s) || !inStartingZone(p->getColor(), s)) //if the square is not free or is not in the starting zone
 		return false;
 	m_board[s.y][s.x] = p;
 	return true;
@@ -48,7 +48,6 @@ bool Board::movePiece(Square pos, Square dest)
 	{
 		m_board[dest.y][dest.x] = m_board[pos.y][pos.x];
 		m_board[pos.y][pos.x] = NULL;
-		checkDeath(dest);
 		return true;
 	}
 	return false;
@@ -75,6 +74,16 @@ bool Board::isFrozen(Square s) const
 	return frozen;
 }
 
+bool Board::applyDeaths()
+{
+	bool someoneDied = false;
+	for(int i = 0; i < NB_TRAPS; ++i)
+	{
+		someoneDied |= checkDeath(m_trapList[i]);
+	}
+	return someoneDied;
+}
+
 bool Board::isTrap(Square s)
 {
 	for(int i = 0; i < NB_TRAPS; ++i)
@@ -86,6 +95,21 @@ bool Board::isTrap(Square s)
 bool Board::isValid(Square s)
 {
 	return (s.x >= 0) && (s.y >= 0) && (s.x < BOARD_SIZE) && (s.y < BOARD_SIZE);
+}
+
+bool Board::inStartingZone(Color c, Square s)
+{
+	if(!isValid(s))
+		return false;
+
+	if(c == GOLD)
+	{
+		return s.y < 2;
+	}
+	else //SILVER
+	{
+		return s.y > 5;
+	}
 }
 
 bool Board::areAdjacent(Square s1, Square s2)
@@ -100,7 +124,7 @@ bool Board::areAdjacent(Square s1, Square s2)
 
 bool Board::checkDeath(Square s)
 {
-	if(!isTrap(s))
+	if(!isTrap(s) || isFree(s)) //if it is not a trap, or no piece is on the trap
 		return false;
 
 	Color color = getPiece(s)->getColor();

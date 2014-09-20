@@ -14,6 +14,17 @@ bool Move::isPossible(const Board& b, Color player, int movesLeft) const
 		return false;
 	if(b.isFrozen(m_position) || b.getPiece(m_position)->getColor() != player) //there is no piece to move (or it is frozen) or it is the wrong color
 		return false;
+	if(b.getPiece(m_position)->getType() == RABBIT) //if the piece is a rabbit, forbids it to go backwards
+	{
+		//figuring out where backwards is
+		Square backwards(0,0);
+		if(player == GOLD)
+			backwards.y -= 1;
+		else //SILVER
+			backwards.y += 1;
+		if(m_destination == m_position + backwards) //going backwards
+			return false;
+	}
 	if(b.isFree(m_destination)) //the destination is free
 		return true;
 	return false;

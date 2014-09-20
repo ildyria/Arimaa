@@ -20,7 +20,7 @@ public:
 	static inline void unloadImage(std::string imageFile) { images.erase(IMAGE_DIR + imageFile); }
 
 	static sf::Font* getFont(std::string fontFile = DEFAULT_FONT);
-	static inline void unloadFont(std::string fontFile) { fonts.erase(FONT_DIR + fontFile); }
+	static inline void unloadFont(std::string fontFile = DEFAULT_FONT) { fonts.erase(FONT_DIR + fontFile); }
 
 	static const sf::Color DEFAULT_TRANSPARENT_COLOR; 
 

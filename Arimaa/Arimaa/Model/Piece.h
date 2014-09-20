@@ -1,7 +1,7 @@
 #pragma once
 
 enum PieceType {RABBIT, CAT, DOG, HORSE, CAMEL, ELEPHANT, NB_PIECES};
-enum Color {GOLD, SILVER};
+enum Color {GOLD, SILVER, NB_PLAYERS};
 
 class Piece
 {
