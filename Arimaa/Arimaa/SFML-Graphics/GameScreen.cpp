@@ -1,15 +1,17 @@
 #include "../StdAfx.h"
 #include "GameScreen.h"
 
-using namespace sf;
+#define TURN_INDICATOR_HEIGHT 150
+#define NB_MOVES_X 120
 
 sf::Vector2i GameScreen::m_cardinals[] = {sf::Vector2i(1,0), sf::Vector2i(0,1), sf::Vector2i(-1,0), sf::Vector2i(0,-1)};
 
 GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_selectedType(RABBIT)
 {
 	unselect();
-	m_playerText.SetPosition(0,0);
-	m_movesLeftText.SetPosition(0,100);
+	m_goldTurnIndicator.SetPosition(0, TURN_INDICATOR_HEIGHT);
+	m_silverTurnIndicator.SetPosition(0, (float) ConfigOptions::screenHeight() - TURN_INDICATOR_HEIGHT);
+	m_nbMovesSprite.SetPosition(NB_MOVES_X, (float) ConfigOptions::screenHeight() /2);
 }
 
 GameScreen::~GameScreen(void)
@@ -21,10 +23,10 @@ int GameScreen::update (sf::RenderWindow &app)
 	int nextScreen = myID;
 	float elapsedTime = app.GetFrameTime();
 
-	Event event;
+	sf::Event event;
 	while (app.GetEvent(event)) // Boucle des évènements en attente
 	{
-		if (event.Type == Event::Closed)
+		if (event.Type == sf::Event::Closed)
 		{
 			return EXIT;
 		}
@@ -32,62 +34,76 @@ int GameScreen::update (sf::RenderWindow &app)
 		{
 			return EXIT;
 		}
-		else if (event.Type == Event::MouseMoved)
+		else if (event.Type == sf::Event::MouseMoved)
 		{
-			m_cursor.moveOnSquare(BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseMove.X, (float) event.MouseMove.Y)));
+			m_cursor.moveOnSquare(BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseMove.X, (float) event.MouseMove.Y)), false);
 		}
-		else if (m_iHandler->testEvent(event, "LClick"))
+		else if(playerHasHand())
 		{
-			sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
-			if(m_game.hasStarted())
+			if (m_iHandler->testEvent(event, "LClick"))
 			{
-				if(select(s)) //a move was made
+				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
+				if(m_game.hasStarted())
 				{
-					updatePositionsAndDeath();
-					updateTexts();
+					Color oldPlayer = m_game.getActivePlayer();
+					if(select(s)) //a move was made
+					{
+						updatePositionsAndDeath();
+						updateNbMoves();
+						Color newPlayer = m_game.getActivePlayer();
+						if(oldPlayer != newPlayer) //turn is over
+							m_turnSign.activate(newPlayer == GOLD);
+					}
+				}
+				else
+					place(s);
+			}
+			else if (m_iHandler->testEvent(event, "RClick"))
+			{
+				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
+				if(!m_game.hasStarted())
+					remove(s);
+			}
+			else if (m_iHandler->testEvent(event, "Confirm"))
+			{
+				if(m_game.endPlacement())
+				{
+					m_turnSign.activate(m_game.getActivePlayer() == GOLD);
+					m_selectedType = RABBIT;
 				}
 			}
-			else
-				place(s);
-		}
-		else if (m_iHandler->testEvent(event, "RClick"))
-		{
-			sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
-			if(!m_game.hasStarted())
-				remove(s);
-		}
-		else if (m_iHandler->testEvent(event, "Confirm"))
-		{
-			if(m_game.endPlacement())
+			else if (m_iHandler->testEvent(event, "Rabbit"))
 			{
-				updateTexts();
+				m_selectedType = RABBIT;
 			}
-		}
-		else if (m_iHandler->testEvent(event, "Rabbit"))
-		{
-			m_selectedType = RABBIT;
-		}
-		else if (m_iHandler->testEvent(event, "Cat"))
-		{
-			m_selectedType = CAT;
-		}
-		else if (m_iHandler->testEvent(event, "Dog"))
-		{
-			m_selectedType = DOG;
-		}
-		else if (m_iHandler->testEvent(event, "Horse"))
-		{
-			m_selectedType = HORSE;
-		}
-		else if (m_iHandler->testEvent(event, "Camel"))
-		{
-			m_selectedType = CAMEL;
-		}
-		else if (m_iHandler->testEvent(event, "Elephant"))
-		{
-			m_selectedType = ELEPHANT;
-		}
-	}
+			else if (m_iHandler->testEvent(event, "Cat"))
+			{
+				m_selectedType = CAT;
+			}
+			else if (m_iHandler->testEvent(event, "Dog"))
+			{
+				m_selectedType = DOG;
+			}
+			else if (m_iHandler->testEvent(event, "Horse"))
+			{
+				m_selectedType = HORSE;
+			}
+			else if (m_iHandler->testEvent(event, "Camel"))
+			{
+				m_selectedType = CAMEL;
+			}
+			else if (m_iHandler->testEvent(event, "Elephant"))
+			{
+				m_selectedType = ELEPHANT;
+			}
+		} //end of if(playerHasHand)
+	} //end of event loop
+
+	m_turnSign.update(elapsedTime);
+
+	m_cursor.update(elapsedTime);
+	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
+		it->second.update(elapsedTime);
 
 	return nextScreen;
 }
@@ -104,8 +120,13 @@ void GameScreen::draw (sf::RenderWindow &app)
 	app.Draw(m_cursor);
 	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
 		app.Draw(it->second);
-	app.Draw(m_playerText);
-	app.Draw(m_movesLeftText);
+	if(m_game.getActivePlayer() == GOLD)
+		app.Draw(m_goldTurnIndicator);
+	else //SILVER
+		app.Draw(m_silverTurnIndicator);
+	if(m_game.hasStarted())
+		app.Draw(m_nbMovesSprite);
+	m_turnSign.draw(app);
 
 	app.Display();
 }
@@ -120,17 +141,40 @@ void GameScreen::initialize ()
 		m_selectionSprite.SetImage(*ResourceManager::getImage("Selection.png"));
 	if(m_targettingSprite.GetImage() == NULL)
 		m_targettingSprite.SetImage(*ResourceManager::getImage("Targetting.png"));
-
-	m_movesLeftText.SetFont(*ResourceManager::getFont());
-	m_playerText.SetFont(*ResourceManager::getFont());
-	updateTexts();
+	if(m_goldTurnIndicator.GetImage() == NULL)
+	{
+		m_goldTurnIndicator.SetImage(*ResourceManager::getImage("Gold_Turn.png"));
+		m_goldTurnIndicator.SetCenter(0, m_goldTurnIndicator.GetSize().y/2);
+	}
+	if(m_silverTurnIndicator.GetImage() == NULL)
+	{
+		m_silverTurnIndicator.SetImage(*ResourceManager::getImage("Silver_Turn.png"));
+		m_silverTurnIndicator.SetCenter(0, m_silverTurnIndicator.GetSize().y/2);
+	}
+	if(m_nbMovesSprite.GetImage() == NULL)
+	{
+		m_nbMovesSprite.SetImage(*ResourceManager::getImage("Nb_Moves.png"));
+		m_nbMovesSprite.SetCenter(0, (float) m_nbMovesSprite.GetImage()->GetHeight()/8); // height/8 because 4 sprites
+	}
+	m_turnSign.loadAssets();
+	updateNbMoves();
 }
 
 void GameScreen::uninitialize ()
 {
 	ResourceManager::unloadImage("Board.png");
 	ResourceManager::unloadImage("Cursor.png");
-	ResourceManager::unloadFont();
+	ResourceManager::unloadImage("Selection.png");
+	ResourceManager::unloadImage("Targetting.png");
+	ResourceManager::unloadImage("Gold_Turn.png");
+	ResourceManager::unloadImage("Silver_Turn.png");
+	ResourceManager::unloadImage("Nb_Moves.png");
+	m_turnSign.unloadAssets();
+}
+
+bool GameScreen::playerHasHand() const
+{
+	return !(m_turnSign.isActive());
 }
 
 void GameScreen::place(sf::Vector2i s)
@@ -249,7 +293,8 @@ void GameScreen::updatePositionsAndDeath()
 				endangeredPieces.push_back(p);
 			if(p != NULL)
 			{
-				m_pieces[p].moveOnSquare(sf::Vector2i(i,j));
+				m_pieces[p].moveOnSquare(sf::Vector2i(i,j), false);
+				m_pieces[p].freeze(m_game.isFrozen(Square(i,j))); //if the piece is frozen, show it
 			}
 		}
 	}
@@ -273,13 +318,11 @@ void GameScreen::updatePositionsAndDeath()
 	}
 
 }
-void GameScreen::updateTexts()
+void GameScreen::updateNbMoves()
 {
-	std::stringstream s1;
-	s1 << m_game.getMovesLeft();
-	m_movesLeftText.SetText( s1.str() );
+	int nbMoves = m_game.getMovesLeft();
 
-	std::stringstream s2;
-	s2 << m_game.getActivePlayer();
-	m_playerText.SetText( s2.str() );
+	int width = m_nbMovesSprite.GetImage()->GetWidth();
+	int height = m_nbMovesSprite.GetImage()->GetHeight()/4; // /4 beacause 4 sprites
+	m_nbMovesSprite.SetSubRect(sf::IntRect(0, (nbMoves-1)*height, width, nbMoves*height));
 }

@@ -1,5 +1,7 @@
 #include "PieceSprite.h"
 
+#define FREEZE_COLOR sf::Color(150,150,255)
+
 PieceSprite::PieceSprite() : BoardAlignedSprite()
 {
 }
@@ -25,6 +27,10 @@ void PieceSprite::SetImage(const sf::Image& img)
 	SetCenter(SQUARE_SIZE/2, SQUARE_SIZE/2);
 }
 
-void PieceSprite::update(float elpasedTime)
+void PieceSprite::freeze(bool frozen)
 {
+	if(frozen)
+		SetColor(FREEZE_COLOR);
+	else
+		SetColor(sf::Color::White);
 }

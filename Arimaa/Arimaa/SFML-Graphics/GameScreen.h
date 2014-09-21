@@ -7,6 +7,7 @@
 #include "ConfigOptions.h"
 #include "PieceSprite.h"
 #include "../Model/Game.h"
+#include "TurnSign.h"
 
 #define NULL_SQUARE sf::Vector2i(-1,-1)
 
@@ -28,14 +29,18 @@ private:
 	BoardAlignedSprite m_selectionSprite;
 	BoardAlignedSprite m_targettingSprite;
 	std::map<Piece*, PieceSprite> m_pieces;
-	sf::String m_playerText;
-	sf::String m_movesLeftText;
+	sf::Sprite m_goldTurnIndicator;
+	sf::Sprite m_silverTurnIndicator;
+	TurnSign m_turnSign;
+	sf::Sprite m_nbMovesSprite;
 
 	PieceType m_selectedType;
 	sf::Vector2i m_selectedPiece;
 	sf::Vector2i m_selectedTarget;
 
 	Game m_game;
+
+	bool playerHasHand() const;
 
 	void place(sf::Vector2i s);
 	void remove(sf::Vector2i s);
@@ -46,7 +51,7 @@ private:
 	void selectTarget(sf::Vector2i s); //call only if there is a piece there
 	void updatePositionsAndDeath();
 
-	void updateTexts();
+	void updateNbMoves();
 
 	static inline sf::Vector2i toVector(const Square& s) { return sf::Vector2i(s.x, s.y); }
 	static inline Square toSquare(const sf::Vector2i& v) { return Square(v.x, v.y); }

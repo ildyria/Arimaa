@@ -33,6 +33,7 @@ public:
 	inline bool displace(Square pos, Square dest, Square target, bool applyDeaths = true) { return play(Displace(pos, dest, target), applyDeaths); }
 	inline bool applyDeaths() { return m_board.applyDeaths(); } //use only if you moved with applyDeaths set to false
 	inline bool isTrap(Square s) { return m_board.isTrap(s); }
+	inline bool isFrozen(Square s) const { return m_board.isFrozen(s); }
 	bool isWon(); //checks if the current player won the game. For now, only checks victory by reaching the goal
 	
 	inline Piece* operator[] (const Square& s) const { return m_board.getPiece(s); }

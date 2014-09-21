@@ -17,9 +17,14 @@ public:
 
 	inline virtual void SetImage(const sf::Image& img) { Sprite::SetImage(img); SetCenter(sfmlop::divide(GetSize(), 2)); }
 
-	inline void moveOnSquare(sf::Vector2i square) { if(isOnBoard(square)) SetPosition( toPixels(square) ); }
+	void moveOnSquare(sf::Vector2i square, bool instant = true);
+
+	virtual void update(float elapsedTime);
 
 	static inline sf::Vector2f toPixels(sf::Vector2i square) { return BOARD_ORIGIN_CENTERED + sfmlop::toFloatVect(sfmlop::multiply(square, SQUARE_SIZE)); }
 	static inline sf::Vector2i toSquares(sf::Vector2f pos) { return sfmlop::toIntVect(sfmlop::divide(pos - BOARD_ORIGIN, SQUARE_SIZE)); }
 	static inline bool isOnBoard(sf::Vector2i square) { return square.x >= 0 && square.y >= 0 && square.x < 8 && square.y < 8; }
+
+private:
+	sf::Vector2f m_goal;
 };

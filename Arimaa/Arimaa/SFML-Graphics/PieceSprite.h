@@ -12,8 +12,7 @@ public:
 
 	void SetImage(const sf::Image& img);
 
-	//inline bool moveIfSame(Piece* p, sf::Vector2i s) { if(p == m_piece) moveOnSquare(s); return (p == m_piece);  }
-	void update(float elpasedTime);
+	void freeze(bool frozen);
 
 private:
 	Piece* m_piece;
