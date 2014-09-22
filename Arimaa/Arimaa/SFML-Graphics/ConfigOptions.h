@@ -8,7 +8,7 @@
 class ConfigOptions
 {
 public:
-	static void initIHandler();
+	static void init();
 
 	static inline sf::Vector2i getResolution() { return m_resolution; }
 	static inline int screenHeight() { return m_resolution.y; }
@@ -19,10 +19,12 @@ public:
 	static inline sf::Vector2f topRightCorner() { return sf::Vector2f((float)m_resolution.x, 0); }
 	static inline sf::Vector2f bottomLeftCorner() { return sf::Vector2f(0, (float)m_resolution.y); }
 	static inline sf::Vector2f bottomRightCorner() { return sfmlop::toFloatVect(m_resolution); }
+	static inline bool inFullscreen() { return m_inFullscreen; }
 	static inline InputHandler* getIHandler() { return &m_iHandler; }
 
 private:
 	static sf::Vector2i m_resolution;
+	static bool m_inFullscreen;
 	static InputHandler m_iHandler;
 
 	static std::map<std::string, sf::Key::Code> getNamedKeys();

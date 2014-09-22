@@ -12,8 +12,13 @@ public:
 
 	void SetImage(const sf::Image& img);
 
+	void update(float elapsedTime);
+
 	void freeze(bool frozen);
+	inline void startDisappearing() { m_disappearing = true; }
+	inline bool hasDisappeared() { return GetScale().x == 0; }
 
 private:
 	Piece* m_piece;
+	bool m_disappearing;
 };

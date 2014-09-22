@@ -4,8 +4,9 @@
 
 sf::Vector2i ConfigOptions::m_resolution;
 InputHandler ConfigOptions::m_iHandler;
+bool ConfigOptions::m_inFullscreen;
 
-void ConfigOptions::initIHandler()
+void ConfigOptions::init()
 {
 	//Opening ini file
 	CSimpleIniA ini;
@@ -16,6 +17,7 @@ void ConfigOptions::initIHandler()
 	/////////////////////GRAPHICS///////////////////////////////
 	//Resoltion
 	m_resolution = sf::Vector2i(atoi(ini.GetValue("Graphics", "ScreenWidth", "1920")), atoi(ini.GetValue("Graphics", "ScreenHeight", "1080")));
+	m_inFullscreen = ini.GetBoolValue("Graphics", "FullScreen", 0);
 	
 	//////////////////////CONTROLS/////////////////////////////
 	std::string item;

@@ -30,10 +30,12 @@ private:
 	BoardAlignedSprite m_selectionSprite;
 	BoardAlignedSprite m_targettingSprite;
 	std::map<Piece*, PieceSprite> m_pieces;
+	std::vector<Piece*> m_disappearingPieces; //dead pieces that are still disappearing
 	sf::Sprite m_goldTurnIndicator;
 	sf::Sprite m_silverTurnIndicator;
 	TurnSign m_turnSign;
 	sf::Sprite m_nbMovesSprite;
+	sf::Sprite m_movesBackgroundSprite;
 	Highlighter m_highlighter;
 
 	PieceType m_selectedType;
@@ -52,12 +54,14 @@ private:
 
 	void selectPiece(sf::Vector2i s); //call only if there is a piece there
 	void selectTarget(sf::Vector2i s); //call only if there is a piece there
-	void updatePositionsAndDeath();
 
+	void updatePositionsAndDeath();
 	void updateNbMoves();
+	inline void killPieceSprite(Piece* p) { m_disappearingPieces.push_back(p); m_pieces[p].startDisappearing(); }
 
 	static inline sf::Vector2i toVector(const Square& s) { return sf::Vector2i(s.x, s.y); }
 	static inline Square toSquare(const sf::Vector2i& v) { return Square(v.x, v.y); }
+	static inline bool isValid(sf::Vector2i s) { return (s.x >= 0 && s.y >= 0 && s.x < 8 && s.y < 8); }
 	
 	static sf::Vector2i m_cardinals[];
 	static bool areAdjacent(sf::Vector2i p1, sf::Vector2i p2);

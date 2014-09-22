@@ -3,6 +3,7 @@
 
 #define TURN_INDICATOR_HEIGHT 150
 #define NB_MOVES_X 120
+#define NB_BG_X 20
 
 sf::Vector2i GameScreen::m_cardinals[] = {sf::Vector2i(1,0), sf::Vector2i(0,1), sf::Vector2i(-1,0), sf::Vector2i(0,-1)};
 
@@ -12,6 +13,7 @@ GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptio
 	m_goldTurnIndicator.SetPosition(0, TURN_INDICATOR_HEIGHT);
 	m_silverTurnIndicator.SetPosition(0, (float) ConfigOptions::screenHeight() - TURN_INDICATOR_HEIGHT);
 	m_nbMovesSprite.SetPosition(NB_MOVES_X, (float) ConfigOptions::screenHeight() /2);
+	m_movesBackgroundSprite.SetPosition(NB_BG_X, (float) ConfigOptions::screenHeight() /2);
 }
 
 GameScreen::~GameScreen(void)
@@ -38,12 +40,43 @@ int GameScreen::update (sf::RenderWindow &app)
 		{
 			m_cursor.moveOnSquare(BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseMove.X, (float) event.MouseMove.Y)), false);
 		}
+		else if(m_iHandler->testEvent(event, "Up"))
+		{
+			sf::Vector2i s = BoardAlignedSprite::toSquares(m_cursor.GetPosition()) + sf::Vector2i(0, -1);
+			if(isValid(s))
+				m_cursor.moveOnSquare(s, false);
+		}
+		else if(m_iHandler->testEvent(event, "Left"))
+		{
+			sf::Vector2i s = BoardAlignedSprite::toSquares(m_cursor.GetPosition()) + sf::Vector2i(-1, 0);
+			if(isValid(s))
+				m_cursor.moveOnSquare(s, false);
+		}
+		else if(m_iHandler->testEvent(event, "Down"))
+		{
+			sf::Vector2i s = BoardAlignedSprite::toSquares(m_cursor.GetPosition()) + sf::Vector2i(0, 1);
+			if(isValid(s))
+				m_cursor.moveOnSquare(s, false);
+		}
+		else if(m_iHandler->testEvent(event, "Right"))
+		{
+			sf::Vector2i s = BoardAlignedSprite::toSquares(m_cursor.GetPosition()) + sf::Vector2i(1, 0);
+			if(isValid(s))
+				m_cursor.moveOnSquare(s, false);
+		}
 		else if(playerHasHand())
 		{
 			if (m_iHandler->testEvent(event, "LClick"))
 			{
 				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
-				clickOn(s);
+				if(isValid(s))
+					clickOn(s);
+			}
+			if (m_iHandler->testEvent(event, "Choose"))
+			{
+				sf::Vector2i s = BoardAlignedSprite::toSquares(m_cursor.GetPosition());
+				if(isValid(s))
+					clickOn(s);
 			}
 			else if (m_iHandler->testEvent(event, "RClick"))
 			{
@@ -87,10 +120,20 @@ int GameScreen::update (sf::RenderWindow &app)
 	} //end of event loop
 
 	m_turnSign.update(elapsedTime);
-
 	m_cursor.update(elapsedTime);
 	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
 		it->second.update(elapsedTime);
+
+	//removing pieces that have finished disappearing
+	for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
+	{
+		Piece* p = *it;
+		if(m_pieces[p].hasDisappeared())
+		{
+			m_pieces.erase(p);
+			m_disappearingPieces.erase(it);
+		}
+	}
 
 	return nextScreen;
 }
@@ -113,7 +156,10 @@ void GameScreen::draw (sf::RenderWindow &app)
 	else //SILVER
 		app.Draw(m_silverTurnIndicator);
 	if(m_game.hasStarted())
+	{
+		app.Draw(m_movesBackgroundSprite);
 		app.Draw(m_nbMovesSprite);
+	}
 	m_turnSign.draw(app);
 
 	app.Display();
@@ -123,6 +169,7 @@ void GameScreen::initialize ()
 {
 	if(m_background.GetImage() == NULL)
 		m_background.SetImage(*ResourceManager::getImage("Board.png"));
+	ResourceManager::getImage("Pieces.png");
 	if(m_cursor.GetImage() == NULL)
 		m_cursor.SetImage(*ResourceManager::getImage("Cursor.png"));
 	if(m_selectionSprite.GetImage() == NULL)
@@ -144,6 +191,11 @@ void GameScreen::initialize ()
 		m_nbMovesSprite.SetImage(*ResourceManager::getImage("Nb_Moves.png"));
 		m_nbMovesSprite.SetCenter(0, (float) m_nbMovesSprite.GetImage()->GetHeight()/8); // height/8 because 4 sprites
 	}
+	if(m_movesBackgroundSprite.GetImage() == NULL)
+	{
+		m_movesBackgroundSprite.SetImage(*ResourceManager::getImage("Moves_Back.png"));
+		m_movesBackgroundSprite.SetCenter(0, m_movesBackgroundSprite.GetSize().y/2);
+	}
 	m_turnSign.loadAssets();
 	m_highlighter.loadAssets();
 	updateNbMoves();
@@ -158,6 +210,7 @@ void GameScreen::uninitialize ()
 	ResourceManager::unloadImage("Gold_Turn.png");
 	ResourceManager::unloadImage("Silver_Turn.png");
 	ResourceManager::unloadImage("Nb_Moves.png");
+	ResourceManager::unloadImage("Moves_Back.png");
 	m_turnSign.unloadAssets();
 	m_highlighter.unloadAssets();
 }
@@ -210,10 +263,11 @@ void GameScreen::place(sf::Vector2i s)
 
 void GameScreen::remove(sf::Vector2i s)
 {
-	if(BoardAlignedSprite::isOnBoard(s) && m_game[toSquare(s)] != NULL) //there is a piece to be removed
+	if(BoardAlignedSprite::isOnBoard(s)) //there is a piece to be removed
 	{
-		if(m_game.remove(toSquare(s))) //removing the actual piece
-			m_pieces.erase(m_game[toSquare(s)]); //removing piece sprite
+		Piece* p = m_game[toSquare(s)];
+		if(p != NULL && m_game.remove(toSquare(s))) //removing the actual piece
+			killPieceSprite(p); //removing piece sprite
 	}
 }
 
@@ -337,7 +391,7 @@ void GameScreen::updatePositionsAndDeath()
 	for(int i = 0; i < NB_TRAPS; ++i)
 	{
 		if(endangeredPieces[i] != survivingPieces[i]) //the piece has died (replaced by NULL)
-			m_pieces.erase(endangeredPieces[i]);
+			killPieceSprite(endangeredPieces[i]);
 	}
 
 }
