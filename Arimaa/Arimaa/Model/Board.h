@@ -40,11 +40,12 @@ public:
 	static bool inStartingZone(Color c, Square s);
 	static bool areAdjacent(Square s1, Square s2);
 
+	static const Square m_cardinals[];
+
 private:
 	std::vector<std::vector<Piece*>> m_board;
 
 	bool checkDeath(Square s);
 
 	static Square m_trapList[];
-	static Square m_cardinals[];
 };

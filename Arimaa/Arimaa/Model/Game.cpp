@@ -102,3 +102,33 @@ bool Game::isWon()
 
 	return false;
 }
+
+std::vector<Square> Game::getPossibleMoves(Square pieceToMove)
+{
+	std::vector<Square> res;
+
+	for(int i = 0; i < 4; ++i) //checks the 4 directions
+	{
+		Square s = pieceToMove + Board::m_cardinals[i];
+		Move m(pieceToMove, s);
+		if(m_board.isValid(s) && (m.isPossible(m_board, m_activePlayer, m_movesLeft) || getPossibleDisplacements(pieceToMove, s).size() > 0)) //if we can move here or displace the piece here, add it to the list
+			res.push_back(s);
+	}
+
+	return res;
+}
+
+std::vector<Square> Game::getPossibleDisplacements(Square pieceToMove, Square pieceToDisplace)
+{
+	std::vector<Square> res;
+	
+	for(int i = 0; i < 4; ++i) //checks the 4 directions
+	{
+		Square s = pieceToDisplace + Board::m_cardinals[i];
+		Displace m(pieceToMove, s, pieceToDisplace);
+		if(m_board.isValid(s) && (m.isPossible(m_board, m_activePlayer, m_movesLeft))) //if we can displace it here add this square to the list
+			res.push_back(s);
+	}
+
+	return res;
+}

@@ -16,7 +16,7 @@ bool Displace::isPossible(const Board& b, Color player, int movesLeft) const
 		return false;
 	if(b.isFree(m_target) || b.getPiece(m_target)->getColor() == player) //there is no piece to displace or it is the wrong color
 		return false;
-	if(b.getPiece(m_position) <= b.getPiece(m_target)) //the target piece is too strong to be pushed
+	if(*b.getPiece(m_position) <= *b.getPiece(m_target)) //the target piece is too strong to be pushed
 		return false;
 	if(b.isFree(m_destination) || (m_destination == m_position && b.isFree(2*m_position - m_target))) //the destination is free or is the same as the starting position (case of pull), in which case the square behind position is free
 		return true;
