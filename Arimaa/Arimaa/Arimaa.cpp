@@ -15,10 +15,15 @@
 
 using namespace sf;
 
+//comment this line to hide console
+#define CONSOLE_ON
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+#ifdef CONSOLE_ON
 	void InitializeConsoleStdIO();
+#endif
 
 	ConfigOptions::initIHandler();
 	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "TRPG", Style::Close | Style::Titlebar); //Création de la fenêtre app
@@ -60,6 +65,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 
+#ifdef CONSOLE_ON
 void InitializeConsoleStdIO()
 {
     // si une console est rattachée au processus, alors il existe des fichiers
@@ -101,3 +107,4 @@ int WINAPI WinMain(
     std::cout << "Appuyez sur Entree pour quitter...";
     std::cin.ignore();
 }
+#endif

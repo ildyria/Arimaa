@@ -35,6 +35,9 @@ public:
 	inline bool isTrap(Square s) { return m_board.isTrap(s); }
 	inline bool isFrozen(Square s) const { return m_board.isFrozen(s); }
 	bool isWon(); //checks if the current player won the game. For now, only checks victory by reaching the goal
+
+	std::vector<Square> getPossibleMoves(Square pieceToMove);
+	std::vector<Square> getPossibleDisplacements(Square pieceToMove, Square pieceToDisplace);
 	
 	inline Piece* operator[] (const Square& s) const { return m_board.getPiece(s); }
 

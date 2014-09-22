@@ -43,20 +43,7 @@ int GameScreen::update (sf::RenderWindow &app)
 			if (m_iHandler->testEvent(event, "LClick"))
 			{
 				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
-				if(m_game.hasStarted())
-				{
-					Color oldPlayer = m_game.getActivePlayer();
-					if(select(s)) //a move was made
-					{
-						updatePositionsAndDeath();
-						updateNbMoves();
-						Color newPlayer = m_game.getActivePlayer();
-						if(oldPlayer != newPlayer) //turn is over
-							m_turnSign.activate(newPlayer == GOLD);
-					}
-				}
-				else
-					place(s);
+				clickOn(s);
 			}
 			else if (m_iHandler->testEvent(event, "RClick"))
 			{
@@ -113,6 +100,7 @@ void GameScreen::draw (sf::RenderWindow &app)
 	app.Clear();
 	
 	app.Draw(m_background);
+	m_highlighter.draw(app);
 	if(m_selectedPiece != NULL_SQUARE)
 		app.Draw(m_selectionSprite);
 	if(m_selectedTarget != NULL_SQUARE)
@@ -157,6 +145,7 @@ void GameScreen::initialize ()
 		m_nbMovesSprite.SetCenter(0, (float) m_nbMovesSprite.GetImage()->GetHeight()/8); // height/8 because 4 sprites
 	}
 	m_turnSign.loadAssets();
+	m_highlighter.loadAssets();
 	updateNbMoves();
 }
 
@@ -170,11 +159,30 @@ void GameScreen::uninitialize ()
 	ResourceManager::unloadImage("Silver_Turn.png");
 	ResourceManager::unloadImage("Nb_Moves.png");
 	m_turnSign.unloadAssets();
+	m_highlighter.unloadAssets();
 }
 
 bool GameScreen::playerHasHand() const
 {
 	return !(m_turnSign.isActive());
+}
+
+void GameScreen::clickOn(sf::Vector2i s)
+{
+	if(m_game.hasStarted())
+	{
+		Color oldPlayer = m_game.getActivePlayer();
+		if(select(s)) //a move was made
+		{
+			updatePositionsAndDeath();
+			updateNbMoves();
+			Color newPlayer = m_game.getActivePlayer();
+			if(oldPlayer != newPlayer) //turn is over
+				m_turnSign.activate(newPlayer == GOLD);
+		}
+	}
+	else
+		place(s);
 }
 
 void GameScreen::place(sf::Vector2i s)
@@ -215,9 +223,9 @@ bool GameScreen::select(sf::Vector2i s)
 	{
 		if(m_selectedTarget != NULL_SQUARE) //if an enemy piece is selected
 		{
-			if(!areAdjacent(s, m_selectedTarget)) //squares aren't adjacent, unselect
+			if(!m_highlighter.isHighlighted(s)) //square isn't selectable
 				unselect();
-			else //squares are adjacent
+			else //square is selectable
 			{
 				bool res = m_game.displace(toSquare(m_selectedPiece), toSquare(s), toSquare(m_selectedTarget), false);
 				unselect();
@@ -226,9 +234,9 @@ bool GameScreen::select(sf::Vector2i s)
 		}
 		else //no enemy piece selected
 		{
-			if(!areAdjacent(s, m_selectedPiece)) //squares aren't adjacent, unselect
+			if(!m_highlighter.isHighlighted(s)) //square isn't selectable
 				unselect();
-			else //squares are adjacent
+			else //square is selectable
 			{
 				Piece* p = m_game[toSquare(s)];
 				if(p == NULL) //no piece here
@@ -237,10 +245,8 @@ bool GameScreen::select(sf::Vector2i s)
 					unselect();
 					return res;
 				}
-				else if(p->getColor() != m_game.getActivePlayer() && p < m_game[toSquare(m_selectedPiece)]) //the piece is an enemy one, and it can be displaced
-					selectTarget(s);
 				else
-					unselect();
+					selectTarget(s);
 			}
 		}
 	}
@@ -257,6 +263,7 @@ void GameScreen::unselect()
 {
 	m_selectedPiece = NULL_SQUARE;
 	m_selectedTarget = NULL_SQUARE;
+	m_highlighter.removeHighlights();
 }
 
 bool GameScreen::areAdjacent(sf::Vector2i p1, sf::Vector2i p2)
@@ -273,12 +280,28 @@ void GameScreen::selectPiece(sf::Vector2i s)
 {
 	m_selectedPiece = s;
 	m_selectionSprite.moveOnSquare(s);
+
+	std::vector<Square> possibleMoves = m_game.getPossibleMoves(toSquare(s));
+	std::vector<sf::Vector2i> possibleMoves2;
+	for(unsigned int i = 0; i < possibleMoves.size(); ++i)
+	{
+		possibleMoves2.push_back(toVector(possibleMoves[i]));
+	}
+	m_highlighter.setHighlights(possibleMoves2);
 }
 
 void GameScreen::selectTarget(sf::Vector2i s)
 {
 	m_selectedTarget = s;
 	m_targettingSprite.moveOnSquare(s);
+
+	std::vector<Square> possibleMoves = m_game.getPossibleDisplacements(toSquare(m_selectedPiece), toSquare(s));
+	std::vector<sf::Vector2i> possibleMoves2;
+	for(unsigned int i = 0; i < possibleMoves.size(); ++i)
+	{
+		possibleMoves2.push_back(toVector(possibleMoves[i]));
+	}
+	m_highlighter.setHighlights(possibleMoves2);
 }
 
 void GameScreen::updatePositionsAndDeath()

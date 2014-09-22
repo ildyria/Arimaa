@@ -1,7 +1,7 @@
 #include "Board.h"
 
 Square Board::m_trapList[] = {Square(2,2), Square(2,5), Square(5,2), Square(5,5)};
-Square Board::m_cardinals[] = {Square(1,0), Square(0,1), Square(-1,0), Square(0,-1)};
+const Square Board::m_cardinals[] = {Square(1,0), Square(0,1), Square(-1,0), Square(0,-1)};
 
 Board::Board(void)
 {
@@ -67,8 +67,8 @@ bool Board::isFrozen(Square s) const
 		{
 			if(getPiece(adjSquare)->getColor() == color) //an ally is around : the piece can't be frozen
 				return false;
-			else //an ennemy is around : frozen if weaker
-				frozen = (*getPiece(s) < *getPiece(adjSquare));
+			else //an ennemy is around : frozen if weaker or if already frozen
+				frozen |= (*getPiece(s) < *getPiece(adjSquare));
 		}
 	}
 	return frozen;

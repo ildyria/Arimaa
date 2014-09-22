@@ -8,6 +8,7 @@
 #include "PieceSprite.h"
 #include "../Model/Game.h"
 #include "TurnSign.h"
+#include "Highlighter.h"
 
 #define NULL_SQUARE sf::Vector2i(-1,-1)
 
@@ -33,6 +34,7 @@ private:
 	sf::Sprite m_silverTurnIndicator;
 	TurnSign m_turnSign;
 	sf::Sprite m_nbMovesSprite;
+	Highlighter m_highlighter;
 
 	PieceType m_selectedType;
 	sf::Vector2i m_selectedPiece;
@@ -42,6 +44,7 @@ private:
 
 	bool playerHasHand() const;
 
+	void clickOn(sf::Vector2i s);
 	void place(sf::Vector2i s);
 	void remove(sf::Vector2i s);
 	bool select(sf::Vector2i s); //returns true if a move is made
