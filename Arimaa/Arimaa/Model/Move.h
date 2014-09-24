@@ -22,5 +22,5 @@ protected:
 	Square m_destination;
 	int m_cost;
 
-	virtual bool isValid();
+	virtual bool isValid() const;
 };

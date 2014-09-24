@@ -10,6 +10,8 @@ Move::~Move(void)
 
 bool Move::isPossible(const Board& b, Color player, int movesLeft) const
 {
+	if(!isValid())
+		return false;
 	if(movesLeft < m_cost) //not enough moves left
 		return false;
 	if(b.isFrozen(m_position) || b.getPiece(m_position)->getColor() != player) //there is no piece to move (or it is frozen) or it is the wrong color
@@ -25,9 +27,7 @@ bool Move::isPossible(const Board& b, Color player, int movesLeft) const
 		if(m_destination == m_position + backwards) //going backwards
 			return false;
 	}
-	if(b.isFree(m_destination)) //the destination is free
-		return true;
-	return false;
+	return b.isFree(m_destination); //rturns true if the destination is free
 }
 
 bool Move::execute(Board& b, Color player, int& movesLeft) const
@@ -41,7 +41,7 @@ bool Move::execute(Board& b, Color player, int& movesLeft) const
 	return true;
 }
 
-bool Move::isValid()
+bool Move::isValid() const
 {
 	return Board::isValid(m_position) && Board::isValid(m_destination) && Board::areAdjacent(m_position, m_destination);
 }

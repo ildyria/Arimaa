@@ -111,7 +111,7 @@ std::vector<Square> Game::getPossibleMoves(Square pieceToMove)
 	{
 		Square s = pieceToMove + Board::m_cardinals[i];
 		Move m(pieceToMove, s);
-		if(m_board.isValid(s) && (m.isPossible(m_board, m_activePlayer, m_movesLeft) || getPossibleDisplacements(pieceToMove, s).size() > 0)) //if we can move here or displace the piece here, add it to the list
+		if((m.isPossible(m_board, m_activePlayer, m_movesLeft) || getPossibleDisplacements(pieceToMove, s).size() > 0)) //if we can move here or displace the piece here, add it to the list
 			res.push_back(s);
 	}
 
@@ -122,12 +122,27 @@ std::vector<Square> Game::getPossibleDisplacements(Square pieceToMove, Square pi
 {
 	std::vector<Square> res;
 	
+	//pushes
 	for(int i = 0; i < 4; ++i) //checks the 4 directions
 	{
 		Square s = pieceToDisplace + Board::m_cardinals[i];
-		Displace m(pieceToMove, s, pieceToDisplace);
-		if(m_board.isValid(s) && (m.isPossible(m_board, m_activePlayer, m_movesLeft))) //if we can displace it here add this square to the list
-			res.push_back(s);
+		if(s != pieceToMove) //takes out the obvious case of wanting to push the target on the pushing piece
+		{
+			Displace m(pieceToMove, s, pieceToDisplace);
+			if(m.isPossible(m_board, m_activePlayer, m_movesLeft)) //if we can displace it here add this square to the list
+				res.push_back(s);
+		}
+	}
+	//pulls
+	for(int i = 0; i < 4; ++i) //checks the 4 directions
+	{
+		Square s = pieceToMove + Board::m_cardinals[i];
+		if(s != pieceToDisplace) //takes out the obvious case of wanting to pull the target and take its place
+		{
+			Displace m(pieceToMove, s, pieceToDisplace);
+			if(m.isPossible(m_board, m_activePlayer, m_movesLeft)) //if we can displace it here add this square to the list
+				res.push_back(s);
+		}
 	}
 
 	return res;

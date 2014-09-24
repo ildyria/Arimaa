@@ -14,6 +14,7 @@ typedef struct Square
 } Square;
 
 inline bool operator== (const Square& s1, const Square& s2) { return (s1.x == s2.x) && (s1.y == s2.y); }
+inline bool operator!= (const Square& s1, const Square& s2) { return (s1.x != s2.x) || (s1.y != s2.y); }
 inline Square operator+ (const Square& s1, const Square& s2) { return Square(s1.x + s2.x, s1.y + s2.y); }
 inline Square operator- (const Square& s1, const Square& s2) { return Square(s1.x - s2.x, s1.y - s2.y); }
 inline Square operator* (const Square& s, const int& i) { return Square(s.x*i, s.y*i); }
