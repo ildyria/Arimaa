@@ -30,8 +30,9 @@ Board::~Board(void)
 
 bool Board::placePiece(Piece* p, Square s)
 {
-	if(!isFree(s) || !inStartingZone(p->getColor(), s)) //if the square is not free or is not in the starting zone
+	if(!isFree(s)) //if the square is not free
 		return false;
+	//else
 	m_board[s.y][s.x] = p;
 	return true;
 }
@@ -140,4 +141,15 @@ bool Board::checkDeath(Square s)
 	}
 	removePiece(s);
 	return true;
+}
+
+void Board::clear()
+{
+	for(int i = 0; i < BOARD_SIZE; ++i)
+	{
+		for(int j = 0; j < BOARD_SIZE; ++j)
+		{
+			removePiece(Square(i,j));
+		}
+	}
 }

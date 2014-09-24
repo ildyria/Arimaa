@@ -12,6 +12,9 @@ public:
 	inline PieceType getType() const { return m_type; }
 	inline Color getColor() const { return m_color; }
 
+	char toChar() const;
+	static Piece fromChar(char c);
+
 private:
 	PieceType m_type;
 	Color m_color;

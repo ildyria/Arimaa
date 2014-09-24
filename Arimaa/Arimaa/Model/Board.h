@@ -35,6 +35,7 @@ public:
 	bool movePiece(Square pos, Square dest);
 	bool isFrozen(Square s) const;
 	bool applyDeaths();
+	void clear();
 
 	static bool isTrap(Square s);
 	static bool isValid(Square s);

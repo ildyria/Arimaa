@@ -5,6 +5,8 @@
 #define NB_MOVES_X 120
 #define NB_BG_X 20
 
+#define BACKUP_FILE "Backup.arm"
+
 sf::Vector2i GameScreen::m_cardinals[] = {sf::Vector2i(1,0), sf::Vector2i(0,1), sf::Vector2i(-1,0), sf::Vector2i(0,-1)};
 
 GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_selectedType(RABBIT)
@@ -35,6 +37,15 @@ int GameScreen::update (sf::RenderWindow &app)
 		else if(m_iHandler->testEvent(event, "Quit"))
 		{
 			return EXIT;
+		}
+		else if(m_iHandler->testEvent(event, "Save"))
+		{
+			m_game.saveToFile(BACKUP_FILE);
+		}
+		else if(m_iHandler->testEvent(event, "Load"))
+		{
+			m_game.loadFromFile(BACKUP_FILE);
+			refreshAll();
 		}
 		else if (event.Type == sf::Event::MouseMoved)
 		{
@@ -84,7 +95,7 @@ int GameScreen::update (sf::RenderWindow &app)
 				if(!m_game.hasStarted())
 					remove(s);
 			}
-			else if (m_iHandler->testEvent(event, "Confirm"))
+			else if (m_iHandler->testEvent(event, "EndTurn"))
 			{
 				if(m_game.endPlacement())
 				{
@@ -402,4 +413,29 @@ void GameScreen::updateNbMoves()
 	int width = m_nbMovesSprite.GetImage()->GetWidth();
 	int height = m_nbMovesSprite.GetImage()->GetHeight()/4; // /4 beacause 4 sprites
 	m_nbMovesSprite.SetSubRect(sf::IntRect(0, (nbMoves-1)*height, width, nbMoves*height));
+}
+
+void GameScreen::clearAll()
+{
+	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
+		killPieceSprite(it->first);
+}
+
+void GameScreen::refreshAll()
+{
+	clearAll();
+	for(int i = 0; i < BOARD_SIZE; ++i)
+	{
+		for(int j = 0; j < BOARD_SIZE; ++j)
+		{
+			sf::Vector2i s(i,j);
+			Piece* p = m_game[toSquare(s)];
+			if(p != NULL)
+			{
+				m_pieces[p] = PieceSprite(p);
+				m_pieces[p].moveOnSquare(s);
+			}
+		}
+	}
+	updateNbMoves();
 }

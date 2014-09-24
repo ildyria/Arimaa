@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <fstream>
 #include "Board.h"
 #include "Displace.h"
 
@@ -40,6 +42,9 @@ public:
 	std::vector<Square> getPossibleDisplacements(Square pieceToMove, Square pieceToDisplace);
 	
 	inline Piece* operator[] (const Square& s) const { return m_board.getPiece(s); }
+
+	bool saveToFile(std::string fileName) const;
+	bool loadFromFile(std::string fileName);
 
 private:
 	Board m_board;

@@ -15,7 +15,7 @@ Game::~Game(void)
 bool Game::place(Piece* p, Square s)
 {
 	if(!m_hasStarted && m_pieceCount[p->getType()] < m_maxPieceCount[p->getType()]) // if we are not started yet and all pieces of this type haven't been plaed
-		if(m_board.placePiece(p, s))
+		if(m_board.inStartingZone(p->getColor(), s) && m_board.placePiece(p, s))
 		{
 			m_pieceCount[p->getType()]++;
 			return true;
@@ -146,4 +146,79 @@ std::vector<Square> Game::getPossibleDisplacements(Square pieceToMove, Square pi
 	}
 
 	return res;
+}
+
+bool Game::saveToFile(std::string fileName) const
+{
+	//opens the file and checks if it opened correctly
+	std::ofstream stream(fileName.c_str());
+	if (!stream.is_open())
+	{
+		return false;
+	}
+
+	//writing active player and nb moves
+	int movesLeft = 0;
+	if(m_hasStarted)
+		movesLeft = m_movesLeft;
+	stream << m_activePlayer << ";" << movesLeft << std::endl;
+
+	//writing the board
+	for(int i = 0; i < BOARD_SIZE; ++i)
+	{
+		for(int j = 0; j < BOARD_SIZE; ++j)
+		{
+			Square s(j,i);
+			if(m_board.isFree(s))
+				stream << ' ';
+			else
+				stream << m_board.getPiece(s)->toChar();
+		}
+		stream << std::endl;
+	}
+	return true;
+}
+
+bool Game::loadFromFile(std::string fileName)
+{
+	//opens the file and checks if it opened correctly
+	std::ifstream stream(fileName.c_str());
+	if (!stream.is_open())
+	{
+		return false;
+	}
+
+	//reading active player and nb moves
+	std::string line;
+	char c;
+	std::getline(stream, line);
+	if(line.size() < 3) //if the line is not long enough to contain the info, fail
+		return false;
+	m_movesLeft = (int) (line[2]-'0');
+	m_activePlayer = (Color) (line[0]-'0');
+	if(m_movesLeft == 0) //game not started yet
+	{
+		m_movesLeft = 4; //precaution, probably unnecessary
+		m_hasStarted = false;
+	}
+	else
+	{
+		m_hasStarted = true;
+	}
+	
+	//reading the board
+	m_board.clear();
+	for(int i = 0; i < BOARD_SIZE; ++i)
+	{
+		std::getline(stream, line);
+		if(line.size() < BOARD_SIZE) //if the line is not long enough to contain the info, fail
+			return false;
+		for(int j = 0; j < BOARD_SIZE; ++j)
+		{
+			c = line[j];
+			if(c != ' ') //a piece is here
+				m_board.placePiece(new Piece(Piece::fromChar(c)), Square(i,j));
+		}
+	}
+	return true;
 }
