@@ -11,6 +11,7 @@ public:
 	~PieceSprite(void);
 
 	void SetImage(const sf::Image& img);
+	void setPiece(Piece* p);
 
 	void update(float elapsedTime);
 

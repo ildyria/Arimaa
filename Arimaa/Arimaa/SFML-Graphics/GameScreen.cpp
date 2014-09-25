@@ -82,6 +82,14 @@ int GameScreen::update (sf::RenderWindow &app)
 				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
 				if(isValid(s))
 					clickOn(s);
+				else if(!m_game.hasStarted())
+				{
+					PieceType type = m_placementUI.click(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
+					if(type == NB_PIECES) //end of turn
+						tryAndEndTurn();
+					else
+						m_selectedType = type;
+				}
 			}
 			if (m_iHandler->testEvent(event, "Choose"))
 			{
@@ -97,10 +105,17 @@ int GameScreen::update (sf::RenderWindow &app)
 			}
 			else if (m_iHandler->testEvent(event, "EndTurn"))
 			{
-				if(m_game.endPlacement())
+				tryAndEndTurn();
+			}
+			else if (event.Type == sf::Event::MouseWheelMoved)
+			{
+				if(event.MouseWheel.Delta > 0)
 				{
-					m_turnSign.activate(m_game.getActivePlayer() == GOLD);
-					m_selectedType = RABBIT;
+					m_selectedType = m_placementUI.goUp();
+				}
+				else
+				{
+					m_selectedType = m_placementUI.goDown();
 				}
 			}
 			else if (m_iHandler->testEvent(event, "Rabbit"))
@@ -171,6 +186,10 @@ void GameScreen::draw (sf::RenderWindow &app)
 		app.Draw(m_movesBackgroundSprite);
 		app.Draw(m_nbMovesSprite);
 	}
+	else //game has not started
+	{
+		m_placementUI.draw(app);
+	}
 	m_turnSign.draw(app);
 
 	app.Display();
@@ -209,6 +228,7 @@ void GameScreen::initialize ()
 	}
 	m_turnSign.loadAssets();
 	m_highlighter.loadAssets();
+	m_placementUI.loadAssets();
 	updateNbMoves();
 }
 
@@ -224,6 +244,7 @@ void GameScreen::uninitialize ()
 	ResourceManager::unloadImage("Moves_Back.png");
 	m_turnSign.unloadAssets();
 	m_highlighter.unloadAssets();
+	m_placementUI.unloadAssets();
 }
 
 bool GameScreen::playerHasHand() const
@@ -367,6 +388,19 @@ void GameScreen::selectTarget(sf::Vector2i s)
 		possibleMoves2.push_back(toVector(possibleMoves[i]));
 	}
 	m_highlighter.setHighlights(possibleMoves2);
+}
+
+bool GameScreen::tryAndEndTurn()
+{
+	if(m_game.endPlacement())
+	{
+		m_turnSign.activate(m_game.getActivePlayer() == GOLD);
+		m_placementUI.setColor(m_game.getActivePlayer());
+		m_selectedType = RABBIT;
+		m_placementUI.select(RABBIT);
+		return true;
+	}
+	return false;
 }
 
 void GameScreen::updatePositionsAndDeath()

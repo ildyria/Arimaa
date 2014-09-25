@@ -9,6 +9,7 @@
 #include "../Model/Game.h"
 #include "TurnSign.h"
 #include "Highlighter.h"
+#include "PlacementUI.h"
 
 #define NULL_SQUARE sf::Vector2i(-1,-1)
 
@@ -37,6 +38,7 @@ private:
 	sf::Sprite m_nbMovesSprite;
 	sf::Sprite m_movesBackgroundSprite;
 	Highlighter m_highlighter;
+	PlacementUI m_placementUI;
 
 	PieceType m_selectedType;
 	sf::Vector2i m_selectedPiece;
@@ -54,6 +56,7 @@ private:
 
 	void selectPiece(sf::Vector2i s); //call only if there is a piece there
 	void selectTarget(sf::Vector2i s); //call only if there is a piece there
+	bool tryAndEndTurn(); //works only in placement phase
 
 	void updatePositionsAndDeath();
 	void updateNbMoves();

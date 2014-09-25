@@ -3,7 +3,7 @@
 #define FREEZE_COLOR sf::Color(175,175,255)
 #define APPEARANCE_SPEED 10
 
-PieceSprite::PieceSprite() : BoardAlignedSprite()
+PieceSprite::PieceSprite() : BoardAlignedSprite(), m_piece(NULL), m_disappearing(false)
 {
 }
 
@@ -30,6 +30,11 @@ void PieceSprite::SetImage(const sf::Image& img)
 	int y = m_piece->getColor() * SQUARE_SIZE;
 	SetSubRect(sf::IntRect( x, y, x + SQUARE_SIZE, y + SQUARE_SIZE ));
 	SetCenter(SQUARE_SIZE/2, SQUARE_SIZE/2);
+}
+
+void PieceSprite::setPiece(Piece* p)
+{
+	m_piece = p;
 }
 
 void PieceSprite::update(float elapsedTime)
