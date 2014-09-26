@@ -1,5 +1,7 @@
 #include "PlacementUI.h"
 
+#define GREYED_OUT_COLOR sf::Color::Red
+
 PlacementUI::PlacementUI(void) : m_selectedPiece(RABBIT)
 {
 	float ypos = (float) ConfigOptions::nativeHeight()/2;
@@ -9,6 +11,7 @@ PlacementUI::PlacementUI(void) : m_selectedPiece(RABBIT)
 		m_piecesSprites[i].SetPosition((float) PUI_X_POS, ypos + (i-centerPiece)*PIECES_GAP);
 	}
 	m_endTurnButton.SetPosition((float) PUI_X_POS, ypos + (NB_PIECES-centerPiece)*PIECES_GAP);
+	resetAvailability();
 }
 
 PlacementUI::~PlacementUI(void)
@@ -41,30 +44,50 @@ PieceType PlacementUI::click(sf::Vector2f pos)
 
 PieceType PlacementUI::goUp()
 {
-	int pieceType = m_selectedPiece - 1;
-	if(pieceType < 0)
-		pieceType += NB_PIECES;
-	select((PieceType) pieceType);
+	if(isOneAvailable())
+	{
+		int pieceType = m_selectedPiece;
+		do
+		{
+			pieceType -= 1;
+			if(pieceType < 0)
+				pieceType += NB_PIECES;
+		}
+		while(!select((PieceType) pieceType) && isOneAvailable()); //tries to select the type. If it fails and some pieces are left, keep going
+	}
+
 	return m_selectedPiece;
 }
 
 PieceType PlacementUI::goDown()
 {
-	int pieceType = m_selectedPiece + 1;
-	if(pieceType >= NB_PIECES)
-		pieceType -= NB_PIECES;
-	select((PieceType) pieceType);
+	if(isOneAvailable())
+	{
+		int pieceType = m_selectedPiece;
+		do
+		{
+			pieceType += 1;
+			if(pieceType >= NB_PIECES)
+				pieceType -= NB_PIECES;
+		}
+		while(!select((PieceType) pieceType) && isOneAvailable()); //tries to select the type. If it fails and some pieces are left, keep going
+	}
 	return m_selectedPiece;
 }
 
-void PlacementUI::select(PieceType t)
+bool PlacementUI::select(PieceType t)
 {
-	m_piecesSprites[m_selectedPiece].SetColor(sf::Color::White);
-	m_selectedPiece = t;
-	m_piecesSprites[m_selectedPiece].SetColor(sf::Color::Yellow);
+	if(m_availability[(int) t])
+	{
+		if(m_availability[(int) m_selectedPiece])
+			m_piecesSprites[m_selectedPiece].SetColor(sf::Color::White);
+		m_selectedPiece = t;
+		m_piecesSprites[m_selectedPiece].SetColor(sf::Color::Yellow);
+	}
+	return m_availability[(int) t];
 }
 
-void PlacementUI::setColor(Color c)
+void PlacementUI::setPlayer(Color c)
 {
 	int x;
 	int y = c * SQUARE_SIZE;
@@ -73,7 +96,33 @@ void PlacementUI::setColor(Color c)
 		x = m_piecesSprites[i].GetSubRect().Left;
 		m_piecesSprites[i].SetSubRect(sf::IntRect(x , y, x + SQUARE_SIZE, y + SQUARE_SIZE ));
 	}
-	
+}
+
+PieceType PlacementUI::setAvailability(PieceType type, bool available)
+{
+	if(m_availability[(int) type] != available) //if there was a change
+	{
+		m_availability[(int) type] = available;
+		if(available)
+			m_piecesSprites[(int) type].SetColor(sf::Color::White);
+		else
+		{
+			m_piecesSprites[(int) type].SetColor(GREYED_OUT_COLOR);
+			if(m_selectedPiece == type && isOneAvailable()) //if the selected piece ran out and some pieces are left
+			{
+				goDown();
+			}
+		}
+	}
+	return m_selectedPiece;
+}
+
+void PlacementUI::resetAvailability()
+{
+	for(int i = 0; i < NB_PIECES; ++i)
+	{
+		setAvailability((PieceType) i, true);
+	}
 }
 
 void PlacementUI::loadAssets()
@@ -109,4 +158,14 @@ void PlacementUI::draw(sf::RenderWindow& app, bool canEndPlacement)
 		app.Draw(m_piecesSprites[i]);
 	if(canEndPlacement) //if we can end the turn, activate the end turn button
 		app.Draw(m_endTurnButton);
+}
+
+bool PlacementUI::isOneAvailable()
+{
+	for(int i = 0; i < NB_PIECES; ++i)
+	{
+		if(m_availability[i])
+			return true;
+	}
+	return false;
 }

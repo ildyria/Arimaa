@@ -289,6 +289,7 @@ void GameScreen::place(sf::Vector2i s)
 		{
 			m_pieces[m_game[toSquare(s)]] = PieceSprite(m_game[toSquare(s)]);
 			m_pieces[m_game[toSquare(s)]].moveOnSquare(s);
+			updatePieceAvailability(m_selectedType);//updating the availability in placement UI
 		}
 		else if (oldPieceType != NB_PIECES) //the placement has failed : we put back the piece that was there before
 		{
@@ -305,7 +306,10 @@ void GameScreen::remove(sf::Vector2i s)
 	{
 		Piece* p = m_game[toSquare(s)];
 		if(p != NULL && m_game.remove(toSquare(s))) //removing the actual piece
+		{
 			killPieceSprite(p); //removing piece sprite
+			updatePieceAvailability(m_selectedType);//updating the availability in placement UI
+		}
 	}
 }
 
@@ -401,7 +405,7 @@ bool GameScreen::tryAndEndTurn()
 	if(m_game.endPlacement())
 	{
 		m_turnSign.activate(m_game.getActivePlayer() == GOLD);
-		m_placementUI.setColor(m_game.getActivePlayer());
+		m_placementUI.setPlayer(m_game.getActivePlayer());
 		selectPieceType(RABBIT);
 		return true;
 	}
@@ -477,6 +481,8 @@ void GameScreen::clearAll()
 void GameScreen::refreshAll()
 {
 	clearAll();
+	if(!m_game.hasStarted())
+		m_placementUI.resetAvailability();
 	for(int i = 0; i < BOARD_SIZE; ++i)
 	{
 		for(int j = 0; j < BOARD_SIZE; ++j)
@@ -487,10 +493,13 @@ void GameScreen::refreshAll()
 			{
 				m_pieces[p] = PieceSprite(p);
 				m_pieces[p].moveOnSquare(s);
+				
+				if(!m_game.hasStarted() && (p->getColor() == m_game.getActivePlayer())) //if in placement phase, and if the piece belongs to the current player
+					updatePieceAvailability(p->getType());//updating the availability in placement UI
 			}
 		}
 	}
 	updateNbMoves();
 	if(!m_game.hasStarted())
-		m_placementUI.setColor(m_game.getActivePlayer());
+		m_placementUI.setPlayer(m_game.getActivePlayer());
 }

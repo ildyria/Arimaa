@@ -56,11 +56,12 @@ private:
 
 	void selectPiece(sf::Vector2i s); //call only if there is a piece there
 	void selectTarget(sf::Vector2i s); //call only if there is a piece there
-	inline void selectPieceType(PieceType t) { m_selectedType = t; m_placementUI.select(t); }
+	inline void selectPieceType(PieceType t) { if(m_placementUI.select(t)) m_selectedType = t; }
 	bool tryAndEndTurn(); //works only in placement phase
 
 	void updatePositionsAndDeath();
 	void updateNbMoves();
+	inline void updatePieceAvailability(PieceType type) { m_selectedType = m_placementUI.setAvailability(type, m_game.getNbRemaining(type) != 0); }
 	inline void killPieceSprite(Piece* p) { m_disappearingPieces.push_back(p); m_pieces[p].startDisappearing(); }
 	void clearAll();
 	void refreshAll();
