@@ -1,0 +1,25 @@
+	Links utiles :
+
+	MPI :
+
+ - Cours d'intro à MPI :
+	http://www2.lifl.fr/west/courses/cshp/mpi.pdf
+ - Autre cours (plus technique, je trouve, un poil moins lisible ^^") :
+	http://www.idris.fr/data/cours/parallel/mpi/web.pdf
+ - Sinon, plus classique :
+	http://en.wikipedia.org/wiki/Message_Passing_Interface#Communicator
+
+	OpenMP :
+ - La FAQ de l'API OpenMP (c'est pas l'API, mais elle se trouve) :
+	http://openmp.org/openmp-faq.html#Content.OMPAPI
+
+	MPI et OpenMP :
+
+ - Cours de supelec Metz, très complet, a priori :
+	http://www.metz.supelec.fr/metz/personnel/vialle/course/IIC-CPDG/index.htm
+ - Sinon, un lien vers stackoverflow pour le développement hybride :
+	http://stackoverflow.com/questions/11332018/mpi-vs-openmp-for-a-shared-memory
+ - Différents types de programmation hybride :
+	http://openmp.org/sc13/HybridPP_Slides.pdf
+ - Un truc sur la prog hybride aussi, plus bourrin dans la lecture (j'ai pas eu le courage jusqu'au bout :p) :
+	http://www.irit.fr/Toulouse2009/Toulouse2009/papiers/paper20.pdf
