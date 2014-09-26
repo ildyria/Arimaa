@@ -2,15 +2,15 @@
 
 #define APPEARANCE_SPD 4
 #define SHINE_SPEED 2
-#define GLOW_SPEED ConfigOptions::screenWidth()*SHINE_SPEED
+#define GLOW_SPEED ConfigOptions::nativeWidth()*SHINE_SPEED
 
 #define SIGN_HEIGHT 112
 
 TurnSign::TurnSign(void) : m_activated(false)
 {
-	m_nextTurnSprite.SetPosition(sf::Vector2f(0, ConfigOptions::getScreenCenter().y));
+	m_nextTurnSprite.SetPosition(sf::Vector2f(0, ConfigOptions::getNativeCenter().y));
 	m_nextTurnSprite.SetCenter(0,SIGN_HEIGHT/2);
-	m_glowSprite.SetPosition(sf::Vector2f(0, ConfigOptions::getScreenCenter().y));
+	m_glowSprite.SetPosition(sf::Vector2f(0, ConfigOptions::getNativeCenter().y));
 	m_glowSprite.SetCenter(0,SIGN_HEIGHT/2);
 }
 
@@ -58,7 +58,7 @@ void TurnSign::update(float elapsedTime)
 		m_nextTurnSprite.SetScaleY(m_appearanceTimer);
 		m_nextTurnSprite.SetColor(sf::Color(255,255,255,(int)(255*m_appearanceTimer)));
 	}
-	else if(m_glowSprite.GetPosition().x < ConfigOptions::screenWidth())
+	else if(m_glowSprite.GetPosition().x < ConfigOptions::nativeWidth())
 		m_glowSprite.Move(sf::Vector2f(GLOW_SPEED*elapsedTime,0));
 	else
 		m_appearing = false;

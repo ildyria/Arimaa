@@ -13,9 +13,10 @@ GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptio
 {
 	unselect();
 	m_goldTurnIndicator.SetPosition(0, TURN_INDICATOR_HEIGHT);
-	m_silverTurnIndicator.SetPosition(0, (float) ConfigOptions::screenHeight() - TURN_INDICATOR_HEIGHT);
-	m_nbMovesSprite.SetPosition(NB_MOVES_X, (float) ConfigOptions::screenHeight() /2);
-	m_movesBackgroundSprite.SetPosition(NB_BG_X, (float) ConfigOptions::screenHeight() /2);
+	m_silverTurnIndicator.SetPosition(0, (float) ConfigOptions::nativeHeight() - TURN_INDICATOR_HEIGHT);
+	m_nbMovesSprite.SetPosition(NB_MOVES_X, (float) ConfigOptions::nativeHeight() /2);
+	m_movesBackgroundSprite.SetPosition(NB_BG_X, (float) ConfigOptions::nativeHeight() /2);
+	m_cursor.moveOnSquare(sf::Vector2i(0,0));
 }
 
 GameScreen::~GameScreen(void)
@@ -49,7 +50,8 @@ int GameScreen::update (sf::RenderWindow &app)
 		}
 		else if (event.Type == sf::Event::MouseMoved)
 		{
-			m_cursor.moveOnSquare(BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseMove.X, (float) event.MouseMove.Y)), false);
+			sf::Vector2f mouseCoords = app.ConvertCoords(event.MouseMove.X, event.MouseMove.Y, &ConfigOptions::getView());
+			m_cursor.moveOnSquare(BoardAlignedSprite::toSquares(mouseCoords), false);
 		}
 		else if(m_iHandler->testEvent(event, "Up"))
 		{
@@ -79,12 +81,13 @@ int GameScreen::update (sf::RenderWindow &app)
 		{
 			if (m_iHandler->testEvent(event, "LClick"))
 			{
-				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
+				sf::Vector2f mouseCoords = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y, &ConfigOptions::getView());
+				sf::Vector2i s = BoardAlignedSprite::toSquares(mouseCoords);
 				if(isValid(s))
 					clickOn(s);
 				else if(!m_game.hasStarted())
 				{
-					PieceType type = m_placementUI.click(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
+					PieceType type = m_placementUI.click(mouseCoords);
 					if(type == NB_PIECES) //end of turn
 						tryAndEndTurn();
 					else
@@ -99,7 +102,8 @@ int GameScreen::update (sf::RenderWindow &app)
 			}
 			else if (m_iHandler->testEvent(event, "RClick"))
 			{
-				sf::Vector2i s = BoardAlignedSprite::toSquares(sf::Vector2f( (float) event.MouseButton.X, (float) event.MouseButton.Y));
+				sf::Vector2f mouseCoords = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y, &ConfigOptions::getView());
+				sf::Vector2i s = BoardAlignedSprite::toSquares(mouseCoords);
 				if(!m_game.hasStarted())
 					remove(s);
 			}
@@ -167,6 +171,7 @@ int GameScreen::update (sf::RenderWindow &app)
 void GameScreen::draw (sf::RenderWindow &app)
 {
 	app.Clear();
+	app.SetView(ConfigOptions::getView()); //switching to custom view for easy resizing of the screen
 	
 	app.Draw(m_background);
 	m_highlighter.draw(app);
@@ -192,6 +197,7 @@ void GameScreen::draw (sf::RenderWindow &app)
 	}
 	m_turnSign.draw(app);
 
+	app.SetView(app.GetDefaultView()); //switching back to default view
 	app.Display();
 }
 

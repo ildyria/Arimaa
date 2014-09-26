@@ -3,7 +3,7 @@
 #include "ConfigOptions.h"
 
 #define PIECES_GAP 135
-#define PUI_X_POS (ConfigOptions::screenWidth() - 200)
+#define PUI_X_POS (ConfigOptions::nativeWidth() - 200)
 
 class PlacementUI
 {

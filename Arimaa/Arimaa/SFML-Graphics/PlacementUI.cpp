@@ -2,7 +2,7 @@
 
 PlacementUI::PlacementUI(void) : m_selectedPiece(RABBIT)
 {
-	float ypos = (float) ConfigOptions::screenHeight()/2;
+	float ypos = (float) ConfigOptions::nativeHeight()/2;
 	float centerPiece = (float) NB_PIECES/2;
 	for(int i = 0; i < NB_PIECES; ++i)
 	{

@@ -22,6 +22,7 @@ public:
 	static inline int nativeWidth() { return NATIVE_WIDTH; }
 	static inline void setResolution(const sf::Vector2i res) { m_resolution = res; }
 	static inline sf::Vector2f getScreenCenter() { return sfmlop::divide(m_resolution, 2); }
+	static inline sf::Vector2f getNativeCenter() { return sfmlop::divide(nativeResolution(), 2); }
 	static inline sf::Vector2f topLeftCorner() { return sf::Vector2f(0, 0); }
 	static inline sf::Vector2f topRightCorner() { return sf::Vector2f((float)m_resolution.x, 0); }
 	static inline sf::Vector2f bottomLeftCorner() { return sf::Vector2f(0, (float)m_resolution.y); }
