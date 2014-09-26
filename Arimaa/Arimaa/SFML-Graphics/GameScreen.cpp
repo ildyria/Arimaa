@@ -491,4 +491,6 @@ void GameScreen::refreshAll()
 		}
 	}
 	updateNbMoves();
+	if(!m_game.hasStarted())
+		m_placementUI.setColor(m_game.getActivePlayer());
 }

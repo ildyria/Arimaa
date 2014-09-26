@@ -204,6 +204,11 @@ bool Game::loadFromFile(std::string fileName)
 	{
 		m_hasStarted = true;
 	}
+
+	//resetting nb of pieces placed if needed
+	if(!m_hasStarted)
+		for(int i = 0; i < NB_PIECES; ++i)
+			m_pieceCount[i] = 0;
 	
 	//reading the board
 	m_board.clear();
@@ -216,7 +221,12 @@ bool Game::loadFromFile(std::string fileName)
 		{
 			c = line[j];
 			if(c != ' ') //a piece is here
-				m_board.placePiece(new Piece(Piece::fromChar(c)), Square(j,i));
+			{
+				Piece* p = new Piece(Piece::fromChar(c));
+				m_board.placePiece(p, Square(j,i));
+				if(!m_hasStarted && p->getColor() == m_activePlayer) //increments nb of pieces placed if needed
+					m_pieceCount[(int) p->getType()]++;
+			}
 		}
 	}
 	return true;
