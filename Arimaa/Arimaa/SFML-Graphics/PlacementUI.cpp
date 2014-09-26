@@ -103,9 +103,10 @@ void PlacementUI::unloadAssets()
 	ResourceManager::unloadImage("End_Turn_Button.png");
 }
 
-void PlacementUI::draw(sf::RenderWindow& app)
+void PlacementUI::draw(sf::RenderWindow& app, bool canEndPlacement)
 {
 	for(int i = 0; i < NB_PIECES; ++i)
 		app.Draw(m_piecesSprites[i]);
-	app.Draw(m_endTurnButton);
+	if(canEndPlacement) //if we can end the turn, activate the end turn button
+		app.Draw(m_endTurnButton);
 }

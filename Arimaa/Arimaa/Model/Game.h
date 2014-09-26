@@ -29,10 +29,12 @@ public:
 	bool place(Piece* p, Square s);
 	inline bool place(PieceType t, Square s) { return place(new Piece(t, m_activePlayer), s);  }
 	bool remove(Square s);
-	bool endPlacement();
+	inline bool endPlacement() { if(canEndPlacement()) { nextTurn(); return true; } return false; }
+	bool canEndPlacement() const;
 	bool play(Move& m, bool applyDeaths = true); //set to false if you want to apply deaths manually later
 	inline bool move(Square pos, Square dest, bool applyDeaths = true) { return play(Move(pos, dest), applyDeaths); }
 	inline bool displace(Square pos, Square dest, Square target, bool applyDeaths = true) { return play(Displace(pos, dest, target), applyDeaths); }
+
 	inline bool applyDeaths() { return m_board.applyDeaths(); } //use only if you moved with applyDeaths set to false
 	inline bool isTrap(Square s) { return m_board.isTrap(s); }
 	inline bool isFrozen(Square s) const { return m_board.isFrozen(s); }

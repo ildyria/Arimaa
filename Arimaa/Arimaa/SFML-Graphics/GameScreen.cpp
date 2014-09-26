@@ -120,27 +120,27 @@ int GameScreen::update (sf::RenderWindow &app)
 			}
 			else if (m_iHandler->testEvent(event, "Rabbit"))
 			{
-				m_selectedType = RABBIT;
+				selectPieceType(RABBIT);
 			}
 			else if (m_iHandler->testEvent(event, "Cat"))
 			{
-				m_selectedType = CAT;
+				selectPieceType(CAT);
 			}
 			else if (m_iHandler->testEvent(event, "Dog"))
 			{
-				m_selectedType = DOG;
+				selectPieceType(DOG);
 			}
 			else if (m_iHandler->testEvent(event, "Horse"))
 			{
-				m_selectedType = HORSE;
+				selectPieceType(HORSE);
 			}
 			else if (m_iHandler->testEvent(event, "Camel"))
 			{
-				m_selectedType = CAMEL;
+				selectPieceType(CAMEL);
 			}
 			else if (m_iHandler->testEvent(event, "Elephant"))
 			{
-				m_selectedType = ELEPHANT;
+				selectPieceType(ELEPHANT);
 			}
 		} //end of if(playerHasHand)
 	} //end of event loop
@@ -188,7 +188,7 @@ void GameScreen::draw (sf::RenderWindow &app)
 	}
 	else //game has not started
 	{
-		m_placementUI.draw(app);
+		m_placementUI.draw(app, m_game.canEndPlacement());
 	}
 	m_turnSign.draw(app);
 
@@ -396,8 +396,7 @@ bool GameScreen::tryAndEndTurn()
 	{
 		m_turnSign.activate(m_game.getActivePlayer() == GOLD);
 		m_placementUI.setColor(m_game.getActivePlayer());
-		m_selectedType = RABBIT;
-		m_placementUI.select(RABBIT);
+		selectPieceType(RABBIT);
 		return true;
 	}
 	return false;
@@ -405,6 +404,7 @@ bool GameScreen::tryAndEndTurn()
 
 void GameScreen::updatePositionsAndDeath()
 {
+	//updates movement
 	std::vector<Piece*> endangeredPieces;
 	for(int i = 0; i < BOARD_SIZE; ++i)
 	{
@@ -416,13 +416,14 @@ void GameScreen::updatePositionsAndDeath()
 			if(p != NULL)
 			{
 				m_pieces[p].moveOnSquare(sf::Vector2i(i,j), false);
-				m_pieces[p].freeze(m_game.isFrozen(Square(i,j))); //if the piece is frozen, show it
 			}
 		}
 	}
 
+	//let the pieces die in the model
 	m_game.applyDeaths();
 
+	//update deaths (has to be done after movement update)
 	std::vector<Piece*> survivingPieces;
 	for(int i = 0; i < BOARD_SIZE; ++i)
 	{
@@ -432,11 +433,23 @@ void GameScreen::updatePositionsAndDeath()
 				survivingPieces.push_back(m_game[Square(i,j)]);
 		}
 	}
-
 	for(int i = 0; i < NB_TRAPS; ++i)
 	{
 		if(endangeredPieces[i] != survivingPieces[i]) //the piece has died (replaced by NULL)
 			killPieceSprite(endangeredPieces[i]);
+	}
+
+	//update freezing (has to be done after death update)
+	for(int i = 0; i < BOARD_SIZE; ++i)
+	{
+		for(int j = 0; j < BOARD_SIZE; ++j)
+		{
+			Piece* p = m_game[Square(i,j)];
+			if(p != NULL)
+			{
+				m_pieces[p].freeze(m_game.isFrozen(Square(i,j))); //if the piece is frozen, show it
+			}
+		}
 	}
 
 }

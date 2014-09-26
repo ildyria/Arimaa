@@ -56,6 +56,7 @@ private:
 
 	void selectPiece(sf::Vector2i s); //call only if there is a piece there
 	void selectTarget(sf::Vector2i s); //call only if there is a piece there
+	inline void selectPieceType(PieceType t) { m_selectedType = t; m_placementUI.select(t); }
 	bool tryAndEndTurn(); //works only in placement phase
 
 	void updatePositionsAndDeath();

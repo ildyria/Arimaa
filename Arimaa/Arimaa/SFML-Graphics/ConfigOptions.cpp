@@ -3,8 +3,9 @@
 
 
 sf::Vector2i ConfigOptions::m_resolution;
-InputHandler ConfigOptions::m_iHandler;
+sf::View ConfigOptions::m_view;
 bool ConfigOptions::m_inFullscreen;
+InputHandler ConfigOptions::m_iHandler;
 
 void ConfigOptions::init()
 {
@@ -18,6 +19,7 @@ void ConfigOptions::init()
 	//Resoltion
 	m_resolution = sf::Vector2i(atoi(ini.GetValue("Graphics", "ScreenWidth", "1920")), atoi(ini.GetValue("Graphics", "ScreenHeight", "1080")));
 	m_inFullscreen = ini.GetBoolValue("Graphics", "FullScreen", 0);
+	m_view.SetFromRect(sf::FloatRect(0, 0, (float) nativeWidth(), (float) nativeHeight()));
 	
 	//////////////////////CONTROLS/////////////////////////////
 	std::string item;

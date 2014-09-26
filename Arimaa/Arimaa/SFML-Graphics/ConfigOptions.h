@@ -5,14 +5,21 @@
 #include "SimpleIni.h"
 #include "InputHandler.h"
 
+#define NATIVE_WIDTH 1920
+#define NATIVE_HEIGHT 1080
+
 class ConfigOptions
 {
 public:
 	static void init();
 
 	static inline sf::Vector2i getResolution() { return m_resolution; }
+	static inline sf::Vector2i nativeResolution() { return sf::Vector2i(nativeWidth(), nativeHeight()); }
+	static inline sf::View& getView() { return m_view; }
 	static inline int screenHeight() { return m_resolution.y; }
 	static inline int screenWidth() { return m_resolution.x; }
+	static inline int nativeHeight() { return NATIVE_HEIGHT; }
+	static inline int nativeWidth() { return NATIVE_WIDTH; }
 	static inline void setResolution(const sf::Vector2i res) { m_resolution = res; }
 	static inline sf::Vector2f getScreenCenter() { return sfmlop::divide(m_resolution, 2); }
 	static inline sf::Vector2f topLeftCorner() { return sf::Vector2f(0, 0); }
@@ -24,6 +31,7 @@ public:
 
 private:
 	static sf::Vector2i m_resolution;
+	static sf::View m_view;
 	static bool m_inFullscreen;
 	static InputHandler m_iHandler;
 

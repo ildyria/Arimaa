@@ -19,7 +19,7 @@ public:
 
 	void loadAssets();
 	void unloadAssets();
-	void draw(sf::RenderWindow& app);
+	void draw(sf::RenderWindow& app, bool canEndPlacement = true);
 
 private:
 	PieceSprite m_piecesSprites[NB_PIECES];

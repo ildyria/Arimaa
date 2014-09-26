@@ -38,7 +38,7 @@ bool Game::remove(Square s)
 	return false;
 }
 
-bool Game::endPlacement()
+bool Game::canEndPlacement() const
 {
 	if(m_hasStarted) //if the placement is already over
 		return false;
@@ -48,7 +48,6 @@ bool Game::endPlacement()
 			return false;
 
 	//if all pieces have been placed :
-	nextTurn();
 	return true;
 }
 
@@ -217,7 +216,7 @@ bool Game::loadFromFile(std::string fileName)
 		{
 			c = line[j];
 			if(c != ' ') //a piece is here
-				m_board.placePiece(new Piece(Piece::fromChar(c)), Square(i,j));
+				m_board.placePiece(new Piece(Piece::fromChar(c)), Square(j,i));
 		}
 	}
 	return true;

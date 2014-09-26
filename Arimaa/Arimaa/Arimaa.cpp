@@ -29,7 +29,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	unsigned long windowStyle = Style::Close | Style::Titlebar;
 	if(ConfigOptions::inFullscreen())
 		windowStyle |= Style::Fullscreen;
-	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "TRPG", windowStyle); //Création de la fenêtre app
+	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "Arimaa", windowStyle); //Création de la fenêtre app
 	app.SetFramerateLimit(60); 
 
 	sf::String loadingText("Loading...", *ResourceManager::getFont(/*Default font*/), 48);
