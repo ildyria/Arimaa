@@ -1,6 +1,7 @@
 #include "PlacementUI.h"
 
 #define GREYED_OUT_COLOR sf::Color::Red
+#define SELECTION_COLOR sf::Color::Green
 
 PlacementUI::PlacementUI(void) : m_selectedPiece(RABBIT)
 {
@@ -82,7 +83,7 @@ bool PlacementUI::select(PieceType t)
 		if(m_availability[(int) m_selectedPiece])
 			m_piecesSprites[m_selectedPiece].SetColor(sf::Color::White);
 		m_selectedPiece = t;
-		m_piecesSprites[m_selectedPiece].SetColor(sf::Color::Yellow);
+		m_piecesSprites[m_selectedPiece].SetColor(SELECTION_COLOR);
 	}
 	return m_availability[(int) t];
 }
@@ -137,7 +138,7 @@ void PlacementUI::loadAssets()
 			m_piecesSprites[i].SetImage(*im);
 			delete p;
 		}
-		m_piecesSprites[m_selectedPiece].SetColor(sf::Color::Yellow);
+		m_piecesSprites[m_selectedPiece].SetColor(SELECTION_COLOR);
 	}
 	if(m_endTurnButton.GetImage() == NULL)
 	{

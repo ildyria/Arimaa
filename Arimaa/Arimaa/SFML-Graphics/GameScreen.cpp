@@ -290,6 +290,8 @@ void GameScreen::place(sf::Vector2i s)
 			m_pieces[m_game[toSquare(s)]] = PieceSprite(m_game[toSquare(s)]);
 			m_pieces[m_game[toSquare(s)]].moveOnSquare(s);
 			updatePieceAvailability(m_selectedType);//updating the availability in placement UI
+			if(oldPieceType != NB_PIECES)
+				updatePieceAvailability(oldPieceType); //id a piece was replaced, update its availability as well
 		}
 		else if (oldPieceType != NB_PIECES) //the placement has failed : we put back the piece that was there before
 		{
@@ -406,6 +408,7 @@ bool GameScreen::tryAndEndTurn()
 	{
 		m_turnSign.activate(m_game.getActivePlayer() == GOLD);
 		m_placementUI.setPlayer(m_game.getActivePlayer());
+		m_placementUI.resetAvailability();
 		selectPieceType(RABBIT);
 		return true;
 	}

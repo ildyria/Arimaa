@@ -1,6 +1,6 @@
 #include "PieceSprite.h"
 
-#define FREEZE_COLOR sf::Color(175,175,255)
+#define FREEZE_COLOR sf::Color(100,100,255)
 #define APPEARANCE_SPEED 10
 
 PieceSprite::PieceSprite() : BoardAlignedSprite(), m_piece(NULL), m_disappearing(false)
