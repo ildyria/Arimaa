@@ -464,8 +464,8 @@ void GameScreen::updatePositionsAndDeath()
 			}
 		}
 	}
-
 }
+
 void GameScreen::updateNbMoves()
 {
 	int nbMoves = m_game.getMovesLeft();
@@ -496,6 +496,7 @@ void GameScreen::refreshAll()
 			{
 				m_pieces[p] = PieceSprite(p);
 				m_pieces[p].moveOnSquare(s);
+				m_pieces[p].freeze(m_game.isFrozen(toSquare(s))); //if the piece is frozen, show it
 				
 				if(!m_game.hasStarted() && (p->getColor() == m_game.getActivePlayer())) //if in placement phase, and if the piece belongs to the current player
 					updatePieceAvailability(p->getType());//updating the availability in placement UI
