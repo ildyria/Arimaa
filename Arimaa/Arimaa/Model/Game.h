@@ -38,7 +38,7 @@ public:
 	inline bool applyDeaths() { return m_board.applyDeaths(); } //use only if you moved with applyDeaths set to false
 	inline bool isTrap(Square s) { return m_board.isTrap(s); }
 	inline bool isFrozen(Square s) const { return m_board.isFrozen(s); }
-	bool isWon(); //checks if the current player won the game. For now, only checks victory by reaching the goal
+	Color getWinner(); //returns the color of the winning player, or NB_PLAYERS by default. For now, only checks victory by reaching the goal and eliminating rabbits
 
 	std::vector<Square> getPossibleMoves(Square pieceToMove);
 	std::vector<Square> getPossibleDisplacements(Square pieceToMove, Square pieceToDisplace);

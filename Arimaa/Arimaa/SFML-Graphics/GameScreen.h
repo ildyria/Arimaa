@@ -39,14 +39,17 @@ private:
 	sf::Sprite m_movesBackgroundSprite;
 	Highlighter m_highlighter;
 	PlacementUI m_placementUI;
+	sf::Sprite m_victorySign;
 
 	PieceType m_selectedType;
 	sf::Vector2i m_selectedPiece;
 	sf::Vector2i m_selectedTarget;
+	Color m_victor;
 
 	Game m_game;
 
 	bool playerHasHand() const;
+	inline bool isOver() const { return m_victor != NB_PLAYERS; }
 
 	void clickOn(sf::Vector2i s);
 	void place(sf::Vector2i s);
@@ -65,6 +68,7 @@ private:
 	inline void killPieceSprite(Piece* p) { m_disappearingPieces.push_back(p); m_pieces[p].startDisappearing(); }
 	void clearAll();
 	void refreshAll();
+	void setVictor(Color victor);
 
 	static inline sf::Vector2i toVector(const Square& s) { return sf::Vector2i(s.x, s.y); }
 	static inline Square toSquare(const sf::Vector2i& v) { return Square(v.x, v.y); }

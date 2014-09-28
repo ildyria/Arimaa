@@ -84,22 +84,47 @@ void Game::nextTurn()
 	}
 }
 
-bool Game::isWon()
+Color Game::getWinner()
 {
-	//Checks winning by reaching the goal
+	//Checks victory by reaching the goal
 	int goalY;
-	if(m_activePlayer == GOLD)
-		goalY = 7;
-	else //SILVER
-		goalY = 0;
-	for(int i = 0; i < BOARD_SIZE; ++i) //going through each square of the goal
+	for(Color c = GOLD; c < NB_PLAYERS; c = (Color)(c+1))
 	{
-		Piece* p = m_board.getPiece(Square(i, goalY));
-		if(p != NULL && p->getColor() == m_activePlayer && p->getType() == RABBIT) //if there is a piece, it belongs to the player, and it's a rabbit 
-			return true;
+		if(c == GOLD)
+			goalY = 7;
+		else //SILVER
+			goalY = 0;
+		for(int i = 0; i < BOARD_SIZE; ++i) //going through each square of the goal
+		{
+			Piece* p = m_board.getPiece(Square(i, goalY));
+			if(p != NULL && p->getColor() == c && p->getType() == RABBIT) //if there is a piece, it belongs to the player, and it's a rabbit 
+				return c;
+		}
 	}
 
-	return false;
+	//checks victory by rabbit extermination
+	bool goldRabbit = false;
+	bool silverRabbit = false;
+	for(int i = 0; (i < BOARD_SIZE) && !(goldRabbit && silverRabbit); ++i)
+	{
+		for(int j = 0; (j < BOARD_SIZE) && !(goldRabbit && silverRabbit); ++j)
+		{
+			Piece* p = m_board.getPiece(Square(i,j));
+			if((p != NULL) && (p->getType() == RABBIT))
+			{
+				if(p->getColor() == GOLD)
+					goldRabbit = true;
+				else
+					silverRabbit = true;
+			}
+		}
+	}
+	if(!goldRabbit)
+		return SILVER;
+	if(!silverRabbit)
+		return GOLD;
+
+	return NB_PLAYERS; //default return value when no one wins
 }
 
 std::vector<Square> Game::getPossibleMoves(Square pieceToMove)

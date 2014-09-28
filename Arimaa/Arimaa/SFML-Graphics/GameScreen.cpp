@@ -4,12 +4,13 @@
 #define TURN_INDICATOR_HEIGHT 150
 #define NB_MOVES_X 120
 #define NB_BG_X 20
+#define VICT_APP_SPD 1
 
 #define BACKUP_FILE "Backup.arm"
 
 sf::Vector2i GameScreen::m_cardinals[] = {sf::Vector2i(1,0), sf::Vector2i(0,1), sf::Vector2i(-1,0), sf::Vector2i(0,-1)};
 
-GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_selectedType(RABBIT)
+GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_selectedType(RABBIT), m_victor(NB_PLAYERS)
 {
 	unselect();
 	m_goldTurnIndicator.SetPosition(0, TURN_INDICATOR_HEIGHT);
@@ -17,6 +18,8 @@ GameScreen::GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptio
 	m_nbMovesSprite.SetPosition(NB_MOVES_X, (float) ConfigOptions::nativeHeight() /2);
 	m_movesBackgroundSprite.SetPosition(NB_BG_X, (float) ConfigOptions::nativeHeight() /2);
 	m_cursor.moveOnSquare(sf::Vector2i(0,0));
+	m_victorySign.SetPosition(ConfigOptions::getNativeCenter());
+	m_victorySign.SetColor(sf::Color(255,255,255,1));
 }
 
 GameScreen::~GameScreen(void)
@@ -38,15 +41,6 @@ int GameScreen::update (sf::RenderWindow &app)
 		else if(m_iHandler->testEvent(event, "Quit"))
 		{
 			return EXIT;
-		}
-		else if(m_iHandler->testEvent(event, "Save"))
-		{
-			m_game.saveToFile(BACKUP_FILE);
-		}
-		else if(m_iHandler->testEvent(event, "Load"))
-		{
-			m_game.loadFromFile(BACKUP_FILE);
-			refreshAll();
 		}
 		else if (event.Type == sf::Event::MouseMoved)
 		{
@@ -79,7 +73,16 @@ int GameScreen::update (sf::RenderWindow &app)
 		}
 		else if(playerHasHand())
 		{
-			if (m_iHandler->testEvent(event, "LClick"))
+			if(m_iHandler->testEvent(event, "Save"))
+			{
+				m_game.saveToFile(BACKUP_FILE);
+			}
+			else if(m_iHandler->testEvent(event, "Load"))
+			{
+				m_game.loadFromFile(BACKUP_FILE);
+				refreshAll();
+			}
+			else if (m_iHandler->testEvent(event, "LClick"))
 			{
 				sf::Vector2f mouseCoords = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y, &ConfigOptions::getView());
 				sf::Vector2i s = BoardAlignedSprite::toSquares(mouseCoords);
@@ -147,6 +150,12 @@ int GameScreen::update (sf::RenderWindow &app)
 				selectPieceType(ELEPHANT);
 			}
 		} //end of if(playerHasHand)
+		else if(isOver() && m_victorySign.GetColor().a == 255 && (m_iHandler->testEvent(event, "EndTurn") || m_iHandler->testEvent(event, "Choose") || m_iHandler->testEvent(event, "LClick")))
+		{
+			//if we do something after the match ends, remove the victory sign
+			m_victorySign.SetColor(sf::Color(255,255,255,0));
+		}
+
 	} //end of event loop
 
 	m_turnSign.update(elapsedTime);
@@ -157,18 +166,40 @@ int GameScreen::update (sf::RenderWindow &app)
 	//removing pieces that have finished disappearing
 	if(m_disappearingPieces.size() > 0)
 	{
-		std::vector<std::vector<Piece*>::iterator> disappearedPieces; //contains pieces that have disappeared, for their removal in the disappearing list
+		std::vector<Piece*> disappearedPieces; //contains pieces that have disappeared, for their removal in the disappearing list
 		for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
 		{
 			Piece* p = *it;
 			if(m_pieces[p].hasDisappeared())
 			{
 				m_pieces.erase(p);
-				disappearedPieces.push_back(it);
+				disappearedPieces.push_back(p);
 			}
 		}
-		for(unsigned int i = 0; i < disappearedPieces.size(); ++i) //removing disappeared pieces from the disappearing list
-			m_disappearingPieces.erase(disappearedPieces[i]);
+		//removing disappeared pieces from the disappearing list
+		for(unsigned int i = 0; i < disappearedPieces.size(); ++i)
+		{
+			for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
+			{
+				if(*it == disappearedPieces[i])
+				{
+					m_disappearingPieces.erase(it);
+					break;
+				}
+			}
+		}
+	}
+
+	if(isOver()) //manages the appearance of the victory sign
+	{
+		int alpha = m_victorySign.GetColor().a;
+		if(alpha > 0 && alpha < 255) //0 means it's disappeared already
+		{
+			alpha += (int) (elapsedTime * VICT_APP_SPD * 255);
+			if(alpha > 255)
+				alpha = 255;
+			m_victorySign.SetColor(sf::Color(255,255,255,alpha));
+		}
 	}
 
 	return nextScreen;
@@ -188,20 +219,25 @@ void GameScreen::draw (sf::RenderWindow &app)
 	app.Draw(m_cursor);
 	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
 		app.Draw(it->second);
-	if(m_game.getActivePlayer() == GOLD)
-		app.Draw(m_goldTurnIndicator);
-	else //SILVER
-		app.Draw(m_silverTurnIndicator);
-	if(m_game.hasStarted())
+	if(!isOver())
 	{
-		app.Draw(m_movesBackgroundSprite);
-		app.Draw(m_nbMovesSprite);
+		if(m_game.getActivePlayer() == GOLD)
+			app.Draw(m_goldTurnIndicator);
+		else //SILVER
+			app.Draw(m_silverTurnIndicator);
+		if(m_game.hasStarted())
+		{
+			app.Draw(m_movesBackgroundSprite);
+			app.Draw(m_nbMovesSprite);
+		}
+		else //game has not started
+		{
+			m_placementUI.draw(app, m_game.canEndPlacement());
+		}
+		m_turnSign.draw(app);
 	}
-	else //game has not started
-	{
-		m_placementUI.draw(app, m_game.canEndPlacement());
-	}
-	m_turnSign.draw(app);
+	else //the game is over
+		app.Draw(m_victorySign);
 
 	app.SetView(app.GetDefaultView()); //switching back to default view
 	app.Display();
@@ -238,6 +274,12 @@ void GameScreen::initialize ()
 		m_movesBackgroundSprite.SetImage(*ResourceManager::getImage("Moves_Back.png"));
 		m_movesBackgroundSprite.SetCenter(0, m_movesBackgroundSprite.GetSize().y/2);
 	}
+	if(m_victorySign.GetImage() == NULL)
+	{
+		m_victorySign.SetImage(*ResourceManager::getImage("Victory_Sign.png"));
+		m_victorySign.SetCenter(m_victorySign.GetSize().x/2, m_victorySign.GetSize().y/4);
+	}
+	
 	m_turnSign.loadAssets();
 	m_highlighter.loadAssets();
 	m_placementUI.loadAssets();
@@ -254,6 +296,7 @@ void GameScreen::uninitialize ()
 	ResourceManager::unloadImage("Silver_Turn.png");
 	ResourceManager::unloadImage("Nb_Moves.png");
 	ResourceManager::unloadImage("Moves_Back.png");
+	ResourceManager::unloadImage("Victory_Sign.png");
 	m_turnSign.unloadAssets();
 	m_highlighter.unloadAssets();
 	m_placementUI.unloadAssets();
@@ -261,7 +304,7 @@ void GameScreen::uninitialize ()
 
 bool GameScreen::playerHasHand() const
 {
-	return !(m_turnSign.isActive());
+	return !(m_turnSign.isActive() || isOver());
 }
 
 void GameScreen::clickOn(sf::Vector2i s)
@@ -273,9 +316,15 @@ void GameScreen::clickOn(sf::Vector2i s)
 		{
 			updatePositionsAndDeath();
 			updateNbMoves();
-			Color newPlayer = m_game.getActivePlayer();
-			if(oldPlayer != newPlayer) //turn is over
-				m_turnSign.activate(newPlayer == GOLD);
+			//checks if the game is over
+			setVictor(m_game.getWinner());
+			
+			if(!isOver())
+			{
+				Color newPlayer = m_game.getActivePlayer();
+				if(oldPlayer != newPlayer) //turn is over
+					m_turnSign.activate(newPlayer == GOLD);
+			}
 		}
 	}
 	else
@@ -512,4 +561,16 @@ void GameScreen::refreshAll()
 	updateNbMoves();
 	if(!m_game.hasStarted())
 		m_placementUI.setPlayer(m_game.getActivePlayer());
+}
+
+void GameScreen::setVictor(Color victor)
+{
+	m_victor = victor;
+	if(isOver())
+	{
+		int dx = m_victorySign.GetImage()->GetWidth();
+		int dy = m_victorySign.GetImage()->GetHeight()/2;
+		int y = ((int) victor) * dy;
+		m_victorySign.SetSubRect(sf::IntRect(0,y,dx,y+dy));
+	}
 }
