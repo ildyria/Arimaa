@@ -1,0 +1,39 @@
+Résumé du document suivant :
+
+https://dke.maastrichtuniversity.nl/m.winands/documents/multithreadedMCTS2.pdf
+
+Global :
+	- Il existe trois grands types de parallélisation :
+		- Tree
+		- Root
+		- Leaf
+
+
+	Leaf parallélisation :
+
+On parallélise la recherche après une certaine feuille. Et on attends la réponse de chaque processus parallélisé.
+
+Avantages : 
+	- Très facile à implémenter
+	
+	- Ne requiert aucun mutex
+Inconvénients :
+	- En moyenne, jouer n jeu avec n thread sera moins rapide que jouer 1 jeu avec 1 thread
+	  En effet, pour rassembler les résultats des n parties, il faut attendre que la plus longue ait finie.
+	
+	- L'information entre les parties (threads) n'est pas partagée.
+	  On peut donc éviter de faire des calculs inutils, en gérant les probabilités sur les parties déja finies.
+	  En permettant au programme de kill les programmes non terminés, on pourrait éviter de faire des calculs inutilement.
+	  (voir exemple sur document pour plus de détail)
+
+	Root parallélisation :
+
+On effecture un MCTS sur chacun des threads disponibles puis on merge les résultats.
+
+Avantages :
+	-Parallélisation facile car pas beaucoup de communication entre les threads.
+
+Inconvénients :
+	- Pas de partage d'information (comme pour le Leaf)
+
+
