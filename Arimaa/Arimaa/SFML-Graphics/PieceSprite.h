@@ -17,7 +17,7 @@ public:
 
 	void freeze(bool frozen);
 	inline void startDisappearing() { m_disappearing = true; }
-	inline bool hasDisappeared() { return GetScale().x == 0; }
+	inline bool hasDisappeared() { return GetColor().a == 0; }
 
 private:
 	Piece* m_piece;

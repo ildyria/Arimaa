@@ -155,14 +155,20 @@ int GameScreen::update (sf::RenderWindow &app)
 		it->second.update(elapsedTime);
 
 	//removing pieces that have finished disappearing
-	for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
+	if(m_disappearingPieces.size() > 0)
 	{
-		Piece* p = *it;
-		if(m_pieces[p].hasDisappeared())
+		std::vector<std::vector<Piece*>::iterator> disappearedPieces; //contains pieces that have disappeared, for their removal in the disappearing list
+		for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
 		{
-			m_pieces.erase(p);
-			m_disappearingPieces.erase(it);
+			Piece* p = *it;
+			if(m_pieces[p].hasDisappeared())
+			{
+				m_pieces.erase(p);
+				disappearedPieces.push_back(it);
+			}
 		}
+		for(unsigned int i = 0; i < disappearedPieces.size(); ++i) //removing disappeared pieces from the disappearing list
+			m_disappearingPieces.erase(disappearedPieces[i]);
 	}
 
 	return nextScreen;
