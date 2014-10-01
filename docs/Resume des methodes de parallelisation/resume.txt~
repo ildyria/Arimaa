@@ -38,15 +38,6 @@ Inconvénients :
 
 	Tree parallelisation :
 
-	Local Mutexes :
-		- Ils permettent le traitement de plusieurs noeuds
-		- Ils sont très souvent utilisés. Cependant, on peut accélérer le processus avec des mutex à accès rapides (spinlocks).
-
-	GLobal Mutexes :
-		- Ils permettent d'éviter une corruption des données
-		- Ralentissent considérablement le programme
-
-	Virtual Loss :
 
 
 	Conclusion :
