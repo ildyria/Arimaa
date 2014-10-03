@@ -1,43 +1,51 @@
-#Projet Arimaa – CR2 : Mercredi 24 Septembre
-Présents : Toute l'équipe, Christian Raymond, et Nikos Parlavantzas
+#Project Arimaa – CR3 : Wednesday, October 1st 
+Presents : Everyone except Prateek, Christian Raymond, and Nikos Parlavantzas
+##Order of business :
+1. Choices of conferences
+2. New incoming in our group
+3. Gabriel's progress on the Arimaa game
+4. "État de l'art" by Benoît and Mikail (latest developments)
+5. MS Project (Baptiste)
+6. Plan of first report (Dan)
+7. Work on the deadlines
 
-##Ordre du jour :
-- Validation des technologies choisies
-- Étude de l'état de l'art
-- Orientation du cahier des charges
+##Information :
+- Order of conferences (In French):
 
-##Information échangées :
+1. Future car conference, between K2000 and James Bond's car
+2. Medical applications for tomorrow
+3. How to become an entrepreneur at the INSA de Rennes
+4. Sustainable development debate/study of the agribusiness
+We will attend 3 of these during the Telecoms' week (week almost only to work on the project)
 
-- Présentation de thèses et travaux sur la parallélisation du jeu Arimaa par Benoît:
-  - Tout raisonnement trop lié au jeu ne pourra pas se généraliser. Cela ne sert à rien de commencer à étudier des cas qui ne sont relatifs qu'à Arimaa
-  - Graphique très intéressant montrant la baisse de l'efficacité de l'algorithme utilisé par un thésard, géré par 4 threads quand le temps augmente. "Additionnal time for thinking worths the less the time engine has".
-- Travail sur Arimaa simplifié, pour commencer, on sauvegardera des algorithmes de mémoire avec des tableaux simples en 2D remplis de 0 et 1.
-- Validation du C++, de Grid5000, et de OpenMP.
-- Ordre du jour des prochaines séances :
-  - s'intéresser au contenu du prochain rapport (présentation algorithme, stéréotype de parallélisation)
-  - continuer à s'intéresser à l'état de l'art, faire une étude plus poussée de la bibliographie, l'implémentation de la méthode de Montecarlo – Algo Min-Max
-- Discuter des 3 stratégies de la parallélisation : (définitions à approfondir)
-  - Root parallel : 1 thread, 1 arbre, fusion des statistiques de la première ligne et continue. Ne calcule qu'un nœud à la fois, puis recommence le calcul sur toutes les branches
-  - Leaf parallel : plus simple pour les communications machines, on fusionne les résultats trouvés pour créer un nouveau nœud "moyen"
-  - Tree parallel : développe les feuilles de façon parallèles (autant de thread que de feuilles)
-- Problème dans un certain cas. Lors d'une surcharge de statistiques, il est possible de perdre quelques unes de ces statistiques. On utiliserait un mutex pour protéger et enregistrer ces statistiques. Le problème de cette méthode est le coût qui paraîtrait trop élevé. Ainsi, on ignorera le problème au vu de toutes les autres statistiques que nous avons.
-- Faire une pré-étude des problèmes dans le premier rapport, décrire le projet, et les résoudre dans le deuxième rapport.
-- Dans tous les cas, l'étude se fait sur plusieurs postes dès le départ.
-- Répartition des rôles faite (temporaire avec rotations toutes les deux semaines à priori en fonction des charges de travail – les noms des postes ne sont pas définitifs) :
-  - Rédacteur en chef : il gère et oriente le groupe, recherche des axes pour le compte-rendu d'octobre *(Dan pour le moment)*
-  - Responsable réunion : il gère les réunions, le matériel, la relation avec les enseignants, il oriente le debriefing, et sait de quoi tout parle. *(Dan pour le moment)*
-  - Responsable parallélisation : il approfondit les notions des 3 parallélismes de Christian Raymond (Tree/Leaf/Root), recherche de bibliographe et comparatifs des différentes méthodes *(Benoît et Mikaïl pour le moment)*
-  - Responsable utilitaires: il gère l'UML (si le temps le permet) et Microsoft Project, travail sur le suivi des tâches, les deadlines et la répartition des ressources *(Baptiste pour le moment)*
-  - Responsable application : il complète la version du jeu d'Arimaa et cherche à savoir si la nouvelle version de C++ 2011 est stable pour l'utiliser dans le projet. *(Gabriel pour le moment)*
-- Écriture des compte-rendus en Latex pour la forme et se familiariser avec le format.
+- How welcome Prateek to the group ? All reports will be in English, and talks as well (this report as well). Is he interested by the project ? If(yes) then {Welcome !}
+- Check with Mr Anquetil (in charge) for the notation of the English. Prateek accepted, so there would be more work, but we will learn to deal with English.
+- Try to think and write in English. For the oral presentation, prepare our sentences. Avoid  learning everything by heart.
+- For all reports, try to use simple sentences, not big sentences referring to each others. We will use Latex. Do not focus on the number of page of the report. Focus on the contents. Dan will look after the report, to avoid repetitions and preserve coherence of the document. 
+- What's up with Gabriel's Arimaa game ? He solved some other bugs, changed icons, switch to C++11 with the SFML library (for the graphic window). One major improvement of the new C++ : null is replaced by nullptr : no possibility of nullPointerException anymore.
+- There may be more problems : play the game more to find bugs. He added saving of game (file backup), and he improved the selection of icon at the beginning of the game (if it is not possible anymore to add a piece, the piece's color change). The teachers like this game, and advise us to use it for the oral presentation, to help people understand the game.
+- "Etat de l'art" (latest developments of the MonteCarlo Research – MCTS) Presentation of the work of Mikail and Benoit on the parallelization techniques. The two methods (roots and trees) have pros and cons, maybe it will be good to mix the two, as a hybrid method. We will add these concepts in our December's report.
+- OpenMP could be used in this project to parallelize calculations (just do a sequential scheme and OpenMP parallelize everything). But C++11 add the multithreading (but we need to think in multithreading), so what's the best ? We need to choose one of them for next week. Work on comparison of speed, will the difference between the two be negligible? Christian Raymond prefers OpenMP.
+- The MPI technology operates the synchronisation between between processors, and send data for the aggregation. It becomes useless if figures changes only in the first line (one iteration). We can use C++ socket to communicate with the computer. Grid5000 won't have the same speed, so we wouldn’t be able to use MPI. We could use the library Corba in C++ or use the C library of thread. To improve our schemes, we could use the C++ library Boost.org (Standardisation and improvements of the usual C++). We could use the protocol rest to communicate between machines, with web services.
+- Assessment of the Arimaa's thesis by Mikail. He made a recap of it (look at the links above). We usually use the capacity of CPU for our calculation, but it may be more interesting to use the capacity of GPU.
+- Benoit presented Accelerating Parallel Kamilrochi (look at the link above). He studied the MCTS applied to the game GO. We will use the results in other reports (not the next one).
+- Baptiste worked on MS Project to plan what's remaining to do (everything). We need to take notes of the name and time conceded of the task we were doing. Baptiste will show us with a tutorial what we have to do to add data in the file.
 
 ##Planification
-
-Tâche  | Responsable | Deadline
+Task		|						Responsible	|	Deadline
 ------------ | ------------- | --------
-État de l'art, thèses, comparatifs,bibliographie | Benoît,Mikaïl | 01/10 extendable
-Établir le cahier des charges/compte-rendu | Dan | 01/10 Octobre
-Compléter le jeu, et la compatibilité C++ 2011 | Gabriel | 01/10 extendable
-Tutoriel MS Project + UML si possible | Baptiste | 01/10 extendable
+Mail to Marin Bertier					|	Dan	|		10/02
+Organise the plan of the rapport (and main ideas)	|	Dan		|	10/08
+GPU VS CPU powering our calculus		|	Baptiste	|	10/08
+C++11 VS OpenMP for multithreading (for 3 solutions)	| Benoit		|	10/08
+Look for a new parallelization and strategies	|	Benoit & Mikail	| 10/08
+Bibliography with Zotero or Jabref to a file .bibtex		| Mikail	|		10/08
+Study the C++ library Boost			|		Gabriel	|	10/08
+Learn Arimaa's rules, familiarize with the project	|	Prateek	|	10/08 or more
+Take notes of time and everything we have done.	|	Everyone	|	10/08 and more
+Finish the application game				|	Gabriel	|	12/18
 
-##Date de la prochaine réunion : 01/10
+##Next meeting : 10/08
+##Links (on the GitHub Arimaa) :
+Arimaa\Docs\Resume des methodes de parallelisation\resume.txt is a recap of the method of parallelization
+Arimaa\Docs\MCTS Generalites\AcceleratingParallel_KamilRocki.pdf is what Benoit has found on MCTS research trees.
