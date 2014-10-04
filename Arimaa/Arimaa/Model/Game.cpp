@@ -97,7 +97,7 @@ Color Game::getWinner()
 		for(int i = 0; i < BOARD_SIZE; ++i) //going through each square of the goal
 		{
 			Piece* p = m_board.getPiece(Square(i, goalY));
-			if(p != NULL && p->getColor() == c && p->getType() == RABBIT) //if there is a piece, it belongs to the player, and it's a rabbit 
+			if (p != nullptr && p->getColor() == c && p->getType() == RABBIT) //if there is a piece, it belongs to the player, and it's a rabbit 
 				return c;
 		}
 	}
@@ -110,7 +110,7 @@ Color Game::getWinner()
 		for(int j = 0; (j < BOARD_SIZE) && !(goldRabbit && silverRabbit); ++j)
 		{
 			Piece* p = m_board.getPiece(Square(i,j));
-			if((p != NULL) && (p->getType() == RABBIT))
+			if ((p != nullptr) && (p->getType() == RABBIT))
 			{
 				if(p->getColor() == GOLD)
 					goldRabbit = true;

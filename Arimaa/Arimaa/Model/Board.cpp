@@ -11,7 +11,7 @@ Board::Board(void)
 		m_board.push_back(std::vector<Piece*>());
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
-			m_board.back().push_back(NULL);
+			m_board.back().push_back(nullptr);
 		}
 	}
 }
@@ -23,7 +23,7 @@ Board::~Board(void)
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
 			delete m_board[i][j];
-			m_board[i][j] = NULL;
+			m_board[i][j] = nullptr;
 		}
 	}
 }
@@ -40,7 +40,7 @@ bool Board::placePiece(Piece* p, Square s)
 void Board::removePiece(Square s)
 {
 	delete m_board[s.y][s.x];
-	m_board[s.y][s.x] = NULL;
+	m_board[s.y][s.x] = nullptr;
 }
 
 bool Board::movePiece(Square pos, Square dest)
@@ -48,7 +48,7 @@ bool Board::movePiece(Square pos, Square dest)
 	if(isFree(dest))
 	{
 		m_board[dest.y][dest.x] = m_board[pos.y][pos.x];
-		m_board[pos.y][pos.x] = NULL;
+		m_board[pos.y][pos.x] = nullptr;
 		return true;
 	}
 	return false;

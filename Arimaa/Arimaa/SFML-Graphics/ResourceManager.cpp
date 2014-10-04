@@ -18,7 +18,7 @@ sf::Image* ResourceManager::getImage(std::string imageFile)
 		if(!images[imageFile].LoadFromFile(imageFile)) //the image loads (or tries to)
 		{
 			images.erase(imageFile); //the image was created by [] so we delete it;
-			return NULL; //this is the case where the image couldn't be successfully loaded
+			return nullptr; //this is the case where the image couldn't be successfully loaded
 		}
 	}
 	return &images[imageFile];
@@ -27,7 +27,7 @@ sf::Image* ResourceManager::getImage(std::string imageFile)
 sf::Image* ResourceManager::getImage(std::string imageFile, sf::Color transparentColor)
 {
 	Image* i = getImage(imageFile);
-	if(i != NULL)
+	if (i != nullptr)
 		i->CreateMaskFromColor(transparentColor);
 	return i;
 }
@@ -40,7 +40,7 @@ sf::Font* ResourceManager::getFont(std::string fontFile)
 		if(!fonts[fontFile].LoadFromFile(fontFile)) //the image loads (or tries to)
 		{
 			fonts.erase(fontFile); //the image was created by [] so we delete it;
-			return NULL; //this is the case where the image couldn't be successfully loaded
+			return nullptr; //this is the case where the image couldn't be successfully loaded
 		}
 	}
 	return &fonts[fontFile];

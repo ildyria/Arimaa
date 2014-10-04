@@ -20,9 +20,9 @@ TurnSign::~TurnSign(void)
 
 void TurnSign::loadAssets()
 {
-	if(m_nextTurnSprite.GetImage() == NULL)
+	if (m_nextTurnSprite.GetImage() == nullptr)
 		m_nextTurnSprite.SetImage(*ResourceManager::getImage("Next_Turn.png"));
-	if(m_glowSprite.GetImage() == NULL)
+	if (m_glowSprite.GetImage() == nullptr)
 		m_glowSprite.SetImage(*ResourceManager::getImage("Turn_Glow.png"));
 	reset();
 }

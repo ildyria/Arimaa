@@ -128,7 +128,7 @@ void PlacementUI::resetAvailability()
 
 void PlacementUI::loadAssets()
 {
-	if(m_piecesSprites[0].GetImage() == NULL)
+	if (m_piecesSprites[0].GetImage() == nullptr)
 	{
 		sf::Image* im = ResourceManager::getImage("Pieces.png");
 		for(int i = 0; i < NB_PIECES; ++i)
@@ -140,7 +140,7 @@ void PlacementUI::loadAssets()
 		}
 		m_piecesSprites[m_selectedPiece].SetColor(SELECTION_COLOR);
 	}
-	if(m_endTurnButton.GetImage() == NULL)
+	if (m_endTurnButton.GetImage() == nullptr)
 	{
 		m_endTurnButton.SetImage(*ResourceManager::getImage("End_Turn_Button.png"));
 		m_endTurnButton.SetCenter(sfmlop::divide(m_endTurnButton.GetSize(), 2));

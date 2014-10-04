@@ -28,7 +28,7 @@ public:
 	Board(void);
 	~Board(void);
 
-	inline bool isFree(Square s) const { return m_board[s.y][s.x] == NULL; }
+	inline bool isFree(Square s) const { return m_board[s.y][s.x] == nullptr; }
 	inline Piece* getPiece(Square s) const { return m_board[s.y][s.x]; }
 	bool placePiece(Piece* p, Square s);
 	void removePiece(Square s);

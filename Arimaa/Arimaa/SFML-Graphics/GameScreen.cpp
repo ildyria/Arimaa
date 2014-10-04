@@ -164,30 +164,16 @@ int GameScreen::update (sf::RenderWindow &app)
 		it->second.update(elapsedTime);
 
 	//removing pieces that have finished disappearing
-	if(m_disappearingPieces.size() > 0)
+	for (auto it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ) //++it done below if necessary
 	{
-		std::vector<Piece*> disappearedPieces; //contains pieces that have disappeared, for their removal in the disappearing list
-		for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
+		Piece* p = *it;
+		if (m_pieces[p].hasDisappeared())
 		{
-			Piece* p = *it;
-			if(m_pieces[p].hasDisappeared())
-			{
-				m_pieces.erase(p);
-				disappearedPieces.push_back(p);
-			}
+			m_pieces.erase(p);
+			it = m_disappearingPieces.erase(it); //gives it the value of the next element, thus no need to increase it again
 		}
-		//removing disappeared pieces from the disappearing list
-		for(unsigned int i = 0; i < disappearedPieces.size(); ++i)
-		{
-			for(std::vector<Piece*>::iterator it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ++it)
-			{
-				if(*it == disappearedPieces[i])
-				{
-					m_disappearingPieces.erase(it);
-					break;
-				}
-			}
-		}
+		else
+			++it;
 	}
 
 	if(isOver()) //manages the appearance of the victory sign
@@ -245,36 +231,36 @@ void GameScreen::draw (sf::RenderWindow &app)
 
 void GameScreen::initialize ()
 {
-	if(m_background.GetImage() == NULL)
+	if(m_background.GetImage() == nullptr)
 		m_background.SetImage(*ResourceManager::getImage("Board.png"));
 	ResourceManager::getImage("Pieces.png");
-	if(m_cursor.GetImage() == NULL)
+	if (m_cursor.GetImage() == nullptr)
 		m_cursor.SetImage(*ResourceManager::getImage("Cursor.png"));
-	if(m_selectionSprite.GetImage() == NULL)
+	if (m_selectionSprite.GetImage() == nullptr)
 		m_selectionSprite.SetImage(*ResourceManager::getImage("Selection.png"));
-	if(m_targettingSprite.GetImage() == NULL)
+	if (m_targettingSprite.GetImage() == nullptr)
 		m_targettingSprite.SetImage(*ResourceManager::getImage("Targetting.png"));
-	if(m_goldTurnIndicator.GetImage() == NULL)
+	if (m_goldTurnIndicator.GetImage() == nullptr)
 	{
 		m_goldTurnIndicator.SetImage(*ResourceManager::getImage("Gold_Turn.png"));
 		m_goldTurnIndicator.SetCenter(0, m_goldTurnIndicator.GetSize().y/2);
 	}
-	if(m_silverTurnIndicator.GetImage() == NULL)
+	if (m_silverTurnIndicator.GetImage() == nullptr)
 	{
 		m_silverTurnIndicator.SetImage(*ResourceManager::getImage("Silver_Turn.png"));
 		m_silverTurnIndicator.SetCenter(0, m_silverTurnIndicator.GetSize().y/2);
 	}
-	if(m_nbMovesSprite.GetImage() == NULL)
+	if (m_nbMovesSprite.GetImage() == nullptr)
 	{
 		m_nbMovesSprite.SetImage(*ResourceManager::getImage("Nb_Moves.png"));
 		m_nbMovesSprite.SetCenter(0, (float) m_nbMovesSprite.GetImage()->GetHeight()/8); // height/8 because 4 sprites
 	}
-	if(m_movesBackgroundSprite.GetImage() == NULL)
+	if (m_movesBackgroundSprite.GetImage() == nullptr)
 	{
 		m_movesBackgroundSprite.SetImage(*ResourceManager::getImage("Moves_Back.png"));
 		m_movesBackgroundSprite.SetCenter(0, m_movesBackgroundSprite.GetSize().y/2);
 	}
-	if(m_victorySign.GetImage() == NULL)
+	if (m_victorySign.GetImage() == nullptr)
 	{
 		m_victorySign.SetImage(*ResourceManager::getImage("Victory_Sign.png"));
 		m_victorySign.SetCenter(m_victorySign.GetSize().x/2, m_victorySign.GetSize().y/4);
@@ -337,7 +323,7 @@ void GameScreen::place(sf::Vector2i s)
 	{
 		Piece* p = m_game[toSquare(s)];
 		PieceType oldPieceType = NB_PIECES;
-		if(p != NULL)
+		if (p != nullptr)
 			oldPieceType = p->getType();
 		remove(s); //removing any piece that would happen to be here
 		if(m_game.place(m_selectedType, toSquare(s))) //if the placement was a success
@@ -362,7 +348,7 @@ void GameScreen::remove(sf::Vector2i s)
 	if(BoardAlignedSprite::isOnBoard(s)) //there is a piece to be removed
 	{
 		Piece* p = m_game[toSquare(s)];
-		if(p != NULL && m_game.remove(toSquare(s))) //removing the actual piece
+		if (p != nullptr && m_game.remove(toSquare(s))) //removing the actual piece
 		{
 			killPieceSprite(p); //removing piece sprite
 			updatePieceAvailability(m_selectedType);//updating the availability in placement UI
@@ -392,7 +378,7 @@ bool GameScreen::select(sf::Vector2i s)
 			else //square is selectable
 			{
 				Piece* p = m_game[toSquare(s)];
-				if(p == NULL) //no piece here
+				if (p == nullptr) //no piece here
 				{
 					bool res = m_game.move(toSquare(m_selectedPiece), toSquare(s), false);
 					unselect();
@@ -406,7 +392,7 @@ bool GameScreen::select(sf::Vector2i s)
 	else //no piece is selected
 	{
 		Piece* p = m_game[toSquare(s)];
-		if(p != NULL && p->getColor() == m_game.getActivePlayer())  //there is a piece and it can be selected
+		if (p != nullptr && p->getColor() == m_game.getActivePlayer())  //there is a piece and it can be selected
 			selectPiece(s);
 	}
 	return false;
@@ -481,7 +467,7 @@ void GameScreen::updatePositionsAndDeath()
 			Piece* p = m_game[Square(i,j)];
 			if(m_game.isTrap(Square(i,j)))
 				endangeredPieces.push_back(p);
-			if(p != NULL)
+			if (p != nullptr)
 			{
 				m_pieces[p].moveOnSquare(sf::Vector2i(i,j), false);
 			}
@@ -503,7 +489,7 @@ void GameScreen::updatePositionsAndDeath()
 	}
 	for(int i = 0; i < NB_TRAPS; ++i)
 	{
-		if(endangeredPieces[i] != survivingPieces[i]) //the piece has died (replaced by NULL)
+		if(endangeredPieces[i] != survivingPieces[i]) //the piece has died (replaced by nullptr)
 			killPieceSprite(endangeredPieces[i]);
 	}
 
@@ -513,7 +499,7 @@ void GameScreen::updatePositionsAndDeath()
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
 			Piece* p = m_game[Square(i,j)];
-			if(p != NULL)
+			if (p != nullptr)
 			{
 				m_pieces[p].freeze(m_game.isFrozen(Square(i,j))); //if the piece is frozen, show it
 			}
@@ -547,7 +533,7 @@ void GameScreen::refreshAll()
 		{
 			sf::Vector2i s(i,j);
 			Piece* p = m_game[toSquare(s)];
-			if(p != NULL)
+			if (p != nullptr)
 			{
 				m_pieces[p] = PieceSprite(p);
 				m_pieces[p].moveOnSquare(s);

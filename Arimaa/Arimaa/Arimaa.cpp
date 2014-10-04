@@ -15,14 +15,17 @@
 
 using namespace sf;
 
-//comment this line to hide console
-#define CONSOLE_ON
+//comment this line to hide console (now by default in debug mode)
+//#define CONSOLE_ON
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 #ifdef CONSOLE_ON
 	void InitializeConsoleStdIO();
+#else
+	HWND hWnd = GetConsoleWindow();
+	ShowWindow(hWnd, SW_HIDE);
 #endif
 
 	ConfigOptions::init();
@@ -30,6 +33,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	if(ConfigOptions::inFullscreen())
 		windowStyle |= Style::Fullscreen;
 	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "Arimaa", windowStyle); //Création de la fenêtre app
+	app.SetIcon(32, 32, ResourceManager::getImage("Icon.png")->GetPixelsPtr());
 	app.SetFramerateLimit(60); 
 
 	sf::String loadingText("Loading...", *ResourceManager::getFont(/*Default font*/), 48);
