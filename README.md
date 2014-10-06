@@ -1,4 +1,4 @@
-#Project Arimaa – CR3 : Wednesday, October 1st 
+﻿#Project Arimaa – CR3 : Wednesday, October 1st 
 Presents : Everyone with Christian Raymond, and Nikos Parlavantzas except Prateek.
 ##Order of business :
 1. Choices of conferences
@@ -49,3 +49,5 @@ Finish the application game				|	Gabriel	|	12/18
 ##Links (on the GitHub Arimaa) :
 Arimaa\Docs\Resume des methodes de parallelisation\resume.txt is a recap of the method of parallelization
 Arimaa\Docs\MCTS Generalites\AcceleratingParallel_KamilRocki.pdf is what Benoit has found on MCTS research trees.
+
+Prateek was here
