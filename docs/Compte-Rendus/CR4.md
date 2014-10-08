@@ -1,9 +1,9 @@
-#Project Arimaa – CR4 : Wednesday, October 8st 
-Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
+#Project Arimaa â€“ CR4Â : Wednesday, October 8st 
+PresentsÂ : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
 ##Order of business :
 1. Questions about project (Prateek)
 2. GPU VS CPU (Baptiste)
-3. C++11 VS OpenMP (Benoît)
+3. C++11 VS OpenMP (BenoÃ®t)
 4. Parallelization and strategies (Benoit & Mikail)
 5. Bibliography recap (Mikail)
 6. C++ library with Boost (Gabriel)
@@ -11,7 +11,7 @@ Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prate
 
 ##Information :
 - Questions about Prateek : explanation of what is parallelization in this project, what is MCTS algorithm (more powerful than the first algorithm Min Max, calcul of one or more iteration and run the one with the higher probability of win. The point is using statistics to choose how to play, get the feedback of the game and conclude)
-GPU VS CPU. GPU has more power but has less cash memory, it may be too long if we need to use more memory than the capacity of the cache. In this case, CPU is better. With the MPI technology, it is possible to run it in all machines. With OpenMP, it's possible to work with GPU on Grid5000 with the Nvidia technology. It's fast, there is no cost of communication but there are again few quick memory to dispatch tasks. (Baptiste) 1 small performing GPU is around 100 better than the CPU one. Baptiste will look for figures. Maybe a good thing will be to decompose the calculus of the node, and give only a small part to the GPU so it could work correctly with a small cache.
+- GPU VS CPU. GPU has more power but has less cash memory, it may be too long if we need to use more memory than the capacity of the cache. In this case, CPU is better. With the MPI technology, it is possible to run it in all machines. With OpenMP, it's possible to work with GPU on Grid5000 with the Nvidia technology. It's fast, there is no cost of communication but there are again few quick memory to dispatch tasks. (Baptiste) 1 small performing GPU is around 100 better than the CPU one. Baptiste will look for figures. Maybe a good thing will be to decompose the calculus of the node, and give only a small part to the GPU so it could work correctly with a small cache.
 - Multithreading C++11 VS OpenMP has not been studied by Benoit. He should have warned us that he was unable to do it. It is for now not a problem because we don't really need this study for the first report but he will have to do it just after we give our final first report. However, we should not forget that we will mention this possibility of multithreading on the first report, but we will not look for a solution, we will just present the possibilities.
 A Json structure could be promising.
 - Mikail studied parallelizations. He compared the three simple one (no hybridation). He studied only the first thesis so he's going to read more with the teacher's thesis. His conclusions were that the root one is the best, on most of situations. Leaf parallelization can be efficient as well on numberous conditions. Based on that thesis, we would have chosen root parallelization. 
@@ -31,4 +31,4 @@ End of first draft (give your work to Dan, Mail-Git)	    |          Everyone	 | 
 C++11 VS Multithreading			 | 		Benoit		 | 	10/29
 Finish the game application			 | 		Gabriel	 | 	12/18
 
-##Next meeting : 15/08
+##Next meetingÂ : 15/08
