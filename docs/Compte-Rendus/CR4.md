@@ -1,9 +1,9 @@
-ï»¿#Project Arimaa â€“ CR4Â : Wednesday, October 8st 
-PresentsÂ : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
+#Project Arimaa – CR4 : Wednesday, October 8st 
+Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
 ##Order of business :
 1. Questions about project (Prateek)
 2. GPU VS CPU (Baptiste)
-3. C++11 VS OpenMP (BenoÃ®t)
+3. C++11 VS OpenMP (Benoît)
 4. Parallelization and strategies (Benoit & Mikail)
 5. Bibliography recap (Mikail)
 6. C++ library with Boost (Gabriel)
@@ -31,4 +31,4 @@ End of first draft (give your work to Dan, Mail-Git)	    |          Everyone	 | 
 C++11 VS Multithreading			 | 		Benoit		 | 	10/29
 Finish the game application			 | 		Gabriel	 | 	12/18
 
-##Next meetingÂ : 15/08
+##Next meeting : 15/08
