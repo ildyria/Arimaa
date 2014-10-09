@@ -8,3 +8,6 @@ Parallelisation :
 
 	Document moins intéressant (moins spécifique quant à nos besoins), mais qui utilise un peu de MPI :
 		http://www.shodor.org/media/content//petascale/materials/UPModules/Binary_Tree_Traversal/Binary_Tree_Traversal_Module_Document.pdf
+
+	Document qui compare Root et Tree :
+		http://www.ai.univ-paris8.fr/~jm/ggp/gigaslides.pdf
