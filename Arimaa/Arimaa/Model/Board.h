@@ -47,7 +47,7 @@ public:
 	 *  \param  s The square to check.
 	 *  \return A pointer to the piece, or nullptr if no piece is on this square.
 	 */
-	inline Piece* getPiece(Square s) const { return m_board[s.y][s.x]; }
+	inline PiecePtr getPiece(Square s) const { return m_board[s.y][s.x]; }
 	/**
 	 *  \brief Tries to place the given Piece on the given Square.
 	 *  
@@ -58,7 +58,7 @@ public:
 	 *  \details The only restriction for piece placement is that the square is valid and free.
 	 *  See isFree(Square) and isValid(Square).
 	 */
-	bool placePiece(Piece* p, Square s);
+	bool placePiece(PiecePtr p, Square s);
 	/**
 	 *  \brief Tries to remove a Piece from the Board.
 	 *  
@@ -130,7 +130,7 @@ public:
 	static const Square m_cardinals[];
 
 private:
-	std::vector<std::vector<Piece*>> m_board;
+	std::vector<std::vector<PiecePtr>> m_board;
 
 	bool checkDeath(Square s);
 

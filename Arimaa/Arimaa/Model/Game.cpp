@@ -12,7 +12,7 @@ Game::~Game(void)
 {
 }
 
-bool Game::place(Piece* p, Square s)
+bool Game::place(PiecePtr p, Square s)
 {
 	if(!m_hasStarted && m_pieceCount[p->getType()] < m_maxPieceCount[p->getType()]) // if we are not started yet and all pieces of this type haven't been plaed
 		if(m_board.inStartingZone(p->getColor(), s) && m_board.placePiece(p, s))
@@ -96,7 +96,7 @@ Color Game::getWinner()
 			goalY = 0;
 		for(int i = 0; i < BOARD_SIZE; ++i) //going through each square of the goal
 		{
-			Piece* p = m_board.getPiece(Square(i, goalY));
+			PiecePtr p = m_board.getPiece(Square(i, goalY));
 			if (p != nullptr && p->getColor() == c && p->getType() == RABBIT) //if there is a piece, it belongs to the player, and it's a rabbit 
 				return c;
 		}
@@ -109,7 +109,7 @@ Color Game::getWinner()
 	{
 		for(int j = 0; (j < BOARD_SIZE) && !(goldRabbit && silverRabbit); ++j)
 		{
-			Piece* p = m_board.getPiece(Square(i,j));
+			PiecePtr p = m_board.getPiece(Square(i,j));
 			if ((p != nullptr) && (p->getType() == RABBIT))
 			{
 				if(p->getColor() == GOLD)
@@ -247,7 +247,7 @@ bool Game::loadFromFile(std::string fileName)
 			c = line[j];
 			if(c != ' ') //a piece is here
 			{
-				Piece* p = new Piece(Piece::fromChar(c));
+				PiecePtr p = std::make_shared<Piece>(Piece::fromChar(c));
 				m_board.placePiece(p, Square(j,i));
 				if(!m_hasStarted && p->getColor() == m_activePlayer) //increments nb of pieces placed if needed
 					m_pieceCount[(int) p->getType()]++;

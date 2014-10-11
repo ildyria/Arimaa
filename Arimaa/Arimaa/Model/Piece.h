@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 /**
  *  \brief The different types of pieces available.
@@ -64,6 +65,8 @@ private:
 	Color m_color;
 
 };
+
+typedef std::shared_ptr<Piece> PiecePtr;
 
 inline bool operator< (const Piece& p1, const Piece& p2) { return (p1.getType() < p2.getType()); }
 inline bool operator> (const Piece& p1, const Piece& p2) { return (p1.getType() > p2.getType()); }

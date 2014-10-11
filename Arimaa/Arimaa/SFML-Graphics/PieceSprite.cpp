@@ -8,7 +8,7 @@ PieceSprite::PieceSprite() : BoardAlignedSprite(), m_piece(nullptr), m_disappear
 {
 }
 
-PieceSprite::PieceSprite(Piece* p, std::string image) : BoardAlignedSprite(image), m_piece(p), m_disappearing(false)
+PieceSprite::PieceSprite(PiecePtr p, std::string image) : BoardAlignedSprite(image), m_piece(p), m_disappearing(false)
 {
 	int x = m_piece->getType() * SQUARE_SIZE;
 	int y = m_piece->getColor() * SQUARE_SIZE;
@@ -33,7 +33,7 @@ void PieceSprite::SetImage(const sf::Image& img)
 	SetCenter(SQUARE_SIZE/2, SQUARE_SIZE/2);
 }
 
-void PieceSprite::setPiece(Piece* p)
+void PieceSprite::setPiece(PiecePtr p)
 {
 	m_piece = p;
 }

@@ -30,8 +30,8 @@ private:
 	BoardAlignedSprite m_cursor;
 	BoardAlignedSprite m_selectionSprite;
 	BoardAlignedSprite m_targettingSprite;
-	std::map<Piece*, PieceSprite> m_pieces;
-	std::vector<Piece*> m_disappearingPieces; //dead pieces that are still disappearing
+	std::map<PiecePtr, PieceSprite> m_pieces;
+	std::vector<PiecePtr> m_disappearingPieces; //dead pieces that are still disappearing
 	sf::Sprite m_goldTurnIndicator;
 	sf::Sprite m_silverTurnIndicator;
 	TurnSign m_turnSign;
@@ -65,7 +65,7 @@ private:
 	void updatePositionsAndDeath();
 	void updateNbMoves();
 	inline void updatePieceAvailability(PieceType type) { m_selectedType = m_placementUI.setAvailability(type, m_game.getNbRemaining(type) != 0); }
-	inline void killPieceSprite(Piece* p) { m_disappearingPieces.push_back(p); m_pieces[p].startDisappearing(); }
+	inline void killPieceSprite(PiecePtr p) { m_disappearingPieces.push_back(p); m_pieces[p].startDisappearing(); }
 	void clearAll();
 	void refreshAll();
 	void setVictor(Color victor);

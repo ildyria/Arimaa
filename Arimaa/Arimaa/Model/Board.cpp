@@ -8,7 +8,7 @@ Board::Board(void)
 	//Builing an empty board
 	for(int i = 0; i < BOARD_SIZE; ++i)
 	{
-		m_board.push_back(std::vector<Piece*>());
+		m_board.push_back(std::vector<PiecePtr>());
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
 			m_board.back().push_back(nullptr);
@@ -18,17 +18,10 @@ Board::Board(void)
 
 Board::~Board(void)
 {
-	for(int i = 0; i < BOARD_SIZE; ++i)
-	{
-		for(int j = 0; j < BOARD_SIZE; ++j)
-		{
-			delete m_board[i][j];
-			m_board[i][j] = nullptr;
-		}
-	}
+	//shared pointers will delete pieces when dereferenced automatically
 }
 
-bool Board::placePiece(Piece* p, Square s)
+bool Board::placePiece(PiecePtr p, Square s)
 {
 	if(!isFree(s)) //if the square is not free
 		return false;
@@ -39,8 +32,7 @@ bool Board::placePiece(Piece* p, Square s)
 
 void Board::removePiece(Square s)
 {
-	delete m_board[s.y][s.x];
-	m_board[s.y][s.x] = nullptr;
+	m_board[s.y][s.x] = nullptr; //this is enough, the piece will be deleted if no one else points to it.
 }
 
 bool Board::movePiece(Square pos, Square dest)

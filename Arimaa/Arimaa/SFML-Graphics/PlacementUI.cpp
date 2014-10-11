@@ -133,10 +133,10 @@ void PlacementUI::loadAssets()
 		sf::Image* im = ResourceManager::getImage("Pieces.png");
 		for(int i = 0; i < NB_PIECES; ++i)
 		{
-			Piece* p = new Piece((PieceType) i);
+			PiecePtr p = std::make_shared<Piece>((PieceType)i);
 			m_piecesSprites[i].setPiece(p);
 			m_piecesSprites[i].SetImage(*im);
-			delete p;
+			//the piece will be deallocated automatically
 		}
 		m_piecesSprites[m_selectedPiece].SetColor(SELECTION_COLOR);
 	}

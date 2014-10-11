@@ -62,7 +62,7 @@ public:
 	 *  \details This function doesn't allow its user to place a piece out of his starting zone,
 	 *  to place a piece of the wrong color, or to exceed the maximum number of pieces for each player.
 	 */
-	bool place(Piece* p, Square s);
+	bool place(PiecePtr p, Square s);
 	/**
 	 *  \brief Tries to place a piece in a given square. The piece owner will be the current player.
 	 *  
@@ -73,7 +73,7 @@ public:
 	 *  \details This function doesn't allow its user to place a piece out of his starting zone,
 	 *  to place a piece of the wrong color, or to exceed the maximum number of pieces for each player.
 	 */
-	inline bool place(PieceType t, Square s) { return place(new Piece(t, m_activePlayer), s);  }
+	inline bool place(PieceType t, Square s) { return place(std::make_shared<Piece>(t, m_activePlayer), s); }
 	/**
 	 *  \brief Tries to remove a piece on a given square.
 	 *  
@@ -188,7 +188,7 @@ public:
 	 *  \param  s The square to check.
 	 *  \return A pointer to the piece, or nullptr if no piece is on this square.
 	 */
-	inline Piece* operator[] (const Square& s) const { return m_board.getPiece(s); }
+	inline PiecePtr operator[] (const Square& s) const { return m_board.getPiece(s); }
 
 	/**
 	 *  \brief Save the current game to a file.

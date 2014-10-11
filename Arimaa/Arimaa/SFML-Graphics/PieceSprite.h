@@ -7,11 +7,11 @@ class PieceSprite :
 {
 public:
 	PieceSprite();
-	PieceSprite(Piece* p, std::string image = "Pieces.png");
+	PieceSprite(PiecePtr p, std::string image = "Pieces.png");
 	~PieceSprite(void);
 
 	void SetImage(const sf::Image& img);
-	void setPiece(Piece* p);
+	void setPiece(PiecePtr p);
 
 	void update(float elapsedTime);
 
@@ -20,6 +20,6 @@ public:
 	inline bool hasDisappeared() { return GetColor().a == 0; }
 
 private:
-	Piece* m_piece;
+	PiecePtr m_piece;
 	bool m_disappearing;
 };

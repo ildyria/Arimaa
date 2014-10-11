@@ -160,13 +160,13 @@ int GameScreen::update (sf::RenderWindow &app)
 
 	m_turnSign.update(elapsedTime);
 	m_cursor.update(elapsedTime);
-	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
+	for(std::map<PiecePtr, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
 		it->second.update(elapsedTime);
 
 	//removing pieces that have finished disappearing
 	for (auto it = m_disappearingPieces.begin(); it != m_disappearingPieces.end(); ) //++it done below if necessary
 	{
-		Piece* p = *it;
+		PiecePtr p = *it;
 		if (m_pieces[p].hasDisappeared())
 		{
 			m_pieces.erase(p);
@@ -203,7 +203,7 @@ void GameScreen::draw (sf::RenderWindow &app)
 	if(m_selectedTarget != NULL_SQUARE)
 		app.Draw(m_targettingSprite);
 	app.Draw(m_cursor);
-	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
+	for(std::map<PiecePtr, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
 		app.Draw(it->second);
 	if(!isOver())
 	{
@@ -321,7 +321,7 @@ void GameScreen::place(sf::Vector2i s)
 {
 	if(BoardAlignedSprite::isOnBoard(s)) //there is a piece to be placed, and the square to place it in is valid
 	{
-		Piece* p = m_game[toSquare(s)];
+		PiecePtr p = m_game[toSquare(s)];
 		PieceType oldPieceType = NB_PIECES;
 		if (p != nullptr)
 			oldPieceType = p->getType();
@@ -347,7 +347,7 @@ void GameScreen::remove(sf::Vector2i s)
 {
 	if(BoardAlignedSprite::isOnBoard(s)) //there is a piece to be removed
 	{
-		Piece* p = m_game[toSquare(s)];
+		PiecePtr p = m_game[toSquare(s)];
 		if (p != nullptr && m_game.remove(toSquare(s))) //removing the actual piece
 		{
 			killPieceSprite(p); //removing piece sprite
@@ -377,7 +377,7 @@ bool GameScreen::select(sf::Vector2i s)
 				unselect();
 			else //square is selectable
 			{
-				Piece* p = m_game[toSquare(s)];
+				PiecePtr p = m_game[toSquare(s)];
 				if (p == nullptr) //no piece here
 				{
 					bool res = m_game.move(toSquare(m_selectedPiece), toSquare(s), false);
@@ -391,7 +391,7 @@ bool GameScreen::select(sf::Vector2i s)
 	}
 	else //no piece is selected
 	{
-		Piece* p = m_game[toSquare(s)];
+		PiecePtr p = m_game[toSquare(s)];
 		if (p != nullptr && p->getColor() == m_game.getActivePlayer())  //there is a piece and it can be selected
 			selectPiece(s);
 	}
@@ -459,12 +459,12 @@ bool GameScreen::tryAndEndTurn()
 void GameScreen::updatePositionsAndDeath()
 {
 	//updates movement
-	std::vector<Piece*> endangeredPieces;
+	std::vector<PiecePtr> endangeredPieces;
 	for(int i = 0; i < BOARD_SIZE; ++i)
 	{
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
-			Piece* p = m_game[Square(i,j)];
+			PiecePtr p = m_game[Square(i,j)];
 			if(m_game.isTrap(Square(i,j)))
 				endangeredPieces.push_back(p);
 			if (p != nullptr)
@@ -478,7 +478,7 @@ void GameScreen::updatePositionsAndDeath()
 	m_game.applyDeaths();
 
 	//update deaths (has to be done after movement update)
-	std::vector<Piece*> survivingPieces;
+	std::vector<PiecePtr> survivingPieces;
 	for(int i = 0; i < BOARD_SIZE; ++i)
 	{
 		for(int j = 0; j < BOARD_SIZE; ++j)
@@ -498,7 +498,7 @@ void GameScreen::updatePositionsAndDeath()
 	{
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
-			Piece* p = m_game[Square(i,j)];
+			PiecePtr p = m_game[Square(i,j)];
 			if (p != nullptr)
 			{
 				m_pieces[p].freeze(m_game.isFrozen(Square(i,j))); //if the piece is frozen, show it
@@ -518,7 +518,7 @@ void GameScreen::updateNbMoves()
 
 void GameScreen::clearAll()
 {
-	for(std::map<Piece*, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
+	for(std::map<PiecePtr, PieceSprite>::iterator it = m_pieces.begin(); it != m_pieces.end(); ++it)
 		killPieceSprite(it->first);
 }
 
@@ -532,7 +532,7 @@ void GameScreen::refreshAll()
 		for(int j = 0; j < BOARD_SIZE; ++j)
 		{
 			sf::Vector2i s(i,j);
-			Piece* p = m_game[toSquare(s)];
+			PiecePtr p = m_game[toSquare(s)];
 			if (p != nullptr)
 			{
 				m_pieces[p] = PieceSprite(p);
