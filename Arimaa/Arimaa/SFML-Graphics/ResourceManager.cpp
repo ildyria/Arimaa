@@ -12,16 +12,35 @@ const sf::Color ResourceManager::DEFAULT_TRANSPARENT_COLOR(255,255,255);
 
 sf::Image* ResourceManager::getImage(std::string imageFile)
 {
-	imageFile = IMAGE_DIR + imageFile;
-	if(images.find(imageFile) == images.end()) //the image is not already loaded
+	//first we try to use the theme
+	std::string filepath = IMAGE_DIR + ConfigOptions::getTheme() + "/" + imageFile;
+	if (images.find(filepath) == images.end()) //the image is not already loaded
 	{
-		if(!images[imageFile].LoadFromFile(imageFile)) //the image loads (or tries to)
+		if (images[filepath].LoadFromFile(filepath)) //the image loads (or tries to)
 		{
-			images.erase(imageFile); //the image was created by [] so we delete it;
-			return nullptr; //this is the case where the image couldn't be successfully loaded
+			return &images[filepath];
 		}
+		//else
+		images.erase(filepath); //the image was created by [] so we remove it;
 	}
-	return &images[imageFile];
+	else
+		return &images[filepath];
+
+	//if the image was not found in theme, use the default one
+	filepath = IMAGE_DIR + imageFile;
+	if (images.find(filepath) == images.end()) //the image is not already loaded
+	{
+		if (images[filepath].LoadFromFile(filepath)) //the image loads (or tries to)
+		{
+			return &images[filepath];
+		}
+		//else
+		images.erase(filepath); //the image was created by [] so we remove it;
+	}
+	else
+		return &images[filepath];
+
+	return nullptr; //this is the case where the image couldn't be successfully loaded
 }
 
 sf::Image* ResourceManager::getImage(std::string imageFile, sf::Color transparentColor)

@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "SFMLOperations.h"
+#include <iostream>
+#include <fstream>
 #include "SimpleIni.h"
 #include "InputHandler.h"
 
@@ -28,6 +30,7 @@ public:
 	static inline sf::Vector2f bottomLeftCorner() { return sf::Vector2f(0, (float)m_resolution.y); }
 	static inline sf::Vector2f bottomRightCorner() { return sfmlop::toFloatVect(m_resolution); }
 	static inline bool inFullscreen() { return m_inFullscreen; }
+	static inline std::string getTheme() { return m_theme; }
 	static inline InputHandler* getIHandler() { return &m_iHandler; }
 
 private:
@@ -35,6 +38,7 @@ private:
 	static sf::View m_view;
 	static bool m_inFullscreen;
 	static InputHandler m_iHandler;
+	static std::string m_theme;
 
 	static std::map<std::string, sf::Key::Code> getNamedKeys();
 	static std::map<std::string, sf::Mouse::Button> getNamedButtons();

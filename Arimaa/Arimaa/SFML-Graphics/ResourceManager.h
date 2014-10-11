@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "ConfigOptions.h"
 
 #define IMAGE_DIR "Assets/Graphics/"
 #define FONT_DIR "Assets/Fonts/"

