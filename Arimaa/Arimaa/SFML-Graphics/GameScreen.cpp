@@ -1,4 +1,3 @@
-#include "../StdAfx.h"
 #include "GameScreen.h"
 
 #define TURN_INDICATOR_HEIGHT 150
@@ -195,7 +194,7 @@ void GameScreen::draw (sf::RenderWindow &app)
 {
 	app.Clear();
 	app.SetView(ConfigOptions::getView()); //switching to custom view for easy resizing of the screen
-	
+
 	app.Draw(m_background);
 	m_highlighter.draw(app);
 	if(m_selectedPiece != NULL_SQUARE)
@@ -265,7 +264,7 @@ void GameScreen::initialize ()
 		m_victorySign.SetImage(*ResourceManager::getImage("Victory_Sign.png"));
 		m_victorySign.SetCenter(m_victorySign.GetSize().x/2, m_victorySign.GetSize().y/4);
 	}
-	
+
 	m_turnSign.loadAssets();
 	m_highlighter.loadAssets();
 	m_placementUI.loadAssets();
@@ -304,7 +303,7 @@ void GameScreen::clickOn(sf::Vector2i s)
 			updateNbMoves();
 			//checks if the game is over
 			setVictor(m_game.getWinner());
-			
+
 			if(!isOver())
 			{
 				Color newPlayer = m_game.getActivePlayer();
@@ -538,7 +537,7 @@ void GameScreen::refreshAll()
 				m_pieces[p] = PieceSprite(p);
 				m_pieces[p].moveOnSquare(s);
 				m_pieces[p].freeze(m_game.isFrozen(toSquare(s))); //if the piece is frozen, show it
-				
+
 				if(!m_game.hasStarted() && (p->getColor() == m_game.getActivePlayer())) //if in placement phase, and if the piece belongs to the current player
 					updatePieceAvailability(p->getType());//updating the availability in placement UI
 			}

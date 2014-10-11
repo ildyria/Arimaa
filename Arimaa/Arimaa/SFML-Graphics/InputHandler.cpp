@@ -1,4 +1,3 @@
-#include "../StdAfx.h"
 #include "InputHandler.h"
 
 using namespace sf;
@@ -22,9 +21,9 @@ void InputHandler::map(std::string control, sf::Key::Code key)
 void InputHandler::map(std::string control, std::vector<sf::Key::Code> keys)
 {
 	if(boundKeys.find(control) != boundKeys.end()) //if the control is found in the map
-	{	
+	{
 		std::vector<Key::Code>* mappedKeys = &boundKeys[control];
-		for each(Key::Code c in keys)
+		for(Key::Code c : keys)
 		{
 			mappedKeys->push_back(c);
 		}
@@ -45,9 +44,9 @@ void InputHandler::map(std::string control, sf::Mouse::Button button)
 void InputHandler::map(std::string control, std::vector<sf::Mouse::Button> buttons)
 {
 	if(boundMouseButtons.find(control) != boundMouseButtons.end()) //if the control is found in the map
-	{	
+	{
 		std::vector<Mouse::Button>* mappedMouseButtons = &boundMouseButtons[control];
-		for each(Mouse::Button b in buttons)
+		for(Mouse::Button b : buttons)
 		{
 			mappedMouseButtons->push_back(b);
 		}

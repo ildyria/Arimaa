@@ -1,5 +1,4 @@
 #pragma once
-#include "../StdAfx.h"
 #include <SFML/Graphics.hpp>
 #include "SFMLOperations.h"
 #include "ResourceManager.h"

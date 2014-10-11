@@ -1,7 +1,6 @@
 // Arimaa.cpp : définit le point d'entrée pour l'application console.
 //
 
-#include "stdafx.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <string>
@@ -19,13 +18,15 @@ using namespace sf;
 //#define CONSOLE_ON
 
 
-int _tmain(int argc, _TCHAR* argv[])
+int main()
 {
 #ifdef CONSOLE_ON
 	void InitializeConsoleStdIO();
 #else
+#ifndef LINUX
 	HWND hWnd = GetConsoleWindow();
 	ShowWindow(hWnd, SW_HIDE);
+#endif
 #endif
 
 	ConfigOptions::init();
@@ -34,9 +35,9 @@ int _tmain(int argc, _TCHAR* argv[])
 		windowStyle |= Style::Fullscreen;
 	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "Arimaa", windowStyle); //Création de la fenêtre app
 	app.SetIcon(32, 32, ResourceManager::getImage("Icon.png")->GetPixelsPtr());
-	app.SetFramerateLimit(60); 
+	app.SetFramerateLimit(60);
 
-	sf::String loadingText("Loading...", *ResourceManager::getFont(/*Default font*/), 48);
+	sf::String loadingText("Loading...", *ResourceManager::getFont(), 48);
 	loadingText.SetCenter(loadingText.GetRect().GetWidth()/2, loadingText.GetRect().GetHeight()/2);
 	loadingText.SetPosition(ConfigOptions::getScreenCenter());
 
@@ -79,26 +80,26 @@ void InitializeConsoleStdIO()
     // virtuel CONIN$ et CONOUT$ qui permettent respectivement de lire
     // et d'écrire depuis / dans cette console (voir la doc de CreateFile).
 
-#if _MSC_VER >= 1400 // VC++ 8 
-    { 
-    // éviter le warning C4996: 'freopen' was declared deprecated 
-    // This function or variable may be unsafe. Consider using freopen_s instead. 
-    FILE *stream; 
-    freopen_s( &stream, "CONIN$", "r", stdin ); 
-    freopen_s( &stream, "CONOUT$", "w", stdout ); 
-    freopen_s( &stream, "CONOUT$", "w", stderr ); 
-    } 
-#else 
-    std::freopen( "CONIN$", "r", stdin ); 
-    std::freopen( "CONOUT$", "w", stdout ); 
-    std::freopen( "CONOUT$", "w", stderr ); 
-#endif 
+#if _MSC_VER >= 1400 // VC++ 8
+    {
+    // éviter le warning C4996: 'freopen' was declared deprecated
+    // This function or variable may be unsafe. Consider using freopen_s instead.
+    FILE *stream;
+    freopen_s( &stream, "CONIN$", "r", stdin );
+    freopen_s( &stream, "CONOUT$", "w", stdout );
+    freopen_s( &stream, "CONOUT$", "w", stderr );
+    }
+#else
+    std::freopen( "CONIN$", "r", stdin );
+    std::freopen( "CONOUT$", "w", stdout );
+    std::freopen( "CONOUT$", "w", stderr );
+#endif
 
     // la ligne suivante synchronise les flux standards C++ (cin, cout, cerr...)
-    std::ios_base::sync_with_stdio();    
+    std::ios_base::sync_with_stdio();
 }
 
-int WINAPI WinMain(          
+int WINAPI WinMain(
     HINSTANCE hInstance,
     HINSTANCE hPrevInstance,
     LPSTR lpCmdLine,

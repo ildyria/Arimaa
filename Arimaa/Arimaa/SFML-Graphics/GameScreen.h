@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <sstream>
-#include "screen.h"
+#include "Screen.h"
 #include "InputHandler.h"
 #include "ResourceManager.h"
 #include "ConfigOptions.h"
@@ -73,7 +73,7 @@ private:
 	static inline sf::Vector2i toVector(const Square& s) { return sf::Vector2i(s.x, s.y); }
 	static inline Square toSquare(const sf::Vector2i& v) { return Square(v.x, v.y); }
 	static inline bool isValid(sf::Vector2i s) { return (s.x >= 0 && s.y >= 0 && s.x < 8 && s.y < 8); }
-	
+
 	static sf::Vector2i m_cardinals[];
 	static bool areAdjacent(sf::Vector2i p1, sf::Vector2i p2);
 };

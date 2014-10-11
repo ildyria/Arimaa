@@ -1,4 +1,3 @@
-#include "../StdAfx.h"
 #include "ResourceManager.h"
 #include <iostream>
 #include <ctime>
@@ -8,7 +7,7 @@ using namespace std;
 
 std::map<std::string, sf::Image> ResourceManager::images;
 std::map<std::string, sf::Font> ResourceManager::fonts;
-const sf::Color ResourceManager::DEFAULT_TRANSPARENT_COLOR(255,255,255); 
+const sf::Color ResourceManager::DEFAULT_TRANSPARENT_COLOR(255,255,255);
 
 sf::Image* ResourceManager::getImage(std::string imageFile)
 {
