@@ -1,0 +1,26 @@
+Arimaa :
+
+Building a Strong Arimaa-playing Program : arimaa.com/arimaa/papers/HaizhiThesis/haizhiThesis.doc
+MCTS & Arimaa : http://arimaa.com/arimaa/papers/TomasKozelekThesis/mt.pdf
+Move Ranking : http://arimaa.com/arimaa/papers/ThomasJakl/bc-thesis.pdf
+move ranking and evaluation thesis : http://arimaa.com/arimaa/papers/DavidWu/djwuthesis.pdf
+MCTS vs AlphaBeta : http://arimaa.com/arimaa/papers/ThomasJakl/bc-thesis.pdf
+Arimaa, a New Challenge for Artificial Intelligence : http://arimaa.com/arimaa/papers/StefanoCarlini/Arimaa2.pdf
+Plans, Patterns and Move Categories Guiding a Highly Selective Search : http://arimaa.com/arimaa/papers/0905Trippen/Contribution118.pdf
+
+
+GO :
+
+Monte-Carlo Tree Search Parallelisation for Computer Go : http://scholar.sun.ac.za/handle/10019.1/83912
+MCTS Parallelisation : http://leafcloud.com/wp-content/uploads/2011/11/report.pdf
+Parallel Monte-Carlo Tree Search : https://dke.maastrichtuniversity.nl/m.winands/documents/multithreadedMCTS2.pdf
+Massively Parallel Monte Carlo Tree Search : http://vecpar.fe.up.pt/2010/papers/50.pdf
+Monte-Carlo Tree Search (MCTS) for Computer Go : http://fr.slideshare.net/BigMC/montecarlo-tree-search-for-the-game-of-go
+
+
+General:
+
+Accelerating Parallel Monte Carlo Tree Search using CUDA : http://on-demand.gputechconf.com/gtc/2012/posters/P0227_AcceleratingParallel_KamilRocki.pdf
+Large Scale Monte Carlo Tree Search on GPU : http://olab.is.s.u-tokyo.ac.jp/~kamil.rocki/phd_thesis.pdf
+Maximizing Parallelism in the Construction of BVHs,Octrees, and k-d Trees https://research.nvidia.com/sites/default/files/publications/karras2012hpg_paper.pdf
+Parallel Monte Carlo Tree Search on GPU : http://olab.is.s.u-tokyo.ac.jp/~kamil.rocki/rocki_scai11.pdf
