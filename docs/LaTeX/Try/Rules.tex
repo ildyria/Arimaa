@@ -9,6 +9,10 @@
 \usepackage{graphicx}
 % the last extension makes it possible to add images
 
+%la bibliographie ne fonctionne pas
+\bibliographystyle{plain}
+\bibliography{bibliography}
+
 %presentation of the document
 %title, author, date, thanks (optional)
 \title{\LaTeX First try}
@@ -36,7 +40,7 @@ Enter Text here
 \subsection{Subsection}
 \paragraph{Paragraph title}
 
-My paragraph : Lorem ipsum dolor sit amet, consectetur\footnote{I am a footnote and I know it} adipiscing elit. Ut eu est laoreet, egestas ipsum id, cursus metus. In ut fringilla massa. In hac habitasse platea dictumst. In laoreet, ex id scelerisque\underline{ rhoncus, purus} mauris \textit{fermentum metus nunc quis massa}. Aenean efficitur volutpat risus. \textbf{Vivamus ultrices mi ac nisl elementum}, in placerat quam pellentesque. Integer suscipit, elit a egestas lu
+My paragraph : Lorem ipsum dolor sit amet, consectetur\footnote{I am a footnote and I know it} adipiscing elit. Ut eu est laoreet, egestas ipsum id, cursus metus. In ut fringilla massa. In hac habitasse platea dictumst. In laoreet, ex id scelerisque\underline{ rhoncus, purus} mauris \textit{fermentum metus nunc quis massa}. Aenean efficitur volutpat risus. \textbf{Vivamus ultrices mi ac nisl elementum}, in placerat quam pellentesque. Integer suscipit, elit a egestas lu  \cite{cc} 
 %bold and italic are handled by textit and textbf, underlined with underline
 %to use a footer, use footnote{I am a foot note}
 
@@ -47,9 +51,11 @@ My paragraph : Lorem ipsum dolor sit amet, consectetur\footnote{I am a footnote 
 
 %adding image with caption begin(name)[position h t top b bottom p flottant], centerline for putting in the center
 \begin{figure}[t]
-\centerline{\includegraphics[scale=0.2]{picture}}
+\centerline{\includegraphics[scale=0.35]{picture}}
    \caption{\label{étiquette} this is emma watson}
 \end{figure}
+\newpage
+
 
 %to make a numerized list, we have to use \begin{enumerate} \item then and finally \end{enumerate}
 We are going to attend this conferences :
