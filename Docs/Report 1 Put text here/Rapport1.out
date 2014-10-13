@@ -1,13 +1,31 @@
 \BOOKMARK [1][-]{section.1}{Presentation of our project}{}% 1
 \BOOKMARK [2][-]{subsection.1.1}{Generalities}{section.1}% 2
-\BOOKMARK [2][-]{subsection.1.2}{Algorithm MCTS}{section.1}% 3
-\BOOKMARK [2][-]{subsection.1.3}{Presentation of Arimaa}{section.1}% 4
-\BOOKMARK [1][-]{section.2}{Strategies and state of the art}{}% 5
-\BOOKMARK [2][-]{subsection.2.1}{Strategy of root parallelization}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.2}{State of the art}{section.2}% 7
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Arimaa}{subsection.2.2}% 8
-\BOOKMARK [3][-]{subsubsection.2.2.2}{MCTS}{subsection.2.2}% 9
-\BOOKMARK [1][-]{section.3}{Solutions and schedule of our project}{}% 10
-\BOOKMARK [2][-]{subsection.3.1}{Solutions we could use}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.2}{Tasks' schedule}{section.3}% 12
-\BOOKMARK [1][-]{section.4}{Conclusion}{}% 13
+\BOOKMARK [2][-]{subsection.1.2}{Presentation of Arimaa}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Algorithms}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{The minimax algorithm}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{The \040pruning}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Monte Carlo Tree Search Algorithm}{section.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Introduction}{subsection.2.3}% 8
+\BOOKMARK [3][-]{subsubsection.2.3.2}{How does it works ?}{subsection.2.3}% 9
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Example}{subsection.2.3}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.4}{How to select the leaves to develop ?}{subsection.2.3}% 11
+\BOOKMARK [3][-]{subsubsection.2.3.5}{Why using the Monte Carlo Tree Search ?}{subsection.2.3}% 12
+\BOOKMARK [3][-]{subsubsection.2.3.6}{How much power do we need ?}{subsection.2.3}% 13
+\BOOKMARK [1][-]{section.3}{Strategies and state of the art}{}% 14
+\BOOKMARK [2][-]{subsection.3.1}{Strategy of root parallelization}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.2}{Leaf Parallelization}{section.3}% 16
+\BOOKMARK [2][-]{subsection.3.3}{Root Parallelization}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.4}{Tree Parallelization}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.5}{Comparison}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.6}{Hybrid Algorithms}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.7}{Conclusion}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.8}{State of the art of MCTS}{section.3}% 22
+\BOOKMARK [3][-]{subsubsection.3.8.1}{History of computers vs Humans}{subsection.3.8}% 23
+\BOOKMARK [1][-]{section.4}{Solutions and schedule}{}% 24
+\BOOKMARK [2][-]{subsection.4.1}{Candidates software and technologies}{section.4}% 25
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Language}{subsection.4.1}% 26
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Software}{subsection.4.1}% 27
+\BOOKMARK [3][-]{subsubsection.4.1.3}{Grid5000}{subsection.4.1}% 28
+\BOOKMARK [3][-]{subsubsection.4.1.4}{Parallelization}{subsection.4.1}% 29
+\BOOKMARK [2][-]{subsection.4.2}{Planning management}{section.4}% 30
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 31

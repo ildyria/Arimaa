@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.12)  13 OCT 2014 22:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.12)  14 OCT 2014 01:28
 entering extended mode
 **C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report*1*Put*text*here/Rapport1.tex
 ("C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/Rapport1.tex"
@@ -435,67 +435,152 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip52
 )
-("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.aux")
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count99
-\scratchdimen=\dimen110
-\scratchbox=\box26
-\nofMPsegments=\count100
-\nofMParguments=\count101
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count102
-\MPscratchDim=\dimen111
-\MPnumerator=\count103
-\makeMPintoPDFobject=\count104
-\everyMPtoPDFconversion=\toks18
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count99
+\float@exts=\toks17
+\float@box=\box26
+\@float@everytoks=\toks18
+\@floatcapt=\box27
 )
-\AtBeginShipoutBox=\box27
-Package hyperref Info: Link coloring OFF on input line 20.
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.sty"
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count100
+\Gm@cntv=\count101
+\c@Gm@tempcnt=\count102
+\Gm@bindingoffset=\dimen110
+\Gm@wd@mp=\dimen111
+\Gm@odd@mp=\dimen112
+\Gm@even@mp=\dimen113
+\Gm@layoutwidth=\dimen114
+\Gm@layoutheight=\dimen115
+\Gm@layouthoffset=\dimen116
+\Gm@layoutvoffset=\dimen117
+\Gm@dimlist=\toks19
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.aux"
+
+LaTeX Warning: Label `\IeC {\'e}tiquette' multiply defined.
+
+
+LaTeX Warning: Label `\IeC {\'e}tiquette' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+ ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count103
+\scratchdimen=\dimen118
+\scratchbox=\box28
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count106
+\MPscratchDim=\dimen119
+\MPnumerator=\count107
+\makeMPintoPDFobject=\count108
+\everyMPtoPDFconversion=\toks21
+)
+\AtBeginShipoutBox=\box29
+Package hyperref Info: Link coloring OFF on input line 24.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count105
+\c@section@level=\count109
 )
-LaTeX Info: Redefining \ref on input line 20.
-LaTeX Info: Redefining \pageref on input line 20.
-LaTeX Info: Redefining \nameref on input line 20.
+LaTeX Info: Redefining \ref on input line 24.
+LaTeX Info: Redefining \pageref on input line 24.
+LaTeX Info: Redefining \nameref on input line 24.
 
 ("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.out")
 ("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.out")
 \@outlinefile=\write3
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 22.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 22.
 
-<img/arimaa.jpg, id=55, 695.59875pt x 602.25pt>
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=44.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 26.
+<img/arimaa.jpg, id=127, 695.59875pt x 602.25pt>
 File: img/arimaa.jpg Graphic file (type jpg)
  <use img/arimaa.jpg>
-Package pdftex.def Info: img/arimaa.jpg used on input line 22.
+Package pdftex.def Info: img/arimaa.jpg used on input line 26.
 (pdftex.def)             Requested size: 347.79852pt x 301.12425pt.
  [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Dan/Desktop/Cour
 s/Arimaa/Docs/Report 1 Put text here/img/arimaa.jpg>]
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\0_Introduction_
+Prateek/intro.tex")
+Underfull \hbox (badness 10000) in paragraph at lines 2--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--30
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--30
+
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -513,85 +598,688 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 )
 \tf@toc=\write4
  [3]
-("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\ArimaaRules.tex
-" <Pictures/Pieces.png, id=91, 1415.2875pt x 135.50626pt>
-File: Pictures/Pieces.png Graphic file (type png)
-
-<use Pictures/Pieces.png>
-Package pdftex.def Info: Pictures/Pieces.png used on input line 5.
-(pdftex.def)             Requested size: 390.0pt x 37.3398pt.
-
-<Pictures/Displace.png, id=94, 1003.75pt x 812.03375pt>
-File: Pictures/Displace.png Graphic file (type png)
-
-<use Pictures/Displace.png>
-Package pdftex.def Info: Pictures/Displace.png used on input line 17.
-(pdftex.def)             Requested size: 195.0pt x 157.745pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Pictures/Freeze.png, id=96, 503.63156pt x 177.66376pt>
-File: Pictures/Freeze.png Graphic file (type png)
-
-<use Pictures/Freeze.png>
-Package pdftex.def Info: Pictures/Freeze.png used on input line 25.
-(pdftex.def)             Requested size: 195.0pt x 68.78976pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<Pictures/Trap.png, id=98, 388.45125pt x 162.6075pt>
-File: Pictures/Trap.png Graphic file (type png)
- <use Pictures/Trap.png>
-Package pdftex.def Info: Pictures/Trap.png used on input line 33.
-(pdftex.def)             Requested size: 195.0pt x 81.62859pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4 <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/Pictures/Piec
-es.png>]) [5 <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/Pic
-tures/Displace.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text h
-ere/Pictures/Freeze.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put t
-ext here/Pictures/Trap.png>] [6] [7] [8]
-Underfull \hbox (badness 10000) in paragraph at lines 76--84
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\1_Presentation/
+1.1_Our_project_Dan/presentation.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 2--21
 
  []
 
-("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 90.
 
-[9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 90.
- ("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 90.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 90.
+Underfull \hbox (badness 10000) in paragraph at lines 2--21
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--21
+
+ []
+
+)
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\1_Presentation/
+1.1_Arimaa_rules_Gabriel/ArimaaRules.tex"
+<1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Pieces.png, id=182, 1415.2875
+pt x 135.50626pt>
+File: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Pieces.png Graphic file 
+(type png)
+
+<use 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Pieces.png>
+Package pdftex.def Info: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Piece
+s.png used on input line 5.
+(pdftex.def)             Requested size: 469.75502pt x 44.97565pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4]
+<1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Displace.png, id=190, 1003.75
+pt x 812.03375pt>
+File: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Displace.png Graphic fil
+e (type png)
+
+<use 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Displace.png>
+Package pdftex.def Info: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Displ
+ace.png used on input line 17.
+(pdftex.def)             Requested size: 234.8775pt x 190.01018pt.
+
+<1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Freeze.png, id=192, 503.63156
+pt x 177.66376pt>
+File: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Freeze.png Graphic file 
+(type png)
+
+<use 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Freeze.png>
+Package pdftex.def Info: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Freez
+e.png used on input line 25.
+(pdftex.def)             Requested size: 234.8775pt x 82.85677pt.
+
+<1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Trap.png, id=194, 388.45125pt
+ x 162.6075pt>
+File: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Trap.png Graphic file (t
+ype png)
+ <use 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Trap.png>
+Package pdftex.def Info: 1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Trap.
+png used on input line 33.
+(pdftex.def)             Requested size: 234.8775pt x 98.322pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.42 \item[Victory by elimination]
+                                   You win the game if the opponent can't ma...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.42 \item[Victory by elimination]
+                                   You win the game if the opponent can't ma...
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.42 \item[Victory by elimination]
+                                   You win the game if the opponent can't ma...
+ <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Presentation/
+1.1_Arimaa_rules_Gabriel/Pictures/Pieces.png> <C:/Users/Dan/Desktop/Cours/Arima
+a/Docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/
+Displace.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_
+Presentation/1.1_Arimaa_rules_Gabriel/Pictures/Freeze.png>])
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\1_Presentation/
+1.2_Algorithm_MCTS_Benoit/mcts.tex"
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/max.png, id=204, 45.16875pt x 41.
+15375pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/max.png Graphic file (type p
+ng)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/max.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/max.png u
+sed on input line 7.
+(pdftex.def)             Requested size: 31.22917pt x 28.45274pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/min.png, id=205, 49.18375pt x 47.
+17625pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/min.png Graphic file (type p
+ng)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/min.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/min.png u
+sed on input line 13.
+(pdftex.def)             Requested size: 29.66356pt x 28.45274pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax2.png, id=206, 114.4275pt 
+x 80.3pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax2.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax2.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax2.
+png used on input line 25.
+(pdftex.def)             Requested size: 60.81914pt x 42.67912pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax3.png, id=207, 232.87pt x 
+189.70876pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax3.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax3.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax3.
+png used on input line 31.
+(pdftex.def)             Requested size: 104.77986pt x 85.35826pt.
+
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.35 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.5
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.35 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.6
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.35 
+      <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Presenta
+tion/1.1_Arimaa_rules_Gabriel/Pictures/Trap.png> <C:/Users/Dan/Desktop/Cours/Ar
+imaa/Docs/Report 1 Put text here/2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/m
+ax.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/2_State_
+of_the_art/Arimaa_on_MCTS_Benoit/img/min.png>]
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax4.png, id=217, 274.02374pt
+ x 281.05pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax4.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax4.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax4.
+png used on input line 42.
+(pdftex.def)             Requested size: 83.2238pt x 85.35826pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax5.png, id=218, 274.02374pt
+ x 281.05pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax5.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax5.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax5.
+png used on input line 48.
+(pdftex.def)             Requested size: 83.2238pt x 85.35826pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax6.png, id=219, 274.02374pt
+ x 281.05pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax6.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax6.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax6.
+png used on input line 60.
+(pdftex.def)             Requested size: 83.2238pt x 85.35826pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax8.png, id=220, 518.93875pt
+ x 281.05pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax8.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax8.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax8.
+png used on input line 66.
+(pdftex.def)             Requested size: 157.60698pt x 85.35826pt.
+
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax9.png, id=221, 518.93875pt
+ x 281.05pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax9.png Graphic file (t
+ype png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax9.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax9.
+png used on input line 78.
+(pdftex.def)             Requested size: 157.60698pt x 85.35826pt.
+
+[7pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.82 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.8
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.82 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.9
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.82 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+0}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.82 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+1}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.82 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.82 
+      <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/2_State_of
+_the_art/Arimaa_on_MCTS_Benoit/img/minimax2.png> <C:/Users/Dan/Desktop/Cours/Ar
+imaa/Docs/Report 1 Put text here/2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/m
+inimax3.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/2_S
+tate_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax4.png> <C:/Users/Dan/Desktop/C
+ours/Arimaa/Docs/Report 1 Put text here/2_State_of_the_art/Arimaa_on_MCTS_Benoi
+t/img/minimax5.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text h
+ere/2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax6.png> <C:/Users/Dan/De
+sktop/Cours/Arimaa/Docs/Report 1 Put text here/2_State_of_the_art/Arimaa_on_MCT
+S_Benoit/img/minimax8.png>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\alpha' on input line 86.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\beta' on input line 86.
+
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/schema.png, id=239, 608.2725pt x 
+532.23843pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/schema.png Graphic file (typ
+e png)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/schema.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/schema.pn
+g used on input line 101.
+(pdftex.def)             Requested size: 162.58366pt x 142.26378pt.
+
+[8pdfTeX warning (ext4): destination with the same identifier (name{figure.13})
+ has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.104 
+       <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/2_State_o
+f_the_art/Arimaa_on_MCTS_Benoit/img/minimax9.png>]
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/1.png, id=246, 148.30406pt x 532.
+23843pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/1.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/1.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/1.png use
+d on input line 109.
+(pdftex.def)             Requested size: 31.7105pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/2.png, id=247, 213.79875pt x 536.
+75531pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/2.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/2.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/2.png use
+d on input line 115.
+(pdftex.def)             Requested size: 45.33295pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/3.png, id=248, 225.09094pt x 569.
+12625pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/3.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/3.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/3.png use
+d on input line 124.
+(pdftex.def)             Requested size: 45.01051pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/4.png, id=249, 371.88937pt x 563.
+85657pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/4.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/4.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/4.png use
+d on input line 130.
+(pdftex.def)             Requested size: 75.06317pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/5.png, id=250, 506.6428pt x 557.0
+8125pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/5.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/5.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/5.png use
+d on input line 136.
+(pdftex.def)             Requested size: 103.4991pt x 113.81102pt.
+
+Overfull \hbox (15.15524pt too wide) in paragraph at lines 122--139
+ [][]|  []|  [] 
+ []
+
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/6.png, id=251, 542.025pt x 537.50
+812pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/6.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/6.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/6.png use
+d on input line 148.
+(pdftex.def)             Requested size: 114.76318pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/7.png, id=252, 559.33969pt x 532.
+99126pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/7.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/7.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/7.png use
+d on input line 154.
+(pdftex.def)             Requested size: 119.43634pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/8.png, id=253, 551.81157pt x 525.
+46312pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/8.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/8.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/8.png use
+d on input line 162.
+(pdftex.def)             Requested size: 119.51285pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/9.png, id=254, 615.80063pt x 533.
+74406pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/9.png Graphic file (type png
+)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/9.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/9.png use
+d on input line 168.
+(pdftex.def)             Requested size: 131.30457pt x 113.81102pt.
+ [9pdfTeX warning (ext4): destination with the same identifier (name{figure.14}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.171 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{figure.15}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.171 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{figure.16}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.171 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{figure.17}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.171 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{figure.18}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.171 \end{figure}
+                  pdfTeX warning (ext4): destination with the same identifier (
+name{figure.19}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.171 \end{figure}
+                   <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text he
+re/1_Presentation/1.2_Algorithm_MCTS_Benoit/img/schema.png> <C:/Users/Dan/Deskt
+op/Cours/Arimaa/Docs/Report 1 Put text here/1_Presentation/1.2_Algorithm_MCTS_B
+enoit/img/1.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here
+/1_Presentation/1.2_Algorithm_MCTS_Benoit/img/2.png> <C:/Users/Dan/Desktop/Cour
+s/Arimaa/Docs/Report 1 Put text here/1_Presentation/1.2_Algorithm_MCTS_Benoit/i
+mg/3.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Pres
+entation/1.2_Algorithm_MCTS_Benoit/img/4.png> <C:/Users/Dan/Desktop/Cours/Arima
+a/Docs/Report 1 Put text here/1_Presentation/1.2_Algorithm_MCTS_Benoit/img/5.pn
+g>]
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/10.png, id=267, 626.34pt x 532.99
+126pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/10.png Graphic file (type pn
+g)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/10.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/10.png us
+ed on input line 178.
+(pdftex.def)             Requested size: 133.74298pt x 113.81102pt.
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/11.png, id=268, 742.27313pt x 539
+.76656pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/11.png Graphic file (type pn
+g)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/11.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/11.png us
+ed on input line 182.
+(pdftex.def)             Requested size: 156.5049pt x 113.81102pt.
+
+Overfull \hbox (1.4849pt too wide) in paragraph at lines 182--183
+ [][] 
+ []
+
+
+<1_Presentation/1.2_Algorithm_MCTS_Benoit/img/12.png, id=269, 740.7675pt x 652.
+68843pt>
+File: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/12.png Graphic file (type pn
+g)
+ <use 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/12.png>
+Package pdftex.def Info: 1_Presentation/1.2_Algorithm_MCTS_Benoit/img/12.png us
+ed on input line 186.
+(pdftex.def)             Requested size: 129.16151pt x 113.81102pt.
+
+Overfull \hbox (11.79317pt too wide) in paragraph at lines 193--208
+[]$\OML/cmm/m/it/12 w[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--208
+
+ []
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{figure.20}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.208 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+21}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.208 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+22}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.208 
+      pdfTeX warning (ext4): destination with the same identifier (name{figure.
+23}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.208 
+       <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Present
+ation/1.2_Algorithm_MCTS_Benoit/img/6.png> <C:/Users/Dan/Desktop/Cours/Arimaa/D
+ocs/Report 1 Put text here/1_Presentation/1.2_Algorithm_MCTS_Benoit/img/7.png> 
+<C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Presentation/1
+.2_Algorithm_MCTS_Benoit/img/8.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Rep
+ort 1 Put text here/1_Presentation/1.2_Algorithm_MCTS_Benoit/img/9.png> <C:/Use
+rs/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Presentation/1.2_Algo
+rithm_MCTS_Benoit/img/10.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 
+Put text here/1_Presentation/1.2_Algorithm_MCTS_Benoit/img/11.png> <C:/Users/Da
+n/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/1_Presentation/1.2_Algorithm
+_MCTS_Benoit/img/12.png>]) [11]
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\2_State_of_the_
+art/Strategy_of_root_parallelization_Mikail/para.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 1--5
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--12
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--19
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--32
+
+ []
+
+[12]
+<2_State_of_the_art/Strategy_of_root_parallelization_Mikail/impara.png, id=301,
+ 733.99219pt x 344.03531pt>
+File: 2_State_of_the_art/Strategy_of_root_parallelization_Mikail/impara.png Gra
+phic file (type png)
+
+<use 2_State_of_the_art/Strategy_of_root_parallelization_Mikail/impara.png>
+Package pdftex.def Info: 2_State_of_the_art/Strategy_of_root_parallelization_Mi
+kail/impara.png used on input line 35.
+(pdftex.def)             Requested size: 440.3987pt x 206.42278pt.
+
+[13pdfTeX warning (ext4): destination with the same identifier (name{figure.24}
+) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.40 
+      <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/2_State_of
+_the_art/Strategy_of_root_parallelization_Mikail/impara.png>])
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\2_State_of_the_
+art/Arimaa_on_MCTS_Benoit/State.tex"
+<2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/ranking.png, id=310, 992.20688pt 
+x 582.67688pt>
+File: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/ranking.png Graphic file (ty
+pe png)
+ <use 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/ranking.png>
+Package pdftex.def Info: 2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/ranking.p
+ng used on input line 7.
+(pdftex.def)             Requested size: 341.43306pt x 200.50806pt.
+
+[14]) [15pdfTeX warning (ext4): destination with the same identifier (name{figu
+re.25}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.49 \newpage
+              <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/2_
+State_of_the_art/Arimaa_on_MCTS_Benoit/img/ranking.png>]
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\3_Software_cons
+idered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/Solutions
+.tex"
+<3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Ba
+ptiste/OpenMP.png, id=321, 411.03563pt x 265.74281pt>
+File: 3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Proje
+ct_Baptiste/OpenMP.png Graphic file (type png)
+
+<use 3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Projec
+t_Baptiste/OpenMP.png>
+Package pdftex.def Info: 3_Software_considered/MultithreadingMP_boost_Visual_MP
+I_5000_Zotero_Project_Baptiste/OpenMP.png used on input line 16.
+(pdftex.def)             Requested size: 205.5173pt x 132.87108pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[16]
+<3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Ba
+ptiste/MPI.png, id=328, 245.41687pt x 166.37157pt>
+File: 3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Proje
+ct_Baptiste/MPI.png Graphic file (type png)
+
+<use 3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Projec
+t_Baptiste/MPI.png>
+Package pdftex.def Info: 3_Software_considered/MultithreadingMP_boost_Visual_MP
+I_5000_Zotero_Project_Baptiste/MPI.png used on input line 24.
+(pdftex.def)             Requested size: 208.60532pt x 141.41647pt.
+ [17pdfTeX warning (ext4): destination with the same identifier (name{figure.26
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.34 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.2
+7}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.34 
+      <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/3_Software
+_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/Open
+MP.png> <C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/3_Softwa
+re_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/MP
+I.png>])
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\4_Tasks_schedul
+e/MSproject_schedule_prevision_Baptiste/schedule.tex"
+Underfull \hbox (badness 10000) in paragraph at lines 1--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--13
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1--13
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 16.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 16.
+ [18]) [19]
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\40_Conclusion_D
+an/conclu.tex")
+Underfull \hbox (badness 10000) in paragraph at lines 2--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 2--55
+
+ []
+
+[20]
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.bbl")
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 60.
+
+[21]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 60.
+
+("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 60.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 60.
 Package rerunfilecheck Info: File `Rapport1.out' has not changed.
-(rerunfilecheck)             Checksum: 3F064553F710F5701EE1861682973753;866.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 90.
+(rerunfilecheck)             Checksum: 7759561E023FDF3626ADBE5D76B8D652;2233.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 60.
  ) 
 Here is how much of TeX's memory you used:
- 5851 strings out of 493921
- 83469 string characters out of 3147287
- 165459 words of memory out of 3000000
- 9050 multiletter control sequences out of 15000+200000
- 15062 words of font info for 36 fonts, out of 3000000 for 9000
+ 6641 strings out of 493921
+ 102881 string characters out of 3147287
+ 183938 words of memory out of 3000000
+ 9697 multiletter control sequences out of 15000+200000
+ 17199 words of font info for 39 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 29i,10n,43p,457b,396s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,11n,43p,1009b,398s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ec
-bx1440.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
-pi600\ecbx1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
-pen\ec\dpi600\ecbx1728.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
-ur\jknappen\ec\dpi600\ecsl1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts
-\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2
-.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Dan\AppData\Local\
-MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Dan\AppDat
-a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\Da
-n\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk>
-Output written on Rapport1.pdf (9 pages, 293921 bytes).
+ti0600.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\d
+pi600\ecti1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
+pen\ec\dpi600\ecbx1440.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfo
+ur\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts
+\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2
+.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecsl1200.pk> <C:\Users\Dan\AppData\Local\
+MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Dan\AppDat
+a\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Da
+n\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\
+Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.
+pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\e
+crm2074.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.p
+fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb>
+Output written on Rapport1.pdf (21 pages, 1143002 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
- 30 named destinations out of 1000 (max. 500000)
- 130 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 853 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
+ 404 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,10 @@
 \begin{thebibliography}{1}
 
-\bibitem{cc}
+\bibitem{L1}
+Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine.
+\newblock The boost graph library - 1.56.0.
+
+\bibitem{L2}
 Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine.
 \newblock The boost graph library - 1.56.0.
 
