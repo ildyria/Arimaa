@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.12)  12 OCT 2014 21:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.12)  13 OCT 2014 19:19
 entering extended mode
 **C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report*1*Put*text*here/Rapport1.tex
 ("C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report 1 Put text here/Rapport1.tex"
@@ -350,10 +350,23 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <14.4> on input line 20.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 20.
+ <img/arimaa.jpg, id=1, 695.59875pt x 602.25pt>
+File: img/arimaa.jpg Graphic file (type jpg)
+ <use img/arimaa.jpg>
+Package pdftex.def Info: img/arimaa.jpg used on input line 21.
+(pdftex.def)             Requested size: 347.79852pt x 301.12425pt.
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.toc"
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/Dan/Desktop/Cour
+s/Arimaa/Docs/Report 1 Put text here/img/arimaa.jpg>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[2] ("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.to
+c"
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -362,37 +375,34 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 3.
 )
 \tf@toc=\write3
+ [3] [4] [5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 75--83
 
+ []
 
-Package Fancyhdr Warning: \headheight is too small (12.0pt): 
- Make it at least 14.49998pt.
- We now make it that large for the rest of the document.
- This may cause the page layout to be inconsistent, however.
-
-[2] [3] [4] [5] [6]
-("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.aux") 
-) 
+[7] ("C:\Users\Dan\Desktop\Cours\Arimaa\Docs\Report 1 Put text here\Rapport1.au
+x") ) 
 Here is how much of TeX's memory you used:
- 1997 strings out of 493921
- 23808 string characters out of 3147287
- 77411 words of memory out of 3000000
- 5287 multiletter control sequences out of 15000+200000
+ 2005 strings out of 493921
+ 23905 string characters out of 3147287
+ 78411 words of memory out of 3000000
+ 5291 multiletter control sequences out of 15000+200000
  15062 words of font info for 36 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 28i,10n,43p,303b,240s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecb
-x1440.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dp
-i600\ecbx1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknapp
-en\ec\dpi600\ecbx1728.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\ecsl1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\
-pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.
-9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Dan\AppData\Local\M
-iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Dan\AppData
-\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users\Dan
-\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk>
-Output written on Rapport1.pdf (6 pages, 88730 bytes).
+ 28i,10n,43p,430b,240s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
+\ecbx1440.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\e
+c\dpi600\ecbx1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jk
+nappen\ec\dpi600\ecbx1728.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\l
+jfour\jknappen\ec\dpi600\ecsl1200.pk> <C:\Users\Dan\AppData\Local\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\ecrm1095.pk> <C:\Users\Dan\AppData\Local\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1095.pk> <C:\Users\Dan\AppData\Loc
+al\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\Users\Dan\App
+Data\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Users
+\Dan\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2074.pk>
+Output written on Rapport1.pdf (7 pages, 158727 bytes).
 PDF statistics:
- 278 PDF objects out of 1000 (max. 8388607)
+ 337 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
