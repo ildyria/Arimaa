@@ -110,9 +110,23 @@ Continue the Algorithm until a decent about of simulation are run and/or the tim
 \end{figure}
 \noindent
 Make a decision : here we chose the fourth leaf.\\
-\\
+\bigskip
 \subsection{How to select the leaves to develop ?}
-In the previous exemple, we chose to not expend leaves without winrates. But depending on the results of the simulations, wins can vary greatly. Therefore we will run more simulations on each leaf before chosing the ones to develop. For practical purpose we will use a cost function in order to select the leaves to expend. The more a leaf is developed, the less it's cost is worth it. This way we can be sure that a leaf with low winrate isn't completely forgotten. 
+In the previous exemple, we chose to not expend leaves without winrates. But depending on the results of the simulations, wins can vary greatly. Therefore we will run more simulations on each leaf before chosing the ones to develop. For practical purpose we will select the leaves to expend that has the highest value of the cost function UCT (Upper Confidence Bound 1 applied to Trees).\\
+\bigskip
+\begin{minipage}[b]{1\linewidth}
+\centering
+\ensuremath{f = \frac{w_i}{n_i} + c\sqrt{\frac{\ln t}{n_i}}}\\
+\medskip
+\tiny{\textit{UCT function}}
+\end{minipage}%
+\bigskip
+\ensuremath{w_i} : number of wins after the ith node;\\
+\ensuremath{n_i} : number of simulations after the ith node;\\
+\ensuremath{c}   : exploration parameter – theoretically equal to \ensuremath{\sqrt{2}} but in practice chosen empirically;\\
+\ensuremath{t}   : total number of simulations in a given tree node, equal to the sum of all \ensuremath{n_i}.\\
+\medskip
+The more a leaf is developed, the less it's cost is worth it. This way we can be sure that a leaf with low winrate isn't completely forgotten.\\
 
 \subsection{Why using the Monte Carlo Tree Search ?}
 Compared to other algorithm like minimax, this one is generic, once you set the rules of the games, given enough time, it will solve it. The advantage of MCTS with it's basic form is that you don't need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which aren't.\\ The more you run simulations, the more accurate the results will be.
