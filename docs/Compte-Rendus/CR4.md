@@ -31,4 +31,4 @@ End of first draft (give your work to Dan, Mail-Git)	    |          Everyone	 | 
 C++11 VS Multithreading			 | 		Benoit		 | 	10/29
 Finish the game application			 | 		Gabriel	 | 	12/18
 
-##Next meeting : 15/08
+##Next meeting : 10/15
