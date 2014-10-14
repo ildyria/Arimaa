@@ -16,7 +16,7 @@ For the bibliography we will use Zotero, it permit the creation of .bib the bibl
 \centerline{\includegraphics[scale=0.50]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/OpenMP}}
    \caption{\label{étiquette} OpenMp : memory management}
 \end{figure}
-
+\newpage
 \paragraph{MPI}\mbox{}\\\mbox{}\\
 	MPI is a more complex method of parallelization than openMp but it's more powerful. As you can see on the illustration, it doesn't use shared memory, all the data of the threads are duplicate at their creation. It uses signals to permit the communication between the threads. One of its advantages is that it makes possible to use multiple computers, as the data are duplicated their isn't the problem of time to access the memory. But we have to pay attention to the cost of communication between the threads, if we use too much the signals we will lose all the time we can gain with the parallelization. It's very adapted for a tree parallelization, because with it we have just to duplicate the data at the beginning and return the result at the end of the assign time.
 
