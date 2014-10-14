@@ -199,10 +199,12 @@ In the previous exemple, we chose to not expend leaves without winrates. But dep
 \tiny{\textit{UCT function}}
 \end{minipage}%
 \bigskip
-\ensuremath{w_i} : number of wins after the ith node;\\
-\ensuremath{n_i} : number of simulations after the ith node;\\
-\ensuremath{c}   : exploration parameter – theoretically equal to \ensuremath{\sqrt{2}} but in practice chosen empirically;\\
-\ensuremath{t}   : total number of simulations in a given tree node, equal to the sum of all \ensuremath{n_i}.\\
+\begin{itemize}
+  \item \ensuremath{w_i} : number of wins after the ith node
+  \item \ensuremath{n_i} : number of simulations after the ith node
+  \item \ensuremath{c}   : exploration parameter – theoretically equal to \ensuremath{\sqrt{2}} but in practice chosen empirically
+  \item \ensuremath{t}   : total number of simulations in a given tree node, equal to the sum of all \ensuremath{n_i}
+\end{itemize}
 \medskip
 The more a leaf is developed, the less it's cost is worth it. This way we can be sure that a leaf with low winrate isn't completely forgotten.\\
 
