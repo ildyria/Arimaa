@@ -14,6 +14,14 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# Arimaa saved games, latex logs...
+*.arm
+*~
+*.log
+*.out
+*.toc
+
+
 # =========================
 # Operating System Files
 # =========================

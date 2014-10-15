@@ -8,18 +8,29 @@
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[margin=1in]{geometry}
+
+
 \pagestyle{fancy}
-\cfoot{Fast and furious game : MonteCarlo drift}
+%\cfoot{Fast and furious game : MonteCarlo drift}
 % the last extension makes it possible to add images
 
 %presentation of the document
 \title{Fast and furious game : MonteCarlo drift\smallbreak Pre-study and analysis report}
-\author{Prateek Bhatnagar, Baptiste Bignon, Mikaïl Demirdelen,\endline Gabriel Prevosto, Dan Seeruttun--Marie,  Benoît Viguier}
+\author{Prateek \textsc{Bhatnagar}, Baptiste \textsc{Bignon}, \\
+        Mikaïl \textsc{Demirdelen}, Gabriel \textsc{Prevosto}, \\
+        Dan \textsc{Seeruttun--Marie}, Benoît \textsc{Viguier} \\
+        \\
+        Encadrants : Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
 \date{10/15/2014}
 \begin{document}
 \maketitle
+\includegraphics[scale=0.5]{img/arimaa}
+\newpage
 \begin{abstract}
-Enter Text here
+\input{"0_Introduction_Prateek/intro.tex"}
 \end{abstract}
 
 
@@ -30,32 +41,24 @@ Enter Text here
 
 %to create subsections and subsubsubsections, we can use : (chapter n'existe pas avec la classe article)
 \section{Presentation of our project}
-\subsection{Generalities}
-Insert Text Here
-\subsection{Algorithm MCTS}
-Insert Text Here
-\subsection{Presentation of Arimaa}
-Insert Text Here
+\subsection{Generalities}\input{"1_Presentation/1.1_Our_project_Dan/presentation.tex"}
+\subsection{Presentation of Arimaa} \input{"1_Presentation/1.1_Arimaa_rules_Gabriel/ArimaaRules.tex"}
+\section{Algorithms}\input{"1_Presentation/1.2_Algorithm_MCTS_Benoit/mcts.tex"}
 
 \newpage
 \section{Strategies and state of the art}
-\subsection{Strategy of root parallelization}
-Insert Text Here
-\subsection{State of the art}
-\subsubsection{Arimaa}
-Insert Text Here
-\subsubsection{MCTS}
-Insert Text Here
+\subsection{Strategy of root parallelization}\input{"2_State_of_the_art/Strategy_of_root_parallelization_Mikail/para.tex"}
+\subsection{State of the art of MCTS}\input{"2_State_of_the_art/Arimaa_on_MCTS_Benoit/State.tex"}
 
 \newpage
-\section{Solutions and schedule of our project}
-\subsection{Solutions we could use}
-Insert Text Here
-\subsection {Tasks' schedule}
-Insert Text Here
+\section{Solutions and schedule}
+\subsection{Candidates software and technologies}\input{"3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/Solutions.tex"}
+\subsection {Planning management} \input{"4_Tasks_schedule/MSproject_schedule_prevision_Baptiste/schedule.tex"}
 \newpage
-\section{Conclusion}
-Insert Text Here
+\section{Conclusion}\input{"40_Conclusion_Dan/conclu.tex"}
 
+\newpage
+\bibliography{bibliography}
+\bibliographystyle{plain}
 
 \end{document}
