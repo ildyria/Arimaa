@@ -11,18 +11,20 @@ For the bibliography we will use Zotero, it permit the creation of .bib the bibl
 \subsubsection{Parallelization}
 
 \paragraph{Multi cores parrelization}\mbox{}\\\mbox{}\\
-	OpenMp is a very simple and efficient parallelization language. It consists in some pre-compilation instructions, with only a few lines of code it allow us to obtain a parallel version of our algorithm. But it isn't exempt of default, in fact, as you can see on the next illustration. It uses a large part of shared memory which allow a quick and efficient communication between the different threads. But it's not designed for using a cluster of computers, because the memory access will be too long if this memory is used by two computers which are far away. But like we will see after, there is a method to avoid this problem.
+	OpenMp is a very simple and efficient parallelization language. It consists in some pre-compilation instructions, with only a few lines of code it allow us to obtain a parallel version of our algorithm. But it isn't exempt of default, in fact, as you can see in figure \ref{fig:OpenMp}, it uses a large part of shared memory which allow a quick and efficient communication between the different threads. But it's not designed for using a cluster of computers, because the memory access will be too long if this memory is used by two computers which are far away. But like we will see after, there is a method to avoid this problem.
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.50]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/OpenMP}}
    \caption{\label{étiquette} OpenMp : memory management}
+\label{fig:OpenMp}
 \end{figure}
 \newpage
 \paragraph{Computer parallelization}\mbox{}\\\mbox{}\\
-	MPI is a more complex method of parallelization than openMp but it's more complete, in addition to use several cores on a single machine, we can also use MPI to designed our software to use a cluster of machines. As you can see on the illustration, it doesn't use shared memory, all the data of the threads are duplicate at their creation. It uses signals to permit the communication between the threads. One of its advantages is that it makes possible to use multiple computers, as the data are duplicated their isn't the problem of time to access the memory. But we have to pay attention to the cost of communication between the threads, if we use too much the signals we will lose all the time we can gain with the parallelization. It's very adapted for a tree parallelization, because with it we have just to duplicate the data at the beginning and return the result at the end of the assign time.
+	MPI is a more complex method of parallelization than openMp but it's more complete, in addition to use several cores on a single machine, we can also use MPI to designed our software to use a cluster of machines. As you can seein figure \ref{fig:MPI}, it doesn't use shared memory, all the data of the threads are duplicate at their creation. It uses signals to permit the communication between the threads. One of its advantages is that it makes possible to use multiple computers, as the data are duplicated their isn't the problem of time to access the memory. But we have to pay attention to the cost of communication between the threads, if we use too much the signals we will lose all the time we can gain with the parallelization. It's very adapted for a tree parallelization, because with it we have just to duplicate the data at the beginning and return the result at the end of the assign time.
 
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.85]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/MPI}}
    \caption{\label{étiquette} MPI : memory management}
+\label{fig:MPI}
 \end{figure}
 
 
