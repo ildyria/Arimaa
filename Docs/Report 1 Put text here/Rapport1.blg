@@ -1,8 +1,15 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Rapport1.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
+Illegal end of database file---line 23 of file bibliography.bib
+ :  year = {2009}
+ :               
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in computer_Go_vs_human
 Warning--empty school in parallel_comp
 Warning--empty year in parallel_comp
+Warning--empty school in master_mcts_kozeleck
+Warning--empty year in master_mcts_kozeleck
 Warning--empty school in lock-free
 Warning--empty year in lock-free
-(There were 4 warnings)
+(There was 1 error message)
