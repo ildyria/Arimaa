@@ -3,12 +3,26 @@
 \bibitem{graphics_minimax}
 http://cs.ucla.edu/~rosen/161/notes/minimax.html.
 
+\bibitem{formula_UCT}
+http://en.wikipedia.org/wiki/monte\_carlo\_tree\_search\#exploration\_and\_exploitation.
+
 \bibitem{computer_Go_vs_human}
 http://www.computer-go.info/h-c/.
+
+\bibitem{graphic_MCTS_Go}
+Bruno Bouzy.
+\newblock
+  http://www.slideshare.net/bigmc/montecarlo-tree-search-for-the-game-of-go,
+  2011.
 
 \bibitem{parallel_comp}
 Guillaume Chaslot, Mark Winands, and H.~Jaap van~den Herik.
 \newblock {\em Paralel Monte Carlo Tree Search}.
+\newblock PhD thesis.
+
+\bibitem{GPU}
+{Kamil Rocki} and Suda Reiji.
+\newblock {\em Parallel Monte Carlo Tree Search on GPU}.
 \newblock PhD thesis.
 
 \bibitem{master_mcts_kozeleck}
