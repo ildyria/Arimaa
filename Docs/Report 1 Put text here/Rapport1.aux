@@ -74,6 +74,7 @@
 \newlabel{fig:6}{{21}{11}{Create a leaf at depth 2 with parent the 2nd leaf at depth 1 and run the simulation (\textit {loss}), update the odds value of the node and making it less interesting than the fourth node. Therefore the algorithm will now work on the fourth node}{figure.21}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {22}{\ignorespaces Create a leaf at depth 2 with parent the fourth leaf at depth 1 and run the simulation (\textit  {loss}), update the odds value of the node and making it as interesting as the second node. The algorithm will now work on the second node.}}{11}{figure.22}}
 \newlabel{fig:7}{{22}{11}{Create a leaf at depth 2 with parent the fourth leaf at depth 1 and run the simulation (\textit {loss}), update the odds value of the node and making it as interesting as the second node. The algorithm will now work on the second node}{figure.22}{}}
+\citation{formula_UCT}
 \@writefile{lof}{\contentsline {figure}{\numberline {23}{\ignorespaces Create a second leaf at depth 2 with parent the second leaf at depth 1 and run simulation (\textit  {win}), update the odds value and continue to develop this leaf.}}{12}{figure.23}}
 \newlabel{fig:8}{{23}{12}{Create a second leaf at depth 2 with parent the second leaf at depth 1 and run simulation (\textit {win}), update the odds value and continue to develop this leaf}{figure.23}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {24}{\ignorespaces Create a third leaf at depth 2 with parent the second leaf at depth 1 and run simulation (\textit  {loss}), update the odds value and switch to the fourth leaf.}}{12}{figure.24}}
@@ -97,10 +98,12 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces  Comparison of all trees}}{16}{figure.25}}
 \newlabel{\IeC {\'e}tiquette}{{25}{16}{Comparison of all trees}{figure.25}{}}
 \newlabel{comp_algo}{{25}{16}{Comparison of all trees}{figure.25}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}UCT-Treesplit}{16}{subsubsection.3.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Block Parallelization}{16}{subsubsection.3.6.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Conclusion}{16}{subsection.3.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}State of the art of MCTS}{16}{subsection.3.8}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}History of computers vs Humans}{16}{subsubsection.3.8.1}}
 \citation{master_mcts_kozeleck}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.8}State of the art of MCTS}{17}{subsection.3.8}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}History of computers vs Humans}{17}{subsubsection.3.8.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Comparison between Go algorithms and human skill (\textit  {2011})\cite  {graphic_MCTS_Go}.}}{17}{figure.26}}
 \newlabel{fig:ranking}{{26}{17}{Comparison between Go algorithms and human skill (\textit {2011})\cite {graphic_MCTS_Go}}{figure.26}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Solutions and schedule}{18}{section.4}}
@@ -112,18 +115,32 @@
 \@writefile{toc}{\contentsline {paragraph}{Multi cores parrelization}{18}{section*.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces  OpenMp : memory management}}{19}{figure.27}}
 \newlabel{\IeC {\'e}tiquette}{{27}{19}{OpenMp : memory management}{figure.27}{}}
+\newlabel{fig:OpenMp}{{27}{19}{OpenMp : memory management}{figure.27}{}}
 \@writefile{toc}{\contentsline {paragraph}{Computer parallelization}{19}{section*.4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces  MPI : memory management}}{19}{figure.28}}
 \newlabel{\IeC {\'e}tiquette}{{28}{19}{MPI : memory management}{figure.28}{}}
+\newlabel{fig:MPI}{{28}{19}{MPI : memory management}{figure.28}{}}
 \@writefile{toc}{\contentsline {paragraph}{Hybrid parallelization}{19}{section*.5}}
+\citation{GPU}
 \@writefile{toc}{\contentsline {paragraph}{Boost Library}{20}{section*.6}}
 \@writefile{toc}{\contentsline {paragraph}{GPU implementation}{20}{section*.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Planning management}{20}{subsection.4.2}}
+\citation{images_annexes}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Annexes}{23}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Search tree}{23}{subsection.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces All possible moves starting from an empty board.}}{23}{figure.29}}
+\newlabel{fig:tree1}{{29}{23}{All possible moves starting from an empty board}{figure.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces List of all possible moves for the other player.}}{23}{figure.30}}
+\newlabel{fig:tree2}{{30}{23}{List of all possible moves for the other player}{figure.30}{}}
 \bibdata{bibliography}
 \bibcite{graphics_minimax}{1}
-\bibcite{computer_Go_vs_human}{2}
-\bibcite{parallel_comp}{3}
-\bibcite{master_mcts_kozeleck}{4}
-\bibcite{lock-free}{5}
-\bibcite{tree_root_comp}{6}
+\bibcite{formula_UCT}{2}
+\bibcite{images_annexes}{3}
+\bibcite{computer_Go_vs_human}{4}
+\bibcite{graphic_MCTS_Go}{5}
+\bibcite{parallel_comp}{6}
+\bibcite{GPU}{7}
+\bibcite{master_mcts_kozeleck}{8}
+\bibcite{lock-free}{9}
+\bibcite{tree_root_comp}{10}
 \bibstyle{plain}

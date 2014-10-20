@@ -1,10 +1,13 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{graphics_minimax}
 http://cs.ucla.edu/~rosen/161/notes/minimax.html.
 
 \bibitem{formula_UCT}
 http://en.wikipedia.org/wiki/monte\_carlo\_tree\_search\#exploration\_and\_exploitation.
+
+\bibitem{images_annexes}
+https://www.cs.tcd.ie/glenn.strong/3d5/minimax-notes.pdf.
 
 \bibitem{computer_Go_vs_human}
 http://www.computer-go.info/h-c/.
