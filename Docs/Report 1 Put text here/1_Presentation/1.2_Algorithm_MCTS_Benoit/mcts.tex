@@ -84,12 +84,12 @@ Finally we have all of the values of the children of the max node at the top lev
 What this tells us is that we should take the move that leads to the middle min node, since it'll lead to the best possible state for us one full move down the road. 
 
 \subsection{The \ensuremath{\alpha\beta} pruning} %pruning = elaguage en anglais
-The \ensuremath{\alpha\beta} method is a search algorithm that decrease the number of leaf that will be explored by the Minimax algorithm. That way, the size of the tree will be smaller, the algorithm will be able to dive further and the time spend on more interesting subtree is greater.\\
+The \ensuremath{\alpha\beta} method is a heuristic that decrease the number of leaf that will be explored by the Minimax algorithm. That way, the size of the tree will be smaller, the algorithm will be able to dive further and the time spend on more interesting subtree is greater.\\
 If the leaf's position is less interesting than its parents, the algorithm won't explore anyfurther.
 
 \subsection{Monte Carlo Tree Search Algorithm}
 \subsubsection{Introduction}
-Monte Carlo Tree Search (MCTS) is an algorithm used for making optimal decisions in Artificial Intelligence (AI) problems such as solving games or decision making in project managment. It is based on making a big number of random simulations in order to get trustfull datas.
+Monte Carlo Tree Search (MCTS) is an algorithm used for making optimal decisions in Artificial Intelligence (AI) problems such as solving games or decision making in project managment. It is based on making a big number of random simulations in order to get trustfull datas. To make such simulations, the program play the moves randomly for each players. Once it reach a conclusion (win or loss), the program compute the statistics to get the odds of winning.
 \subsubsection{How does it works ?}
 The Algorithm create a tree with all possible solution with a small depth.
 Then it start to run random simulations starting from the leaves in order to test the odds of the outcome.
@@ -194,9 +194,12 @@ In the previous exemple, we chose to not expend leaves without winrates. But dep
 \bigskip
 \begin{minipage}[b]{1\linewidth}
 \centering
-\ensuremath{f = \frac{w_i}{n_i} + c\sqrt{\frac{\ln t}{n_i}}}\\
+\begin{equation*}
+f = \frac{w_i}{n_i} + c\sqrt{\frac{\ln t}{n_i}}
+\end{equation*}
 \medskip
-\tiny{\textit{UCT function}}
+\textit{UCT function}\cite{formula_UCT}
+
 \end{minipage}%
 \bigskip
 \begin{itemize}
