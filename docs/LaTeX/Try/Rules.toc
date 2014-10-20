@@ -1,5 +1,0 @@
-\select@language {english}
-\contentsline {part}{I\hspace {1em}part 1 : how to do this}{3}
-\contentsline {section}{\numberline {1}Section}{3}
-\contentsline {subsection}{\numberline {1.1}Subsection}{3}
-\contentsline {paragraph}{Paragraph title}{3}
