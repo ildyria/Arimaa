@@ -1,5 +1,5 @@
-\subsection{The minimax algorithm}
-The minimax algorithm is a way of finding an optimal move in a two player game. In the search tree for a two-player game, there are two kinds of nodes, nodes representing \textit{your} moves and nodes representing your \textit{opponent}'s moves.
+\subsection{The Minimax algorithm}
+The Minimax algorithm is a way of finding an optimal move in a two player game. In the search tree for a two-player game, there are two kinds of nodes, nodes representing \textit{your} moves and nodes representing your \textit{opponent}'s moves.\cite{graphics_minimax}
 \begin{figure}[H]
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
@@ -22,31 +22,31 @@ Note that it's typical for two player games to have different branching factors 
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
-		\includegraphics[height=1.5cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax2.png}
-		\caption{\label{fig:minimax2}When we start the problem, all minimax sees is the start node.}
+		\includegraphics[height=1.5cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax2.png}
+		\caption{\label{fig:Minimax2}When we start the problem, all Minimax sees is the start node.}
 	\end{minipage}%
 	\hspace*{1cm}
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
-		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax3.png}
-		\caption{\label{fig:minimax3}It begins like a depth first search, generating the first child.}
+		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax3.png}
+		\caption{\label{fig:Minimax3}It begins like a depth first search, generating the first child.}
 	\end{minipage}%
 \end{figure}
 
 \noindent
-So far we've really seen no evaluation values. The way minimax works is to go down a specified number of full moves (where one ``full move'' is actually a move by you and a move by your opponent), then calculate evaluation values for states at that depth. For this example, we're going to go down one full move, which is one more level. 
+So far we've really seen no evaluation values. The way Minimax works is to go down a specified number of full moves (where one ``full move'' is actually a move by you and a move by your opponent), then calculate evaluation values for states at that depth. For this example, we're going to go down one full move, which is one more level. 
 \begin{figure}[H]
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
-		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax4.png}
-		\caption{\label{fig:minimax4}we generate the values for those nodes.}
+		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax4.png}
+		\caption{\label{fig:Minimax4}we generate the values for those nodes.}
 	\end{minipage}%
 	\hspace*{1cm}
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
-		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax5.png}
-		\caption{\label{fig:minimax5}It chooses the minimum of the two child node values, which is 3.}
+		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax5.png}
+		\caption{\label{fig:Minimax5}It chooses the minimum of the two child node values, which is 3.}
 	\end{minipage}%
 \end{figure}
 
@@ -57,14 +57,14 @@ The max node at the top still has two other children nodes that we need to gener
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
-		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax6.png}
-		\caption{\label{fig:minimax6}Since there is only one child, the min node must take it's value.}
+		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax6.png}
+		\caption{\label{fig:Minimax6}Since there is only one child, the min node must take it's value.}
 		\end{minipage}%
 	\hspace*{1cm}
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
-		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax8.png}
-		\caption{\label{fig:minimax8}The third min node chooses the minimum of it's child node values, 1.}
+		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax8.png}
+		\caption{\label{fig:Minimax8}The third min node chooses the minimum of it's child node values, 1.}
 	\end{minipage}%
 \end{figure}
 
@@ -75,8 +75,8 @@ Finally we have all of the values of the children of the max node at the top lev
 \centering
 	\begin{minipage}[b]{1\linewidth}
 		\centering
-		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/minimax9.png}
-		\caption{\label{fig:minimax9}Final tree.}
+		\includegraphics[height=3cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax9.png}
+		\caption{\label{fig:Minimax9}Final tree.}
 	\end{minipage}%
 \end{figure}
 
@@ -84,7 +84,7 @@ Finally we have all of the values of the children of the max node at the top lev
 What this tells us is that we should take the move that leads to the middle min node, since it'll lead to the best possible state for us one full move down the road. 
 
 \subsection{The \ensuremath{\alpha\beta} pruning} %pruning = elaguage en anglais
-The \ensuremath{\alpha\beta} method is a search algorithm that decrease the number of leaf that will be explored by the minimax algorithm. That way, the size of the tree will be smaller, the algorithm will be able to dive further and the time spend on more interesting subtree is greater.\\
+The \ensuremath{\alpha\beta} method is a search algorithm that decrease the number of leaf that will be explored by the Minimax algorithm. That way, the size of the tree will be smaller, the algorithm will be able to dive further and the time spend on more interesting subtree is greater.\\
 If the leaf's position is less interesting than its parents, the algorithm won't explore anyfurther.
 
 \subsection{Monte Carlo Tree Search Algorithm}
@@ -209,7 +209,7 @@ In the previous exemple, we chose to not expend leaves without winrates. But dep
 The more a leaf is developed, the less it's cost is worth it. This way we can be sure that a leaf with low winrate isn't completely forgotten.\\
 
 \subsubsection{Why using the Monte Carlo Tree Search ?}
-Compared to other algorithm like minimax, this one is generic, once you set the rules of the games, given enough time, it will solve it. The advantage of MCTS with it's basic form is that you don't need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which aren't.\\ The more you run simulations, the more accurate the results will be.
+Compared to other algorithm like Minimax, this one is generic, once you set the rules of the games, given enough time, it will solve it. The advantage of MCTS with it's basic form is that you don't need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which aren't.\\ The more you run simulations, the more accurate the results will be.
 
 \subsubsection{How much power do we need ?}
 The more the game has possible moves, the more power it require to solve. In order to get plausible decisions, it needs to go deeper in the tree and to search enough leaves. If the time or number of simulations is not sufficient, the algorithm might miss some important branches and fail to give plausible results. Therefore in order to get decent results, using high-end computer is mandatory, it allows us to get access to multi-threading technology in order to parallelize the simulations.

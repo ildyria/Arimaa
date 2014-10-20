@@ -1,11 +1,28 @@
 \begin{thebibliography}{1}
 
-\bibitem{L1}
-Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine.
-\newblock The boost graph library - 1.56.0.
+\bibitem{graphics_minimax}
+http://cs.ucla.edu/~rosen/161/notes/minimax.html.
 
-\bibitem{L2}
-Jeremy Siek, Lie-Quan Lee, and Andrew Lumsdaine.
-\newblock The boost graph library - 1.56.0.
+\bibitem{computer_Go_vs_human}
+http://www.computer-go.info/h-c/.
+
+\bibitem{parallel_comp}
+Guillaume Chaslot, Mark Winands, and H.~Jaap van~den Herik.
+\newblock {\em Paralel Monte Carlo Tree Search}.
+\newblock PhD thesis.
+
+\bibitem{master_mcts_kozeleck}
+Tomas Kozelek.
+\newblock Method of mcts and the game arimaa.
+\newblock Master's thesis, 2009.
+
+\bibitem{lock-free}
+{Markus Enzenberger} and Martin Müller.
+\newblock {\em A Lock-free Multithreaded Monte-Carlo Tree Search Algorithm}.
+\newblock PhD thesis.
+
+\bibitem{tree_root_comp}
+{Méhat Jean} and {Cazenave Tristan}.
+\newblock Tree parallelization of ary on a cluster.
 
 \end{thebibliography}
