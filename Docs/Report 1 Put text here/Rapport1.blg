@@ -1,3 +1,9 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Rapport1.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
+Warning--I didn't find a database entry for "paralel_comp"
+Warning--empty school in parallel_comp
+Warning--empty year in parallel_comp
+Warning--empty school in lock-free
+Warning--empty year in lock-free
+(There were 5 warnings)
