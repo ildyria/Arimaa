@@ -1,15 +1,15 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: Rapport1.aux
 The style file: plain.bst
 Database file #1: bibliography.bib
-I was expecting a `,' or a `}'---line 1 of file bibliography.bib
- : @phdthesis{GPU-CPU 
- :                    parallelization,
-I'm skipping whatever remains of this entry
 Warning--to sort, need author or key in graphics_minimax
+Warning--to sort, need author or key in formula_UCT
 Warning--to sort, need author or key in computer_Go_vs_human
+Warning--to sort, need author or key in images_annexes
 Warning--empty school in parallel_comp
 Warning--empty year in parallel_comp
+Warning--empty school in GPU
+Warning--empty year in GPU
 Warning--empty school in master_mcts_kozeleck
 Warning--empty school in lock-free
 Warning--empty year in lock-free
-(There was 1 error message)
+(There were 11 warnings)
