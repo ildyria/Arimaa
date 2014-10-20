@@ -20,7 +20,9 @@ $RECYCLE.BIN/
 *.log
 *.out
 *.toc
-
+*.aux
+*.bbl
+*.blg
 
 # =========================
 # Operating System Files
