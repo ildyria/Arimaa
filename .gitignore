@@ -16,13 +16,13 @@ $RECYCLE.BIN/
 
 # Arimaa saved games, latex logs...
 *.arm
-*~
 *.log
 *.out
 *.toc
 *.aux
 *.bbl
 *.blg
+*~
 
 # =========================
 # Operating System Files
