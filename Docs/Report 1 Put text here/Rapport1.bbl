@@ -1,5 +1,8 @@
 \begin{thebibliography}{1}
 
+\bibitem{graphics_minimax}
+http://cs.ucla.edu/~rosen/161/notes/minimax.html.
+
 \bibitem{computer_Go_vs_human}
 http://www.computer-go.info/h-c/.
 
@@ -11,7 +14,7 @@ Guillaume Chaslot, Mark Winands, and H.~Jaap van~den Herik.
 \bibitem{master_mcts_kozeleck}
 Tomas Kozelek.
 \newblock Method of mcts and the game arimaa.
-\newblock Master's thesis.
+\newblock Master's thesis, 2009.
 
 \bibitem{lock-free}
 {Markus Enzenberger} and Martin Müller.
