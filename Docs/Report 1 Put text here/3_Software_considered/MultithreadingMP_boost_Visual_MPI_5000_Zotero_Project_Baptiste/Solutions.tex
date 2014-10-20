@@ -11,7 +11,7 @@ For the bibliography we will use Zotero, it permit the creation of .bib the bibl
 \subsubsection{Parallelization}
 
 \paragraph{Multi cores parrelization}\mbox{}\\\mbox{}\\
-	OpenMp is a very simple and efficient parallelization language. It consists in some pre-compilation instructions, with only a few lines it permits to obtains a parallel version of our algorithm. But it isn't exempt of default, in fact, as you can see on the next illustration, it use a large part of shared memory, it allows a quick and efficient communication between the different threads but it's not designed for using a cluster of computers, because the memory access will be too long if this memory is used by two computers which are far away. But like we will see after, there is a method to avoid this problem.
+	OpenMp is a very simple and efficient parallelization language. It consists in some pre-compilation instructions, with only a few lines of code it allow us to obtain a parallel version of our algorithm. But it isn't exempt of default, in fact, as you can see on the next illustration. It uses a large part of shared memory which allow a quick and efficient communication between the different threads. But it's not designed for using a cluster of computers, because the memory access will be too long if this memory is used by two computers which are far away. But like we will see after, there is a method to avoid this problem.
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.50]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/OpenMP}}
    \caption{\label{étiquette} OpenMp : memory management}
