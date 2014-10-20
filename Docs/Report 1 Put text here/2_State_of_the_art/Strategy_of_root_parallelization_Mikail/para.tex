@@ -41,12 +41,20 @@ The second method, the virtual loss, consists in decreasing the value of the nod
 \label{comp_algo}
 \end{figure}
 
-Currently, the best strategy to adopt is the Root parallelization. According to some tests \cite{parallel_comp}\cite{tree_root_comp}, the advantages of the Root parallelization outcomes its drawbacks. Indeed, for 16 threads, a program using Root Parallelization will win 56\% of the time against 36.5\% for the Leaf parallelization, and 49\% for the Tree parallelization with the use of a virtual loss. Moreover, the Root is always twice faster than the Tree with virtual loss. We can explain that by the fact that numerous trees are massive, and so, you will lose much time doing communication and synchronization. You don’t have any of those problems with the Root strategy. Furthermore, this method is also very simple to compute.
+Currently, the best strategy to adopt is the Root parallelization on those specific test conditions. According to some tests \cite{parallel_comp}\cite{tree_root_comp}, the advantages of the Root parallelization outcomes its drawbacks. Indeed, for 16 threads, a program using Root Parallelization will win 56\% of the time against 36.5\% for the Leaf parallelization, and 49\% for the Tree parallelization with the use of a virtual loss. Moreover, the Root is always twice faster than the Tree with virtual loss. We can explain that by the fact that numerous trees are massive, and so, you will lose much time doing communication and synchronization. You don’t have any of those problems with the Root strategy. Furthermore, this method is also very simple to compute.
 
 \subsection{Hybrid Algorithms}
 
-Now, we can wonder if there is some research which has already be done on hybrids technologies of parallelization. Some parallelization strategies are a combination of multiples methods with some additional content, but they are very complex to compute and are efficient in specific case.  There is, for instance, the UCT-Treesplit algorithm which retake the base of Root algorithm and add to it work clusters on which compute nodes can process. It’s made for High-Performance Computers (or HPC) which have cluster parallelization and shared memory parallelization. Moreover, this method demands a lot of communication and so, the network latency is a very important factor of slow-down. 
+Now, we can wonder if there is some research which has already be done on hybrids technologies of parallelization. Some parallelization strategies are a combination of multiples methods with some additional content, but they are very complex to compute and are efficient in specific case.
+
+\subsubsection{UCT-Treesplit}
+
+There is, for instance, the UCT-Treesplit algorithm which retake the base of Root algorithm and add to it work clusters on which compute nodes can process. It’s made for High-Performance Computers (or HPC) which have cluster parallelization and shared memory parallelization. Moreover, this method demands a lot of communication and so, the network latency is a very important factor of slow-down.
+
+\subsubsection{Block Parallelization}
+
+Another hybrid algorithm that is efficient is the Block Algorithm. It's working by giving some instructions to GPUs and some other instructions to CPUs. The Block Parallelization is a blending of Leaf Algorithm and Root Algorithm. As GPUs can run hundred of threads, it is used to develop a specific node with Leaf strategy whereas CPU is used to develop the trees using the Root strategy.The benefit of this method is that more since each of these components are used in the way they have been made for.
 
 \subsection{Conclusion}
 
-In our case, we will also have those two types of parallelization to compute so we can use this type of algorithm. We can also choose a simple Root parallelization between the different computers, and them, use another algorithm, specialized in shared memory parallelization, within them. 
+The strategy we will use to parralelize our algorithm depends on the hardware we will use. Since we will use both cluster parallelization and shared memory parallelization, we can choose a simple Root parallelization between the different computers, and them, use another algorithm, specialized in shared memory parallelization, like Tree Parallelization. If we prefer to use GPU instead of CPU or even both of them, we can use the Block Parallelization. Also, if our network is fast and our computers fast we can use UCT-Treesplit to parallelize our algorithm. We just have to choose what's best for our configuration.s
