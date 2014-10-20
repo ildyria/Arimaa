@@ -83,6 +83,8 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.5}Why using the Monte Carlo Tree Search ?}{13}{subsubsection.2.3.5}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.6}How much power do we need ?}{13}{subsubsection.2.3.6}}
 \citation{parallel_comp}
+\citation{master_mcts_kozeleck}
+\citation{parallel_comp}
 \citation{lock-free}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Strategies and state of the art}{14}{section.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Strategy of root parallelization}{14}{subsection.3.1}}
@@ -90,48 +92,56 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Root Parallelization}{14}{subsection.3.3}}
 \citation{parallel_comp}
 \citation{tree_root_comp}
+\citation{treesplit}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Tree Parallelization}{15}{subsection.3.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Comparison}{15}{subsection.3.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Hybrid Algorithms}{15}{subsection.3.6}}
-\citation{computer_Go_vs_human}
-\citation{graphic_MCTS_Go}
+\citation{GPU}
 \@writefile{lof}{\contentsline {figure}{\numberline {25}{\ignorespaces  Comparison of all trees}}{16}{figure.25}}
 \newlabel{\IeC {\'e}tiquette}{{25}{16}{Comparison of all trees}{figure.25}{}}
 \newlabel{comp_algo}{{25}{16}{Comparison of all trees}{figure.25}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.1}UCT-Treesplit}{16}{subsubsection.3.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Block Parallelization}{16}{subsubsection.3.6.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Conclusion}{16}{subsection.3.7}}
-\citation{master_mcts_kozeleck}
+\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces  UCT-Treesplit scheme}}{16}{figure.26}}
+\newlabel{\IeC {\'e}tiquette}{{26}{16}{UCT-Treesplit scheme}{figure.26}{}}
+\newlabel{treesplit}{{26}{16}{UCT-Treesplit scheme}{figure.26}{}}
+\citation{computer_Go_vs_human}
+\citation{graphic_MCTS_Go}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.6.2}Block Parallelization}{17}{subsubsection.3.6.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces  Scheme of the Block Parallelization comparing to Leaf and Root}}{17}{figure.27}}
+\newlabel{\IeC {\'e}tiquette}{{27}{17}{Scheme of the Block Parallelization comparing to Leaf and Root}{figure.27}{}}
+\newlabel{block}{{27}{17}{Scheme of the Block Parallelization comparing to Leaf and Root}{figure.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.7}Conclusion}{17}{subsection.3.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.8}State of the art of MCTS}{17}{subsection.3.8}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.8.1}History of computers vs Humans}{17}{subsubsection.3.8.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {26}{\ignorespaces Comparison between Go algorithms and human skill (\textit  {2011})\cite  {graphic_MCTS_Go}.}}{17}{figure.26}}
-\newlabel{fig:ranking}{{26}{17}{Comparison between Go algorithms and human skill (\textit {2011})\cite {graphic_MCTS_Go}}{figure.26}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Solutions and schedule}{18}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Candidates software and technologies}{18}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Language}{18}{subsubsection.4.1.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Software}{18}{subsubsection.4.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Grid5000}{18}{subsubsection.4.1.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Parallelization}{18}{subsubsection.4.1.4}}
-\@writefile{toc}{\contentsline {paragraph}{Multi cores parrelization}{18}{section*.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {27}{\ignorespaces  OpenMp : memory management}}{19}{figure.27}}
-\newlabel{\IeC {\'e}tiquette}{{27}{19}{OpenMp : memory management}{figure.27}{}}
-\newlabel{fig:OpenMp}{{27}{19}{OpenMp : memory management}{figure.27}{}}
-\@writefile{toc}{\contentsline {paragraph}{Computer parallelization}{19}{section*.4}}
-\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces  MPI : memory management}}{19}{figure.28}}
-\newlabel{\IeC {\'e}tiquette}{{28}{19}{MPI : memory management}{figure.28}{}}
-\newlabel{fig:MPI}{{28}{19}{MPI : memory management}{figure.28}{}}
-\@writefile{toc}{\contentsline {paragraph}{Hybrid parallelization}{19}{section*.5}}
+\citation{master_mcts_kozeleck}
+\@writefile{lof}{\contentsline {figure}{\numberline {28}{\ignorespaces Comparison between Go algorithms and human skill (\textit  {2011})\cite  {graphic_MCTS_Go}.}}{18}{figure.28}}
+\newlabel{fig:ranking}{{28}{18}{Comparison between Go algorithms and human skill (\textit {2011})\cite {graphic_MCTS_Go}}{figure.28}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Solutions and schedule}{19}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Candidates software and technologies}{19}{subsection.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Language}{19}{subsubsection.4.1.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}Software}{19}{subsubsection.4.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}Grid5000}{19}{subsubsection.4.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}Parallelization}{19}{subsubsection.4.1.4}}
+\@writefile{toc}{\contentsline {paragraph}{Multi cores parrelization}{19}{section*.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces  OpenMp : memory management}}{20}{figure.29}}
+\newlabel{\IeC {\'e}tiquette}{{29}{20}{OpenMp : memory management}{figure.29}{}}
+\newlabel{fig:OpenMp}{{29}{20}{OpenMp : memory management}{figure.29}{}}
+\@writefile{toc}{\contentsline {paragraph}{Computer parallelization}{20}{section*.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces  MPI : memory management}}{20}{figure.30}}
+\newlabel{\IeC {\'e}tiquette}{{30}{20}{MPI : memory management}{figure.30}{}}
+\newlabel{fig:MPI}{{30}{20}{MPI : memory management}{figure.30}{}}
+\@writefile{toc}{\contentsline {paragraph}{Hybrid parallelization}{20}{section*.5}}
 \citation{GPU}
-\@writefile{toc}{\contentsline {paragraph}{Boost Library}{20}{section*.6}}
-\@writefile{toc}{\contentsline {paragraph}{GPU implementation}{20}{section*.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Planning management}{20}{subsection.4.2}}
+\@writefile{toc}{\contentsline {paragraph}{Boost Library}{21}{section*.6}}
+\@writefile{toc}{\contentsline {paragraph}{GPU implementation}{21}{section*.7}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Planning management}{21}{subsection.4.2}}
 \citation{images_annexes}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Annexes}{23}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Search tree}{23}{subsection.5.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {29}{\ignorespaces All possible moves starting from an empty board.}}{23}{figure.29}}
-\newlabel{fig:tree1}{{29}{23}{All possible moves starting from an empty board}{figure.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {30}{\ignorespaces List of all possible moves for the other player.}}{23}{figure.30}}
-\newlabel{fig:tree2}{{30}{23}{List of all possible moves for the other player}{figure.30}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Annexes}{24}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Search tree}{24}{subsection.5.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {31}{\ignorespaces All possible moves starting from an empty board.}}{24}{figure.31}}
+\newlabel{fig:tree1}{{31}{24}{All possible moves starting from an empty board}{figure.31}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {32}{\ignorespaces List of all possible moves for the other player.}}{24}{figure.32}}
+\newlabel{fig:tree2}{{32}{24}{List of all possible moves for the other player}{figure.32}{}}
 \bibdata{bibliography}
 \bibcite{graphics_minimax}{1}
 \bibcite{formula_UCT}{2}

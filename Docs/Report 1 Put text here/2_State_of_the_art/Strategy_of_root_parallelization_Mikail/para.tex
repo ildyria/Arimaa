@@ -1,7 +1,7 @@
 Now, let’s see how we can parallelize the Monte-Carlo Tree Search to optimize our algorithm. A classic MCTS is an algorithm which sequentially creates random development of the game. In order to speed up the results, develop more nodes of the tree search or even have more realistic statistics, we will parallelize our tree. It means that we will distribute parts of the tree development to multiple threads, among multiple computers. Therefore, each thread on each computer will have less executions and our algorithm will be more efficient.
 \newline
 \newline
-Currently, there are three principal strategies about how to parallelize the tree. They are called: Leaf Parallelization, Root Parallelization and Tree Parallelization.
+Currently, there are three principal strategies about how to parallelize the tree. They are called: Leaf Parallelization, Root Parallelization and Tree Parallelization\cite{parallel_comp, master_mcts_kozeleck}.
 
 \subsection{Leaf Parallelization}
 
@@ -41,7 +41,7 @@ The second method, the virtual loss, consists in decreasing the value of the nod
 \label{comp_algo}
 \end{figure}
 
-Currently, the best strategy to adopt is the Root parallelization on those specific test conditions. According to some tests \cite{parallel_comp}\cite{tree_root_comp}, the advantages of the Root parallelization outcomes its drawbacks. Indeed, for 16 threads, a program using Root Parallelization will win 56\% of the time against 36.5\% for the Leaf parallelization, and 49\% for the Tree parallelization with the use of a virtual loss. Moreover, the Root is always twice faster than the Tree with virtual loss. We can explain that by the fact that numerous trees are massive, and so, you will lose much time doing communication and synchronization. You don’t have any of those problems with the Root strategy. Furthermore, this method is also very simple to compute.
+Currently, the best strategy to adopt is the Root parallelization on those specific test conditions. According to some tests \cite{parallel_comp,tree_root_comp}, the advantages of the Root parallelization outcomes its drawbacks. Indeed, for 16 threads, a program using Root Parallelization will win 56\% of the time against 36.5\% for the Leaf parallelization, and 49\% for the Tree parallelization with the use of a virtual loss. Moreover, the Root is always twice faster than the Tree with virtual loss. We can explain that by the fact that numerous trees are massive, and so, you will lose much time doing communication and synchronization. You don’t have any of those problems with the Root strategy. Furthermore, this method is also very simple to compute.
 
 \subsection{Hybrid Algorithms}
 
@@ -49,11 +49,23 @@ Now, we can wonder if there is some research which has already be done on hybrid
 
 \subsubsection{UCT-Treesplit}
 
-There is, for instance, the UCT-Treesplit algorithm which retake the base of Root algorithm and add to it work clusters on which compute nodes can process. It’s made for High-Performance Computers (or HPC) which have cluster parallelization and shared memory parallelization. Moreover, this method demands a lot of communication and so, the network latency is a very important factor of slow-down.
+The UCT-Treesplit algorithm\cite{treesplit} retakes the base of Root algorithm and add to it work clusters on which compute nodes can process. It is depicted in figure \ref{treesplit}. It’s made for High-Performance Computers (or HPC) which have cluster parallelization and shared memory parallelization. Moreover, this method demands a lot of communication and so, the network latency is a very important factor of slow-down.
+
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.60]{2_State_of_the_art/Strategy_of_root_parallelization_Mikail/treesplit.png}}
+   \caption{\label{étiquette} UCT-Treesplit scheme}
+\label{treesplit}
+\end{figure}
 
 \subsubsection{Block Parallelization}
 
-Another hybrid algorithm that is efficient is the Block Algorithm. It's working by giving some instructions to GPUs and some other instructions to CPUs. The Block Parallelization is a blending of Leaf Algorithm and Root Algorithm. As GPUs can run hundred of threads, it is used to develop a specific node with Leaf strategy whereas CPU is used to develop the trees using the Root strategy.The benefit of this method is that more since each of these components are used in the way they have been made for.
+Another hybrid algorithm that is efficient is the Block Algorithm\cite{GPU}.  It is depicted in figure \ref{block}. It's working by giving some instructions to GPUs and some other instructions to CPUs. The Block Parallelization is a blending of Leaf Algorithm and Root Algorithm. As GPUs can run hundred of threads, it is used to develop a specific node with Leaf strategy whereas CPU is used to develop the trees using the Root strategy.The benefit of this method is that more since each of these components are used in the way they have been made for.
+
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.60]{2_State_of_the_art/Strategy_of_root_parallelization_Mikail/block.png}}
+   \caption{\label{étiquette} Scheme of the Block Parallelization comparing to Leaf and Root}
+\label{block}
+\end{figure}
 
 \subsection{Conclusion}
 
