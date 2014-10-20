@@ -1,29 +1,31 @@
 \subsection{The Minimax algorithm}
-The Minimax algorithm is a way of finding an optimal move in a two player game. In the search tree for a two-player game, there are two kinds of nodes, nodes representing \textit{your} moves and nodes representing your \textit{opponent}'s moves.\cite{graphics_minimax}
+% miss the blank space
+The Minimax algorithm is a way of finding an optimal move in a two player game. In the search tree for a two player game, there are two kinds of nodes, nodes representing ones moves and nodes representing the opponent's moves.\cite{graphics_minimax}
 \begin{figure}[H]
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
 		\includegraphics[height=1cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/max.png}
-		\caption{\label{fig:max}Nodes representing your moves are generally drawn as squares, these are also called MAX nodes.}
+		\caption{\label{fig:max}Nodes representing ones moves are generally drawn as squares, these are also called \emph{MAX} nodes.}
 	\end{minipage}%
 	\hspace*{1cm}
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
 		\includegraphics[height=1cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/min.png}
-		\caption{\label{fig:min}Nodes representing your opponent's moves are generally drawn as circles, these are also called MIN nodes.}
+		\caption{\label{fig:min}Nodes representing the opponent's moves are generally drawn as circles, these are also called \emph{MIN} nodes.}
 	\end{minipage}%
 \end{figure}
-\noindent
-The goal at a MAX/MIN node is to maximize/minimize the value of the subtree rooted at that node. To do this, a MAX/MIN node chooses the child with the greatest/smallest value, and that becomes the value of the MAX/MIN node.\\
-Note that it's typical for two player games to have different branching factors at each node. The move I make could make restrictions on what moves are possible for the other player, or possibly remove restrictions. Note also that in this example, we're ignoring what the game or the probem space are in order to focus on the algorithm.
+
+The goal of a \emph{MAX/MIN} node is to maximize/minimize the value of the subtree rooted at that node. To do this, a \emph{MAX/MIN} node chooses the child with the greatest/smallest value, and that becomes the value of the \emph{MAX/MIN} node.
+
+Note that it's typical for two player games to have different branching factors at each node. The move one makes could have an impact on what moves are possible for the opponent. In this example, one is ignoring what the game is in order to focus on the algorithm.
 
 \begin{figure}[H]
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
 		\includegraphics[height=1.5cm]{2_State_of_the_art/Arimaa_on_MCTS_Benoit/img/Minimax2.png}
-		\caption{\label{fig:Minimax2}When we start the problem, all Minimax sees is the start node.}
+		\caption{\label{fig:Minimax2}At the start of the problem, Minimax checks the single present node.}
 	\end{minipage}%
 	\hspace*{1cm}
 	\begin{minipage}[b]{0.45\linewidth}
@@ -33,8 +35,7 @@ Note that it's typical for two player games to have different branching factors 
 	\end{minipage}%
 \end{figure}
 
-\noindent
-So far we've really seen no evaluation values. The way Minimax works is to go down a specified number of full moves (where one ``full move'' is actually a move by you and a move by your opponent), then calculate evaluation values for states at that depth. For this example, we're going to go down one full move, which is one more level. 
+So far we've really seen no evaluation values. The way Minimax works is to go down a specified number of full moves (where one \emph{full move}' is actually a move by each player), then calculate the evaluation values for states at that depth. For this example, we're going to go down one full move, which is one more level. %don't lose yourself
 \begin{figure}[H]
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
@@ -50,7 +51,7 @@ So far we've really seen no evaluation values. The way Minimax works is to go do
 	\end{minipage}%
 \end{figure}
 
-\noindent
+
 The max node at the top still has two other children nodes that we need to generate and search.
 
 \begin{figure}[H]
@@ -68,7 +69,7 @@ The max node at the top still has two other children nodes that we need to gener
 	\end{minipage}%
 \end{figure}
 
-\noindent
+
 Finally we have all of the values of the children of the max node at the top level, so it chooses the maximum of them, 15, and we get the final solution. 
 
 \begin{figure}[H]
@@ -80,15 +81,17 @@ Finally we have all of the values of the children of the max node at the top lev
 	\end{minipage}%
 \end{figure}
 
-\noindent
+
 What this tells us is that we should take the move that leads to the middle min node, since it'll lead to the best possible state for us one full move down the road. 
 
 \subsection{The \ensuremath{\alpha\beta} pruning} %pruning = elaguage en anglais
+
 The \ensuremath{\alpha\beta} method is a heuristic that decrease the number of leaf that will be explored by the Minimax algorithm. That way, the size of the tree will be smaller, the algorithm will be able to dive further and the time spend on more interesting subtree is greater.\\
 If the leaf's position is less interesting than its parents, the algorithm won't explore anyfurther.
 
 \subsection{Monte Carlo Tree Search Algorithm}
 \subsubsection{Introduction}
+
 Monte Carlo Tree Search (MCTS) is an algorithm used for making optimal decisions in Artificial Intelligence (AI) problems such as solving games or decision making in project managment. It is based on making a big number of random simulations in order to get trustfull datas. To make such simulations, the program play the moves randomly for each players. Once it reach a conclusion (win or loss), the program compute the statistics to get the odds of winning.
 \subsubsection{How does it works ?}
 The Algorithm create a tree with all possible solution with a small depth.
@@ -138,7 +141,7 @@ Once we got enough the results (usually we are using time based simulations) we 
 	\end{minipage}%
 \end{figure}
 
-\noindent
+
 Right now the odds of winning are 3/5. Now that we tested all the possible outcomes at depth 1, we will expend the tree on the favorable leaves (here the second and fourth).
 
 \begin{figure}[H]
@@ -169,7 +172,8 @@ Right now the odds of winning are 3/5. Now that we tested all the possible outco
 		\caption{\label{fig:9}Create a third leaf at depth 2 with parent the second leaf at depth 1 and run simulation (\textit{loss}), update the odds value and switch to the fourth leaf.}
 	\end{minipage}%
 \end{figure}
-\noindent
+
+
 Continue the Algorithm until a decent about of simulation are run and/or the time limit is .
 \begin{figure}[H]
 \centering
@@ -186,10 +190,11 @@ Continue the Algorithm until a decent about of simulation are run and/or the tim
 		\includegraphics[height=4cm]{1_Presentation/1.2_Algorithm_MCTS_Benoit/img/12.png}
 	\end{minipage}%
 \end{figure}
-\noindent
+
 Make a decision : here we chose the fourth leaf.\\
 \newpage
 \subsubsection{How to select the leaves to develop ?}
+
 In the previous exemple, we chose to not expend leaves without winrates. But depending on the results of the simulations, wins can vary greatly. Therefore we will run more simulations on each leaf before chosing the ones to develop. For practical purpose we will select the leaves to expend that has the highest value of the cost function UCT (Upper Confidence Bound 1 applied to Trees).\\
 \bigskip
 \begin{minipage}[b]{1\linewidth}
@@ -209,10 +214,13 @@ f = \frac{w_i}{n_i} + c\sqrt{\frac{\ln t}{n_i}}
   \item \ensuremath{t}   : total number of simulations in a given tree node, equal to the sum of all \ensuremath{n_i}
 \end{itemize}
 \medskip
+
 The more a leaf is developed, the less it's cost is worth it. This way we can be sure that a leaf with low winrate isn't completely forgotten.\\
 
 \subsubsection{Why using the Monte Carlo Tree Search ?}
+
 Compared to other algorithm like Minimax, this one is generic, once you set the rules of the games, given enough time, it will solve it. The advantage of MCTS with it's basic form is that you don't need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which aren't.\\ The more you run simulations, the more accurate the results will be.
 
 \subsubsection{How much power do we need ?}
+
 The more the game has possible moves, the more power it require to solve. In order to get plausible decisions, it needs to go deeper in the tree and to search enough leaves. If the time or number of simulations is not sufficient, the algorithm might miss some important branches and fail to give plausible results. Therefore in order to get decent results, using high-end computer is mandatory, it allows us to get access to multi-threading technology in order to parallelize the simulations.

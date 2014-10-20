@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.12)  13 OCT 2014 23:57
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.12)  20 OCT 2014 22:51
 entering extended mode
 **C:/Users/Dan/Desktop/Cours/Arimaa/Docs/Report*1*Put*text*here/1_Presentation/
 1.1_Arimaa_rules_Gabriel/ArimaaRules.tex
@@ -24,14 +24,14 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.1 A
-     rimaa is played on a board composed of 64 tiles, like a chess board. Li...
+     rimaa is played on a board composed of 64 tiles, similar to a chess boa...
 
 ? 
 ! Emergency stop.
  ...                                              
                                                   
 l.1 A
-     rimaa is played on a board composed of 64 tiles, like a chess board. Li...
+     rimaa is played on a board composed of 64 tiles, similar to a chess boa...
 
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -44,5 +44,5 @@ Here is how much of TeX's memory you used:
  3400 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 5i,0n,4p,436b,14s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 5i,0n,4p,453b,14s stack positions out of 5000i,500n,10000p,200000b,50000s
 !  ==> Fatal error occurred, no output PDF file produced!
