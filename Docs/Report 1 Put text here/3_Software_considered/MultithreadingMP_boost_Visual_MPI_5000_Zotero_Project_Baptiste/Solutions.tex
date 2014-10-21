@@ -10,20 +10,20 @@ For the bibliography, Zotero will be used as it allows for the creation of .bib 
 
 \subsubsection{Grid'5000}
 
-Grid'5000 is a French cluster of computers that links a lot of computers from different research centers. Some of this machines have, in addition of a good CPU, a NVIDIA Tesla GPU that could be use to parallelize the \emph{MCTS}. Of course using this cluster will require some specific parallelization that will be introduced in the next part.
+Grid'5000 is a French set of cluster of computers that links a lot of computers from different research centers. Some of these machines have, in addition to a good CPU, a NVIDIA Tesla GPU that could be use to parallelize the \emph{MCTS}. Of course using this cluster will require some specific parallelization that will be introduced in the next part.
 
-\subsubsection{Parallelization}
+\subsubsection{Parallelization technologies}
 
-\paragraph{Shared memory, single computer parallelization}\mbox{}\\\mbox{}\\
-OpenMp is an efficient API\footnote{Application Programming Interface} that supports parallelization and is simple to implement. It consists some pre-compilation instructions, with only a few lines of code. It allows to obtain a parallel version of the algorithm. As it can be seen in the figure \ref{fig:OpenMp}, it uses a large part of shared memory which allows a quick and efficient communication between the different threads. But it's not designed for using a cluster of computers, because the memory access will not be efficiant for computers which are far away. But there is a method to avoid this problem that is addressed later.
+\paragraph{Thread parallelization and shared memory}\mbox{}\\\mbox{}\\
+OpenMP is an efficient API\footnote{Application Programming Interface} that supports parallelization and is simple to implement. It consists some pre-compilation instructions, with only a few lines of code. It allows to obtain a parallel version of the algorithm. As it can be seen in the figure \ref{fig:OpenMp}, it uses a large part of shared memory which allows a quick and efficient communication between the different threads. It's not designed to be used on a cluster of computers, but this problem that is addressed later.
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.50]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/OpenMP}}
    \caption{\label{étiquette} OpenMp : memory management}
 \label{fig:OpenMp}
 \end{figure}
 \newpage
-\paragraph{Computer parallelization}\mbox{}\\\mbox{}\\
-Unlike OpenMP, MPI is able to parallelize a task for several computers. It can be used to design software that uses a cluster of machines. As it can be seen in the figure \ref{fig:MPI}, it doesn't use shared memory, all the data of the threads are duplicated at their creation. It uses messages to permit the communication between the threads. One of its advantages is that it makes possible to use multiple computers: as the data is duplicated, there isn't the problem of time to access the memory. But attention is to be paid for the cost of communication between the threads, as if too many signals are used, the time that was gained using the parallelization will be lost. It's adapted for root parallelization, because the only things to be done are to duplicate the data at the beginning and return the result at the end of the assigned time.
+\paragraph{Computer parallelization and distributed memory}\mbox{}\\\mbox{}\\
+Unlike OpenMP, MPI is able to parallelize a task for several computers. It can be used to design software that uses a cluster of machines. As it can be seen in the figure \ref{fig:MPI}, it doesn't use shared memory: the data of the parent processes is duplicated at their creation of the child process. It uses messages to permit the communication between processes. One of its advantages is that it makes possible the use of multiple computers: as the data is duplicated, there isn't the problem of time to access the memory. But attention is to be paid for the cost of communication between the threads, as if too many messages are used, the time that was gained using the parallelization will be lost. It's adapted for root parallelization, because the only things to be done are to duplicate the data at the beginning and return the result at the end of the assigned time.
 
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.85]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/MPI}}
@@ -31,13 +31,13 @@ Unlike OpenMP, MPI is able to parallelize a task for several computers. It can b
 \label{fig:MPI}
 \end{figure}
 
-\paragraph{Hybrid parallelization}\mbox{}\\\mbox{}\\
-As stated before, openMp and MPI have their respective pros and cons, but their respective problems can be tackled by using both. That means MPI can be used to dispatch the work onto the different computers and openMp can be used to divide it on the different threads of each machine. This can permit the use of multiple parallelization strategies, for example tree parallelization between the machines and leaf or root parallelization on each machine. Also, it reduces the amount of code needed to manage the threads. It also means that as the interaction between the threads is reduced, to maximize parallelization.
+\paragraph{Parallelization using a mix of technologies} \label{sec:hybrid}\mbox{}\\\mbox{}\\
+As stated before, OpenMP and MPI have their respective pros and cons, but their respective problems can be tackled by using both. That means MPI can be used to dispatch the work onto the different computers and openMP can be used to divide it on the different threads of each machine. This can permit the use of multiple parallelization strategies, for example tree parallelization between the machines and leaf or root parallelization on each machine. Also, it reduces the amount of code needed to manage the threads. It also means that as the interaction between the threads is reduced, to maximize parallelization.
 
 \paragraph{Boost Library}\mbox{}\\\mbox{}\\
 Boost is a well known library for C++ which permits the management of threads, amongst other things. Basically, it can only be used for one computer but it also covers socket handling which makes parallelization between several machines easier. It also holds tools for graph modelisation that can improve a lot the efficiency of the algorithms.
 
 \paragraph{GPU implementation}\mbox{}\\\mbox{}\\
-During the research, it was observed that efficiency of the \emph{MCTS} algorithm improves by using GPU. As Kamil Rocki said in his thesis "Large Scale Monte Carlo Tree Search on GPU"\cite{GPU}, one GPU's performance is equivalent to fifty CPU threads. But this implementation is not perfect, in fact that GPU possess very less cache memory, so if the data model is too big the parallelization will be inefficient. Also the trees that it creates will be less deep than those of a CPU, but when a CPU can develop two branches, a GPU will be developing hundreds of branches simultaneously. Another thing that is to be kept in mind is that a GPU can switch to another thread immediately without any cost of context switching. 
+During the research, it was observed that efficiency of the \emph{MCTS} algorithm improves by using GPU. As Kamil Rocki said in his thesis "Large Scale Monte Carlo Tree Search on GPU"\cite{GPU}, one GPU's performance is equivalent to fifty CPU threads. But this implementation is not perfect, in fact that GPU possess a lot less cache memory, so if the data model is too big the parallelization will be inefficient. Also the trees that it creates will be less deep than those of a CPU, but when a CPU can develop two branches, a GPU will be developing hundreds of branches simultaneously. Another thing that is to be kept in mind is that a GPU can switch to another thread immediately without any cost. 
 
-Some machines from Grid5000 have NVIDIA GPUs, so one of the possibilities is to use hybrid parallelization as it was described previously by using MPI (or boost library) and OpenACC (an equivalent of OpenMP which allows the use of the GPU) or CUBA (a framework for GPU parallelization develop by NVIDIA). This way, bigger trees will be developed and give a better solution than using only the CPU, even if the branches are less deep.
+Some machines from Grid5000 have NVIDIA GPUs, so one of the possibilities is to use hybrid parallelization as it described in section \ref{sec:hybrid} by using MPI (or boost library) and OpenACC (an equivalent of OpenMP which allows the use of the GPU) or CUBA (a framework for GPU parallelization develop by NVIDIA). This way, bigger trees will be developed and give a better solution than using only the CPU, even if the branches are less deep.
