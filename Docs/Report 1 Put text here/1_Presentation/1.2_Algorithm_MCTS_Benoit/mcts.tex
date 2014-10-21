@@ -52,7 +52,7 @@ So far, no evaluation values has been seen. The way Minimax works is to go down 
 	\end{minipage}%
 \end{figure}
 
-The \textit{MAX} node at the top still has two other children nodes that we need to generate and search.
+The \textit{MAX} node at the top still has two other children nodes that will be generated and searched.
 
 \begin{figure}[H]
 \centering
@@ -69,7 +69,7 @@ The \textit{MAX} node at the top still has two other children nodes that we need
 	\end{minipage}%
 \end{figure}
 
-Finally we have all of the values of the children of the  \textit{MAX} node at the top level, so it chooses the maximum of them, 15, and we get the final solution. 
+Finally, all values of the children of the \textit{MAX} node are at the top level, so it chooses the maximum of them, 15, and we get the final solution. 
 
 \begin{figure}[H]
 \centering
@@ -80,7 +80,7 @@ Finally we have all of the values of the children of the  \textit{MAX} node at t
 	\end{minipage}%
 \end{figure}
 
-What this tells us is that we should take the move that leads to the middle  \textit{MIN} node, since it will lead to the best possible state for us one full move down the road.
+The result of the algorithm is that the best move corresponds to the middle  \textit{MIN} node, since it will lead to the best possible state for us one full move down the road.
 
 \subsection{The \ensuremath{\alpha\beta} pruning} %pruning = elaguage en anglais
 The \ensuremath{\alpha\beta} method is a heuristic that decreases the number of leaves that will be explored by the Minimax algorithm. That way, the size of the tree will be smaller, the algorithm will be able to dive further and the time spend on more interesting subtree is greater.\\
@@ -92,7 +92,7 @@ Monte Carlo Tree Search (MCTS) is an algorithm used for taking decisions in arti
 \subsubsection{How does it works ?}
 The Algorithm creates a tree with all possible solutions with a small depth.
 Then it starts to run random simulations starting from the leaves, to test the odds of the outcome.
-Once we got enough the results (usually we are using time based simulations) we feed back the results and make the decision depending on the odds of each subsequent leaves.
+Once the results are numerous enough (time based simulations are usually used), the decision is made depending on the odds of each subsequent leaves.
 \subsubsection{Example}
 MCTS algorithm relies on generating a great number of simulations. The following example has been simplified :
 \label{sec:example}
@@ -145,7 +145,7 @@ Right now the odds of winning are 3/5. Now,  all the possible outcomes at depth 
 	\begin{minipage}[b]{0.45\linewidth}
 		\centering
 		\includegraphics[height=4cm]{1_Presentation/1.2_Algorithm_MCTS_Benoit/img/6.png}
-		\caption{\label{fig:6}Create a leaf at depth 2 with parent the second leaf at depth 1 and run the simulation (\textit{loss}), update the odds value of the node and making it less interesting than the fourth node. Therefore the algorithm will now work on the fourth node.}
+		\caption{\label{fig:6}Create a leaf at depth 2 with parent the second leaf at depth 1 and run the simulation (\textit{loss}), update the odds value of the node and making it less interesting than the fourth node. The algorithm will now work on the fourth node.}
 	\end{minipage}%
 	\hspace*{1cm}
 	\begin{minipage}[b]{0.45\linewidth}
@@ -186,10 +186,10 @@ Continue the Algorithm until a decent amount of simulation are run and/or the ti
 	\end{minipage}%
 \end{figure}
 
-Make a decision : here we chose the fourth leaf.\\
+Make a decision: the fourth leaf is chosen.\\
 \newpage
 \subsubsection{How to select the leaves to develop ?}
-In the previous example, we chose to not expand leaves without winning rate. But depending on the results of the simulations, wins can vary greatly. Therefore we will run more simulations on each leaf before chosing the ones to develop. For practical purpose, we will select the leaves to expand that has the highest value of the cost function UCT (Upper Confidence Bound 1 applied to Trees).\\
+In the previous example, the leaves without winning rate were not expanding. But depending on the results of the simulations, wins can vary greatly. Therefore, more simulations will be run, on each leaf before choosing the ones to develop. For practical purpose, we will select the leaves to expand that has the highest value of the cost function UCT (Upper Confidence Bound 1 applied to Trees).\\
 \bigskip
 \begin{minipage}[b]{1\linewidth}
 \centering
@@ -202,15 +202,16 @@ f = \frac{w_i}{n_i} + c\sqrt{\frac{\ln t}{n_i}}
 \end{minipage}%
 \bigskip
 \begin{itemize}
-  \item \ensuremath{w_i} : number of wins after the ith node
-  \item \ensuremath{n_i} : number of simulations after the ith node
-  \item \ensuremath{c}   : exploration parameter – theoretically equal to \ensuremath{\sqrt{2}} but in practice chosen empirically
-  \item \ensuremath{t}   : total number of simulations in a given tree node, equal to the sum of all \ensuremath{n_i}
+  \item \ensuremath{w_i}: number of wins after the \ensuremath{ i^{th}} node
+  \item \ensuremath{n_i}: number of simulations after the \ensuremath{ i^{th}} node
+  \item \ensuremath{c}: exploration parameter – theoretically equal to \ensuremath{\sqrt{2}} but in practice chosen empirically
+  \item \ensuremath{t}: total number of simulations in a given tree node, equal to the sum of all \ensuremath{n_i}
 \end{itemize}
-The more a leaf is developed, the less its cost is worth it. This way we can be sure that a leaf with low winrate is not completely forgotten.\\
+
+If a leaf is too developed, the development of the nodes will not be worth it. Furthermore, a leaf with low winrate is not completely forgotten.\\
 
 \subsubsection{Why using the Monte Carlo Tree Search ?}
- The advantage of MCTS with its basic form is that you do not need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which aren't.\\ The more simulations you run, the more accurate the results will be.
+ The advantage of MCTS with its basic form is that ones does not need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which are not.\\ The more simulations are run, the more accurate the results will be.
 
-\subsubsection{How much power do we need ?}
+\subsubsection{How much power is needed ?}
 The more possible moves the game has, the more computing power it is required to solve it. In order to get decisions, it needs to go deeper in the tree and to search enough leaves. If the time or number of simulations is not sufficient, the algorithm might miss some important branches and fail to give plausible results. Therefore in order to get decent results, using high-end computer is mandatory, it allows us to get access to multi-threading technology in order to parallelize the simulations.
