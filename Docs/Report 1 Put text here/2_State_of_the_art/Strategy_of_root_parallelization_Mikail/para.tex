@@ -1,3 +1,5 @@
+\subsection{Introduction}
+
 Now, let’s see how we can parallelize the Monte-Carlo Tree Search to optimize our algorithm. A classic MCTS is an algorithm which sequentially creates random development of the game. In order to speed up the results, develop more nodes of the tree search or even have more realistic statistics, we will parallelize our tree. It means that we will distribute parts of the tree development to multiple threads, among multiple computers. Therefore, each thread on each computer will have less executions and our algorithm will be more efficient.
 \newline
 \newline
@@ -34,7 +36,11 @@ Nevertheless, according to Markus Enzenberger and Martin Müller \cite{lock-free
 \newline
 The second method, the virtual loss, consists in decreasing the value of the node the first thread access. When the second thread searches a node to develop, he’ll take this node only if it’s considerably better than the others. This strategy allows nodes with high percentages of winning to be visited by multiple nodes and avoid redundancy on the other ones.
 
-\subsection{Comparison}
+\subsection{Hybrid Algorithms}
+
+Now, we can wonder if there is some research which has already be done on hybrids technologies of parallelization. Some parallelization strategies are a combination of multiples methods with some additional content, but they are very complex to compute and are efficient in specific case.
+
+\subsection{Comparison of simple strategies}
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.60]{2_State_of_the_art/Strategy_of_root_parallelization_Mikail/impara.png}}
    \caption{\label{étiquette} Comparison of all trees}
@@ -42,10 +48,6 @@ The second method, the virtual loss, consists in decreasing the value of the nod
 \end{figure}
 
 Currently, the best strategy to adopt is the Root parallelization on those specific test conditions. According to some tests \cite{parallel_comp,tree_root_comp}, the advantages of the Root parallelization outcomes its drawbacks. Indeed, for 16 threads, a program using Root Parallelization will win 56\% of the time against 36.5\% for the Leaf parallelization, and 49\% for the Tree parallelization with the use of a virtual loss. Moreover, the Root is always twice faster than the Tree with virtual loss. We can explain that by the fact that numerous trees are massive, and so, you will lose much time doing communication and synchronization. You don’t have any of those problems with the Root strategy. Furthermore, this method is also very simple to compute.
-
-\subsection{Hybrid Algorithms}
-
-Now, we can wonder if there is some research which has already be done on hybrids technologies of parallelization. Some parallelization strategies are a combination of multiples methods with some additional content, but they are very complex to compute and are efficient in specific case.
 
 \subsubsection{UCT-Treesplit}
 
