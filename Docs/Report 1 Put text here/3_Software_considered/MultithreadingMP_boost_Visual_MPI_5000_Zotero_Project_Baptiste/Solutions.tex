@@ -15,7 +15,7 @@ Grid'5000 is a French cluster of computers that links a lot of computers from di
 \subsubsection{Parallelization}
 
 \paragraph{Shared memory, single computer parallelization}\mbox{}\\\mbox{}\\
-OpenMp is a very simple and efficient API\footnote{Application Programming Interface} that supports parallelization. It consists some pre-compilation instructions, with only a few lines of code. It allows to obtain a parallel version of the algorithm. As it can be seen in the figure \ref{fig:OpenMp}, it uses a large part of shared memory which allows a quick and efficient communication between the different threads. But it's not designed for using a cluster of computers, because the memory access will not be efficiant for computers which are far away. But there is a method to avoid this problem that is addressed later.
+OpenMp is an efficient API\footnote{Application Programming Interface} that supports parallelization and is simple to implement. It consists some pre-compilation instructions, with only a few lines of code. It allows to obtain a parallel version of the algorithm. As it can be seen in the figure \ref{fig:OpenMp}, it uses a large part of shared memory which allows a quick and efficient communication between the different threads. But it's not designed for using a cluster of computers, because the memory access will not be efficiant for computers which are far away. But there is a method to avoid this problem that is addressed later.
 \begin{figure}[!h] 
 \centerline{\includegraphics[scale=0.50]{3_Software_considered/MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/OpenMP}}
    \caption{\label{étiquette} OpenMp : memory management}

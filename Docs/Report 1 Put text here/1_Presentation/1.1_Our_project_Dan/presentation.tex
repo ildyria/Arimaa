@@ -8,11 +8,11 @@ The project is called \emph{Fast \& Furious Game Playing, Monte Carlo Drift}. It
 The focus of this project is on two player strategy board games, while avoiding games already solved\footnote{A game solved is a game where good algorithms are able to find the perfect move in each situation to win, or to draw. For instance, \textit{Tic Tac Toe} or \textit{Draughts} are solved games.}. That is why this project is about the game \emph{Arimaa}.
 \newline
 
-A human plays a game by thinking all possible moves as per ones imagination and then opts the best amongst them. The player can be able to look further for the opponent's turn, and it expands possibilities of moves. The Minimax algorithm does exactly the same thing, but he is exploring all possibilities. The current position is represented by a node, and the possible state after a move is represented by other nodes, pointing to the mother node. Then it forms a tree.
+A human plays a game by thinking of all possible moves as per one's imagination and then opts the best amongst them. The player can be able to look further for the opponent's turn, and it expands possibilities of moves. The Minimax algorithm does exactly the same thing, but it is exploring all possibilities. The current position is represented by a node, and the possible states after a move are represented by other nodes, pointing to the parent node. Then it forms a tree.
 Minimax algorithm develops a tree by creating nodes for all possible moves.
 \newline
 
-The problem is to compute this algorithm is to heavy. The MCTS algorithm has been conceived to choose to develop some of the nodes, so it will be use for our project.
+The problem is to compute this heavy algorithm. The \emph{MCTS} algorithm has been conceived to choose to develop some of the nodes, so it will be use for our project.
 The \emph{Monte Carlo Tree Search} has been used in the past for \textit{Draughts}. By exploring numerous random possibilities, it will be able to take decisions in order to win a game of \emph{Arimaa}.
 The algorithm would be parallelized in order to exploit it in a multi-core machine, allowing it to go further into the search tree, thus improving its efficiency.
 \newline
