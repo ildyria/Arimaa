@@ -1,7 +1,7 @@
 \label{second part}
 \subsection{The Minimax algorithm}
 % miss the blank space
-The Minimax algorithm is a way of finding an optimal move in a two player game. In the search tree for a two player game, there are two kinds of nodes, nodes representing ones moves and nodes representing the opponent's moves.\cite{graphics_minimax}
+The Minimax algorithm is a way of finding an optimal move in a two-players game. In the search tree for a two-players game, there are two kinds of nodes, nodes representing ones moves and nodes representing the opponent's moves.\cite{graphics_minimax}
 \begin{figure}[H]
 \centering
 	\begin{minipage}[b]{0.45\linewidth}
@@ -19,7 +19,7 @@ The Minimax algorithm is a way of finding an optimal move in a two player game. 
 
 The goal of a \emph{MAX/MIN} node is to maximize/minimize the value of the subtree rooted at that node. To do this, a \emph{MAX/MIN} node chooses the child with the greatest/smallest value, and that becomes the value of the \emph{MAX/MIN} node.
 
-Note that it is typical for two player games to have different branching factors at each node. The move one makes could have an impact on what moves are possible for the opponent. In this example, one is ignoring what the game is in order to focus on the algorithm.
+Note that it is typical for two-players games to have different branching factors at each node. The move one makes could have an impact on what moves are possible for the opponent. In this example, one is ignoring what the game is in order to focus on the algorithm.
 
 \begin{figure}[H]
 \centering
@@ -88,7 +88,7 @@ If the leaf's position is less interesting than its parents, the algorithm will 
 
 \subsection{Monte Carlo Tree Search Algorithm}
 \subsubsection{Introduction}
-Monte Carlo Tree Search (MCTS) is an algorithm used for taking decisions in artificial intelligence (AI) problems such as solving games or decision making in project management. It is based on generating a big number of random simulations in order to get reliable datas. To make such simulations, the program play the moves randomly for each players. Once it reaches a conclusion ( \textit{win} or  \textit{loss}), the program computes the statistics to get the odds of winning.
+Monte Carlo Tree Search (MCTS) algorithm is an algorithm used for taking decisions in artificial intelligence (AI) problems such as solving games or decision making in project management. It is based on generating a big number of random simulations in order to get reliable datas. To make such simulations, the program play the moves randomly for each players. Once it reaches a conclusion ( \textit{win} or  \textit{loss}), the program computes the statistics to get the odds of winning.
 \subsubsection{How does it works ?}
 The Algorithm creates a tree with all possible solutions with a small depth.
 Then it starts to run random simulations starting from the leaves, to test the odds of the outcome.
@@ -209,7 +209,7 @@ f = \frac{w_i}{n_i} + c\sqrt{\frac{\ln t}{n_i}}
 
 If a leaf is too developed, the development of the nodes will not be worth it. Furthermore, a leaf with low winrate is not completely forgotten.\\
 
-\subsubsection{Why using the Monte Carlo Tree Search ?}
+\subsubsection{Why using the Monte Carlo Tree Search algorithm?}
  The advantage of MCTS with its basic form is that ones does not need to implement functions to improve the researches. Based on its random simulations, it will determine by itself which are the good options and which are not.\\ The more simulations are run, the more accurate the results will be.
 
 \subsubsection{How much power is needed ?}
