@@ -1,4 +1,4 @@
-﻿#Project Arimaa – CR4 : Wednesday, October 24th
+#Project Arimaa – CR4 : Wednesday, October 24th
 Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
 ##Order of business :
 1. C++ VS Multithreading
