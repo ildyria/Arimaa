@@ -1,5 +1,5 @@
 #Project Arimaa – CR4 : Wednesday, October 8st 
-Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
+Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas.
 ##Order of business :
 1. Questions about project (Prateek)
 2. GPU VS CPU (Baptiste)

@@ -1,5 +1,5 @@
 #Project Arimaa – CR5 : Wednesday, October 8th
-Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas except Prateek.
+Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas.
 ##Order of business :
 1. Remarks / Questions about parts contents
 2. State of changes to prepare
