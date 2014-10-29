@@ -1,4 +1,4 @@
-﻿#Project Arimaa – CR7 : Wednesday, October 24th
+#Project Arimaa – CR7 : Wednesday, October 24th
 Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas
 ##Order of business :
 1. C++ VS Multithreading

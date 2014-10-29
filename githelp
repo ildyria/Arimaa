@@ -1,0 +1,19 @@
+echo "list of commands that you might want to know
+git add -A		: add all files
+git add --all		: add all files
+git add -u		: update modified files
+git commit -m <msg>	: commit some changes with <msg>
+git commit -am <msg>	: git add -u + git commit -m
+
+git status		: check local status
+git fetch		: check for changes online
+git pull		: check for changes online and update local
+git push		: push your commited changes online
+
+IN CASE OF CONFLICT :
+git fetch --all
+git reset --hard origin/master
+/!\ your changes will be destroyed
+
+pour un clone rapide : 
+git clone git@github.com:ildyria/Arimaa.git"

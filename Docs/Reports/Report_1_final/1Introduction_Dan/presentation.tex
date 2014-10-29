@@ -1,0 +1,28 @@
+
+In 1997, Deep Blue, a supercomputer built by IBM, won a six games match against Garry Kasparov, the current world chess champion. Humans got beaten in Chess, but remain undefeated in other games. Since then, researchers have been developing improvements in artificial intelligence.
+\newline
+
+The project is called \emph{Fast \& Furious Game Playing, Monte Carlo Drift}. Its purpose is to create an Artificial Intelligence able to compete against humans using the \emph{Monte Carlo Tree Search} algorithm.
+\newline
+
+The project is focused on two-players strategy board games, while avoiding games already solved\footnote{A game solved is a game where good algorithms are able to find the perfect move in each situation to win, or to draw. For instance, \textit{Tic Tac Toe} or \textit{Draughts} are solved games.}. That is why this project is about the game \emph{Arimaa}.
+\newline
+
+A human plays a game by thinking of all possible moves as per one's imagination and then opts for the best amongst them. Before taking ones turn, a player can visualize ones options and predict how an opponent will counteract them. The Minimax algorithm does exactly the same thing, but it explores all possibilities. The current position is represented by a node, and the possible states after a move are represented by other nodes, pointing to the parent node. Then it forms a tree.
+Minimax algorithm develops a tree by creating nodes for all possible moves.
+\newline
+
+The problem is to compute this heavy algorithm. The \emph{MCTS} algorithm was conceived to choose the nodes it wants to develop; therefore, it was chosen for the project.
+The \emph{Monte Carlo Tree Search} algorithm has been used in the past for the game of \textit{Draughts}. By exploring the numerous random possibilities at any one time, it will be able to take decisions in order to win the game.
+The algorithm would be parallelized in order to exploit it in a multi-core machine, allowing it to go further into the search tree, thus improving its efficiency.
+\newline
+
+Different parallelization methods will be studied to choose the most suitable to this project.
+The exploration of the tree will depend on the parallelization method.
+The initial phase of the project would be the analysis of the latest papers concerning the technologies that might be of use.
+The consecutive phases will be about making a choice among these technologies, to decide on the specifications.
+Finally, in the last phase, a solution will be implemented, and executed on Grid'5000, on a set of clusters of multi-core machines.
+\newline
+
+In this report, the game Arimaa is described in part \ref{first part}. Then, different algorithms about the game are introduced in part \ref{second part}. Part \ref{third part} is dedicated to parallelization methods, and part \ref{third part part} to state of the art technology. In the end, solutions are presented in part \ref{last part}, as well as the schedule in part \ref{last last part}.
+For us, the most interesting part regarding this project is the creation of an artificial intelligence which is as optimized as possible.

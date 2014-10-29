@@ -1,0 +1,72 @@
+%this file is the first report
+%a % comment anything after % until the end of the line
+
+%minimum references to begin our article
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\pagestyle{fancy}
+%\cfoot{Fast and furious game playing: Monte Carlo drift}
+% the last extension makes it possible to add images
+
+%presentation of the document
+\title{Fast and Furious Game Playing : Monte Carlo Drift\smallbreak Pre-study and analysis report}
+\author{Prateek \textsc{Bhatnagar}, Baptiste \textsc{Bignon}, \\
+        Mikaïl \textsc{Demirdelen}, Gabriel \textsc{Prevosto}, \\
+        Dan \textsc{Seeruttun-{}-Marie}, Benoît \textsc{Viguier} \\
+        \\
+        Supervisors: Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
+\date{10/23/2014}
+\setlength\parindent{15pt}
+\begin{document}
+\maketitle
+
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.50]{img/arimaa}}
+\end{figure}
+\newpage
+\begin{abstract}
+\input{"0Abstract_Prateek/intro.tex"}
+\end{abstract}
+
+
+
+\newpage
+%to add a table of contents
+\tableofcontents
+\newpage
+
+
+\section{Introduction}\input{"1Introduction_Dan/presentation.tex"}
+
+\section{The Game: presentation of Arimaa}
+\input{"2TheGame_Gabriel/ArimaaRules.tex"}
+
+\section{Algorithms}\input{"3Algorithms/3.1Trees_Benoit/annexes.tex"}
+\input{"3Algorithms/3.2Algorithm_MCTS_Benoit/mcts.tex"}
+
+\section{Strategies and state of the art of MCTS algorithm}
+\input{"4_Strategies_and_state_of_the_art/4.1Strategy_of_root_parallelization_Mikail/para.tex"}
+\subsection{State of the art of MCTS algorithm}\input{"4_Strategies_and_state_of_the_art/4.8Arimaa_on_MCTS_Benoit/State.tex"}
+
+\section{Solutions and schedule}
+\subsection{Candidates software and technologies}\input{"5Solutions_and_schedule/5.1MultithreadingMP_boost_Visual_MPI_5000_Zotero_Project_Baptiste/Solutions.tex"}
+\subsection {Planning} \input{"5Solutions_and_schedule/5.2MSproject_schedule_prevision_Baptiste/schedule.tex"}
+
+\section{Conclusion}\input{"6Conclusion_Dan/conclu.tex"}
+
+\bibliography{bibliography}
+\bibliographystyle{plain}
+
+\end{document}
