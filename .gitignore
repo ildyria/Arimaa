@@ -37,8 +37,7 @@ $RECYCLE.BIN/
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+Icon
 # Thumbnails
 ._*
 
@@ -56,3 +55,39 @@ Temporary Items
 *.psd
 *.sai
 *.obj
+Arimaa/Arimaa.ncb
+Arimaa/Arimaa.sdf
+Arimaa/Arimaa.sln
+Arimaa/Arimaa.suo
+Arimaa/Arimaa.v12.suo
+Arimaa/Arimaa/Arimaa.aps
+Arimaa/Arimaa/Arimaa.rc
+Arimaa/Arimaa/Arimaa.vcproj
+Arimaa/Arimaa/Arimaa.vcproj.SKYWALKER.Gabriel.user
+Arimaa/Arimaa/Arimaa.vcxproj
+Arimaa/Arimaa/Arimaa.vcxproj
+Arimaa/Arimaa/Arimaa.vcxproj.filters
+Arimaa/Arimaa/Arimaa.vcxproj.user
+Arimaa/Arimaa/Debug*
+Arimaa/Arimaa/Model/DoxygenConfig
+Arimaa/Arimaa/Model/GenerateDoc.bat
+Arimaa/Arimaa/Model/HOWTO doxygen.txt
+Arimaa/Arimaa/ReadMe.txt
+Arimaa/Arimaa/Release.bat
+Arimaa/Arimaa/Release/*
+Arimaa/Arimaa/resource.h
+Arimaa/Backup/Arimaa.sln
+Arimaa/Backup/Arimaa.v12.suo
+Arimaa/Debug/*
+Arimaa/Old VIsual Files/*
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/1.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/10.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/2.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/3.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/4.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/5.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/6.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/7.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/8.png
+docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/9.png
+Arimaa/UpgradeLog.htm
