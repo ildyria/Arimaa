@@ -32,6 +32,7 @@ $RECYCLE.BIN/
 # Visual Studio files
 *.vcproj
 *.sdf
+*.opensdf
 *.sln
 *.sln*
 *.v12.suo

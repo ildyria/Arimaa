@@ -17,10 +17,10 @@ class TicTacToe
 
 	// NOT USED
 	TicTacToe();
+	~TicTacToe();
 
 public:
 
-	~TicTacToe();
 	/**
 	 * \fn end
 	 * \brief check if the game end
