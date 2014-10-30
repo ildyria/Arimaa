@@ -1,5 +1,5 @@
 #include "Bitboard.h"
-
+#define elseif else if
 
 Bitboard::Bitboard()
 {

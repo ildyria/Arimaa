@@ -12,7 +12,14 @@
 #include <vector>       // std::vector
 #include <list>			// std::list
 
-using namespace std;
+//using namespace std;
+using std::vector;
+using std::list;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::max;
+
 
 /**
  * \brief Bitboard class

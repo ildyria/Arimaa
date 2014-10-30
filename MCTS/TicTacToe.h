@@ -12,6 +12,9 @@
 #include <list>
 #include <algorithm>
 
+using std::string;
+using std::list;
+
 class TicTacToe
 {
 

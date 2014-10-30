@@ -1,7 +1,7 @@
 #include "TicTacToe.h"
 #define elseif else if
 
-using namespace std;
+using std::to_string;
 
 void TicTacToe::diplayBoard(const Bitboard& board){
 	cout << "player to play : " << board.getPlayer() << endl;

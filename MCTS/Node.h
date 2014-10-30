@@ -8,14 +8,13 @@
  */
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <string>
 #include <list>
-#include <map>
 #include <algorithm>
 #include "Bitboard.h"
 
-using namespace std;
+using std::string;
+using std::list;
 
 namespace mcts
 {
@@ -35,6 +34,7 @@ namespace mcts
 	{
 		int _visits;
 		int _wins;
+		int _terminal;
 		double _uct;
 		Bitboard _state;
 		string _move;
@@ -49,7 +49,7 @@ namespace mcts
 		 * \param visits number of visits on the parent node.
 		 */
 		inline void UCT(int visits) {
-			_uct = (double)_wins / (double)_visits + sqrt(2.0 * std::log(double(visits + 1)) / _visits);
+			_uct = (double)_wins / (double)(max(_visits,1)) +sqrt(2.0 * std::log(double(visits + 1)) / _visits);
 		};
 
 	public :
@@ -58,6 +58,14 @@ namespace mcts
 		 * \brief Constructor by default.
 		 */
 		Node();
+
+		/**
+		* \fn Node(Node *parent)
+		* \brief i don't know why i created that function...
+		*
+		* \param state Board to create the node with
+		*/
+		Node(Bitboard state);
 
 		/**
 		 * \fn Node(Node *parent)
@@ -71,11 +79,11 @@ namespace mcts
 		 * \fn Node(Node* p_parent, Bitboard state, string move);
 		 * \brief create a Node with parent as parent and move + Bitboard after the move played
 		 * 
-		 * \param p_parent parent of the node
+		 * \param parent parent of the node
 		 * \param state Bitboard after the move
 		 * \param move move played
 		 */
-		Node(Node* p_parent, Bitboard state, string move);
+		Node(Node* parent, Bitboard state, string move);
 
 		/**
 		 * \fn ~Node
@@ -85,14 +93,44 @@ namespace mcts
 		~Node();
 
 		/**
+		* \fn setTerminal
+		* \brief setter for _terminal
+		*
+		* \param value of the terminal
+		*/
+		inline void setTerminal(int terminal) { _terminal = terminal; };
+
+		/**
+		* \fn getTerminal
+		* \brief getter for the childs
+		*
+		* \return 0 if not, 1 if player 1 wins, 2 if player 2 wins
+		*/
+		inline int getTerminal() { return _terminal; };
+
+		/**
+		* \fn getState
+		* \brief getter for the childs
+		*
+		* \return the state of the current node
+		*/
+		Bitboard& getState() { return _state; };
+
+		/**
+		* \fn getMove
+		* \brief getter for the move
+		*
+		* \return the last move played to access the current node
+		*/
+		string getMove() { return _move; };
+
+		/**
 		 * \fn getChildren
-		 * \brief getter for the childs
+		 * \brief getter for the children
 		 *
 		 * \return return the list of the childrens
 		 */
-		inline list<Node*> getChildren() {
-			return _children;
-		};
+		inline list<Node*> getChildren() { return _children; };
 
 		/**
 		 * \fn getParents
@@ -100,9 +138,7 @@ namespace mcts
 		 *
 		 * \return return the list of the parents
 		 */
-		inline list<Node*> getParents() {
-			return _parents;
-		};
+		inline list<Node*> getParents() { return _parents; };
 
 		/**
 		 * \fn getProba
@@ -110,9 +146,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() {
-			return (double)_wins / (double)_visits;
-		};
+		inline double getProba() { return (double)_wins / (double)_visits; };
 
 		/**
 		 * \fn getVisits
@@ -120,9 +154,7 @@ namespace mcts
 		 *
 		 * \return return the number of visits
 		 */
-		inline int getVisits() {
-			return _visits;
-		};
+		inline int getVisits() { return _visits; };
 
 		/**
 		 * \fn select_child_UCT
@@ -131,7 +163,7 @@ namespace mcts
 		 * \param visit number of visit of the parent node
 		 * \return Return the Node with the best UCT
 		 */
-		Node select_child_UCT(int visit);
+		Node select_child_UCT(int visit=1);
 
 		/**
 		 * \fn addChild
@@ -140,7 +172,7 @@ namespace mcts
 		 * \param state Bitboard after the nove
 		 * \param move move played
 		 */
-		void addChild(Bitboard state, string move);
+		void addChild(Bitboard& state, string move, int terminal = -1);
 
 		/**
 		 * \fn update
