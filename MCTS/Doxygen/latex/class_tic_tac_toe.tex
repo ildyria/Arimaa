@@ -1,0 +1,91 @@
+\hypertarget{class_tic_tac_toe}{\section{Tic\+Tac\+Toe Class Reference}
+\label{class_tic_tac_toe}\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_tic_tac_toe_a4c489ebaf2ce1d3f588155500aea6523}{end} (const \hyperlink{class_bitboard}{Bitboard} \&board)
+\begin{DoxyCompactList}\small\item\em check if the game end \end{DoxyCompactList}\item 
+static void \hyperlink{class_tic_tac_toe_a3c04cf5e5dec5e1f025489d8063b1f00}{play} (string position, \hyperlink{class_bitboard}{Bitboard} \&board)
+\begin{DoxyCompactList}\small\item\em simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move \end{DoxyCompactList}\item 
+static void \hyperlink{class_tic_tac_toe_a8b7915a39527fdef3e6e8441ad973799}{diplay\+Board} (const \hyperlink{class_bitboard}{Bitboard} \&board)
+\begin{DoxyCompactList}\small\item\em display the board of the given \hyperlink{class_bitboard}{Bitboard} \end{DoxyCompactList}\item 
+static list$<$ string $>$ \hyperlink{class_tic_tac_toe_a015c61f2cd26c132092bc631082a101d}{list\+Possible\+Moves} (const \hyperlink{class_bitboard}{Bitboard} \&board)
+\begin{DoxyCompactList}\small\item\em return a list of all possible moves given a board \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tic_tac_toe_a8b7915a39527fdef3e6e8441ad973799}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!diplay\+Board@{diplay\+Board}}
+\index{diplay\+Board@{diplay\+Board}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{diplay\+Board}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::diplay\+Board (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a8b7915a39527fdef3e6e8441ad973799}
+
+
+display the board of the given \hyperlink{class_bitboard}{Bitboard} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \hyperlink{class_bitboard}{Bitboard} to be displayed \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_tic_tac_toe_a4c489ebaf2ce1d3f588155500aea6523}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!end@{end}}
+\index{end@{end}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::end (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a4c489ebaf2ce1d3f588155500aea6523}
+
+
+check if the game end 
+
+returns 1 if player 1 wins returns 2 if player 2 wins returns 3 if the game is a tie returns 0 if the game hasn't ended yet \hypertarget{class_tic_tac_toe_a015c61f2cd26c132092bc631082a101d}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!list\+Possible\+Moves@{list\+Possible\+Moves}}
+\index{list\+Possible\+Moves@{list\+Possible\+Moves}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{list\+Possible\+Moves}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::list\+Possible\+Moves (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a015c61f2cd26c132092bc631082a101d}
+
+
+return a list of all possible moves given a board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \hyperlink{class_bitboard}{Bitboard} to be looked at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the list of the possible moves 
+\end{DoxyReturn}
+\hypertarget{class_tic_tac_toe_a3c04cf5e5dec5e1f025489d8063b1f00}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!play@{play}}
+\index{play@{play}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{play}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::play (
+\begin{DoxyParamCaption}
+\item[{string}]{position, }
+\item[{{\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a3c04cf5e5dec5e1f025489d8063b1f00}
+
+
+simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & move to be play \\
+\hline
+{\em board} & board to be used to play \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \hyperlink{class_bitboard}{Bitboard} after the play 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Arimaa/\+M\+C\+T\+S/Tic\+Tac\+Toe.\+h\item 
+D\+:/\+Arimaa/\+M\+C\+T\+S/Tic\+Tac\+Toe.\+cpp\end{DoxyCompactItemize}
