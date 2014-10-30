@@ -25,6 +25,18 @@ $RECYCLE.BIN/
 *.synctex.gz
 *~
 
+# Images files
+*.psd
+*.sai
+
+# Visual Studio files
+*.vcproj
+*.sln
+*.sln*
+*.v12.suo
+*.vcxproj
+*.vcxproj.*
+
 # =========================
 # Operating System Files
 # =========================
@@ -52,8 +64,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-*.psd
-*.sai
+
+# =========================
+# Gabriel Trash files...
+# =========================
 *.obj
 Arimaa/Arimaa.ncb
 Arimaa/Arimaa.sdf
@@ -91,3 +105,8 @@ docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/7.p
 docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/8.png
 docs/Report 1 Put text here/1_Presentation/1.1_Arimaa_rules_Gabriel/Pictures/9.png
 Arimaa/UpgradeLog.htm
+
+# =========================
+# Biv Trash files...
+# =========================
+MCTS/Debug/*
