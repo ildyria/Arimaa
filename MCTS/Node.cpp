@@ -1,6 +1,8 @@
 #include "Node.h"
 #define elseif else if
 
+using std::max_element;
+
 namespace mcts {
 
 	Node::Node()
@@ -47,9 +49,7 @@ namespace mcts {
 		_visits = 0;
 		_wins = 0;
 		_uct = 0;
-//		_state = state;
 		_terminal = -1;
-//		_move = move;
 		list<Node*> _children;
 		list<Node*> _parents;
 		_parents.push_front(p_parent);

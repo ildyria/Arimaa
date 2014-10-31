@@ -49,7 +49,7 @@ namespace mcts
 		 * \param visits number of visits on the parent node.
 		 */
 		inline void UCT(int visits) {
-			_uct = (double)_wins / (double)(max(_visits,1)) +sqrt(2.0 * std::log(double(visits + 1)) / _visits);
+			_uct = static_cast<double>(_wins) / static_cast<double>(max(_visits,1)) +sqrt(2.0 * std::log(double(visits + 1)) / _visits);
 		};
 
 	public :
@@ -65,7 +65,7 @@ namespace mcts
 		*
 		* \param state Board to create the node with
 		*/
-		Node(Bitboard state);
+		explicit Node(Bitboard state);
 
 		/**
 		 * \fn Node(Node *parent)
@@ -73,7 +73,7 @@ namespace mcts
 		 * 
 		 * \param parent parent of the node
 		 */
-		Node(Node* parent);
+		explicit Node(Node* parent);
 
 		/**
 		 * \fn Node(Node* p_parent, Bitboard state, string move);
@@ -146,7 +146,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return (double)_wins / (double)_visits; };
+		inline double getProba() { return static_cast<double>(_wins) / static_cast<double>(_visits); };
 
 		/**
 		 * \fn getVisits

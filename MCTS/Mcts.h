@@ -22,7 +22,9 @@ namespace mcts
 		// create the initial algorithm
 		
 		Mcts();
-		Mcts(Bitboard);
+
+		explicit Mcts(Bitboard Bb);
+
 		~Mcts();
 
 		// in case a move is played, we need to update the tree (get the root 2 depth down and prune the useless branches) 

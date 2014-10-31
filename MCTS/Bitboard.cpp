@@ -9,7 +9,7 @@ Bitboard::Bitboard()
 	_toplay = 1;
 	for (int i = 0; i < _number; i++)
 	{
-		_boards[i] = (unsigned long)0;
+		_boards[i] = static_cast<unsigned long>(0);
 	}
 	cout << _number << " Bitboards (" << _size << ") created." << endl;
 }
@@ -22,7 +22,7 @@ Bitboard::Bitboard(int size, int n, int toplay)
 	_toplay = toplay;
 	for (int i = 0; i < _number; i++)
 	{
-		_boards[i] = (unsigned long)0;
+		_boards[i] = static_cast<unsigned long>(0);
 	}
 	cout << _number << " Bitboards (" << _size << ") created." << endl;
 }

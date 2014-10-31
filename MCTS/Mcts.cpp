@@ -39,7 +39,7 @@ namespace mcts{
 		if (nodet == 0 && node->getChildren().empty()) // not explored yet => explore
 		{
 			ListOfMoves = TicTacToe::listPossibleMoves(*Bb);
-			for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); iter++)
+			for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 			{
 				Bb2 = Bb->clone();
 				TicTacToe::play(*iter, *Bb2);
@@ -52,7 +52,7 @@ namespace mcts{
 		{
 			cout << endl << endl;
 			ListOfNodes = node->getChildren();
-			for (iterNode = ListOfNodes.begin(); iterNode != ListOfNodes.end(); iterNode++)
+			for (iterNode = ListOfNodes.begin(); iterNode != ListOfNodes.end(); ++iterNode)
 			{
 				TicTacToe::diplayBoard((*iterNode)->getState());
 			}

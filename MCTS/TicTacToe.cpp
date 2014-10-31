@@ -3,6 +3,9 @@
 
 using std::to_string;
 
+TicTacToe::TicTacToe(){};
+TicTacToe::~TicTacToe(){};
+
 void TicTacToe::diplayBoard(const Bitboard& board){
 	cout << "player to play : " << board.getPlayer() << endl;
 	int i = 0;
@@ -35,14 +38,14 @@ void TicTacToe::diplayBoard(const Bitboard& board){
 int TicTacToe::end(const Bitboard& board){
 	unsigned long board1 = board.getBoard(0);
 	unsigned long board2 = board.getBoard(1);
-	unsigned long pos1 = (unsigned long)448;	// 111000000
-	unsigned long pos2 = (unsigned long)56;		// 000111000
-	unsigned long pos3 = (unsigned long)7;		// 000000111
-	unsigned long pos4 = (unsigned long)292;	// 100100100
-	unsigned long pos5 = (unsigned long)146;	// 010010010
-	unsigned long pos6 = (unsigned long)73;		// 001001001
-	unsigned long pos7 = (unsigned long)273;	// 100010001
-	unsigned long pos8 = (unsigned long)84;		// 001010100
+	unsigned long pos1 = static_cast<unsigned long>(448);	// 111000000
+	unsigned long pos2 = static_cast<unsigned long>(56);		// 000111000
+	unsigned long pos3 = static_cast<unsigned long>(7);		// 000000111
+	unsigned long pos4 = static_cast<unsigned long>(292);	// 100100100
+	unsigned long pos5 = static_cast<unsigned long>(146);	// 010010010
+	unsigned long pos6 = static_cast<unsigned long>(73);		// 001001001
+	unsigned long pos7 = static_cast<unsigned long>(273);	// 100010001
+	unsigned long pos8 = static_cast<unsigned long>(84);		// 001010100
 	if ((board1 & pos1) == pos1 ||
 		(board1 & pos2) == pos2 ||
 		(board1 & pos3) == pos3 ||
@@ -67,7 +70,7 @@ int TicTacToe::end(const Bitboard& board){
 		cout << "player 2 wins detected." << endl;
 		return 2;
 	}
-	if ((board1 | board2) == (unsigned long)511)
+	if ((board1 | board2) == static_cast<unsigned long>(511))
 	{
 		cout << "Board full detected : TIE." << endl;
 		return 3;
@@ -122,15 +125,15 @@ list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
 			}
 			else	// if we still have more items to look at
 			{
-				iterl1++;
-				iterl2++;
+				++iterl1;
+				++iterl2;
 			}
 		}
 		elseif(*iterl1 > *iterl2) // if item list1 is greater than item list2
 		{
 			if (iterl2 != free2.end()) // if we still have more items to look at
 			{
-				iterl2++;
+				++iterl2;
 			}
 			else // we don't => get out
 			{
@@ -141,7 +144,7 @@ list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
 		{
 			if (iterl1 != free1.end()) // if we still have more items to look at
 			{
-				iterl1++;
+				++iterl1;
 			}
 			else // we don't => get out
 			{
