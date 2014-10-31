@@ -156,6 +156,9 @@ namespace mcts
 		 */
 		inline int getVisits() { return _visits; };
 
+
+		static bool compare(Node* a, Node* b);
+
 		/**
 		 * \fn select_child_UCT
 		 * \brief fecth the childrens and select the one with the highest UCT
@@ -163,7 +166,7 @@ namespace mcts
 		 * \param visit number of visit of the parent node
 		 * \return Return the Node with the best UCT
 		 */
-		Node select_child_UCT(int visit=1);
+		Node* select_child_UCT();
 
 		/**
 		 * \fn addChild
@@ -181,5 +184,6 @@ namespace mcts
 		 * \param win true if last simulation was a win, false if last simulation was a lost
 		 */
 		void update(bool win);
+
 	};
 };

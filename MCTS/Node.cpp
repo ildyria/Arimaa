@@ -2,6 +2,7 @@
 #define elseif else if
 
 using std::max_element;
+using std::max;
 
 namespace mcts {
 
@@ -61,7 +62,7 @@ namespace mcts {
 		cout << "starting destruction of node" << endl;
 
 		list<Node*>::iterator itL;
-		for (itL = _children.begin(); itL != _children.end(); itL++)
+		for (itL = _children.begin(); itL != _children.end(); ++itL)
 		{
 			// ONLY if 1 parent !!
 //			if (&(*itL) != ){
@@ -88,21 +89,27 @@ namespace mcts {
 
 		if (!_parents.empty())
 		{
-			for (itL = _parents.begin(); itL != _parents.end(); itL++)
+			for (itL = _parents.begin(); itL != _parents.end(); ++itL)
 			{
 				(**itL).update(win);
 			}
 		}
-	};
+	}
 
-	Node Node::select_child_UCT(int visits){
+	bool Node::compare(Node* a, Node* b)
+	{
+		return (*a)._uct < (*b)._uct;
+	}
+
+	Node* Node::select_child_UCT(){
+
 		list<Node*>::iterator itL;
-		for (itL = _children.begin(); itL != _children.end(); itL++)
+		for (itL = _children.begin(); itL != _children.end(); ++itL)
 		{
-			(*itL)->UCT(visits);
+			(*itL)->UCT(max(_visits,1));
 		}
-
-		return *max_element(_children.begin(), _children.end(), [](Node* a, Node* b) { return (*a)._uct < (*b)._uct; });
-	};
+		itL = max_element(_children.begin(), _children.end(), Node::compare);
+		return *itL;
+	}
 
 }

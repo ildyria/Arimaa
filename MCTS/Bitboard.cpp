@@ -29,7 +29,7 @@ Bitboard::Bitboard(int size, int n, int toplay)
 
 Bitboard::~Bitboard()
 {
-	cout << _number << " Bitboards (" << _size << ") destroyed." << endl;
+	cout << "Bitboards (" << this << ") destroyed." << endl;
 }
 
 int Bitboard::getBit(int n, int x, int y) const

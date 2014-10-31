@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
 	list<string> Listtoprint;
 	list<string>::iterator iter;
 
-	Mcts mcts = Mcts(bitboard);
+	Mcts mcts = Mcts(bitboard, 9);
 	cout << mcts.GetBestMove() << endl;
 
 
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
 
 		Listtoprint = TicTacToe::listPossibleMoves(Bb);
 		cout << "possible moves : ";
-		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); iter++){
+		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
 			cout << *iter << " ";
 		}
 		cout << endl;

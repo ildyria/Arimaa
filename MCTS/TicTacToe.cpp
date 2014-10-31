@@ -97,13 +97,13 @@ list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
 
 #ifdef DEBUG
 	cout << "possible moves free1 : ";
-	for (iter = free1.begin(); iter != free1.end(); iter++){
+	for (iter = free1.begin(); iter != free1.end(); ++iter){
 		cout << *iter << " ";
 	}
 	cout << endl;
 
 	cout << "possible moves free2 : ";
-	for (iter = free2.begin(); iter != free2.end(); iter++){
+	for (iter = free2.begin(); iter != free2.end(); ++iter){
 		cout << *iter << " ";
 	}
 	cout << endl;
