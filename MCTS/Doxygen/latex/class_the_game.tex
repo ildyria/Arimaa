@@ -1,0 +1,100 @@
+\hypertarget{class_the_game}{\section{The\+Game Class Reference}
+\label{class_the_game}\index{The\+Game@{The\+Game}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_the_game_a22115648d9cfa662df971517ebb526b4}{The\+Game} ()
+\begin{DoxyCompactList}\small\item\em create a game \hyperlink{class_the_game}{The\+Game} \end{DoxyCompactList}\item 
+\hypertarget{class_the_game_a037876f628bd7a5e4943cd05fbab692e}{{\bfseries The\+Game} (\hyperlink{class_bitboard}{Bitboard} board, int toplay)}\label{class_the_game_a037876f628bd7a5e4943cd05fbab692e}
+
+\item 
+int \hyperlink{class_the_game_adc6e565425e62bb4d61d75dfbdeb5bca}{end} ()
+\begin{DoxyCompactList}\small\item\em check if the game end \end{DoxyCompactList}\item 
+\hyperlink{class_bitboard}{Bitboard} \hyperlink{class_the_game_aaa5087403ad9760fd68fcc024b40b593}{play} (string position)
+\begin{DoxyCompactList}\small\item\em play the \char`\"{}position\char`\"{} move to play and record the move and return the current state of the game \end{DoxyCompactList}\item 
+\hypertarget{class_the_game_ae0f819887bc6abe960a0c219e8fa02d5}{void {\bfseries diplay\+Board} ()}\label{class_the_game_ae0f819887bc6abe960a0c219e8fa02d5}
+
+\item 
+\hypertarget{class_the_game_a5d1c73e7daae9386b632aa5cdc203584}{void {\bfseries diplay\+Board} (\hyperlink{class_bitboard}{Bitboard} board)}\label{class_the_game_a5d1c73e7daae9386b632aa5cdc203584}
+
+\item 
+\hypertarget{class_the_game_af57f4711621420ae75d9320db563fb56}{map$<$ string, \hyperlink{class_bitboard}{Bitboard} $>$ {\bfseries list\+Possible\+Moves} (\hyperlink{class_bitboard}{Bitboard} board)}\label{class_the_game_af57f4711621420ae75d9320db563fb56}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_the_game_a22115648d9cfa662df971517ebb526b4}{\index{The\+Game@{The\+Game}!The\+Game@{The\+Game}}
+\index{The\+Game@{The\+Game}!The\+Game@{The\+Game}}
+\subsubsection[{The\+Game}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::\+The\+Game (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_the_game_a22115648d9cfa662df971517ebb526b4}
+
+
+create a game \hyperlink{class_the_game}{The\+Game} 
+
+create a game
+
+create a game starting from a board and a payer to play
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & board to play \\
+\hline
+{\em toplay} & players turn \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_the_game_adc6e565425e62bb4d61d75dfbdeb5bca}{\index{The\+Game@{The\+Game}!end@{end}}
+\index{end@{end}!The\+Game@{The\+Game}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_the_game_adc6e565425e62bb4d61d75dfbdeb5bca}
+
+
+check if the game end 
+
+returns 1 if player 1 wins returns 2 if player 2 wins returns 3 if the game is a tie returns 0 if the game hasn't ended yet \hypertarget{class_the_game_aaa5087403ad9760fd68fcc024b40b593}{\index{The\+Game@{The\+Game}!play@{play}}
+\index{play@{play}!The\+Game@{The\+Game}}
+\subsubsection[{play}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::play (
+\begin{DoxyParamCaption}
+\item[{string}]{position}
+\end{DoxyParamCaption}
+)}}\label{class_the_game_aaa5087403ad9760fd68fcc024b40b593}
+
+
+play the \char`\"{}position\char`\"{} move to play and record the move and return the current state of the game 
+
+simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & move to be play \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \hyperlink{class_bitboard}{Bitboard} after the play
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em position} & move to be play \\
+\hline
+{\em board} & board to be used to play \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \hyperlink{class_bitboard}{Bitboard} after the play 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Arimaa/\+M\+C\+T\+S/The\+Game.\+h\item 
+D\+:/\+Arimaa/\+M\+C\+T\+S/The\+Game.\+cpp\end{DoxyCompactItemize}
