@@ -24,15 +24,15 @@ We just need to find some references to justify our arguments.
 Task		|						Responsible	|	Deadline
 ------------ | ------------- | --------
 Schedule time							 | 	Baptiste	 | 	10/27	
-Note schedule							 | 	Everyone	 | 	11/06
-Parallelization method implementation	 | 			Mikail	 | 		11/06		
-General Software architecture			 | 		Gabriel	 | 	11/06
-Input/Output of the program				 | 		Dan	 	 | 	11/06
-Prepare the plan of the report			 | 			Dan		 | 	11/06		
-API of the program						 | 	Prateek		 | 11/06		
-MCTS simple implementation				 | 	Benoit		 | 	11/06
-Packages with rules implementation		 | 			Baptiste	 | 	11/06
-OpenMP implementation					 | 	Not decided	 | Begin after 11/06
+Note schedule							 | 	Everyone	 | 	11/05
+Parallelization method implementation	 | 			Mikail	 | 		11/05		
+General Software architecture			 | 		Gabriel	 | 	11/05
+Input/Output of the program				 | 		Dan	 	 | 	11/05
+Prepare the plan of the report			 | 			Dan		 | 	11/05		
+API of the program						 | 	Prateek		 | 11/05		
+MCTS simple implementation				 | 	Benoit		 | 	11/05
+Packages with rules implementation		 | 			Baptiste	 | 	11/05
+OpenMP implementation					 | 	Not decided	 | Begin after 11/05
 OpenMP report part						 | 	Benoit		 | 	11/19
 MPI report part						 | 	Mikail			 | 11/19
 OpenAcc report part						 | 	Baptiste	 | 	11/19
@@ -55,4 +55,4 @@ Go deeper on OpenMP (references) CPU parallelization					|	Benoit
 Go deeper on MPI (references) computers parallelization					|	Mikail
 Go deeper on OpenAcc (references) GPU parallezation						|Baptiste
 
-##Next meeting : 11/06
+##Next meeting : 11/05
