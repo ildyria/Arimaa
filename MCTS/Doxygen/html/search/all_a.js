@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['select_5fchild_5fuct',['select_child_UCT',['../classmcts_1_1_node.html#ad4daedccf1e07591a0583252a7569037',1,'mcts::Node']]]
+  ['mcts',['Mcts',['../classmcts_1_1_mcts.html',1,'mcts']]],
+  ['mcts',['Mcts',['../classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7',1,'mcts::Mcts']]],
+  ['mcts_2eh',['Mcts.h',['../_mcts_8h.html',1,'']]],
+  ['moveplayed',['movePlayed',['../classmcts_1_1_mcts.html#a83371bef8912ea4785924303b16f8670',1,'mcts::Mcts']]]
 ];

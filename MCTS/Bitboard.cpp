@@ -11,7 +11,9 @@ Bitboard::Bitboard()
 	{
 		_boards[i] = static_cast<unsigned long>(0);
 	}
-	cout << _number << " Bitboards (" << _size << ") created." << endl;
+#ifdef DEBUG_BOARD
+	cout << "B*" << this << " (" << _number << " & " << _size << "x" << _size << ") created." << endl;
+#endif //DEBUG_BOARD
 }
 
 Bitboard::Bitboard(int size, int n, int toplay)
@@ -24,12 +26,16 @@ Bitboard::Bitboard(int size, int n, int toplay)
 	{
 		_boards[i] = static_cast<unsigned long>(0);
 	}
-	cout << _number << " Bitboards (" << _size << ") created." << endl;
+#ifdef DEBUG_BOARD
+	cout << "B*" << this << " (" << _number << " & " << _size << "x" << _size << ") created." << endl;
+#endif //DEBUG_BOARD
 }
 
 Bitboard::~Bitboard()
 {
-	cout << "Bitboards (" << this << ") destroyed." << endl;
+#ifdef DEBUG_BOARD
+	cout << "B*" << this << " destroyed." << endl;
+#endif //DEBUG_BOARD
 }
 
 int Bitboard::getBit(int n, int x, int y) const

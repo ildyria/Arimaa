@@ -2,18 +2,10 @@
 #include "Mcts.h"
 #define elseif else if
 
-//using namespace std;
 using namespace mcts;
-/*using std::vector;
-using std::list;
-using std::string;
-using std::cin;
-using std::cout;
-using std::endl;*/
 
 int main(int argc, char const *argv[])
 {
-//	map<string, Bitboard> pm;
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
 	cout << "\tBut remember, all code is guilty until proven inocent !" << endl << endl;
 
@@ -24,16 +16,19 @@ int main(int argc, char const *argv[])
 	list<string> Listtoprint;
 	list<string>::iterator iter;
 
-	Mcts mcts = Mcts(bitboard, 9);
-	cout << mcts.GetBestMove() << endl;
+	Mcts mcts = Mcts(bitboard, 5, 1, 1000, 10);
+	move = mcts.GetBestMove();
+	mcts.movePlayed(move);
+	cout << "chosen move by MCTS : " << move << endl;
+	cout << endl;
+	mcts.print_tree(1);
 
-
+	TicTacToe::play(move, Bb);
 
 
 	while (result == 0)
 	{
 		TicTacToe::diplayBoard(Bb);
-
 		Listtoprint = TicTacToe::listPossibleMoves(Bb);
 		cout << "possible moves : ";
 		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
@@ -41,21 +36,42 @@ int main(int argc, char const *argv[])
 		}
 		cout << endl;
 
-		moveok = 0;
-		while (moveok == 0)
+		if (Bb.getPlayer() == 2)
 		{
-			cin >> move;
-			iter = find(Listtoprint.begin(), Listtoprint.end(), move);
-			if (iter != Listtoprint.end())
+			moveok = 0;
+			while (moveok == 0)
 			{
-				moveok = 1;
+				cin >> move;
+				iter = find(Listtoprint.begin(), Listtoprint.end(), move);
+				if (iter != Listtoprint.end())
+				{
+					moveok = 1;
+				}
 			}
 		}
+		else
+		{
+			move = mcts.GetBestMove();
+			mcts.print_tree(1);
+		}
+		mcts.movePlayed(move);
 		TicTacToe::play(move, Bb);
 		result = TicTacToe::end(Bb);
 	}
 	cout << endl;
 	TicTacToe::diplayBoard(Bb);
 
-	_sleep(2000);
+	if (result == 1)
+	{
+		cout << "player 1 wins detected." << endl;
+	}
+	elseif(result == 2)
+	{
+		cout << "player 2 wins detected." << endl;
+	}
+	else
+	{
+		cout << "Board full detected : TIE." << endl;
+	}
+	_sleep(4000);
 }

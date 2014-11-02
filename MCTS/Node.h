@@ -1,9 +1,9 @@
 /**
  * \file Node.h
- * \brief Define class Bitboard (WIP)
+ * \brief Define class Node
  * \author Benoit Viguier
- * \version 0.5
- * \date october 30th 2014
+ * \version 1.0
+ * \date November 2nd 2014
  *
  */
 #pragma once
@@ -15,6 +15,7 @@
 
 using std::string;
 using std::list;
+using std::log;
 
 namespace mcts
 {
@@ -45,11 +46,18 @@ namespace mcts
 		 * \fn UCT
 		 * \brief calculate the UCT value of a node and record it.
 		 * \details winrate + sqrt(2)*log(total of visit / visits)
+		 * if uct is set to 10 => we don't update the value : move that has to be played (win)
+		 * if uct is set to -1 => we don't change the value either : move that should not be played (loss)
 		 * 
 		 * \param visits number of visits on the parent node.
 		 */
 		inline void UCT(int visits) {
-			_uct = static_cast<double>(_wins) / static_cast<double>(max(_visits,1)) +sqrt(2.0 * std::log(double(visits + 1)) / _visits);
+			_uct = (_uct == -1) ? -1 : ((_uct == 10) ? 10 : static_cast<double>(_wins) / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * std::log(double(visits + 1)) / max(_visits, 1)));
+#ifdef DEBUG_NODE
+			cout << "_uct = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
+			cout << "_uct = " << _uct << endl;
+#endif //DEBUG_NODE
+
 		};
 
 	public :
@@ -93,12 +101,29 @@ namespace mcts
 		~Node();
 
 		/**
+		 * \fn killChildrens
+		 * \brief kill all the children of a node but the one with the exception adress
+		 * 
+		 * \param exception Node that we MUST NOT KILL
+		 */
+		void killChildrens(Node* exception);
+
+		/**
 		* \fn setTerminal
 		* \brief setter for _terminal
 		*
 		* \param value of the terminal
 		*/
 		inline void setTerminal(int terminal) { _terminal = terminal; };
+
+		/**
+		* \fn forceSetUCT
+		* \brief setter for _uct
+		* \details it allows us to force a value to uct : 10 or -1 in order to make sure that some moves must or mustn't be played
+		*
+		* \param value of the uct
+		*/
+		inline void forceSetUCT(int uct) { _uct = uct; };
 
 		/**
 		* \fn getTerminal
@@ -157,6 +182,14 @@ namespace mcts
 		inline int getVisits() { return _visits; };
 
 
+		/**
+		 * \fn compare
+		 * \brief compare Node* a and Node *b,
+		 *
+		 * \param Node a
+		 * \param Node b
+		 * \return true if a's uct is greater than b's uct value.
+		 */
 		static bool compare(Node* a, Node* b);
 
 		/**
@@ -184,6 +217,15 @@ namespace mcts
 		 * \param win true if last simulation was a win, false if last simulation was a lost
 		 */
 		void update(bool win);
+
+		/**
+		 * \fn print_tree
+		 * \brief print the sub-tree starting with the current node as a root
+		 * 
+		 * \param numtab the depth we are in the tree in order to insert \t in front of the display
+		 * \param depth How deep we want to dive in the tree
+		 */
+		void print_tree(int numtab, int depth);
 
 	};
 };

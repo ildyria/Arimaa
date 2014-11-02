@@ -3,7 +3,7 @@
  * \brief Define class Bitboard
  * \author Benoit Viguier
  * \version 1.0
- * \date october 30th 2014
+ * \date October 30th 2014
  *
  */
 #pragma once
@@ -24,10 +24,10 @@ using std::max;
 /**
  * \brief Bitboard class
  * \details vector<unsigned long> _boards : bitboards of the game;
-	short _toplay : player to play (1 or 2);
-	short _number : number of bitboards;
-	short _size   : size of the bitboards;
-
+ *	short _toplay : player to play (1 or 2);
+ *	short _number : number of bitboards;
+ *	short _size   : size of the bitboards;
+ *
  */
 class Bitboard
 {

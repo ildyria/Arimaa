@@ -1,5 +1,7 @@
 #include "TicTacToe.h"
 #define elseif else if
+//#define DISPLAY_TTT
+//#define DEBUG_TTT
 
 using std::to_string;
 
@@ -55,7 +57,9 @@ int TicTacToe::end(const Bitboard& board){
 		(board1 & pos7) == pos7 ||
 		(board1 & pos8) == pos8)
 	{
+#ifdef DISPLAY_TTT
 		cout << "player 1 wins detected." << endl;
+#endif // DISPLAY_TTT
 		return 1;
 	}
 	if ((board2 & pos1) == pos1 ||
@@ -67,15 +71,19 @@ int TicTacToe::end(const Bitboard& board){
 		(board2 & pos7) == pos7 ||
 		(board2 & pos8) == pos8)
 	{
+#ifdef DISPLAY_TTT
 		cout << "player 2 wins detected." << endl;
+#endif // DISPLAY_TTT
 		return 2;
 	}
 	if ((board1 | board2) == static_cast<unsigned long>(511))
 	{
+#ifdef DISPLAY_TTT
 		cout << "Board full detected : TIE." << endl;
+#endif // DISPLAY_TTT
 		return 3;
 	}
-	cout << "No Winner Yet" << endl;
+//	cout << "No Winner Yet" << endl;
 	return 0;
 }
 
@@ -95,7 +103,7 @@ list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
 	list<int> free2 = board.getEmpty(1);
 	list<int>::iterator iterl1, iterl2, iter;
 
-#ifdef DEBUG
+#ifdef DEBUG_TTT
 	cout << "possible moves free1 : ";
 	for (iter = free1.begin(); iter != free1.end(); ++iter){
 		cout << *iter << " ";

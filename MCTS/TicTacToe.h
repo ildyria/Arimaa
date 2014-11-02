@@ -3,7 +3,7 @@
  * \brief Define class TicTacToe
  * \author Benoit Viguier
  * \version 1.0
- * \date october 30th 2014
+ * \date October 30th 2014
  *
  */
 #pragma once
@@ -31,6 +31,7 @@ public:
 	 * returns 2 if player 2 wins
 	 * returns 3 if the game is a tie
 	 * returns 0 if the game hasn't ended yet
+	 * \return integer corresponding to the state of the Board
 	 */
 	static int end(const Bitboard& board);
 
