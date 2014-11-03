@@ -1,0 +1,12 @@
+MPI VS Sockets :
+
+http://stackoverflow.com/questions/153616/mpi-or-sockets
+http://www.mcs.anl.gov/research/projects/mpi/tutorial/snir/mpi/mpi5.htm
+
+
+(pour celui là, il faut savoir qu'on est passé en MPI-3, et qu'ils ont, a priori, géré le problème de la robustesse cf deuxième et troisième lien)
+http://blogs.cisco.com/performance/sockets_vs__mpi/
+http://meetings.mpi-forum.org/MPI_3.0_main_page.php
+http://www.mpi-forum.org/docs/mpi-3.0/mpi30-report.pdf
+
+
