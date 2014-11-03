@@ -7,9 +7,8 @@
  *
  */
 #pragma once
-#include "Random.h"
 #include "Node.h"
-#include "TicTacToe.h"
+#include "TheGame.h"
 
 namespace mcts
 {
@@ -25,6 +24,7 @@ namespace mcts
 	 */
 	class Mcts
 	{
+		TheGame* _game;
 		Node* _root;
 		int _depth;
 		int _simulationPerRoot;
@@ -47,21 +47,21 @@ namespace mcts
 		 * \param  simulR   Number of simulations to be run starting from the root, 100 by default. => OpenMP ?
 		 * \param  simulL   Number of random simulations to be run at the end of the search tree, 10 by default. => OpenAcc ?
 		 */
-		explicit Mcts(Bitboard Bb, int depth = 4, int IAPlayer = 1, int simulR = 100, int simulL = 10);
+		explicit Mcts(TheGame* game,Bitboard Bb, int depth = 4, int IAPlayer = 1, int simulR = 100, int simulL = 10);
 
 		/**
 		 * \fn ~Mcts
 		 * \brief Not implemented
 		 */
-		~Mcts();
+		~Mcts() {}
 
 		/**
 		 * \fn movePlayed
-		 * \brief play a move on the tree, prune all the node are useless.
+		 * \brief play a move on the tree, prune all the node that are useless.
 		 * 
 		 * \param move move played
 		 */
-		void movePlayed(string move);
+		void movePlayed(Move& move);
 
 		/**
 		 * \fn UpdateNode
@@ -103,7 +103,7 @@ namespace mcts
 		 * 
 		 * \return move chosen by the algorithm
 		 */
-		string GetBestMove();
+		Move GetBestMove();
 
 		/**
 		 * \fn print_tree

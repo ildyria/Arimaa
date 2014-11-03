@@ -7,56 +7,25 @@
  *
  */
 #pragma once
+#include "Move.h"
 #include "Bitboard.h"
-#include <string>
 #include <list>
-#include "Tictactoe.h"
 
 using std::string;
 using std::list;
 
 class TheGame
 {
-	TheGame();
-	~TheGame();
 public:
-	static int _game;
-	static void setGame(int game = 0);
+	virtual ~TheGame() {}
 
-	static inline int end(const Bitboard& board)
-	{
-		if (TheGame::_game == 0)
-		{
-			return TicTacToe::end(board);
-		}
-		throw("game not chosen");
-	};
+	virtual int end(const Bitboard& board) = 0;
 
+	virtual void play(Move& position, Bitboard& board) = 0;
 
-	static inline void play(string position, Bitboard* board)
-	{
-		if (TheGame::_game == 0)
-		{
-			TicTacToe::play(position, *board);
-		}
-		throw("game not chosen");
-	};
+	virtual void diplayBoard(const Bitboard& board) = 0;
 
-	static inline void diplayBoard(const Bitboard& board)
-	{
-		if (TheGame::_game == 0)
-		{
-			TicTacToe::diplayBoard(board);
-		}
-		throw("game not chosen");
-	};
+	virtual list<Move> listPossibleMoves(const Bitboard& board) = 0;
 
-	static inline list<string> listPossibleMoves(const Bitboard& board){
-		if (TheGame::_game == 0)
-		{
-			return TicTacToe::listPossibleMoves(board);
-		}
-		throw("game not chosen");
-	};
+	virtual int playRandomMoves(Bitboard& board) = 0;
 };
-

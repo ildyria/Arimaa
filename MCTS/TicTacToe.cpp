@@ -5,9 +5,6 @@
 
 using std::to_string;
 
-TicTacToe::TicTacToe(){};
-TicTacToe::~TicTacToe(){};
-
 void TicTacToe::diplayBoard(const Bitboard& board){
 	cout << "player to play : " << board.getPlayer() << endl;
 	int i = 0;
@@ -36,6 +33,9 @@ void TicTacToe::diplayBoard(const Bitboard& board){
 		}
 	}
 }
+
+
+
 
 int TicTacToe::end(const Bitboard& board){
 	unsigned long board1 = board.getBoard(0);
@@ -87,18 +87,17 @@ int TicTacToe::end(const Bitboard& board){
 	return 0;
 }
 
-void TicTacToe::play(string position, Bitboard& board)
+void TicTacToe::play(Move& position, Bitboard& board)
 {
-
-	int pos = strtol(position.c_str(), nullptr, 10);
+	int pos = position.getInt();
 	int player = board.getPlayer() - 1;
 	board.setBit(player, pos);
 	board.play();
 }
 
-list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
+list<Move> TicTacToe::listPossibleMoves(const Bitboard& board)
 {
-	list<string> moves;
+	list<Move> moves;
 	list<int> free1 = board.getEmpty(0);
 	list<int> free2 = board.getEmpty(1);
 	list<int>::iterator iterl1, iterl2, iter;
@@ -125,7 +124,7 @@ list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
 	{
 		if (*iterl1 == *iterl2) // check if list item are the same => keep it
 		{
-			moves.push_back(to_string(*iterl1));
+			moves.push_back(Move(*iterl1));
 			
 			if (iterl2 == free2.end() || iterl1 == free1.end())
 			{
@@ -162,5 +161,34 @@ list<string> TicTacToe::listPossibleMoves(const Bitboard& board)
 	}
 
 	return moves;
+}
+
+int TicTacToe::playRandomMoves(Bitboard& board)
+{
+	list<Move> ListOfMoves;
+	list<Move>::iterator iter;
+	int chosen, nodet;
+
+	nodet = end(board);
+
+	while (nodet < 1)
+	{
+		ListOfMoves = listPossibleMoves(board);
+		chosen = Random::I()->getNum(0, ListOfMoves.size() - 1);
+		for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
+		{
+			if (chosen == 0){
+#ifdef DEBUG_TTT
+				cout << " > " << *iter << endl;
+#endif // DEBUG_TTT
+				play(*iter, board);
+				break;
+			}
+			--chosen;
+		}
+		nodet = end(board);
+	}
+
+	return nodet;
 }
 

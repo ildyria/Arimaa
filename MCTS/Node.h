@@ -12,6 +12,7 @@
 #include <list>
 #include <algorithm>
 #include "Bitboard.h"
+#include "Move.h"
 
 using std::string;
 using std::list;
@@ -38,7 +39,7 @@ namespace mcts
 		int _terminal;
 		double _uct;
 		Bitboard _state;
-		string _move;
+		Move _move;
 		list<Node*> _children;
 		list<Node*> _parents;
 
@@ -91,14 +92,14 @@ namespace mcts
 		 * \param state Bitboard after the move
 		 * \param move move played
 		 */
-		Node(Node* parent, Bitboard state, string move);
+		Node(Node* parent, Bitboard state, Move move);
 
 		/**
 		 * \fn ~Node
 		 * \brief Destructor of the Node
 		 * \details call Delete on all the childrens of the node.
 		 */
-		~Node();
+		~Node() {}
 
 		/**
 		 * \fn killChildrens
@@ -147,7 +148,7 @@ namespace mcts
 		*
 		* \return the last move played to access the current node
 		*/
-		string getMove() { return _move; };
+		Move getMove() { return _move; };
 
 		/**
 		 * \fn getChildren
@@ -156,6 +157,12 @@ namespace mcts
 		 * \return return the list of the childrens
 		 */
 		inline list<Node*> getChildren() { return _children; };
+
+		/**
+		* \fn clearParents
+		* \brief clear the parents' list
+		*/
+		inline void clearParents() { _parents.clear(); };
 
 		/**
 		 * \fn getParents
@@ -181,7 +188,6 @@ namespace mcts
 		 */
 		inline int getVisits() { return _visits; };
 
-
 		/**
 		 * \fn compare
 		 * \brief compare Node* a and Node *b,
@@ -196,10 +202,10 @@ namespace mcts
 		 * \fn select_child_UCT
 		 * \brief fecth the childrens and select the one with the highest UCT
 		 * 
-		 * \param visit number of visit of the parent node
+		 * \param player that is played by the IA
 		 * \return Return the Node with the best UCT
 		 */
-		Node* select_child_UCT();
+		Node* select_child_UCT(int player);
 
 		/**
 		 * \fn addChild
@@ -208,7 +214,7 @@ namespace mcts
 		 * \param state Bitboard after the nove
 		 * \param move move played
 		 */
-		void addChild(Bitboard& state, string move, int terminal = -1);
+		void addChild(Bitboard& state, Move& move, int terminal = -1);
 
 		/**
 		 * \fn update

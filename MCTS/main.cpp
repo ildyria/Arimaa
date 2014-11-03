@@ -1,5 +1,7 @@
-#include "TicTacToe.h"
 #include "Mcts.h"
+#include "TicTacToe.h"
+#include <chrono>
+#include <thread>
 #define elseif else if
 
 using namespace mcts;
@@ -12,24 +14,26 @@ int main(int argc, char const *argv[])
 	Bitboard Bb = Bitboard(3,2,1);
 	Bitboard bitboard = Bitboard(3, 2, 1);
 	int result = 0, moveok;
-	string move;
-	list<string> Listtoprint;
-	list<string>::iterator iter;
+	Move move;
+	list<Move> Listtoprint;
+	list<Move>::iterator iter;
 
-	Mcts mcts = Mcts(bitboard, 5, 1, 1000, 10);
+	TicTacToe* game = new TicTacToe();
+
+	Mcts mcts = Mcts(game, bitboard, 1, 1, 1000, 10);
 	move = mcts.GetBestMove();
+	mcts.print_tree(2);
 	mcts.movePlayed(move);
 	cout << "chosen move by MCTS : " << move << endl;
 	cout << endl;
-	mcts.print_tree(1);
 
-	TicTacToe::play(move, Bb);
+	game->play(move, Bb);
 
 
 	while (result == 0)
 	{
-		TicTacToe::diplayBoard(Bb);
-		Listtoprint = TicTacToe::listPossibleMoves(Bb);
+		game->diplayBoard(Bb);
+		Listtoprint = game->listPossibleMoves(Bb);
 		cout << "possible moves : ";
 		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
 			cout << *iter << " ";
@@ -52,14 +56,14 @@ int main(int argc, char const *argv[])
 		else
 		{
 			move = mcts.GetBestMove();
-			mcts.print_tree(1);
+			mcts.print_tree(2);
 		}
 		mcts.movePlayed(move);
-		TicTacToe::play(move, Bb);
-		result = TicTacToe::end(Bb);
+		game->play(move, Bb);
+		result = game->end(Bb);
 	}
 	cout << endl;
-	TicTacToe::diplayBoard(Bb);
+	game->diplayBoard(Bb);
 
 	if (result == 1)
 	{
@@ -73,5 +77,5 @@ int main(int argc, char const *argv[])
 	{
 		cout << "Board full detected : TIE." << endl;
 	}
-	_sleep(4000);
+	std::this_thread::sleep_for(std::chrono::milliseconds(2000));;
 }

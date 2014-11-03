@@ -7,22 +7,20 @@
  *
  */
 #pragma once
-#include "Bitboard.h"
-#include <string>
-#include <list>
 #include <algorithm>
+#include "TheGame.h"
+#include "Random.h"
 
 using std::string;
 using std::list;
 
-class TicTacToe
+class TicTacToe : public TheGame
 {
 
-	// NOT USED
-	TicTacToe();
-	~TicTacToe();
-
 public:
+	TicTacToe() {}
+
+	virtual ~TicTacToe() {}
 
 	/**
 	 * \fn end
@@ -33,7 +31,7 @@ public:
 	 * returns 0 if the game hasn't ended yet
 	 * \return integer corresponding to the state of the Board
 	 */
-	static int end(const Bitboard& board);
+	virtual int end(const Bitboard& board) override;
 
 	/**
 	* \fn play
@@ -43,7 +41,7 @@ public:
 	* \param board board to be used to play
 	* \return the Bitboard after the play
 	*/
-	static void play(string position, Bitboard& board);
+	virtual void play(Move& position, Bitboard& board) override;
 
 	/**
 	 * \fn diplayBoard
@@ -51,7 +49,7 @@ public:
 	 * 
 	 * \param board Bitboard to be displayed
 	 */
-	static void diplayBoard(const Bitboard& board);
+	virtual void diplayBoard(const Bitboard& board) override;
 
 	/**
 	* \fn listPossibleMoves
@@ -60,7 +58,9 @@ public:
 	* \param board Bitboard to be looked at
 	* \return the list of the possible moves
 	*/
-	static list<string> listPossibleMoves(const Bitboard& board);
+	virtual list<Move> listPossibleMoves(const Bitboard& board) override;
 
+	virtual int playRandomMoves(Bitboard& board) override;
 };
+
 

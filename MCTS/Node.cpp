@@ -3,6 +3,7 @@
 //#define DEBUG_NODE
 
 using std::max_element;
+using std::min_element;
 using std::max;
 
 namespace mcts {
@@ -14,7 +15,7 @@ namespace mcts {
 		_uct = 0;
 		_state = Bitboard(3,3, 1);
 		_terminal = -1;
-		_move = "";
+		_move = Move();
 #ifdef DEBUG_NODE
 		cout << "N*" << this << " created by default" << endl;
 #endif //DEBUG_NODE
@@ -26,7 +27,7 @@ namespace mcts {
 		_wins = 0;
 		_uct = 0;
 		_terminal = -1;
-		_move = "";
+		_move = Move();
 #ifdef DEBUG_NODE
 		cout << "N*" << this << " created with B*" << &state << endl;
 #endif //DEBUG_NODE
@@ -39,14 +40,14 @@ namespace mcts {
 		_uct = 0;
 		_state = Bitboard(3, 3, 1);
 		_terminal = -1;
-		_move = "";
+		_move = Move();
 		_parents.push_front(p_parent);
 #ifdef DEBUG_NODE
 		cout << "N*" << this << " created with P*" << p_parent << endl;
 #endif //DEBUG_NODE
 	}
 
-	Node::Node(Node* p_parent, Bitboard state, string move) : _state(state), _move(move)
+	Node::Node(Node* p_parent, Bitboard state, Move move) : _state(state), _move(move)
 	{
 		_visits = 0;
 		_wins = 0;
@@ -55,13 +56,6 @@ namespace mcts {
 		_parents.push_front(p_parent);
 #ifdef DEBUG_NODE
 		cout << "N*" << this << " created with P*" << p_parent << ", B*" << &state << " and move : " << move << endl;
-#endif //DEBUG_NODE
-	}
-
-	Node::~Node() // need to add a function to back propagate a destruction to parents => case to go down the tree to create a new root
-	{
-#ifdef DEBUG_NODE
-		cout << "destruction of N*" << this << endl;
 #endif //DEBUG_NODE
 	}
 
@@ -90,20 +84,18 @@ namespace mcts {
 					(*itL)->_parents.erase(itL2);
 				}
 			}
+#ifdef DEBUG_NODE
 			else
 			{
-				// MANDATORY : if we don't clear this, when we run update, a pointer to nothing will be called => crash
-				(*itL)->_parents.clear();
-#ifdef DEBUG_NODE
 				cout << "N*" << exception << "is safe" << endl;
-#endif //DEBUG_NODE
 			}
+#endif //DEBUG_NODE
 		}
 		_parents.clear();
 		_children.clear();
 	}
 
-	void Node::addChild(Bitboard& state, string move, int terminal){
+	void Node::addChild(Bitboard& state, Move& move, int terminal){
 		Node* node = new Node(this, state, move);
 		node->setTerminal(terminal);
 		_children.push_back(node);
@@ -133,14 +125,24 @@ namespace mcts {
 		return (*a)._uct < (*b)._uct;
 	}
 
-	Node* Node::select_child_UCT(){
+	Node* Node::select_child_UCT(int player){
 
 		list<Node*>::iterator itL;
 		for (itL = _children.begin(); itL != _children.end(); ++itL)
 		{
 			(*itL)->UCT(max(_visits,1));
 		}
-		itL = max_element(_children.begin(), _children.end(), compare);
+
+
+		if (player == _state.getPlayer())
+		{
+
+			itL = max_element(_children.begin(), _children.end(), compare);
+		}
+		else
+		{
+			itL = min_element(_children.begin(), _children.end(), compare);
+		}
 		return *itL;
 	}
 
