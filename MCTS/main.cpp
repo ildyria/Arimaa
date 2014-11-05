@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 
 	TicTacToe* game = new TicTacToe();
 
-	Mcts mcts = Mcts(game, bitboard, 1, 1, 1000, 10);
+	Mcts mcts = Mcts(game, bitboard, 4, 1, 1000, 10);
 	move = mcts.GetBestMove();
 	mcts.print_tree(2);
 	mcts.movePlayed(move);

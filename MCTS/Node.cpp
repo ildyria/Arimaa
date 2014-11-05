@@ -101,12 +101,17 @@ namespace mcts {
 		_children.push_back(node);
 	};
 
-	void Node::update(bool win){
+	void Node::update(int win){
 		list<Node*>::iterator itL;
-		if (win)
+		if (win == 1)
 		{
 			_wins += 1;
 		}
+		elseif(win == 3)
+		{
+			_wins += 0.5;
+		}
+
 		_visits += 1;
 #ifdef DEBUG_NODE
 		cout << "update N*" << this << ", " << _move << " : " << win << " = " << _wins << " & " << _visits << endl;

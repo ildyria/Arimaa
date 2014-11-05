@@ -73,7 +73,7 @@ namespace mcts{
 			Bitboard* Bb = (node->getState()).clone();
 			nodet = _game->playRandomMoves(*Bb);
 			delete Bb;
-			node->update(nodet == _IAPlayer);
+			node->update(nodet);
 		}
 	}
 
@@ -108,34 +108,34 @@ namespace mcts{
 				playRandom(node);
 			}
 		}
-		elseif(nodet == 1) // victory of first player
-		{
+//		elseif(nodet == 1) // victory of first player
+//		{
 #ifdef DISPLAY_MCTS
 			cout << endl;
 			TicTacToe::diplayBoard(node->getState());
 			cout << "not implemented nodet 1 & 2 : " << nodet << endl;
 #endif // DISPLAY_MCTS
 			// it's a WIN SO WE NEED TO PLAY THIS
-			node->update(nodet == _IAPlayer);
+//			node->update(nodet);
 		//	node->forceSetUCT(10);
-		}
-		elseif(nodet == 2) // tie
-		{
+//		}
+//		elseif(nodet == 2) // tie
+//		{
 			// it's a LOSS : WE MUST NOT PLAY THE LAST MOVE
-			node->update(nodet == _IAPlayer);
+//			node->update(nodet);
 			/*ListParents = node->getParents();
 			for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
 			{
 				(*iter)->forceSetUCT(-1);
 			}*/
-		}
-		elseif(nodet == 3) // tie
+//		}
+		elseif(nodet > 0) // tie
 		{
 #ifdef DISPLAY_MCTS
 			cout << endl;
 			cout << "not implemented yet : nodet 3" << endl;
 #endif // DISPLAY_MCTS
-			node->update(nodet == _IAPlayer);
+			node->update(nodet);
 		}
 		else
 		{

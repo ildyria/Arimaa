@@ -35,7 +35,7 @@ namespace mcts
 	class Node
 	{
 		int _visits;
-		int _wins;
+		float _wins;
 		int _terminal;
 		double _uct;
 		Bitboard _state;
@@ -222,7 +222,7 @@ namespace mcts
 		 * 
 		 * \param win true if last simulation was a win, false if last simulation was a lost
 		 */
-		void update(bool win);
+		void update(int win);
 
 		/**
 		 * \fn print_tree
