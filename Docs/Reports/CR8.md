@@ -1,4 +1,4 @@
-#Project Arimaa – CR8 : Wednesday, November 5th
+﻿#Project Arimaa – CR8 : Wednesday, November 5th
 Presents : Everyone, with Christian Raymond, and Nikos Parlavantzas
 ##Order of business :
 1. Parallelization method implementation (Mikail)
@@ -43,7 +43,8 @@ We will represent pieces by binary codes to go faster analyzing it (a map is a g
 
 ##Planification
 Task		|						Responsible	|	Deadline
------------- | ------------- | --------OpenMP report part							Benoit	and Baptiste	11/19
+------------ | ------------- | --------
+OpenMP report part					 | 		Benoit	and Baptiste | 	11/19
 MCTS report part					 | 		Benoit		 | 	11/19
 MPI report part						 | 	Mikail		 | 	11/19
 Parallelization method report part		 | 			Mikail		 | 	11/19
