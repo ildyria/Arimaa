@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MCTS
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">MCTS Algorithm applied to TicTacToe</div>
   </td>
  </tr>
  </tbody>
@@ -63,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -104,23 +103,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad02b46adb483edd120569db71cb4d3f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a> ()</td></tr>
 <tr class="memdesc:ad02b46adb483edd120569db71cb4d3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented.  <a href="#ad02b46adb483edd120569db71cb4d3f7">More...</a><br /></td></tr>
 <tr class="separator:ad02b46adb483edd120569db71cb4d3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66cebd7955bee63b0312658782172fb1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66cebd7955bee63b0312658782172fb1"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Mcts</b> (<a class="el" href="class_bitboard.html">Bitboard</a> Bb, int depth=4, int IAPlayer=1, int simulR=100, int simulL=10)</td></tr>
-<tr class="separator:a66cebd7955bee63b0312658782172fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada746c82f9fa57b87faaff6f26cf8b6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada746c82f9fa57b87faaff6f26cf8b6d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Mcts</b> (<a class="el" href="class_the_game.html">TheGame</a> *game, <a class="el" href="class_bitboard.html">Bitboard</a> Bb, int depth=4, int timelimit=5000, int simulR=1000, int simulL=10)</td></tr>
+<tr class="separator:ada746c82f9fa57b87faaff6f26cf8b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb758831416d24b400def54eeda53122"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb758831416d24b400def54eeda53122"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">~Mcts</a> ()</td></tr>
 <tr class="memdesc:afb758831416d24b400def54eeda53122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented. <br /></td></tr>
 <tr class="separator:afb758831416d24b400def54eeda53122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83371bef8912ea4785924303b16f8670"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a83371bef8912ea4785924303b16f8670">movePlayed</a> (string move)</td></tr>
-<tr class="memdesc:a83371bef8912ea4785924303b16f8670"><td class="mdescLeft">&#160;</td><td class="mdescRight">play a move on the tree, prune all the node are useless.  <a href="#a83371bef8912ea4785924303b16f8670">More...</a><br /></td></tr>
-<tr class="separator:a83371bef8912ea4785924303b16f8670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#ac35bbdb3901e141afb1fa59fe27e09ef">movePlayed</a> (<a class="el" href="class_move.html">Move</a> &amp;move)</td></tr>
+<tr class="memdesc:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">play a move on the tree, prune all the node that are useless.  <a href="#ac35bbdb3901e141afb1fa59fe27e09ef">More...</a><br /></td></tr>
+<tr class="separator:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52f93c0ecdf18f8e1755c7d2007923b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">UpdateNode</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *node)</td></tr>
 <tr class="separator:a52f93c0ecdf18f8e1755c7d2007923b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9ac3cc5372f4fc2617fcb0aa44b278e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9ac3cc5372f4fc2617fcb0aa44b278e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e">UpdateRoot</a> ()</td></tr>
+<tr class="memdesc:aa9ac3cc5372f4fc2617fcb0aa44b278e"><td class="mdescLeft">&#160;</td><td class="mdescRight">calls UpdateNode(_root) <br /></td></tr>
+<tr class="separator:aa9ac3cc5372f4fc2617fcb0aa44b278e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63715fdb2759d46eb8627f18e80ab7dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">playRandom</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *node)</td></tr>
 <tr class="separator:a63715fdb2759d46eb8627f18e80ab7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc027fc091dcde7913b78190b12b3bc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#adc027fc091dcde7913b78190b12b3bc1">explore</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *node, int depth)</td></tr>
-<tr class="separator:adc027fc091dcde7913b78190b12b3bc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30f80b3581b1d967f2fdcc651e7773b8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">GetBestMove</a> ()</td></tr>
+<tr class="memitem:a4c321c7400f59f9ac35cb67ed770b65e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a4c321c7400f59f9ac35cb67ed770b65e">explore</a> ()</td></tr>
+<tr class="separator:a4c321c7400f59f9ac35cb67ed770b65e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f80b3581b1d967f2fdcc651e7773b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">GetBestMove</a> ()</td></tr>
 <tr class="memdesc:a30f80b3581b1d967f2fdcc651e7773b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">main function of the algorithm, run the exploration, simulations and returns the best move given the results  <a href="#a30f80b3581b1d967f2fdcc651e7773b8">More...</a><br /></td></tr>
 <tr class="separator:a30f80b3581b1d967f2fdcc651e7773b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ba60b877c5c772b3a2310a99f053ee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">print_tree</a> (int depth=1)</td></tr>
@@ -129,7 +132,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classmcts_1_1_mcts.html" title="Mcts class. ">Mcts</a> class. </p>
-<p>Node* _root = adress of the node considered as the root of the tree. int _depth = depth to explore before running random simulations. int _simulationPerRoot = number of simulations to run per Root. int _simulationPerLeaves = number of simulations to run per Leaves. int _IAPlayer = player played by the algorithm (1 or 2). </p>
+<p>Node* _root = adress of the node considered as the root of the tree. int _depth = depth to explore before running random simulations. int _timeLimitsimulationPerRoot = time limit in ms int _simulationPerRoot = number of simulations to run per Root. int _simulationPerLeaves = number of simulations to run per Leaves. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad02b46adb483edd120569db71cb4d3f7"></a>
 <div class="memitem">
@@ -150,7 +153,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">Bb</td><td>BitBoard for the root </td></tr>
     <tr><td class="paramname">depth</td><td>Depth to search, 4 by default </td></tr>
-    <tr><td class="paramname">IAPlayer</td><td>int corresponding to the player : 1 or 2, 1 by default </td></tr>
+    <tr><td class="paramname">timelimit</td><td>maximum time to run the simulation </td></tr>
     <tr><td class="paramname">simulR</td><td>Number of simulations to be run starting from the root, 100 by default. =&gt; OpenMP ? </td></tr>
     <tr><td class="paramname">simulL</td><td>Number of random simulations to be run at the end of the search tree, 10 by default. =&gt; OpenAcc ? </td></tr>
   </table>
@@ -160,40 +163,22 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="adc027fc091dcde7913b78190b12b3bc1"></a>
+<a class="anchor" id="a4c321c7400f59f9ac35cb67ed770b65e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">mcts::Mcts::explore </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>node</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>depth</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>if depth is &gt; 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1. if depth = 0, run playRandom if the node is a terminal, then update the stats :</p><ul>
 <li>set uct to 10 if it's a win</li>
-<li>set parent's uct to -1 if it's a loss (we must never go to that node)</li>
+<li>set parent's uct to -1 if it's a loss (we must never go to that node) </li>
 </ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>node we are exploring </td></tr>
-    <tr><td class="paramname">depth</td><td>depth to search for possibilities </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -215,21 +200,21 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a83371bef8912ea4785924303b16f8670"></a>
+<a class="anchor" id="ac35bbdb3901e141afb1fa59fe27e09ef"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">mcts::Mcts::movePlayed </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
+          <td class="paramtype"><a class="el" href="class_move.html">Move</a> &amp;&#160;</td>
           <td class="paramname"><em>move</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>play a move on the tree, prune all the node are useless. </p>
+<p>play a move on the tree, prune all the node that are useless. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">move</td><td>move played </td></tr>
@@ -319,7 +304,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 15:40:00 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

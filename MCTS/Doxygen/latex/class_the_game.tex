@@ -1,33 +1,140 @@
 \hypertarget{class_the_game}{\section{The\+Game Class Reference}
 \label{class_the_game}\index{The\+Game@{The\+Game}}
 }
-\subsection*{Static Public Member Functions}
+Inheritance diagram for The\+Game\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_the_game}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_the_game_aa6976d3d476e693197e17195f183c7e1}{static void {\bfseries set\+Game} (int game=0)}\label{class_the_game_aa6976d3d476e693197e17195f183c7e1}
+virtual int \hyperlink{class_the_game_a8dbf9909b671db1c52e3761d7f4944fe}{end} (const \hyperlink{class_bitboard}{Bitboard} \&board)=0
+\begin{DoxyCompactList}\small\item\em check if the game end \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_the_game_aba6126c4af547c9a14f17e65f6f411fd}{play} (\hyperlink{class_move}{Move} \&position, \hyperlink{class_bitboard}{Bitboard} \&board)=0
+\begin{DoxyCompactList}\small\item\em simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move \end{DoxyCompactList}\item 
+virtual void \hyperlink{class_the_game_a44c8de21089f20d39a3bebc36096e3d9}{diplay\+Board} (const \hyperlink{class_bitboard}{Bitboard} \&board)=0
+\begin{DoxyCompactList}\small\item\em display the board of the given \hyperlink{class_bitboard}{Bitboard} \end{DoxyCompactList}\item 
+virtual list$<$ \hyperlink{class_move}{Move} $>$ \hyperlink{class_the_game_a2c1afcfd6517881edcff6ae98873317a}{list\+Possible\+Moves} (const \hyperlink{class_bitboard}{Bitboard} \&board)=0
+\begin{DoxyCompactList}\small\item\em return a list of all possible moves given a board \end{DoxyCompactList}\item 
+virtual int \hyperlink{class_the_game_a1c9d4372ac6b87f641464c9cd211c177}{play\+Random\+Moves} (\hyperlink{class_bitboard}{Bitboard} \&board)=0
+\begin{DoxyCompactList}\small\item\em play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_the_game_a44c8de21089f20d39a3bebc36096e3d9}{\index{The\+Game@{The\+Game}!diplay\+Board@{diplay\+Board}}
+\index{diplay\+Board@{diplay\+Board}!The\+Game@{The\+Game}}
+\subsubsection[{diplay\+Board}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::diplay\+Board (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_the_game_a44c8de21089f20d39a3bebc36096e3d9}
+
+
+display the board of the given \hyperlink{class_bitboard}{Bitboard} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \hyperlink{class_bitboard}{Bitboard} to be displayed \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{class_tic_tac_toe_af01dee0e29853d8abc30a6a2818a844e}{Tic\+Tac\+Toe}.
+
+\hypertarget{class_the_game_a8dbf9909b671db1c52e3761d7f4944fe}{\index{The\+Game@{The\+Game}!end@{end}}
+\index{end@{end}!The\+Game@{The\+Game}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::end (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_the_game_a8dbf9909b671db1c52e3761d7f4944fe}
+
+
+check if the game end 
+
+returns 1 if player 1 wins returns 2 if player 2 wins returns 3 if the game is a tie returns 0 if the game hasn't ended yet \begin{DoxyReturn}{Returns}
+integer corresponding to the state of the Board 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_tic_tac_toe_aae44f2f688f283dfbf8242e162f27395}{Tic\+Tac\+Toe}.
+
+\hypertarget{class_the_game_a2c1afcfd6517881edcff6ae98873317a}{\index{The\+Game@{The\+Game}!list\+Possible\+Moves@{list\+Possible\+Moves}}
+\index{list\+Possible\+Moves@{list\+Possible\+Moves}!The\+Game@{The\+Game}}
+\subsubsection[{list\+Possible\+Moves}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::list\+Possible\+Moves (
+\begin{DoxyParamCaption}
+\item[{const {\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_the_game_a2c1afcfd6517881edcff6ae98873317a}
+
+
+return a list of all possible moves given a board 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \hyperlink{class_bitboard}{Bitboard} to be looked at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the list of the possible moves 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_tic_tac_toe_a591b5fc3b4543f3f9b6d007be5c6290e}{Tic\+Tac\+Toe}.
+
+\hypertarget{class_the_game_aba6126c4af547c9a14f17e65f6f411fd}{\index{The\+Game@{The\+Game}!play@{play}}
+\index{play@{play}!The\+Game@{The\+Game}}
+\subsubsection[{play}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::play (
+\begin{DoxyParamCaption}
+\item[{{\bf Move} \&}]{position, }
+\item[{{\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_the_game_aba6126c4af547c9a14f17e65f6f411fd}
+
+
+simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & move to be play \\
+\hline
+{\em board} & board to be used to play \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \hyperlink{class_bitboard}{Bitboard} after the play 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_tic_tac_toe_a28e96db9801000c63dd48099a3ce338b}{Tic\+Tac\+Toe}.
+
+\hypertarget{class_the_game_a1c9d4372ac6b87f641464c9cd211c177}{\index{The\+Game@{The\+Game}!play\+Random\+Moves@{play\+Random\+Moves}}
+\index{play\+Random\+Moves@{play\+Random\+Moves}!The\+Game@{The\+Game}}
+\subsubsection[{play\+Random\+Moves}]{\setlength{\rightskip}{0pt plus 5cm}The\+Game\+::play\+Random\+Moves (
+\begin{DoxyParamCaption}
+\item[{{\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_the_game_a1c9d4372ac6b87f641464c9cd211c177}
+
+
+play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \hyperlink{class_bitboard}{Bitboard} to be looked at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+winner of the current game 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{class_tic_tac_toe_a485bf2fd5cc0dd3e6da794218d40e759}{Tic\+Tac\+Toe}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_the_game_ad6912df0b7ba94d1e4fae858bcbe8c5f}{static int {\bfseries end} (const \hyperlink{class_bitboard}{Bitboard} \&board)}\label{class_the_game_ad6912df0b7ba94d1e4fae858bcbe8c5f}
-
-\item 
-\hypertarget{class_the_game_a069ebae2348c1915ef06f5914f89de54}{static void {\bfseries play} (string position, \hyperlink{class_bitboard}{Bitboard} $\ast$board)}\label{class_the_game_a069ebae2348c1915ef06f5914f89de54}
-
-\item 
-\hypertarget{class_the_game_a870712ba689cf1c3ce66b9ed709b8bb6}{static void {\bfseries diplay\+Board} (const \hyperlink{class_bitboard}{Bitboard} \&board)}\label{class_the_game_a870712ba689cf1c3ce66b9ed709b8bb6}
-
-\item 
-\hypertarget{class_the_game_a5208b9a89c886eea0efd88670e1a45b5}{static list$<$ string $>$ {\bfseries list\+Possible\+Moves} (const \hyperlink{class_bitboard}{Bitboard} \&board)}\label{class_the_game_a5208b9a89c886eea0efd88670e1a45b5}
-
-\end{DoxyCompactItemize}
-\subsection*{Static Public Attributes}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{class_the_game_ab9f0fa21c6805ac4963cb79633f02c98}{static int {\bfseries \+\_\+game} = 0}\label{class_the_game_ab9f0fa21c6805ac4963cb79633f02c98}
-
-\end{DoxyCompactItemize}
-
-
-The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
-\item 
-D\+:/\+Arimaa/\+M\+C\+T\+S/\hyperlink{_the_game_8h}{The\+Game.\+h}\item 
-D\+:/\+Arimaa/\+M\+C\+T\+S/The\+Game.\+cpp\end{DoxyCompactItemize}
+D\+:/\+Arimaa/\+M\+C\+T\+S/\hyperlink{_the_game_8h}{The\+Game.\+h}\end{DoxyCompactItemize}

@@ -18,39 +18,39 @@
 \hypertarget{class_bitboard_a8c1ae6b5f4b54c6118e44c503238f3e4}{{\bfseries Bitboard} (int size, int n, int toplay)}\label{class_bitboard_a8c1ae6b5f4b54c6118e44c503238f3e4}
 
 \item 
-\hypertarget{class_bitboard_ad2688925653206f405e9e456c87a3142}{\hyperlink{class_bitboard_ad2688925653206f405e9e456c87a3142}{$\sim$\+Bitboard} ()}\label{class_bitboard_ad2688925653206f405e9e456c87a3142}
+\hypertarget{class_bitboard_ad2688925653206f405e9e456c87a3142}{virtual \hyperlink{class_bitboard_ad2688925653206f405e9e456c87a3142}{$\sim$\+Bitboard} ()}\label{class_bitboard_ad2688925653206f405e9e456c87a3142}
 
 \begin{DoxyCompactList}\small\item\em Destructor of the class. \end{DoxyCompactList}\item 
 \hypertarget{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}{\hyperlink{class_bitboard}{Bitboard} $\ast$ \hyperlink{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}{clone} () const }\label{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}
 
 \begin{DoxyCompactList}\small\item\em clone a \hyperlink{class_bitboard}{Bitboard} \end{DoxyCompactList}\item 
-\hypertarget{class_bitboard_a389593cc6921d71f5d9b15d551d3f303}{int {\bfseries get\+Bit} (int n, int x, int y) const }\label{class_bitboard_a389593cc6921d71f5d9b15d551d3f303}
+\hypertarget{class_bitboard_a389593cc6921d71f5d9b15d551d3f303}{virtual int {\bfseries get\+Bit} (int n, int x, int y) const }\label{class_bitboard_a389593cc6921d71f5d9b15d551d3f303}
 
 \item 
-\hypertarget{class_bitboard_a4f966e7856d6ca00e2f3ff9c60b84fa1}{int {\bfseries get\+Bit} (int n, int pos) const }\label{class_bitboard_a4f966e7856d6ca00e2f3ff9c60b84fa1}
+\hypertarget{class_bitboard_a4f966e7856d6ca00e2f3ff9c60b84fa1}{virtual int {\bfseries get\+Bit} (int n, int pos) const }\label{class_bitboard_a4f966e7856d6ca00e2f3ff9c60b84fa1}
 
 \item 
-\hypertarget{class_bitboard_ac4e0310c5f4358c6a2324188c331baa6}{void {\bfseries set\+Bit} (int n, int x, int y)}\label{class_bitboard_ac4e0310c5f4358c6a2324188c331baa6}
+\hypertarget{class_bitboard_ac4e0310c5f4358c6a2324188c331baa6}{virtual void {\bfseries set\+Bit} (int n, int x, int y)}\label{class_bitboard_ac4e0310c5f4358c6a2324188c331baa6}
 
 \item 
-\hypertarget{class_bitboard_a719be7dc22698d1d6d9138ac9875328e}{void {\bfseries set\+Bit} (int n, int pos)}\label{class_bitboard_a719be7dc22698d1d6d9138ac9875328e}
+\hypertarget{class_bitboard_a719be7dc22698d1d6d9138ac9875328e}{virtual void {\bfseries set\+Bit} (int n, int pos)}\label{class_bitboard_a719be7dc22698d1d6d9138ac9875328e}
 
 \item 
-\hypertarget{class_bitboard_a682fc651de10664e2d0c6583609897c1}{void {\bfseries clear\+Bit} (int n, int x, int y)}\label{class_bitboard_a682fc651de10664e2d0c6583609897c1}
+\hypertarget{class_bitboard_a682fc651de10664e2d0c6583609897c1}{virtual void {\bfseries clear\+Bit} (int n, int x, int y)}\label{class_bitboard_a682fc651de10664e2d0c6583609897c1}
 
 \item 
-\hypertarget{class_bitboard_a54b8503679ef35d587a6624fd910d934}{void {\bfseries clear\+Bit} (int n, int pos)}\label{class_bitboard_a54b8503679ef35d587a6624fd910d934}
+\hypertarget{class_bitboard_a54b8503679ef35d587a6624fd910d934}{virtual void {\bfseries clear\+Bit} (int n, int pos)}\label{class_bitboard_a54b8503679ef35d587a6624fd910d934}
 
 \item 
-unsigned long \hyperlink{class_bitboard_a4d75c6baadfb64ab2a0d39d4256ecd81}{get\+Board} (int n) const 
+virtual unsigned long \hyperlink{class_bitboard_a4d75c6baadfb64ab2a0d39d4256ecd81}{get\+Board} (int n) const 
 \begin{DoxyCompactList}\small\item\em return the given board \end{DoxyCompactList}\item 
-list$<$ int $>$ \hyperlink{class_bitboard_add99aaac08d1926daf8836165cbba82e}{get\+Empty} (int n) const 
+virtual list$<$ int $>$ \hyperlink{class_bitboard_add99aaac08d1926daf8836165cbba82e}{get\+Empty} (int n) const 
 \begin{DoxyCompactList}\small\item\em list 0 bits of a given board \end{DoxyCompactList}\item 
-list$<$ int $>$ \hyperlink{class_bitboard_af334925201c192ed13760fab4341bceb}{get\+Occupied} (int n)
+virtual list$<$ int $>$ \hyperlink{class_bitboard_af334925201c192ed13760fab4341bceb}{get\+Occupied} (int n)
 \begin{DoxyCompactList}\small\item\em list 1 bits of a given board \end{DoxyCompactList}\item 
-int \hyperlink{class_bitboard_a93c3e91c8bce5425b171bfd698cad6dd}{get\+Player} () const 
+virtual int \hyperlink{class_bitboard_a93c3e91c8bce5425b171bfd698cad6dd}{get\+Player} () const 
 \begin{DoxyCompactList}\small\item\em return the player to play \end{DoxyCompactList}\item 
-\hypertarget{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}{void \hyperlink{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}{play} ()}\label{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}
+\hypertarget{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}{virtual void \hyperlink{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}{play} ()}\label{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}
 
 \begin{DoxyCompactList}\small\item\em swap players \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -90,7 +90,7 @@ Default constructor.
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_bitboard_a4d75c6baadfb64ab2a0d39d4256ecd81}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_bitboard_a4d75c6baadfb64ab2a0d39d4256ecd81}
 
 
 return the given board 
@@ -109,7 +109,7 @@ board number n
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
-) const}}\label{class_bitboard_add99aaac08d1926daf8836165cbba82e}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_bitboard_add99aaac08d1926daf8836165cbba82e}
 
 
 list 0 bits of a given board 
@@ -128,7 +128,7 @@ list of the empty positions (0 to size² -\/1)
 \begin{DoxyParamCaption}
 \item[{int}]{n}
 \end{DoxyParamCaption}
-)}}\label{class_bitboard_af334925201c192ed13760fab4341bceb}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_bitboard_af334925201c192ed13760fab4341bceb}
 
 
 list 1 bits of a given board 
@@ -147,7 +147,7 @@ list of the set positions (0 to size² -\/1)
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_bitboard_a93c3e91c8bce5425b171bfd698cad6dd}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_bitboard_a93c3e91c8bce5425b171bfd698cad6dd}
 
 
 return the player to play 

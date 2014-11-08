@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MCTS
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">MCTS Algorithm applied to TicTacToe</div>
   </td>
  </tr>
  </tbody>
@@ -63,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -89,16 +88,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_the_game.html">TheGame</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>_game</b> (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>diplayBoard</b>(const Bitboard &amp;board) (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>end</b>(const Bitboard &amp;board) (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>listPossibleMoves</b>(const Bitboard &amp;board) (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>play</b>(string position, Bitboard *board) (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">static</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>setGame</b>(int game=0) (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_the_game.html#a44c8de21089f20d39a3bebc36096e3d9">diplayBoard</a>(const Bitboard &amp;board)=0</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_the_game.html#a8dbf9909b671db1c52e3761d7f4944fe">end</a>(const Bitboard &amp;board)=0</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_the_game.html#a2c1afcfd6517881edcff6ae98873317a">listPossibleMoves</a>(const Bitboard &amp;board)=0</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_the_game.html#aba6126c4af547c9a14f17e65f6f411fd">play</a>(Move &amp;position, Bitboard &amp;board)=0</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_the_game.html#a1c9d4372ac6b87f641464c9cd211c177">playRandomMoves</a>(Bitboard &amp;board)=0</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">pure virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~TheGame</b>() (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 15:40:00 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 8 2014 21:35:12 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

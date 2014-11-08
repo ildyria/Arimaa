@@ -156,4 +156,3 @@ int TicTacToe::playRandomMoves(Bitboard& board)
 
 	return nodet;
 }
-

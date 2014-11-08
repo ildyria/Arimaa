@@ -63,6 +63,7 @@ namespace mcts
 		 * \param move move played
 		 */
 		void movePlayed(Move& move);
+
 		/**
 		 * \fn UpdateNode
 		 * \details Update a node :
@@ -75,6 +76,11 @@ namespace mcts
 		 * \return      the state of the board : 0, 1, 2, or 3 .
 		 */
 		int UpdateNode(Node* node);
+
+		/**
+		* \fn UpdateRoot
+		* \brief calls UpdateNode(_root)
+		*/
 		inline void UpdateRoot() { UpdateNode(_root); };
 
 		/**
@@ -92,11 +98,7 @@ namespace mcts
 		 * if the node is a terminal, then update the stats :
 		 * - set uct to 10 if it's a win
 		 * - set parent's uct to -1 if it's a loss (we must never go to that node)
-		 * 
-		 * \param node  node we are exploring
-		 * \param depth depth to search for possibilities
 		 */
-//		void explore(Node* node, int depth);
 		void explore();
 
 		/**

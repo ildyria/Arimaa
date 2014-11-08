@@ -15,21 +15,24 @@
 \item 
 \hyperlink{classmcts_1_1_mcts_ad02b46adb483edd120569db71cb4d3f7}{Mcts} ()
 \begin{DoxyCompactList}\small\item\em Not implemented. \end{DoxyCompactList}\item 
-\hypertarget{classmcts_1_1_mcts_a66cebd7955bee63b0312658782172fb1}{{\bfseries Mcts} (\hyperlink{class_bitboard}{Bitboard} Bb, int depth=4, int I\+A\+Player=1, int simul\+R=100, int simul\+L=10)}\label{classmcts_1_1_mcts_a66cebd7955bee63b0312658782172fb1}
+\hypertarget{classmcts_1_1_mcts_ada746c82f9fa57b87faaff6f26cf8b6d}{{\bfseries Mcts} (\hyperlink{class_the_game}{The\+Game} $\ast$game, \hyperlink{class_bitboard}{Bitboard} Bb, int depth=4, int timelimit=5000, int simul\+R=1000, int simul\+L=10)}\label{classmcts_1_1_mcts_ada746c82f9fa57b87faaff6f26cf8b6d}
 
 \item 
 \hypertarget{classmcts_1_1_mcts_afb758831416d24b400def54eeda53122}{\hyperlink{classmcts_1_1_mcts_afb758831416d24b400def54eeda53122}{$\sim$\+Mcts} ()}\label{classmcts_1_1_mcts_afb758831416d24b400def54eeda53122}
 
 \begin{DoxyCompactList}\small\item\em Not implemented. \end{DoxyCompactList}\item 
-void \hyperlink{classmcts_1_1_mcts_a83371bef8912ea4785924303b16f8670}{move\+Played} (string move)
-\begin{DoxyCompactList}\small\item\em play a move on the tree, prune all the node are useless. \end{DoxyCompactList}\item 
+void \hyperlink{classmcts_1_1_mcts_ac35bbdb3901e141afb1fa59fe27e09ef}{move\+Played} (\hyperlink{class_move}{Move} \&move)
+\begin{DoxyCompactList}\small\item\em play a move on the tree, prune all the node that are useless. \end{DoxyCompactList}\item 
 int \hyperlink{classmcts_1_1_mcts_a52f93c0ecdf18f8e1755c7d2007923b6}{Update\+Node} (\hyperlink{classmcts_1_1_node}{Node} $\ast$node)
 \item 
+\hypertarget{classmcts_1_1_mcts_aa9ac3cc5372f4fc2617fcb0aa44b278e}{void \hyperlink{classmcts_1_1_mcts_aa9ac3cc5372f4fc2617fcb0aa44b278e}{Update\+Root} ()}\label{classmcts_1_1_mcts_aa9ac3cc5372f4fc2617fcb0aa44b278e}
+
+\begin{DoxyCompactList}\small\item\em calls Update\+Node(\+\_\+root) \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_mcts_a63715fdb2759d46eb8627f18e80ab7dd}{play\+Random} (\hyperlink{classmcts_1_1_node}{Node} $\ast$node)
 \item 
-void \hyperlink{classmcts_1_1_mcts_adc027fc091dcde7913b78190b12b3bc1}{explore} (\hyperlink{classmcts_1_1_node}{Node} $\ast$node, int depth)
+void \hyperlink{classmcts_1_1_mcts_a4c321c7400f59f9ac35cb67ed770b65e}{explore} ()
 \item 
-string \hyperlink{classmcts_1_1_mcts_a30f80b3581b1d967f2fdcc651e7773b8}{Get\+Best\+Move} ()
+\hyperlink{class_move}{Move} \hyperlink{classmcts_1_1_mcts_a30f80b3581b1d967f2fdcc651e7773b8}{Get\+Best\+Move} ()
 \begin{DoxyCompactList}\small\item\em main function of the algorithm, run the exploration, simulations and returns the best move given the results \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_mcts_a9ba60b877c5c772b3a2310a99f053ee8}{print\+\_\+tree} (int depth=1)
 \begin{DoxyCompactList}\small\item\em print the tree of M\+C\+T\+S starting from the root with a defined depth \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -38,7 +41,7 @@ void \hyperlink{classmcts_1_1_mcts_a9ba60b877c5c772b3a2310a99f053ee8}{print\+\_\
 \subsection{Detailed Description}
 \hyperlink{classmcts_1_1_mcts}{Mcts} class. 
 
-Node$\ast$ \+\_\+root = adress of the node considered as the root of the tree. int \+\_\+depth = depth to explore before running random simulations. int \+\_\+simulation\+Per\+Root = number of simulations to run per Root. int \+\_\+simulation\+Per\+Leaves = number of simulations to run per Leaves. int \+\_\+\+I\+A\+Player = player played by the algorithm (1 or 2). 
+Node$\ast$ \+\_\+root = adress of the node considered as the root of the tree. int \+\_\+depth = depth to explore before running random simulations. int \+\_\+time\+Limitsimulation\+Per\+Root = time limit in ms int \+\_\+simulation\+Per\+Root = number of simulations to run per Root. int \+\_\+simulation\+Per\+Leaves = number of simulations to run per Leaves. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classmcts_1_1_mcts_ad02b46adb483edd120569db71cb4d3f7}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!Mcts@{Mcts}}
@@ -60,7 +63,7 @@ create a mcts with specifics parameters
 \hline
 {\em depth} & Depth to search, 4 by default \\
 \hline
-{\em I\+A\+Player} & int corresponding to the player \+: 1 or 2, 1 by default \\
+{\em timelimit} & maximum time to run the simulation \\
 \hline
 {\em simul\+R} & Number of simulations to be run starting from the root, 100 by default. =$>$ Open\+M\+P ? \\
 \hline
@@ -70,28 +73,18 @@ create a mcts with specifics parameters
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classmcts_1_1_mcts_adc027fc091dcde7913b78190b12b3bc1}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!explore@{explore}}
+\hypertarget{classmcts_1_1_mcts_a4c321c7400f59f9ac35cb67ed770b65e}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!explore@{explore}}
 \index{explore@{explore}!mcts\+::\+Mcts@{mcts\+::\+Mcts}}
 \subsubsection[{explore}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Mcts\+::explore (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} $\ast$}]{node, }
-\item[{int}]{depth}
+{}
 \end{DoxyParamCaption}
-)}}\label{classmcts_1_1_mcts_adc027fc091dcde7913b78190b12b3bc1}
+)}}\label{classmcts_1_1_mcts_a4c321c7400f59f9ac35cb67ed770b65e}
 if depth is $>$ 0, fetch the possible moves and chose the best using U\+C\+T, and decrease depth by 1. if depth = 0, run play\+Random if the node is a terminal, then update the stats \+:
 \begin{DoxyItemize}
 \item set uct to 10 if it's a win
-\item set parent's uct to -\/1 if it's a loss (we must never go to that node)
-\end{DoxyItemize}
-
-
-\begin{DoxyParams}{Parameters}
-{\em node} & node we are exploring \\
-\hline
-{\em depth} & depth to search for possibilities \\
-\hline
-\end{DoxyParams}
-\hypertarget{classmcts_1_1_mcts_a30f80b3581b1d967f2fdcc651e7773b8}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!Get\+Best\+Move@{Get\+Best\+Move}}
+\item set parent's uct to -\/1 if it's a loss (we must never go to that node) 
+\end{DoxyItemize}\hypertarget{classmcts_1_1_mcts_a30f80b3581b1d967f2fdcc651e7773b8}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!Get\+Best\+Move@{Get\+Best\+Move}}
 \index{Get\+Best\+Move@{Get\+Best\+Move}!mcts\+::\+Mcts@{mcts\+::\+Mcts}}
 \subsubsection[{Get\+Best\+Move}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Mcts\+::\+Get\+Best\+Move (
 \begin{DoxyParamCaption}
@@ -105,16 +98,16 @@ main function of the algorithm, run the exploration, simulations and returns the
 \begin{DoxyReturn}{Returns}
 move chosen by the algorithm 
 \end{DoxyReturn}
-\hypertarget{classmcts_1_1_mcts_a83371bef8912ea4785924303b16f8670}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!move\+Played@{move\+Played}}
+\hypertarget{classmcts_1_1_mcts_ac35bbdb3901e141afb1fa59fe27e09ef}{\index{mcts\+::\+Mcts@{mcts\+::\+Mcts}!move\+Played@{move\+Played}}
 \index{move\+Played@{move\+Played}!mcts\+::\+Mcts@{mcts\+::\+Mcts}}
 \subsubsection[{move\+Played}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Mcts\+::move\+Played (
 \begin{DoxyParamCaption}
-\item[{string}]{move}
+\item[{{\bf Move} \&}]{move}
 \end{DoxyParamCaption}
-)}}\label{classmcts_1_1_mcts_a83371bef8912ea4785924303b16f8670}
+)}}\label{classmcts_1_1_mcts_ac35bbdb3901e141afb1fa59fe27e09ef}
 
 
-play a move on the tree, prune all the node are useless. 
+play a move on the tree, prune all the node that are useless. 
 
 
 \begin{DoxyParams}{Parameters}

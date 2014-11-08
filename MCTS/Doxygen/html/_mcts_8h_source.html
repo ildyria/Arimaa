@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MCTS
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">MCTS Algorithm applied to TicTacToe</div>
   </td>
  </tr>
  </tbody>
@@ -90,60 +88,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_mcts_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_random_8h.html">Random.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_node_8h.html">Node.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_tic_tac_toe_8h.html">TicTacToe.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_node_8h.html">Node.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_the_game_8h.html">TheGame.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;time.h&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">namespace </span>mcts</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classmcts_1_1_mcts.html">   26</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classmcts_1_1_mcts.html">Mcts</a></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="classmcts_1_1_node.html">Node</a>* _root;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">int</span> _depth;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> _simulationPerRoot;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> _simulationPerLeaves;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">int</span> _IAPlayer;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <a class="code" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a>(<a class="code" href="class_bitboard.html">Bitboard</a> Bb, <span class="keywordtype">int</span> depth = 4, <span class="keywordtype">int</span> IAPlayer = 1, <span class="keywordtype">int</span> simulR = 100, <span class="keywordtype">int</span> simulL = 10);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">~Mcts</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#a83371bef8912ea4785924303b16f8670">movePlayed</a>(<span class="keywordtype">string</span> move);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">UpdateNode</a>(<a class="code" href="classmcts_1_1_node.html">Node</a>* node);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">playRandom</a>(<a class="code" href="classmcts_1_1_node.html">Node</a>* node);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#adc027fc091dcde7913b78190b12b3bc1">explore</a>(<a class="code" href="classmcts_1_1_node.html">Node</a>* node, <span class="keywordtype">int</span> depth);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">string</span> <a class="code" href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">GetBestMove</a>();</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">print_tree</a>(<span class="keywordtype">int</span> depth = 1);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    };</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
-<div class="ttc" id="classmcts_1_1_mcts_html_afb758831416d24b400def54eeda53122"><div class="ttname"><a href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">mcts::Mcts::~Mcts</a></div><div class="ttdeci">~Mcts()</div><div class="ttdoc">Not implemented. </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:18</div></div>
-<div class="ttc" id="classmcts_1_1_node_html"><div class="ttname"><a href="classmcts_1_1_node.html">mcts::Node</a></div><div class="ttdoc">Node class. </div><div class="ttdef"><b>Definition:</b> Node.h:34</div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_a63715fdb2759d46eb8627f18e80ab7dd"><div class="ttname"><a href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">mcts::Mcts::playRandom</a></div><div class="ttdeci">void playRandom(Node *node)</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:69</div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_ad02b46adb483edd120569db71cb4d3f7"><div class="ttname"><a href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">mcts::Mcts::Mcts</a></div><div class="ttdeci">Mcts()</div><div class="ttdoc">Not implemented. </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:8</div></div>
-<div class="ttc" id="class_bitboard_html"><div class="ttname"><a href="class_bitboard.html">Bitboard</a></div><div class="ttdoc">Bitboard class. </div><div class="ttdef"><b>Definition:</b> Bitboard.h:32</div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_adc027fc091dcde7913b78190b12b3bc1"><div class="ttname"><a href="classmcts_1_1_mcts.html#adc027fc091dcde7913b78190b12b3bc1">mcts::Mcts::explore</a></div><div class="ttdeci">void explore(Node *node, int depth)</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:105</div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_a30f80b3581b1d967f2fdcc651e7773b8"><div class="ttname"><a href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">mcts::Mcts::GetBestMove</a></div><div class="ttdeci">string GetBestMove()</div><div class="ttdoc">main function of the algorithm, run the exploration, simulations and returns the best move given the ...</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:171</div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_a9ba60b877c5c772b3a2310a99f053ee8"><div class="ttname"><a href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">mcts::Mcts::print_tree</a></div><div class="ttdeci">void print_tree(int depth=1)</div><div class="ttdoc">print the tree of MCTS starting from the root with a defined depth </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:188</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="class_the_game.html">TheGame</a>* _game;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classmcts_1_1_node.html">Node</a>* _root;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">int</span> _depth;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> _timeLimitsimulationPerRoot;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">int</span> _simulationPerRoot;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">int</span> _simulationPerLeaves;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a>(<a class="code" href="class_the_game.html">TheGame</a>* game,<a class="code" href="class_bitboard.html">Bitboard</a> Bb, <span class="keywordtype">int</span> depth = 4, <span class="keywordtype">int</span> timelimit = 5000, <span class="keywordtype">int</span> simulR = 1000, <span class="keywordtype">int</span> simulL = 10);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">   57</a></span>&#160;        <a class="code" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">~Mcts</a>() {}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#ac35bbdb3901e141afb1fa59fe27e09ef">movePlayed</a>(<a class="code" href="class_move.html">Move</a>&amp; move);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">UpdateNode</a>(<a class="code" href="classmcts_1_1_node.html">Node</a>* node);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e">   84</a></span>&#160;        <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e">UpdateRoot</a>() { <a class="code" href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">UpdateNode</a>(_root); };</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">playRandom</a>(<a class="code" href="classmcts_1_1_node.html">Node</a>* node);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#a4c321c7400f59f9ac35cb67ed770b65e">explore</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <a class="code" href="class_move.html">Move</a> <a class="code" href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">GetBestMove</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">print_tree</a>(<span class="keywordtype">int</span> depth = 1);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    };</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="ttc" id="classmcts_1_1_mcts_html_afb758831416d24b400def54eeda53122"><div class="ttname"><a href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">mcts::Mcts::~Mcts</a></div><div class="ttdeci">~Mcts()</div><div class="ttdoc">Not implemented. </div><div class="ttdef"><b>Definition:</b> Mcts.h:57</div></div>
+<div class="ttc" id="classmcts_1_1_node_html"><div class="ttname"><a href="classmcts_1_1_node.html">mcts::Node</a></div><div class="ttdoc">Node class. </div><div class="ttdef"><b>Definition:</b> Node.h:35</div></div>
+<div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:10</div></div>
+<div class="ttc" id="_the_game_8h_html"><div class="ttname"><a href="_the_game_8h.html">TheGame.h</a></div><div class="ttdoc">Define class skelleton for an abstract class (WIP) </div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_a63715fdb2759d46eb8627f18e80ab7dd"><div class="ttname"><a href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">mcts::Mcts::playRandom</a></div><div class="ttdeci">void playRandom(Node *node)</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:72</div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_ad02b46adb483edd120569db71cb4d3f7"><div class="ttname"><a href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">mcts::Mcts::Mcts</a></div><div class="ttdeci">Mcts()</div><div class="ttdoc">Not implemented. </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:9</div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_aa9ac3cc5372f4fc2617fcb0aa44b278e"><div class="ttname"><a href="classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e">mcts::Mcts::UpdateRoot</a></div><div class="ttdeci">void UpdateRoot()</div><div class="ttdoc">calls UpdateNode(_root) </div><div class="ttdef"><b>Definition:</b> Mcts.h:84</div></div>
+<div class="ttc" id="class_bitboard_html"><div class="ttname"><a href="class_bitboard.html">Bitboard</a></div><div class="ttdoc">Bitboard class. </div><div class="ttdef"><b>Definition:</b> Bitboard.h:30</div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_a30f80b3581b1d967f2fdcc651e7773b8"><div class="ttname"><a href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">mcts::Mcts::GetBestMove</a></div><div class="ttdeci">Move GetBestMove()</div><div class="ttdoc">main function of the algorithm, run the exploration, simulations and returns the best move given the ...</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:135</div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_a4c321c7400f59f9ac35cb67ed770b65e"><div class="ttname"><a href="classmcts_1_1_mcts.html#a4c321c7400f59f9ac35cb67ed770b65e">mcts::Mcts::explore</a></div><div class="ttdeci">void explore()</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:89</div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_a9ba60b877c5c772b3a2310a99f053ee8"><div class="ttname"><a href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">mcts::Mcts::print_tree</a></div><div class="ttdeci">void print_tree(int depth=1)</div><div class="ttdoc">print the tree of MCTS starting from the root with a defined depth </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:157</div></div>
 <div class="ttc" id="_node_8h_html"><div class="ttname"><a href="_node_8h.html">Node.h</a></div><div class="ttdoc">Define class Node. </div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_a83371bef8912ea4785924303b16f8670"><div class="ttname"><a href="classmcts_1_1_mcts.html#a83371bef8912ea4785924303b16f8670">mcts::Mcts::movePlayed</a></div><div class="ttdeci">void movePlayed(string move)</div><div class="ttdoc">play a move on the tree, prune all the node are useless. </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:23</div></div>
-<div class="ttc" id="classmcts_1_1_mcts_html_a52f93c0ecdf18f8e1755c7d2007923b6"><div class="ttname"><a href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">mcts::Mcts::UpdateNode</a></div><div class="ttdeci">int UpdateNode(Node *node)</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:40</div></div>
-<div class="ttc" id="_random_8h_html"><div class="ttname"><a href="_random_8h.html">Random.h</a></div><div class="ttdoc">Define singleton Random. </div></div>
-<div class="ttc" id="_tic_tac_toe_8h_html"><div class="ttname"><a href="_tic_tac_toe_8h.html">TicTacToe.h</a></div><div class="ttdoc">Define class TicTacToe. </div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_ac35bbdb3901e141afb1fa59fe27e09ef"><div class="ttname"><a href="classmcts_1_1_mcts.html#ac35bbdb3901e141afb1fa59fe27e09ef">mcts::Mcts::movePlayed</a></div><div class="ttdeci">void movePlayed(Move &amp;move)</div><div class="ttdoc">play a move on the tree, prune all the node that are useless. </div><div class="ttdef"><b>Definition:</b> Mcts.cpp:24</div></div>
+<div class="ttc" id="classmcts_1_1_mcts_html_a52f93c0ecdf18f8e1755c7d2007923b6"><div class="ttname"><a href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">mcts::Mcts::UpdateNode</a></div><div class="ttdeci">int UpdateNode(Node *node)</div><div class="ttdef"><b>Definition:</b> Mcts.cpp:43</div></div>
+<div class="ttc" id="class_the_game_html"><div class="ttname"><a href="class_the_game.html">TheGame</a></div><div class="ttdef"><b>Definition:</b> TheGame.h:17</div></div>
 <div class="ttc" id="classmcts_1_1_mcts_html"><div class="ttname"><a href="classmcts_1_1_mcts.html">mcts::Mcts</a></div><div class="ttdoc">Mcts class. </div><div class="ttdef"><b>Definition:</b> Mcts.h:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 15:40:00 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 8 2014 21:35:10 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -12,7 +12,6 @@
 #include <vector>       // std::vector
 #include <list>			// std::list
 
-//using namespace std;
 using std::vector;
 using std::list;
 using std::cin;

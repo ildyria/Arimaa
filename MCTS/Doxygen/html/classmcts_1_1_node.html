@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MCTS
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">MCTS Algorithm applied to TicTacToe</div>
   </td>
  </tr>
  </tbody>
@@ -63,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -112,9 +111,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac5c6318435fbc51f472c9edf2866dd11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ac5c6318435fbc51f472c9edf2866dd11">Node</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *parent)</td></tr>
 <tr class="memdesc:ac5c6318435fbc51f472c9edf2866dd11"><td class="mdescLeft">&#160;</td><td class="mdescRight">i don't know why i created that function...  <a href="#ac5c6318435fbc51f472c9edf2866dd11">More...</a><br /></td></tr>
 <tr class="separator:ac5c6318435fbc51f472c9edf2866dd11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcd289dc09d8e1db572143abf7ee0d5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#adcd289dc09d8e1db572143abf7ee0d5a">Node</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *parent, <a class="el" href="class_bitboard.html">Bitboard</a> state, string move)</td></tr>
-<tr class="memdesc:adcd289dc09d8e1db572143abf7ee0d5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> with parent as parent and move + <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> after the move played  <a href="#adcd289dc09d8e1db572143abf7ee0d5a">More...</a><br /></td></tr>
-<tr class="separator:adcd289dc09d8e1db572143abf7ee0d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0725206cf1e3806a1570c0c0f4825c18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0725206cf1e3806a1570c0c0f4825c18"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classmcts_1_1_node.html">Node</a> *parent, <a class="el" href="class_bitboard.html">Bitboard</a> state, <a class="el" href="class_move.html">Move</a> move)</td></tr>
+<tr class="separator:a0725206cf1e3806a1570c0c0f4825c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc91ea418dba8fa979b276e7d0a3af58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#acc91ea418dba8fa979b276e7d0a3af58">~Node</a> ()</td></tr>
 <tr class="memdesc:acc91ea418dba8fa979b276e7d0a3af58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of the <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a>.  <a href="#acc91ea418dba8fa979b276e7d0a3af58">More...</a><br /></td></tr>
 <tr class="separator:acc91ea418dba8fa979b276e7d0a3af58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,12 +132,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af2170e0b8de1be9228666b8ef54681f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#af2170e0b8de1be9228666b8ef54681f8">getState</a> ()</td></tr>
 <tr class="memdesc:af2170e0b8de1be9228666b8ef54681f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the childs  <a href="#af2170e0b8de1be9228666b8ef54681f8">More...</a><br /></td></tr>
 <tr class="separator:af2170e0b8de1be9228666b8ef54681f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad17cd9cf5c86f718aa99eb6597750d74"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ad17cd9cf5c86f718aa99eb6597750d74">getMove</a> ()</td></tr>
+<tr class="memitem:ad17cd9cf5c86f718aa99eb6597750d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ad17cd9cf5c86f718aa99eb6597750d74">getMove</a> ()</td></tr>
 <tr class="memdesc:ad17cd9cf5c86f718aa99eb6597750d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the move  <a href="#ad17cd9cf5c86f718aa99eb6597750d74">More...</a><br /></td></tr>
 <tr class="separator:ad17cd9cf5c86f718aa99eb6597750d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06fe80a95c5535f04c1f952b3e687d56"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="classmcts_1_1_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a06fe80a95c5535f04c1f952b3e687d56">getChildren</a> ()</td></tr>
 <tr class="memdesc:a06fe80a95c5535f04c1f952b3e687d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the children  <a href="#a06fe80a95c5535f04c1f952b3e687d56">More...</a><br /></td></tr>
 <tr class="separator:a06fe80a95c5535f04c1f952b3e687d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add60b79e66e67ae93a299d211f06f9c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add60b79e66e67ae93a299d211f06f9c6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#add60b79e66e67ae93a299d211f06f9c6">clearParents</a> ()</td></tr>
+<tr class="memdesc:add60b79e66e67ae93a299d211f06f9c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear the parents' list <br /></td></tr>
+<tr class="separator:add60b79e66e67ae93a299d211f06f9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1670c2fae272a00356b88b6a8d382b9"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="classmcts_1_1_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#aa1670c2fae272a00356b88b6a8d382b9">getParents</a> ()</td></tr>
 <tr class="memdesc:aa1670c2fae272a00356b88b6a8d382b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the parents  <a href="#aa1670c2fae272a00356b88b6a8d382b9">More...</a><br /></td></tr>
 <tr class="separator:aa1670c2fae272a00356b88b6a8d382b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,21 +154,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a077c08375da809ea3e7169e827c93009"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a077c08375da809ea3e7169e827c93009">select_child_UCT</a> ()</td></tr>
 <tr class="memdesc:a077c08375da809ea3e7169e827c93009"><td class="mdescLeft">&#160;</td><td class="mdescRight">fecth the childrens and select the one with the highest UCT  <a href="#a077c08375da809ea3e7169e827c93009">More...</a><br /></td></tr>
 <tr class="separator:a077c08375da809ea3e7169e827c93009"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45a39f5adbbded4245c087a29156a57e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a45a39f5adbbded4245c087a29156a57e">addChild</a> (<a class="el" href="class_bitboard.html">Bitboard</a> &amp;state, string move, int terminal=-1)</td></tr>
-<tr class="memdesc:a45a39f5adbbded4245c087a29156a57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a Child to a node, given his <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> and move played  <a href="#a45a39f5adbbded4245c087a29156a57e">More...</a><br /></td></tr>
-<tr class="separator:a45a39f5adbbded4245c087a29156a57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57447b6e52620751c5ff5d791d857798"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a57447b6e52620751c5ff5d791d857798">update</a> (bool win)</td></tr>
-<tr class="memdesc:a57447b6e52620751c5ff5d791d857798"><td class="mdescLeft">&#160;</td><td class="mdescRight">back propate the results of the last simulation to the parents of the node, update _visits &amp; _wins  <a href="#a57447b6e52620751c5ff5d791d857798">More...</a><br /></td></tr>
-<tr class="separator:a57447b6e52620751c5ff5d791d857798"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecba4d455461ba7966d50729fb920ebf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#aecba4d455461ba7966d50729fb920ebf">select_child_WR</a> ()</td></tr>
+<tr class="memdesc:aecba4d455461ba7966d50729fb920ebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">fecth the childrens and select the one with the highest WR  <a href="#aecba4d455461ba7966d50729fb920ebf">More...</a><br /></td></tr>
+<tr class="separator:aecba4d455461ba7966d50729fb920ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfd6046ffb96472a9058ee88f05fdc61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#abfd6046ffb96472a9058ee88f05fdc61">addChild</a> (<a class="el" href="class_bitboard.html">Bitboard</a> &amp;state, <a class="el" href="class_move.html">Move</a> &amp;move, int terminal=-1)</td></tr>
+<tr class="memdesc:abfd6046ffb96472a9058ee88f05fdc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a Child to a node, given his <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> and move played  <a href="#abfd6046ffb96472a9058ee88f05fdc61">More...</a><br /></td></tr>
+<tr class="separator:abfd6046ffb96472a9058ee88f05fdc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad15ddfec38ddb675920017670dbd92ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ad15ddfec38ddb675920017670dbd92ee">update</a> (int win)</td></tr>
+<tr class="memdesc:ad15ddfec38ddb675920017670dbd92ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">back propate the results of the last simulation to the parents of the node, update _visits &amp; _wins  <a href="#ad15ddfec38ddb675920017670dbd92ee">More...</a><br /></td></tr>
+<tr class="separator:ad15ddfec38ddb675920017670dbd92ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a4c678e7229510df95df9b85b8bdee7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a7a4c678e7229510df95df9b85b8bdee7">print_tree</a> (int numtab, int depth)</td></tr>
 <tr class="memdesc:a7a4c678e7229510df95df9b85b8bdee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">print the sub-tree starting with the current node as a root  <a href="#a7a4c678e7229510df95df9b85b8bdee7">More...</a><br /></td></tr>
 <tr class="separator:a7a4c678e7229510df95df9b85b8bdee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a8903c49cabb4206c7e9b6a9b5a127713"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a8903c49cabb4206c7e9b6a9b5a127713">compare</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *a, <a class="el" href="classmcts_1_1_node.html">Node</a> *b)</td></tr>
-<tr class="memdesc:a8903c49cabb4206c7e9b6a9b5a127713"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare Node* a and <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> *b,  <a href="#a8903c49cabb4206c7e9b6a9b5a127713">More...</a><br /></td></tr>
-<tr class="separator:a8903c49cabb4206c7e9b6a9b5a127713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac02a20d5b1bfe6eae84e70ae21fc61a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac02a20d5b1bfe6eae84e70ae21fc61a0"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b> (<a class="el" href="classmcts_1_1_node.html">Node</a> *a, <a class="el" href="classmcts_1_1_node.html">Node</a> *b)</td></tr>
+<tr class="separator:ac02a20d5b1bfe6eae84e70ae21fc61a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6208d3fe6945797ed60c23c96ad35e97"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a6208d3fe6945797ed60c23c96ad35e97">compareWR</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *a, <a class="el" href="classmcts_1_1_node.html">Node</a> *b)</td></tr>
+<tr class="memdesc:a6208d3fe6945797ed60c23c96ad35e97"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare Node* a and <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> *b,  <a href="#a6208d3fe6945797ed60c23c96ad35e97">More...</a><br /></td></tr>
+<tr class="separator:a6208d3fe6945797ed60c23c96ad35e97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> class. </p>
@@ -204,51 +213,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adcd289dc09d8e1db572143abf7ee0d5a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">mcts::Node::Node </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>p_parent</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a>&#160;</td>
-          <td class="paramname"><em>state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>move</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>create a <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> with parent as parent and move + <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> after the move played </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">parent</td><td>parent of the node </td></tr>
-    <tr><td class="paramname">state</td><td><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> after the move </td></tr>
-    <tr><td class="paramname">move</td><td>move played </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="acc91ea418dba8fa979b276e7d0a3af58"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">mcts::Node::~Node </td>
@@ -257,6 +227,11 @@ Static Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Destructor of the <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a>. </p>
@@ -265,7 +240,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a45a39f5adbbded4245c087a29156a57e"></a>
+<a class="anchor" id="abfd6046ffb96472a9058ee88f05fdc61"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -278,7 +253,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">string&#160;</td>
+          <td class="paramtype"><a class="el" href="class_move.html">Move</a> &amp;&#160;</td>
           <td class="paramname"><em>move</em>, </td>
         </tr>
         <tr>
@@ -306,7 +281,7 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a8903c49cabb4206c7e9b6a9b5a127713"></a>
+<a class="anchor" id="a6208d3fe6945797ed60c23c96ad35e97"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -314,7 +289,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">mcts::Node::compare </td>
+          <td class="memname">mcts::Node::compareWR </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -346,7 +321,7 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if a's uct is greater than b's uct value. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if a's WR is greater than b's WR value. </dd></dl>
 
 </div>
 </div>
@@ -638,12 +613,24 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>fecth the childrens and select the one with the highest UCT </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">visit</td><td>number of visit of the parent node </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return the <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> with the best UCT </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aecba4d455461ba7966d50729fb920ebf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mcts::Node::select_child_WR </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>fecth the childrens and select the one with the highest WR </p>
 <dl class="section return"><dt>Returns</dt><dd>Return the <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> with the best UCT </dd></dl>
 
 </div>
@@ -680,14 +667,14 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a57447b6e52620751c5ff5d791d857798"></a>
+<a class="anchor" id="ad15ddfec38ddb675920017670dbd92ee"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">mcts::Node::update </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>win</em></td><td>)</td>
           <td></td>
         </tr>
@@ -697,7 +684,7 @@ Static Public Member Functions</h2></td></tr>
 <p>back propate the results of the last simulation to the parents of the node, update _visits &amp; _wins </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">win</td><td>true if last simulation was a win, false if last simulation was a lost </td></tr>
+    <tr><td class="paramname">win</td><td>int representing the last winner : 1 2 or 3 </td></tr>
   </table>
   </dd>
 </dl>
@@ -711,7 +698,7 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 15:40:00 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

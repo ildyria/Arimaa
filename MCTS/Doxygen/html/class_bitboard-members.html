@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MCTS
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">MCTS Algorithm applied to TicTacToe</div>
   </td>
  </tr>
  </tbody>
@@ -63,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -91,23 +90,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#adf47222b0cd401b3ec6c762a953fadf1">Bitboard</a>()</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>Bitboard</b>(int size, int n, int toplay) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>clearBit</b>(int n, int x, int y) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>clearBit</b>(int n, int pos) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>clearBit</b>(int n, int x, int y) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>clearBit</b>(int n, int pos) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#a0e8d35fe97c43f0be6a3ba87182dfaa4">clone</a>() const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getBit</b>(int n, int x, int y) const  (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getBit</b>(int n, int pos) const  (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_bitboard.html#a4d75c6baadfb64ab2a0d39d4256ecd81">getBoard</a>(int n) const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#add99aaac08d1926daf8836165cbba82e">getEmpty</a>(int n) const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_bitboard.html#af334925201c192ed13760fab4341bceb">getOccupied</a>(int n)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#a93c3e91c8bce5425b171bfd698cad6dd">getPlayer</a>() const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_bitboard.html#a06f70ece7a8e4e308c7a97136d186f6c">play</a>()</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setBit</b>(int n, int x, int y) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>setBit</b>(int n, int pos) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#ad2688925653206f405e9e456c87a3142">~Bitboard</a>()</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>getBit</b>(int n, int x, int y) const  (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getBit</b>(int n, int pos) const  (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitboard.html#a4d75c6baadfb64ab2a0d39d4256ecd81">getBoard</a>(int n) const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#add99aaac08d1926daf8836165cbba82e">getEmpty</a>(int n) const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitboard.html#af334925201c192ed13760fab4341bceb">getOccupied</a>(int n)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#a93c3e91c8bce5425b171bfd698cad6dd">getPlayer</a>() const </td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_bitboard.html#a06f70ece7a8e4e308c7a97136d186f6c">play</a>()</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>setBit</b>(int n, int x, int y) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>setBit</b>(int n, int pos) (defined in <a class="el" href="class_bitboard.html">Bitboard</a>)</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_bitboard.html#ad2688925653206f405e9e456c87a3142">~Bitboard</a>()</td><td class="entry"><a class="el" href="class_bitboard.html">Bitboard</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 15:40:00 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 8 2014 21:35:10 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

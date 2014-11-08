@@ -23,9 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">MCTS
-   &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">MCTS Algorithm applied to TicTacToe</div>
   </td>
  </tr>
  </tbody>
@@ -63,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -93,19 +92,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#adc027fc091dcde7913b78190b12b3bc1">explore</a>(Node *node, int depth)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#a4c321c7400f59f9ac35cb67ed770b65e">explore</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">GetBestMove</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Mcts</b>(Bitboard Bb, int depth=4, int IAPlayer=1, int simulR=100, int simulL=10) (defined in <a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a>)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#a83371bef8912ea4785924303b16f8670">movePlayed</a>(string move)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>Mcts</b>(TheGame *game, Bitboard Bb, int depth=4, int timelimit=5000, int simulR=1000, int simulL=10) (defined in <a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a>)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#ac35bbdb3901e141afb1fa59fe27e09ef">movePlayed</a>(Move &amp;move)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">playRandom</a>(Node *node)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">print_tree</a>(int depth=1)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">UpdateNode</a>(Node *node)</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">~Mcts</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e">UpdateRoot</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">~Mcts</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_mcts.html">mcts::Mcts</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 15:40:00 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

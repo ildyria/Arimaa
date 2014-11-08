@@ -1,27 +1,35 @@
 \hypertarget{class_tic_tac_toe}{\section{Tic\+Tac\+Toe Class Reference}
 \label{class_tic_tac_toe}\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
 }
-\subsection*{Static Public Member Functions}
+Inheritance diagram for Tic\+Tac\+Toe\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_tic_tac_toe}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static int \hyperlink{class_tic_tac_toe_a4c489ebaf2ce1d3f588155500aea6523}{end} (const \hyperlink{class_bitboard}{Bitboard} \&board)
+virtual int \hyperlink{class_tic_tac_toe_aae44f2f688f283dfbf8242e162f27395}{end} (const \hyperlink{class_bitboard}{Bitboard} \&board) override
 \begin{DoxyCompactList}\small\item\em check if the game end \end{DoxyCompactList}\item 
-static void \hyperlink{class_tic_tac_toe_a3c04cf5e5dec5e1f025489d8063b1f00}{play} (string position, \hyperlink{class_bitboard}{Bitboard} \&board)
+virtual void \hyperlink{class_tic_tac_toe_a28e96db9801000c63dd48099a3ce338b}{play} (\hyperlink{class_move}{Move} \&position, \hyperlink{class_bitboard}{Bitboard} \&board) override
 \begin{DoxyCompactList}\small\item\em simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move \end{DoxyCompactList}\item 
-static void \hyperlink{class_tic_tac_toe_a8b7915a39527fdef3e6e8441ad973799}{diplay\+Board} (const \hyperlink{class_bitboard}{Bitboard} \&board)
+virtual void \hyperlink{class_tic_tac_toe_af01dee0e29853d8abc30a6a2818a844e}{diplay\+Board} (const \hyperlink{class_bitboard}{Bitboard} \&board) override
 \begin{DoxyCompactList}\small\item\em display the board of the given \hyperlink{class_bitboard}{Bitboard} \end{DoxyCompactList}\item 
-static list$<$ string $>$ \hyperlink{class_tic_tac_toe_a015c61f2cd26c132092bc631082a101d}{list\+Possible\+Moves} (const \hyperlink{class_bitboard}{Bitboard} \&board)
-\begin{DoxyCompactList}\small\item\em return a list of all possible moves given a board \end{DoxyCompactList}\end{DoxyCompactItemize}
+virtual list$<$ \hyperlink{class_move}{Move} $>$ \hyperlink{class_tic_tac_toe_a591b5fc3b4543f3f9b6d007be5c6290e}{list\+Possible\+Moves} (const \hyperlink{class_bitboard}{Bitboard} \&board) override
+\begin{DoxyCompactList}\small\item\em return a list of all possible moves given a board \end{DoxyCompactList}\item 
+virtual int \hyperlink{class_tic_tac_toe_a485bf2fd5cc0dd3e6da794218d40e759}{play\+Random\+Moves} (\hyperlink{class_bitboard}{Bitboard} \&board) override
+\begin{DoxyCompactList}\small\item\em play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_tic_tac_toe_a8b7915a39527fdef3e6e8441ad973799}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!diplay\+Board@{diplay\+Board}}
+\hypertarget{class_tic_tac_toe_af01dee0e29853d8abc30a6a2818a844e}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!diplay\+Board@{diplay\+Board}}
 \index{diplay\+Board@{diplay\+Board}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
 \subsubsection[{diplay\+Board}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::diplay\+Board (
 \begin{DoxyParamCaption}
 \item[{const {\bf Bitboard} \&}]{board}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a8b7915a39527fdef3e6e8441ad973799}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_tic_tac_toe_af01dee0e29853d8abc30a6a2818a844e}
 
 
 display the board of the given \hyperlink{class_bitboard}{Bitboard} 
@@ -31,13 +39,17 @@ display the board of the given \hyperlink{class_bitboard}{Bitboard}
 {\em board} & \hyperlink{class_bitboard}{Bitboard} to be displayed \\
 \hline
 \end{DoxyParams}
-\hypertarget{class_tic_tac_toe_a4c489ebaf2ce1d3f588155500aea6523}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!end@{end}}
+
+
+Implements \hyperlink{class_the_game_a44c8de21089f20d39a3bebc36096e3d9}{The\+Game}.
+
+\hypertarget{class_tic_tac_toe_aae44f2f688f283dfbf8242e162f27395}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!end@{end}}
 \index{end@{end}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
 \subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::end (
 \begin{DoxyParamCaption}
 \item[{const {\bf Bitboard} \&}]{board}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a4c489ebaf2ce1d3f588155500aea6523}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_tic_tac_toe_aae44f2f688f283dfbf8242e162f27395}
 
 
 check if the game end 
@@ -45,13 +57,17 @@ check if the game end
 returns 1 if player 1 wins returns 2 if player 2 wins returns 3 if the game is a tie returns 0 if the game hasn't ended yet \begin{DoxyReturn}{Returns}
 integer corresponding to the state of the Board 
 \end{DoxyReturn}
-\hypertarget{class_tic_tac_toe_a015c61f2cd26c132092bc631082a101d}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!list\+Possible\+Moves@{list\+Possible\+Moves}}
+
+
+Implements \hyperlink{class_the_game_a8dbf9909b671db1c52e3761d7f4944fe}{The\+Game}.
+
+\hypertarget{class_tic_tac_toe_a591b5fc3b4543f3f9b6d007be5c6290e}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!list\+Possible\+Moves@{list\+Possible\+Moves}}
 \index{list\+Possible\+Moves@{list\+Possible\+Moves}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
 \subsubsection[{list\+Possible\+Moves}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::list\+Possible\+Moves (
 \begin{DoxyParamCaption}
 \item[{const {\bf Bitboard} \&}]{board}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a015c61f2cd26c132092bc631082a101d}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_tic_tac_toe_a591b5fc3b4543f3f9b6d007be5c6290e}
 
 
 return a list of all possible moves given a board 
@@ -64,14 +80,18 @@ return a list of all possible moves given a board
 \begin{DoxyReturn}{Returns}
 the list of the possible moves 
 \end{DoxyReturn}
-\hypertarget{class_tic_tac_toe_a3c04cf5e5dec5e1f025489d8063b1f00}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!play@{play}}
+
+
+Implements \hyperlink{class_the_game_a2c1afcfd6517881edcff6ae98873317a}{The\+Game}.
+
+\hypertarget{class_tic_tac_toe_a28e96db9801000c63dd48099a3ce338b}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!play@{play}}
 \index{play@{play}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
 \subsubsection[{play}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::play (
 \begin{DoxyParamCaption}
-\item[{string}]{position, }
+\item[{{\bf Move} \&}]{position, }
 \item[{{\bf Bitboard} \&}]{board}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_tic_tac_toe_a3c04cf5e5dec5e1f025489d8063b1f00}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_tic_tac_toe_a28e96db9801000c63dd48099a3ce338b}
 
 
 simulate the play of the \char`\"{}position\char`\"{} move and returns the bitboard after the move 
@@ -86,6 +106,33 @@ simulate the play of the \char`\"{}position\char`\"{} move and returns the bitbo
 \begin{DoxyReturn}{Returns}
 the \hyperlink{class_bitboard}{Bitboard} after the play 
 \end{DoxyReturn}
+
+
+Implements \hyperlink{class_the_game_aba6126c4af547c9a14f17e65f6f411fd}{The\+Game}.
+
+\hypertarget{class_tic_tac_toe_a485bf2fd5cc0dd3e6da794218d40e759}{\index{Tic\+Tac\+Toe@{Tic\+Tac\+Toe}!play\+Random\+Moves@{play\+Random\+Moves}}
+\index{play\+Random\+Moves@{play\+Random\+Moves}!Tic\+Tac\+Toe@{Tic\+Tac\+Toe}}
+\subsubsection[{play\+Random\+Moves}]{\setlength{\rightskip}{0pt plus 5cm}Tic\+Tac\+Toe\+::play\+Random\+Moves (
+\begin{DoxyParamCaption}
+\item[{{\bf Bitboard} \&}]{board}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}}\label{class_tic_tac_toe_a485bf2fd5cc0dd3e6da794218d40e759}
+
+
+play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em board} & \hyperlink{class_bitboard}{Bitboard} to be looked at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+winner of the current game 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{class_the_game_a1c9d4372ac6b87f641464c9cd211c177}{The\+Game}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
