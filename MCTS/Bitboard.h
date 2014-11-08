@@ -27,7 +27,6 @@ using std::max;
  *	short _toplay : player to play (1 or 2);
  *	short _number : number of bitboards;
  *	short _size   : size of the bitboards;
- *
  */
 class Bitboard
 {

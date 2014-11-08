@@ -44,6 +44,7 @@ int main(int argc, char const *argv[])
 			moveok = 0;
 			while (moveok == 0)
 			{
+				cout << "Your move ?" << endl;
 				cin >> move;
 				iter = find(Listtoprint.begin(), Listtoprint.end(), move);
 				if (iter != Listtoprint.end())
