@@ -1,0 +1,54 @@
+%this file is the second report
+%a % comment anything after % until the end of the line
+
+%minimum references to begin our article
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\pagestyle{fancy}
+%\cfoot{Fast and furious game playing: Monte Carlo drift}
+% the last extension makes it possible to add images
+
+%presentation of the document
+\title{Fast and Furious Game Playing : Monte Carlo Drift\smallbreak Specifications report} %not sure about the name of this report
+\author{Prateek \textsc{Bhatnagar}, Baptiste \textsc{Bignon}, \\
+		Mikaïl \textsc{Demirdelen}, Gabriel \textsc{Prevosto}, \\
+		Dan \textsc{Seeruttun-{}-Marie}, Benoît \textsc{Viguier} \\
+		\\
+		Supervisors: Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
+\date{11/27/2014}
+\setlength\parindent{15pt}
+\begin{document}
+\maketitle
+
+The MCTS algorithm has been chosen in order to develop our artificial intelligence. However, in order to improve its efficiency, we will need to tweak it a bit. The main problem is the branching factor\footnote{In a tree,  the branching factor is the number of children at each node.} of the Arimaa game which average is 17 281 and reaches about 22 000 after 10 moves.
+\bigskip
+\begin{center}
+	\begin{tabular}{ | c | c |}
+		\hline Game & Average number of possible moves \\ \hline
+		\hline  
+		Othello & 8\\
+		\hline  
+		Chess & 35\\
+		\hline  
+		Game of Go & 250\\
+		\hline
+		Arimaa & 17 281\\
+		\hline
+	\end{tabular}
+\end{center}
+\bigskip
+The reason why the branching factor of a game is so important is because it increases greatly the space that has to be searched in order to guess what will happend multiples moves ahead. In chess after 6 moves, the number of positions evaluated are about 35\textsuperscript{6} which is roughtly equivalent to 1,8 billions. In Arimaa, after 3 turns (yours, the opponent and yours again), if you were the explore all positions, you would need to evaluate around 5,2 trillions\footnote{1 trillion = 1 thousand billions = 10\textsuperscript{12}.} boards (2000 times more than chess with half the number of moves).
+
+\end{document}
