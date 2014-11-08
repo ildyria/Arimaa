@@ -13,12 +13,13 @@ class Move
 
 public:
 	Move();
-	Move(string move);
-	Move(int move);
+	explicit Move(string move);
+	explicit Move(int move);
 	int getInt();
-	~Move();
+	virtual inline string getMove() { return _data;  };
+	virtual ~Move();
 	friend ostream& operator<< (ostream& stream, Move &move);
-	friend istream& operator>> (istream& stream, Move &chaine);
-	friend bool operator== (const Move &a, const Move &b) { return a._data == b._data; };
+	friend istream& operator>> (istream& stream, Move &move);
+	friend inline bool operator== (const Move &a, const Move &b) { return a._data == b._data; };
 };
 

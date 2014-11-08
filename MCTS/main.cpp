@@ -1,6 +1,6 @@
 #include "Mcts.h"
 #include "TicTacToe.h"
-#include <chrono>
+#include <time.h>
 #include <thread>
 #define elseif else if
 
@@ -20,16 +20,14 @@ int main(int argc, char const *argv[])
 
 	TicTacToe* game = new TicTacToe();
 
-	Mcts mcts = Mcts(game, bitboard, 4, 1, 1000, 10);
-	move = mcts.GetBestMove();
-	mcts.print_tree(2);
-	mcts.movePlayed(move);
-	cout << "chosen move by MCTS : " << move << endl;
-	cout << endl;
+	Mcts mcts = Mcts(game,		// game
+					bitboard,	// board to start with
+					4,			// depth of the maximum search
+					500,		// time limit for the simulations
+					1000,		// number of root simulations
+					10);		// number of leaf simulations
 
-	game->play(move, Bb);
-
-
+	int IA = 2;
 	while (result == 0)
 	{
 		game->diplayBoard(Bb);
@@ -38,9 +36,10 @@ int main(int argc, char const *argv[])
 		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
 			cout << *iter << " ";
 		}
-		cout << endl;
+		cout << "or -1 to pass."<< endl;
+		//mcts.UpdateRoot();
 
-		if (Bb.getPlayer() == 2)
+		if (Bb.getPlayer() != IA)
 		{
 			moveok = 0;
 			while (moveok == 0)
@@ -51,9 +50,19 @@ int main(int argc, char const *argv[])
 				{
 					moveok = 1;
 				}
+				elseif(move.getMove() == "exit")
+				{
+					exit(0);
+				}
+				elseif(move.getInt() == -1)
+				{
+					IA = (IA == 2) ? 1 : 2;
+					moveok = 1;
+				}
 			}
 		}
-		else
+
+		if (Bb.getPlayer() == IA)
 		{
 			move = mcts.GetBestMove();
 			mcts.print_tree(2);

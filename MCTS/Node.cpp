@@ -103,7 +103,7 @@ namespace mcts {
 
 	void Node::update(int win){
 		list<Node*>::iterator itL;
-		if (win == 1)
+		if (win != _state.getPlayer() && win != 3)
 		{
 			_wins += 1;
 		}
@@ -125,29 +125,33 @@ namespace mcts {
 		}
 	}
 
-	bool Node::compare(Node* a, Node* b)
+	bool Node::compareUCT(Node* a, Node* b)
 	{
 		return (*a)._uct < (*b)._uct;
 	}
 
-	Node* Node::select_child_UCT(int player){
+	bool Node::compareWR(Node* a, Node* b)
+	{
+		return (*a).getProba() < (*b).getProba();
+	}
+
+	Node* Node::select_child_UCT(){
 
 		list<Node*>::iterator itL;
 		for (itL = _children.begin(); itL != _children.end(); ++itL)
 		{
 			(*itL)->UCT(max(_visits,1));
 		}
+		itL = max_element(_children.begin(), _children.end(), compareUCT);
 
+		return *itL;
+	}
 
-		if (player == _state.getPlayer())
-		{
+	Node* Node::select_child_WR()
+	{
+		list<Node*>::iterator itL;
+		itL = max_element(_children.begin(), _children.end(), compareWR);
 
-			itL = max_element(_children.begin(), _children.end(), compare);
-		}
-		else
-		{
-			itL = min_element(_children.begin(), _children.end(), compare);
-		}
 		return *itL;
 	}
 
@@ -159,18 +163,18 @@ namespace mcts {
 			list<Node*>::iterator itL;
 			for (int i = 0; i < numtab; ++i)
 			{
-				tabs += "  ";
+				tabs += " ";
 				if (i + 1 < numtab)
 				{
 					tabs += "|";
 				}
 			}
 			cout << tabs << "-> N*" << this;
-			cout << ", m : " << _move;
-			cout << ", _t : " << _terminal;
-			cout << ", _v : " << _visits;
-			cout << ", _w : " << _wins;
-			cout << ", _uct : " << _uct;
+			cout << ", m: " << _move;
+			cout << ", p: " << _state.getPlayer();
+			cout << ", _t: " << _terminal;
+			cout << ", _w/_v: " << _wins << "/" << _visits << " (" << round(getProba()*100) << "%)";
+			cout << ", _uct: " << _uct;
 			cout << endl;
 
 			for (itL = _children.begin(); itL != _children.end(); ++itL)

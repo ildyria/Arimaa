@@ -60,6 +60,13 @@ public:
 	*/
 	virtual list<Move> listPossibleMoves(const Bitboard& board) override;
 
+	/**
+	* \fn playRandomMoves
+	* \brief play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3)
+	*
+	* \param board Bitboard to be looked at
+	* \return winner of the current game
+	*/
 	virtual int playRandomMoves(Bitboard& board) override;
 };
 

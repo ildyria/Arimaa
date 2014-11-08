@@ -57,7 +57,7 @@ public:
 	 * \fn ~Bitboard
 	 * \brief Destructor of the class
 	 */
-	~Bitboard();
+	virtual ~Bitboard();
 
 	/**
 	* \fn clone
@@ -74,7 +74,7 @@ public:
 	 * \param y position y
 	 * \return the value of the bit (0 or 1)
 	 */
-	int getBit(int n, int x, int y) const;
+	virtual int getBit(int n, int x, int y) const;
 
 	/**
 	* \fn getBit
@@ -84,7 +84,7 @@ public:
 	* \param pos position of the bit
 	* \return the value of the bit (0 or 1)
 	*/
-	int getBit(int n, int pos) const;
+	virtual int getBit(int n, int pos) const;
 
 	/**
 	 * \fn setBit
@@ -94,7 +94,7 @@ public:
 	 * \param x position x
 	 * \param y position y
 	 */
-	void setBit(int n, int x, int y);
+	virtual void setBit(int n, int x, int y);
 
 	/**
 	* \fn setBit
@@ -103,7 +103,7 @@ public:
 	* \param n bitboard to search
 	* \param pos position of the bit
 	*/
-	void setBit(int n, int pos);
+	virtual void setBit(int n, int pos);
 
 	/**
 	 * \fn clearBit
@@ -113,7 +113,7 @@ public:
 	 * \param x position x
 	 * \param y position y
 	 */
-	void clearBit(int n, int x, int y);
+	virtual void clearBit(int n, int x, int y);
 
 	/**
 	* \fn clearBit
@@ -122,7 +122,7 @@ public:
 	* \param n bitboard to search
 	* \param pos position of the bit
 	*/
-	void clearBit(int n, int pos);
+	virtual void clearBit(int n, int pos);
 
 	/**
 	* \fn getBoard
@@ -131,7 +131,7 @@ public:
 	* \param n board to look for
 	* \return board number n
 	*/
-	inline unsigned long getBoard(int n) const { return _boards[n]; } ;
+	virtual inline unsigned long getBoard(int n) const { return _boards[n]; };
 
 	/**
 	 * \fn getEmpty
@@ -140,7 +140,7 @@ public:
 	 * \param n board to look at
 	 * \return list of the empty positions (0 to size² -1)
 	 */
-	list<int> getEmpty(int n) const;
+	virtual list<int> getEmpty(int n) const;
 
 	/**
 	 * \fn getOccupied
@@ -149,7 +149,7 @@ public:
 	 * \param n board to look at
 	 * \return list of the set positions (0 to size² -1)
 	 */
-	list<int> getOccupied(int n);
+	virtual list<int> getOccupied(int n);
 
 	/**
 	* \fn getPlayer
@@ -157,12 +157,12 @@ public:
 	*
 	* \return player to play (1 or 2)
 	*/
-	inline int getPlayer() const { return _toplay; };
+	virtual inline int getPlayer() const { return _toplay; };
 
 	/**
 	* \fn play
 	* \brief swap players
 	*/
-	inline void play() { _toplay = (_toplay == 1) ? 2 : 1; };
+	virtual inline void play() { _toplay = (_toplay == 1) ? 2 : 1; };
 };
 

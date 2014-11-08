@@ -37,6 +37,10 @@ $RECYCLE.BIN/
 *.sln*
 *.v12.suo
 *.vcxproj
+*.obj
+*.tlog
+*.lastbuildstate
+*.pdb
 *.vcxproj.*
 
 # =========================

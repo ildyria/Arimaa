@@ -38,7 +38,7 @@ public:
 	 * \return      the object.
 	 */
 	static Random* I(unsigned int seed = 0);
-
+	
 	/**
 	 * \fn getNum
 	 * \brief returns an interger random number between min and max included.
@@ -51,4 +51,5 @@ public:
 //		cout << "rdm (" << min << "," << max <<"): " << n;
 		return n;
 	}
+
 };

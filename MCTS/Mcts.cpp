@@ -1,5 +1,6 @@
 #include "Mcts.h"
 #define elseif else if
+
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
 
@@ -9,13 +10,20 @@ namespace mcts{
 	{
 	}
 
-	Mcts::Mcts(TheGame* game, Bitboard Bb, int depth, int IAPlayer, int simulR, int simulL) :_game(game), _depth(depth), _IAPlayer(IAPlayer), _simulationPerRoot(simulR), _simulationPerLeaves(simulL)
+	Mcts::Mcts(	TheGame* game,
+				Bitboard Bb,
+				int depth,
+				int timelimit,
+				int simulR,
+				int simulL)
+	:_game(game), _depth(depth), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _timeLimitsimulationPerRoot(timelimit)
 	{
 		_root = new Node(Bb);
 	}
 
 	void Mcts::movePlayed(Move& move)
 	{
+		UpdateNode(_root);
 		list<Node*> ListOfNodes = _root->getChildren();
 		list<Node*>::iterator iterN;
 		for (iterN = ListOfNodes.begin(); iterN != ListOfNodes.end(); ++iterN)
@@ -78,16 +86,15 @@ namespace mcts{
 	}
 
 
-	void Mcts::explore(Node* node, int depth)
+	void Mcts::explore()
 	{
+		Node* node = _root;
+		int depth = 0;
 		int nodet = UpdateNode(node);
-		list<Node*> ListParents;
-		list<Node*>::iterator iter;
-
-		if (nodet == 0) // no victory found yet
+		while (depth < _depth && nodet <= 0)
 		{
-			node = node->select_child_UCT((node->getState()).getPlayer());
-
+			node = node->select_child_UCT();
+			nodet = UpdateNode(node);
 #ifdef DISPLAY_MCTS
 			if (depth == 0)
 			{
@@ -96,68 +103,54 @@ namespace mcts{
 			}
 			cout << node->getMove() << " > ";
 #endif // DISPLAY_MCTS
-			if (depth < _depth)
-			{
-				explore(node, depth + 1);
-			}
-			else
-			{
-#ifdef DISPLAY_MCTS
-				cout << "depth reached : start random" << endl;
-#endif // DISPLAY_MCTS
-				playRandom(node);
-			}
+			++depth;
 		}
-//		elseif(nodet == 1) // victory of first player
-//		{
+
+		if (nodet <= 0) // no victory found yet
+		{
 #ifdef DISPLAY_MCTS
-			cout << endl;
-			TicTacToe::diplayBoard(node->getState());
-			cout << "not implemented nodet 1 & 2 : " << nodet << endl;
+			cout << "depth reached : start random" << endl;
 #endif // DISPLAY_MCTS
-			// it's a WIN SO WE NEED TO PLAY THIS
-//			node->update(nodet);
-		//	node->forceSetUCT(10);
-//		}
-//		elseif(nodet == 2) // tie
-//		{
-			// it's a LOSS : WE MUST NOT PLAY THE LAST MOVE
-//			node->update(nodet);
-			/*ListParents = node->getParents();
-			for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
-			{
-				(*iter)->forceSetUCT(-1);
-			}*/
-//		}
-		elseif(nodet > 0) // tie
+			playRandom(node);
+		}
+		else
 		{
 #ifdef DISPLAY_MCTS
 			cout << endl;
 			cout << "not implemented yet : nodet 3" << endl;
 #endif // DISPLAY_MCTS
 			node->update(nodet);
-		}
-		else
-		{
-			cout << endl;
-			throw("Problem with a node and nodet");
+			/*
+			list<Node*> ListParents;
+			list<Node*>::iterator iter;
+			ListParents = node->getParents();
+			for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
+			{
+			(*iter)->forceSetUCT(-1);
+			}
+			*/
 		}
 	}
 
 	Move Mcts::GetBestMove()
 	{
-		//node = _root;
-
-		for (int i = 0; i < _simulationPerRoot; ++i)
+#ifdef DISPLAY_MCTS
+		cout << "turn : " << (_root->getState()).getPlayer() << endl;
+#endif // DISPLAY_MCTS
+		int timeend = clock() + (static_cast<double>(_timeLimitsimulationPerRoot) / 1000 * CLK_TCK);
+		cout << "start search : " << static_cast<double>(clock()) / CLK_TCK << "s." << endl;
+		int i = 0;
+		while(clock() < timeend && i < _simulationPerRoot)
 		{
+			i++;
 #ifdef DISPLAY_MCTS
 			cout << "simulation n : " << i << endl;
 #endif // DISPLAY_MCTS
-//			node = _root;
-			explore(_root, 0);
+			explore();
 		}
+		cout << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s and " << i << " simulations." << endl;
 
-		Node* node = _root->select_child_UCT(_IAPlayer);
+		Node* node = _root->select_child_WR();
 		return node->getMove();
 	}
 

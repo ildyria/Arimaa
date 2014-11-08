@@ -9,6 +9,7 @@
 #pragma once
 #include "Node.h"
 #include "TheGame.h"
+#include <time.h>
 
 namespace mcts
 {
@@ -18,18 +19,18 @@ namespace mcts
 	 * \details 
 		Node* _root = adress of the node considered as the root of the tree.
 		int _depth = depth to explore before running random simulations.
+		int _timeLimitsimulationPerRoot = time limit in ms
 		int _simulationPerRoot = number of simulations to run per Root.
 		int _simulationPerLeaves = number of simulations to run per Leaves.
-		int _IAPlayer = player played by the algorithm (1 or 2).
 	 */
 	class Mcts
 	{
 		TheGame* _game;
 		Node* _root;
 		int _depth;
+		int _timeLimitsimulationPerRoot;
 		int _simulationPerRoot;
 		int _simulationPerLeaves;
-		int _IAPlayer;
 
 	public:
 		/**
@@ -41,13 +42,13 @@ namespace mcts
 		/**
 		 * \fn Mcts
 		 * \brief create a mcts with specifics parameters
-		 * \param  Bb       BitBoard for the root
-		 * \param  depth    Depth to search, 4 by default
-		 * \param  IAPlayer int corresponding to the player : 1 or 2, 1 by default
-		 * \param  simulR   Number of simulations to be run starting from the root, 100 by default. => OpenMP ?
-		 * \param  simulL   Number of random simulations to be run at the end of the search tree, 10 by default. => OpenAcc ?
+		 * \param  Bb			BitBoard for the root
+		 * \param  depth		Depth to search, 4 by default
+		 * \param  timelimit	maximum time to run the simulation
+		 * \param  simulR		Number of simulations to be run starting from the root, 100 by default. => OpenMP ?
+		 * \param  simulL		Number of random simulations to be run at the end of the search tree, 10 by default. => OpenAcc ?
 		 */
-		explicit Mcts(TheGame* game,Bitboard Bb, int depth = 4, int IAPlayer = 1, int simulR = 100, int simulL = 10);
+		explicit Mcts(TheGame* game,Bitboard Bb, int depth = 4, int timelimit = 5000, int simulR = 1000, int simulL = 10);
 
 		/**
 		 * \fn ~Mcts
@@ -62,7 +63,6 @@ namespace mcts
 		 * \param move move played
 		 */
 		void movePlayed(Move& move);
-
 		/**
 		 * \fn UpdateNode
 		 * \details Update a node :
@@ -75,6 +75,7 @@ namespace mcts
 		 * \return      the state of the board : 0, 1, 2, or 3 .
 		 */
 		int UpdateNode(Node* node);
+		inline void UpdateRoot() { UpdateNode(_root); };
 
 		/**
 		 * \fn playRandom
@@ -95,7 +96,8 @@ namespace mcts
 		 * \param node  node we are exploring
 		 * \param depth depth to search for possibilities
 		 */
-		void explore(Node* node, int depth);
+//		void explore(Node* node, int depth);
+		void explore();
 
 		/**
 		 * \fn GetBestMove

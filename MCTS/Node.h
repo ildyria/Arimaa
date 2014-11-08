@@ -35,7 +35,7 @@ namespace mcts
 	class Node
 	{
 		int _visits;
-		float _wins;
+		double _wins;
 		int _terminal;
 		double _uct;
 		Bitboard _state;
@@ -53,9 +53,12 @@ namespace mcts
 		 * \param visits number of visits on the parent node.
 		 */
 		inline void UCT(int visits) {
-			_uct = (_uct == -1) ? -1 : ((_uct == 10) ? 10 : static_cast<double>(_wins) / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * std::log(double(visits + 1)) / max(_visits, 1)));
+			if (_uct != -1 && _uct != 10)
+			{
+				_uct = _wins / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * log(double(visits + 1)) / max(_visits, 1));
+			}
 #ifdef DEBUG_NODE
-			cout << "_uct = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
+			cout << "_uct " << " = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
 			cout << "_uct = " << _uct << endl;
 #endif //DEBUG_NODE
 
@@ -196,16 +199,33 @@ namespace mcts
 		 * \param Node b
 		 * \return true if a's uct is greater than b's uct value.
 		 */
-		static bool compare(Node* a, Node* b);
+		static bool compareUCT(Node* a, Node* b);
+
+		/**
+		* \fn compareWR
+		* \brief compare Node* a and Node *b,
+		*
+		* \param Node a
+		* \param Node b
+		* \return true if a's WR is greater than b's WR value.
+		*/
+		static bool compareWR(Node* a, Node* b);
 
 		/**
 		 * \fn select_child_UCT
 		 * \brief fecth the childrens and select the one with the highest UCT
 		 * 
-		 * \param player that is played by the IA
 		 * \return Return the Node with the best UCT
 		 */
-		Node* select_child_UCT(int player);
+		Node* select_child_UCT();
+		
+		/**
+		* \fn select_child_WR
+		* \brief fecth the childrens and select the one with the highest WR
+		*
+		* \return Return the Node with the best UCT
+		*/
+		Node* select_child_WR();
 
 		/**
 		 * \fn addChild
@@ -220,7 +240,7 @@ namespace mcts
 		 * \fn update
 		 * \brief back propate the results of the last simulation to the parents of the node, update _visits & _wins
 		 * 
-		 * \param win true if last simulation was a win, false if last simulation was a lost
+		 * \param win int representing the last winner : 1 2 or 3
 		 */
 		void update(int win);
 
