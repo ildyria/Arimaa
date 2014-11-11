@@ -24,6 +24,8 @@ $RECYCLE.BIN/
 *.blg
 *.synctex.gz
 *~
+# prevent any pdf files with _WIP in it preventing some conflicts
+*_WIP.pdf
 
 # Images files
 *.psd
@@ -43,6 +45,7 @@ $RECYCLE.BIN/
 *.pdb
 *.vcxproj.*
 
+*_WIP.pdf
 # =========================
 # Operating System Files
 # =========================
