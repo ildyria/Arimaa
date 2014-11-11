@@ -23,7 +23,7 @@ int main(int argc, char const *argv[])
 	Mcts mcts = Mcts(game,		// game
 					bitboard,	// board to start with
 					4,			// depth of the maximum search
-					500,		// time limit for the simulations
+					250,		// time limit for the simulations
 					1000,		// number of root simulations
 					10);		// number of leaf simulations
 

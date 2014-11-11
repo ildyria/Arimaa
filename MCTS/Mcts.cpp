@@ -1,5 +1,6 @@
 #include "Mcts.h"
 #define elseif else if
+#define OPTIMIZED_MCTS
 
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
@@ -113,6 +114,19 @@ namespace mcts{
 #endif // DISPLAY_MCTS
 			playRandom(node);
 		}
+#ifdef OPTIMIZED_MCTS
+		elseif(nodet < 3 && nodet > 0 && nodet != node->getState().getPlayer()) // no victory found yet
+		{
+			list<Node*> ListParents;
+			list<Node*>::iterator iter;
+			ListParents = node->getParents();
+			for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
+			{
+				(*iter)->forceSetUCT(-1);
+			}
+			node->update(nodet);
+		}
+#endif //OPTIMIZED_MCTS
 		else
 		{
 #ifdef DISPLAY_MCTS
@@ -120,15 +134,6 @@ namespace mcts{
 			cout << "not implemented yet : nodet 3" << endl;
 #endif // DISPLAY_MCTS
 			node->update(nodet);
-			/*
-			list<Node*> ListParents;
-			list<Node*>::iterator iter;
-			ListParents = node->getParents();
-			for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
-			{
-			(*iter)->forceSetUCT(-1);
-			}
-			*/
 		}
 	}
 
