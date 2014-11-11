@@ -24,6 +24,7 @@ $RECYCLE.BIN/
 *.blg
 *.synctex.gz
 *~
+
 # prevent any pdf files with _WIP in it preventing some conflicts
 *_WIP.pdf
 
@@ -109,3 +110,8 @@ Arimaa/UpgradeLog.htm
 # Biv Trash files...
 # =========================
 MCTS/Debug/*
+
+# =========================
+# BAPTISTE Trash files...
+# =========================
+*.fdb_latexmk
