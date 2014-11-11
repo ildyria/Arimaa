@@ -1,0 +1,34 @@
+To parallelize our algorithm on the CPU, we need to chose a framework. Four solutions have been found and compared :
+\begin{itemize}
+\item MPI
+\item OpenMp
+\item C++11 Threads (Boost)
+\item Pthreads (C)
+\end{itemize}
+
+\subsubsection{MPI}
+MPI is a library mainly dedicated to parallelization between differents machines, it could works on a single CPU but doesn't provide as many possibilites as its counterparts. Therefore we chose to not use it for that part of the implementation.
+
+\subsubsection{Pthreads}
+Pthreads is out of order because it is depreciated : it is a C library and the C++11 provides more efficiency and possibilities. The threads management is heavy to code and requires a good knowledge of how threads works precisely.
+
+\subsubsection{OpenMP and C++11}
+OpenMP and C++11 are the only remaining options. C++11 is a simplification of the Boost library inducing the later to be more complete. The following table sumurizes each libriraries pros and cons :
+\begin{center}
+\begin{tabular}{| l | l | l |}
+\hline
+\multicolumn{1}{| c}{OpenMP} &\multicolumn{1}{| c}{C++11 Threads} &\multicolumn{1}{| c |}{ Pthreads (C) } \\
+\hline
++ Options & + Flexibility & + Flexibility \\
++ Portable & + Type-Safety & + Low-level \\
++ Languages & + Possibilities & + Compatibility \\
+- Performances & - Fortran & - Efforts \\
+- Memory & - Compiler & - Type-safety \\
+- Unreliable & - Scalling & - Management  \\
+\hline
+\end{tabular}
+\end{center}
+
+Both libraries get similar performances\footnote{http://www.cs.colostate.edu/~cs675/OpenMPvsThreads.pdf}. However OpenMP is easier to use (precompilier declarations...) and keeps the code clean. C++11 allows a better thread management. Nevertheless it also can easily fall behind his counterpart in term of speed if some mistakes are made : a high price has to be paid.
+\bigskip\\
+Considering OpenMP safer to use and get similar results to C++11, we chosed OpenMP to parallelize our algorithm on CPU.
