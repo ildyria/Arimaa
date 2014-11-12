@@ -132,7 +132,7 @@ namespace mcts {
 
 	bool Node::compareWR(Node* a, Node* b)
 	{
-		return (*a).getProba() < (*b).getProba() && (*b)._uct != -1;
+		return (*a).getProba() < (*b).getProba();
 	}
 
 	Node* Node::select_child_UCT(){

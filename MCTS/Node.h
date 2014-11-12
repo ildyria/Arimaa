@@ -181,7 +181,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return static_cast<double>(_wins) / static_cast<double>(max(1,_visits)); };
+		inline double getProba() { return (_uct != -1) ? static_cast<double>(_wins) / static_cast<double>(max(1,_visits)) : 0; };
 
 		/**
 		 * \fn getVisits
