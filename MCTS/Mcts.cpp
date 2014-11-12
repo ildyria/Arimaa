@@ -142,19 +142,21 @@ namespace mcts{
 #ifdef DISPLAY_MCTS
 		cout << "turn : " << (_root->getState()).getPlayer() << endl;
 #endif // DISPLAY_MCTS
-		int timeend = clock() + (static_cast<double>(_timeLimitsimulationPerRoot) / 1000 * CLK_TCK);
-		cout << "start search : " << static_cast<double>(clock()) / CLK_TCK << "s." << endl;
 		int i = 0;
-		while(clock() < timeend && i < _simulationPerRoot)
+		int end = 0;
+		int start = clock();
+		int timeend = start + (static_cast<double>(_timeLimitsimulationPerRoot) / 1000 * CLK_TCK);
+		while(end < timeend && i < _simulationPerRoot)
 		{
 			i++;
 #ifdef DISPLAY_MCTS
 			cout << "simulation n : " << i << endl;
 #endif // DISPLAY_MCTS
 			explore();
+			end = clock();
 		}
-		cout << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s and " << i << " simulations." << endl;
-
+		cout << "start search : " << static_cast<double>(start) / CLK_TCK << "s." << endl;
+		cout << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(end - start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
 		Node* node = _root->select_child_WR();
 		return node->getMove();
 	}
