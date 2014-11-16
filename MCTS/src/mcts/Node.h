@@ -11,12 +11,8 @@
 #include <string>
 #include <list>
 #include <algorithm>
-#include "Bitboard.h"
-#include "Move.h"
-
-using std::string;
-using std::list;
-using std::log;
+#include "../interfaces/Bitboard.h"
+#include "../interfaces/Move.h"
 
 namespace mcts
 {
@@ -40,8 +36,8 @@ namespace mcts
 		double _uct;
 		Bitboard _state;
 		Move _move;
-		list<Node*> _children;
-		list<Node*> _parents;
+		std::list<Node*> _children;
+		std::list<Node*> _parents;
 
 		/**
 		 * \fn UCT
@@ -55,7 +51,7 @@ namespace mcts
 		inline void UCT(int visits) {
 			if (_uct != -1 && _uct != 10)
 			{
-				_uct = _wins / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * log(double(visits + 1)) / max(_visits, 1));
+				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * log(double(visits + 1)) / std::max(_visits, 1));
 			}
 #ifdef DEBUG_NODE
 			cout << "_uct " << " = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
@@ -159,7 +155,7 @@ namespace mcts
 		 *
 		 * \return return the list of the childrens
 		 */
-		inline list<Node*> getChildren() { return _children; };
+		inline std::list<Node*> getChildren() { return _children; };
 
 		/**
 		* \fn clearParents
@@ -173,7 +169,7 @@ namespace mcts
 		 *
 		 * \return return the list of the parents
 		 */
-		inline list<Node*> getParents() { return _parents; };
+		inline std::list<Node*> getParents() { return _parents; };
 
 		/**
 		 * \fn getProba
@@ -181,7 +177,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return (_uct != -1) ? static_cast<double>(_wins) / static_cast<double>(max(1,_visits)) : 0; };
+		inline double getProba() { return (_uct != -1) ? static_cast<double>(_wins) / static_cast<double>(std::max(1,_visits)) : 0; };
 
 		/**
 		 * \fn getVisits

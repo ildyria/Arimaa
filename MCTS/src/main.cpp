@@ -1,10 +1,14 @@
-#include "Mcts.h"
-#include "TicTacToe.h"
+#include "MCTS/Mcts.h"
+#include "TicTacToe/TicTacToe.h"
 #include <time.h>
 #include <thread>
 #define elseif else if
 
 using namespace mcts;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::list;
 
 int main(int argc, char const *argv[])
 {
@@ -22,9 +26,9 @@ int main(int argc, char const *argv[])
 
 	Mcts mcts = Mcts(game,		// game
 					bitboard,	// board to start with
-					4,			// depth of the maximum search
-					250,		// time limit for the simulations
-					1000,		// number of root simulations
+					2,			// depth of the maximum search
+					2000,		// time limit for the simulations
+					10000,		// number of root simulations
 					10);		// number of leaf simulations
 
 	int IA = 2;

@@ -1,6 +1,13 @@
 #include "Bitboard.h"
 #define elseif else if
 
+using std::vector;
+using std::list;
+using std::cin;
+using std::cout;
+using std::endl;
+using std::max;
+
 Bitboard::Bitboard()
 {
 	_boards = *(new vector<unsigned long> (3));

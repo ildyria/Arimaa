@@ -5,6 +5,12 @@
 using std::max_element;
 using std::min_element;
 using std::max;
+using std::cout;
+using std::endl;
+using std::string;
+using std::list;
+using std::log;
+
 
 namespace mcts {
 

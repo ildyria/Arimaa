@@ -8,7 +8,7 @@
  */
 #pragma once
 #include "Node.h"
-#include "TheGame.h"
+#include "../Interfaces/TheGame.h"
 #include <time.h>
 
 namespace mcts

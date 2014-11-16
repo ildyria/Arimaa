@@ -1,6 +1,11 @@
 #include "Move.h"
 
 
+using std::string;
+using std::ostream;
+using std::istream;
+using std::to_string;
+
 Move::Move()
 {
 	_data = "undefined";

@@ -4,6 +4,10 @@
 //#define DEBUG_TTT
 
 using std::to_string;
+using std::string;
+using std::list;
+using std::cout;
+using std::endl;
 
 void TicTacToe::diplayBoard(const Bitboard& board){
 	cout << "player to play : " << board.getPlayer() << endl;

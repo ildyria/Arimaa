@@ -12,14 +12,6 @@
 #include <vector>       // std::vector
 #include <list>			// std::list
 
-using std::vector;
-using std::list;
-using std::cin;
-using std::cout;
-using std::endl;
-using std::max;
-
-
 /**
  * \brief Bitboard class
  * \details vector<unsigned long> _boards : bitboards of the game;
@@ -29,7 +21,7 @@ using std::max;
  */
 class Bitboard
 {
-	vector<unsigned long> _boards;
+	std::vector<unsigned long> _boards;
 	short _toplay;
 	short _number;
 	short _size;
@@ -138,7 +130,7 @@ public:
 	 * \param n board to look at
 	 * \return list of the empty positions (0 to size² -1)
 	 */
-	virtual list<int> getEmpty(int n) const;
+	virtual std::list<int> getEmpty(int n) const;
 
 	/**
 	 * \fn getOccupied
@@ -147,7 +139,7 @@ public:
 	 * \param n board to look at
 	 * \return list of the set positions (0 to size² -1)
 	 */
-	virtual list<int> getOccupied(int n);
+	virtual std::list<int> getOccupied(int n);
 
 	/**
 	* \fn getPlayer

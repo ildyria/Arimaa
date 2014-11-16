@@ -5,6 +5,10 @@
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
 
+using std::list;
+using std::cout;
+using std::endl;
+
 namespace mcts{
 
 	Mcts::Mcts()

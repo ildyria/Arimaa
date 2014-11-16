@@ -11,9 +11,6 @@
 #include "Bitboard.h"
 #include <list>
 
-using std::string;
-using std::list;
-
 class TheGame
 {
 public:
@@ -55,7 +52,7 @@ public:
 	* \param board Bitboard to be looked at
 	* \return the list of the possible moves
 	*/
-	virtual list<Move> listPossibleMoves(const Bitboard& board) = 0;
+	virtual std::list<Move> listPossibleMoves(const Bitboard& board) = 0;
 
 	/**
 	* \fn playRandomMoves

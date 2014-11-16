@@ -11,10 +11,6 @@
 #include <ctime>
 #include <cstdlib>
 
-using std::cout;
-using std::endl;
-
-
 /**
  * \brief Random class : SINGLETON
  * \details 
@@ -48,7 +44,6 @@ public:
 	 */
 	inline int getNum(int min, int max) {
 		int n = rand() % (max - min + 1) + min;
-//		cout << "rdm (" << min << "," << max <<"): " << n;
 		return n;
 	}
 
