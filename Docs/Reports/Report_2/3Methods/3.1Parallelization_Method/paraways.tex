@@ -1,13 +1,11 @@
 In order to increase the speed of our program, we have decided to parallelize it on a set of clusters of multi-core machines. But there are many ways to parallelize our algorithm and we have to choose how we want to do it. 
 \subsubsection{Previous Work}
 In the last report, we talked about the different methods, their advantages and their drawbacks. We have seen that there are mainly two parallelization methods that are efficient.
-\smallskip
 
 The first one is called the Root Parallelization. It consists in giving the tree to develop to every thread, let them develop it randomly without any communication with the environment
 during a certain amount of time and then, merge the results of each tree.
 This method has the great benefit of minimizing the communication between the actors (in this case, the threads).
 They only communicate at the beginning and at the end of the algorithm, without needing any further synchronization. The Root Parallelization is depicted in figure \ref{fig:root}.
-\smallskip
 
 %\begin{figure}[!h] 
 %\centerline{\includegraphics[scale=0.60]{root.png}}
@@ -18,7 +16,6 @@ They only communicate at the beginning and at the end of the algorithm, without 
 The other efficient parallelization method is called UCT-Treesplit and is depicted if figure \ref{fig:treesplit}. It looks like Root Parallelization as we give to each actor the same tree to develop.
 But contrary to Root Parallelization, when the tree is developed on a certain node, it goes on working packages who are distributed among every actor. %Me not understand sentence
 In terms of performance, this method is very efficient but needs an High-Performance Computer, or \emph{HPC}, and is very sensitive to network latency.
-\smallskip
 
 %\begin{figure}[!h] 
 %\centerline{\includegraphics[scale=0.60]{treesplit.png}}
