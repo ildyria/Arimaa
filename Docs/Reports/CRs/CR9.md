@@ -1,4 +1,4 @@
-﻿#Project Arimaa – CR9 : Wednesday, November, 12th
+#Project Arimaa – CR9 : Wednesday, November, 12th
 Presents : Everyone, with Christian Raymond, Nikos Parlavantzas, and Christian Raymond
 ##Order of business :
 1. MCTS MinMax Controversy
