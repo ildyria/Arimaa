@@ -1,4 +1,4 @@
-﻿#Project Arimaa – CR9 : Wednesday, November, 12th
+#Project Arimaa – CR9 : Wednesday, November, 12th
 Presents : Everyone, with Christian Raymond, Nikos Parlavantzas, and Christian Raymond
 ##Order of business :
 1. MCTS MinMax Controversy
@@ -13,7 +13,7 @@ Presents : Everyone, with Christian Raymond, Nikos Parlavantzas, and Christian 
 CAF is better on asyncronous, the question was "do we use a computer as a thread, or a cluster", which is more high level in MPI. The answer of the teacher was it was possible to do it.
 There is less documentation in CAF but better optimized. It works with IP and computers, we should have no problem, only some difficulties. We just need to test it and do a prototype.
 MPI is a big community, but CAF have a more high level. Another problem is we can encounter an error not present in the documentation, which will be terrible to correct (send a message to the community seems to be the best to do) CAF will replace OpenMP and MPI, and supports GPU. All people seems to give their approval to CAF but we'll make our choice later, maybe just a comparision between the two.
-- Input/Output software will be changed. Nikos wanted to make communicate two computers with each other, which is out of our initial topic. We only need to do it on a single computer, but make two algorithms to compete with each others. They will work one by one, using all resources of the computer.
+- Input/Output software will be changed. Nikos wanted to make communicate two computers with each other, which is out of our initial topic. We only need to do it on a single computer, but make two algorithms to compete with each others. They will work one by one, using all resources of the computer. We will delete the Input Output part and explain the use of an interface in the API part (to discuss)
 - This part will only be an interface and link towards with a game client, handling bots maybe. But this will be done only if we have time. For now, it will be an interface implemented with MCTS methods/Normal player method. If we have time, we'll implement it with bot methods.
 
 ##Planification
