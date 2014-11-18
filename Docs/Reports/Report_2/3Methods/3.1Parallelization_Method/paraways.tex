@@ -7,21 +7,21 @@ during a certain amount of time and then, merge the results of each tree.
 This method has the great benefit of minimizing the communication between the actors (in this case, the threads).
 They only communicate at the beginning and at the end of the algorithm, without needing any further synchronization. The Root Parallelization is depicted in figure \ref{fig:root}.
 
-%\begin{figure}[!h] 
-%\centerline{\includegraphics[scale=0.60]{root.png}}
-%   \caption{\label{étiquette} Overview of Root Parallelization}
-%\label{fig:root}
-%\end{figure}
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.60]{3Methods/3.1Parallelization_Method/root.png}}
+   \caption{\label{étiquette} Overview of Root Parallelization}
+\label{fig:root}
+\end{figure}
 
 The other efficient parallelization method is called UCT-Treesplit and is depicted if figure \ref{fig:treesplit}. It looks like Root Parallelization as we give to each actor the same tree to develop.
 But contrary to Root Parallelization, when the tree is developed on a certain node, it goes on working packages who are distributed among every actor. %Me not understand sentence
 In terms of performance, this method is very efficient but needs an High-Performance Computer, or \emph{HPC}, and is very sensitive to network latency.
 
-%\begin{figure}[!h] 
-%\centerline{\includegraphics[scale=0.60]{treesplit.png}}
-%   \caption{\label{étiquette} Overview of UCT-Treesplit Algorithm}
-%\label{fig:treesplit}
-%\end{figure}
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.60]{3Methods/3.1Parallelization_Method/treesplit.png}}
+   \caption{\label{étiquette} Overview of UCT-Treesplit Algorithm}
+\label{fig:treesplit}
+\end{figure}
 
 
 We have to choose two parallelization methods, one for the cluster parallelization and another for the shared memory parallelization.
@@ -31,4 +31,4 @@ Moreover, as the network can have latency, we should minimize the communication 
 It reduces the cost in communication at maximum, is very simple to implement, does not depend on the configuration of each computer and is very efficient.
 \subsubsection{Shared Memory Parallelization}
 For the shared memory parallelization we could choose both Root Parallelization or UCT-Treesplit.
-If we choose UCT-Treesplit, it may prove difficult to implement it correctly since it is a very complex strategy and, moreover, it would make the algorithm very sensitive to network issues. That is why we chose to implement another Root Parallelization : it will be BLA BLA.
+If we choose UCT-Treesplit, it may prove difficult to implement it correctly since it is a very complex strategy and, moreover, it would make the algorithm very sensitive to network issues. That is why we chose to implement another Root Parallelization. This way, the global strategy of our program will be simple and homogeneous.
