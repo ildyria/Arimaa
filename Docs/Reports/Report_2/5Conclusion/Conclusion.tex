@@ -1,11 +1,12 @@
 The software specifications have been decided : further to the AI, a user interface (\emph{UI}) will be developed.
-It will include all versions of the AI that will have shown satisfying results.
+It will include every version of the AI that will have shown satisfying results.
 Therefore, this project will be composed of three parts : the UI, the AI and the game model that will handle the rules.
 
 The AI will use the \emph{Monte Carle tree search} algorithm.
 In order to make it more efficient, it will implement parallelization on threads and on multiple machines.
-Ultimately, the goal is to try and run it on \emph{Grid 5000}, a set of clusters of multi-core machines.
-This parallelisation will be performed using ApenACC on every machine, and MPI between machines.
-We will first use \emph{Root parallelization}, and try other strategies if there's enough time to do so.
+If the machines at our disposal dispose of GPUs, they will also be used.
+Ultimately, the goal is to try and run our algorithm on \emph{Grid 5000}, a set of clusters of multi-core machines.
+This parallelisation will be performed using OpenMP and OpenACC on every machine, and MPI between machines.
+We will first use \emph{Root parallelization}, and then try other strategies if there's enough time to do so.
 
 The next step will be about defining the details of the implementation, before starting developement.
