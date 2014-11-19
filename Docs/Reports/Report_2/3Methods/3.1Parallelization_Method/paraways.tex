@@ -1,6 +1,6 @@
 In order to increase the speed of our program, we have decided to parallelize it on a set of clusters of multi-core machines. But there are many ways to parallelize our algorithm and we have to choose how we want to do it. 
 \subsubsection{Previous Work}
-In the last report, we talked about the different methods, their advantages and their drawbacks. We have seen that there are mainly two parallelization methods that are efficient.
+In the last report, we talked about the different methods, their advantages and their drawbacks. We have seen that there are mainly two parallelization methods that are efficient in our project.
 
 The first one is called the Root Parallelization. It consists in giving the tree to develop to every thread, let them develop it randomly without any communication with the environment
 during a certain amount of time and then, merge the results of each tree.
@@ -18,7 +18,7 @@ But contrary to Root Parallelization, when the tree is developed on a certain no
 In terms of performance, this method is very efficient but needs an High-Performance Computer, or \emph{HPC}, and is very sensitive to network latency.
 
 \begin{figure}[!h] 
-\centerline{\includegraphics[scale=0.60]{3Methods/3.1Parallelization_Method/treesplit.png}}
+\centerline{\includegraphics[scale=0.80]{3Methods/3.1Parallelization_Method/treesplit.png}}
    \caption{\label{étiquette} Overview of UCT-Treesplit Algorithm}
 \label{fig:treesplit}
 \end{figure}
@@ -31,4 +31,4 @@ Moreover, as the network can have latency, we should minimize the communication 
 It reduces the cost in communication at maximum, is very simple to implement, does not depend on the configuration of each computer and is very efficient.
 \subsubsection{Shared Memory Parallelization}
 For the shared memory parallelization we could choose both Root Parallelization or UCT-Treesplit.
-If we choose UCT-Treesplit, it may prove difficult to implement it correctly since it is a very complex strategy and, moreover, it would make the algorithm very sensitive to network issues. That is why we chose to implement another Root Parallelization. This way, the global strategy of our program will be simple and homogeneous.
+If we choose UCT-Treesplit, it may be difficult to implement it correctly since it is a very complex strategy and, moreover, it would make the algorithm very sensitive to network issues. That is why we chose to implement another Root Parallelization. This way, the global strategy of our program will be simple and homogeneous.

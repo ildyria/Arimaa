@@ -1,12 +1,12 @@
-One of the advantages of the MCTS algorithm is its generalization. In fact it can be applied to a lot of games. We decided to keep this generalization, therefore we thougth about two solutions.
+One of the advantages of the MCTS algorithm is its generalization. In fact it can be applied to a lot of games. We decided to keep this generalization, therefore we thought about two solutions.
 
-One of them is Genaral Game Playing, a formal language which allows softwares to create the model given its formal rules. However the problem of this approach is that even if it permits to play to unknow games, it prevents the use of efficient heuristic to improve the algorithms.
-So we decided to choose a second way which consist to exploit the properties of MCTS algorithm. 
-It does not need to know the rules, only the moves. With this in mind we created an interface for the game which define the methods that MCTS algorithm demands. In other words our algorithm is compatible with all the two-players games implemented with this interface.
+One of them is Genaral Game Playing, a formal language which allows software to create the model given its formal rules. However the problem of this approach is that even if it permits to play unknowed games, it prevents the use of efficient heuristic to improve the algorithms.
+So we decided to choose a second way which consists to exploit the properties of MCTS algorithm. 
+It does not need to know the rules, only the moves. With this in mind we created an interface for the game which define the methods that MCTS algorithm requires. In other words our algorithm is compatible with all the two-players games implemented with this interface.
 
 Only the following fonctions are required : 
 \begin{itemize}
-\item return all the possibles moves given position
+\item return all the possible moves given position
 \item play a random move
 \item play a chosen move 
 \item play random moves until the end of the game
@@ -30,6 +30,6 @@ The main application of our algorithm is the Arimaa game. Therefore we will be a
 	\end{tabular}
 \end{center}
 
-The reason why the branching factor of a game is so important is because it increases greatly the space that has to be searched in order to guess what will happend multiples moves ahead. In chess after 6 moves, the number of positions evaluated are about 35\textsuperscript{6} which is roughtly equivalent to 1,8 billions. In Arimaa, after 3 turns (yours, the opponent and yours again), if you were the explore all positions, you would need to evaluate around 5,2 trillions\footnote{1 trillion = 1 thousand billions = 10\textsuperscript{12}.} boards (2000 times more than chess with half the number of moves).
+The branching factor of a game is important because it increases greatly the space that has to be searched to guess what will happend multiple moves ahead. In chess after 6 moves, the number of positions evaluated are about 35\textsuperscript{6} which is roughtly equivalent to 1,8 billion. In Arimaa, after 3 turns (yours, the opponent and yours again), if you were to explore all positions, you would need to evaluate around 5,2 trillions\footnote{1 trillion in short scale = 1 thousand billion = 10\textsuperscript{12}.} boards. It is about 2000 times more than \textit{Chess} with half the number of moves).
 
-In order to decrease the space to be search, our MCTS Algorithm will perform a big number of simulations before chosing the nodes to explore. After the selection, it will prune the tree in order to optimise search speed and the memory managment.
+In order to decrease the space to be search, our MCTS Algorithm will perform a big number of simulations before chosing the nodes to explore. After the selection, it will prune the tree in order to optimise search speed and the memory management.

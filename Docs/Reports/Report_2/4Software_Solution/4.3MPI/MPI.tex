@@ -1,8 +1,8 @@
-Our last software need is about the cluster parallelization. As we have decided to use a Root Parallelization there won't be many communication between the different computers, we could choose between two solutions : the Sockets and MPI.
+Our last software need is about the cluster parallelization. As we have decided to use a Root Parallelization there will not be much communication between different computers, we could choose between two solutions : the Sockets and MPI.
 
 \subsubsection{Sockets}
 
-A socket is used to communicate across a computer network. The socket is an end point of the communication flow. A socket is a low-level mecanism.
+A socket is used to communicate across a computer network. The socket is an end point of the communication flow. A socket is a low-level mechanism.
 
 \subsubsection{MPI}
 
@@ -13,10 +13,10 @@ MPI, which means Message Passing Interface, is a standardized message-passing sy
 We decided to use MPI for many reasons.
 \begin{itemize}
 \item MPI is more high-level than the sockets. So, it will be simpler to implement in our software.
-\item The community behind MPI is large so there is more documentation about MPI than the sockets. It would be simpler to fix the different problems.
-\item The operation of MPI is based on the sockets so it is similar to the sockets, in terms of performances.
+\item The community behind MPI is large so there is more documentation about MPI than about the sockets. It would be simpler to fix the different problems.
+\item The operation of MPI is based on the sockets so it is similar to the sockets, in term of performances.
 \end{itemize}
-In conclusion, MPI would be simpler to implement, more documented than the sockets while they both have the same performances.
+In conclusion, MPI would be simpler to implement, more documented than the sockets while they both have the same performance.
 
 \subsubsection{Basic operations}
 
@@ -24,7 +24,7 @@ The basic operations of MPI are quite simple. In the main, we first have to init
 MPI\_Init();\\\\
 After the initialization, we have to precise how many computers there are in the network with :\\\\
 int MPI\_Comm\_size(MPI\_Comm comm, int *size);\\\\
-We can also define individually the 'name', or rank, of each computers in the network with :\\\\
+We can also define individually the \textit{name}', or rank, of each computers in the network with :\\\\
 int MPI\_Comm\_rank(MPI\_Comm comm, int *rank);\\\\
 Then we can send and receive messages with those functions, respectively :\\\\
 MPI\_Send();\\
