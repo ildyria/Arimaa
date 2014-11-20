@@ -13,6 +13,3 @@
 3. Monte Carlo
 4. two-players
 5. Minimax
-
-
-Maybe use WriteLatex to avoid conflicts
