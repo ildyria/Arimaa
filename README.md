@@ -26,7 +26,7 @@ Presents : Everyone, with Christian Raymond
 
 ##Planification
 Task		|						Responsible	|	Deadline
------------- | ------------- | --------OpenMP report part							
+------------ | ------------- | --------d						
 Plan								| 	Dan		| 	11/23
 Flowchart to improve						| 	Prateek		| 11/23
 OpenMP report part	| Benoit	and Baptiste	| 11/23
