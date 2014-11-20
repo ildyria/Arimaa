@@ -1,6 +1,6 @@
 One of the advantages of the MCTS algorithm is its generalization. In fact it can be applied to a lot of games. We decided to keep this generalization, therefore we thought about two solutions.
 
-One of them is Genaral Game Playing, a formal language which allows software to create the model given its formal rules. However the problem of this approach is that even if it permits to play unknowed games, it prevents the use of efficient heuristic to improve the algorithms.
+One of them is General Game Playing, a formal language which allows software to create the model given its formal rules. However the problem of this approach is that even if it permits to play unknowed games, it prevents the use of efficient heuristic to improve the algorithms.
 So we decided to choose a second way which consists to exploit the properties of MCTS algorithm. 
 It does not need to know the rules, only the moves. With this in mind we created an interface for the game which define the methods that MCTS algorithm requires. In other words our algorithm is compatible with all the two-players games implemented with this interface.
 
