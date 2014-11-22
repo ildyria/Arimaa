@@ -1,0 +1,10 @@
+In the parts just before, three solutions are presented which permit using together to parallelize our algorithm. In this part will be quickly introduced another way to do this, the actor model.
+
+In this model, each machine, each core and each GPU is seen as an actor. The actors can send messages amongst themselves. When they receive one, they can:
+\begin{itemize}
+\item send messages to other actors
+\item create new actors
+\item modifie their behavior
+\end{itemize}
+
+This actions can be realize in parallel. Moreover the system of message is totally asynchronus which is adapted to the root parallelization we will use at the beginning. But it will not be too interested for other parallelization methods. For the moment we have not found yet a framework implementing the actor model that we could use for our project but we are still investigating because it could be a very efficient solution. 
