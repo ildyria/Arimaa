@@ -13,7 +13,7 @@ MPI is a library mainly dedicated to parallelization between different machines,
 Pthreads are out of order because they are depreciated : it is a C language library and the C++11 language provides more efficiency and possibilities. The threads management is heavy to code and requires a good knowledge of how threads work precisely.
 
 \subsubsection{OpenMP and C++11 language}
-OpenMP and C++11 language are the remaining options. C++11 language is a simplification of the Boost library inducing the latest to be more complete. The following table summarizes each libraries pros and cons :
+OpenMP and C++11 language are the remaining options. C++11 language is a simplification of the Boost library inducing the latest to be more complete. The following table\cite{right_threading_framework} summarizes each libraries pros and cons :
 \begin{center}
 \begin{tabular}{| l | l | l |}
 \hline
@@ -29,6 +29,6 @@ OpenMP and C++11 language are the remaining options. C++11 language is a simplif
 \end{tabular}
 \end{center}
 
-Both libraries provide similar performances\footnote{http://www.cs.colostate.edu/~cs675/OpenMPvsThreads.pdf}. However OpenMP is easier to use (precompilier declarations...) and keeps the code clean. C++11 language allows a better thread management. Nevertheless it can easily also fall behind his counterpart in term of speed if some mistakes are made.
+Both libraries provide similar performances\cite{OpenMP_vs_CC}. However OpenMP is easier to use (precompilier declarations...) and keeps the code clean\cite{OpenMp_vs_explicit_threading}. C++11 language allows a better thread management. Nevertheless it can easily also fall behind his counterpart in term of speed if some mistakes are made.
 
 Considering that OpenMP is safer to use and get similar results to C++11 language, we chose OpenMP to parallelize our algorithm on CPU\footnote{Central Processing Unit}.
