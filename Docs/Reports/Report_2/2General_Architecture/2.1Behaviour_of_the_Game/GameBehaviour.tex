@@ -1,14 +1,7 @@
-In order to test the AI\footnote{Artificial Intelligence}, an application will be developped.
-This application will include a two-player mode, a one-player mode and a demonstration mode (AI versus AI).
-In the case where several AI have been implemented, the user will be able to choose which one to play against.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=\textwidth]{2General_Architecture/2.1Behaviour_of_the_Game/Pictures/Application_UCD}
-\caption{The user-case diagram describing the application}
-\label{fig:UCD_Play}
-\end{figure}
-
-In order to make the game easy to play, this application will provide a graphical User Interface (further referred to as \emph{UI}). % as described in part ??
+This part is about the interaction between the artificial intelligence (\emph{AI}) and the other modules.
+An application will be developed in ordrer to test the AI against human players as well as other AIs.
+In order to make the game easy to play, this application will provide a graphical User Interface (further referred to as \emph{UI}), described in part \ref{sec:ui}.
 This UI, as well as the algorithm for the AI, will act upon the game model, so as to inform it of what moves were made.
-The UI will also regularly update to give the player feedback on the progression of the game.
+The UI will also regularly update to give the player feedback on the progression of the game (for more details, see part \ref{sec:globalview}).
+
+If at some point our AI is to be tested against an AI created by others, an API will be needed in order to interface it with the game model, as described in part \ref{sec:api}.
