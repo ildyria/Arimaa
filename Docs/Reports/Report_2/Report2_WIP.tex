@@ -14,6 +14,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{indentfirst}
 \usepackage{titlesec}
+\usepackage{url}
 \newcommand{\sectionbreak}{\clearpage}
 
 %\setlength{\parskip}{10pt plus 1pt minus 1pt} %Adds spacing between paragraphs 
@@ -59,7 +60,7 @@
 \section{Algorithmic methods}
 \input{3Methods/minintro.tex}					\label{sec:algorithmicMethods}
 	\subsection{Parallelization methods}			\label{sec:parallelization}		\input{3Methods/3.1Parallelization_Method/paraways.tex}
-	\subsection{Monte Carlo Tree Search}			\label{sec:mcts}			\input{3Methods/3.2MCTS/mcts.tex}
+	\subsection{Monte Carlo Tree Search method}		\label{sec:mcts}			\input{3Methods/3.2MCTS/mcts.tex}
 \newpage
 
 \section{General Architecture}					\label{sec:generalArchitecture} 		
@@ -70,9 +71,9 @@
 \newpage
 
 \section{Software solutions}					\label{sec:softwareSolutions}
-	\subsection{OpenMP}					\label{sec:openmp}			\input{4Software_Solution/4.1OpenMP/OpenMP.tex}
-	\subsection{OpenACC}					\label{sec:openacc}			\input{4Software_Solution/4.2OpenACC/OpenACC.tex}
-	\subsection{MPI}					\label{sec:mpi}				\input{4Software_Solution/4.3MPI/MPI.tex}
+	\subsection{CPU Parallelization}			\label{sec:openmp}			\input{4Software_Solution/4.1OpenMP/OpenMP.tex}
+	\subsection{GPU Parallelization}			\label{sec:openacc}			\input{4Software_Solution/4.2OpenACC/OpenACC.tex}
+	\subsection{Cluster Parallelization}			\label{sec:mpi}				\input{4Software_Solution/4.3MPI/MPI.tex}
 	\subsection{Actor Model}				\label{sec:actorModel}			\input{4Software_Solution/4.4ActorModel/ActorModel.tex}
 \newpage
 
@@ -80,7 +81,7 @@
 \newpage
 
 %uncomment to add bibliography
-%\bibliography{bibliography}
-%\bibliographystyle{plain}
+\bibliography{bibliography}
+\bibliographystyle{plain}
 
 \end{document}
