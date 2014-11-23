@@ -2,12 +2,12 @@ The project is called \emph{Fast \& Furious Game Playing, Monte Carlo Drift}. It
 
 We have chosen the game Arimaa to play with. This game is good for us because it is a two-players strategy board game not solved\footnote{A game solved is a game where good algorithms are able to find the perfect move in each situation to win, or to draw. For instance, \textit{Tic Tac Toe} or \textit{Draughts} are solved games.}.
 
-A human plays a game by thinking of all possible moves as per one's imagination and then opts for the best amongst them. Before taking ones turn, a player can visualize ones options and predict how an opponent will counteract them. All studied solutions will be displayed in a search tree. The Minimax algorithm does exactly the same thing, but it explores all possibilities, which is heavy. That is why we have chosen to use the MCTS algorithm, lighter, and converging to the Minimax algorithm at the infinite.
+A human plays a game by thinking of all possible moves as per one's imagination and then opts for the best amongst them. Before taking ones turn, a player can visualize ones options and predict how an opponent will counteract them. All studied move solutions will be displayed in a search tree. The Minimax algorithm does exactly the same thing, but it explores all possibilities, which is heavy. That is why we have chosen to use the MCTS algorithm, lighter, and converging to the Minimax algorithm.
 
-By exploring the numerous random possibilities at any one time, it will be able to take decisions in order to win the game.
+By exploring the numerous random possibilities at any one time, our program will be able to take decisions in order to win the game.
 The algorithm would be parallelized in order to exploit it in a multi-core machine, allowing it to go further into the search tree, thus improving its efficiency.
 
-Some of the best parallelization methods will be studied to choose the most suitable to this project.
+Some of the best parallelization methods will be explained more deeply to choose the most suitable to this project.
 The exploration of the tree will depend on the parallelization method.
 Finally, in the last phase, a solution will be implemented, and executed on Grid'5000, on a set of clusters of multi-core machines.
 
@@ -15,6 +15,4 @@ Finally, in the last phase, a solution will be implemented, and executed on Grid
 
 In this report, the parallelization method chosen will be explained, and the MCTS algorithm will be described
 Then, the general architecture of our project will be described, the behaviour and the API of our game.
-Finally, we will discuss the different software with OpenMP, OpenACC, and MPI.
-
-For us, the most interesting part regarding this project is the creation of an artificial intelligence which is as optimized as possible.
+Finally, we will discuss the different suitable software with OpenMP, OpenACC, and MPI.
