@@ -1,6 +1,6 @@
-In order to increase the speed of our program, it has been decided to parallelize it on a set of clusters of multi-core machines. But there are many ways to parallelize our algorithm and we have to choose how we want to do it. 
+In order to increase the speed of our program, it has been decided to parallelize it on a set of clusters of multi-core machines, in the more complex possibilty. But there are many ways to parallelize our algorithm and we have to choose how we want to do it. in a first time, let's talk about the parallelization method which have the most potential, then, we will see which of them can be great for our cases.
 \subsubsection{Previous Work}
-In the last report, we talked about the different methods, their advantages and their drawbacks. There are mainly two parallelization methods that are efficient in our project.
+In the last report, we talked about the different methods, their advantages and their drawbacks. There are mainly two parallelization methods that are efficient in the conditions of our project, in terms of speed.
 
 The first one is called the Root Parallelization. It consists in giving the tree to develop to every thread, let them develop it randomly without any communication with the environment
 during a certain amount of time and then, merge the results of each tree.
@@ -14,7 +14,7 @@ They only communicate at the beginning and at the end of the algorithm, without 
 \end{figure}
 
 The other efficient parallelization method is called UCT-Treesplit and is depicted if figure \ref{fig:treesplit}. It looks like Root Parallelization as it gives to each actor the same tree to develop.
-But contrary to Root Parallelization, when the tree is developed on a certain node, it goes on working packages who are distributed among every actor. %Me not understand sentence
+But contrary to Root Parallelization, when the tree is developed on a certain node, it goes on working packages \footnote{A working package is a set of nodes that can be possibly developped} who are distributed among every actor. The repartition of the packages are made by a scheduler.
 In terms of performance, this method is very efficient but needs an High-Performance Computer, or \emph{HPC}, and is very sensitive to network latency.
 
 \begin{figure}[!h] 
