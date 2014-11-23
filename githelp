@@ -15,5 +15,10 @@ git fetch --all
 git reset --hard origin/master
 /!\ your changes will be destroyed
 
+TO MERGE IN CASE OF CONFLICT : 
+git fetch		: parse the last modifications
+git difftool		: merge the files
+Edit the files (chose the right parts), commit and push.
+
 pour un clone rapide : 
 git clone git@github.com:ildyria/Arimaa.git"
