@@ -7,7 +7,7 @@ during a certain amount of time and then, merge the results of each tree.
 This method has the great benefit of minimizing the communication between the actors (in this case, the threads).
 They only communicate at the beginning and at the end of the algorithm, without needing any further synchronization. The Root Parallelization is depicted in figure \ref{fig:root}.
 
-\begin{figure}[!h] 
+\begin{figure}[!ht] 
 \centerline{\includegraphics[scale=0.60]{3Methods/3.1Parallelization_Method/root.png}}
    \caption{Overview of Root Parallelization}
 \label{fig:root}
@@ -17,7 +17,7 @@ The other efficient parallelization method is called UCT-Treesplit and is depict
 But contrary to Root Parallelization, when the tree is developed on a certain node, it goes on working packages \footnote{A working package is a set of nodes that can be possibly developped} who are distributed among every actor. The repartition of the packages are made by a scheduler.
 In terms of performance, this method is very efficient but needs an High-Performance Computer, or \emph{HPC}, and is very sensitive to network latency.
 
-\begin{figure}[!h] 
+\begin{figure}[!ht] 
 \centerline{\includegraphics[scale=0.80]{3Methods/3.1Parallelization_Method/treesplit.png}}
    \caption{Overview of UCT-Treesplit Algorithm}
 \label{fig:treesplit}
