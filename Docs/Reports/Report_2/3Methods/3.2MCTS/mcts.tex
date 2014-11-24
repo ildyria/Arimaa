@@ -30,9 +30,9 @@ The main game of our algorithm is Arimaa. Therefore we will be able to specializ
 	\end{tabular}
 \end{center}
 
-The branching factor of a game is important because it increases greatly the space that has to be searched to guess what will happend multiple moves ahead. In chess after 4 moves, the number of positions evaluated are about 35\textsuperscript{4} which is roughtly equivalent to 1,8 billion. In Arimaa, after 3 turns (yours, the opponent and yours again), if you were to explore all positions, you would need to evaluate around 5,2 trillions\footnote{1 trillion in short scale = 1 thousand billion = 10\textsuperscript{12}.} boards. It is about 2000 times more than \textit{Chess} with half the number of moves).
+The branching factor of a game is important because it increases greatly the space that has to be explored to guess what will happend multiple moves ahead. In chess after 4 moves, the number of positions evaluated are about 35\textsuperscript{4} which is roughtly equivalent to 1,8 billion. In Arimaa, after 3 turns (yours, the opponent and yours again), if you were to explore all positions, you would need to evaluate around 5,2 trillions\footnote{1 trillion in short scale = 1 thousand billion = 10\textsuperscript{12}.} boards. It is about 2000 times more than \textit{Chess} with half the number of moves).
 
-In order to decrease the space to be search, our MCTS Algorithm will perform a big number of simulations before chosing the nodes to explore. After the selection, it will prune the tree in order to optimise search speed and the memory management. The following example has been simplified :
+In order to decrease the space to be explored, our MCTS Algorithm will perform a high number of simulations before chosing the nodes to explore. After the selection, it will prune the tree in order to optimise search speed and the memory management. The following example has been simplified :
 \begin{figure}[H]
 \centering
 	\includegraphics[width=\textwidth]{3Methods/3.2MCTS/img/root.png}
@@ -69,4 +69,4 @@ In order to decrease the space to be search, our MCTS Algorithm will perform a b
 	\caption{\label{fig:depth1-prune}Prune unselected children.}
 \end{figure}
 
-Iterate the process until the time limit dedicated to the search is reached and return the move with the best results.
+Iterate the process until the time limit dedicated to the search is reached and return the move with the highest winrate.
