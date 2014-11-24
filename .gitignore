@@ -6,7 +6,7 @@ ehthumbs.db
 Desktop.ini
 
 # Recycle Bin used on file shares
-$RECYCLE.BIN/
+$RECYCLE.BIN/*
 
 # Windows Installer files
 *.cab
@@ -49,7 +49,6 @@ $RECYCLE.BIN/
 *.pdb
 *.vcxproj.*
 
-*_WIP.pdf
 # =========================
 # Operating System Files
 # =========================
@@ -83,18 +82,18 @@ Temporary Items
 # =========================
 *.obj
 Arimaa/Arimaa.ncb
-Arimaa/Arimaa.sdf
-Arimaa/Arimaa.sln
+#Arimaa/Arimaa.sdf
+#Arimaa/Arimaa.sln
 Arimaa/Arimaa.suo
 Arimaa/Arimaa.v12.suo
 Arimaa/Arimaa/Arimaa.aps
 Arimaa/Arimaa/Arimaa.rc
-Arimaa/Arimaa/Arimaa.vcproj
-Arimaa/Arimaa/Arimaa.vcproj.SKYWALKER.Gabriel.user
-Arimaa/Arimaa/Arimaa.vcxproj
-Arimaa/Arimaa/Arimaa.vcxproj
-Arimaa/Arimaa/Arimaa.vcxproj.filters
-Arimaa/Arimaa/Arimaa.vcxproj.user
+#Arimaa/Arimaa/Arimaa.vcproj
+#Arimaa/Arimaa/Arimaa.vcproj.SKYWALKER.Gabriel.user
+#Arimaa/Arimaa/Arimaa.vcxproj
+#Arimaa/Arimaa/Arimaa.vcxproj
+#Arimaa/Arimaa/Arimaa.vcxproj.filters
+#Arimaa/Arimaa/Arimaa.vcxproj.user
 Arimaa/Arimaa/Debug*
 Arimaa/Arimaa/Model/DoxygenConfig
 Arimaa/Arimaa/Model/GenerateDoc.bat
@@ -103,7 +102,7 @@ Arimaa/Arimaa/ReadMe.txt
 Arimaa/Arimaa/Release.bat
 Arimaa/Arimaa/Release/*
 Arimaa/Arimaa/resource.h
-Arimaa/Backup/Arimaa.sln
+#Arimaa/Backup/Arimaa.sln
 Arimaa/Backup/Arimaa.v12.suo
 Arimaa/Debug/*
 Arimaa/Old VIsual Files/*
