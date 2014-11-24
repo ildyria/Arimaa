@@ -7,7 +7,7 @@ To parallelize our algorithm on one machine, we need to chose a framework. Four 
 \end{itemize}
 
 \subsubsection{MPI}
-MPI is a library mainly dedicated to parallelization between different machines, it could work on a single CPU but as we said in the previous report, it doesn't provide as many possibilites as its counterparts. Therefore we do not choose to do it for that part of the implementation.
+MPI is a library mainly dedicated to parallelization between different machines, it could work on a single CPU\footnote{Central Processing Unit} but as we said in the previous report, it doesn't provide as many possibilites as its counterparts. Therefore we do not choose to do it for that part of the implementation.
 
 \subsubsection{Pthreads}
 Pthreads are out of order because they are depreciated : it is a C language library and the C++11 language provides more efficiency and possibilities. The threads management is heavy to code and requires a good knowledge of how threads work precisely.
@@ -31,4 +31,4 @@ OpenMP and C++11 language are the remaining options. C++11 language is a simplif
 
 Both libraries provide similar performances\cite{OpenMP_vs_CC}. However OpenMP is easier to use (precompilier declarations...) and keeps the code clean\cite{OpenMp_vs_explicit_threading}. C++11 language allows a better thread management. Nevertheless it can easily also fall behind his counterpart in term of speed if some mistakes are made.
 
-Considering that OpenMP is safer to use and get similar results to C++11 language, we chose OpenMP to parallelize our algorithm on CPU\footnote{Central Processing Unit}.
+Considering that OpenMP is safer to use and get similar results to C++11 language, we chose OpenMP to parallelize our algorithm on CPU.
