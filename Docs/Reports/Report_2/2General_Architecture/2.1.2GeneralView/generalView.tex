@@ -1,9 +1,21 @@
-The organization of the architecture is described in Figure \ref{fig:gen}.
+The organization of the architecture is described in Figure \ref{fig:gra}.
+
+First a module User Interface will be used by the user to play the game. Then the User Interface will transmit the data to the module Model. The model is able to make the move, to update the board. If the game is a human game, the Model will only interact with the User Interface. Otherwise, for the computer move, it will communicate with the MCTS module via the API. This API is here to make communicate the Model and the MCTS module. The MCTS is using an implementation of the parallelization to compute his algorithm faster, using different computers.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.2\textwidth]{2General_Architecture/2.1.2GeneralView/graphe.png}
+\caption{General view of the architecture}
+\label{fig:gra}
+\end{figure}
+
+
+Here is a diagram showing the links between the interface and the rest of the modules in Figure \ref{fig:gen}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{2General_Architecture/2.1.2GeneralView/gen.png}
-\caption{General view of the architecture}
+\caption{Interfaces of the architecture}
 \label{fig:gen}
 \end{figure}
 
