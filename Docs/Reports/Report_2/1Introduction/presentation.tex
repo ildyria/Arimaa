@@ -1,11 +1,11 @@
 The project is called \emph{Fast \& Furious Game Playing, Monte Carlo Drift}. Its purpose is to create an Artificial Intelligence able to compete against humans using the \emph{Monte Carlo Tree Search} algorithm.
 
-We have chosen the game Arimaa to play because it is a two-players strategy board game not solved\footnote{A game solved is a game where good algorithms are able to find the perfect move in each situation to win, or to draw. For instance, \textit{Tic Tac Toe} or \textit{Draughts} are solved games.}.
+We have chosen the game Arimaa because it is a two-players strategy board game not solved\footnote{A game solved is a game where good algorithms are able to find the perfect move in each situation to win, or to draw. For instance, \textit{Tic Tac Toe} or \textit{Draughts} are solved games.}.
 
-A human plays a game by thinking of all possible moves as per one's imagination and then opts for the best amongst them. Before taking ones turn, a player can visualize ones options and predict how an opponent will counteract them. All studied move solutions will be displayed in a search tree. The Minimax algorithm does exactly the same thing, but it explores all possibilities, which is heavy. That is why we have chosen to use the MCTS algorithm, lighter, and converging to the Minimax algorithm.
+A human plays a game by thinking of all possible moves as per one's imagination and then opts for the best amongst them. Before taking ones turn, a player can visualize ones options and predict how an opponent will counteract them. The algorithm will do the same by building a search tree containing the different posibilities. The Minimax algorithm doesit by exploring all possibilities, which is heavy. The MCTS algorithm is lighter and converges to the Minimax algorithm, therefore it has been chosen for this project.
 
 By exploring the numerous random possibilities at any one time, our program will be able to take decisions in order to win the game.
-The algorithm would be parallelized in order to exploit it in a multi-core machine, allowing it to go further into the search tree, thus improving its efficiency.
+The algorithm will be parallelized in order to exploit it in a multi-core machine, allowing it to go further into the search tree, thus improving its efficiency.
 
 Some of the best parallelization methods will be explained more deeply to choose the most suitable to this project.
 The exploration of the tree will depend on the parallelization method.
