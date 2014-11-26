@@ -1,0 +1,19 @@
+Notation for writing down the moves in Arimaa is as follows. All the steps in a move are written in a row separated by whitespace. Every step is written in the form (one letter for piece and player)(row coordinate in alphabet)(column coordinate as a number)(letter “x” if the piece is trapped, or a first letter of step direction - North, East, South, West ).
+
+For example, move Rf2n Rf3x ee2e rh8s can be interpreted as follows: the silver elephant at e2 pushes the rabbit at f2 to the north where the rabbit dies in the trap, afterwards the silver rabbit moves from h8 to the south. First the result of the push is written down (the elephant cannot actually go to the rabbit’s location because it is not empty). Rf2n says rabbit (it is a gold rabbit because R is written in uppercase) from f2 moves north. 
+
+integer board
+This is a straightforward representation of Arimaa board. The board is maintained as an array of integers where every cell corresponds to a particular coordinate of real board. It is a good practice to use one dimensional array and recalculate the indexes if necessary instead of using a two dimensional array. We have extended this array to contain 100 elements - 64 for board cells and 36 for edges. This way out of board check is quite elegant. Every cell of the array holds a single integer value determining
+• whether it is an out of board cell
+• whether it is an empty cell
+• piece type and color of present piece
+While this representation is quite easy to implement, its performance in above criteria is rather inferior.
+
+bitboards
+An efficient representation inspired by chess programming. Board is represented as 14 64-bit integers (bitboards) - one bitboard for every (piece type, color) pair
+plus a bitboard for (all pieces, color) pair. If there is 1 at position i in bitboard for golden cats, then there is a golden cat standing at corresponding coordinates
+(typically (i/8, imod8)) on the actual board. Having an extra bitboard for all pieces of particular color is a nice speedup trick since often it is sufficient to know
+what color is the cell occupied by or whether it is empty. A nice property of this approach is the size of the board model. Its core takes 14 × 8B = 112B which
+is quite a difference compared to 100 × 4B = 400B in the case of integer board. Detailed description of this representation is provided in [26].
+Initially we have used the integer board approach because of its simplicity. However later we decided to switch to the more efficient bitboards representation giving us more than two times speedup in performing playouts.
+
