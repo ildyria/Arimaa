@@ -1,7 +1,14 @@
-This part is about the interaction between the artificial intelligence (\emph{AI}) and the other modules.
 An application will be developed in order to test the AI against human players as well as other AIs.
-In order to make the game easy to play, this application will provide a graphical User Interface (further referred to as \emph{UI}), described in part \ref{sec:ui}.
-This UI, as well as the algorithm for the AI, will act upon the game model, so as to inform it of what moves were made.
+It will be integrate four modules : 
+\begin{itemize}
+\item the artificial intelligence (\emph{AI}) using the Monte Carlo tree search algorithm
+\item the game model containing the rules
+\item the user interface (\emph{UI}) described in part \ref{sec:ui}
+\item an \emph{API} described in part \ref{sec:api} that will be used to integrate other AIs
+\end{itemize}
+
+In this part, the different interactions between these modules will be discussed.
+The UI, as well as the algorithm for the AI, will act upon the game model, so as to inform it of what moves were made.
 The UI will also regularly update to give the player feedback on the progression of the game (for more details, see part \ref{sec:globalview}).
 
 If at some point our AI is to be tested against an AI created by others, an API will be needed in order to interface it with the game model, as described in part \ref{sec:api}.
