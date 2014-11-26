@@ -1,23 +1,43 @@
-The organization of the architecture is described in Figure \ref{fig:gra}.
+The Figure \ref{fig:dia} presents how the application works.
+\newpage
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.80\textwidth]{2General_Architecture/2.1.2GeneralView/api.png}
+	\caption{The flowchart describing the usage of the API}
+	\label{fig:dia}
+\end{figure}
+\thispagestyle{empty}
 
-First a module User Interface will be used by the user to play the game. Then the User Interface will transmit the data to the module Model. The model is able to make the move, to update the board. If the game is a human game, the Model will only interact with the User Interface. Otherwise, for the computer move, it will communicate with the MCTS module via the API. This API is here to make communicate the Model and the MCTS module. The MCTS is using an implementation of the parallelization to compute his algorithm faster, using different computers.
+First, the menu displays. Then, the players place their pieces, and they play. It is possible to see which module interacts with each other. To go deeper, the four modules will be presented in Figure \ref{fig:gra}.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=1\textwidth]{2General_Architecture/2.1.2GeneralView/graphe2.png}
+\includegraphics[width=1\textwidth]{2General_Architecture/2.1.2GeneralView/prep.png}
 \caption{General view of the architecture}
 \label{fig:gra}
 \end{figure}
 
+The 4 modules and the Bot will be described :
 
+\begin{itemize}
+\item \textbf{Module User Interface}
+
+This module will communicate with the environnement, displaying the board, creating events, and sending them to the module Model. The User Interface is studied more deeply in part \ref{sec:ui}
+
+\item \textbf{Module Model}
+
+This module will handle the game itself. It will be able to store and play games, receiving moves and giving the state of the board to the User Interface and the AI. The module Model contains as well the rules of the game. It is the link between the user and the IA.
+
+\item \textbf{Module Converter}
+
+This module is the link between the model Model and our IA, the MCTS algorithm. It forwards the board sent by the module Model to the MCTS algorithm, adapting the format. Furthermore, it does the same communication in the other way with the final move, from the MCTS algorithm to the module Model with the adapted format. The module Converter is described in part \ref{sec:api}
+
+\item \textbf{Module Converter}
+
+\end{itemize}
+First a module User Interface will be used by the user to play the game. Then the User Interface will transmit the data to the module Model. The model is able to make the move, to update the board. If the game is a human game, the Model will only interact with the User Interface. Otherwise, for the computer move, it will communicate with the MCTS module via the API. This API is here to make communicate the Model and the MCTS module. The MCTS is using an implementation of the parallelization to compute his algorithm faster, using different computers.
 Here is a diagram showing the links between the interface and the rest of the modules in Figure \ref{fig:gen}
 
-\begin{figure}[!h]
-\centering
-\includegraphics[width=0.5\textwidth]{2General_Architecture/2.1.2GeneralView/gen.png}
-\caption{Interfaces of the architecture}
-\label{fig:gen}
-\end{figure}
 
 The user will interact with the user interface, which will communicate with the game application, where all data for the game will be stored. Then, it will communicate with an Interface which will handle the communications between the Game application and the computer player. 
 
