@@ -5,10 +5,10 @@ Our last software need is about the cluster parallelization. As we have decided 
 \end{itemize}
 \subsubsection{The chosen solution}
 
-We decided to use MPI for many reasons.
+To compare them, we can see that :
 \begin{itemize}
 \item MPI is more high-level than the sockets. So, it will be simpler to implement in our software.
 \item The community behind MPI is large so there wouldn't be any problem to fix the different bugs. Moreover, the MPI documentation is clearer than the sockets' one. 
 \item The operation of MPI is based on the sockets so it is similar, though a little bit inferior, to the sockets, in term of performances.
 \end{itemize}
-In conclusion, MPI would be simpler to implement, more documented than the sockets while they both have almost similar performance.
+In conclusion, MPI would be simpler to implement, more documented than the sockets while they both have almost similar performance. So, it seems more adapted to our project than the sockets.
