@@ -9,7 +9,7 @@ They only communicate at the beginning and at the end of the algorithm, without 
 
 \begin{figure}[!ht] 
 \centerline{\includegraphics[scale=0.60]{3Methods/3.1Parallelization_Method/root.png}}
-   \caption{Overview of Root Parallelization}
+   \caption{Overview of Root Parallelization \cite{parallel_comp}}
 \label{fig:root}
 \end{figure}
 
@@ -19,16 +19,17 @@ In terms of performance, this method is very efficient but needs an High-Perform
 
 \begin{figure}[!ht] 
 \centerline{\includegraphics[scale=0.80]{3Methods/3.1Parallelization_Method/treesplit.png}}
-   \caption{Overview of UCT-Treesplit Algorithm}
+   \caption{Overview of UCT-Treesplit Algorithm \cite{treesplit}}
 \label{fig:treesplit}
 \end{figure}
 
 
-We have to choose two parallelization methods, one for the cluster parallelization and another for the shared memory parallelization.
-\subsubsection{Cluster Parallelization}
-For the cluster parallelization, we have to take into account the fact that communication will be done by sending messages, that are relatively costly in terms of performance.
-Moreover, as the network can have latency, it is best to minimize the communication between the computers and that's why Root Parallelization has been chosen.
-It reduces the cost in communication at maximum, is very simple to implement, does not depend on the configuration of each computer and is very efficient\cite{parallel_comp}.
-\subsubsection{Shared Memory Parallelization}
-For the shared memory parallelization we could choose both Root Parallelization or UCT-Treesplit.
-If we choose UCT-Treesplit, it will take much time to implement it correctly since it is a very complex strategy and, moreover, it would make the algorithm very sensitive to network issues. That is why we chose to implement another Root Parallelization. This way, the global strategy of our program will be simple, efficient and homogeneous.
+We have to choose two parallelization methods, one for the cluster parallelizsm and another for the shared memory parallelism.
+\subsubsection{Cluster Parallelism}
+For the cluster parallelism, we have to take into account the fact that communication will be done by sending messages, that are relatively costly in terms of performance.
+Moreover, as the network can have latency, it is best to minimize the communication between the computers and that's why Root Parallelization has been chosen over 	UCT-Treesplit.
+Root Parallelization reduces the cost in communication at maximum, is very simple to implement, does not depend on the configuration of each computer and is very efficient\cite{parallel_comp}.
+
+\subsubsection{Shared Memory Parallelism}
+For the shared memmory parallelism, we can choose between many methods but, as seen previously, Root Parallelisation is the better one.\cite{parallel_comp}
+That is why this method will also be chosen for the shared memory parallelism. This way, the global strategy of our program will be simple, efficient and homogeneous.

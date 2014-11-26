@@ -6,7 +6,7 @@ The first one is General Game Playing\cite{General_Game_Playing}, a formal langu
 That is why we chose another way which consists in exploiting the properties of the MCTS algorithm. 
 With this solution, the algorithm does not need to know the rules, only the moves. With this in mind we created an interface for the game which defines the methods that the MCTS algorithm requires. In other words our algorithm is compatible with all the two-players games implemented with this interface.
 
-Only the following fonctions are required : 
+Only the following fonctions are required: 
 \begin{itemize}[nolistsep]
 \item return all the possible moves given position
 \item play a random move
@@ -38,7 +38,7 @@ The branching factor of a game is important because it increases greatly the spa
 
 \subsubsection{Decreasing the impact of the branching factor}
 
-In order to decrease the space to be explored, our MCTS Algorithm will perform a high number of simulations before chosing the nodes to explore. After the selection, it will prune the tree in order to optimise search speed and the memory management. The following example has been simplified :
+In order to decrease the space to be explored, our MCTS Algorithm will perform a high number of simulations before chosing the nodes to explore. After the selection, it will prune the tree in order to optimise search speed and the memory management. The following example has been simplified:
 \begin{figure}[H]
 \centering
 	\includegraphics[width=\textwidth]{3Methods/3.2MCTS/img/root.png}

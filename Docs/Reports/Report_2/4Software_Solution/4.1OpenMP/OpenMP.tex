@@ -1,4 +1,4 @@
-To parallelize our algorithm on one machine, we need to chose a framework. Four solutions have been found and compared :
+To parallelize our algorithm on one machine, we need to chose a framework. Four solutions have been found and compared:
 \begin{itemize}
 \item MPI
 \item OpenMp
@@ -13,7 +13,7 @@ MPI is a library mainly dedicated to parallelization between different machines,
 Pthreads are out of the question because they are depreciated : it is a C language library and the C++11 language provides more efficiency and possibilities. The threads management is heavy to code and requires a good knowledge of how threads work precisely.
 
 \subsubsection{OpenMP and C++11 language}
-OpenMP and C++11 language are the remaining options. C++11 language is a simplification of the Boost library inducing the latest to be more complete. The following table\cite{right_threading_framework} summarizes each libraries pros and cons :
+OpenMP and C++11 language are the remaining options. C++11 language is a simplification of the Boost library inducing the latest to be more complete. The following table\cite{right_threading_framework} summarizes each libraries pros and cons:
 \begin{center}
 \begin{tabular}{| l | l | l |}
 \hline
