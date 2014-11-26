@@ -1,50 +1,22 @@
-﻿#Project Arimaa – CR10 : Wednesday, November, 19th
-Presents : Everyone, with Christian Raymond
+﻿#Project Arimaa – CR11 : Wednesday, November, 26th
+Presents : Everyone, with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
-1. Where to put Input/Output in the report
-2. CAF
+1. CAF
+2. General Architecture
 3. Comments on the second report
-4. Picture flowchart of Prateek to improve
-5. Writing rules
 
 ##Information :
-- The part Input/Output was at the beginning destined to described a new system which makes it possible for two computers to communicate which each other. It has been reduced to a simple interface able to make play different kind of players (Human-ComputerMCTS-Bots...) We will add it in the User Interface (UI) part.
-- CAF framework discussion. The version  Baptiste studied was only available on Linux, so we believe it didn't worth it. Wrong because CAF can work on a lot of different implementations. Caf can works on windows. We will add a paragraph in the report, we will talk about the actor model. CAF is an equivalent to the software MPI, OpenACC, and OpenMP. Baptiste will look for it.
-- Reminder of writing rules. "We" can be use to describe the project generally only.
-- Gabriel's ugly picture: The Figure 1 does not look like good (use case diagram), the style is bad. Gabriel will improve it.
-- Remove Library C in OpenMP and C++11 language
-- Change of the plan of the report : begin with parallelization strategy and then architecture (Dan)
-- Create a paragraph describing all part of the structure, with big boxes and interfaceogies, comparison mikail parallelization)
-- Gabriel missing part on UI.
-- Benoit missing part on MCTS graphics and text
-- Table of contents spaces to correct. If Gabriel wants, he can have a document automatically good. Otherwise, it will be the old manual method by Dan.
-- Flowchart to improve by Prateek : create a png picture, place the text correctly, invert the yes and the no, check for spelling mistakes
-- Branching Factor fight : problem of footnote or in the text because the question is "is it important enough to put it in the text ?" The answer is no.
-- Update foreseen to Mikail documents to be complete
-- Sending of the document to Nikos, who has already corrected the first part. Mr Raymond will do it for Friday evening. For the 23 of November, we will all complete our part, before the next correction of the teacher. Before wednesday evening, everything should be corrected, to send the real document the day after
-
+- We won't talk about CAF in the report, only actor model, because CAF is an implementation not compatible with our work.
+- We need to correct teacher mistakes
+- General Architecture : merge two first diagram, change representation of diagram to be more concise, put the API flowchart here, add a new graph describing it, change the name of API, it is a convertor between MCTS and the game application. Delete the part of explanation of API, look for the use of a convertor in our project. Add a part explaing the architecture of the MCTS/parallelization part with diagrams to describe.
 
 ##Planification
 Task		|						Responsible	|	Deadline
------------- | ------------- | --------				
+------------ | ------------- | --------						
 Plan								| 	Dan		| 	11/23
-Flowchart to improve						| 	Prateek		| 11/23
-OpenMP report part	| Benoit	and Baptiste	| 11/23
-MCTS report part					 | 		Benoit		 | 	11/23
-MPI report part						 | 	Mikail		 | 	11/23
-Parallelization method report part		 | 			Mikail		 | 	11/23
-OpenAcc report part						 | 	Baptiste	 | 	11/23
-Behaviour of the game report part		 | 			Gabriel	 | 	11/23
-General Architecture review				 | 		Gabriel	 | 	11/23
-Conclusion report part					 | 	Gabriel	 | 	11/23
-Input/Output report part				 | 		Dan	 | 		11/23
-Introduction report part				 | 		Dan		 | 	11/23
-Abstract report part					 | 		Prateek	 | 	11/23
-API report part							 | Prateek	 | 	11/23	
-First draft of the report				 | 		Everyone	 | 	11/23
-OpenMP implementation					 | 	Not decided	 | Begin after 11/23
-Last draft of the report				 | 		Everyone	 | 	11/26
+Correction of report2				| 			Everyone| 	23h59 26/11 
+Send the report						| 	Dan		| 	27/11
 Due date for the report					 | 	Dan			 | 11/27
 Finish the game application			 | 		Gabriel	 | 	12/18
 
-##Next meeting : 11/26
+##Next meeting : 12/03
