@@ -5,9 +5,10 @@ Therefore, this project will be composed of four modules: the UI, the MCTS algor
 
 The AIs that will be developed will use the \emph{Monte Carle Tree Search} algorithm.
 In order to make it more efficient, they will implement parallelization on threads and on multiple machines.
-%Ultimately, the goal is to try and run our algorithm on \emph{Grid 5000}, a set of clusters of multi-core machines.
 If the computers at our disposal have GPUs, they will also be used.
-This parallelisation will be performed using OpenMP and OpenACC on every machine (OpenMP for thread parallelization and OpenAcc for GPU parallelization), and MPI between machines.
+At the end of the processing, every machine will merge the results of its threads, before sending them to the main machine.
+This machine will then take the final decision.
+%This parallelisation will be performed using OpenMP and OpenACC on every machine (OpenMP for thread parallelization and OpenAcc for GPU parallelization), and MPI between machines.
 As for parallelization strategies, we will first use \emph{Root parallelization}, and then try other ones if there is enough time to do so.
 
 The next step will be about defining the details of the implementation, before the developement starts.
