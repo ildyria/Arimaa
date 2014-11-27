@@ -29,8 +29,8 @@ We have to choose two parallelization methods, one for the cluster parallelizsm 
 \subsubsection{Cluster Parallelism}
 For the cluster parallelism, we have to take into account the fact that communication will be done by sending messages, that are relatively costly in terms of performance.
 Moreover, as the network can have latency, it is best to minimize the communication between the computers. That is why \textit{Root Parallelization} has been chosen over \textit{UCT-Treesplit}.
-\textit{Root Parallelization} reduces the cost in communication at maximum, and  is very simple to implement. It does not depend on the configuration of each computer and is very efficient\cite{parallel_comp}.
+\textit{Root Parallelization} reduces the cost in communication at maximum, and  is very simple to implement. It does not depend on the configuration of each computer and is very performant\cite{parallel_comp}.
 
 \subsubsection{Shared Memory Parallelism}
-For the shared memory parallelism, we can choose between many methods but, as seen previously, \textit{Root Parallelization} is the better one\cite{parallel_comp}.
+For the shared memory parallelism, we can choose between many methods but, as seen previously, \textit{Root Parallelization} is the faster one\cite{parallel_comp}.
 That is why this method will also be chosen for the shared memory parallelism. This way, the global strategy of our program will be simple, efficient and homogeneous.
