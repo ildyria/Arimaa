@@ -1,13 +1,13 @@
-The software specifications have been decided: further to the AI, a user interface (\emph{UI}) will be developed.
-It will include every version of the Monte Carlo tree search AI that will have shown satisfying results.
-In the case where we test them against other AIs, these AIs will be included as well.
-Therefore, this project will be composed of four parts : the UI, the AI, the game model that will handle the rules, and the API that will help integrate other AIs.
+The software specifications have been decided: further to the AI, a User Interface (\emph{UI}) will be developed.
+It will include every version of the \textit{Monte Carlo Tree Search AI} that will show satisfying results.
+In the case we test them against other AIs, these AIs will be included as well.
+Therefore, this project will be composed of four modules: the UI, the MCTS algorithm, the Model, and the Converter that will help integrate other AIs.
 
-The AIs taht will be developed will use the \emph{Monte Carle Tree Search} algorithm.
+The AIs that will be developed will use the \emph{Monte Carle Tree Search} algorithm.
 In order to make it more efficient, they will implement parallelization on threads and on multiple machines.
 %Ultimately, the goal is to try and run our algorithm on \emph{Grid 5000}, a set of clusters of multi-core machines.
 If the computers at our disposal have GPUs, they will also be used.
 This parallelisation will be performed using OpenMP and OpenACC on every machine (OpenMP for thread parallelization and OpenAcc for GPU parallelization), and MPI between machines.
-As for parallelization strategies, we will first use \emph{Root parallelization}, and then try other ones if there's enough time to do so.
+As for parallelization strategies, we will first use \emph{Root parallelization}, and then try other ones if there is enough time to do so.
 
-The next step will be about defining the details of the implementation, before developement starts.
+The next step will be about defining the details of the implementation, before the developement starts.

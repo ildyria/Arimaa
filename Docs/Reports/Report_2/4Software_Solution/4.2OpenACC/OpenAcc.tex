@@ -1,4 +1,4 @@
-During our research for GPU\footnote{Graphic Processing Unit} parallelization, three possibilies have been found:
+During our research for GPU\footnote{Graphic Processing Unit} parallelization, three possibilities have been found:
 \begin{itemize}
 \item OpenMp
 \item OpenACC
@@ -7,12 +7,12 @@ During our research for GPU\footnote{Graphic Processing Unit} parallelization, t
 
 
 \subsubsection{OpenMP}
-OpenMP supports the GPU programming since its version 4.0, it implements some of the methods of OpenACC. But it seems to be less efficient and complete than OpenAcc so we decided to avoid to use it.
+OpenMP supports the GPU programming since its version 4.0, it implements some of the methods of OpenACC. But it seems to be less efficient and complete than OpenAcc so we decided to avoid using it.
 
 \subsubsection{CUDA}
-CUDA is a framework develop by NVIDIA dedicated to the use of GPU for complex calculation. It allows very efficient and low-level computations but it forces to rewrite all the parallelized code. Its means that we will need one version of the code for machines without GPU and one for machines with GPU. Furthermore, the specific code is unreadable for people who do not master CUDA.
+CUDA is a framework develop by NVIDIA dedicated to the use of GPU for complex calculation. It allows very efficient and low-level computations but it forces to rewrite all of the parallelized code. Its means that we will need one version of the code for machines without GPU and one for machines with GPU. Furthermore, the specific code is unreadable for people who do not master CUDA.
 
 \subsubsection{OpenACC}
-OpenACC is an API created by the authors of OpenMP to implement the GPU computation before integrating it in OpenMP. A part of its fonctionnalities have been added in OpenMP 4.0 but OpenACC is still more complete and efficient, especially for data management. This point is very important, because if it is not correctly covered, there will be too much data transfer between the CPU and the GPU. In this case we would lose more time than we would gain on the calculation. 
+OpenACC is an API created by the authors of OpenMP to implement the GPU computation before integrating it in OpenMP. A part of its fonctionnalities have been added in OpenMP 4.0 but OpenACC is still more complete and efficient, especially for data management. This point is very important, because if it is not correctly covered, there will be too much data to transfer between the CPU and the GPU. In this case we would lose more time than we would gain on the calculation. 
 
 As OpenACC is more simple, and easier to maintain for just a little drop of performance compared to CUDA, it seems be the most adapted of this solutions to design our software to take advantage of the presence of GPU.

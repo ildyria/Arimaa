@@ -1,10 +1,12 @@
-In parts \ref{sec:openmp} to \ref{sec:mpi}, three solutions allowing the parallelization of our algorithm have been presented. In this part, the actor model, another way to handle parallelization, will be introduced.
+From parts \ref{sec:openmp} to \ref{sec:mpi}, three solutions allowing the parallelization of our algorithm have been presented. In this part, the actor model, another way to handle parallelization, will be introduced.
 
-In this model, every machine, core and GPU is seen as an actor. These actors can send messages to each other, using adresses. When they receive one, they can:
+In this model, every machine, core or GPU is seen as an actor. These actors can send messages to each other, using adresses. When they receive one, they will be able to:
 \begin{itemize}
 \item send messages to other actors
 \item create new actors
 \item adapt their behavior
 \end{itemize}
 
-These actions can be realized in parallel. Moreover, the message system is totally asynchronus which is adapted to the root parallelization we will use at first. However, it will not be as interesting for other parallelization methods. For the moment we have not yet found a framework implementing the actor model that we could use for our project, but we are still looking for one, as it would be a very efficient solution. 
+These actions can be realized in parallel. Moreover, the message system is totally asynchronous, which is adapted to the \textit{Root Parallelization} we will use at first. However, it will not be as interesting as other parallelization methods.
+
+In the next report, we may present a framework implementing the actor model suitable for our project.

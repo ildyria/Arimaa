@@ -1,16 +1,17 @@
 To parallelize our algorithm on one machine, we need to chose a framework. Four solutions have been found and compared:
+
 \begin{itemize}
 \item MPI
 \item OpenMp
-\item C++11 Threads (Boost)
-\item Pthreads (C)
+\item C++11 language Threads (Boost)
+\item Pthreads (C language)
 \end{itemize}
 
 \subsubsection{MPI}
-MPI is a library mainly dedicated to parallelization between different machines, it could work on a single CPU\footnote{Central Processing Unit} but as we said in the previous report, it doesn't provide as many possibilites as its counterparts. Therefore we chose not to use it for that part of the implementation.
+MPI is a library mainly dedicated to parallelization between different machines. It could work on a single CPU\footnote{Central Processing Unit} but as we said in the previous report, it does not provide as many possibilites as its counterparts. Therefore we did not choose to use it for that part of the implementation.
 
 \subsubsection{Pthreads}
-Pthreads are out of the question because they are depreciated : it is a C language library and the C++11 language provides more efficiency and possibilities. The threads management is heavy to code and requires a good knowledge of how threads work precisely.
+Pthreads are out of the question because they are depreciated: it is a C language library and the C++11 language provides more efficiency and possibilities. The threads management is heavy to code and requires a good knowledge of how threads work precisely.
 
 \subsubsection{OpenMP and C++11 language}
 OpenMP and C++11 language are the remaining options. C++11 language is a simplification of the Boost library inducing the latest to be more complete. The following table\cite{right_threading_framework} summarizes each libraries pros and cons:
@@ -29,6 +30,6 @@ OpenMP and C++11 language are the remaining options. C++11 language is a simplif
 \end{tabular}
 \end{center}
 
-Both libraries provide similar performances\cite{OpenMP_vs_CC}. However OpenMP is easier to use (precompilier declarations...) and keeps the code clean\cite{OpenMp_vs_explicit_threading}. C++11 language allows a better thread management. Nevertheless it can also easily fall behind its counterpart in terms of speed if some mistakes are made.
+Both libraries provide similar performances\cite{OpenMP_vs_CC}. However OpenMP is easier to use (precompilier declarations for instance) and keeps the code clean\cite{OpenMp_vs_explicit_threading}. C++11 language allows a better thread management. Nevertheless it can also easily fall behind its counterpart in terms of speed if some mistakes are made.
 
 Considering that OpenMP is safer to use and provides similar results to C++11 language, it is the best of present choices to parallelize our algorithm on CPU.
