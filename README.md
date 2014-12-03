@@ -1,22 +1,27 @@
-﻿#Project Arimaa – CR11 : Wednesday, November, 26th
-Presents : Everyone, with Christian Raymond and Nikos Parlavantzas
+﻿#Project Arimaa – CR12 : Wednesday, December, 3rd 
+Presents : Everyone, Morgane with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
 1. CAF
-2. General Architecture
-3. Comments on the second report
 
 ##Information :
-- We won't talk about CAF in the report, only actor model, because CAF is an implementation not compatible with our work.
-- We need to correct teacher mistakes
-- General Architecture : merge two first diagram, change representation of diagram to be more concise, put the API flowchart here, add a new graph describing it, change the name of API, it is a convertor between MCTS and the game application. Delete the part of explanation of API, look for the use of a convertor in our project. Add a part explaing the architecture of the MCTS/parallelization part with diagrams to describe.
+- Next report in two weeks, first draft in one week
+- The plan is available in the Git
+- In the future, we will emphasize more the application project of Gabriel and talk less about the MCTS test until the next report will be done
+- Report length : around 10 pages
+- TODO : find all tasks and add them, and find out the workload of each of them. The workload will be defined by the Poker method, explained in the report (each one guess separately the workload and we take as a result the more repetitive answer). We work that way to avoid other's influence to determine workloads, and to make it possible to have the more complete tasks list.
+- Do not do all the tests at the end
+- Base our work on the basis prototype, test, conclusions, other prototype to the final version
+- Add the number of people working in the workload
+- See what Thierry Roger (Project teacher) can do, change the topic of his practical if possible to work on his project
+- Risk analysis : what could go wrong in our planning
 
-##Planification
+##Planning
 Task		|						Responsible	|	Deadline
------------- | ------------- | --------						
-Plan								| 	Dan		| 	11/23
-Correction of report2				| 			Everyone| 	23h59 26/11 
-Send the report						| 	Dan		| 	27/11
-Due date for the report					 | 	Dan			 | 11/27
+------------ | ------------- | --------
+Task			|								Responsible			|	Deadline
+Fill the task list			|					       Everyone		|		07/09 23h59
+First draft					|				       Everyone			|	12/09 20h00
+Send First draft			|						Dan			|		12/10
 Finish the game application			 | 		Gabriel	 | 	12/18
 
-##Next meeting : 12/03
+##Next meeting : 12/10
