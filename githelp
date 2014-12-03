@@ -1,24 +1,46 @@
-echo "list of commands that you might want to know
-git add -A		: add all files
-git add --all		: add all files
-git add -u		: update modified files
-git commit -m <msg>	: commit some changes with <msg>
-git commit -am <msg>	: git add -u + git commit -m
+echo "
+list of commands that you might want to know
+git add -A			: add all files
+git add --all			: add all files
+git add -u			: update modified files
+git commit -m <msg>		: commit some changes with <msg>
+git commit -am <msg>		: git add -u + git commit -m
 
-git status		: check local status
-git fetch		: check for changes online
-git pull		: check for changes online and update local
-git push		: push your commited changes online
+git mv <source> <destination>	: move a file/folder
+
+git status			: check local status
+git fetch			: check for changes online
+git pull			: check for changes online and update local
+git push			: push your commited changes online
+
+
+pour un clone rapide : 
+git clone git@github.com:ildyria/Arimaa.git
+
+
+
+REVERT CHANGES :
+git checkout -- <file>		: reset your file/folder to the last commit
+git stash			: reset your local repo to the last commit
+
+
 
 IN CASE OF CONFLICT :
 git fetch --all
 git reset --hard origin/master
 /!\ your changes will be destroyed
 
+
+
 TO MERGE IN CASE OF CONFLICT : 
-git fetch		: parse the last modifications
-git difftool		: merge the files
+git fetch			: parse the last modifications
+git difftool			: merge the files
 Edit the files (chose the right parts), commit and push.
 
-pour un clone rapide : 
-git clone git@github.com:ildyria/Arimaa.git"
+
+
+MORE ADVANCED STUFF :
+git stash save <message>	: save temporarly your changes and revert
+git stash list			: show the list of the previous \"stash\"
+git stash clear			: clear the previous list
+git stash pop			: return to your working state"
