@@ -17,6 +17,10 @@
 \usepackage{titlesec}
 \usepackage{verbatim}
 \usepackage{url}
+\usepackage{rotating}
+\usepackage{caption}
+
+\usepackage{pdfpages}
 \newcommand{\sectionbreak}{\clearpage}
 
 %\setlength{\parskip}{10pt plus 1pt minus 1pt} %Adds spacing between paragraphs 
@@ -50,19 +54,21 @@
 
 
 \section{Introduction}					\label{sec:introduction} 		\input{Introduction/presentation.tex}
-\newpage
+\newpage	
 
-\section{Planning Methods}				\label{sec:PlanningMethods}
-	\subsection{Presentation Methods}		\label{sec:PresentationMethods}		\input{PlanningMethods/PresentationMethods/Agile.tex}
-	\subsection{Environment}			\label{sec:environment}			\input{PlanningMethods/Environment/environment.tex}
+\section{Development Methodology}					\label{sec:AgileMethod}
+	\subsection{Agile Methodology}			\label{sec:method}		\input{PlanningMethods/PresentationMethods/method.tex}
+	\subsection{Planning Poker}			\label{sec:PokerPlanning}			\input{PlanningMethods/PresentationMethods/poker.tex}
 \newpage
-
-\section{Task Planning}					\label{sec:generalArchitecture} 		
-	\subsection{Tasks list for Gant diagram}	\label{sec:Gantt}			\input{TasksPlanning/GanttDiagram/gantt.tex}
+\section{Environment and risks analysis}		\label{sec:Envirisks}
+	\subsection{Environment}			\label{sec:Environment}			\input{PlanningMethods/Environment/environment.tex}
+\newpage
 	\subsection{Risks analysis}			\label{sec:Risks}			\input{TasksPlanning/RiskAnalysis/risk.tex}
 \newpage
-
-
+\section{Task Planning}					\label{sec:Planning} 		
+	\subsection{Important dates}			\label{sec:dates}			\input{TasksPlanning/GanttDiagram/dates.tex}
+	\subsection{Tasks list for Gant diagram}	\label{sec:Gantt}			\input{TasksPlanning/GanttDiagram/gantt.tex}
+\newpage
 \section{Conclusion}					\label{sec:conclusion}			\input{Conclusion/Conclusion.tex}
 \newpage
 

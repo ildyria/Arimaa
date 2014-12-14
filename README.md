@@ -33,11 +33,11 @@ Presents : Everyone, Morgane with Christian Raymond and Nikos Parlavantzas
 - Work on Microsoft Powerpoint online (Benjamin is still choking)
 - link planning oral : https://onedrive.live.com/redir?resid=E9D7C3D4AAA96A13!759&authkey=!ADwlNXu_ke7Ol4k&ithint=file%2cpptx 
 - link specification oral :https://onedrive.live.com/redir?resid=E9D7C3D4AAA96A13!764&authkey=!ANSQ4TsODCFN-B8&ithint=file%2cpptx 
-- Deadline slides : Sunday 14, 20.00
-- Work meal : restaurant Monday 15, 12.50 see what is wrong 
+- **Deadline slides** : **Sunday 14, 20.00**
+- **Work meal** : restaurant **Monday 15, 12.50** see what is wrong 
 - Team Appointment : Monday 15, 13.30 : oral presentation by ourselves
 - Correct slides and text
-- Teacher Appointment : Tuesday 16, 15.40 : oral presentation with teachers
+- **Teacher Appointment** : **Tuesday 16, 15.40** : oral presentation with teachers
 - Correct slides and text
 - Teacher Appointment : Thursday 18, 9.00 : last oral presentation with teachers 
 
