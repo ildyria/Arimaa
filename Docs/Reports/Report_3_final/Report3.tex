@@ -1,0 +1,80 @@
+%this file is the second report
+%a % comment anything after % until the end of the line
+
+%minimum references to begin our article
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{caption}
+
+\usepackage{pdfpages}
+\newcommand{\sectionbreak}{\clearpage}
+
+%\setlength{\parskip}{10pt plus 1pt minus 1pt} %Adds spacing between paragraphs 
+\usepackage{parskip}
+\setlength{\parindent}{15pt}
+
+\pagestyle{fancy}
+%\cfoot{Fast and furious game playing: Monte Carlo drift}
+% the last extension makes it possible to add images
+
+%presentation of the document
+\title{Fast and Furious Game Playing: Monte Carlo Drift\smallbreak Planning report} %not sure about the name of this report
+\author{Prateek \textsc{Bhatnagar}, Baptiste \textsc{Bignon}, \\
+        Mikaïl \textsc{Demirdelen}, Gabriel \textsc{Prevosto}, \\
+        Dan \textsc{Seeruttun-{}-Marie}, Benoît \textsc{Viguier} \\
+        \\
+        Supervisors: Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
+\date{12/19/2014}
+\setlength\parindent{15pt}
+\begin{document}
+\maketitle
+
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.50]{Pictures/arimaa}}
+\end{figure}
+\newpage
+
+%to add a table of contents
+\tableofcontents
+\newpage
+
+
+\section{Introduction}					\label{sec:introduction} 		\input{Introduction/presentation.tex}
+\newpage	
+
+\section{Development Methodology}			\label{sec:AgileMethod}
+	\subsection{Agile Methodology}			\label{sec:method}			\input{PlanningMethods/PresentationMethods/method.tex}
+	\subsection{Planning Poker}			\label{sec:PokerPlanning}		\input{PlanningMethods/PresentationMethods/poker.tex}
+\newpage
+\section{Environment and risks analysis}		\label{sec:Envirisks}
+	\subsection{Environment}			\label{sec:Environment}			\input{PlanningMethods/Environment/environment.tex}
+\newpage
+	\subsection{Risks analysis}			\label{sec:Risks}			\input{TasksPlanning/RiskAnalysis/risk.tex}
+\newpage
+\section{Task Planning}					\label{sec:Planning} 		
+	\subsection{Important dates}			\label{sec:dates}			\input{TasksPlanning/GanttDiagram/dates.tex}
+	\subsection{Tasks list for Gant diagram}	\label{sec:Gantt}			\input{TasksPlanning/GanttDiagram/gantt.tex}
+\newpage
+\section{Conclusion}					\label{sec:conclusion}			\input{Conclusion/Conclusion.tex}
+\newpage
+\input{TasksPlanning/GanttDiagram/diag.tex}
+
+%uncomment to add bibliography
+%\bibliography{bibliography}
+%\bibliographystyle{plain}
+
+\end{document}
