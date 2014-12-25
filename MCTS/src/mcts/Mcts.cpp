@@ -1,6 +1,7 @@
 #include "Mcts.h"
 #define elseif else if
 #define OPTIMIZED_MCTS
+#define LIMITED_EXPLORATION
 
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
@@ -54,18 +55,28 @@ namespace mcts{
 
 		if (nodet == 0 && node->getChildren().empty())  // not explored yet => explore
 		{
-			list<Move> ListOfMoves;
-			list<Move>::iterator iter;
-
-			Bitboard* Bb2;
-
-			ListOfMoves = _game->listPossibleMoves(Bb);
-			for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
+/*
+#ifdef LIMITED_EXPLORATION
+			if (node->getVisits() > _param.getNumberOfVisitBeforeExploration())
 			{
-				Bb2 = Bb->clone();
-				_game->play(*iter, Bb2);
-				node->addChild(Bb2, *iter);
+#endif
+*/
+
+				list<Move> ListOfMoves;
+				list<Move>::iterator iter;
+
+				Bitboard* Bb2;
+
+				ListOfMoves = _game->listPossibleMoves(Bb);
+				for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
+				{
+					Bb2 = Bb->clone();
+					_game->play(*iter, Bb2);
+					node->addChild(Bb2, *iter);
+				}
+/*#ifdef LIMITED_EXPLORATION
 			}
+#endif*/
 		}
 
 		return nodet;
@@ -93,8 +104,14 @@ namespace mcts{
 		Node* node = _root;
 		int depth = 0;
 		int nodet = UpdateNode(node);
+#ifndef LIMITED_EXPLORATION
 		while (depth < _param.getDepth() && nodet <= 0)
 		{
+#endif
+#ifdef LIMITED_EXPLORATION
+		while (depth < _param.getDepth() && nodet <= 0 && node->getVisits() > _param.getNumberOfVisitBeforeExploration())
+		{
+#endif
 			node = node->select_child_UCT();
 			nodet = UpdateNode(node);
 #ifdef DISPLAY_MCTS
@@ -106,6 +123,10 @@ namespace mcts{
 			cout << node->getMove() << " > ";
 #endif // DISPLAY_MCTS
 			++depth;
+			if (depth == _param.getDepth())
+			{
+				cout << endl << "max depth reached";
+			}
 		}
 
 		if (nodet <= 0) // no victory found yet

@@ -36,10 +36,7 @@ int main(int argc, char const *argv[])
 	int result = 0, moveok;
 	Move move;
 
-	MctsArgs args = MctsArgs(4,			// depth of the maximum search
-							2000,		// time limit for the simulations
-							10000,		// number of root simulations
-							1);		// number of leaf simulations
+	MctsArgs args = MctsArgs();
 
 	list<Move> Listtoprint;
 	list<Move>::iterator iter;
@@ -89,6 +86,7 @@ int main(int argc, char const *argv[])
 		{
 			move = mcts.GetBestMove();
 			mcts.print_tree(2);
+			cout << endl << "chosen move : " << move;
 		}
 		mcts.movePlayed(move);
 		game->play(move, Bb);

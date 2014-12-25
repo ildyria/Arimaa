@@ -8,23 +8,43 @@ namespace mcts {
 		int _timeLimitsimulationPerRoot;
 		int _simulationPerRoot;
 		int _simulationPerLeaves;
+		int _numberOfVisitBeforeExploration;
+
 
 	public:
 
 		explicit MctsArgs(
-			int depth = 4,
-			int timelimit = 5000,
-			int simulR = 1000,
-			int simulL = 10
+			int depth = 10,				// depth of the maximum search
+			int timelimit = 2000,		// time limit for the simulations
+			int simulR = 100000,		// number of root simulations
+			int simulL = 1,				// number of leaf simulations
+			int numVisitExplo = 3		// number visit required before explorating a node
 			);
 
-		int getDepth();
+		inline int getDepth()
+		{
+			return _depth;
+		};
 
-		int getTimeLimitSimulationPerRoot();
+		inline int getTimeLimitSimulationPerRoot()
+		{
+			return _timeLimitsimulationPerRoot;
+		};
 
-		int getSimulationPerRoot();
+		inline int getSimulationPerRoot()
+		{
+			return _simulationPerRoot;
+		};
 
-		int getSimulationPerLeaves();
+		inline int getSimulationPerLeaves()
+		{
+			return _simulationPerLeaves;
+		};
+
+		inline int getNumberOfVisitBeforeExploration()
+		{
+			return _numberOfVisitBeforeExploration;
+		};
 
 		~MctsArgs();
 	};
