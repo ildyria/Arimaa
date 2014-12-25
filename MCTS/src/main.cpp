@@ -1,5 +1,13 @@
-#include "MCTS/Mcts.h"
-#include "TicTacToe/TicTacToe.h"
+#define CONNECT4
+//#define TICTACTOE
+
+#include "Mcts.h"
+#ifdef TICTACTOE
+#include "TicTacToe.h"
+#endif
+#ifdef CONNECT4
+#include "Connect4.h"
+#endif
 #include <time.h>
 #include <thread>
 #define elseif else if
@@ -12,43 +20,53 @@ using std::list;
 
 int main(int argc, char const *argv[])
 {
+#ifdef TICTACTOE
+	TicTacToe* game = new TicTacToe();
+	Bitboard* Bb = new Bitboard(3, 3, 2, 1);
+#endif
+
+#ifdef CONNECT4
+	Connect4* game = new Connect4();
+	BitboardConnect4* Bb = new BitboardConnect4();
+#endif
+
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
 	cout << "\tBut remember, all code is guilty until proven inocent !" << endl << endl;
 
-	Bitboard Bb = Bitboard(3,2,1);
-	Bitboard bitboard = Bitboard(3, 2, 1);
 	int result = 0, moveok;
 	Move move;
+
+	MctsArgs args = MctsArgs(4,			// depth of the maximum search
+							2000,		// time limit for the simulations
+							10000,		// number of root simulations
+							1);		// number of leaf simulations
+
 	list<Move> Listtoprint;
 	list<Move>::iterator iter;
 
-	TicTacToe* game = new TicTacToe();
 
 	Mcts mcts = Mcts(game,		// game
-					bitboard,	// board to start with
-					2,			// depth of the maximum search
-					2000,		// time limit for the simulations
-					10000,		// number of root simulations
-					10);		// number of leaf simulations
+					Bb,	// board to start with
+					args);
 
 	int IA = 2;
 	while (result == 0)
 	{
 		game->diplayBoard(Bb);
 		Listtoprint = game->listPossibleMoves(Bb);
-		cout << "possible moves : ";
+		cout << endl << "possible moves : ";
 		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
 			cout << *iter << " ";
 		}
 		cout << "or -1 to pass."<< endl;
-		//mcts.UpdateRoot();
+		mcts.UpdateRoot();
 
-		if (Bb.getPlayer() != IA)
+		if (Bb->getPlayer() != IA)
 		{
 			moveok = 0;
 			while (moveok == 0)
 			{
-				cout << "Your move ?" << endl;
+				cout << endl << "Your move ?" << endl;
 				cin >> move;
 				iter = find(Listtoprint.begin(), Listtoprint.end(), move);
 				if (iter != Listtoprint.end())
@@ -67,7 +85,7 @@ int main(int argc, char const *argv[])
 			}
 		}
 
-		if (Bb.getPlayer() == IA)
+		if (Bb->getPlayer() == IA)
 		{
 			move = mcts.GetBestMove();
 			mcts.print_tree(2);
@@ -81,15 +99,15 @@ int main(int argc, char const *argv[])
 
 	if (result == 1)
 	{
-		cout << "player 1 wins detected." << endl;
+		cout << endl << "player 1 wins detected." << endl;
 	}
 	elseif(result == 2)
 	{
-		cout << "player 2 wins detected." << endl;
+		cout << endl << "player 2 wins detected." << endl;
 	}
 	else
 	{
-		cout << "Board full detected : TIE." << endl;
+		cout << endl << "Board full detected : TIE." << endl;
 	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));;
+	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 }

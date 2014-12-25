@@ -14,20 +14,7 @@ using std::log;
 
 namespace mcts {
 
-	Node::Node()
-	{
-		_visits = 0;
-		_wins = 0;
-		_uct = 0;
-		_state = Bitboard(3,3, 1);
-		_terminal = -1;
-		_move = Move();
-#ifdef DEBUG_NODE
-		cout << "N*" << this << " created by default" << endl;
-#endif //DEBUG_NODE
-	}
-
-	Node::Node(Bitboard state): _state(state)
+	Node::Node(Bitboard* state): _state(state)
 	{
 		_visits = 0;
 		_wins = 0;
@@ -35,25 +22,11 @@ namespace mcts {
 		_terminal = -1;
 		_move = Move();
 #ifdef DEBUG_NODE
-		cout << "N*" << this << " created with B*" << &state << endl;
+		cout << endl << "N*" << this << " created with B*" << &state;
 #endif //DEBUG_NODE
 	}
 
-	Node::Node(Node* p_parent)
-	{
-		_visits = 0;
-		_wins = 0;
-		_uct = 0;
-		_state = Bitboard(3, 3, 1);
-		_terminal = -1;
-		_move = Move();
-		_parents.push_front(p_parent);
-#ifdef DEBUG_NODE
-		cout << "N*" << this << " created with P*" << p_parent << endl;
-#endif //DEBUG_NODE
-	}
-
-	Node::Node(Node* p_parent, Bitboard state, Move move) : _state(state), _move(move)
+	Node::Node(Node* p_parent, Bitboard* state, Move move) : _state(state), _move(move)
 	{
 		_visits = 0;
 		_wins = 0;
@@ -61,21 +34,21 @@ namespace mcts {
 		_terminal = -1;
 		_parents.push_front(p_parent);
 #ifdef DEBUG_NODE
-		cout << "N*" << this << " created with P*" << p_parent << ", B*" << &state << " and move : " << move << endl;
+		cout << endl << "N*" << this << " created with P*" << p_parent << ", B*" << &state << " and move : " << move;
 #endif //DEBUG_NODE
 	}
 
 	void Node::killChildrens(Node* exception)
 	{
 #ifdef DEBUG_NODE
-		cout << "destruction of N*" << this << " childrens" << endl;
+		cout << endl << "destruction of N*" << this << " childrens";
 #endif //DEBUG_NODE
 		list<Node*>::iterator itL;
 		list<Node*>::iterator itL2;
 		for (itL = _children.begin(); itL != _children.end(); ++itL)
 		{
 #ifdef DEBUG_NODE
-			cout << "N*" << *itL << " vs N*" << exception << endl;
+			cout << endl << "N*" << *itL << " vs N*" << exception;
 #endif //DEBUG_NODE
 
 			if (*itL != exception)
@@ -93,7 +66,7 @@ namespace mcts {
 #ifdef DEBUG_NODE
 			else
 			{
-				cout << "N*" << exception << "is safe" << endl;
+				cout << endl << "N*" << exception << "is safe";
 			}
 #endif //DEBUG_NODE
 		}
@@ -101,7 +74,7 @@ namespace mcts {
 		_children.clear();
 	}
 
-	void Node::addChild(Bitboard& state, Move& move, int terminal){
+	void Node::addChild(Bitboard* state, Move& move, int terminal){
 		Node* node = new Node(this, state, move);
 		node->setTerminal(terminal);
 		_children.push_back(node);
@@ -109,7 +82,7 @@ namespace mcts {
 
 	void Node::update(int win){
 		list<Node*>::iterator itL;
-		if (win != _state.getPlayer() && win != 3)
+		if (win != _state->getPlayer() && win != 3)
 		{
 			_wins += 1;
 		}
@@ -120,7 +93,7 @@ namespace mcts {
 
 		_visits += 1;
 #ifdef DEBUG_NODE
-		cout << "update N*" << this << ", " << _move << " : " << win << " = " << _wins << " & " << _visits << endl;
+		cout << endl << "update N*" << this << ", " << _move << " : " << win << " = " << _wins << " & " << _visits;
 #endif //DEBUG_NODE
 		if (!_parents.empty())
 		{
@@ -175,13 +148,12 @@ namespace mcts {
 					tabs += "|";
 				}
 			}
-			cout << tabs << "-> N*" << this;
+			cout << endl << tabs << "-> N*" << this;
 			cout << ", m: " << _move;
-			cout << ", p: " << _state.getPlayer();
+			cout << ", p: " << _state->getPlayer();
 			cout << ", _t: " << _terminal;
 			cout << ", _w/_v: " << _wins << "/" << _visits << " (" << round(getProba()*100) << "%)";
 			cout << ", _uct: " << _uct;
-			cout << endl;
 
 			for (itL = _children.begin(); itL != _children.end(); ++itL)
 			{

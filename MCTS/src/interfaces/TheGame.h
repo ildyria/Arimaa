@@ -25,7 +25,7 @@ public:
 	* returns 0 if the game hasn't ended yet
 	* \return integer corresponding to the state of the Board
 	*/
-	virtual int end(const Bitboard& board) = 0;
+	virtual int end(const Bitboard* board) = 0;
 
 	/**
 	* \fn play
@@ -35,7 +35,7 @@ public:
 	* \param board board to be used to play
 	* \return the Bitboard after the play
 	*/
-	virtual void play(Move& position, Bitboard& board) = 0;
+	virtual void play(Move& position, Bitboard* board) = 0;
 
 	/**
 	* \fn diplayBoard
@@ -43,7 +43,7 @@ public:
 	*
 	* \param board Bitboard to be displayed
 	*/
-	virtual void diplayBoard(const Bitboard& board) = 0;
+	virtual void diplayBoard(const Bitboard* board) = 0;
 
 	/**
 	* \fn listPossibleMoves
@@ -52,7 +52,7 @@ public:
 	* \param board Bitboard to be looked at
 	* \return the list of the possible moves
 	*/
-	virtual std::list<Move> listPossibleMoves(const Bitboard& board) = 0;
+	virtual std::list<Move> listPossibleMoves(Bitboard* board) = 0;
 
 	/**
 	* \fn playRandomMoves
@@ -61,5 +61,5 @@ public:
 	* \param board Bitboard to be looked at
 	* \return winner of the current game
 	*/
-	virtual int playRandomMoves(Bitboard& board) = 0;
+	virtual int playRandomMoves(Bitboard* board) = 0;
 };

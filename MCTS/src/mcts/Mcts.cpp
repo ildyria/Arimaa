@@ -16,12 +16,9 @@ namespace mcts{
 	}
 
 	Mcts::Mcts(	TheGame* game,
-				Bitboard Bb,
-				int depth,
-				int timelimit,
-				int simulR,
-				int simulL)
-	:_game(game), _depth(depth), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _timeLimitsimulationPerRoot(timelimit)
+				Bitboard* Bb,
+				MctsArgs args)
+	:_game(game), _param(args)
 	{
 		_root = new Node(Bb);
 	}
@@ -47,11 +44,11 @@ namespace mcts{
 
 	int Mcts::UpdateNode(Node* node)
 	{
-		Bitboard* Bb = &(node->getState());
+		Bitboard* Bb = node->getState();
 		int nodet = node->getTerminal();
 
 		if (nodet == -1) { // first time we are here, check if terminate
-			nodet = _game->end(*Bb);
+			nodet = _game->end(Bb);
 			node->setTerminal(nodet);
 		}
 
@@ -62,12 +59,12 @@ namespace mcts{
 
 			Bitboard* Bb2;
 
-			ListOfMoves = _game->listPossibleMoves(*Bb);
+			ListOfMoves = _game->listPossibleMoves(Bb);
 			for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 			{
 				Bb2 = Bb->clone();
-				_game->play(*iter, *Bb2);
-				node->addChild(*Bb2, *iter);
+				_game->play(*iter, Bb2);
+				node->addChild(Bb2, *iter);
 			}
 		}
 
@@ -77,14 +74,14 @@ namespace mcts{
 	void Mcts::playRandom(Node* node) // return 
 	{
 		int nodet;
-		for (int i = 0; i < _simulationPerLeaves; ++i)
+		for (int i = 0; i < _param.getSimulationPerLeaves(); ++i)
 		{
 
 #ifdef DEBUG_MCTS
-			cout << "round n " << (i + 1) << endl;
+			cout << endl << "round n " << (i + 1) << endl;
 #endif // DEBUG_MCTS
-			Bitboard* Bb = (node->getState()).clone();
-			nodet = _game->playRandomMoves(*Bb);
+			Bitboard* Bb = node->getState()->clone();
+			nodet = _game->playRandomMoves(Bb);
 			delete Bb;
 			node->update(nodet);
 		}
@@ -96,14 +93,14 @@ namespace mcts{
 		Node* node = _root;
 		int depth = 0;
 		int nodet = UpdateNode(node);
-		while (depth < _depth && nodet <= 0)
+		while (depth < _param.getDepth() && nodet <= 0)
 		{
 			node = node->select_child_UCT();
 			nodet = UpdateNode(node);
 #ifdef DISPLAY_MCTS
 			if (depth == 0)
 			{
-				cout << "Node to explore : ";
+				cout << endl << "Node to explore : " << endl;
 
 			}
 			cout << node->getMove() << " > ";
@@ -114,12 +111,12 @@ namespace mcts{
 		if (nodet <= 0) // no victory found yet
 		{
 #ifdef DISPLAY_MCTS
-			cout << "depth reached : start random" << endl;
+			cout << endl << "depth reached : start random";
 #endif // DISPLAY_MCTS
 			playRandom(node);
 		}
 #ifdef OPTIMIZED_MCTS
-		elseif(nodet < 3 && nodet > 0 && nodet != node->getState().getPlayer()) // no victory found yet
+		elseif(nodet < 3 && nodet > 0 && nodet != node->getState()->getPlayer()) // no victory found yet
 		{
 			list<Node*> ListParents;
 			list<Node*>::iterator iter;
@@ -135,7 +132,7 @@ namespace mcts{
 		{
 #ifdef DISPLAY_MCTS
 			cout << endl;
-			cout << "not implemented yet : nodet 3" << endl;
+			cout << "not implemented yet : nodet 3";
 #endif // DISPLAY_MCTS
 			node->update(nodet);
 		}
@@ -144,30 +141,30 @@ namespace mcts{
 	Move Mcts::GetBestMove()
 	{
 #ifdef DISPLAY_MCTS
-		cout << "turn : " << (_root->getState()).getPlayer() << endl;
+		cout << endl << "turn : " << _root->getState()->getPlayer();
 #endif // DISPLAY_MCTS
 		int i = 0;
 		int end = 0;
 		int start = clock();
-		int timeend = start + (static_cast<double>(_timeLimitsimulationPerRoot) / 1000 * CLK_TCK);
-		while(end < timeend && i < _simulationPerRoot)
+		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLK_TCK);
+		while (end < timeend && i < _param.getSimulationPerRoot())
 		{
 			i++;
 #ifdef DISPLAY_MCTS
-			cout << "simulation n : " << i << endl;
+			cout << endl << "simulation n : " << i;
 #endif // DISPLAY_MCTS
 			explore();
 			end = clock();
 		}
-		cout << "start search : " << static_cast<double>(start) / CLK_TCK << "s." << endl;
-		cout << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(end - start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
+		cout << endl << "start search : " << static_cast<double>(start) / CLK_TCK << "s.";
+		cout << endl << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(end - start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
 		Node* node = _root->select_child_WR();
 		return node->getMove();
 	}
 
 	void Mcts::print_tree(int depth)
 	{
-		int d = (depth == 0) ? _depth : depth;
+		int d = (depth == 0) ? _param.getDepth() : depth;
 		_root->print_tree(0, d);
 	}
 }

@@ -8,7 +8,8 @@
  */
 #pragma once
 #include "Node.h"
-#include "../Interfaces/TheGame.h"
+#include "MctsArgs.h"
+#include "TheGame.h"
 #include <time.h>
 
 namespace mcts
@@ -27,10 +28,7 @@ namespace mcts
 	{
 		TheGame* _game;
 		Node* _root;
-		int _depth;
-		int _timeLimitsimulationPerRoot;
-		int _simulationPerRoot;
-		int _simulationPerLeaves;
+		MctsArgs _param;
 
 	public:
 		/**
@@ -48,7 +46,7 @@ namespace mcts
 		 * \param  simulR		Number of simulations to be run starting from the root, 100 by default. => OpenMP ?
 		 * \param  simulL		Number of random simulations to be run at the end of the search tree, 10 by default. => OpenAcc ?
 		 */
-		explicit Mcts(TheGame* game,Bitboard Bb, int depth = 4, int timelimit = 5000, int simulR = 1000, int simulL = 10);
+		explicit Mcts(TheGame* game, Bitboard* Bb, MctsArgs args);
 
 		/**
 		 * \fn ~Mcts

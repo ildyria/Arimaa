@@ -21,10 +21,13 @@
  */
 class Bitboard
 {
-	std::vector<unsigned long> _boards;
+
+protected:
+	std::vector<unsigned long long> _boards;
 	short _toplay;
 	short _number;
-	short _size;
+	short _sizeX;
+	short _sizeY;
 
 public:
 	/**
@@ -41,7 +44,7 @@ public:
 	 * \param n		 : number of boards to be created
 	 * \param toplay : player to play
 	 */
-	Bitboard(int size, int n, int toplay);
+	Bitboard(int sizeX, int sizeY, int n, int toplay);
 
 	/**
 	 * \fn ~Bitboard
@@ -53,7 +56,25 @@ public:
 	* \fn clone
 	* \brief clone a Bitboard
 	*/
-	inline Bitboard* clone() const { return new Bitboard(*this); }
+	virtual inline Bitboard* clone() const { return new Bitboard(*this); }
+
+	/**
+	* \fn getSizeX
+	* \brief blabla
+	*/
+	virtual int getSizeX() const
+	{
+		return _sizeX;
+	}
+
+	/**
+	* \fn getSizeY
+	* \brief blabla
+	*/
+	virtual int getSizeY() const
+	{
+		return _sizeY;
+	}
 
 	/**
 	 * \fn getBit
@@ -121,7 +142,7 @@ public:
 	* \param n board to look for
 	* \return board number n
 	*/
-	virtual inline unsigned long getBoard(int n) const { return _boards[n]; };
+	virtual inline unsigned long long getBoard(int n) const { return _boards[n]; };
 
 	/**
 	 * \fn getEmpty

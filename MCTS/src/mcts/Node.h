@@ -11,8 +11,8 @@
 #include <string>
 #include <list>
 #include <algorithm>
-#include "../interfaces/Bitboard.h"
-#include "../interfaces/Move.h"
+#include "Bitboard.h"
+#include "Move.h"
 
 namespace mcts
 {
@@ -34,7 +34,7 @@ namespace mcts
 		double _wins;
 		int _terminal;
 		double _uct;
-		Bitboard _state;
+		Bitboard* _state;
 		Move _move;
 		std::list<Node*> _children;
 		std::list<Node*> _parents;
@@ -51,7 +51,7 @@ namespace mcts
 		inline void UCT(int visits) {
 			if (_uct != -1 && _uct != 10)
 			{
-				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * log(double(visits + 1)) / std::max(_visits, 1));
+				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * log(static_cast<double>(visits + 1)) / std::max(_visits, 1));
 			}
 #ifdef DEBUG_NODE
 			cout << "_uct " << " = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
@@ -73,15 +73,7 @@ namespace mcts
 		*
 		* \param state Board to create the node with
 		*/
-		explicit Node(Bitboard state);
-
-		/**
-		 * \fn Node(Node *parent)
-		 * \brief i don't know why i created that function...
-		 * 
-		 * \param parent parent of the node
-		 */
-		explicit Node(Node* parent);
+		explicit Node(Bitboard* state);
 
 		/**
 		 * \fn Node(Node* p_parent, Bitboard state, string move);
@@ -91,7 +83,7 @@ namespace mcts
 		 * \param state Bitboard after the move
 		 * \param move move played
 		 */
-		Node(Node* parent, Bitboard state, Move move);
+		Node(Node* parent, Bitboard* state, Move move);
 
 		/**
 		 * \fn ~Node
@@ -139,7 +131,7 @@ namespace mcts
 		*
 		* \return the state of the current node
 		*/
-		Bitboard& getState() { return _state; };
+		Bitboard* getState() { return _state; };
 
 		/**
 		* \fn getMove
@@ -230,7 +222,7 @@ namespace mcts
 		 * \param state Bitboard after the nove
 		 * \param move move played
 		 */
-		void addChild(Bitboard& state, Move& move, int terminal = -1);
+		void addChild(Bitboard* state, Move& move, int terminal = -1);
 
 		/**
 		 * \fn update

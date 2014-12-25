@@ -10,31 +10,29 @@ using std::max;
 
 Bitboard::Bitboard()
 {
-	_boards = *(new vector<unsigned long> (3));
+	_boards = *(new vector<unsigned long long>(3));
 	_number = 3;
-	_size = 3;
+	_sizeX = 3;
+	_sizeY = 3;
 	_toplay = 1;
 	for (int i = 0; i < _number; i++)
 	{
-		_boards[i] = static_cast<unsigned long>(0);
+		_boards[i] = static_cast<unsigned long long>(0);
 	}
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " (" << _number << " & " << _size << "x" << _size << ") created." << endl;
 #endif //DEBUG_BOARD
 }
 
-Bitboard::Bitboard(int size, int n, int toplay)
+Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _sizeX(sizeX), _sizeY(sizeY), _number(n), _toplay(toplay)
 {
-	_boards = *(new vector<unsigned long> (n));
-	_number = n;
-	_size = size;
-	_toplay = toplay;
+	_boards = *(new vector<unsigned long long>(n));
 	for (int i = 0; i < _number; i++)
 	{
-		_boards[i] = static_cast<unsigned long>(0);
+		_boards[i] = static_cast<unsigned long long>(0);
 	}
 #ifdef DEBUG_BOARD
-	cout << "B*" << this << " (" << _number << " & " << _size << "x" << _size << ") created." << endl;
+	cout << "B*" << this << " (" << _number << " & " << _sizeX << "x" << _sizeY << ") created." << endl;
 #endif //DEBUG_BOARD
 }
 
@@ -47,7 +45,7 @@ Bitboard::~Bitboard()
 
 int Bitboard::getBit(int n, int x, int y) const
 {
-	int index = x + y*_size;
+	int index = x + y*_sizeX;
 	return int((_boards[n]) >> index) & 1;
 }
 
@@ -58,32 +56,32 @@ int Bitboard::getBit(int n, int pos) const
 
 void Bitboard::setBit(int n, int x, int y)
 {
-	int index = x + y*_size;
-	_boards[n] |= (unsigned long(1) << index);
+	int index = x + y*_sizeX;
+	_boards[n] |= (unsigned long long(1) << index);
 }
 
 void Bitboard::setBit(int n, int pos)
 {
-	_boards[n] |= (unsigned long(1) << pos);
+	_boards[n] |= (unsigned long long(1) << pos);
 }
 
 void Bitboard::clearBit(int n, int x, int y)
 {
-	int index = x + y*_size;
-	_boards[n] &= ~(unsigned long(1) << index);
+	int index = x + y*_sizeX;
+	_boards[n] &= ~(unsigned long long(1) << index);
 }
 
 void Bitboard::clearBit(int n, int pos)
 {
-	_boards[n] &= ~(unsigned long(1) << pos);
+	_boards[n] &= ~(unsigned long long(1) << pos);
 }
 
 list<int> Bitboard::getOccupied(int n)
 {
 	list<int> rtm;
 	int i = 0;
-	int max = _size*_size;
-	unsigned long board = _boards[n];
+	int max = _sizeX*_sizeY;
+	unsigned long long board = _boards[n];
 
 	while (board != 0 && i < max)
 	{
@@ -102,8 +100,8 @@ list<int> Bitboard::getEmpty(int n) const
 {
 	list<int> rtm;
 	int i = 0;
-	int max = _size*_size;
-	unsigned long board = _boards[n];
+	int max = _sizeX*_sizeY;
+	unsigned long long board = _boards[n];
 
 	while (board != 0 && i < max)
 	{

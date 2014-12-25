@@ -23,6 +23,16 @@ Move::~Move()
 {
 }
 
+void Move::set(string data)
+{
+	_data = data;
+}
+
+string Move::get()
+{
+	return _data;
+}
+
 int Move::getInt()
 {
 	return strtol(_data.c_str(), nullptr, 10);
@@ -30,12 +40,14 @@ int Move::getInt()
 
 ostream& operator<<(ostream& stream, Move& move)
 {
-	stream << move._data;
+	stream << move.get();
 	return stream;
 }
 
 istream& operator>>(istream& stream, Move& move)
 {
-	stream >> move._data;
+	string data;
+	stream >> data;
+	move.set(data);
 	return stream;
 }

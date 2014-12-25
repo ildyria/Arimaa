@@ -8,8 +8,9 @@
 */
 #pragma once
 #include <algorithm>
-#include "../interfaces/TheGame.h"
-#include "../tools/Random.h"
+#include "BitBoardConnect4.h"
+#include "TheGame.h"
+#include "Random.h"
 
 class Connect4 : public TheGame
 {
@@ -28,7 +29,13 @@ public:
 	* returns 0 if the game hasn't ended yet
 	* \return integer corresponding to the state of the Board
 	*/
-	virtual int end(const Bitboard& board) override;
+	virtual int end(const Bitboard* board) override;
+
+	int checkHorizontal(const Bitboard* board);
+	int checkVertical(const Bitboard* board);
+	int checkDiag1(const Bitboard* board);
+	int checkDiag2(const Bitboard* board);
+	int checkNull(const Bitboard* board);
 
 	/**
 	* \fn play
@@ -38,7 +45,7 @@ public:
 	* \param board board to be used to play
 	* \return the Bitboard after the play
 	*/
-	virtual void play(Move& position, Bitboard& board) override;
+	virtual void play(Move& position, Bitboard* board) override;
 
 	/**
 	* \fn diplayBoard
@@ -46,7 +53,7 @@ public:
 	*
 	* \param board Bitboard to be displayed
 	*/
-	virtual void diplayBoard(const Bitboard& board) override;
+	virtual void diplayBoard(const Bitboard* board) override;
 
 	/**
 	* \fn listPossibleMoves
@@ -55,7 +62,7 @@ public:
 	* \param board Bitboard to be looked at
 	* \return the list of the possible moves
 	*/
-	virtual std::list<Move> listPossibleMoves(const Bitboard& board) override;
+	virtual std::list<Move> listPossibleMoves(Bitboard* board) override;
 
 	/**
 	* \fn playRandomMoves
@@ -64,7 +71,7 @@ public:
 	* \param board Bitboard to be looked at
 	* \return winner of the current game
 	*/
-	virtual int playRandomMoves(Bitboard& board) override;
+	virtual int playRandomMoves(Bitboard* board) override;
 };
 
 
