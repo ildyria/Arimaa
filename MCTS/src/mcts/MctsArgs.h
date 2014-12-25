@@ -15,10 +15,10 @@ namespace mcts {
 
 		explicit MctsArgs(
 			int depth = 10,				// depth of the maximum search
-			int timelimit = 2000,		// time limit for the simulations
-			int simulR = 100000,		// number of root simulations
+			int timelimit = 5000,		// time limit for the simulations
+			int simulR = 1000000,		// number of root simulations
 			int simulL = 1,				// number of leaf simulations
-			int numVisitExplo = 3		// number visit required before explorating a node
+			int numVisitExplo = 2		// number visit required before explorating a node
 			);
 
 		inline int getDepth()
