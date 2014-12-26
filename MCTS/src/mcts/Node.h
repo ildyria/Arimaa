@@ -118,6 +118,15 @@ namespace mcts
 		inline void forceSetUCT(int uct) { _uct = uct; };
 
 		/**
+		* \fn getUCT
+		* \brief setter for _uct
+		* \details it allows us to force a value to uct : 10 or -1 in order to make sure that some moves must or mustn't be played
+		*
+		* \param value of the uct
+		*/
+		inline double getUCT() { return _uct; };
+
+		/**
 		* \fn getTerminal
 		* \brief getter for the childs
 		*

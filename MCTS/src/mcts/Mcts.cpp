@@ -55,34 +55,24 @@ namespace mcts{
 
 		if (nodet == 0 && node->getChildren().empty())  // not explored yet => explore
 		{
-/*
-#ifdef LIMITED_EXPLORATION
-			if (node->getVisits() > _param.getNumberOfVisitBeforeExploration())
+			list<Move> ListOfMoves;
+			list<Move>::iterator iter;
+
+			Bitboard* Bb2;
+
+			ListOfMoves = _game->listPossibleMoves(Bb);
+			for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 			{
-#endif
-*/
-
-				list<Move> ListOfMoves;
-				list<Move>::iterator iter;
-
-				Bitboard* Bb2;
-
-				ListOfMoves = _game->listPossibleMoves(Bb);
-				for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
-				{
-					Bb2 = Bb->clone();
-					_game->play(*iter, Bb2);
-					node->addChild(Bb2, *iter);
-				}
-/*#ifdef LIMITED_EXPLORATION
+				Bb2 = Bb->clone();
+				_game->play(*iter, Bb2);
+				node->addChild(Bb2, *iter);
 			}
-#endif*/
 		}
 
 		return nodet;
 	}
 
-	void Mcts::playRandom(Node* node) // return 
+	void Mcts::playRandom(Node* node)
 	{
 		int nodet;
 		for (int i = 0; i < _param.getSimulationPerLeaves(); ++i)
@@ -103,7 +93,7 @@ namespace mcts{
 	{
 		Node* node = _root;
 		int depth = 0;
-		int nodet = UpdateNode(node);
+		int nodet = UpdateNode(node); // update and exploration
 #ifndef LIMITED_EXPLORATION
 		while (depth < _param.getDepth() && nodet <= 0)
 		{
@@ -125,7 +115,7 @@ namespace mcts{
 			++depth;
 			if (depth == _param.getDepth())
 			{
-				cout << endl << "max depth reached";
+				cout << endl << "max depth reached : " << _param.getDepth() << "moves ahead.";
 			}
 		}
 
@@ -137,25 +127,53 @@ namespace mcts{
 			playRandom(node);
 		}
 #ifdef OPTIMIZED_MCTS
-		elseif(nodet < 3 && nodet > 0 && nodet != node->getState()->getPlayer()) // no victory found yet
+		elseif(nodet < 3 && nodet > 0 && nodet != node->getState()->getPlayer()) // losing move !
 		{
-			list<Node*> ListParents;
-			list<Node*>::iterator iter;
-			ListParents = node->getParents();
-			for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
-			{
-				(*iter)->forceSetUCT(-1);
-			}
+			node->forceSetUCT(10);
+			feedbackWinningMove(node);
 			node->update(nodet);
 		}
 #endif //OPTIMIZED_MCTS
 		else
 		{
-#ifdef DISPLAY_MCTS
-			cout << endl;
-			cout << "not implemented yet : nodet 3";
-#endif // DISPLAY_MCTS
 			node->update(nodet);
+		}
+	}
+
+	void Mcts::updateLosingParent(Node* node) // for each parent check if uct = -1 => if yes it's a winning move for the opponent, he has to play here : uct = 10
+	{
+		list<Node*> ListParents;
+		list<Node*> ListChilds;
+		list<Node*>::iterator iter;
+		list<Node*>::iterator iter2;
+		bool loser;
+		ListParents = node->getParents();
+		for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
+		{
+			loser = true;
+			ListChilds = (*iter)->getChildren();
+			for (iter2 = ListChilds.begin(); (iter2 != ListChilds.end() && loser); ++iter2)
+			{
+				if ((*iter2)->getUCT() != -1) { loser = false; }
+			}
+			if (loser)
+			{
+				(*iter)->forceSetUCT(10);
+				feedbackWinningMove(*iter);
+			}
+		}
+	}
+
+	void Mcts::feedbackWinningMove(Node* node) // if someone has a winning move given a position, we must not go to that position.
+	{
+		if (node->getUCT() != 10) return;
+		list<Node*> ListParents;
+		list<Node*>::iterator iter;
+		ListParents = node->getParents();
+		for (iter = ListParents.begin(); iter != ListParents.end(); ++iter)
+		{
+			(*iter)->forceSetUCT(-1);
+			updateLosingParent(*iter);
 		}
 	}
 

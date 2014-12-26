@@ -99,6 +99,8 @@ namespace mcts
 		 */
 		void explore();
 
+		void updateLosingParent(Node* node);
+		void feedbackWinningMove(Node* node);
 		/**
 		 * \fn GetBestMove
 		 * \brief main function of the algorithm, run the exploration, simulations and returns the best move given the results
