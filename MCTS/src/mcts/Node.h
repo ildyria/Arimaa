@@ -115,7 +115,7 @@ namespace mcts
 		*
 		* \param value of the uct
 		*/
-		inline void forceSetUCT(int uct) { _uct = uct; };
+		inline void forceSetUCT(int uct) { if (_uct == -1) return; _uct = uct; };
 
 		/**
 		* \fn getUCT

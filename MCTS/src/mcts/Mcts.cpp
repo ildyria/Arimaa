@@ -41,7 +41,7 @@ namespace mcts{
 		}
 		// TO CHECK AND IMPROVE
 		_root->killChildrens(*iterN);
-		delete(_root);
+		delete(_root);	
 		_root = *iterN;
 		_root->clearParents();
 	}
@@ -203,8 +203,7 @@ namespace mcts{
 		}
 		cout << endl << "start search : " << static_cast<double>(start) / CLK_TCK << "s.";
 		cout << endl << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(end - start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
-		Node* node = _root->select_child_WR();
-		return node->getMove();
+		return _root->select_child_WR()->getMove();
 	}
 
 	void Mcts::print_tree(int depth)
