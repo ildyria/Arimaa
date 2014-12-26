@@ -1,3 +1,6 @@
+#define OPENMP
+#include <omp.h>
+
 #include "Mcts.h"
 #define elseif else if
 #define OPTIMIZED_MCTS
@@ -186,6 +189,9 @@ namespace mcts{
 		int end = 0;
 		int start = clock();
 		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLK_TCK);
+#ifdef OPENMP
+#pragma omp parallel shared(i,end,timeend)
+#endif
 		while (end < timeend && i < _param.getSimulationPerRoot())
 		{
 			i++;

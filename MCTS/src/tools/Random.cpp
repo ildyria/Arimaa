@@ -1,5 +1,6 @@
 #include "Random.h"
 #include <iostream>
+#include <omp.h>
 
 using std::srand;
 using std::rand;
@@ -11,16 +12,16 @@ unsigned int Random::_seed = 0;
 
 Random::Random()
 {
-	_seed = time(nullptr);
+	_seed = time(nullptr) + omp_get_thread_num();;
 	srand(_seed);
-	cout << "Random created with seed : " << _seed << endl;
+	cout << endl << "Random created with seed : " << _seed;
 }
 
 Random::Random(unsigned int seed)
 {
 	_seed = seed;
 	srand(seed);
-	cout << "Random created with seed : " << _seed << endl;
+	cout << endl << "Random created with seed : " << _seed;
 }
 
 Random::~Random()

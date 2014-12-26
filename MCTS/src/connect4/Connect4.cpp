@@ -178,11 +178,6 @@ void Connect4::diplayBoard(const Bitboard* board)
 
 	std::stringbuf buffer;
 	std::ostream os(&buffer);
-/*
-	os << "board0 : " << board0 << std::endl;
-	os << "board1 : " << board1 << std::endl;
-*/
-
 	os << std::endl;
 	for (int y = 5; y >= 0; --y)
 	{

@@ -55,7 +55,7 @@ int main(int argc, char const *argv[])
 		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
 			cout << *iter << " ";
 		}
-		cout << "or -1 to pass."<< endl;
+		cout << "or -1 to pass.";
 		mcts.UpdateRoot();
 
 		if (Bb->getPlayer() != IA)
