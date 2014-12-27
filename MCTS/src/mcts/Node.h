@@ -90,7 +90,7 @@ namespace mcts
 		 * \brief Destructor of the Node
 		 * \details call Delete on all the childrens of the node.
 		 */
-		~Node() {}
+		~Node();
 
 		/**
 		 * \fn killChildrens

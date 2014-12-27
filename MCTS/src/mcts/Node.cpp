@@ -163,4 +163,11 @@ namespace mcts {
 	}
 
 
+	Node::~Node()
+	{
+#ifdef DEBUG_NODE
+		cout << endl << "kill N*" << this << ", " << _move << " : " << _state;
+#endif //DEBUG_NODE
+		delete _state;
+	}
 }

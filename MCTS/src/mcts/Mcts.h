@@ -60,7 +60,7 @@ namespace mcts
 		 * 
 		 * \param move move played
 		 */
-		void movePlayed(Move& move);
+		Bitboard* Mcts::movePlayed(Move& move);
 
 		/**
 		 * \fn UpdateNode

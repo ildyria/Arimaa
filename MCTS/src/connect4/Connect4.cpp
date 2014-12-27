@@ -237,7 +237,8 @@ int Connect4::playRandomMoves(Bitboard* board)
 		chosen = Random::I()->getNum(0, ListOfMoves.size() - 1);
 		for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 		{
-			if (chosen == 0){
+			if (chosen == 0)
+			{
 #ifdef DISPLAY_C4
 				std::cout << " > " << *iter ;
 #endif // DISPLAY_C4
@@ -247,6 +248,7 @@ int Connect4::playRandomMoves(Bitboard* board)
 			--chosen;
 		}
 		nodet = end(board);
+		ListOfMoves.clear();
 	}
 
 	return nodet;

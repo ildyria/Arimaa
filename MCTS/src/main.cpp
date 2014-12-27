@@ -88,8 +88,13 @@ int main(int argc, char const *argv[])
 			mcts.print_tree(2);
 			cout << endl << "chosen move : " << move;
 		}
-		mcts.movePlayed(move);
-		game->play(move, Bb);
+#ifdef CONNECT4
+		Bb = static_cast<BitboardConnect4*>(mcts.movePlayed(move));
+#endif
+#ifndef CONNECT4
+		Bb = mcts.movePlayed(move);
+#endif
+
 		result = game->end(Bb);
 	}
 	cout << endl;

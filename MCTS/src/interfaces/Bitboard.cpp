@@ -38,6 +38,7 @@ Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _sizeX(sizeX), _si
 
 Bitboard::~Bitboard()
 {
+	_boards.clear();
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " destroyed." << endl;
 #endif //DEBUG_BOARD

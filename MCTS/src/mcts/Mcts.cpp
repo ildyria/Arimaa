@@ -27,7 +27,7 @@ namespace mcts{
 		_root = new Node(Bb);
 	}
 
-	void Mcts::movePlayed(Move& move)
+	Bitboard* Mcts::movePlayed(Move& move)
 	{
 		UpdateNode(_root);
 		list<Node*> ListOfNodes = _root->getChildren();
@@ -41,9 +41,11 @@ namespace mcts{
 		}
 		// TO CHECK AND IMPROVE
 		_root->killChildrens(*iterN);
-		delete(_root);	
+		delete(_root);
 		_root = *iterN;
 		_root->clearParents();
+
+		return _root->getState();
 	}
 
 	int Mcts::UpdateNode(Node* node)
