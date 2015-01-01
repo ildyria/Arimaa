@@ -21,7 +21,7 @@ namespace mcts {
 			int simulR = 1000000,		// number of root simulations
 			int simulL = 1,				// number of leaf simulations
 //			int numVisitExplo = 0		// number visit required before explorating a node
-			int numVisitExplo = 0		// number visit required before explorating a node
+			int numVisitExplo = 2		// number visit required before explorating a node
 			);
 
 		inline int getDepth()
