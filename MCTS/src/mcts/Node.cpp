@@ -14,24 +14,15 @@ using std::log;
 
 namespace mcts {
 
-	Node::Node(Bitboard* state): _state(state)
+	Node::Node(Bitboard* state) : _state(state), _visits(0), _wins(0), _uct(0), _terminal(-1), _move(Move())
 	{
-		_visits = 0;
-		_wins = 0;
-		_uct = 0;
-		_terminal = -1;
-		_move = Move();
 #ifdef DEBUG_NODE
 		cout << endl << "N*" << this << " created with B*" << &state;
 #endif //DEBUG_NODE
 	}
 
-	Node::Node(Node* p_parent, Bitboard* state, Move move) : _state(state), _move(move)
+	Node::Node(Node* p_parent, Bitboard* state, Move& move) : _state(state), _move(move), _visits(0), _wins(0), _uct(0), _terminal(-1)
 	{
-		_visits = 0;
-		_wins = 0;
-		_uct = 0;
-		_terminal = -1;
 		_parents.push_front(p_parent);
 #ifdef DEBUG_NODE
 		cout << endl << "N*" << this << " created with P*" << p_parent << ", B*" << &state << " and move : " << move;

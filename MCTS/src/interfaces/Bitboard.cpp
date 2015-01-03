@@ -8,13 +8,8 @@ using std::cout;
 using std::endl;
 using std::max;
 
-Bitboard::Bitboard()
+Bitboard::Bitboard() : _sizeX(3), _sizeY(3), _number(3), _toplay(1), _boards(vector<unsigned long long>(3))
 {
-	_boards = *(new vector<unsigned long long>(3));
-	_number = 3;
-	_sizeX = 3;
-	_sizeY = 3;
-	_toplay = 1;
 	for (int i = 0; i < _number; i++)
 	{
 		_boards[i] = static_cast<unsigned long long>(0);
@@ -24,9 +19,8 @@ Bitboard::Bitboard()
 #endif //DEBUG_BOARD
 }
 
-Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _sizeX(sizeX), _sizeY(sizeY), _number(n), _toplay(toplay)
+Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _sizeX(sizeX), _sizeY(sizeY), _number(n), _toplay(toplay), _boards(vector<unsigned long long>(n))
 {
-	_boards = *(new vector<unsigned long long>(n));
 	for (int i = 0; i < _number; i++)
 	{
 		_boards[i] = static_cast<unsigned long long>(0);

@@ -65,7 +65,7 @@ namespace mcts
 		 * \fn Node
 		 * \brief Constructor by default.
 		 */
-		Node();
+//		Node();
 
 		/**
 		* \fn Node(Node *parent)
@@ -83,7 +83,7 @@ namespace mcts
 		 * \param state Bitboard after the move
 		 * \param move move played
 		 */
-		Node(Node* parent, Bitboard* state, Move move);
+		Node(Node* parent, Bitboard* state, Move& move);
 
 		/**
 		 * \fn ~Node

@@ -115,4 +115,6 @@ int main(int argc, char const *argv[])
 		cout << endl << "Board full detected : TIE." << endl;
 	}
 	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
+	delete game;
 }

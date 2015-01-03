@@ -22,9 +22,9 @@ namespace mcts{
 	Mcts::Mcts(	TheGame* game,
 				Bitboard* Bb,
 				MctsArgs args)
-	:_game(game), _param(args)
+				:_game(game), _param(args), _root(new Node(Bb))
 	{
-		_root = new Node(Bb);
+//		_root = new Node(Bb);
 	}
 
 	Bitboard* Mcts::movePlayed(Move& move)
@@ -188,23 +188,21 @@ namespace mcts{
 		cout << endl << "turn : " << _root->getState()->getPlayer();
 #endif // DISPLAY_MCTS
 		int i = 0;
-		int end = 0;
 		int start = clock();
 		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLK_TCK);
 #ifdef OPENMP
-#pragma omp parallel shared(i,end,timeend)
+#pragma omp parallel shared(i,timeend)
 #endif
-		while (end < timeend && i < _param.getSimulationPerRoot())
+		while (clock() < timeend && i < _param.getSimulationPerRoot())
 		{
 			i++;
 #ifdef DISPLAY_MCTS
 			cout << endl << "simulation n : " << i;
 #endif // DISPLAY_MCTS
 			explore();
-			end = clock();
 		}
 		cout << endl << "start search : " << static_cast<double>(start) / CLK_TCK << "s.";
-		cout << endl << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(end - start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
+		cout << endl << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(clock() -start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
 		return _root->select_child_WR()->getMove();
 	}
 
