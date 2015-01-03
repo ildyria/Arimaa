@@ -22,7 +22,7 @@ namespace mcts{
 	Mcts::Mcts(	TheGame* game,
 				Bitboard* Bb,
 				MctsArgs args)
-				:_game(game), _param(args), _root(new Node(Bb))
+				:_game(game), _root(new Node(Bb)), _param(args)
 	{
 //		_root = new Node(Bb);
 	}
@@ -43,6 +43,7 @@ namespace mcts{
 		_root->killChildrens(*iterN);
 		delete(_root);
 		_root = *iterN;
+		ListOfNodes.clear();
 		_root->clearParents();
 
 		return _root->getState();
@@ -210,5 +211,10 @@ namespace mcts{
 	{
 		int d = (depth == 0) ? _param.getDepth() : depth;
 		_root->print_tree(0, d);
+	}
+
+	void Mcts::kill_tree()
+	{
+		_root->killChildrens(nullptr);
 	}
 }

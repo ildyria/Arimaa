@@ -117,4 +117,5 @@ int main(int argc, char const *argv[])
 	std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
 	delete game;
+	mcts.kill_tree();
 }

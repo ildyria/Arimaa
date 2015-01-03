@@ -116,6 +116,6 @@ namespace mcts
 		 * \param depth How deep we want to search, 1 by default
 		 */
 		void print_tree(int depth = 1);
-
+		void kill_tree();
 	};
 }

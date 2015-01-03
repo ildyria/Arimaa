@@ -220,6 +220,7 @@ list<Move> Connect4::listPossibleMoves(Bitboard* board)
 	{
 		moves.push_back(Move(*iter));
 	}
+	listmoves.clear();
 	return moves;
 }
 
