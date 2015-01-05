@@ -7,9 +7,7 @@
  *
  */
 #pragma once
-#include <algorithm>
 #include "TheGame.h"
-#include "Random.h"
 
 class TicTacToe : public TheGame
 {

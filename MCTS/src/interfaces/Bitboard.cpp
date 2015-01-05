@@ -1,3 +1,6 @@
+#include <iostream>     // std::cout
+#include <algorithm>    // std::for_each
+#include "Count.h"
 #include "Bitboard.h"
 #define elseif else if
 
@@ -8,7 +11,7 @@ using std::cout;
 using std::endl;
 using std::max;
 
-Bitboard::Bitboard() : _sizeX(3), _sizeY(3), _number(3), _toplay(1), _boards(vector<unsigned long long>(3))
+Bitboard::Bitboard() : _boards(vector<unsigned long long>(3)), _toplay(1), _number(3), _sizeX(3), _sizeY(3)
 {
 	for (int i = 0; i < _number; i++)
 	{
@@ -17,9 +20,10 @@ Bitboard::Bitboard() : _sizeX(3), _sizeY(3), _number(3), _toplay(1), _boards(vec
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " (" << _number << " & " << _size << "x" << _size << ") created." << endl;
 #endif //DEBUG_BOARD
+	Count::I()->addBitBoards();
 }
 
-Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _sizeX(sizeX), _sizeY(sizeY), _number(n), _toplay(toplay), _boards(vector<unsigned long long>(n))
+Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _boards(vector<unsigned long long>(n)), _toplay(toplay), _number(n), _sizeX(sizeX), _sizeY(sizeY)
 {
 	for (int i = 0; i < _number; i++)
 	{
@@ -28,6 +32,7 @@ Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _sizeX(sizeX), _si
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " (" << _number << " & " << _sizeX << "x" << _sizeY << ") created." << endl;
 #endif //DEBUG_BOARD
+	Count::I()->addBitBoards();
 }
 
 Bitboard::~Bitboard()
@@ -36,6 +41,7 @@ Bitboard::~Bitboard()
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " destroyed." << endl;
 #endif //DEBUG_BOARD
+	Count::I()->rmBitBoards();
 }
 
 int Bitboard::getBit(int n, int x, int y) const

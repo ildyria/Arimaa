@@ -1,7 +1,7 @@
 #include "Connect4.h"
 #include <sstream>
 #define elseif else if
-#include <ratio>
+#include <Random.h>
 
 //#define DISPLAY_C4
 using std::string;

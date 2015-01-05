@@ -5,11 +5,13 @@ using std::list;
 
 BitboardConnect4::BitboardConnect4() : Bitboard(7,6,2,1)
 {
+	Count::I()->addBitBoardsC4();
 }
 
 
 BitboardConnect4::~BitboardConnect4()
 {
+	Count::I()->rmBitBoardsC4();
 }
 
 list<int> BitboardConnect4::getEmpty(int n) const

@@ -10,7 +10,6 @@
 #include "Node.h"
 #include "MctsArgs.h"
 #include "TheGame.h"
-#include <time.h>
 
 namespace mcts
 {
@@ -29,6 +28,42 @@ namespace mcts
 		TheGame* _game;
 		Node* _root;
 		MctsArgs _param;
+		bool _moves20;
+
+		/**
+		* \fn UpdateNode
+		* \details Update a node :
+		* - check state of the node
+		* if -1 : fetch the children (possible moves) and update the state
+		* if 0 and no children : fetch the children and update the state
+		* else : return the state
+		*
+		* \param  node to be updated
+		* \return      the state of the board : 0, 1, 2, or 3 .
+		*/
+		int UpdateNode(Node* node);
+
+
+		/**
+		* \fn playRandom
+		* \details play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)
+		*
+		* \param node node to run the simulations from
+		*/
+		void playRandom(Node* node);
+
+		/**
+		* \fn explore
+		* \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
+		* if depth = 0, run playRandom
+		* if the node is a terminal, then update the stats :
+		* - set uct to 10 if it's a win
+		* - set parent's uct to -1 if it's a loss (we must never go to that node)
+		*/
+		void explore();
+
+		void updateLosingParent(Node* node);
+		void feedbackWinningMove(Node* node);
 
 	public:
 		/**
@@ -55,6 +90,12 @@ namespace mcts
 		~Mcts() {}
 
 		/**
+		* \fn UpdateRoot
+		* \brief calls UpdateNode(_root)
+		*/
+		inline void UpdateRoot() { UpdateNode(_root); };
+
+		/**
 		 * \fn movePlayed
 		 * \brief play a move on the tree, prune all the node that are useless.
 		 * 
@@ -62,45 +103,7 @@ namespace mcts
 		 */
 		Bitboard* Mcts::movePlayed(Move& move);
 
-		/**
-		 * \fn UpdateNode
-		 * \details Update a node :
-		 * - check state of the node
-		 * if -1 : fetch the children (possible moves) and update the state
-		 * if 0 and no children : fetch the children and update the state
-		 * else : return the state
-		 * 
-		 * \param  node to be updated
-		 * \return      the state of the board : 0, 1, 2, or 3 .
-		 */
-		int UpdateNode(Node* node);
 
-		/**
-		* \fn UpdateRoot
-		* \brief calls UpdateNode(_root)
-		*/
-		inline void UpdateRoot() { UpdateNode(_root); };
-
-		/**
-		 * \fn playRandom
-		 * \details play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)
-		 * 
-		 * \param node node to run the simulations from
-		 */
-		void playRandom(Node* node);
-
-		/**
-		 * \fn explore
-		 * \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
-		 * if depth = 0, run playRandom
-		 * if the node is a terminal, then update the stats :
-		 * - set uct to 10 if it's a win
-		 * - set parent's uct to -1 if it's a loss (we must never go to that node)
-		 */
-		void explore();
-
-		void updateLosingParent(Node* node);
-		void feedbackWinningMove(Node* node);
 		/**
 		 * \fn GetBestMove
 		 * \brief main function of the algorithm, run the exploration, simulations and returns the best move given the results
@@ -116,6 +119,9 @@ namespace mcts
 		 * \param depth How deep we want to search, 1 by default
 		 */
 		void print_tree(int depth = 1);
+
 		void kill_tree();
+
+		void get_Number_Leaves();
 	};
 }

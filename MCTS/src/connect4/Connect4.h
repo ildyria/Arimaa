@@ -7,10 +7,7 @@
 *
 */
 #pragma once
-#include <algorithm>
-#include "BitBoardConnect4.h"
 #include "TheGame.h"
-#include "Random.h"
 
 class Connect4 : public TheGame
 {

@@ -1,6 +1,7 @@
 #include "Random.h"
 #include <iostream>
 #include <omp.h>
+#include <ctime>
 
 using std::srand;
 using std::rand;

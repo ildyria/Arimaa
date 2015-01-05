@@ -1,5 +1,6 @@
 #include "Node.h"
 #define elseif else if
+#include <Count.h>
 //#define DEBUG_NODE
 
 using std::max_element;
@@ -27,6 +28,7 @@ namespace mcts {
 #ifdef DEBUG_NODE
 		cout << endl << "N*" << this << " created with P*" << p_parent << ", B*" << &state << " and move : " << move;
 #endif //DEBUG_NODE
+		Count::I()->addNode();
 	}
 
 	void Node::killChildrens(Node* exception)
@@ -153,6 +155,17 @@ namespace mcts {
 		}
 	}
 
+	int Node::count()
+	{
+		int val = 0;
+		list<Node*>::iterator itL;
+		for (itL = _children.begin(); itL != _children.end(); ++itL)
+		{
+			val += (*itL)->count();
+		}
+
+		return val + 1;
+	}
 
 	Node::~Node()
 	{
@@ -160,5 +173,6 @@ namespace mcts {
 		cout << endl << "kill N*" << this << ", " << _move << " : " << _state;
 #endif //DEBUG_NODE
 		delete _state;
+		Count::I()->rmNode();
 	}
 }

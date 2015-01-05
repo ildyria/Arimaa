@@ -2,15 +2,19 @@
 //#define TICTACTOE
 
 //#include <vld.h>
+#include "Count.h"
 
 #include "Mcts.h"
+
 #ifdef TICTACTOE
 #include "TicTacToe.h"
 #endif
+
 #ifdef CONNECT4
 #include "Connect4.h"
+#include "BitboardConnect4.h"
 #endif
-#include <time.h>
+
 #include <thread>
 #define elseif else if
 
@@ -89,6 +93,8 @@ int main(int argc, char const *argv[])
 			move = mcts.GetBestMove();
 			mcts.print_tree(2);
 			cout << endl << "chosen move : " << move;
+			mcts.get_Number_Leaves();
+			cout << endl << Count::I();
 		}
 #ifdef CONNECT4
 		Bb = static_cast<BitboardConnect4*>(mcts.movePlayed(move));
@@ -96,6 +102,8 @@ int main(int argc, char const *argv[])
 #ifndef CONNECT4
 		Bb = mcts.movePlayed(move);
 #endif
+		mcts.get_Number_Leaves();
+		cout << endl << Count::I();
 
 		result = game->end(Bb);
 	}

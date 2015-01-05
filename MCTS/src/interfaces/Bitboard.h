@@ -7,10 +7,9 @@
  *
  */
 #pragma once
-#include <iostream>     // std::cout
-#include <algorithm>    // std::for_each
 #include <vector>       // std::vector
 #include <list>			// std::list
+#include <Count.h>
 
 /**
  * \brief Bitboard class
@@ -56,7 +55,11 @@ public:
 	* \fn clone
 	* \brief clone a Bitboard
 	*/
-	virtual inline Bitboard* clone() const { return new Bitboard(*this); }
+	virtual inline Bitboard* clone() const
+	{
+		Count::I()->addBitBoards();
+		return new Bitboard(*this);
+	}
 
 	/**
 	* \fn getSizeX

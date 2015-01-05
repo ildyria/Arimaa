@@ -1,10 +1,10 @@
-#define OPENMP
-#include <omp.h>
+//#define OPENMP
 
 #include "Mcts.h"
 #define elseif else if
 #define OPTIMIZED_MCTS
 #define LIMITED_EXPLORATION
+#include <locale>
 
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
@@ -22,7 +22,7 @@ namespace mcts{
 	Mcts::Mcts(	TheGame* game,
 				Bitboard* Bb,
 				MctsArgs args)
-				:_game(game), _root(new Node(Bb)), _param(args)
+				:_game(game), _root(new Node(Bb)), _param(args), _moves20(false)
 	{
 //		_root = new Node(Bb);
 	}
@@ -119,8 +119,9 @@ namespace mcts{
 			cout << node->getMove() << " > ";
 #endif // DISPLAY_MCTS
 			++depth;
-			if (depth == _param.getDepth())
+			if (depth == _param.getDepth() && !_moves20)
 			{
+				_moves20 = true;
 				cout << endl << "max depth reached : " << _param.getDepth() << "moves ahead.";
 			}
 		}
@@ -188,6 +189,7 @@ namespace mcts{
 #ifdef DISPLAY_MCTS
 		cout << endl << "turn : " << _root->getState()->getPlayer();
 #endif // DISPLAY_MCTS
+		_moves20 = false;
 		int i = 0;
 		int start = clock();
 		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLK_TCK);
@@ -216,5 +218,10 @@ namespace mcts{
 	void Mcts::kill_tree()
 	{
 		_root->killChildrens(nullptr);
+	}
+
+	void Mcts::get_Number_Leaves()
+	{
+		Count::I()->saveNbLeaves(_root->count());
 	}
 }

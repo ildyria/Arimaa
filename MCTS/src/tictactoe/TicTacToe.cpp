@@ -1,5 +1,6 @@
 #include "TicTacToe.h"
 #define elseif else if
+#include <Random.h>
 //#define DISPLAY_TTT
 //#define DEBUG_TTT
 
@@ -11,7 +12,6 @@ using std::endl;
 
 void TicTacToe::diplayBoard(const Bitboard* board){
 	cout << "player to play : " << board->getPlayer() << endl;
-	int i = 0;
 	for (int i = 0; i < 9; i++)
 	{
 		if (board->getBit(0, i) == 1)

@@ -8,7 +8,6 @@
  */
 #pragma once
 #include <iostream>
-#include <string>
 #include <list>
 #include <algorithm>
 #include "Bitboard.h"
@@ -90,7 +89,7 @@ namespace mcts
 		 * \brief Destructor of the Node
 		 * \details call Delete on all the childrens of the node.
 		 */
-		~Node();
+		virtual ~Node();
 
 		/**
 		 * \fn killChildrens
@@ -250,5 +249,6 @@ namespace mcts
 		 */
 		void print_tree(int numtab, int depth);
 
+		int count();
 	};
 };
