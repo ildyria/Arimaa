@@ -35,6 +35,11 @@ $RECYCLE.BIN/*
 *.psd
 *.sai
 
+
+# Sublime text files
+*.sublime-project
+*.sublime-workspace
+
 # Visual Studio files
 *.vcproj
 *.sdf
@@ -48,6 +53,9 @@ $RECYCLE.BIN/*
 *.lastbuildstate
 *.pdb
 *.vcxproj.*
+*.ilk
+*.idb
+
 
 # =========================
 # Operating System Files
