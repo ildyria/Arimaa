@@ -1,4 +1,4 @@
-//#define OPENMP
+#define OPENMP
 
 #include "Mcts.h"
 #define elseif else if
@@ -99,7 +99,9 @@ namespace mcts{
 	{
 		Node* node = _root;
 		int depth = 0;
-		int nodet = UpdateNode(node); // update and exploration
+		int nodet;
+#pragma omp critical
+		nodet = UpdateNode(node); // update and exploration
 #ifndef LIMITED_EXPLORATION
 		while (depth < _param.getDepth() && nodet <= 0)
 		{
@@ -109,6 +111,7 @@ namespace mcts{
 		{
 #endif
 			node = node->select_child_UCT();
+			#pragma omp critical
 			nodet = UpdateNode(node);
 #ifdef DISPLAY_MCTS
 			if (depth == 0)
