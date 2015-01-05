@@ -119,7 +119,7 @@ Arimaa/UpgradeLog.htm
 # =========================
 # Biv Trash files...
 # =========================
-MCTS/Debug/*
+MCTS/x64/Debug/*
 
 # =========================
 # BAPTISTE Trash files...
