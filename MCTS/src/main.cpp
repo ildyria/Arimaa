@@ -1,7 +1,7 @@
 #define CONNECT4
 //#define TICTACTOE
 
-#include <vld.h>
+//#include <vld.h>
 
 #include "Mcts.h"
 #ifdef TICTACTOE
