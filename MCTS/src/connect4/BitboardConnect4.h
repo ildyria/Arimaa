@@ -1,5 +1,5 @@
 #pragma once
-#include "Bitboard.h"
+#include "../interfaces/Bitboard.h"
 
 class BitboardConnect4 : public Bitboard
 {

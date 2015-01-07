@@ -1,6 +1,6 @@
 #include "TicTacToe.h"
 #define elseif else if
-#include <Random.h>
+#include "../tools/Random.h"
 //#define DISPLAY_TTT
 //#define DEBUG_TTT
 

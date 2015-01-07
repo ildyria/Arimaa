@@ -1,6 +1,6 @@
 #include "Node.h"
 #define elseif else if
-#include <Count.h>
+#include "../tools/Count.h"
 //#define DEBUG_NODE
 
 using std::max_element;

@@ -1,18 +1,17 @@
 #define CONNECT4
 //#define TICTACTOE
 
-//#include <vld.h>
-#include "Count.h"
+#include "./tools/Count.h"
 
-#include "Mcts.h"
+#include "./mcts/Mcts.h"
 
 #ifdef TICTACTOE
-#include "TicTacToe.h"
+#include "./tictactoe/TicTacToe.h"
 #endif
 
 #ifdef CONNECT4
-#include "Connect4.h"
-#include "BitboardConnect4.h"
+#include "./connect4/Connect4.h"
+#include "./connect4/BitboardConnect4.h"
 #endif
 
 #include <thread>

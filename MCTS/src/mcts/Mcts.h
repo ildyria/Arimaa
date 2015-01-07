@@ -9,7 +9,7 @@
 #pragma once
 #include "Node.h"
 #include "MctsArgs.h"
-#include "TheGame.h"
+#include "../interfaces/TheGame.h"
 
 namespace mcts
 {

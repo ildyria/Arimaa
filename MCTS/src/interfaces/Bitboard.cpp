@@ -1,6 +1,6 @@
 #include <iostream>     // std::cout
 #include <algorithm>    // std::for_each
-#include "Count.h"
+#include "../tools/Count.h"
 #include "Bitboard.h"
 #define elseif else if
 

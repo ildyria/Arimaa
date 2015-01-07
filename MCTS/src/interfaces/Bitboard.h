@@ -7,9 +7,9 @@
  *
  */
 #pragma once
-#include <vector>       // std::vector
-#include <list>			// std::list
-#include <Count.h>
+#include <vector>
+#include <list>
+#include "../tools/Count.h"
 
 /**
  * \brief Bitboard class

@@ -10,8 +10,8 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
-#include "Bitboard.h"
-#include "Move.h"
+#include "../interfaces/Bitboard.h"
+#include "../interfaces/Move.h"
 
 namespace mcts
 {

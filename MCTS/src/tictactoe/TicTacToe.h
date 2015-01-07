@@ -7,7 +7,7 @@
  *
  */
 #pragma once
-#include "TheGame.h"
+#include "../interfaces/TheGame.h"
 
 class TicTacToe : public TheGame
 {

@@ -7,7 +7,7 @@
 *
 */
 #pragma once
-#include "TheGame.h"
+#include "../interfaces/TheGame.h"
 
 class Connect4 : public TheGame
 {
