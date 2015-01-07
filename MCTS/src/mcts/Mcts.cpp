@@ -195,7 +195,7 @@ namespace mcts{
 		_moves20 = false;
 		int i = 0;
 		int start = clock();
-		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLK_TCK);
+		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLOCKS_PER_SEC);
 #ifdef OPENMP
 #pragma omp parallel shared(i,timeend)
 #endif
@@ -207,8 +207,8 @@ namespace mcts{
 #endif // DISPLAY_MCTS
 			explore();
 		}
-		cout << endl << "start search : " << static_cast<double>(start) / CLK_TCK << "s.";
-		cout << endl << "end search : " << static_cast<double>(clock()) / CLK_TCK << "s in " << static_cast<double>(clock() -start) * 1000 / CLK_TCK << "ms and " << i << " simulations." << endl;
+		cout << endl << "start search : " << static_cast<double>(start) / CLOCKS_PER_SEC << "s.";
+		cout << endl << "end search : " << static_cast<double>(clock()) / CLOCKS_PER_SEC << "s in " << static_cast<double>(clock() - start) * 1000 / CLOCKS_PER_SEC << "ms and " << i << " simulations." << endl;
 		return _root->select_child_WR()->getMove();
 	}
 
