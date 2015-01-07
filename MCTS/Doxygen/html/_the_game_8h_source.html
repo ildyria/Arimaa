@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: D:/Arimaa/MCTS/TheGame.h Source File</title>
+<title>Connect4 with MCTS Algorithm: D:/Arimaa/MCTS/src/interfaces/TheGame.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -67,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -78,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_ef16f1ecfa91f76fc7b181cd56182e52.html">Arimaa</a></li><li class="navelem"><a class="el" href="dir_6282ce3eb33df6a0daf20e0882931190.html">MCTS</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_ef16f1ecfa91f76fc7b181cd56182e52.html">Arimaa</a></li><li class="navelem"><a class="el" href="dir_6282ce3eb33df6a0daf20e0882931190.html">MCTS</a></li><li class="navelem"><a class="el" href="dir_eee68f3bf6d15852b5ccbf717cece8a9.html">src</a></li><li class="navelem"><a class="el" href="dir_b86b119623f7f5696a36ebf8ea02d66e.html">interfaces</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,42 +88,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="_the_game_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;Move.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_bitboard_8h.html">Bitboard.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">using</span> std::string;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using</span> std::list;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_move_8h.html">Move.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_bitboard_8h.html">Bitboard.h</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_the_game.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_the_game.html">TheGame</a></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_the_game.html">TheGame</a>() {}</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_the_game.html#a8dbf9909b671db1c52e3761d7f4944fe">end</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) = 0;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_the_game.html#ae62d35350d5c672741da5fe906a694c2">end</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>* board) = 0;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_the_game.html#aba6126c4af547c9a14f17e65f6f411fd">play</a>(<a class="code" href="class_move.html">Move</a>&amp; position, <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) = 0;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_the_game.html#acffc7663c19496f7fb60aa70f662a994">play</a>(<a class="code" href="class_move.html">Move</a>&amp; position, <a class="code" href="class_bitboard.html">Bitboard</a>* board) = 0;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_the_game.html#a44c8de21089f20d39a3bebc36096e3d9">diplayBoard</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_the_game.html#adc3bfc978208321cb3dde8a4e8104b2c">diplayBoard</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>* board) = 0;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> list&lt;Move&gt; <a class="code" href="class_the_game.html#a2c1afcfd6517881edcff6ae98873317a">listPossibleMoves</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> std::list&lt;Move&gt; <a class="code" href="class_the_game.html#a8f92221b46530624a0d8c5c46545841e">listPossibleMoves</a>(<a class="code" href="class_bitboard.html">Bitboard</a>* board) = 0;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_the_game.html#a1c9d4372ac6b87f641464c9cd211c177">playRandomMoves</a>(<a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) = 0;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_the_game.html#a9ce50c12668428017a01bd479fe3dba1">playRandomMoves</a>(<a class="code" href="class_bitboard.html">Bitboard</a>* board) = 0;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
-<div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:10</div></div>
-<div class="ttc" id="class_the_game_html_a2c1afcfd6517881edcff6ae98873317a"><div class="ttname"><a href="class_the_game.html#a2c1afcfd6517881edcff6ae98873317a">TheGame::listPossibleMoves</a></div><div class="ttdeci">virtual list&lt; Move &gt; listPossibleMoves(const Bitboard &amp;board)=0</div><div class="ttdoc">return a list of all possible moves given a board </div></div>
-<div class="ttc" id="class_bitboard_html"><div class="ttname"><a href="class_bitboard.html">Bitboard</a></div><div class="ttdoc">Bitboard class. </div><div class="ttdef"><b>Definition:</b> Bitboard.h:30</div></div>
-<div class="ttc" id="class_the_game_html_a44c8de21089f20d39a3bebc36096e3d9"><div class="ttname"><a href="class_the_game.html#a44c8de21089f20d39a3bebc36096e3d9">TheGame::diplayBoard</a></div><div class="ttdeci">virtual void diplayBoard(const Bitboard &amp;board)=0</div><div class="ttdoc">display the board of the given Bitboard </div></div>
+<div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdoc">Move class. </div><div class="ttdef"><b>Definition:</b> Move.h:17</div></div>
+<div class="ttc" id="_move_8h_html"><div class="ttname"><a href="_move_8h.html">Move.h</a></div><div class="ttdoc">Define class Move. </div></div>
+<div class="ttc" id="class_the_game_html_acffc7663c19496f7fb60aa70f662a994"><div class="ttname"><a href="class_the_game.html#acffc7663c19496f7fb60aa70f662a994">TheGame::play</a></div><div class="ttdeci">virtual void play(Move &amp;position, Bitboard *board)=0</div><div class="ttdoc">simulate the play of the "position" move and returns the bitboard after the move </div></div>
+<div class="ttc" id="class_the_game_html_a9ce50c12668428017a01bd479fe3dba1"><div class="ttname"><a href="class_the_game.html#a9ce50c12668428017a01bd479fe3dba1">TheGame::playRandomMoves</a></div><div class="ttdeci">virtual int playRandomMoves(Bitboard *board)=0</div><div class="ttdoc">play random moves until the game reach an end and return the int corresponding to the winner (1 2 or ...</div></div>
+<div class="ttc" id="class_bitboard_html"><div class="ttname"><a href="class_bitboard.html">Bitboard</a></div><div class="ttdef"><b>Definition:</b> Bitboard.h:25</div></div>
+<div class="ttc" id="class_the_game_html_ae62d35350d5c672741da5fe906a694c2"><div class="ttname"><a href="class_the_game.html#ae62d35350d5c672741da5fe906a694c2">TheGame::end</a></div><div class="ttdeci">virtual int end(const Bitboard *board)=0</div><div class="ttdoc">check if the game end </div></div>
 <div class="ttc" id="_bitboard_8h_html"><div class="ttname"><a href="_bitboard_8h.html">Bitboard.h</a></div><div class="ttdoc">Define class Bitboard. </div></div>
-<div class="ttc" id="class_the_game_html_aba6126c4af547c9a14f17e65f6f411fd"><div class="ttname"><a href="class_the_game.html#aba6126c4af547c9a14f17e65f6f411fd">TheGame::play</a></div><div class="ttdeci">virtual void play(Move &amp;position, Bitboard &amp;board)=0</div><div class="ttdoc">simulate the play of the "position" move and returns the bitboard after the move </div></div>
-<div class="ttc" id="class_the_game_html"><div class="ttname"><a href="class_the_game.html">TheGame</a></div><div class="ttdef"><b>Definition:</b> TheGame.h:17</div></div>
-<div class="ttc" id="class_the_game_html_a8dbf9909b671db1c52e3761d7f4944fe"><div class="ttname"><a href="class_the_game.html#a8dbf9909b671db1c52e3761d7f4944fe">TheGame::end</a></div><div class="ttdeci">virtual int end(const Bitboard &amp;board)=0</div><div class="ttdoc">check if the game end </div></div>
-<div class="ttc" id="class_the_game_html_a1c9d4372ac6b87f641464c9cd211c177"><div class="ttname"><a href="class_the_game.html#a1c9d4372ac6b87f641464c9cd211c177">TheGame::playRandomMoves</a></div><div class="ttdeci">virtual int playRandomMoves(Bitboard &amp;board)=0</div><div class="ttdoc">play random moves until the game reach an end and return the int corresponding to the winner (1 2 or ...</div></div>
+<div class="ttc" id="class_the_game_html"><div class="ttname"><a href="class_the_game.html">TheGame</a></div><div class="ttdoc">TheGame class. </div><div class="ttdef"><b>Definition:</b> TheGame.h:17</div></div>
+<div class="ttc" id="class_the_game_html_a8f92221b46530624a0d8c5c46545841e"><div class="ttname"><a href="class_the_game.html#a8f92221b46530624a0d8c5c46545841e">TheGame::listPossibleMoves</a></div><div class="ttdeci">virtual std::list&lt; Move &gt; listPossibleMoves(Bitboard *board)=0</div><div class="ttdoc">return a list of all possible moves given a board </div></div>
+<div class="ttc" id="class_the_game_html_adc3bfc978208321cb3dde8a4e8104b2c"><div class="ttname"><a href="class_the_game.html#adc3bfc978208321cb3dde8a4e8104b2c">TheGame::diplayBoard</a></div><div class="ttdeci">virtual void diplayBoard(const Bitboard *board)=0</div><div class="ttdoc">display the board of the given Bitboard </div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:10 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:02 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

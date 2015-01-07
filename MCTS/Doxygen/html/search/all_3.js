@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['diplayboard',['diplayBoard',['../class_the_game.html#a44c8de21089f20d39a3bebc36096e3d9',1,'TheGame::diplayBoard()'],['../class_tic_tac_toe.html#af01dee0e29853d8abc30a6a2818a844e',1,'TicTacToe::diplayBoard()']]]
+  ['debug',['Debug',['../class_debug.html',1,'']]],
+  ['debug_2eh',['Debug.h',['../_debug_8h.html',1,'']]],
+  ['diplayboard',['diplayBoard',['../class_connect4.html#a8e37d225bfaf6d3b5362b3aecd09c5c4',1,'Connect4::diplayBoard()'],['../class_the_game.html#adc3bfc978208321cb3dde8a4e8104b2c',1,'TheGame::diplayBoard()'],['../class_tic_tac_toe.html#ac1544a9b625909d11d0d308161677779',1,'TicTacToe::diplayBoard()']]]
 ];

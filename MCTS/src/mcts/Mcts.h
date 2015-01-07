@@ -18,10 +18,7 @@ namespace mcts
 	 * \brief Mcts class
 	 * \details 
 		Node* _root = adress of the node considered as the root of the tree.
-		int _depth = depth to explore before running random simulations.
-		int _timeLimitsimulationPerRoot = time limit in ms
-		int _simulationPerRoot = number of simulations to run per Root.
-		int _simulationPerLeaves = number of simulations to run per Leaves.
+		MctsArgs _param = options of the MCTS algorithm
 	 */
 	class Mcts
 	{
@@ -31,7 +28,7 @@ namespace mcts
 		bool _moves20;
 
 		/**
-		* \fn UpdateNode
+		* \fn UpdateNode(Node* node)
 		* \details Update a node :
 		* - check state of the node
 		* if -1 : fetch the children (possible moves) and update the state
@@ -45,7 +42,7 @@ namespace mcts
 
 
 		/**
-		* \fn playRandom
+		* \fn playRandom(Node* node)
 		* \details play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)
 		*
 		* \param node node to run the simulations from
@@ -53,7 +50,7 @@ namespace mcts
 		void playRandom(Node* node);
 
 		/**
-		* \fn explore
+		* \fn explore()
 		* \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
 		* if depth = 0, run playRandom
 		* if the node is a terminal, then update the stats :
@@ -62,41 +59,52 @@ namespace mcts
 		*/
 		void explore();
 
+		/**
+		 * \fn updateLosingParent(Node* node)
+		 * \brief Function which check if all children are losing, if so, update the uct value of the node to 10, marking it as a winning strategy.
+		 * 
+		 * \param node : Node to check
+		 */
 		void updateLosingParent(Node* node);
+
+		/**
+		 * \fn feedbackWinningMove(Node* node)
+		 * \brief Function which update the uct value to -1 of a node if one of the children is identified as a winning strategy (uct = 10), marking it as an losing node.
+		 * 
+		 * \param node : Node to check
+		 */
 		void feedbackWinningMove(Node* node);
 
 	public:
 		/**
-		 * \fn Mcts
+		 * \fn Mcts()
 		 * \brief Not implemented
 		 */
 		Mcts();
 
 		/**
-		 * \fn Mcts
+		 * \fn Mcts(TheGame* game, Bitboard* Bb, MctsArgs args)
 		 * \brief create a mcts with specifics parameters
-		 * \param  Bb			BitBoard for the root
-		 * \param  depth		Depth to search, 4 by default
-		 * \param  timelimit	maximum time to run the simulation
-		 * \param  simulR		Number of simulations to be run starting from the root, 100 by default. => OpenMP ?
-		 * \param  simulL		Number of random simulations to be run at the end of the search tree, 10 by default. => OpenAcc ?
+		 * \param  game			game used (abstract class).
+		 * \param  Bb			first state to start the search from.
+		 * \param  args			options of the MCTS Algorithm
 		 */
 		explicit Mcts(TheGame* game, Bitboard* Bb, MctsArgs args);
 
 		/**
-		 * \fn ~Mcts
+		 * \fn ~Mcts()
 		 * \brief Not implemented
 		 */
 		~Mcts() {}
 
 		/**
-		* \fn UpdateRoot
+		* \fn UpdateRoot()
 		* \brief calls UpdateNode(_root)
 		*/
 		inline void UpdateRoot() { UpdateNode(_root); };
 
 		/**
-		 * \fn movePlayed
+		 * \fn movePlayed(Move& move)
 		 * \brief play a move on the tree, prune all the node that are useless.
 		 * 
 		 * \param move move played
@@ -105,7 +113,7 @@ namespace mcts
 
 
 		/**
-		 * \fn GetBestMove
+		 * \fn GetBestMove()
 		 * \brief main function of the algorithm, run the exploration, simulations and returns the best move given the results
 		 * 
 		 * \return move chosen by the algorithm
@@ -113,15 +121,23 @@ namespace mcts
 		Move GetBestMove();
 
 		/**
-		 * \fn print_tree
+		 * \fn print_tree(int depth = 1)
 		 * \brief print the tree of MCTS starting from the root with a defined depth
 		 * 
 		 * \param depth How deep we want to search, 1 by default
 		 */
 		void print_tree(int depth = 1);
 
+		/**
+		 * \fn kill_tree()
+		 * @brief clear all the branches of the tree.
+		 */
 		void kill_tree();
 
+		/**
+		 * \fn get_Number_Leaves()
+		 * \brief count the number of leaves of the tree.
+		 */
 		void get_Number_Leaves();
 	};
 }

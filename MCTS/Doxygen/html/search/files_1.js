@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['mcts_2eh',['Mcts.h',['../_mcts_8h.html',1,'']]]
+  ['connect4_2eh',['Connect4.h',['../_connect4_8h.html',1,'']]],
+  ['count_2eh',['Count.h',['../_count_8h.html',1,'']]]
 ];

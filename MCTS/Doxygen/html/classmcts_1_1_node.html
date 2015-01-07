@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: mcts::Node Class Reference</title>
+<title>Connect4 with MCTS Algorithm: mcts::Node Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,20 +101,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5fb90d28e126f4e432b2cc3721bd357a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fb90d28e126f4e432b2cc3721bd357a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a5fb90d28e126f4e432b2cc3721bd357a">Node</a> ()</td></tr>
-<tr class="memdesc:a5fb90d28e126f4e432b2cc3721bd357a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor by default. <br /></td></tr>
-<tr class="separator:a5fb90d28e126f4e432b2cc3721bd357a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac23152a7993365712024e8a7565c4301"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac23152a7993365712024e8a7565c4301"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="class_bitboard.html">Bitboard</a> state)</td></tr>
-<tr class="separator:ac23152a7993365712024e8a7565c4301"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5c6318435fbc51f472c9edf2866dd11"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ac5c6318435fbc51f472c9edf2866dd11">Node</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *parent)</td></tr>
-<tr class="memdesc:ac5c6318435fbc51f472c9edf2866dd11"><td class="mdescLeft">&#160;</td><td class="mdescRight">i don't know why i created that function...  <a href="#ac5c6318435fbc51f472c9edf2866dd11">More...</a><br /></td></tr>
-<tr class="separator:ac5c6318435fbc51f472c9edf2866dd11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0725206cf1e3806a1570c0c0f4825c18"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0725206cf1e3806a1570c0c0f4825c18"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classmcts_1_1_node.html">Node</a> *parent, <a class="el" href="class_bitboard.html">Bitboard</a> state, <a class="el" href="class_move.html">Move</a> move)</td></tr>
-<tr class="separator:a0725206cf1e3806a1570c0c0f4825c18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc91ea418dba8fa979b276e7d0a3af58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#acc91ea418dba8fa979b276e7d0a3af58">~Node</a> ()</td></tr>
+<tr class="memitem:a101662cf4ceb1b677d2f718ca5f0c727"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a101662cf4ceb1b677d2f718ca5f0c727">Node</a> (<a class="el" href="class_bitboard.html">Bitboard</a> *state)</td></tr>
+<tr class="memdesc:a101662cf4ceb1b677d2f718ca5f0c727"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a node given a <a class="el" href="class_bitboard.html">Bitboard</a>  <a href="#a101662cf4ceb1b677d2f718ca5f0c727">More...</a><br /></td></tr>
+<tr class="separator:a101662cf4ceb1b677d2f718ca5f0c727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad33ddba1395da46d0b90aef8f60e5b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adad33ddba1395da46d0b90aef8f60e5b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="classmcts_1_1_node.html">Node</a> *parent, <a class="el" href="class_bitboard.html">Bitboard</a> *state, <a class="el" href="class_move.html">Move</a> &amp;move)</td></tr>
+<tr class="separator:adad33ddba1395da46d0b90aef8f60e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc91ea418dba8fa979b276e7d0a3af58"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#acc91ea418dba8fa979b276e7d0a3af58">~Node</a> ()</td></tr>
 <tr class="memdesc:acc91ea418dba8fa979b276e7d0a3af58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of the <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a>.  <a href="#acc91ea418dba8fa979b276e7d0a3af58">More...</a><br /></td></tr>
 <tr class="separator:acc91ea418dba8fa979b276e7d0a3af58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac01b59cb23a9cbbf0ccd710f42ac5c71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ac01b59cb23a9cbbf0ccd710f42ac5c71">killChildrens</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *exception)</td></tr>
@@ -124,25 +117,28 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:acaeef5a74238b304834bacdba95ce46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">setter for _terminal  <a href="#acaeef5a74238b304834bacdba95ce46f">More...</a><br /></td></tr>
 <tr class="separator:acaeef5a74238b304834bacdba95ce46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e75d679f31d3f687342429892ab8ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#aa4e75d679f31d3f687342429892ab8ab">forceSetUCT</a> (int uct)</td></tr>
-<tr class="memdesc:aa4e75d679f31d3f687342429892ab8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">setter for _uct  <a href="#aa4e75d679f31d3f687342429892ab8ab">More...</a><br /></td></tr>
+<tr class="memdesc:aa4e75d679f31d3f687342429892ab8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">setter for _uct(int uct)  <a href="#aa4e75d679f31d3f687342429892ab8ab">More...</a><br /></td></tr>
 <tr class="separator:aa4e75d679f31d3f687342429892ab8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a377005472dee187c715f64ec12f1697c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a377005472dee187c715f64ec12f1697c">getUCT</a> ()</td></tr>
+<tr class="memdesc:a377005472dee187c715f64ec12f1697c"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for _uct  <a href="#a377005472dee187c715f64ec12f1697c">More...</a><br /></td></tr>
+<tr class="separator:a377005472dee187c715f64ec12f1697c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdae55b6017c6f223b63d2fa193c4420"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#abdae55b6017c6f223b63d2fa193c4420">getTerminal</a> ()</td></tr>
-<tr class="memdesc:abdae55b6017c6f223b63d2fa193c4420"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the childs  <a href="#abdae55b6017c6f223b63d2fa193c4420">More...</a><br /></td></tr>
+<tr class="memdesc:abdae55b6017c6f223b63d2fa193c4420"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the _termianl  <a href="#abdae55b6017c6f223b63d2fa193c4420">More...</a><br /></td></tr>
 <tr class="separator:abdae55b6017c6f223b63d2fa193c4420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2170e0b8de1be9228666b8ef54681f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#af2170e0b8de1be9228666b8ef54681f8">getState</a> ()</td></tr>
-<tr class="memdesc:af2170e0b8de1be9228666b8ef54681f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the childs  <a href="#af2170e0b8de1be9228666b8ef54681f8">More...</a><br /></td></tr>
+<tr class="memitem:af2170e0b8de1be9228666b8ef54681f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#af2170e0b8de1be9228666b8ef54681f8">getState</a> ()</td></tr>
+<tr class="memdesc:af2170e0b8de1be9228666b8ef54681f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the Board  <a href="#af2170e0b8de1be9228666b8ef54681f8">More...</a><br /></td></tr>
 <tr class="separator:af2170e0b8de1be9228666b8ef54681f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad17cd9cf5c86f718aa99eb6597750d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ad17cd9cf5c86f718aa99eb6597750d74">getMove</a> ()</td></tr>
 <tr class="memdesc:ad17cd9cf5c86f718aa99eb6597750d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the move  <a href="#ad17cd9cf5c86f718aa99eb6597750d74">More...</a><br /></td></tr>
 <tr class="separator:ad17cd9cf5c86f718aa99eb6597750d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06fe80a95c5535f04c1f952b3e687d56"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="classmcts_1_1_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a06fe80a95c5535f04c1f952b3e687d56">getChildren</a> ()</td></tr>
+<tr class="memitem:a06fe80a95c5535f04c1f952b3e687d56"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classmcts_1_1_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a06fe80a95c5535f04c1f952b3e687d56">getChildren</a> ()</td></tr>
 <tr class="memdesc:a06fe80a95c5535f04c1f952b3e687d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the children  <a href="#a06fe80a95c5535f04c1f952b3e687d56">More...</a><br /></td></tr>
 <tr class="separator:a06fe80a95c5535f04c1f952b3e687d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add60b79e66e67ae93a299d211f06f9c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add60b79e66e67ae93a299d211f06f9c6"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#add60b79e66e67ae93a299d211f06f9c6">clearParents</a> ()</td></tr>
 <tr class="memdesc:add60b79e66e67ae93a299d211f06f9c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear the parents' list <br /></td></tr>
 <tr class="separator:add60b79e66e67ae93a299d211f06f9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1670c2fae272a00356b88b6a8d382b9"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="classmcts_1_1_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#aa1670c2fae272a00356b88b6a8d382b9">getParents</a> ()</td></tr>
+<tr class="memitem:aa1670c2fae272a00356b88b6a8d382b9"><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="classmcts_1_1_node.html">Node</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#aa1670c2fae272a00356b88b6a8d382b9">getParents</a> ()</td></tr>
 <tr class="memdesc:aa1670c2fae272a00356b88b6a8d382b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">getter for the parents  <a href="#aa1670c2fae272a00356b88b6a8d382b9">More...</a><br /></td></tr>
 <tr class="separator:aa1670c2fae272a00356b88b6a8d382b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15b5ee0530be2b48df18658f5caa0273"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a15b5ee0530be2b48df18658f5caa0273">getProba</a> ()</td></tr>
@@ -157,15 +153,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:aecba4d455461ba7966d50729fb920ebf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#aecba4d455461ba7966d50729fb920ebf">select_child_WR</a> ()</td></tr>
 <tr class="memdesc:aecba4d455461ba7966d50729fb920ebf"><td class="mdescLeft">&#160;</td><td class="mdescRight">fecth the childrens and select the one with the highest WR  <a href="#aecba4d455461ba7966d50729fb920ebf">More...</a><br /></td></tr>
 <tr class="separator:aecba4d455461ba7966d50729fb920ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfd6046ffb96472a9058ee88f05fdc61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#abfd6046ffb96472a9058ee88f05fdc61">addChild</a> (<a class="el" href="class_bitboard.html">Bitboard</a> &amp;state, <a class="el" href="class_move.html">Move</a> &amp;move, int terminal=-1)</td></tr>
-<tr class="memdesc:abfd6046ffb96472a9058ee88f05fdc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a Child to a node, given his <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> and move played  <a href="#abfd6046ffb96472a9058ee88f05fdc61">More...</a><br /></td></tr>
-<tr class="separator:abfd6046ffb96472a9058ee88f05fdc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e925fdf81bb182563e6f738f5cfa27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ab0e925fdf81bb182563e6f738f5cfa27">addChild</a> (<a class="el" href="class_bitboard.html">Bitboard</a> *state, <a class="el" href="class_move.html">Move</a> &amp;move, int terminal=-1)</td></tr>
+<tr class="memdesc:ab0e925fdf81bb182563e6f738f5cfa27"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a Child to a node, given his <a class="el" href="class_bitboard.html">Bitboard</a> and move played  <a href="#ab0e925fdf81bb182563e6f738f5cfa27">More...</a><br /></td></tr>
+<tr class="separator:ab0e925fdf81bb182563e6f738f5cfa27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad15ddfec38ddb675920017670dbd92ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#ad15ddfec38ddb675920017670dbd92ee">update</a> (int win)</td></tr>
 <tr class="memdesc:ad15ddfec38ddb675920017670dbd92ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">back propate the results of the last simulation to the parents of the node, update _visits &amp; _wins  <a href="#ad15ddfec38ddb675920017670dbd92ee">More...</a><br /></td></tr>
 <tr class="separator:ad15ddfec38ddb675920017670dbd92ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a4c678e7229510df95df9b85b8bdee7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a7a4c678e7229510df95df9b85b8bdee7">print_tree</a> (int numtab, int depth)</td></tr>
 <tr class="memdesc:a7a4c678e7229510df95df9b85b8bdee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">print the sub-tree starting with the current node as a root  <a href="#a7a4c678e7229510df95df9b85b8bdee7">More...</a><br /></td></tr>
 <tr class="separator:a7a4c678e7229510df95df9b85b8bdee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a458687d6ff5ef166ceea1d53304f8f94"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_node.html#a458687d6ff5ef166ceea1d53304f8f94">count</a> ()</td></tr>
+<tr class="memdesc:a458687d6ff5ef166ceea1d53304f8f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">recursive function that count the number of leaves of the subtree.  <a href="#a458687d6ff5ef166ceea1d53304f8f94">More...</a><br /></td></tr>
+<tr class="separator:a458687d6ff5ef166ceea1d53304f8f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -178,9 +177,9 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a> class. </p>
-<p>int _visits = number of visits on the node int _wins = number of wins on that node double _uct = value of uct on the node <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> _state = current state of the board string _move = last move been played list&lt;Node*&gt; _children = list of all possible Bitboards after that node; list&lt;Node*&gt; _parents = list of all parents, right now there is only 1 parent per node, but in order to improve the algorithm we need to factorise the number of nodes; </p>
+<p>int _visits = number of visits on the node int _wins = number of wins on that node int _terminal = determine if the node has be visited or is a terminal : -1 : not visited 0 : non terminal 1/2 : player 1/2 wins 3 : tie double _uct = value of uct on the node Bitboard* _state = current state of the board <a class="el" href="class_move.html" title="Move class. ">Move</a> _move = last move been played list&lt;Node*&gt; _children = list of all possible Bitboards after that node; list&lt;Node*&gt; _parents = list of all parents, right now there is only 1 parent per node, but in order to improve the algorithm we need to factorise the number of nodes; </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac5c6318435fbc51f472c9edf2866dd11"></a>
+<a class="anchor" id="a101662cf4ceb1b677d2f718ca5f0c727"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -190,8 +189,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
         <tr>
           <td class="memname">mcts::Node::Node </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>parent</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -202,11 +201,10 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 </table>
 </div><div class="memdoc">
 
-<p>i don't know why i created that function... </p>
+<p>create a node given a <a class="el" href="class_bitboard.html">Bitboard</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">state</td><td>Board to create the node with</td></tr>
-    <tr><td class="paramname">parent</td><td>parent of the node </td></tr>
+    <tr><td class="paramname">state</td><td>: Board to create the node with </td></tr>
   </table>
   </dd>
 </dl>
@@ -229,25 +227,25 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Destructor of the <a class="el" href="classmcts_1_1_node.html" title="Node class. ">Node</a>. </p>
-<p>call Delete on all the childrens of the node. </p>
+<p>call Delete on the bitboard. </p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="abfd6046ffb96472a9058ee88f05fdc61"></a>
+<a class="anchor" id="ab0e925fdf81bb182563e6f738f5cfa27"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">mcts::Node::addChild </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
@@ -270,11 +268,12 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
       </table>
 </div><div class="memdoc">
 
-<p>add a Child to a node, given his <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> and move played </p>
+<p>add a Child to a node, given his <a class="el" href="class_bitboard.html">Bitboard</a> and move played </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">state</td><td><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> after the nove </td></tr>
-    <tr><td class="paramname">move</td><td>move played </td></tr>
+    <tr><td class="paramname">state</td><td>: <a class="el" href="class_bitboard.html">Bitboard</a> after the nove </td></tr>
+    <tr><td class="paramname">move</td><td>: move played </td></tr>
+    <tr><td class="paramname">terminal</td><td>: set if node is terminal or not. By default, not explored. </td></tr>
   </table>
   </dd>
 </dl>
@@ -325,6 +324,24 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 
 </div>
 </div>
+<a class="anchor" id="a458687d6ff5ef166ceea1d53304f8f94"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mcts::Node::count </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>recursive function that count the number of leaves of the subtree. </p>
+<dl class="section return"><dt>Returns</dt><dd>number of leaves of the sub tree. </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aa4e75d679f31d3f687342429892ab8ab"></a>
 <div class="memitem">
 <div class="memproto">
@@ -347,7 +364,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 </table>
 </div><div class="memdoc">
 
-<p>setter for _uct </p>
+<p>setter for _uct(int uct) </p>
 <p>it allows us to force a value to uct : 10 or -1 in order to make sure that some moves must or mustn't be played</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -483,8 +500,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 </table>
 </div><div class="memdoc">
 
-<p>getter for the childs </p>
-<dl class="section return"><dt>Returns</dt><dd>the state of the current node </dd></dl>
+<p>getter for the Board </p>
+<dl class="section return"><dt>Returns</dt><dd>the Board of the current node </dd></dl>
 
 </div>
 </div>
@@ -509,8 +526,34 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 </table>
 </div><div class="memdoc">
 
-<p>getter for the childs </p>
-<dl class="section return"><dt>Returns</dt><dd>0 if not, 1 if player 1 wins, 2 if player 2 wins </dd></dl>
+<p>getter for the _termianl </p>
+<dl class="section return"><dt>Returns</dt><dd>0 if not, 1 if player 1 wins, 2 if player 2 wins, 3 if tie </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a377005472dee187c715f64ec12f1697c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">mcts::Node::getUCT </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>getter for _uct </p>
+<dl class="section return"><dt>Returns</dt><dd>value of the uct </dd></dl>
 
 </div>
 </div>
@@ -692,13 +735,13 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>compareUCT</b>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/Arimaa/MCTS/<a class="el" href="_node_8h_source.html">Node.h</a></li>
-<li>D:/Arimaa/MCTS/Node.cpp</li>
+<li>D:/Arimaa/MCTS/src/mcts/<a class="el" href="_node_8h_source.html">Node.h</a></li>
+<li>D:/Arimaa/MCTS/src/mcts/Node.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:03 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

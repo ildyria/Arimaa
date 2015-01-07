@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: TheGame Class Reference</title>
+<title>Connect4 with MCTS Algorithm: TheGame Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,36 +88,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">TheGame Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_the_game.html" title="TheGame class. ">TheGame</a> class.  
+ <a href="class_the_game.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_the_game_8h_source.html">TheGame.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for TheGame:</div>
 <div class="dyncontent">
- <div class="center">
-  <img src="class_the_game.png" usemap="#TheGame_map" alt=""/>
-  <map id="TheGame_map" name="TheGame_map">
-<area href="class_tic_tac_toe.html" alt="TicTacToe" shape="rect" coords="0,56,71,80"/>
+<div class="center"><img src="class_the_game__inherit__graph.png" border="0" usemap="#_the_game_inherit__map" alt="Inheritance graph"/></div>
+<map name="_the_game_inherit__map" id="_the_game_inherit__map">
 </map>
- </div></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8dbf9909b671db1c52e3761d7f4944fe"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#a8dbf9909b671db1c52e3761d7f4944fe">end</a> (const <a class="el" href="class_bitboard.html">Bitboard</a> &amp;board)=0</td></tr>
-<tr class="memdesc:a8dbf9909b671db1c52e3761d7f4944fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if the game end  <a href="#a8dbf9909b671db1c52e3761d7f4944fe">More...</a><br /></td></tr>
-<tr class="separator:a8dbf9909b671db1c52e3761d7f4944fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba6126c4af547c9a14f17e65f6f411fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#aba6126c4af547c9a14f17e65f6f411fd">play</a> (<a class="el" href="class_move.html">Move</a> &amp;position, <a class="el" href="class_bitboard.html">Bitboard</a> &amp;board)=0</td></tr>
-<tr class="memdesc:aba6126c4af547c9a14f17e65f6f411fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">simulate the play of the "position" move and returns the bitboard after the move  <a href="#aba6126c4af547c9a14f17e65f6f411fd">More...</a><br /></td></tr>
-<tr class="separator:aba6126c4af547c9a14f17e65f6f411fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44c8de21089f20d39a3bebc36096e3d9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#a44c8de21089f20d39a3bebc36096e3d9">diplayBoard</a> (const <a class="el" href="class_bitboard.html">Bitboard</a> &amp;board)=0</td></tr>
-<tr class="memdesc:a44c8de21089f20d39a3bebc36096e3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">display the board of the given <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a>  <a href="#a44c8de21089f20d39a3bebc36096e3d9">More...</a><br /></td></tr>
-<tr class="separator:a44c8de21089f20d39a3bebc36096e3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c1afcfd6517881edcff6ae98873317a"><td class="memItemLeft" align="right" valign="top">virtual list&lt; <a class="el" href="class_move.html">Move</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#a2c1afcfd6517881edcff6ae98873317a">listPossibleMoves</a> (const <a class="el" href="class_bitboard.html">Bitboard</a> &amp;board)=0</td></tr>
-<tr class="memdesc:a2c1afcfd6517881edcff6ae98873317a"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a list of all possible moves given a board  <a href="#a2c1afcfd6517881edcff6ae98873317a">More...</a><br /></td></tr>
-<tr class="separator:a2c1afcfd6517881edcff6ae98873317a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c9d4372ac6b87f641464c9cd211c177"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#a1c9d4372ac6b87f641464c9cd211c177">playRandomMoves</a> (<a class="el" href="class_bitboard.html">Bitboard</a> &amp;board)=0</td></tr>
-<tr class="memdesc:a1c9d4372ac6b87f641464c9cd211c177"><td class="mdescLeft">&#160;</td><td class="mdescRight">play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3)  <a href="#a1c9d4372ac6b87f641464c9cd211c177">More...</a><br /></td></tr>
-<tr class="separator:a1c9d4372ac6b87f641464c9cd211c177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae62d35350d5c672741da5fe906a694c2"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#ae62d35350d5c672741da5fe906a694c2">end</a> (const <a class="el" href="class_bitboard.html">Bitboard</a> *board)=0</td></tr>
+<tr class="memdesc:ae62d35350d5c672741da5fe906a694c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if the game end  <a href="#ae62d35350d5c672741da5fe906a694c2">More...</a><br /></td></tr>
+<tr class="separator:ae62d35350d5c672741da5fe906a694c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acffc7663c19496f7fb60aa70f662a994"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#acffc7663c19496f7fb60aa70f662a994">play</a> (<a class="el" href="class_move.html">Move</a> &amp;position, <a class="el" href="class_bitboard.html">Bitboard</a> *board)=0</td></tr>
+<tr class="memdesc:acffc7663c19496f7fb60aa70f662a994"><td class="mdescLeft">&#160;</td><td class="mdescRight">simulate the play of the "position" move and returns the bitboard after the move  <a href="#acffc7663c19496f7fb60aa70f662a994">More...</a><br /></td></tr>
+<tr class="separator:acffc7663c19496f7fb60aa70f662a994"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc3bfc978208321cb3dde8a4e8104b2c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#adc3bfc978208321cb3dde8a4e8104b2c">diplayBoard</a> (const <a class="el" href="class_bitboard.html">Bitboard</a> *board)=0</td></tr>
+<tr class="memdesc:adc3bfc978208321cb3dde8a4e8104b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">display the board of the given <a class="el" href="class_bitboard.html">Bitboard</a>  <a href="#adc3bfc978208321cb3dde8a4e8104b2c">More...</a><br /></td></tr>
+<tr class="separator:adc3bfc978208321cb3dde8a4e8104b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f92221b46530624a0d8c5c46545841e"><td class="memItemLeft" align="right" valign="top">virtual std::list&lt; <a class="el" href="class_move.html">Move</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#a8f92221b46530624a0d8c5c46545841e">listPossibleMoves</a> (<a class="el" href="class_bitboard.html">Bitboard</a> *board)=0</td></tr>
+<tr class="memdesc:a8f92221b46530624a0d8c5c46545841e"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a list of all possible moves given a board  <a href="#a8f92221b46530624a0d8c5c46545841e">More...</a><br /></td></tr>
+<tr class="separator:a8f92221b46530624a0d8c5c46545841e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ce50c12668428017a01bd479fe3dba1"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_the_game.html#a9ce50c12668428017a01bd479fe3dba1">playRandomMoves</a> (<a class="el" href="class_bitboard.html">Bitboard</a> *board)=0</td></tr>
+<tr class="memdesc:a9ce50c12668428017a01bd479fe3dba1"><td class="mdescLeft">&#160;</td><td class="mdescRight">play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3)  <a href="#a9ce50c12668428017a01bd479fe3dba1">More...</a><br /></td></tr>
+<tr class="separator:a9ce50c12668428017a01bd479fe3dba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a44c8de21089f20d39a3bebc36096e3d9"></a>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_the_game.html" title="TheGame class. ">TheGame</a> class. </p>
+<p>Abstract class which aim to provide a skeleton for the functions used by the MCTS algorithm. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="adc3bfc978208321cb3dde8a4e8104b2c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -127,7 +133,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">TheGame::diplayBoard </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
           <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
         </tr>
@@ -139,19 +145,19 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>display the board of the given <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> </p>
+<p>display the board of the given <a class="el" href="class_bitboard.html">Bitboard</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board</td><td><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> to be displayed </td></tr>
+    <tr><td class="paramname">board</td><td>: <a class="el" href="class_bitboard.html">Bitboard</a> to be displayed </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_tic_tac_toe.html#af01dee0e29853d8abc30a6a2818a844e">TicTacToe</a>.</p>
+<p>Implemented in <a class="el" href="class_connect4.html#a8e37d225bfaf6d3b5362b3aecd09c5c4">Connect4</a>, and <a class="el" href="class_tic_tac_toe.html#ac1544a9b625909d11d0d308161677779">TicTacToe</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8dbf9909b671db1c52e3761d7f4944fe"></a>
+<a class="anchor" id="ae62d35350d5c672741da5fe906a694c2"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -161,7 +167,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">TheGame::end </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
           <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
         </tr>
@@ -176,11 +182,11 @@ Public Member Functions</h2></td></tr>
 <p>check if the game end </p>
 <p>returns 1 if player 1 wins returns 2 if player 2 wins returns 3 if the game is a tie returns 0 if the game hasn't ended yet </p><dl class="section return"><dt>Returns</dt><dd>integer corresponding to the state of the Board </dd></dl>
 
-<p>Implemented in <a class="el" href="class_tic_tac_toe.html#aae44f2f688f283dfbf8242e162f27395">TicTacToe</a>.</p>
+<p>Implemented in <a class="el" href="class_connect4.html#ad011fd3ade939f1d7e8e54b1ad62188e">Connect4</a>, and <a class="el" href="class_tic_tac_toe.html#a5c97bc150240f2868493b926771b8297">TicTacToe</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2c1afcfd6517881edcff6ae98873317a"></a>
+<a class="anchor" id="a8f92221b46530624a0d8c5c46545841e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -190,7 +196,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">TheGame::listPossibleMoves </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
           <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
         </tr>
@@ -205,17 +211,17 @@ Public Member Functions</h2></td></tr>
 <p>return a list of all possible moves given a board </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board</td><td><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> to be looked at </td></tr>
+    <tr><td class="paramname">board</td><td><a class="el" href="class_bitboard.html">Bitboard</a> to be looked at </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>the list of the possible moves </dd></dl>
 
-<p>Implemented in <a class="el" href="class_tic_tac_toe.html#a591b5fc3b4543f3f9b6d007be5c6290e">TicTacToe</a>.</p>
+<p>Implemented in <a class="el" href="class_connect4.html#aad73f08776e6e1d08a3830252db86a1d">Connect4</a>, and <a class="el" href="class_tic_tac_toe.html#ae5435ac05cdc9490b5aecf419da62d54">TicTacToe</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aba6126c4af547c9a14f17e65f6f411fd"></a>
+<a class="anchor" id="acffc7663c19496f7fb60aa70f662a994"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -231,7 +237,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
           <td class="paramname"><em>board</em>&#160;</td>
         </tr>
         <tr>
@@ -250,18 +256,18 @@ Public Member Functions</h2></td></tr>
 <p>simulate the play of the "position" move and returns the bitboard after the move </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">position</td><td>move to be play </td></tr>
-    <tr><td class="paramname">board</td><td>board to be used to play </td></tr>
+    <tr><td class="paramname">position</td><td>: move to be play </td></tr>
+    <tr><td class="paramname">board</td><td>: board to be used to play </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> after the play </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the <a class="el" href="class_bitboard.html">Bitboard</a> after the play </dd></dl>
 
-<p>Implemented in <a class="el" href="class_tic_tac_toe.html#a28e96db9801000c63dd48099a3ce338b">TicTacToe</a>.</p>
+<p>Implemented in <a class="el" href="class_connect4.html#a528ff03821fa2bf824c0263b31347524">Connect4</a>, and <a class="el" href="class_tic_tac_toe.html#a51de7ce22df10cacab5be69d9e431c44">TicTacToe</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a1c9d4372ac6b87f641464c9cd211c177"></a>
+<a class="anchor" id="a9ce50c12668428017a01bd479fe3dba1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -271,7 +277,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">TheGame::playRandomMoves </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
           <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
         </tr>
@@ -286,23 +292,23 @@ Public Member Functions</h2></td></tr>
 <p>play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">board</td><td><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> to be looked at </td></tr>
+    <tr><td class="paramname">board</td><td><a class="el" href="class_bitboard.html">Bitboard</a> to be looked at </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>winner of the current game </dd></dl>
 
-<p>Implemented in <a class="el" href="class_tic_tac_toe.html#a485bf2fd5cc0dd3e6da794218d40e759">TicTacToe</a>.</p>
+<p>Implemented in <a class="el" href="class_connect4.html#af6c8eb1a7343190ca4d742a0624af59d">Connect4</a>, and <a class="el" href="class_tic_tac_toe.html#a9e280ccffa371b9ef001cbfbeb233d84">TicTacToe</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/Arimaa/MCTS/<a class="el" href="_the_game_8h_source.html">TheGame.h</a></li>
+<li>D:/Arimaa/MCTS/src/interfaces/<a class="el" href="_the_game_8h_source.html">TheGame.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:12 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:02 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

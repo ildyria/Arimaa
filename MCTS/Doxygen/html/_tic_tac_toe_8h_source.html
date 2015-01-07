@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: D:/Arimaa/MCTS/TicTacToe.h Source File</title>
+<title>Connect4 with MCTS Algorithm: D:/Arimaa/MCTS/src/tictactoe/TicTacToe.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -67,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -78,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_ef16f1ecfa91f76fc7b181cd56182e52.html">Arimaa</a></li><li class="navelem"><a class="el" href="dir_6282ce3eb33df6a0daf20e0882931190.html">MCTS</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_275089585c7fc1b5fd5d7d42c69cb1da.html">D:</a></li><li class="navelem"><a class="el" href="dir_ef16f1ecfa91f76fc7b181cd56182e52.html">Arimaa</a></li><li class="navelem"><a class="el" href="dir_6282ce3eb33df6a0daf20e0882931190.html">MCTS</a></li><li class="navelem"><a class="el" href="dir_eee68f3bf6d15852b5ccbf717cece8a9.html">src</a></li><li class="navelem"><a class="el" href="dir_bc4e52248442cf4892508a2a31e516ec.html">tictactoe</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -88,48 +89,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="_tic_tac_toe_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;algorithm&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_the_game_8h.html">TheGame.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_random_8h.html">Random.h</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">using</span> std::string;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">using</span> std::list;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_tic_tac_toe.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_tic_tac_toe.html">TicTacToe</a> : <span class="keyword">public</span> <a class="code" href="class_the_game.html">TheGame</a></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;../interfaces/TheGame.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_tic_tac_toe.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_tic_tac_toe.html">TicTacToe</a> : <span class="keyword">public</span> <a class="code" href="class_the_game.html">TheGame</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_tic_tac_toe.html">TicTacToe</a>() {}</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_tic_tac_toe.html">TicTacToe</a>() {}</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_tic_tac_toe.html">TicTacToe</a>() {}</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_tic_tac_toe.html">TicTacToe</a>() {}</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_tic_tac_toe.html#aae44f2f688f283dfbf8242e162f27395">end</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_tic_tac_toe.html#a28e96db9801000c63dd48099a3ce338b">play</a>(<a class="code" href="class_move.html">Move</a>&amp; position, <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_tic_tac_toe.html#af01dee0e29853d8abc30a6a2818a844e">diplayBoard</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">virtual</span> list&lt;Move&gt; <a class="code" href="class_tic_tac_toe.html#a591b5fc3b4543f3f9b6d007be5c6290e">listPossibleMoves</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_tic_tac_toe.html#a485bf2fd5cc0dd3e6da794218d40e759">playRandomMoves</a>(<a class="code" href="class_bitboard.html">Bitboard</a>&amp; board) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:10</div></div>
-<div class="ttc" id="class_tic_tac_toe_html_af01dee0e29853d8abc30a6a2818a844e"><div class="ttname"><a href="class_tic_tac_toe.html#af01dee0e29853d8abc30a6a2818a844e">TicTacToe::diplayBoard</a></div><div class="ttdeci">virtual void diplayBoard(const Bitboard &amp;board) override</div><div class="ttdoc">display the board of the given Bitboard </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:8</div></div>
-<div class="ttc" id="_the_game_8h_html"><div class="ttname"><a href="_the_game_8h.html">TheGame.h</a></div><div class="ttdoc">Define class skelleton for an abstract class (WIP) </div></div>
-<div class="ttc" id="class_tic_tac_toe_html_aae44f2f688f283dfbf8242e162f27395"><div class="ttname"><a href="class_tic_tac_toe.html#aae44f2f688f283dfbf8242e162f27395">TicTacToe::end</a></div><div class="ttdeci">virtual int end(const Bitboard &amp;board) override</div><div class="ttdoc">check if the game end </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:40</div></div>
-<div class="ttc" id="class_bitboard_html"><div class="ttname"><a href="class_bitboard.html">Bitboard</a></div><div class="ttdoc">Bitboard class. </div><div class="ttdef"><b>Definition:</b> Bitboard.h:30</div></div>
-<div class="ttc" id="class_tic_tac_toe_html"><div class="ttname"><a href="class_tic_tac_toe.html">TicTacToe</a></div><div class="ttdef"><b>Definition:</b> TicTacToe.h:17</div></div>
-<div class="ttc" id="class_tic_tac_toe_html_a28e96db9801000c63dd48099a3ce338b"><div class="ttname"><a href="class_tic_tac_toe.html#a28e96db9801000c63dd48099a3ce338b">TicTacToe::play</a></div><div class="ttdeci">virtual void play(Move &amp;position, Bitboard &amp;board) override</div><div class="ttdoc">simulate the play of the "position" move and returns the bitboard after the move </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:90</div></div>
-<div class="ttc" id="class_tic_tac_toe_html_a485bf2fd5cc0dd3e6da794218d40e759"><div class="ttname"><a href="class_tic_tac_toe.html#a485bf2fd5cc0dd3e6da794218d40e759">TicTacToe::playRandomMoves</a></div><div class="ttdeci">virtual int playRandomMoves(Bitboard &amp;board) override</div><div class="ttdoc">play random moves until the game reach an end and return the int corresponding to the winner (1 2 or ...</div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:131</div></div>
-<div class="ttc" id="_random_8h_html"><div class="ttname"><a href="_random_8h.html">Random.h</a></div><div class="ttdoc">Define singleton Random. </div></div>
-<div class="ttc" id="class_tic_tac_toe_html_a591b5fc3b4543f3f9b6d007be5c6290e"><div class="ttname"><a href="class_tic_tac_toe.html#a591b5fc3b4543f3f9b6d007be5c6290e">TicTacToe::listPossibleMoves</a></div><div class="ttdeci">virtual list&lt; Move &gt; listPossibleMoves(const Bitboard &amp;board) override</div><div class="ttdoc">return a list of all possible moves given a board </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:98</div></div>
-<div class="ttc" id="class_the_game_html"><div class="ttname"><a href="class_the_game.html">TheGame</a></div><div class="ttdef"><b>Definition:</b> TheGame.h:17</div></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_tic_tac_toe.html#a5c97bc150240f2868493b926771b8297">end</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>* board) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_tic_tac_toe.html#a51de7ce22df10cacab5be69d9e431c44">play</a>(<a class="code" href="class_move.html">Move</a>&amp; position, <a class="code" href="class_bitboard.html">Bitboard</a>* board) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_tic_tac_toe.html#ac1544a9b625909d11d0d308161677779">diplayBoard</a>(<span class="keyword">const</span> <a class="code" href="class_bitboard.html">Bitboard</a>* board) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> std::list&lt;Move&gt; <a class="code" href="class_tic_tac_toe.html#ae5435ac05cdc9490b5aecf419da62d54">listPossibleMoves</a>(<a class="code" href="class_bitboard.html">Bitboard</a>* board) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="class_tic_tac_toe.html#a9e280ccffa371b9ef001cbfbeb233d84">playRandomMoves</a>(<a class="code" href="class_bitboard.html">Bitboard</a>* board) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdoc">Move class. </div><div class="ttdef"><b>Definition:</b> Move.h:17</div></div>
+<div class="ttc" id="class_bitboard_html"><div class="ttname"><a href="class_bitboard.html">Bitboard</a></div><div class="ttdef"><b>Definition:</b> Bitboard.h:25</div></div>
+<div class="ttc" id="class_tic_tac_toe_html_a51de7ce22df10cacab5be69d9e431c44"><div class="ttname"><a href="class_tic_tac_toe.html#a51de7ce22df10cacab5be69d9e431c44">TicTacToe::play</a></div><div class="ttdeci">virtual void play(Move &amp;position, Bitboard *board) override</div><div class="ttdoc">simulate the play of the "position" move and returns the bitboard after the move </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:94</div></div>
+<div class="ttc" id="class_tic_tac_toe_html"><div class="ttname"><a href="class_tic_tac_toe.html">TicTacToe</a></div><div class="ttdef"><b>Definition:</b> TicTacToe.h:12</div></div>
+<div class="ttc" id="class_tic_tac_toe_html_ac1544a9b625909d11d0d308161677779"><div class="ttname"><a href="class_tic_tac_toe.html#ac1544a9b625909d11d0d308161677779">TicTacToe::diplayBoard</a></div><div class="ttdeci">virtual void diplayBoard(const Bitboard *board) override</div><div class="ttdoc">display the board of the given Bitboard </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:13</div></div>
+<div class="ttc" id="class_tic_tac_toe_html_a5c97bc150240f2868493b926771b8297"><div class="ttname"><a href="class_tic_tac_toe.html#a5c97bc150240f2868493b926771b8297">TicTacToe::end</a></div><div class="ttdeci">virtual int end(const Bitboard *board) override</div><div class="ttdoc">check if the game end </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:44</div></div>
+<div class="ttc" id="class_tic_tac_toe_html_ae5435ac05cdc9490b5aecf419da62d54"><div class="ttname"><a href="class_tic_tac_toe.html#ae5435ac05cdc9490b5aecf419da62d54">TicTacToe::listPossibleMoves</a></div><div class="ttdeci">virtual std::list&lt; Move &gt; listPossibleMoves(Bitboard *board) override</div><div class="ttdoc">return a list of all possible moves given a board </div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:102</div></div>
+<div class="ttc" id="class_the_game_html"><div class="ttname"><a href="class_the_game.html">TheGame</a></div><div class="ttdoc">TheGame class. </div><div class="ttdef"><b>Definition:</b> TheGame.h:17</div></div>
+<div class="ttc" id="class_tic_tac_toe_html_a9e280ccffa371b9ef001cbfbeb233d84"><div class="ttname"><a href="class_tic_tac_toe.html#a9e280ccffa371b9ef001cbfbeb233d84">TicTacToe::playRandomMoves</a></div><div class="ttdeci">virtual int playRandomMoves(Bitboard *board) override</div><div class="ttdoc">play random moves until the game reach an end and return the int corresponding to the winner (1 2 or ...</div><div class="ttdef"><b>Definition:</b> TicTacToe.cpp:135</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:10 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:02 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

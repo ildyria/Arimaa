@@ -1,6 +1,25 @@
+/**
+ * \file Mcts.h
+ * \brief Define class Mcts
+ * \author Benoit Viguier
+ * \version 1.0
+ * \date December 26th 2014
+ *
+ */
 #pragma once
 namespace mcts {
 
+	/**
+	 * \brief MctsArgs class
+	 * \details 
+	 *  options for the MCTS Algorithm
+	 *	int _depth = depth to explore before running random simulations.
+	 *	int _timeLimitsimulationPerRoot = time limit in ms
+	 *	int _simulationPerRoot = number of simulations to run per Root.
+	 *	int _simulationPerLeaves = number of simulations to run per Leaves.
+	 *	int _numberOfVisitBeforeExploration = number of visits on a node before expanding its children.
+	 * 
+	 */
 	class MctsArgs
 	{
 
@@ -13,12 +32,22 @@ namespace mcts {
 
 	public:
 
+		/**
+		 * \fn MctsArgs(int depth = 20, int timelimit = 5000, int simulR = 10000000, int simulL = 1, int numVisitExplo = 0)
+		 * \brief initialisation of the parameters.
+		 * 
+		 * \param depth : depth of the maximum search
+		 * \param timelimit : time limit for the simulations
+		 * \param t : number of root simulations
+		 * \param s : number of leaf simulations
+		 * \return [description]
+		 */
 		explicit inline MctsArgs(
-			int depth = 20,				// depth of the maximum search
-			int timelimit = 5000,		// time limit for the simulations
-			int simulR = 10000000,		// number of root simulations
-			int simulL = 1,				// number of leaf simulations
-			int numVisitExplo = 0		// number visit required before explorating a node
+			int depth = 20,
+			int timelimit = 5000,
+			int simulR = 10000000,
+			int simulL = 1,
+			int numVisitExplo = 0
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo)
 		{
 		};

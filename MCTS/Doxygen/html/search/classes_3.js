@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['random',['Random',['../class_random.html',1,'']]]
+  ['endl',['Endl',['../struct_debug_1_1_endl.html',1,'Debug']]]
 ];

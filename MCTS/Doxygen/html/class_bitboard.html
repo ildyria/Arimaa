@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: Bitboard Class Reference</title>
+<title>Connect4 with MCTS Algorithm: Bitboard Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,33 +83,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_bitboard-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Bitboard Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> class.  
- <a href="class_bitboard.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="_bitboard_8h_source.html">Bitboard.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Bitboard:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_bitboard__inherit__graph.png" border="0" usemap="#_bitboard_inherit__map" alt="Inheritance graph"/></div>
+<map name="_bitboard_inherit__map" id="_bitboard_inherit__map">
+</map>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adf47222b0cd401b3ec6c762a953fadf1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#adf47222b0cd401b3ec6c762a953fadf1">Bitboard</a> ()</td></tr>
 <tr class="memdesc:adf47222b0cd401b3ec6c762a953fadf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#adf47222b0cd401b3ec6c762a953fadf1">More...</a><br /></td></tr>
 <tr class="separator:adf47222b0cd401b3ec6c762a953fadf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c1ae6b5f4b54c6118e44c503238f3e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c1ae6b5f4b54c6118e44c503238f3e4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Bitboard</b> (int size, int n, int toplay)</td></tr>
-<tr class="separator:a8c1ae6b5f4b54c6118e44c503238f3e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac711788ecfa14aa749c03efe70e391"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ac711788ecfa14aa749c03efe70e391"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Bitboard</b> (int sizeX, int sizeY, int n, int toplay)</td></tr>
+<tr class="separator:a0ac711788ecfa14aa749c03efe70e391"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2688925653206f405e9e456c87a3142"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2688925653206f405e9e456c87a3142"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#ad2688925653206f405e9e456c87a3142">~Bitboard</a> ()</td></tr>
 <tr class="memdesc:ad2688925653206f405e9e456c87a3142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of the class. <br /></td></tr>
 <tr class="separator:ad2688925653206f405e9e456c87a3142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e8d35fe97c43f0be6a3ba87182dfaa4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e8d35fe97c43f0be6a3ba87182dfaa4"></a>
-<a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a0e8d35fe97c43f0be6a3ba87182dfaa4">clone</a> () const </td></tr>
-<tr class="memdesc:a0e8d35fe97c43f0be6a3ba87182dfaa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">clone a <a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> <br /></td></tr>
+virtual <a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a0e8d35fe97c43f0be6a3ba87182dfaa4">clone</a> () const </td></tr>
+<tr class="memdesc:a0e8d35fe97c43f0be6a3ba87182dfaa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">clone a <a class="el" href="class_bitboard.html">Bitboard</a> <br /></td></tr>
 <tr class="separator:a0e8d35fe97c43f0be6a3ba87182dfaa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76d89521ceebcbcb1e97b7bdd55d0dcd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76d89521ceebcbcb1e97b7bdd55d0dcd"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a76d89521ceebcbcb1e97b7bdd55d0dcd">getSizeX</a> () const </td></tr>
+<tr class="memdesc:a76d89521ceebcbcb1e97b7bdd55d0dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">blabla <br /></td></tr>
+<tr class="separator:a76d89521ceebcbcb1e97b7bdd55d0dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab3ba31561f533aa12965a0e868f4cf9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab3ba31561f533aa12965a0e868f4cf9"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#aab3ba31561f533aa12965a0e868f4cf9">getSizeY</a> () const </td></tr>
+<tr class="memdesc:aab3ba31561f533aa12965a0e868f4cf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">blabla <br /></td></tr>
+<tr class="separator:aab3ba31561f533aa12965a0e868f4cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a389593cc6921d71f5d9b15d551d3f303"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a389593cc6921d71f5d9b15d551d3f303"></a>
 virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>getBit</b> (int n, int x, int y) const </td></tr>
 <tr class="separator:a389593cc6921d71f5d9b15d551d3f303"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,13 +139,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clearBit</b> 
 <tr class="memitem:a54b8503679ef35d587a6624fd910d934"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54b8503679ef35d587a6624fd910d934"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clearBit</b> (int n, int pos)</td></tr>
 <tr class="separator:a54b8503679ef35d587a6624fd910d934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d75c6baadfb64ab2a0d39d4256ecd81"><td class="memItemLeft" align="right" valign="top">virtual unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a4d75c6baadfb64ab2a0d39d4256ecd81">getBoard</a> (int n) const </td></tr>
+<tr class="memitem:a4d75c6baadfb64ab2a0d39d4256ecd81"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="_bitboard_8h.html#a4cb9c9bca464b161b17040f5bc4b3db9">numtyp</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a4d75c6baadfb64ab2a0d39d4256ecd81">getBoard</a> (int n) const </td></tr>
 <tr class="memdesc:a4d75c6baadfb64ab2a0d39d4256ecd81"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the given board  <a href="#a4d75c6baadfb64ab2a0d39d4256ecd81">More...</a><br /></td></tr>
 <tr class="separator:a4d75c6baadfb64ab2a0d39d4256ecd81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add99aaac08d1926daf8836165cbba82e"><td class="memItemLeft" align="right" valign="top">virtual list&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#add99aaac08d1926daf8836165cbba82e">getEmpty</a> (int n) const </td></tr>
+<tr class="memitem:add99aaac08d1926daf8836165cbba82e"><td class="memItemLeft" align="right" valign="top">virtual std::list&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#add99aaac08d1926daf8836165cbba82e">getEmpty</a> (int n) const </td></tr>
 <tr class="memdesc:add99aaac08d1926daf8836165cbba82e"><td class="mdescLeft">&#160;</td><td class="mdescRight">list 0 bits of a given board  <a href="#add99aaac08d1926daf8836165cbba82e">More...</a><br /></td></tr>
 <tr class="separator:add99aaac08d1926daf8836165cbba82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af334925201c192ed13760fab4341bceb"><td class="memItemLeft" align="right" valign="top">virtual list&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#af334925201c192ed13760fab4341bceb">getOccupied</a> (int n)</td></tr>
+<tr class="memitem:af334925201c192ed13760fab4341bceb"><td class="memItemLeft" align="right" valign="top">virtual std::list&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#af334925201c192ed13760fab4341bceb">getOccupied</a> (int n)</td></tr>
 <tr class="memdesc:af334925201c192ed13760fab4341bceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">list 1 bits of a given board  <a href="#af334925201c192ed13760fab4341bceb">More...</a><br /></td></tr>
 <tr class="separator:af334925201c192ed13760fab4341bceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93c3e91c8bce5425b171bfd698cad6dd"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a93c3e91c8bce5425b171bfd698cad6dd">getPlayer</a> () const </td></tr>
@@ -144,11 +155,26 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>clearBit</b> 
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bitboard.html#a06f70ece7a8e4e308c7a97136d186f6c">play</a> ()</td></tr>
 <tr class="memdesc:a06f70ece7a8e4e308c7a97136d186f6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">swap players <br /></td></tr>
 <tr class="separator:a06f70ece7a8e4e308c7a97136d186f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a20b0ff03fb72e638507b6f348a77f605"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20b0ff03fb72e638507b6f348a77f605"></a>
+std::vector&lt; <a class="el" href="_bitboard_8h.html#a4cb9c9bca464b161b17040f5bc4b3db9">numtyp</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_boards</b></td></tr>
+<tr class="separator:a20b0ff03fb72e638507b6f348a77f605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2d3ecfdf15565343939d27c4e08e62"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4b2d3ecfdf15565343939d27c4e08e62"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>_toplay</b></td></tr>
+<tr class="separator:a4b2d3ecfdf15565343939d27c4e08e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a197244819b4c6cca8d7ec285a6018256"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a197244819b4c6cca8d7ec285a6018256"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>_number</b></td></tr>
+<tr class="separator:a197244819b4c6cca8d7ec285a6018256"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18c97d7383ecb161df320bfc232fee14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a18c97d7383ecb161df320bfc232fee14"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>_sizeX</b></td></tr>
+<tr class="separator:a18c97d7383ecb161df320bfc232fee14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aca48943de822c600468160f2fc5e67"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4aca48943de822c600468160f2fc5e67"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>_sizeY</b></td></tr>
+<tr class="separator:a4aca48943de822c600468160f2fc5e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_bitboard.html" title="Bitboard class. ">Bitboard</a> class. </p>
-<p>vector&lt;unsigned long&gt; _boards : bitboards of the game; short _toplay : player to play (1 or 2); short _number : number of bitboards; short _size : size of the bitboards; </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="adf47222b0cd401b3ec6c762a953fadf1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -163,9 +189,11 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><div class="memdoc">
 
 <p>Default constructor. </p>
+<p>Constructor of the <a class="el" href="class_bitboard.html">Bitboard</a> given the sizes and number of bitboards to store.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td>: size of the boards </td></tr>
+    <tr><td class="paramname">sizeX</td><td>: number of rows </td></tr>
+    <tr><td class="paramname">sizeY</td><td>: number of lines </td></tr>
     <tr><td class="paramname">n</td><td>: number of boards to be created </td></tr>
     <tr><td class="paramname">toplay</td><td>: player to play </td></tr>
   </table>
@@ -239,6 +267,8 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>list of the empty positions (0 to size² -1) </dd></dl>
 
+<p>Reimplemented in <a class="el" href="class_bitboard_connect4.html#acd54582e5aeb4045176dbc506b16ca87">BitboardConnect4</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="af334925201c192ed13760fab4341bceb"></a>
@@ -301,13 +331,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/Arimaa/MCTS/<a class="el" href="_bitboard_8h_source.html">Bitboard.h</a></li>
-<li>D:/Arimaa/MCTS/Bitboard.cpp</li>
+<li>D:/Arimaa/MCTS/src/interfaces/<a class="el" href="_bitboard_8h_source.html">Bitboard.h</a></li>
+<li>D:/Arimaa/MCTS/src/interfaces/Bitboard.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:10 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:02 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

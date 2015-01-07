@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['_7ebitboard',['~Bitboard',['../class_bitboard.html#ad2688925653206f405e9e456c87a3142',1,'Bitboard']]],
-  ['_7emcts',['~Mcts',['../classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122',1,'mcts::Mcts']]],
-  ['_7enode',['~Node',['../classmcts_1_1_node.html#acc91ea418dba8fa979b276e7d0a3af58',1,'mcts::Node']]]
+  ['update',['update',['../classmcts_1_1_node.html#ad15ddfec38ddb675920017670dbd92ee',1,'mcts::Node']]],
+  ['updateroot',['UpdateRoot',['../classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e',1,'mcts::Mcts']]]
 ];

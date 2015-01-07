@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: Member List</title>
+<title>Connect4 with MCTS Algorithm: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,19 +88,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_move.html">Move</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getInt</b>() (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>getMove</b>() (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Move</b>() (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Move</b>(string move) (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Move</b>(int move) (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>operator&lt;&lt;</b> (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator==</b> (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>operator&gt;&gt;</b> (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~Move</b>() (defined in <a class="el" href="class_move.html">Move</a>)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_move.html#a19807b37b57bee9b8b04d33f203f29a8">compare</a>(const Move b) const </td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_move.html#aa4617db45db61e6413742b65fa757de9">get</a>()</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_move.html#a79511a68b327d28f72b6d7a590a3226d">getInt</a>()</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_move.html#acf538257813b49d20bc598dab697f163">getMove</a>()</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_move.html#a4b1acc3a67d30c385ad9a6000526393a">Move</a>()</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_move.html#af110422992fe93377e2522be3f7ff00a">Move</a>(std::string move)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_move.html#ad570e8fbf1931e8d36ca437b1ee5f137">Move</a>(int move)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_move.html#afc4efde5b88313f84366cd3270dc7292">operator&lt;&lt;</a>(std::ostream &amp;stream, Move &amp;move)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_move.html#ac7711545a479e15b417fb11dad5be07e">operator==</a>(const Move &amp;ma, const Move &amp;mb)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_move.html#ab3b1f133ca76ffc4c3f85afeeb4cb632">operator&gt;&gt;</a>(std::istream &amp;stream, Move &amp;move)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">friend</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_move.html#a46945736ced7263e3442fe3228350f30">set</a>(std::string data)</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_move.html#aadd37321983fc477287bf7c6d1c0bacf">~Move</a>()</td><td class="entry"><a class="el" href="class_move.html">Move</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:10 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:02 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

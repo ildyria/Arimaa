@@ -13,37 +13,33 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classmcts_1_1_node_a5fb90d28e126f4e432b2cc3721bd357a}{\hyperlink{classmcts_1_1_node_a5fb90d28e126f4e432b2cc3721bd357a}{Node} ()}\label{classmcts_1_1_node_a5fb90d28e126f4e432b2cc3721bd357a}
-
-\begin{DoxyCompactList}\small\item\em Constructor by default. \end{DoxyCompactList}\item 
-\hypertarget{classmcts_1_1_node_ac23152a7993365712024e8a7565c4301}{{\bfseries Node} (\hyperlink{class_bitboard}{Bitboard} state)}\label{classmcts_1_1_node_ac23152a7993365712024e8a7565c4301}
-
-\item 
-\hyperlink{classmcts_1_1_node_ac5c6318435fbc51f472c9edf2866dd11}{Node} (\hyperlink{classmcts_1_1_node}{Node} $\ast$parent)
-\begin{DoxyCompactList}\small\item\em i don't know why i created that function... \end{DoxyCompactList}\item 
-\hypertarget{classmcts_1_1_node_a0725206cf1e3806a1570c0c0f4825c18}{{\bfseries Node} (\hyperlink{classmcts_1_1_node}{Node} $\ast$parent, \hyperlink{class_bitboard}{Bitboard} state, \hyperlink{class_move}{Move} move)}\label{classmcts_1_1_node_a0725206cf1e3806a1570c0c0f4825c18}
+\hyperlink{classmcts_1_1_node_a101662cf4ceb1b677d2f718ca5f0c727}{Node} (\hyperlink{class_bitboard}{Bitboard} $\ast$state)
+\begin{DoxyCompactList}\small\item\em create a node given a \hyperlink{class_bitboard}{Bitboard} \end{DoxyCompactList}\item 
+\hypertarget{classmcts_1_1_node_adad33ddba1395da46d0b90aef8f60e5b}{{\bfseries Node} (\hyperlink{classmcts_1_1_node}{Node} $\ast$parent, \hyperlink{class_bitboard}{Bitboard} $\ast$state, \hyperlink{class_move}{Move} \&move)}\label{classmcts_1_1_node_adad33ddba1395da46d0b90aef8f60e5b}
 
 \item 
-\hyperlink{classmcts_1_1_node_acc91ea418dba8fa979b276e7d0a3af58}{$\sim$\+Node} ()
+virtual \hyperlink{classmcts_1_1_node_acc91ea418dba8fa979b276e7d0a3af58}{$\sim$\+Node} ()
 \begin{DoxyCompactList}\small\item\em Destructor of the \hyperlink{classmcts_1_1_node}{Node}. \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_node_ac01b59cb23a9cbbf0ccd710f42ac5c71}{kill\+Childrens} (\hyperlink{classmcts_1_1_node}{Node} $\ast$exception)
 \begin{DoxyCompactList}\small\item\em kill all the children of a node but the one with the exception adress \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_node_acaeef5a74238b304834bacdba95ce46f}{set\+Terminal} (int terminal)
 \begin{DoxyCompactList}\small\item\em setter for \+\_\+terminal \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_node_aa4e75d679f31d3f687342429892ab8ab}{force\+Set\+U\+C\+T} (int uct)
-\begin{DoxyCompactList}\small\item\em setter for \+\_\+uct \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em setter for \+\_\+uct(int uct) \end{DoxyCompactList}\item 
+double \hyperlink{classmcts_1_1_node_a377005472dee187c715f64ec12f1697c}{get\+U\+C\+T} ()
+\begin{DoxyCompactList}\small\item\em getter for \+\_\+uct \end{DoxyCompactList}\item 
 int \hyperlink{classmcts_1_1_node_abdae55b6017c6f223b63d2fa193c4420}{get\+Terminal} ()
-\begin{DoxyCompactList}\small\item\em getter for the childs \end{DoxyCompactList}\item 
-\hyperlink{class_bitboard}{Bitboard} \& \hyperlink{classmcts_1_1_node_af2170e0b8de1be9228666b8ef54681f8}{get\+State} ()
-\begin{DoxyCompactList}\small\item\em getter for the childs \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em getter for the \+\_\+termianl \end{DoxyCompactList}\item 
+\hyperlink{class_bitboard}{Bitboard} $\ast$ \hyperlink{classmcts_1_1_node_af2170e0b8de1be9228666b8ef54681f8}{get\+State} ()
+\begin{DoxyCompactList}\small\item\em getter for the Board \end{DoxyCompactList}\item 
 \hyperlink{class_move}{Move} \hyperlink{classmcts_1_1_node_ad17cd9cf5c86f718aa99eb6597750d74}{get\+Move} ()
 \begin{DoxyCompactList}\small\item\em getter for the move \end{DoxyCompactList}\item 
-list$<$ \hyperlink{classmcts_1_1_node}{Node} $\ast$ $>$ \hyperlink{classmcts_1_1_node_a06fe80a95c5535f04c1f952b3e687d56}{get\+Children} ()
+std\+::list$<$ \hyperlink{classmcts_1_1_node}{Node} $\ast$ $>$ \hyperlink{classmcts_1_1_node_a06fe80a95c5535f04c1f952b3e687d56}{get\+Children} ()
 \begin{DoxyCompactList}\small\item\em getter for the children \end{DoxyCompactList}\item 
 \hypertarget{classmcts_1_1_node_add60b79e66e67ae93a299d211f06f9c6}{void \hyperlink{classmcts_1_1_node_add60b79e66e67ae93a299d211f06f9c6}{clear\+Parents} ()}\label{classmcts_1_1_node_add60b79e66e67ae93a299d211f06f9c6}
 
 \begin{DoxyCompactList}\small\item\em clear the parents' list \end{DoxyCompactList}\item 
-list$<$ \hyperlink{classmcts_1_1_node}{Node} $\ast$ $>$ \hyperlink{classmcts_1_1_node_aa1670c2fae272a00356b88b6a8d382b9}{get\+Parents} ()
+std\+::list$<$ \hyperlink{classmcts_1_1_node}{Node} $\ast$ $>$ \hyperlink{classmcts_1_1_node_aa1670c2fae272a00356b88b6a8d382b9}{get\+Parents} ()
 \begin{DoxyCompactList}\small\item\em getter for the parents \end{DoxyCompactList}\item 
 double \hyperlink{classmcts_1_1_node_a15b5ee0530be2b48df18658f5caa0273}{get\+Proba} ()
 \begin{DoxyCompactList}\small\item\em getter for the winrate \end{DoxyCompactList}\item 
@@ -53,12 +49,14 @@ int \hyperlink{classmcts_1_1_node_af93b8855df1ad7521b1b8a11ea21c410}{get\+Visits
 \begin{DoxyCompactList}\small\item\em fecth the childrens and select the one with the highest U\+C\+T \end{DoxyCompactList}\item 
 \hyperlink{classmcts_1_1_node}{Node} $\ast$ \hyperlink{classmcts_1_1_node_aecba4d455461ba7966d50729fb920ebf}{select\+\_\+child\+\_\+\+W\+R} ()
 \begin{DoxyCompactList}\small\item\em fecth the childrens and select the one with the highest W\+R \end{DoxyCompactList}\item 
-void \hyperlink{classmcts_1_1_node_abfd6046ffb96472a9058ee88f05fdc61}{add\+Child} (\hyperlink{class_bitboard}{Bitboard} \&state, \hyperlink{class_move}{Move} \&move, int terminal=-\/1)
+void \hyperlink{classmcts_1_1_node_ab0e925fdf81bb182563e6f738f5cfa27}{add\+Child} (\hyperlink{class_bitboard}{Bitboard} $\ast$state, \hyperlink{class_move}{Move} \&move, int terminal=-\/1)
 \begin{DoxyCompactList}\small\item\em add a Child to a node, given his \hyperlink{class_bitboard}{Bitboard} and move played \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_node_ad15ddfec38ddb675920017670dbd92ee}{update} (int win)
 \begin{DoxyCompactList}\small\item\em back propate the results of the last simulation to the parents of the node, update \+\_\+visits \& \+\_\+wins \end{DoxyCompactList}\item 
 void \hyperlink{classmcts_1_1_node_a7a4c678e7229510df95df9b85b8bdee7}{print\+\_\+tree} (int numtab, int depth)
-\begin{DoxyCompactList}\small\item\em print the sub-\/tree starting with the current node as a root \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em print the sub-\/tree starting with the current node as a root \end{DoxyCompactList}\item 
+int \hyperlink{classmcts_1_1_node_a458687d6ff5ef166ceea1d53304f8f94}{count} ()
+\begin{DoxyCompactList}\small\item\em recursive function that count the number of leaves of the subtree. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -72,25 +70,23 @@ static bool \hyperlink{classmcts_1_1_node_a6208d3fe6945797ed60c23c96ad35e97}{com
 \subsection{Detailed Description}
 \hyperlink{classmcts_1_1_node}{Node} class. 
 
-int \+\_\+visits = number of visits on the node int \+\_\+wins = number of wins on that node double \+\_\+uct = value of uct on the node \hyperlink{class_bitboard}{Bitboard} \+\_\+state = current state of the board string \+\_\+move = last move been played list$<$\+Node$\ast$$>$ \+\_\+children = list of all possible Bitboards after that node; list$<$\+Node$\ast$$>$ \+\_\+parents = list of all parents, right now there is only 1 parent per node, but in order to improve the algorithm we need to factorise the number of nodes; 
+int \+\_\+visits = number of visits on the node int \+\_\+wins = number of wins on that node int \+\_\+terminal = determine if the node has be visited or is a terminal \+: -\/1 \+: not visited 0 \+: non terminal 1/2 \+: player 1/2 wins 3 \+: tie double \+\_\+uct = value of uct on the node Bitboard$\ast$ \+\_\+state = current state of the board \hyperlink{class_move}{Move} \+\_\+move = last move been played list$<$\+Node$\ast$$>$ \+\_\+children = list of all possible Bitboards after that node; list$<$\+Node$\ast$$>$ \+\_\+parents = list of all parents, right now there is only 1 parent per node, but in order to improve the algorithm we need to factorise the number of nodes; 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classmcts_1_1_node_ac5c6318435fbc51f472c9edf2866dd11}{\index{mcts\+::\+Node@{mcts\+::\+Node}!Node@{Node}}
+\hypertarget{classmcts_1_1_node_a101662cf4ceb1b677d2f718ca5f0c727}{\index{mcts\+::\+Node@{mcts\+::\+Node}!Node@{Node}}
 \index{Node@{Node}!mcts\+::\+Node@{mcts\+::\+Node}}
 \subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Node\+::\+Node (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} $\ast$}]{parent}
+\item[{{\bf Bitboard} $\ast$}]{state}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classmcts_1_1_node_ac5c6318435fbc51f472c9edf2866dd11}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{classmcts_1_1_node_a101662cf4ceb1b677d2f718ca5f0c727}
 
 
-i don't know why i created that function... 
+create a node given a \hyperlink{class_bitboard}{Bitboard} 
 
 
 \begin{DoxyParams}{Parameters}
-{\em state} & Board to create the node with\\
-\hline
-{\em parent} & parent of the node \\
+{\em state} & \+: Board to create the node with \\
 \hline
 \end{DoxyParams}
 \hypertarget{classmcts_1_1_node_acc91ea418dba8fa979b276e7d0a3af58}{\index{mcts\+::\+Node@{mcts\+::\+Node}!````~Node@{$\sim$\+Node}}
@@ -99,32 +95,34 @@ i don't know why i created that function...
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classmcts_1_1_node_acc91ea418dba8fa979b276e7d0a3af58}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classmcts_1_1_node_acc91ea418dba8fa979b276e7d0a3af58}
 
 
 Destructor of the \hyperlink{classmcts_1_1_node}{Node}. 
 
-call Delete on all the childrens of the node. 
+call Delete on the bitboard. 
 
 \subsection{Member Function Documentation}
-\hypertarget{classmcts_1_1_node_abfd6046ffb96472a9058ee88f05fdc61}{\index{mcts\+::\+Node@{mcts\+::\+Node}!add\+Child@{add\+Child}}
+\hypertarget{classmcts_1_1_node_ab0e925fdf81bb182563e6f738f5cfa27}{\index{mcts\+::\+Node@{mcts\+::\+Node}!add\+Child@{add\+Child}}
 \index{add\+Child@{add\+Child}!mcts\+::\+Node@{mcts\+::\+Node}}
 \subsubsection[{add\+Child}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Node\+::add\+Child (
 \begin{DoxyParamCaption}
-\item[{{\bf Bitboard} \&}]{state, }
+\item[{{\bf Bitboard} $\ast$}]{state, }
 \item[{{\bf Move} \&}]{move, }
 \item[{int}]{terminal = {\ttfamily -\/1}}
 \end{DoxyParamCaption}
-)}}\label{classmcts_1_1_node_abfd6046ffb96472a9058ee88f05fdc61}
+)}}\label{classmcts_1_1_node_ab0e925fdf81bb182563e6f738f5cfa27}
 
 
 add a Child to a node, given his \hyperlink{class_bitboard}{Bitboard} and move played 
 
 
 \begin{DoxyParams}{Parameters}
-{\em state} & \hyperlink{class_bitboard}{Bitboard} after the nove \\
+{\em state} & \+: \hyperlink{class_bitboard}{Bitboard} after the nove \\
 \hline
-{\em move} & move played \\
+{\em move} & \+: move played \\
+\hline
+{\em terminal} & \+: set if node is terminal or not. By default, not explored. \\
 \hline
 \end{DoxyParams}
 \hypertarget{classmcts_1_1_node_a6208d3fe6945797ed60c23c96ad35e97}{\index{mcts\+::\+Node@{mcts\+::\+Node}!compare\+W\+R@{compare\+W\+R}}
@@ -149,6 +147,20 @@ compare Node$\ast$ a and \hyperlink{classmcts_1_1_node}{Node} $\ast$b,
 \begin{DoxyReturn}{Returns}
 true if a's W\+R is greater than b's W\+R value. 
 \end{DoxyReturn}
+\hypertarget{classmcts_1_1_node_a458687d6ff5ef166ceea1d53304f8f94}{\index{mcts\+::\+Node@{mcts\+::\+Node}!count@{count}}
+\index{count@{count}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Node\+::count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classmcts_1_1_node_a458687d6ff5ef166ceea1d53304f8f94}
+
+
+recursive function that count the number of leaves of the subtree. 
+
+\begin{DoxyReturn}{Returns}
+number of leaves of the sub tree. 
+\end{DoxyReturn}
 \hypertarget{classmcts_1_1_node_aa4e75d679f31d3f687342429892ab8ab}{\index{mcts\+::\+Node@{mcts\+::\+Node}!force\+Set\+U\+C\+T@{force\+Set\+U\+C\+T}}
 \index{force\+Set\+U\+C\+T@{force\+Set\+U\+C\+T}!mcts\+::\+Node@{mcts\+::\+Node}}
 \subsubsection[{force\+Set\+U\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Node\+::force\+Set\+U\+C\+T (
@@ -158,7 +170,7 @@ true if a's W\+R is greater than b's W\+R value.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classmcts_1_1_node_aa4e75d679f31d3f687342429892ab8ab}
 
 
-setter for \+\_\+uct 
+setter for \+\_\+uct(int uct) 
 
 it allows us to force a value to uct \+: 10 or -\/1 in order to make sure that some moves must or mustn't be played
 
@@ -232,10 +244,10 @@ return the winrate of a node
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classmcts_1_1_node_af2170e0b8de1be9228666b8ef54681f8}
 
 
-getter for the childs 
+getter for the Board 
 
 \begin{DoxyReturn}{Returns}
-the state of the current node 
+the Board of the current node 
 \end{DoxyReturn}
 \hypertarget{classmcts_1_1_node_abdae55b6017c6f223b63d2fa193c4420}{\index{mcts\+::\+Node@{mcts\+::\+Node}!get\+Terminal@{get\+Terminal}}
 \index{get\+Terminal@{get\+Terminal}!mcts\+::\+Node@{mcts\+::\+Node}}
@@ -246,10 +258,24 @@ the state of the current node
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classmcts_1_1_node_abdae55b6017c6f223b63d2fa193c4420}
 
 
-getter for the childs 
+getter for the \+\_\+termianl 
 
 \begin{DoxyReturn}{Returns}
-0 if not, 1 if player 1 wins, 2 if player 2 wins 
+0 if not, 1 if player 1 wins, 2 if player 2 wins, 3 if tie 
+\end{DoxyReturn}
+\hypertarget{classmcts_1_1_node_a377005472dee187c715f64ec12f1697c}{\index{mcts\+::\+Node@{mcts\+::\+Node}!get\+U\+C\+T@{get\+U\+C\+T}}
+\index{get\+U\+C\+T@{get\+U\+C\+T}!mcts\+::\+Node@{mcts\+::\+Node}}
+\subsubsection[{get\+U\+C\+T}]{\setlength{\rightskip}{0pt plus 5cm}mcts\+::\+Node\+::get\+U\+C\+T (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classmcts_1_1_node_a377005472dee187c715f64ec12f1697c}
+
+
+getter for \+\_\+uct 
+
+\begin{DoxyReturn}{Returns}
+value of the uct 
 \end{DoxyReturn}
 \hypertarget{classmcts_1_1_node_af93b8855df1ad7521b1b8a11ea21c410}{\index{mcts\+::\+Node@{mcts\+::\+Node}!get\+Visits@{get\+Visits}}
 \index{get\+Visits@{get\+Visits}!mcts\+::\+Node@{mcts\+::\+Node}}
@@ -364,5 +390,5 @@ back propate the results of the last simulation to the parents of the node, upda
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Arimaa/\+M\+C\+T\+S/\hyperlink{_node_8h}{Node.\+h}\item 
-D\+:/\+Arimaa/\+M\+C\+T\+S/Node.\+cpp\end{DoxyCompactItemize}
+D\+:/\+Arimaa/\+M\+C\+T\+S/src/mcts/\hyperlink{_node_8h}{Node.\+h}\item 
+D\+:/\+Arimaa/\+M\+C\+T\+S/src/mcts/Node.\+cpp\end{DoxyCompactItemize}

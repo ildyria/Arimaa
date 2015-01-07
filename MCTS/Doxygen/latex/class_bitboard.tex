@@ -3,27 +3,27 @@
 }
 
 
-\hyperlink{class_bitboard}{Bitboard} class.  
-
-
-
-
-{\ttfamily \#include $<$Bitboard.\+h$>$}
-
+Inheritance diagram for Bitboard\+:
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_bitboard_adf47222b0cd401b3ec6c762a953fadf1}{Bitboard} ()
 \begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
-\hypertarget{class_bitboard_a8c1ae6b5f4b54c6118e44c503238f3e4}{{\bfseries Bitboard} (int size, int n, int toplay)}\label{class_bitboard_a8c1ae6b5f4b54c6118e44c503238f3e4}
+\hypertarget{class_bitboard_a0ac711788ecfa14aa749c03efe70e391}{{\bfseries Bitboard} (int size\+X, int size\+Y, int n, int toplay)}\label{class_bitboard_a0ac711788ecfa14aa749c03efe70e391}
 
 \item 
 \hypertarget{class_bitboard_ad2688925653206f405e9e456c87a3142}{virtual \hyperlink{class_bitboard_ad2688925653206f405e9e456c87a3142}{$\sim$\+Bitboard} ()}\label{class_bitboard_ad2688925653206f405e9e456c87a3142}
 
 \begin{DoxyCompactList}\small\item\em Destructor of the class. \end{DoxyCompactList}\item 
-\hypertarget{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}{\hyperlink{class_bitboard}{Bitboard} $\ast$ \hyperlink{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}{clone} () const }\label{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}
+\hypertarget{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}{virtual \hyperlink{class_bitboard}{Bitboard} $\ast$ \hyperlink{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}{clone} () const }\label{class_bitboard_a0e8d35fe97c43f0be6a3ba87182dfaa4}
 
 \begin{DoxyCompactList}\small\item\em clone a \hyperlink{class_bitboard}{Bitboard} \end{DoxyCompactList}\item 
+\hypertarget{class_bitboard_a76d89521ceebcbcb1e97b7bdd55d0dcd}{virtual int \hyperlink{class_bitboard_a76d89521ceebcbcb1e97b7bdd55d0dcd}{get\+Size\+X} () const }\label{class_bitboard_a76d89521ceebcbcb1e97b7bdd55d0dcd}
+
+\begin{DoxyCompactList}\small\item\em blabla \end{DoxyCompactList}\item 
+\hypertarget{class_bitboard_aab3ba31561f533aa12965a0e868f4cf9}{virtual int \hyperlink{class_bitboard_aab3ba31561f533aa12965a0e868f4cf9}{get\+Size\+Y} () const }\label{class_bitboard_aab3ba31561f533aa12965a0e868f4cf9}
+
+\begin{DoxyCompactList}\small\item\em blabla \end{DoxyCompactList}\item 
 \hypertarget{class_bitboard_a389593cc6921d71f5d9b15d551d3f303}{virtual int {\bfseries get\+Bit} (int n, int x, int y) const }\label{class_bitboard_a389593cc6921d71f5d9b15d551d3f303}
 
 \item 
@@ -42,23 +42,36 @@
 \hypertarget{class_bitboard_a54b8503679ef35d587a6624fd910d934}{virtual void {\bfseries clear\+Bit} (int n, int pos)}\label{class_bitboard_a54b8503679ef35d587a6624fd910d934}
 
 \item 
-virtual unsigned long \hyperlink{class_bitboard_a4d75c6baadfb64ab2a0d39d4256ecd81}{get\+Board} (int n) const 
+virtual \hyperlink{_bitboard_8h_a4cb9c9bca464b161b17040f5bc4b3db9}{numtyp} \hyperlink{class_bitboard_a4d75c6baadfb64ab2a0d39d4256ecd81}{get\+Board} (int n) const 
 \begin{DoxyCompactList}\small\item\em return the given board \end{DoxyCompactList}\item 
-virtual list$<$ int $>$ \hyperlink{class_bitboard_add99aaac08d1926daf8836165cbba82e}{get\+Empty} (int n) const 
+virtual std\+::list$<$ int $>$ \hyperlink{class_bitboard_add99aaac08d1926daf8836165cbba82e}{get\+Empty} (int n) const 
 \begin{DoxyCompactList}\small\item\em list 0 bits of a given board \end{DoxyCompactList}\item 
-virtual list$<$ int $>$ \hyperlink{class_bitboard_af334925201c192ed13760fab4341bceb}{get\+Occupied} (int n)
+virtual std\+::list$<$ int $>$ \hyperlink{class_bitboard_af334925201c192ed13760fab4341bceb}{get\+Occupied} (int n)
 \begin{DoxyCompactList}\small\item\em list 1 bits of a given board \end{DoxyCompactList}\item 
 virtual int \hyperlink{class_bitboard_a93c3e91c8bce5425b171bfd698cad6dd}{get\+Player} () const 
 \begin{DoxyCompactList}\small\item\em return the player to play \end{DoxyCompactList}\item 
 \hypertarget{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}{virtual void \hyperlink{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}{play} ()}\label{class_bitboard_a06f70ece7a8e4e308c7a97136d186f6c}
 
 \begin{DoxyCompactList}\small\item\em swap players \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_bitboard_a20b0ff03fb72e638507b6f348a77f605}{std\+::vector$<$ \hyperlink{_bitboard_8h_a4cb9c9bca464b161b17040f5bc4b3db9}{numtyp} $>$ {\bfseries \+\_\+boards}}\label{class_bitboard_a20b0ff03fb72e638507b6f348a77f605}
 
+\item 
+\hypertarget{class_bitboard_a4b2d3ecfdf15565343939d27c4e08e62}{short {\bfseries \+\_\+toplay}}\label{class_bitboard_a4b2d3ecfdf15565343939d27c4e08e62}
 
-\subsection{Detailed Description}
-\hyperlink{class_bitboard}{Bitboard} class. 
+\item 
+\hypertarget{class_bitboard_a197244819b4c6cca8d7ec285a6018256}{short {\bfseries \+\_\+number}}\label{class_bitboard_a197244819b4c6cca8d7ec285a6018256}
 
-vector$<$unsigned long$>$ \+\_\+boards \+: bitboards of the game; short \+\_\+toplay \+: player to play (1 or 2); short \+\_\+number \+: number of bitboards; short \+\_\+size \+: size of the bitboards; 
+\item 
+\hypertarget{class_bitboard_a18c97d7383ecb161df320bfc232fee14}{short {\bfseries \+\_\+size\+X}}\label{class_bitboard_a18c97d7383ecb161df320bfc232fee14}
+
+\item 
+\hypertarget{class_bitboard_a4aca48943de822c600468160f2fc5e67}{short {\bfseries \+\_\+size\+Y}}\label{class_bitboard_a4aca48943de822c600468160f2fc5e67}
+
+\end{DoxyCompactItemize}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{class_bitboard_adf47222b0cd401b3ec6c762a953fadf1}{\index{Bitboard@{Bitboard}!Bitboard@{Bitboard}}
@@ -72,9 +85,13 @@ vector$<$unsigned long$>$ \+\_\+boards \+: bitboards of the game; short \+\_\+to
 
 Default constructor. 
 
+Constructor of the \hyperlink{class_bitboard}{Bitboard} given the sizes and number of bitboards to store.
+
 
 \begin{DoxyParams}{Parameters}
-{\em size} & \+: size of the boards \\
+{\em size\+X} & \+: number of rows \\
+\hline
+{\em size\+Y} & \+: number of lines \\
 \hline
 {\em n} & \+: number of boards to be created \\
 \hline
@@ -122,6 +139,10 @@ list 0 bits of a given board
 \begin{DoxyReturn}{Returns}
 list of the empty positions (0 to size² -\/1) 
 \end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_bitboard_connect4_acd54582e5aeb4045176dbc506b16ca87}{Bitboard\+Connect4}.
+
 \hypertarget{class_bitboard_af334925201c192ed13760fab4341bceb}{\index{Bitboard@{Bitboard}!get\+Occupied@{get\+Occupied}}
 \index{get\+Occupied@{get\+Occupied}!Bitboard@{Bitboard}}
 \subsubsection[{get\+Occupied}]{\setlength{\rightskip}{0pt plus 5cm}Bitboard\+::get\+Occupied (
@@ -159,5 +180,5 @@ player to play (1 or 2)
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-D\+:/\+Arimaa/\+M\+C\+T\+S/\hyperlink{_bitboard_8h}{Bitboard.\+h}\item 
-D\+:/\+Arimaa/\+M\+C\+T\+S/Bitboard.\+cpp\end{DoxyCompactItemize}
+D\+:/\+Arimaa/\+M\+C\+T\+S/src/interfaces/\hyperlink{_bitboard_8h}{Bitboard.\+h}\item 
+D\+:/\+Arimaa/\+M\+C\+T\+S/src/interfaces/Bitboard.\+cpp\end{DoxyCompactItemize}

@@ -17,9 +17,11 @@
  * \details vector<unsigned long> _boards : bitboards of the game;
  *	short _toplay : player to play (1 or 2);
  *	short _number : number of bitboards;
- *	short _size   : size of the bitboards;
+ *	short _sizeX  : number of rows of the bitboards;
+ *	short _sizeY  : number of lines of the bitboards;
  */
 typedef uint64_t numtyp;
+
 class Bitboard
 {
 
@@ -39,9 +41,10 @@ public:
 
 	/**
 	 * \fn Bitboard
-	 * \brief Default constructor
+	 * \brief Constructor of the Bitboard given the sizes and number of bitboards to store.
 	 * 
-	 * \param size	 : size of the boards
+	 * \param sizeX	 : number of rows
+	 * \param sizeY	 : number of lines
 	 * \param n		 : number of boards to be created
 	 * \param toplay : player to play
 	 */
@@ -147,7 +150,7 @@ public:
 	* \param n board to look for
 	* \return board number n
 	*/
-	virtual inline unsigned long long getBoard(int n) const { return _boards[n]; };
+	virtual inline numtyp getBoard(int n) const { return _boards[n]; };
 
 	/**
 	 * \fn getEmpty

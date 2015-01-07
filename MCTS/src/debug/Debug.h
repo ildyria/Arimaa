@@ -1,6 +1,15 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+/**
+ * \file Debug.h
+ * \brief Define class Debug
+ * \author Benoit Viguier
+ * \version 1.0
+ * \date October 20th 2014
+ *
+ */
+
 #include <string>
 
 

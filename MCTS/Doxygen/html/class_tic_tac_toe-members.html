@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: Member List</title>
+<title>Connect4 with MCTS Algorithm: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,18 +88,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_tic_tac_toe.html">TicTacToe</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_tic_tac_toe.html#af01dee0e29853d8abc30a6a2818a844e">diplayBoard</a>(const Bitboard &amp;board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_tic_tac_toe.html#aae44f2f688f283dfbf8242e162f27395">end</a>(const Bitboard &amp;board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_tic_tac_toe.html#a591b5fc3b4543f3f9b6d007be5c6290e">listPossibleMoves</a>(const Bitboard &amp;board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_tic_tac_toe.html#a28e96db9801000c63dd48099a3ce338b">play</a>(Move &amp;position, Bitboard &amp;board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_tic_tac_toe.html#a485bf2fd5cc0dd3e6da794218d40e759">playRandomMoves</a>(Bitboard &amp;board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_tic_tac_toe.html#ac1544a9b625909d11d0d308161677779">diplayBoard</a>(const Bitboard *board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_tic_tac_toe.html#a5c97bc150240f2868493b926771b8297">end</a>(const Bitboard *board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_tic_tac_toe.html#ae5435ac05cdc9490b5aecf419da62d54">listPossibleMoves</a>(Bitboard *board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_tic_tac_toe.html#a51de7ce22df10cacab5be69d9e431c44">play</a>(Move &amp;position, Bitboard *board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_tic_tac_toe.html#a9e280ccffa371b9ef001cbfbeb233d84">playRandomMoves</a>(Bitboard *board) override</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>TicTacToe</b>() (defined in <a class="el" href="class_tic_tac_toe.html">TicTacToe</a>)</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>~TheGame</b>() (defined in <a class="el" href="class_the_game.html">TheGame</a>)</td><td class="entry"><a class="el" href="class_the_game.html">TheGame</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>~TicTacToe</b>() (defined in <a class="el" href="class_tic_tac_toe.html">TicTacToe</a>)</td><td class="entry"><a class="el" href="class_tic_tac_toe.html">TicTacToe</a></td><td class="entry"><span class="mlabel">inline</span><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:03 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

@@ -1,0 +1,11 @@
+digraph "Graphical Class Hierarchy" {
+	graph [rankdir=LR];
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,172,50"];
+	Node1 [label=TheGame, height="0.22", width="0.81", color=black, fillcolor=white, style=filled, URL="$class_the_game.html", tooltip="TheGame class. ", pos="37,25", rects="8,17,66,33"];
+	Node2 [label=Connect4, height="0.22", width="0.78", color=black, fillcolor=white, style=filled, URL="$class_connect4.html", tooltip="Connect4 class. ", pos="133,42", rects="105,34,161,50"];
+	Node3 [label=TicTacToe, height="0.22", width="0.83", color=black, fillcolor=white, style=filled, URL="$class_tic_tac_toe.html", pos="133,8", rects="103,0,164,16"];
+	Node1 -> Node2 [dir=back, color=midnightblue, style=solid, pos="s,66,30 75,31 85,33 96,35 105,37"];
+	Node1 -> Node3 [dir=back, color=midnightblue, style=solid, pos="s,66,20 75,19 84,17 94,16 102,14"];
+}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: mcts::Mcts Class Reference</title>
+<title>Connect4 with MCTS Algorithm: mcts::Mcts Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,62 +100,87 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad02b46adb483edd120569db71cb4d3f7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a> ()</td></tr>
-<tr class="memdesc:ad02b46adb483edd120569db71cb4d3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented.  <a href="#ad02b46adb483edd120569db71cb4d3f7">More...</a><br /></td></tr>
+<tr class="memitem:ad02b46adb483edd120569db71cb4d3f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad02b46adb483edd120569db71cb4d3f7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#ad02b46adb483edd120569db71cb4d3f7">Mcts</a> ()</td></tr>
+<tr class="memdesc:ad02b46adb483edd120569db71cb4d3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented. <br /></td></tr>
 <tr class="separator:ad02b46adb483edd120569db71cb4d3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada746c82f9fa57b87faaff6f26cf8b6d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada746c82f9fa57b87faaff6f26cf8b6d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Mcts</b> (<a class="el" href="class_the_game.html">TheGame</a> *game, <a class="el" href="class_bitboard.html">Bitboard</a> Bb, int depth=4, int timelimit=5000, int simulR=1000, int simulL=10)</td></tr>
-<tr class="separator:ada746c82f9fa57b87faaff6f26cf8b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13ddc3e70f7e9a04c36f79c5f6254e7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a13ddc3e70f7e9a04c36f79c5f6254e7a">Mcts</a> (<a class="el" href="class_the_game.html">TheGame</a> *game, <a class="el" href="class_bitboard.html">Bitboard</a> *Bb, <a class="el" href="classmcts_1_1_mcts_args.html">MctsArgs</a> args)</td></tr>
+<tr class="memdesc:a13ddc3e70f7e9a04c36f79c5f6254e7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a mcts with specifics parameters  <a href="#a13ddc3e70f7e9a04c36f79c5f6254e7a">More...</a><br /></td></tr>
+<tr class="separator:a13ddc3e70f7e9a04c36f79c5f6254e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb758831416d24b400def54eeda53122"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb758831416d24b400def54eeda53122"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#afb758831416d24b400def54eeda53122">~Mcts</a> ()</td></tr>
 <tr class="memdesc:afb758831416d24b400def54eeda53122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented. <br /></td></tr>
 <tr class="separator:afb758831416d24b400def54eeda53122"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#ac35bbdb3901e141afb1fa59fe27e09ef">movePlayed</a> (<a class="el" href="class_move.html">Move</a> &amp;move)</td></tr>
-<tr class="memdesc:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">play a move on the tree, prune all the node that are useless.  <a href="#ac35bbdb3901e141afb1fa59fe27e09ef">More...</a><br /></td></tr>
-<tr class="separator:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52f93c0ecdf18f8e1755c7d2007923b6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a52f93c0ecdf18f8e1755c7d2007923b6">UpdateNode</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *node)</td></tr>
-<tr class="separator:a52f93c0ecdf18f8e1755c7d2007923b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9ac3cc5372f4fc2617fcb0aa44b278e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa9ac3cc5372f4fc2617fcb0aa44b278e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#aa9ac3cc5372f4fc2617fcb0aa44b278e">UpdateRoot</a> ()</td></tr>
 <tr class="memdesc:aa9ac3cc5372f4fc2617fcb0aa44b278e"><td class="mdescLeft">&#160;</td><td class="mdescRight">calls UpdateNode(_root) <br /></td></tr>
 <tr class="separator:aa9ac3cc5372f4fc2617fcb0aa44b278e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63715fdb2759d46eb8627f18e80ab7dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a63715fdb2759d46eb8627f18e80ab7dd">playRandom</a> (<a class="el" href="classmcts_1_1_node.html">Node</a> *node)</td></tr>
-<tr class="separator:a63715fdb2759d46eb8627f18e80ab7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c321c7400f59f9ac35cb67ed770b65e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a4c321c7400f59f9ac35cb67ed770b65e">explore</a> ()</td></tr>
-<tr class="separator:a4c321c7400f59f9ac35cb67ed770b65e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#ac35bbdb3901e141afb1fa59fe27e09ef">movePlayed</a> (<a class="el" href="class_move.html">Move</a> &amp;move)</td></tr>
+<tr class="memdesc:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">play a move on the tree, prune all the node that are useless.  <a href="#ac35bbdb3901e141afb1fa59fe27e09ef">More...</a><br /></td></tr>
+<tr class="separator:ac35bbdb3901e141afb1fa59fe27e09ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30f80b3581b1d967f2fdcc651e7773b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a30f80b3581b1d967f2fdcc651e7773b8">GetBestMove</a> ()</td></tr>
 <tr class="memdesc:a30f80b3581b1d967f2fdcc651e7773b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">main function of the algorithm, run the exploration, simulations and returns the best move given the results  <a href="#a30f80b3581b1d967f2fdcc651e7773b8">More...</a><br /></td></tr>
 <tr class="separator:a30f80b3581b1d967f2fdcc651e7773b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ba60b877c5c772b3a2310a99f053ee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a9ba60b877c5c772b3a2310a99f053ee8">print_tree</a> (int depth=1)</td></tr>
 <tr class="memdesc:a9ba60b877c5c772b3a2310a99f053ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">print the tree of MCTS starting from the root with a defined depth  <a href="#a9ba60b877c5c772b3a2310a99f053ee8">More...</a><br /></td></tr>
 <tr class="separator:a9ba60b877c5c772b3a2310a99f053ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26c80c04a3b8f39314297592b31a8626"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26c80c04a3b8f39314297592b31a8626"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a26c80c04a3b8f39314297592b31a8626">kill_tree</a> ()</td></tr>
+<tr class="memdesc:a26c80c04a3b8f39314297592b31a8626"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear all the branches of the tree. <br /></td></tr>
+<tr class="separator:a26c80c04a3b8f39314297592b31a8626"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91912516619bdc9c5cd6709a3bf61f83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a91912516619bdc9c5cd6709a3bf61f83"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmcts_1_1_mcts.html#a91912516619bdc9c5cd6709a3bf61f83">get_Number_Leaves</a> ()</td></tr>
+<tr class="memdesc:a91912516619bdc9c5cd6709a3bf61f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">count the number of leaves of the tree. <br /></td></tr>
+<tr class="separator:a91912516619bdc9c5cd6709a3bf61f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classmcts_1_1_mcts.html" title="Mcts class. ">Mcts</a> class. </p>
-<p>Node* _root = adress of the node considered as the root of the tree. int _depth = depth to explore before running random simulations. int _timeLimitsimulationPerRoot = time limit in ms int _simulationPerRoot = number of simulations to run per Root. int _simulationPerLeaves = number of simulations to run per Leaves. </p>
+<p>Node* _root = adress of the node considered as the root of the tree. <a class="el" href="classmcts_1_1_mcts_args.html" title="MctsArgs class. ">MctsArgs</a> _param = options of the MCTS algorithm </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ad02b46adb483edd120569db71cb4d3f7"></a>
+<a class="anchor" id="a13ddc3e70f7e9a04c36f79c5f6254e7a"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">mcts::Mcts::Mcts </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_the_game.html">TheGame</a> *&#160;</td>
+          <td class="paramname"><em>game</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="class_bitboard.html">Bitboard</a> *&#160;</td>
+          <td class="paramname"><em>Bb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classmcts_1_1_mcts_args.html">MctsArgs</a>&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>Not implemented. </p>
-<p>create a mcts with specifics parameters</p>
+<p>create a mcts with specifics parameters </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Bb</td><td>BitBoard for the root </td></tr>
-    <tr><td class="paramname">depth</td><td>Depth to search, 4 by default </td></tr>
-    <tr><td class="paramname">timelimit</td><td>maximum time to run the simulation </td></tr>
-    <tr><td class="paramname">simulR</td><td>Number of simulations to be run starting from the root, 100 by default. =&gt; OpenMP ? </td></tr>
-    <tr><td class="paramname">simulL</td><td>Number of random simulations to be run at the end of the search tree, 10 by default. =&gt; OpenAcc ? </td></tr>
+    <tr><td class="paramname">game</td><td>game used (abstract class). </td></tr>
+    <tr><td class="paramname">Bb</td><td>first state to start the search from. </td></tr>
+    <tr><td class="paramname">args</td><td>options of the MCTS Algorithm </td></tr>
   </table>
   </dd>
 </dl>
@@ -163,25 +188,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a4c321c7400f59f9ac35cb67ed770b65e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">mcts::Mcts::explore </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>if depth is &gt; 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1. if depth = 0, run playRandom if the node is a terminal, then update the stats :</p><ul>
-<li>set uct to 10 if it's a win</li>
-<li>set parent's uct to -1 if it's a loss (we must never go to that node) </li>
-</ul>
-
-</div>
-</div>
 <a class="anchor" id="a30f80b3581b1d967f2fdcc651e7773b8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -224,29 +230,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a63715fdb2759d46eb8627f18e80ab7dd"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">mcts::Mcts::playRandom </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>node to run the simulations from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a9ba60b877c5c772b3a2310a99f053ee8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -271,40 +254,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a class="anchor" id="a52f93c0ecdf18f8e1755c7d2007923b6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">mcts::Mcts::UpdateNode </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classmcts_1_1_node.html">Node</a> *&#160;</td>
-          <td class="paramname"><em>node</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Update a node :</p><ul>
-<li>check state of the node if -1 : fetch the children (possible moves) and update the state if 0 and no children : fetch the children and update the state else : return the state</li>
-</ul>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">node</td><td>to be updated </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the state of the board : 0, 1, 2, or 3 . </dd></dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>D:/Arimaa/MCTS/<a class="el" href="_mcts_8h_source.html">Mcts.h</a></li>
-<li>D:/Arimaa/MCTS/Mcts.cpp</li>
+<li>D:/Arimaa/MCTS/src/mcts/<a class="el" href="_mcts_8h_source.html">Mcts.h</a></li>
+<li>D:/Arimaa/MCTS/src/mcts/Mcts.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:03 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

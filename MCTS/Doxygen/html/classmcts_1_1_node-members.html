@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>MCTS: Member List</title>
+<title>Connect4 with MCTS Algorithm: Member List</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">MCTS
+   <div id="projectname">Connect4 with MCTS Algorithm
    </div>
   </td>
  </tr>
@@ -61,7 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
+      <li><a href="inherits.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Friends</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,33 +92,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="classmcts_1_1_node.html">mcts::Node</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#abfd6046ffb96472a9058ee88f05fdc61">addChild</a>(Bitboard &amp;state, Move &amp;move, int terminal=-1)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#ab0e925fdf81bb182563e6f738f5cfa27">addChild</a>(Bitboard *state, Move &amp;move, int terminal=-1)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#add60b79e66e67ae93a299d211f06f9c6">clearParents</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>compareUCT</b>(Node *a, Node *b) (defined in <a class="el" href="classmcts_1_1_node.html">mcts::Node</a>)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#a6208d3fe6945797ed60c23c96ad35e97">compareWR</a>(Node *a, Node *b)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#aa4e75d679f31d3f687342429892ab8ab">forceSetUCT</a>(int uct)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#a06fe80a95c5535f04c1f952b3e687d56">getChildren</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#ad17cd9cf5c86f718aa99eb6597750d74">getMove</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#aa1670c2fae272a00356b88b6a8d382b9">getParents</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#a15b5ee0530be2b48df18658f5caa0273">getProba</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#af2170e0b8de1be9228666b8ef54681f8">getState</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#abdae55b6017c6f223b63d2fa193c4420">getTerminal</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#a458687d6ff5ef166ceea1d53304f8f94">count</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#aa4e75d679f31d3f687342429892ab8ab">forceSetUCT</a>(int uct)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#a06fe80a95c5535f04c1f952b3e687d56">getChildren</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#ad17cd9cf5c86f718aa99eb6597750d74">getMove</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#aa1670c2fae272a00356b88b6a8d382b9">getParents</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#a15b5ee0530be2b48df18658f5caa0273">getProba</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#af2170e0b8de1be9228666b8ef54681f8">getState</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#abdae55b6017c6f223b63d2fa193c4420">getTerminal</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#a377005472dee187c715f64ec12f1697c">getUCT</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#af93b8855df1ad7521b1b8a11ea21c410">getVisits</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#ac01b59cb23a9cbbf0ccd710f42ac5c71">killChildrens</a>(Node *exception)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#a5fb90d28e126f4e432b2cc3721bd357a">Node</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Node</b>(Bitboard state) (defined in <a class="el" href="classmcts_1_1_node.html">mcts::Node</a>)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#ac5c6318435fbc51f472c9edf2866dd11">Node</a>(Node *parent)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Node</b>(Node *parent, Bitboard state, Move move) (defined in <a class="el" href="classmcts_1_1_node.html">mcts::Node</a>)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#a101662cf4ceb1b677d2f718ca5f0c727">Node</a>(Bitboard *state)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Node</b>(Node *parent, Bitboard *state, Move &amp;move) (defined in <a class="el" href="classmcts_1_1_node.html">mcts::Node</a>)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#a7a4c678e7229510df95df9b85b8bdee7">print_tree</a>(int numtab, int depth)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#a077c08375da809ea3e7169e827c93009">select_child_UCT</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#aecba4d455461ba7966d50729fb920ebf">select_child_WR</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#acaeef5a74238b304834bacdba95ce46f">setTerminal</a>(int terminal)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classmcts_1_1_node.html#ad15ddfec38ddb675920017670dbd92ee">update</a>(int win)</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#acc91ea418dba8fa979b276e7d0a3af58">~Node</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classmcts_1_1_node.html#acc91ea418dba8fa979b276e7d0a3af58">~Node</a>()</td><td class="entry"><a class="el" href="classmcts_1_1_node.html">mcts::Node</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 8 2014 21:35:13 for MCTS by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 7 2015 21:03:03 for Connect4 with MCTS Algorithm by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

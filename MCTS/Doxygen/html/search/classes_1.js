@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['mcts',['Mcts',['../classmcts_1_1_mcts.html',1,'mcts']]],
-  ['move',['Move',['../class_move.html',1,'']]]
+  ['connect4',['Connect4',['../class_connect4.html',1,'']]],
+  ['count',['Count',['../class_count.html',1,'']]]
 ];

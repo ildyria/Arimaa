@@ -1,0 +1,16 @@
+digraph "D:/Arimaa/MCTS/src/interfaces/Bitboard.h" {
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,246,148"];
+	Node1 [label="D:/Arimaa/MCTS/src\l/interfaces/Bitboard.h", height="0.39", width="1.61", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="108,126", rects="50,112,166,140"];
+	Node2 [label="stdint.h", height="0.22", width="0.61", color=grey75, fillcolor=white, style=filled, pos="22,68", rects="0,60,45,76"];
+	Node3 [label=vector, height="0.22", width="0.56", color=grey75, fillcolor=white, style=filled, pos="82,68", rects="62,60,102,76"];
+	Node4 [label=list, height="0.22", width="0.39", color=grey75, fillcolor=white, style=filled, pos="134,68", rects="120,60,149,76"];
+	Node5 [label="../tools/Count.h", height="0.22", width="1.11", color=black, fillcolor=white, style=filled, URL="$_count_8h.html", tooltip="Define singleton Count. ", pos="206,68", rects="166,60,247,76"];
+	Node6 [label=iostream, height="0.22", width="0.69", color=grey75, fillcolor=white, style=filled, pos="206,16", rects="181,8,232,24"];
+	Node1 -> Node2 [color=midnightblue, style=solid, pos="e,34,76 87,112 73,103 55,90 41,81"];
+	Node1 -> Node3 [color=midnightblue, style=solid, pos="e,86,76 102,112 98,104 93,93 90,84"];
+	Node1 -> Node4 [color=midnightblue, style=solid, pos="e,130,76 114,112 118,104 123,93 126,84"];
+	Node1 -> Node5 [color=midnightblue, style=solid, pos="e,193,76 132,112 148,103 170,89 186,80"];
+	Node5 -> Node6 [color=midnightblue, style=solid, pos="e,206,24 206,60 206,53 206,42 206,33"];
+}

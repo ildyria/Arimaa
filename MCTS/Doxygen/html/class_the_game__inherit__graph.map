@@ -1,0 +1,10 @@
+digraph TheGame {
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,134,84"];
+	Node1 [label=TheGame, height="0.22", width="0.81", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="66,68", rects="37,60,95,76"];
+	Node2 [label=Connect4, height="0.22", width="0.78", color=black, fillcolor=white, style=filled, URL="$class_connect4.html", tooltip="Connect4 class. ", pos="28,16", rects="0,8,56,24"];
+	Node3 [label=TicTacToe, height="0.22", width="0.83", color=black, fillcolor=white, style=filled, URL="$class_tic_tac_toe.html", pos="104,16", rects="74,8,135,24"];
+	Node1 -> Node2 [dir=back, color=midnightblue, style=solid, pos="s,60,60 55,52 48,43 39,32 34,24"];
+	Node1 -> Node3 [dir=back, color=midnightblue, style=solid, pos="s,72,60 77,52 84,43 93,32 98,24"];
+}

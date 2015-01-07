@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['node',['Node',['../classmcts_1_1_node.html#a5fb90d28e126f4e432b2cc3721bd357a',1,'mcts::Node::Node()'],['../classmcts_1_1_node.html#ac5c6318435fbc51f472c9edf2866dd11',1,'mcts::Node::Node(Node *parent)']]]
+  ['node',['Node',['../classmcts_1_1_node.html#a101662cf4ceb1b677d2f718ca5f0c727',1,'mcts::Node']]]
 ];

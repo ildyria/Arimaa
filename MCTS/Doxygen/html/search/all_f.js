@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['thegame',['TheGame',['../class_the_game.html',1,'']]],
-  ['thegame_2eh',['TheGame.h',['../_the_game_8h.html',1,'']]],
-  ['tictactoe',['TicTacToe',['../class_tic_tac_toe.html',1,'']]],
-  ['tictactoe_2eh',['TicTacToe.h',['../_tic_tac_toe_8h.html',1,'']]]
+  ['select_5fchild_5fuct',['select_child_UCT',['../classmcts_1_1_node.html#a077c08375da809ea3e7169e827c93009',1,'mcts::Node']]],
+  ['select_5fchild_5fwr',['select_child_WR',['../classmcts_1_1_node.html#aecba4d455461ba7966d50729fb920ebf',1,'mcts::Node']]],
+  ['set',['set',['../class_move.html#a46945736ced7263e3442fe3228350f30',1,'Move']]],
+  ['setterminal',['setTerminal',['../classmcts_1_1_node.html#acaeef5a74238b304834bacdba95ce46f',1,'mcts::Node']]]
 ];

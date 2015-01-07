@@ -21,9 +21,14 @@ namespace mcts
 	 * \details 
 		int _visits = number of visits on the node
 		int _wins = number of wins on that node
+		int _terminal = determine if the node has be visited or is a terminal :
+		-1 : not visited
+		0 : non terminal
+		1/2 : player 1/2 wins
+		3 : tie
 		double _uct = value of uct on the node
-		Bitboard _state = current state of the board
-		string _move = last move been played
+		Bitboard* _state = current state of the board
+		Move _move = last move been played
 		list<Node*> _children = list of all possible Bitboards after that node;
 		list<Node*> _parents = list of all parents, right now there is only 1 parent per node, but in order to improve the algorithm we need to factorise the number of nodes;
 	 */
@@ -61,38 +66,32 @@ namespace mcts
 
 	public :
 		/**
-		 * \fn Node
-		 * \brief Constructor by default.
-		 */
-//		Node();
-
-		/**
-		* \fn Node(Node *parent)
-		* \brief i don't know why i created that function...
+		* \fn Node(Bitboard* state)
+		* \brief create a node given a Bitboard
 		*
-		* \param state Board to create the node with
+		* \param state : Board to create the node with
 		*/
 		explicit Node(Bitboard* state);
 
 		/**
-		 * \fn Node(Node* p_parent, Bitboard state, string move);
+		 * \fn Node(Node* p_parent, Bitboard state, Move& move);
 		 * \brief create a Node with parent as parent and move + Bitboard after the move played
 		 * 
-		 * \param parent parent of the node
-		 * \param state Bitboard after the move
-		 * \param move move played
+		 * \param parent : parent of the node
+		 * \param state : Bitboard after the move
+		 * \param move : move played
 		 */
 		Node(Node* parent, Bitboard* state, Move& move);
 
 		/**
-		 * \fn ~Node
+		 * \fn ~Node()
 		 * \brief Destructor of the Node
-		 * \details call Delete on all the childrens of the node.
+		 * \details call Delete on the bitboard.
 		 */
 		virtual ~Node();
 
 		/**
-		 * \fn killChildrens
+		 * \fn killChildrens(Node* exception)
 		 * \brief kill all the children of a node but the one with the exception adress
 		 * 
 		 * \param exception Node that we MUST NOT KILL
@@ -100,7 +99,7 @@ namespace mcts
 		void killChildrens(Node* exception);
 
 		/**
-		* \fn setTerminal
+		* \fn setTerminal(int terminal)
 		* \brief setter for _terminal
 		*
 		* \param value of the terminal
@@ -109,7 +108,7 @@ namespace mcts
 
 		/**
 		* \fn forceSetUCT
-		* \brief setter for _uct
+		* \brief setter for _uct(int uct)
 		* \details it allows us to force a value to uct : 10 or -1 in order to make sure that some moves must or mustn't be played
 		*
 		* \param value of the uct
@@ -117,32 +116,31 @@ namespace mcts
 		inline void forceSetUCT(int uct) { if (_uct == -1) return; _uct = uct; };
 
 		/**
-		* \fn getUCT
-		* \brief setter for _uct
-		* \details it allows us to force a value to uct : 10 or -1 in order to make sure that some moves must or mustn't be played
+		* \fn getUCT()
+		* \brief getter for _uct
 		*
-		* \param value of the uct
+		* \return value of the uct
 		*/
 		inline double getUCT() { return _uct; };
 
 		/**
-		* \fn getTerminal
-		* \brief getter for the childs
+		* \fn getTerminal()
+		* \brief getter for the _termianl
 		*
-		* \return 0 if not, 1 if player 1 wins, 2 if player 2 wins
+		* \return 0 if not, 1 if player 1 wins, 2 if player 2 wins, 3 if tie
 		*/
 		inline int getTerminal() { return _terminal; };
 
 		/**
-		* \fn getState
-		* \brief getter for the childs
+		* \fn getState()
+		* \brief getter for the Board
 		*
-		* \return the state of the current node
+		* \return the Board of the current node
 		*/
 		Bitboard* getState() { return _state; };
 
 		/**
-		* \fn getMove
+		* \fn getMove()
 		* \brief getter for the move
 		*
 		* \return the last move played to access the current node
@@ -150,7 +148,7 @@ namespace mcts
 		Move getMove() { return _move; };
 
 		/**
-		 * \fn getChildren
+		 * \fn getChildren()
 		 * \brief getter for the children
 		 *
 		 * \return return the list of the childrens
@@ -158,13 +156,13 @@ namespace mcts
 		inline std::list<Node*> getChildren() { return _children; };
 
 		/**
-		* \fn clearParents
+		* \fn clearParents()
 		* \brief clear the parents' list
 		*/
 		inline void clearParents() { _parents.clear(); };
 
 		/**
-		 * \fn getParents
+		 * \fn getParents()
 		 * \brief getter for the parents
 		 *
 		 * \return return the list of the parents
@@ -172,7 +170,7 @@ namespace mcts
 		inline std::list<Node*> getParents() { return _parents; };
 
 		/**
-		 * \fn getProba
+		 * \fn getProba()
 		 * \brief getter for the winrate
 		 *
 		 * \return return the winrate of a node
@@ -180,7 +178,7 @@ namespace mcts
 		inline double getProba() { return (_uct != -1) ? static_cast<double>(_wins) / static_cast<double>(std::max(1,_visits)) : 0; };
 
 		/**
-		 * \fn getVisits
+		 * \fn getVisits()
 		 * \brief getter for the number of visits
 		 *
 		 * \return return the number of visits
@@ -188,7 +186,7 @@ namespace mcts
 		inline int getVisits() { return _visits; };
 
 		/**
-		 * \fn compare
+		 * \fn compare()
 		 * \brief compare Node* a and Node *b,
 		 *
 		 * \param Node a
@@ -198,7 +196,7 @@ namespace mcts
 		static bool compareUCT(Node* a, Node* b);
 
 		/**
-		* \fn compareWR
+		* \fn compareWR()
 		* \brief compare Node* a and Node *b,
 		*
 		* \param Node a
@@ -208,7 +206,7 @@ namespace mcts
 		static bool compareWR(Node* a, Node* b);
 
 		/**
-		 * \fn select_child_UCT
+		 * \fn select_child_UCT()
 		 * \brief fecth the childrens and select the one with the highest UCT
 		 * 
 		 * \return Return the Node with the best UCT
@@ -216,7 +214,7 @@ namespace mcts
 		Node* select_child_UCT();
 		
 		/**
-		* \fn select_child_WR
+		* \fn select_child_WR()
 		* \brief fecth the childrens and select the one with the highest WR
 		*
 		* \return Return the Node with the best UCT
@@ -224,16 +222,17 @@ namespace mcts
 		Node* select_child_WR();
 
 		/**
-		 * \fn addChild
+		 * \fn addChild(Bitboard* state, Move& move, int terminal = -1)
 		 * \brief add a Child to a node, given his Bitboard and move played
 		 * 
-		 * \param state Bitboard after the nove
-		 * \param move move played
+		 * \param state : Bitboard after the nove
+		 * \param move : move played
+		 * \param terminal : set if node is terminal or not. By default, not explored. 
 		 */
 		void addChild(Bitboard* state, Move& move, int terminal = -1);
 
 		/**
-		 * \fn update
+		 * \fn update(int win)
 		 * \brief back propate the results of the last simulation to the parents of the node, update _visits & _wins
 		 * 
 		 * \param win int representing the last winner : 1 2 or 3
@@ -241,7 +240,7 @@ namespace mcts
 		void update(int win);
 
 		/**
-		 * \fn print_tree
+		 * \fn print_tree(int numtab, int depth)
 		 * \brief print the sub-tree starting with the current node as a root
 		 * 
 		 * \param numtab the depth we are in the tree in order to insert \t in front of the display
@@ -249,6 +248,11 @@ namespace mcts
 		 */
 		void print_tree(int numtab, int depth);
 
+		/**
+		 * \fn count()
+		 * \brief recursive function that count the number of leaves of the subtree.
+		 * \return number of leaves of the sub tree.
+		 */
 		int count();
 	};
 };

@@ -1,0 +1,8 @@
+digraph "D:/Arimaa/MCTS/src/mcts/Node.h" {
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,114,108"];
+	Node1 [label="D:/Arimaa/MCTS/src\l/mcts/Node.h", height="0.39", width="1.58", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="57,86", rects="0,72,115,100"];
+	Node2 [label="D:/Arimaa/MCTS/src\l/mcts/Mcts.h", height="0.39", width="1.58", color=black, fillcolor=white, style=filled, URL="$_mcts_8h.html", tooltip="Define class Mcts. ", pos="57,22", rects="0,8,115,36"];
+	Node1 -> Node2 [dir=back, color=midnightblue, style=solid, pos="s,57,72 57,62 57,53 57,44 57,36"];
+}
