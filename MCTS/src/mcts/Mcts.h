@@ -101,7 +101,7 @@ namespace mcts
 		 * 
 		 * \param move move played
 		 */
-		Bitboard* Mcts::movePlayed(Move& move);
+		Bitboard* movePlayed(Move& move);
 
 
 		/**
