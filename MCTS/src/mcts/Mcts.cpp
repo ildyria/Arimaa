@@ -4,7 +4,7 @@
 #define elseif else if
 #define OPTIMIZED_MCTS
 #define LIMITED_EXPLORATION
-#include <locale>
+#include <time.h>
 
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
