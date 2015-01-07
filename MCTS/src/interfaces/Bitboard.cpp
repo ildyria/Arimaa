@@ -11,11 +11,11 @@ using std::cout;
 using std::endl;
 using std::max;
 
-Bitboard::Bitboard() : _boards(vector<unsigned long long>(3)), _toplay(1), _number(3), _sizeX(3), _sizeY(3)
+Bitboard::Bitboard() : _boards(vector<numtyp>(3)), _toplay(1), _number(3), _sizeX(3), _sizeY(3)
 {
 	for (int i = 0; i < _number; i++)
 	{
-		_boards[i] = static_cast<unsigned long long>(0);
+		_boards[i] = static_cast<numtyp>(0);
 	}
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " (" << _number << " & " << _size << "x" << _size << ") created." << endl;
@@ -23,11 +23,11 @@ Bitboard::Bitboard() : _boards(vector<unsigned long long>(3)), _toplay(1), _numb
 	Count::I()->addBitBoards();
 }
 
-Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _boards(vector<unsigned long long>(n)), _toplay(toplay), _number(n), _sizeX(sizeX), _sizeY(sizeY)
+Bitboard::Bitboard(int sizeX, int sizeY, int n, int toplay) : _boards(vector<numtyp>(n)), _toplay(toplay), _number(n), _sizeX(sizeX), _sizeY(sizeY)
 {
 	for (int i = 0; i < _number; i++)
 	{
-		_boards[i] = static_cast<unsigned long long>(0);
+		_boards[i] = static_cast<numtyp>(0);
 	}
 #ifdef DEBUG_BOARD
 	cout << "B*" << this << " (" << _number << " & " << _sizeX << "x" << _sizeY << ") created." << endl;
@@ -58,23 +58,23 @@ int Bitboard::getBit(int n, int pos) const
 void Bitboard::setBit(int n, int x, int y)
 {
 	int index = x + y*_sizeX;
-	_boards[n] |= (unsigned long long(1) << index);
+	_boards[n] |= (static_cast<numtyp>(1) << index);
 }
 
 void Bitboard::setBit(int n, int pos)
 {
-	_boards[n] |= (unsigned long long(1) << pos);
+	_boards[n] |= (static_cast<numtyp>(1) << pos);
 }
 
 void Bitboard::clearBit(int n, int x, int y)
 {
 	int index = x + y*_sizeX;
-	_boards[n] &= ~(unsigned long long(1) << index);
+	_boards[n] &= ~(static_cast<numtyp>(1) << index);
 }
 
 void Bitboard::clearBit(int n, int pos)
 {
-	_boards[n] &= ~(unsigned long long(1) << pos);
+	_boards[n] &= ~(static_cast<numtyp>(1) << pos);
 }
 
 list<int> Bitboard::getOccupied(int n)

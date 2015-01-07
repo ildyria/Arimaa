@@ -7,6 +7,7 @@
  *
  */
 #pragma once
+#include <stdint.h>
 #include <vector>
 #include <list>
 #include "../tools/Count.h"
@@ -18,11 +19,12 @@
  *	short _number : number of bitboards;
  *	short _size   : size of the bitboards;
  */
+typedef uint64_t numtyp;
 class Bitboard
 {
 
 protected:
-	std::vector<unsigned long long> _boards;
+	std::vector<numtyp> _boards;
 	short _toplay;
 	short _number;
 	short _sizeX;
