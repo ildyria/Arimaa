@@ -1,6 +1,7 @@
 #include "Node.h"
 #define elseif else if
 #include "../tools/Count.h"
+#include "../tools/FreeObjects.h"
 //#define DEBUG_NODE
 
 using std::max_element;
@@ -14,6 +15,9 @@ using std::log;
 
 
 namespace mcts {
+	Node::Node() : _visits(0), _wins(0), _terminal(-1), _uct(0), _state(nullptr), _move(Move())
+	{
+	}
 
 	Node::Node(Bitboard* state) : _visits(0), _wins(0), _terminal(-1), _uct(0), _state(state), _move(Move())
 	{
@@ -48,7 +52,9 @@ namespace mcts {
 			{
 				if ((*itL)->_parents.size() < 2){
 					(*itL)->killChildrens(exception);
-					delete(*itL);
+					(*itL)->unset();
+					FreeObjects<Node>::I()->storeNode(*itL);
+					//delete(*itL);
 				}
 				else
 				{
@@ -68,10 +74,33 @@ namespace mcts {
 	}
 
 	void Node::addChild(Bitboard* state, Move& move, int terminal){
-		Node* node = new Node(this, state, move);
+//		Node* node = new Node(this, state, move);
+		Node* node = FreeObjects<Node>::I()->getNode();
+		node->set(state, move, this);
 		node->setTerminal(terminal);
 		_children.push_back(node);
 	};
+
+	void Node::set(Bitboard* state, Move& move, Node* parent)
+	{
+		_parents.push_front(parent);
+		_move = move;
+		_state = state;
+		Count::I()->addNode();
+	}
+
+	void Node::unset()
+	{
+		_terminal = -1;
+		_visits = 0;
+		_wins = 0;
+		_uct = 0;
+		_parents.clear();
+		_children.clear();
+		delete(_state);
+		_state = nullptr;
+		Count::I()->rmNode();
+	}
 
 	void Node::update(int win){
 		list<Node*>::iterator itL;
@@ -104,7 +133,7 @@ namespace mcts {
 
 	bool Node::compareWR(Node* a, Node* b)
 	{
-		return a->getProba() < b->getProba() && !(a->getUCT() == 10);
+		return a->getProba() < b->getProba();
 	}
 
 	Node* Node::select_child_UCT(){
@@ -138,15 +167,15 @@ namespace mcts {
 				tabs += " ";
 				if (i + 1 < numtab)
 				{
-					tabs += "|";
+					tabs += " ";
 				}
 			}
-			cout << endl << tabs << "-> N*" << this;
-			cout << ", m: " << _move;
-			cout << ", p: " << _state->getPlayer();
-			cout << ", _t: " << _terminal;
-			cout << ", _w/_v: " << _wins << "/" << _visits << " (" << round(getProba()*100) << "%)";
-			cout << ", _uct: " << _uct;
+			cout << endl << tabs << "-> " ;
+			cout << _move;
+//			cout << ", p: " << _state->getPlayer();
+			cout << " (" << _terminal;
+			cout << ", " << _visits << " (" << round(getProba()*100) << "%)";
+			cout << ", " << _uct << ")";
 
 			for (itL = _children.begin(); itL != _children.end(); ++itL)
 			{

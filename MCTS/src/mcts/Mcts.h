@@ -8,6 +8,7 @@
  */
 #pragma once
 #include "Node.h"
+#include "../tools/FreeObjects.h"
 #include "MctsArgs.h"
 #include "../interfaces/TheGame.h"
 

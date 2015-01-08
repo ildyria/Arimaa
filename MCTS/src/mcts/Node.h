@@ -65,6 +65,8 @@ namespace mcts
 		};
 
 	public :
+
+		Node();
 		/**
 		* \fn Node(Bitboard* state)
 		* \brief create a node given a Bitboard
@@ -175,7 +177,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return (_uct != -1) ? static_cast<double>(_wins) / static_cast<double>(std::max(1,_visits)) : 0; };
+		inline double getProba() { return (_uct != -1) ? ((_uct != 10) ? static_cast<double>(_wins) / static_cast<double>(std::max(1, _visits)) : 2) : 0; };
 
 		/**
 		 * \fn getVisits()
@@ -230,7 +232,8 @@ namespace mcts
 		 * \param terminal : set if node is terminal or not. By default, not explored. 
 		 */
 		void addChild(Bitboard* state, Move& move, int terminal = -1);
-
+		void set(Bitboard* state, Move& move, Node* parent);
+		void unset();
 		/**
 		 * \fn update(int win)
 		 * \brief back propate the results of the last simulation to the parents of the node, update _visits & _wins

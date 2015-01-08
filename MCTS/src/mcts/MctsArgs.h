@@ -43,11 +43,11 @@ namespace mcts {
 		 * \return [description]
 		 */
 		explicit inline MctsArgs(
-			int depth = 20,
-			int timelimit = 5000,
+			int depth = 40,
+			int timelimit = 10000,
 			int simulR = 10000000,
 			int simulL = 1,
-			int numVisitExplo = 0
+			int numVisitExplo = 1
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo)
 		{
 		};

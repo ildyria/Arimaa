@@ -24,7 +24,7 @@ namespace mcts{
 				MctsArgs args)
 				:_game(game), _root(new Node(Bb)), _param(args), _moves20(false)
 	{
-//		_root = new Node(Bb);
+		FreeObjects<Node>::I()->set(2000000);
 	}
 
 	Bitboard* Mcts::movePlayed(Move& move)
@@ -41,7 +41,9 @@ namespace mcts{
 		}
 		// TO CHECK AND IMPROVE
 		_root->killChildrens(*iterN);
-		delete(_root);
+//		delete(_root);
+		_root->unset();
+		FreeObjects<Node>::I()->storeNode(_root);
 		_root = *iterN;
 		ListOfNodes.clear();
 		_root->clearParents();

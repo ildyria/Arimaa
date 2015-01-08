@@ -218,7 +218,7 @@ list<Move> Connect4::listPossibleMoves(Bitboard* board)
 	list<int>::iterator iter;
 	for (iter = listmoves.begin(); iter != listmoves.end(); ++iter)
 	{
-		moves.push_back(Move(*iter));
+		moves.push_front(Move(*iter));
 	}
 	listmoves.clear();
 	return moves;
