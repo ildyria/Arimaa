@@ -9,19 +9,13 @@ using std::cout;
 using std::endl;
 
 Random* Random::UniqueInstance = nullptr;
-unsigned int Random::_seed = 0;
+uint64_t Random::_seed = 0;
+std::mt19937_64 Random::rng;
 
-Random::Random()
+Random::Random(uint64_t new_seed)
 {
-	_seed = time(nullptr) + omp_get_thread_num();;
-	srand(_seed);
-	cout << endl << "Random created with seed : " << _seed;
-}
-
-Random::Random(unsigned int seed)
-{
-	_seed = seed;
-	srand(seed);
+	_seed = new_seed;
+	rng.seed(new_seed);
 	cout << endl << "Random created with seed : " << _seed;
 }
 
@@ -38,7 +32,7 @@ Random* Random::I(unsigned int seed)
 	
 	if (seed == 0)
 	{
-		UniqueInstance = new Random();
+		UniqueInstance = new Random(time(nullptr) + omp_get_thread_num());
 	}
 	else
 	{

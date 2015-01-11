@@ -8,6 +8,8 @@
  */
 #pragma once
 #include <cstdlib>
+#include <stdint.h>
+#include <random>
 
 /**
  * \brief Random class : SINGLETON
@@ -17,11 +19,11 @@
  */
 class Random
 {
-	static unsigned int _seed;
+	static uint64_t _seed;
 	static Random* UniqueInstance;
-	
-	Random();
-	explicit Random(unsigned int seed);
+	static std::mt19937_64 rng;
+
+	explicit Random(uint64_t new_seed = std::mt19937_64::default_seed);
 	~Random();
 public:
 	
@@ -41,7 +43,7 @@ public:
 	 * \return     random integer 
 	 */
 	inline int getNum(int min, int max) {
-		int n = rand() % (max - min + 1) + min;
+		int n = rng() % (max - min + 1) + min;
 		return n;
 	}
 

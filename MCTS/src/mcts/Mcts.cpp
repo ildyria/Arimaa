@@ -3,7 +3,6 @@
 #include "Mcts.h"
 #define elseif else if
 #define OPTIMIZED_MCTS
-#define LIMITED_EXPLORATION
 #include <time.h>
 
 //#define DEBUG_MCTS
@@ -41,7 +40,6 @@ namespace mcts{
 		}
 		// TO CHECK AND IMPROVE
 		_root->killChildrens(*iterN);
-//		delete(_root);
 		_root->unset();
 		FreeObjects<Node>::I()->storeNode(_root);
 		_root = *iterN;
@@ -61,7 +59,13 @@ namespace mcts{
 			node->setTerminal(nodet);
 		}
 
-		if (nodet == 0 && node->getChildren().empty())  // not explored yet => explore
+		if (nodet == 0 && !node->getChildren().empty())
+		{
+			return nodet;
+		}
+
+		#pragma omp critical
+		if (node->getChildren().empty()) // not explored yet => explore
 		{
 			list<Move> ListOfMoves;
 			list<Move>::iterator iter;
@@ -85,7 +89,6 @@ namespace mcts{
 		int nodet;
 		for (int i = 0; i < _param.getSimulationPerLeaves(); ++i)
 		{
-
 #ifdef DEBUG_MCTS
 			cout << endl << "round n " << (i + 1) << endl;
 #endif // DEBUG_MCTS
@@ -102,18 +105,12 @@ namespace mcts{
 		Node* node = _root;
 		int depth = 0;
 		int nodet;
-#pragma omp critical
+//		#pragma omp critical
 		nodet = UpdateNode(node); // update and exploration
-#ifndef LIMITED_EXPLORATION
-		while (depth < _param.getDepth() && nodet <= 0)
-		{
-#endif
-#ifdef LIMITED_EXPLORATION
 		while (depth < _param.getDepth() && nodet <= 0 && node->getVisits() > _param.getNumberOfVisitBeforeExploration())
 		{
-#endif
 			node = node->select_child_UCT();
-			#pragma omp critical
+//			#pragma omp critical
 			nodet = UpdateNode(node);
 #ifdef DISPLAY_MCTS
 			if (depth == 0)

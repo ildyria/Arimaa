@@ -64,7 +64,7 @@ TN N* FNN getNode()
 {
 	if (_freeNodes.empty())
 	{
-		std::cout << endl << "we are lacking of nodes !! Generating some more (1000)...";
+		std::cout << std::endl << "we are lacking of nodes !! Generating some more (1000)...";
 		set(10000);
 	}
 	N* node = _freeNodes.front();

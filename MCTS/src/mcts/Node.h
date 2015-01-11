@@ -10,6 +10,7 @@
 #include <iostream>
 #include <list>
 #include <algorithm>
+#include <omp.h>
 #include "../interfaces/Bitboard.h"
 #include "../interfaces/Move.h"
 
@@ -40,6 +41,7 @@ namespace mcts
 		double _uct;
 		Bitboard* _state;
 		Move _move;
+
 		std::list<Node*> _children;
 		std::list<Node*> _parents;
 
@@ -61,7 +63,6 @@ namespace mcts
 			cout << "_uct " << " = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
 			cout << "_uct = " << _uct << endl;
 #endif //DEBUG_NODE
-
 		};
 
 	public :
@@ -232,8 +233,23 @@ namespace mcts
 		 * \param terminal : set if node is terminal or not. By default, not explored. 
 		 */
 		void addChild(Bitboard* state, Move& move, int terminal = -1);
+
+		/**
+		* \fn set(Bitboard* state, Move& move, Node* parent)
+		* \brief add a Child to a node, given his Bitboard and move played and reset its parameters
+		*
+		* \param state : Bitboard after the nove
+		* \param move : move played
+		* \param terminal : set if node is terminal or not. By default, not explored.
+		*/
 		void set(Bitboard* state, Move& move, Node* parent);
+
+		/**
+		* \fn unset()
+		* \brief clear data of a node (it will be added to the aviable list later).
+		*/
 		void unset();
+
 		/**
 		 * \fn update(int win)
 		 * \brief back propate the results of the last simulation to the parents of the node, update _visits & _wins

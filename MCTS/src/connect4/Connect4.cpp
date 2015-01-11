@@ -42,9 +42,9 @@ int Connect4::end(const Bitboard* board)
 
 int Connect4::checkHorizontal(const Bitboard* board)
 {
-	unsigned long long boardused = static_cast<unsigned long long>(15); // 0001111 in binary
-	unsigned long long board1 = board->getBoard(0);
-	unsigned long long board2 = board->getBoard(1);
+	numtyp boardused = static_cast<numtyp>(15); // 0001111 in binary
+	numtyp board1 = board->getBoard(0);
+	numtyp board2 = board->getBoard(1);
 	for (int y = 0; y < board->getSizeY(); y++)
 	{
 		for (int x = 0; x <= board->getSizeX() - 4; x++)
@@ -66,11 +66,11 @@ int Connect4::checkHorizontal(const Bitboard* board)
 
 int Connect4::checkVertical(const Bitboard* board)
 {
-	unsigned long long boardused = static_cast<unsigned long long>(1);
+	numtyp boardused = static_cast<numtyp>(1);
 	boardused += (boardused << board->getSizeX()) + (boardused << (board->getSizeX() * 2)) + (boardused << (board->getSizeX() * 3));
 
-	unsigned long long board1 = board->getBoard(0);
-	unsigned long long board2 = board->getBoard(1);
+	numtyp board1 = board->getBoard(0);
+	numtyp board2 = board->getBoard(1);
 	for (int y = 0; y <= board->getSizeY() - 4; y++)
 	{
 		for (int x = 0; x < board->getSizeX(); x++)
@@ -91,11 +91,11 @@ int Connect4::checkVertical(const Bitboard* board)
 
 int Connect4::checkDiag1(const Bitboard* board)
 {
-	unsigned long long boardused = static_cast<unsigned long long>(1);
+	numtyp boardused = static_cast<numtyp>(1);
 	boardused += (boardused << (board->getSizeX() + 1)) + (boardused << ((board->getSizeX() + 1) * 2)) + (boardused << ((board->getSizeX() + 1) * 3));
 
-	unsigned long long board1 = board->getBoard(0);
-	unsigned long long board2 = board->getBoard(1);
+	numtyp board1 = board->getBoard(0);
+	numtyp board2 = board->getBoard(1);
 	for (int y = 0; y <= board->getSizeY() - 4; y++)
 	{
 		for (int x = 0; x <= board->getSizeX() - 4; x++)
@@ -117,12 +117,12 @@ int Connect4::checkDiag1(const Bitboard* board)
 
 int Connect4::checkDiag2(const Bitboard* board)
 {
-	unsigned long long boardused = static_cast<unsigned long long>(1); 
+	numtyp boardused = static_cast<numtyp>(1);
 	boardused <<= 3; // 1000
 	boardused += (boardused << (board->getSizeX() - 1)) + (boardused << ((board->getSizeX() - 1) * 2)) + (boardused << ((board->getSizeX() - 1) * 3));
 
-	unsigned long long board1 = board->getBoard(0);
-	unsigned long long board2 = board->getBoard(1);
+	numtyp board1 = board->getBoard(0);
+	numtyp board2 = board->getBoard(1);
 	for (int y = 0; y <= board->getSizeY() - 4; y++)
 	{
 		for (int x = 0; x <= board->getSizeX() - 4; x++)
@@ -144,7 +144,7 @@ int Connect4::checkDiag2(const Bitboard* board)
 
 int Connect4::checkNull(const Bitboard* board)
 {
-	unsigned long long boardused = static_cast<unsigned long long>(0);
+	numtyp boardused = static_cast<numtyp>(0);
 	boardused = ~boardused;
 	boardused >>= 22; // full board
 	if (((board->getBoard(0) | board->getBoard(1)) & boardused) == boardused)
@@ -156,7 +156,7 @@ int Connect4::checkNull(const Bitboard* board)
 
 void Connect4::play(Move& position, Bitboard* board)
 {
-	unsigned long long boardused = board->getBoard(0) | board->getBoard(1); // get what places are used.
+	numtyp boardused = board->getBoard(0) | board->getBoard(1); // get what places are used.
 	boardused >>= (7 - position.getInt());
 	int i = 0;
 	while( (boardused & 1) == 1)
@@ -171,9 +171,9 @@ void Connect4::play(Move& position, Bitboard* board)
 
 void Connect4::diplayBoard(const Bitboard* board)
 {
-	unsigned long long board0 = board->getBoard(0); // get what places are used.
-	unsigned long long board1 = board->getBoard(1);
-	unsigned long long check = static_cast<unsigned long long>(1);
+	numtyp board0 = board->getBoard(0); // get what places are used.
+	numtyp board1 = board->getBoard(1);
+	numtyp check = static_cast<numtyp>(1);
 	check = check << 42;
 
 	std::stringbuf buffer;
@@ -226,15 +226,15 @@ list<Move> Connect4::listPossibleMoves(Bitboard* board)
 
 int Connect4::playRandomMoves(Bitboard* board)
 {
-	list<Move> ListOfMoves;
-	list<Move>::iterator iter;
+	list<int> ListOfMoves;
+	list<int>::iterator iter;
 	int chosen, nodet;
 
 	nodet = end(board);
 
 	while (nodet < 1)
 	{
-		ListOfMoves = listPossibleMoves(board);
+		ListOfMoves = board->getEmpty(0);
 		chosen = Random::I()->getNum(0, ListOfMoves.size() - 1);
 		for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 		{
@@ -243,7 +243,17 @@ int Connect4::playRandomMoves(Bitboard* board)
 #ifdef DISPLAY_C4
 				std::cout << " > " << *iter ;
 #endif // DISPLAY_C4
-				play(*iter, board);
+				numtyp boardused = board->getBoard(0) | board->getBoard(1); // get what places are used.
+				boardused >>= (7 - *iter);
+				int i = 0;
+				while ((boardused & 1) == 1)
+				{
+					i++;
+					boardused >>= board->getSizeX();
+				}
+
+				board->setBit(board->getPlayer() - 1, board->getSizeX() - *iter, i);
+				board->play();
 				break;
 			}
 			--chosen;

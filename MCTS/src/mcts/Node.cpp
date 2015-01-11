@@ -74,7 +74,6 @@ namespace mcts {
 	}
 
 	void Node::addChild(Bitboard* state, Move& move, int terminal){
-//		Node* node = new Node(this, state, move);
 		Node* node = FreeObjects<Node>::I()->getNode();
 		node->set(state, move, this);
 		node->setTerminal(terminal);
