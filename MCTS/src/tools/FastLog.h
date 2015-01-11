@@ -1,4 +1,5 @@
 #include <intrin.h>
+#define LOGV1
 
 class FastLog
 {
@@ -38,7 +39,11 @@ public:
 	}
 
 	static inline double fast_log(int n) {
+#ifdef LOGV1
 		return times_log2(log2(n));
-		//return fast_log(log2_bis(n));
+#endif
+#ifdef LOGV2
+		return times_log2(log2_bis(n));
+#endif
 	}
 };

@@ -14,6 +14,7 @@
 #include "../interfaces/Bitboard.h"
 #include "../interfaces/Move.h"
 #include "../tools/FastLog.h"
+#define FASTLOG
 
 namespace mcts
 {
@@ -58,8 +59,12 @@ namespace mcts
 		inline void UCT(int visits) {
 			if (_uct != -1 && _uct != 10)
 			{
+#ifdef FASTLOG
 				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * FastLog::fast_log(visits + 1) / std::max(_visits, 1));
-//				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * log(static_cast<double>(visits + 1)) / std::max(_visits, 1));
+#endif
+#ifndef FASTLOG
+				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * log(static_cast<double>(visits + 1)) / std::max(_visits, 1));
+#endif
 			}
 #ifdef DEBUG_NODE
 			cout << "_uct " << " = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
