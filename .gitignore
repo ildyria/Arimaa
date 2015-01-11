@@ -46,7 +46,7 @@ $RECYCLE.BIN/*
 *.opensdf
 #*.sln*
 *.v12.suo
-*.vcxproj
+#*.vcxproj
 *.obj
 *.tlog
 *.lastbuildstate
