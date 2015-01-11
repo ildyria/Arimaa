@@ -164,6 +164,7 @@
     <ClInclude Include="src\mcts\Node.h" />
     <ClInclude Include="src\tictactoe\TicTacToe.h" />
     <ClInclude Include="src\tools\Count.h" />
+    <ClInclude Include="src\tools\FastLog.h" />
     <ClInclude Include="src\tools\FreeObjects.h" />
     <ClInclude Include="src\tools\Random.h" />
   </ItemGroup>
