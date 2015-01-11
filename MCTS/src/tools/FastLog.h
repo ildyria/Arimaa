@@ -1,4 +1,10 @@
+#ifdef _WIN64
 #include <intrin.h>
+#endif
+#ifndef _WIN64
+#include "./intrin.h"
+#endif
+
 #define LOGV1
 
 class FastLog
