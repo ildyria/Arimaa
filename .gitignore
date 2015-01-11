@@ -44,7 +44,7 @@ $RECYCLE.BIN/*
 *.vcproj
 *.sdf
 *.opensdf
-*.sln
+#*.sln
 *.sln*
 *.v12.suo
 *.vcxproj
