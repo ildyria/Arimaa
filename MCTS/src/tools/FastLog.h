@@ -1,19 +1,27 @@
+#ifdef _WIN64
 #include <intrin.h>
 #define LOGV1
+#endif
+#ifndef _WIN64
+#define LOGV2
+#endif
+
 
 class FastLog
 {
 	FastLog();
 	~FastLog();
 public:
+#ifdef LOGV1
 	static inline unsigned long log2(const int& x)
 	{
 		unsigned long y;
 		_BitScanReverse64(&y, x);
 		return y;
 	}
-
-	static inline float log2_bis(float val)
+#endif
+#ifdef LOGV2
+	static inline float log2(float val)
 	{
 		int* const    exp_ptr = reinterpret_cast <int *> (&val);
 		int            x = *exp_ptr;
@@ -32,6 +40,7 @@ public:
 
 		return (val + log_2);
 	}
+#endif
 
 	static inline double times_log2(const unsigned long &val)
 	{
@@ -39,11 +48,6 @@ public:
 	}
 
 	static inline double fast_log(int n) {
-#ifdef LOGV1
 		return times_log2(log2(n));
-#endif
-#ifdef LOGV2
-		return times_log2(log2_bis(n));
-#endif
 	}
 };
