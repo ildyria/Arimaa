@@ -6,10 +6,23 @@ Presents : Gabriel, Prateek, Benoit, with Christian Raymond and Nikos Parlavant
 3. Presentation of the current implementation of the MCTS with connect4 and current optimisations made and yet to be done.
 4. Opendoors on the 31st of January : who will be there, what will be presented ?
 5. GUI for connect4, define the API functions.
-6. Anything else ?
+6. Start thinking about the HTML page
+7. Anything else ?
 
 ##Information :
-- to do
+- to do...
+
+#Concetion report
+- plan to be defined...
+
+#HTML Page
+- What to put in it ?
+- Executed on a webserver or used as documentation to be provided on the CD ?
+- Can we use PHP ?
+- Can we use Javascript and JQuery ?
+- Provide a download link of the program + versions ?
+- Provide documentation ?
+- What about design ?
 
 ##Deadlines
 #Concetion report
