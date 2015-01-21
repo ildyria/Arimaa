@@ -20,11 +20,15 @@ class Count
 	int _bitboads;
 	int _bitboadsC4;
 	int _nbleaves;
+	int _nodes_created;
 
 	int _nodes_saved;
 	int _bitboads_saved;
 	int _bitboadsC4_saved;
 	int _nbleaves_saved;
+
+	int _max_depth;
+
 	static Count* UniqueInstance;
 	
 	Count();
@@ -47,6 +51,8 @@ public:
 	inline void addNode() { _nodes++; }
 	inline void rmNode() { _nodes--; }
 
+	inline void createNode(int n = 1) { _nodes_created += n; }
+
 	inline void addBitBoards() { _bitboads++; }
 	inline void rmBitBoards() { _bitboads--; }
 
@@ -54,15 +60,20 @@ public:
 	inline void rmBitBoardsC4() { _bitboadsC4--; }
 	
 	inline void saveNbLeaves(int n) { _nbleaves = n; }
+	inline void saveMaxDepth(int MaxDepth) { _max_depth = MaxDepth; };
 
 	friend std::ostream& operator<< (std::ostream& stream, Count* count) {
-		stream << "nb leavs : " << count->_nbleaves << " (" << (count->_nbleaves - count->_nbleaves_saved) << " " << count->ratio(count->_nbleaves, count->_nbleaves_saved) << "%)" << std::endl;
-		stream << "nb nodes : " << count->_nodes << " (" << (count->_nodes - count->_nodes_saved) << " " << count->ratio(count->_nodes, count->_nodes_saved) << "%)" << std::endl;
-		stream << "nb BbC4  : " << count->_bitboadsC4 << " (" << (count->_bitboadsC4 - count->_bitboadsC4_saved) << " " << count->ratio(count->_bitboadsC4, count->_bitboadsC4_saved) << "%)" << std::endl;
+		stream << "nb leaves : " << count->_nbleaves << " (" << (count->_nbleaves - count->_nbleaves_saved) << " " << count->ratio(count->_nbleaves, count->_nbleaves_saved) << "%)" << std::endl;
+		stream << "nb nodes  : " << count->_nodes << " (" << (count->_nodes - count->_nodes_saved) << " " << count->ratio(count->_nodes, count->_nodes_saved) << "%)" << std::endl;
+		stream << "nb BbC4   : " << count->_bitboadsC4 << " (" << (count->_bitboadsC4 - count->_bitboadsC4_saved) << " " << count->ratio(count->_bitboadsC4, count->_bitboadsC4_saved) << "%)" << std::endl;
+		stream << "max depth : " << count->_max_depth << std::endl;
+		if (count->_nodes_created > 0) stream << "add nodes : " << count->_nodes_created << std::endl;
 		count->_nodes_saved = count->_nodes;
 		count->_bitboads_saved = count->_bitboads;
 		count->_bitboadsC4_saved = count->_bitboadsC4;
 		count->_nbleaves_saved = count->_nbleaves;
+		count->_nodes_created = 0;
 		return stream;
 	};
+
 };

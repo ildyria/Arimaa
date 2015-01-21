@@ -1,5 +1,6 @@
 #define CONNECT4
 //#define TICTACTOE
+//#define DISPLAY_TREE
 
 #include "./tools/Count.h"
 
@@ -55,16 +56,17 @@ int main(int argc, char const *argv[])
 	while (result == 0)
 	{
 		game->diplayBoard(Bb);
-		Listtoprint = game->listPossibleMoves(Bb);
-		cout << endl << "possible moves : ";
-		for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
-			cout << *iter << " ";
-		}
-		cout << "or -1 to pass.";
 		mcts.UpdateRoot();
 
 		if (Bb->getPlayer() != IA)
 		{
+			Listtoprint = game->listPossibleMoves(Bb);
+			cout << endl << "possible moves : ";
+			for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
+				cout << *iter << " ";
+			}
+			cout << "or -1 to pass.";
+
 			moveok = 0;
 			while (moveok == 0)
 			{
@@ -89,11 +91,14 @@ int main(int argc, char const *argv[])
 
 		if (Bb->getPlayer() == IA)
 		{
+			cout << endl << "AI turn... please wait.";
 			move = mcts.GetBestMove();
+#ifdef DISPLAY_TREE
 			mcts.print_tree(2);
-			cout << endl << "chosen move : " << move;
+#endif // DISPLAY_TREE
 			mcts.get_Number_Leaves();
 			cout << endl << Count::I();
+			cout << endl << "chosen move : " << move << endl;
 		}
 #ifdef CONNECT4
 		Bb = static_cast<BitboardConnect4*>(mcts.movePlayed(move));
@@ -101,6 +106,10 @@ int main(int argc, char const *argv[])
 #ifndef CONNECT4
 		Bb = mcts.movePlayed(move);
 #endif
+		if (mcts.winning_Strategy())
+		{
+			cout << "You don't know it yet, but you lost ! =D" << endl;
+		};
 		mcts.get_Number_Leaves();
 		cout << endl << Count::I();
 

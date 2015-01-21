@@ -280,5 +280,7 @@ namespace mcts
 		 * \return number of leaves of the sub tree.
 		 */
 		int count();
+
+		int max_depth();
 	};
 };

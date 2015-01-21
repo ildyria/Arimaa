@@ -140,5 +140,7 @@ namespace mcts
 		 * \brief count the number of leaves of the tree.
 		 */
 		void get_Number_Leaves();
+
+		bool winning_Strategy();
 	};
 }

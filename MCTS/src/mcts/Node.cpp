@@ -160,7 +160,6 @@ namespace mcts {
 		if (depth >= 0)
 		{
 			string tabs = "";
-			list<Node*>::iterator itL;
 			for (int i = 0; i < numtab; ++i)
 			{
 				tabs += " ";
@@ -171,12 +170,11 @@ namespace mcts {
 			}
 			cout << endl << tabs << "-> " ;
 			cout << _move;
-//			cout << ", p: " << _state->getPlayer();
 			cout << " (" << _terminal;
 			cout << ", " << _visits << " (" << round(getProba()*100) << "%)";
 			cout << ", " << _uct << ")";
 
-			for (itL = _children.begin(); itL != _children.end(); ++itL)
+			for (auto itL = _children.begin(); itL != _children.end(); ++itL)
 			{
 				(*itL)->print_tree(numtab + 1, depth - 1);
 			}
@@ -185,14 +183,20 @@ namespace mcts {
 
 	int Node::count()
 	{
-		int val = 0;
-		list<Node*>::iterator itL;
-		for (itL = _children.begin(); itL != _children.end(); ++itL)
+		auto val = 0;
+		for (auto itL = _children.begin(); itL != _children.end(); ++itL)
 		{
 			val += (*itL)->count();
 		}
 
 		return val + 1;
+	}
+
+	int Node::max_depth()
+	{
+		auto maximum = 0;
+		for (auto itl = _children.begin(); itl != _children.end(); ++itl) maximum = max(maximum, (*itl)->max_depth());
+		return maximum + 1;
 	}
 
 	Node::~Node()

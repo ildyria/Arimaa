@@ -8,6 +8,7 @@
  */
 #pragma once
 #include <list>
+#include "Count.h"
 
 #define TN template<class N>
 #define FNN FreeObjects<N>::
@@ -64,8 +65,9 @@ TN N* FNN getNode()
 {
 	if (_freeNodes.empty())
 	{
-		std::cout << std::endl << "we are lacking of nodes !! Generating some more (1000)...";
+//		std::cout << std::endl << "we are lacking of nodes !! Generating some more (1000)...";
 		set(10000);
+		Count::I()->createNode(1000);
 	}
 	N* node = _freeNodes.front();
 	_freeNodes.pop_front();

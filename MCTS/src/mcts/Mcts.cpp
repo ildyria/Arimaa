@@ -225,5 +225,11 @@ namespace mcts{
 	void Mcts::get_Number_Leaves()
 	{
 		Count::I()->saveNbLeaves(_root->count());
+		Count::I()->saveMaxDepth(_root->max_depth());
+	}
+
+	bool Mcts::winning_Strategy()
+	{
+		return (_root->getUCT() == 10);
 	}
 }

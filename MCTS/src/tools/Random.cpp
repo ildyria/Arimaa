@@ -1,3 +1,4 @@
+//#define DISPLAY_RNG
 #include "Random.h"
 #include <iostream>
 #include <omp.h>
@@ -16,7 +17,9 @@ Random::Random(uint64_t new_seed)
 {
 	_seed = new_seed;
 	rng.seed(new_seed);
+#ifdef DISPLAY_RNG
 	cout << endl << "Random created with seed : " << _seed;
+#endif DISPLAY_RNG
 }
 
 Random::~Random()
