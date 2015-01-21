@@ -13,7 +13,7 @@ Presents : Gabriel, Prateek, Benoit, with Christian Raymond and Nikos Parlavant
 ##Information :
 - to do...
 
-#Concetion report
+#Conception report
 - plan to be defined...
 
 #HTML Page
@@ -31,11 +31,12 @@ Presents : Gabriel, Prateek, Benoit, with Christian Raymond and Nikos Parlavant
 
 
 #Deadlines
-##Concetion report
+##Conception report
 - *Correct your text with Nikos notes*
 - *Deadline before teacher correction : Sunday 20.00*
 - *Then correction of the teacher, then new turn of corrections*
 - *Final deadline : Tuesday 16, 20.00*
+
 ##HTML Page
 - *Soft line* : 25th of March
 - *Dead line* : 2nd of April
