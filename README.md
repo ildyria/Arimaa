@@ -1,44 +1,21 @@
-﻿#Project Arimaa – CR13 : Wednesday, December, 10th
-Presents : Everyone, Morgane with Christian Raymond and Nikos Parlavantzas
+﻿#Project Arimaa – CR14 : Wednesday, January, 21st
+Presents : Gabriel, Prateek, Benoit, with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
-1. Remarks about list of tasks
-2. What to do with CAF
-3. Writing rules
-4. Questions report parts
+1. Start thinking about the **conception report**, *plan & task repartition* (Soft line : **Frebruary 2nd**)
+2. What to do with CAF (Who works on it ?)
+3. Presentation of the current implementation of the MCTS with connect4 and current optimisations made and yet to be done.
+4. Opendoors on the 31st of January : who will be there, what will be presented ?
+5. GUI for connect4, define the API functions.
+6. Anything else ?
 
 ##Information :
-- The tasks list has been filled, and the workload had been decided. Baptiste will do the final Gantt diagram and prepare another one for the planning oral presentation
-- The deadlines have been schedule. Please look at it in the next section
-- Gabriel (For the environment, replace hope by a better formulation, "We also hope to get some advice from Mr Garcia") - you're the only one. 
-- Mikail (For the introduction, reformulate avoiding going to deep into details) 
-- Prateek (For the Poker method, create a part Agile and a part Poker and reformulate the text, go deeper for the poker) 
-- Baptiste (For the gantt diagram : do the final diagram and push it) 
-- Dan (For the modules : add the CAF part) + reorganizing the plan
-- Benoit (For the risks : add how to handle the risks) 
-- For CAF, we will test it first, and then if it doesn't feet, we will choose OpenMP, OpenAcc, and MPI
+- to do
 
 ##Deadlines
-#Planning report
-- Correct your text with Nikos notes
-- Deadline before teacher correction : Sunday 20.00
-- Then correction of the teacher, then new turn of corrections
-- Teacher Appointment Wednesday 17, 15.40 (Maybe use this time for oral)
-- Final deadline : Tuesday 16, 20.00
+#Concetion report
+- *Correct your text with Nikos notes*
+- *Deadline before teacher correction : Sunday 20.00*
+- *Then correction of the teacher, then new turn of corrections*
+- *Final deadline : Tuesday 16, 20.00*
 
-#Planning oral and the oral of the project
-- The planning oral follows this planning report plan, look at the plan in report3 to see your tasks
-- The oral of the project follows this specification report plan, look at the plan in report3 to see your tasks
-- prepare slides for both projects
-- prepare text associate with it, but don't put too much text on the slide => prefer pictures
-- Work on Microsoft Powerpoint online (Benjamin is still choking)
-- link planning oral : https://onedrive.live.com/redir?resid=E9D7C3D4AAA96A13!759&authkey=!ADwlNXu_ke7Ol4k&ithint=file%2cpptx 
-- link specification oral :https://onedrive.live.com/redir?resid=E9D7C3D4AAA96A13!764&authkey=!ANSQ4TsODCFN-B8&ithint=file%2cpptx 
-- **Deadline slides** : **Sunday 14, 20.00**
-- **Work meal** : restaurant **Monday 15, 12.50** see what is wrong 
-- Team Appointment : Monday 15, 13.30 : oral presentation by ourselves
-- Correct slides and text
-- **Teacher Appointment** : **Tuesday 16, 15.40** : oral presentation with teachers
-- Correct slides and text
-- Teacher Appointment : Thursday 18, 9.00 : last oral presentation with teachers 
-
-##Next meeting : 12/17
+##Next meeting : 01/28
