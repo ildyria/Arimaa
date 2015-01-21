@@ -26,7 +26,7 @@ namespace mcts
 		TheGame* _game;
 		Node* _root;
 		MctsArgs _param;
-		bool _moves20;
+		bool _maxdepthreached;
 
 		/**
 		* \fn UpdateNode(Node* node)

@@ -21,7 +21,7 @@ namespace mcts{
 	Mcts::Mcts(	TheGame* game,
 				Bitboard* Bb,
 				MctsArgs args)
-				:_game(game), _root(new Node(Bb)), _param(args), _moves20(false)
+				:_game(game), _root(new Node(Bb)), _param(args), _maxdepthreached(false)
 	{
 		FreeObjects<Node>::I()->set(2000000);
 	}
@@ -121,9 +121,9 @@ namespace mcts{
 			cout << node->getMove() << " > ";
 #endif // DISPLAY_MCTS
 			++depth;
-			if (depth == _param.getDepth() && !_moves20)
+			if (depth == _param.getDepth() && !_maxdepthreached)
 			{
-				_moves20 = true;
+				_maxdepthreached = true;
 				cout << endl << "max depth reached : " << _param.getDepth() << "moves ahead.";
 			}
 		}
@@ -191,7 +191,7 @@ namespace mcts{
 #ifdef DISPLAY_MCTS
 		cout << endl << "turn : " << _root->getState()->getPlayer();
 #endif // DISPLAY_MCTS
-		_moves20 = false;
+		_maxdepthreached = false;
 		int i = 0;
 		int start = clock();
 		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLOCKS_PER_SEC);
