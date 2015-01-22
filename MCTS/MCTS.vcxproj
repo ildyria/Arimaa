@@ -144,7 +144,6 @@
     <ClCompile Include="src\connect4\Connect4.cpp" />
     <ClCompile Include="src\converter\Ai.cpp" />
     <ClCompile Include="src\converter\Game.cpp" />
-    <ClCompile Include="src\debug\Debug.cpp" />
     <ClCompile Include="src\interfaces\Bitboard.cpp" />
     <ClCompile Include="src\interfaces\Move.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -155,13 +154,10 @@
     <ClCompile Include="src\tools\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\api\ai.h" />
-    <ClInclude Include="src\api\game.h" />
     <ClInclude Include="src\connect4\BitboardConnect4.h" />
     <ClInclude Include="src\connect4\Connect4.h" />
     <ClInclude Include="src\converter\Ai.h" />
     <ClInclude Include="src\converter\Game.h" />
-    <ClInclude Include="src\debug\Debug.h" />
     <ClInclude Include="src\interfaces\Bitboard.h" />
     <ClInclude Include="src\interfaces\Move.h" />
     <ClInclude Include="src\interfaces\TheGame.h" />

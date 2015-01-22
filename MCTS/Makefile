@@ -1,12 +1,12 @@
 CC=g++
 BIN=bin
-INCLUDE=-I src/connect4 -I src/interfaces -I src/mcts -I src/tools -I src
+INCLUDE=-I src/connect4 -I src/interfaces -I src/mcts -I src/tools -I src/converter -I src
 CFLAGS=-O2 -fopenmp -c -Wall -std=c++11 $(INCLUDE)
 LDFLAGS=-fopenmp -std=c++11
-SOURCES=BitboardConnect4.cpp Connect4.cpp Bitboard.cpp Move.cpp Mcts.cpp Node.cpp Random.cpp Count.cpp main.cpp
+SOURCES=BitboardConnect4.cpp Connect4.cpp Bitboard.cpp Move.cpp Mcts.cpp Node.cpp Random.cpp Count.cpp Ai.cpp Game.cpp main.cpp
 OBJECTS=$(addprefix $(BIN)/, $(SOURCES:.cpp=.o))
 EXECUTABLE=$(BIN)/connect4
-vpath %.cpp src:src/connect4:src/tools:src/mcts:src/debug:src/interfaces:src/tictactoe
+vpath %.cpp src:src/connect4:src/tools:src/mcts:src/interfaces:src/tictactoe:src/converter
 
 all: $(EXECUTABLE)
 
