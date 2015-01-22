@@ -20,7 +20,7 @@ namespace mcts{
 
 	Mcts::Mcts(	TheGame* game,
 				Bitboard* Bb,
-				MctsArgs args)
+				MctsArgs* args)
 				:_game(game), _root(new Node(Bb)), _param(args), _maxdepthreached(false)
 	{
 		FreeObjects<Node>::I()->set(2000000);
@@ -87,7 +87,7 @@ namespace mcts{
 	void Mcts::playRandom(Node* node)
 	{
 		int nodet;
-		for (int i = 0; i < _param.getSimulationPerLeaves(); ++i)
+		for (int i = 0; i < _param->getSimulationPerLeaves(); ++i)
 		{
 #ifdef DEBUG_MCTS
 			cout << endl << "round n " << (i + 1) << endl;
@@ -107,7 +107,7 @@ namespace mcts{
 		int nodet;
 //		#pragma omp critical
 		nodet = UpdateNode(node); // update and exploration
-		while (depth < _param.getDepth() && nodet <= 0 && node->getVisits() > _param.getNumberOfVisitBeforeExploration())
+		while (depth < _param->getDepth() && nodet <= 0 && node->getVisits() > _param->getNumberOfVisitBeforeExploration())
 		{
 			node = node->select_child_UCT();
 //			#pragma omp critical
@@ -121,10 +121,10 @@ namespace mcts{
 			cout << node->getMove() << " > ";
 #endif // DISPLAY_MCTS
 			++depth;
-			if (depth == _param.getDepth() && !_maxdepthreached)
+			if (depth == _param->getDepth() && !_maxdepthreached)
 			{
 				_maxdepthreached = true;
-				cout << endl << "max depth reached : " << _param.getDepth() << "moves ahead.";
+				cout << endl << "max depth reached : " << _param->getDepth() << "moves ahead.";
 			}
 		}
 
@@ -194,11 +194,11 @@ namespace mcts{
 		_maxdepthreached = false;
 		int i = 0;
 		int start = clock();
-		int timeend = start + (static_cast<double>(_param.getTimeLimitSimulationPerRoot()) / 1000 * CLOCKS_PER_SEC);
+		int timeend = start + (static_cast<double>(_param->getTimeLimitSimulationPerRoot()) / 1000 * CLOCKS_PER_SEC);
 #ifdef OPENMP
 #pragma omp parallel shared(i,timeend)
 #endif
-		while (clock() < timeend && i < _param.getSimulationPerRoot())
+		while (clock() < timeend && i < _param->getSimulationPerRoot())
 		{
 			i++;
 #ifdef DISPLAY_MCTS
@@ -213,7 +213,7 @@ namespace mcts{
 
 	void Mcts::print_tree(int depth)
 	{
-		int d = (depth == 0) ? _param.getDepth() : depth;
+		auto d = (depth == 0) ? _param->getDepth() : depth;
 		_root->print_tree(0, d);
 	}
 
@@ -228,8 +228,8 @@ namespace mcts{
 		Count::I()->saveMaxDepth(_root->max_depth());
 	}
 
-	bool Mcts::winning_Strategy()
+	double Mcts::winning_Strategy()
 	{
-		return (_root->getUCT() == 10);
+		return (_root->getUCT() != 10 && _root->getUCT() != -1) ? _root->getProba() : _root->getUCT();
 	}
 }

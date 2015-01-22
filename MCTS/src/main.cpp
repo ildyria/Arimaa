@@ -37,12 +37,12 @@ int main(int argc, char const *argv[])
 #endif
 
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
-	cout << "\tBut remember, all code is guilty until proven inocent !" << endl << endl;
+	cout << "\tBut remember, all code is guilty until proven innocent !" << endl << endl;
 
 	int result = 0, moveok;
 	Move move;
 
-	MctsArgs args = MctsArgs();
+	MctsArgs* args = new MctsArgs();
 
 	list<Move> Listtoprint;
 	list<Move>::iterator iter;
@@ -106,7 +106,7 @@ int main(int argc, char const *argv[])
 #ifndef CONNECT4
 		Bb = mcts.movePlayed(move);
 #endif
-		if (mcts.winning_Strategy())
+		if (mcts.winning_Strategy() == 10)
 		{
 			cout << "You don't know it yet, but you lost ! =D" << endl;
 		};
@@ -130,8 +130,6 @@ int main(int argc, char const *argv[])
 	{
 		cout << endl << "Board full detected : TIE." << endl;
 	}
-	std::this_thread::sleep_for(std::chrono::milliseconds(10000));
-
 	delete game;
 	mcts.kill_tree();
 	int s;

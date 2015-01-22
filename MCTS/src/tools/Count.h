@@ -62,6 +62,22 @@ public:
 	inline void saveNbLeaves(int n) { _nbleaves = n; }
 	inline void saveMaxDepth(int MaxDepth) { _max_depth = MaxDepth; };
 
+	inline void clear()
+	{
+		_nodes = 0;
+		_bitboads = 0;
+		_bitboadsC4 = 0;
+		_nbleaves = 0;
+		_nodes_created = 0;
+
+		_nodes_saved = 1;
+		_bitboads_saved = 1;
+		_bitboadsC4_saved = 1;
+		_nbleaves_saved = 1;
+
+		_max_depth = 0;
+	}
+
 	friend std::ostream& operator<< (std::ostream& stream, Count* count) {
 		stream << "nb leaves : " << count->_nbleaves << " (" << (count->_nbleaves - count->_nbleaves_saved) << " " << count->ratio(count->_nbleaves, count->_nbleaves_saved) << "%)" << std::endl;
 		stream << "nb nodes  : " << count->_nodes << " (" << (count->_nodes - count->_nodes_saved) << " " << count->ratio(count->_nodes, count->_nodes_saved) << "%)" << std::endl;

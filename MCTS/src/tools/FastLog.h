@@ -9,8 +9,8 @@
 
 class FastLog
 {
-	FastLog();
-	~FastLog();
+	FastLog() {};
+	~FastLog() {};
 public:
 #ifdef LOGV1
 	static inline unsigned long log2(const int& x)

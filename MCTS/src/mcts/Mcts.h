@@ -25,7 +25,7 @@ namespace mcts
 	{
 		TheGame* _game;
 		Node* _root;
-		MctsArgs _param;
+		MctsArgs* _param;
 		bool _maxdepthreached;
 
 		/**
@@ -90,7 +90,7 @@ namespace mcts
 		 * \param  Bb			first state to start the search from.
 		 * \param  args			options of the MCTS Algorithm
 		 */
-		explicit Mcts(TheGame* game, Bitboard* Bb, MctsArgs args);
+		explicit Mcts(TheGame* game, Bitboard* Bb, MctsArgs* args);
 
 		/**
 		 * \fn ~Mcts()
@@ -141,6 +141,6 @@ namespace mcts
 		 */
 		void get_Number_Leaves();
 
-		bool winning_Strategy();
+		double winning_Strategy();
 	};
 }

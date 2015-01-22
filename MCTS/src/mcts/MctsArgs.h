@@ -44,7 +44,7 @@ namespace mcts {
 		 */
 		explicit inline MctsArgs(
 			int depth = 40,
-			int timelimit = 10000,
+			int timelimit = 2000,
 			int simulR = 10000000,
 			int simulL = 1,
 			int numVisitExplo = 1
@@ -55,6 +55,11 @@ namespace mcts {
 		inline int getDepth()
 		{
 			return _depth;
+		};
+
+		inline void setTimeLimitSimulationPerRoot(int t = 2000)
+		{
+			_timeLimitsimulationPerRoot = t;
 		};
 
 		inline int getTimeLimitSimulationPerRoot()
