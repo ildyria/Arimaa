@@ -55,6 +55,10 @@ $RECYCLE.BIN/*
 *.ilk
 *.idb
 
+# GCC
+*.o
+*.d
+
 
 # =========================
 # Operating System Files
