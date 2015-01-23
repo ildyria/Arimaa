@@ -33,9 +33,8 @@
 
 %presentation of the document
 \title{Fast and Furious Game Playing: Monte Carlo Drift\smallbreak Conception report} %not sure about the name of this report
-\author{Prateek \textsc{Bhatnagar}, Baptiste \textsc{Bignon}, \\
-        Mikaïl \textsc{Demirdelen}, Gabriel \textsc{Prevosto}, \\
-        Dan \textsc{Seeruttun-{}-Marie}, Benoît \textsc{Viguier} \\
+\author{Prateek \textsc{Bhatnagar}, Gabriel \textsc{Prevosto}, \\
+        Benoît \textsc{Viguier} \\
         \\
         Supervisors: Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
 \date{02/02/2015}
@@ -53,16 +52,29 @@
 \newpage
 
 
-\section{Introduction}					\label{sec:introduction} 		\input{Introduction/presentation.tex}
-\newpage	
-
-%\section{Environment and risks analysis}	\label{sec:Envirisks}
-%	\subsection{Environment}				\label{sec:Environment}			\input{PlanningMethods/Environment/environment.tex}
+\section{Introduction}					\label{sec:introduction} 		\input{Introduction/text.tex}
 
 \newpage
-	\section{Conclusion}					\label{sec:conclusion}			\input{Conclusion/Conclusion.tex}
+\section{Base algorithm}				\label{sec:Algo}				\input{Base_Algorithm/text.tex}
+
 \newpage
-\input{TasksPlanning/GanttDiagram/diag.tex}
+\section{Data structure}				\label{sec:data}				\input{Data_Structure/text.tex}
+
+\newpage
+\section{Parallelisation strategy}		\label{sec:paralstrat}			\input{Parallelisation_Strategy/text.tex}
+
+\newpage
+\section{Parallelisation frameworks}	\label{sec:paralframew}
+	\subsection{OpenMP}					\label{sec:openmp}				\input{Parallelisation_FW/OpenMP/text.tex}
+	\subsection{MPI}					\label{sec:mpi}					\input{Parallelisation_FW/MPI/text.tex}
+	\subsection{CAF}					\label{sec:caf}					\input{Parallelisation_FW/CAF/text.tex}
+
+\newpage
+\section{Graphical User Interface}		\label{sec:gui}					\input{GUI/text.tex}
+
+\newpage
+	\section{Conclusion}				\label{sec:conclusion}			\input{Conclusion/text.tex}
+\newpage
 
 %uncomment to add bibliography
 %\bibliography{bibliography}
