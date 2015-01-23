@@ -33,7 +33,7 @@ public:
 	 * \param  seed optionnal, allow us to set the seed in case singleton hasn't been initialized
 	 * \return      the object.
 	 */
-	static Random* I(unsigned int seed = 0);
+	static Random* I(uint64_t seed = 0);
 	
 	/**
 	 * \fn getNum

@@ -19,14 +19,14 @@ Random::Random(uint64_t new_seed)
 	rng.seed(new_seed);
 #ifdef DISPLAY_RNG
 	cout << endl << "Random created with seed : " << _seed;
-#endif DISPLAY_RNG
+#endif // DISPLAY_RNG
 }
 
 Random::~Random()
 {
 }
 
-Random* Random::I(unsigned int seed)
+Random* Random::I(uint64_t seed)
 {
 	if (UniqueInstance != nullptr)
 	{
