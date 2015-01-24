@@ -11,7 +11,7 @@
 
 using namespace mcts;
 
-namespace converter {
+namespace api {
 	Ai::Ai(int t) :_param(new MctsArgs(40, t*CLOCK)), _ai(nullptr), _game(nullptr)
 	{
 	}

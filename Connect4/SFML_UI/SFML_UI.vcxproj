@@ -53,7 +53,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;SFML_STATIC;CONSOLE_ON;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>F:\Gabriel\Programmation\Librairies\SimpleIni;F:\Gabriel\Programmation\Librairies\SFML-1.6-2013\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\MCTS\src;API;F:\Gabriel\Programmation\Librairies\SimpleIni;F:\Gabriel\Programmation\Librairies\SFML-1.6-2013\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -75,7 +75,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;SFML_STATIC;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>F:\Gabriel\Programmation\Librairies\SimpleIni;F:\Gabriel\Programmation\Librairies\SFML-1.6-2013\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\MCTS\src;API;F:\Gabriel\Programmation\Librairies\SimpleIni;F:\Gabriel\Programmation\Librairies\SFML-1.6-2013\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,6 +94,7 @@
     <ClInclude Include="Connect4GameScreen.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="PieceSprite.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>
@@ -104,9 +105,13 @@
     <ClCompile Include="ConfigOptions.cpp" />
     <ClCompile Include="Connect4GameScreen.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="PieceSprite.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MCTS\MCTS.vcxproj">
+      <Project>{bc1d54f7-4214-48ec-9ea2-0e5c30c30a72}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\API\API.vcxproj">
       <Project>{8c18c0ac-6476-40d8-b18c-2345f96142b5}</Project>
     </ProjectReference>

@@ -4,9 +4,9 @@
 #include "SFMLOperations.h"
 
 #define SQUARE_SIZE_VECT sf::Vector2f(SQUARE_SIZE, SQUARE_SIZE)
-#define HALF_SQUARE_SIZE_VECT sf::Vector2f((float)m_squareSize/2, (float)m_squareSize/2)
+#define HALF_SQUARE_SIZE_VECT sf::Vector2f(((float)m_squareSize)/2, ((float)m_squareSize)/2)
 
-#define HALF_SIZE_IN_SQUARES sf::Vector2f((float)m_sizeInSquares.x/2, (float)m_sizeInSquares.y/2)
+#define HALF_SIZE_IN_SQUARES sf::Vector2f(((float)m_sizeInSquares.x)/2, ((float)m_sizeInSquares.y)/2)
 
 class CenteredGrid :
 	public Grid

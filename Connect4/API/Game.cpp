@@ -3,7 +3,7 @@
 #include "../../MCTS/src/connect4/BitboardConnect4.h"
 #include <algorithm>
 
-namespace converter
+namespace api
 {
 	Game::Game() :_board(new BitboardConnect4()), _game(new Connect4()), _lastMove(0)
 	{

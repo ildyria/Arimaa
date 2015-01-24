@@ -1,7 +1,7 @@
 #pragma once
 #include "../../MCTS/src/connect4/Connect4.h"
 
-namespace converter
+namespace api
 {
 	class Game
 	{

@@ -1,6 +1,10 @@
 #include "Connect4GameScreen.h"
 
-Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false), m_grid(new CenteredGrid(135, sf::Vector2i(7, 6)))
+#define NB_COL 7
+#define NB_ROW 6
+#define CENTER_OFFSET sf::Vector2f(0, 67.5)
+
+Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false), m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game()
 {
 }
 
@@ -37,7 +41,18 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 			else
 				m_verticalHighlightVisible = false;
 		}
+		else if (m_iHandler->testEvent(event, "LClick"))
+		{
+			sf::Vector2f mouseCoords = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y, &ConfigOptions::getView());
+			sf::Vector2i s = m_grid->toSquares(mouseCoords);
+			if (m_grid->isOnGrid(s))
+				clickOn(s);
+		}
 	} //end of event loop
+
+	
+	for (PieceSprite* p : m_pieces)
+		p->update(elapsedTime);
 
 	return nextScreen;
 }
@@ -50,7 +65,7 @@ void Connect4GameScreen::draw (sf::RenderWindow &app)
 	//START DRAWING
 	app.Draw(m_background);
 
-	for (BoardAlignedSprite* p : m_pieces)
+	for (PieceSprite* p : m_pieces)
 		app.Draw(*p);
 
 	if (m_verticalHighlightVisible)
@@ -81,12 +96,13 @@ void Connect4GameScreen::uninitialize ()
 	ResourceManager::unloadImage("Connect4/VerticalHighlight.png");
 }
 
-BoardAlignedSprite* Connect4GameScreen::makePiece(bool blue)
+void Connect4GameScreen::clickOn(sf::Vector2i square)
 {
-	BoardAlignedSprite* b = new BoardAlignedSprite(m_grid, "Connect4/Pieces.png");
-	float delta = 0;
-	if (blue)
-		delta = b->GetSize().y;
-	b->SetSubRect(sf::IntRect(0, (int) delta, (int) b->GetSize().x, (int) (b->GetSize().y + delta)));
-	return b;
+	int col = square.x;// +1;
+	if (m_game.makeMove(col)) //tries to make a move
+	{
+		sf::Vector2i piecePos(col, NB_ROW - m_game.colHeight(col));
+		m_pieces.push_back(new PieceSprite(m_game.activePlayer() - 1, m_grid));
+		m_pieces.back()->moveOnSquare(piecePos);
+	}
 }

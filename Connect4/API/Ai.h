@@ -10,7 +10,7 @@
 #define CLOCK 10000
 #endif
 
-namespace converter {
+namespace api {
 	/**
 	 * \class Ai
 	 * \brief Converter to manage the AI by the GUI

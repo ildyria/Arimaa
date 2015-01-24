@@ -33,7 +33,7 @@ int main()
 	unsigned long windowStyle = Style::Close | Style::Titlebar;
 	if(ConfigOptions::inFullscreen())
 		windowStyle |= Style::Fullscreen;
-	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "GameAI", windowStyle); //Création de la fenêtre app
+	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "Connect4", windowStyle); //Création de la fenêtre app
 	//app.SetIcon(32, 32, ResourceManager::getImage("Icon.png")->GetPixelsPtr());
 	app.SetFramerateLimit(60);
 
