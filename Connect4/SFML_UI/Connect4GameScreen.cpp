@@ -3,13 +3,17 @@
 #define NB_COL 7
 #define NB_ROW 6
 #define CENTER_OFFSET sf::Vector2f(0, 67.5)
+#define TIME_LIMIT 1
 
-Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false), m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game()
+Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
+m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(false), m_p2AI(true), m_ai(TIME_LIMIT)
 {
 }
 
 Connect4GameScreen::~Connect4GameScreen(void)
 {
+	for (PieceSprite* s : m_pieces)
+		delete s;
 }
 
 int Connect4GameScreen::update (sf::RenderWindow &app)
@@ -50,6 +54,11 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		}
 	} //end of event loop
 
+	if (!currPlayerHuman())
+	{
+		int col = m_ai.makeMove(!(m_p1AI && m_p2AI));
+		placePiece(col);
+	}
 	
 	for (PieceSprite* p : m_pieces)
 		p->update(elapsedTime);
@@ -87,6 +96,8 @@ void Connect4GameScreen::initialize ()
 	}
 
 	ResourceManager::getImage("Connect4/Pieces.png");
+
+	m_ai.init(&m_game);
 }
 
 void Connect4GameScreen::uninitialize ()
@@ -98,11 +109,27 @@ void Connect4GameScreen::uninitialize ()
 
 void Connect4GameScreen::clickOn(sf::Vector2i square)
 {
-	int col = square.x;// +1;
-	if (m_game.makeMove(col)) //tries to make a move
+	if (currPlayerHuman())
 	{
-		sf::Vector2i piecePos(col, NB_ROW - m_game.colHeight(col));
-		m_pieces.push_back(new PieceSprite(m_game.activePlayer() - 1, m_grid));
-		m_pieces.back()->moveOnSquare(piecePos);
+		int col = square.x;// +1;
+		if (m_game.makeMove(col)) //tries to make a move
+		{
+			placePiece(col);
+		}
 	}
+}
+
+void Connect4GameScreen::placePiece(int col)
+{
+	sf::Vector2i piecePos(col, NB_ROW - m_game.colHeight(col));
+	m_pieces.push_back(new PieceSprite(m_game.activePlayer() - 1, m_grid));
+	m_pieces.back()->moveOnSquare(piecePos);
+}
+
+bool Connect4GameScreen::currPlayerHuman()
+{
+	if (m_game.activePlayer() == 1)
+		return !m_p1AI;
+	//else
+	return !m_p2AI;
 }

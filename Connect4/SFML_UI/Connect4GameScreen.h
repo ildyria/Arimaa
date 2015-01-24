@@ -8,6 +8,7 @@
 #include "PieceSprite.h"
 #include "CenteredGrid.h"
 #include "../API/Game.h"
+#include "../API/Ai.h"
 
 class Connect4GameScreen :
 	public Screen
@@ -24,6 +25,9 @@ public:
 private:
 	//Game
 	api::Game m_game;
+	bool m_p1AI;
+	bool m_p2AI;
+	api::Ai m_ai;
 	//UI
 	InputHandler* m_iHandler;
 	Grid* m_grid;
@@ -32,4 +36,7 @@ private:
 	std::list<PieceSprite*> m_pieces;
 	sf::Sprite m_verticalHighlight;
 	bool m_verticalHighlightVisible;
+
+	void placePiece(int col);
+	bool currPlayerHuman();
 };

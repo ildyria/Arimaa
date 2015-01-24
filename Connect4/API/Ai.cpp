@@ -3,9 +3,7 @@
 
 #ifdef _WIN64
 #define CLOCK 1000
-#endif
-
-#ifndef _WIN64
+#else
 #define CLOCK 10000
 #endif
 
