@@ -59,7 +59,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LIB_Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -267,6 +267,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\api\Ai.cpp" />
+    <ClCompile Include="src\api\Game.cpp" />
+    <ClCompile Include="src\api\test.h" />
     <ClCompile Include="src\connect4\BitboardConnect4.cpp" />
     <ClCompile Include="src\connect4\Connect4.cpp" />
     <ClCompile Include="src\interfaces\Bitboard.cpp" />
@@ -274,11 +277,12 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mcts\Mcts.cpp" />
     <ClCompile Include="src\mcts\Node.cpp" />
-    <ClCompile Include="src\tictactoe\TicTacToe.cpp" />
     <ClCompile Include="src\tools\Count.cpp" />
     <ClCompile Include="src\tools\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\api\Ai.h" />
+    <ClInclude Include="src\api\Game.h" />
     <ClInclude Include="src\connect4\BitboardConnect4.h" />
     <ClInclude Include="src\connect4\Connect4.h" />
     <ClInclude Include="src\interfaces\Bitboard.h" />
@@ -287,7 +291,6 @@
     <ClInclude Include="src\mcts\Mcts.h" />
     <ClInclude Include="src\mcts\MctsArgs.h" />
     <ClInclude Include="src\mcts\Node.h" />
-    <ClInclude Include="src\tictactoe\TicTacToe.h" />
     <ClInclude Include="src\tools\Count.h" />
     <ClInclude Include="src\tools\FastLog.h" />
     <ClInclude Include="src\tools\FreeObjects.h" />

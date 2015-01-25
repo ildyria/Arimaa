@@ -1,16 +1,17 @@
-#define CONNECT4
-//#define TICTACTOE
+//#define TEST_API
+
+#ifdef TEST_API
+#include "api/Game.h"
+#include "api/Ai.h"
+#include "api/test.h"
+using namespace api;
+#else
 //#define DISPLAY_TREE
 
 #include "./tools/Count.h"
 
 #include "./mcts/Mcts.h"
 
-#ifdef TICTACTOE
-#include "./tictactoe/TicTacToe.h"
-#endif
-
-#ifdef CONNECT4
 #include "./connect4/Connect4.h"
 #include "./connect4/BitboardConnect4.h"
 #endif
@@ -26,18 +27,13 @@ using std::list;
 
 int main(int argc, char const *argv[])
 {
-#ifdef TICTACTOE
-	TicTacToe* game = new TicTacToe();
-	Bitboard* Bb = new Bitboard(3, 3, 2, 1);
-#endif
-
-#ifdef CONNECT4
-	Connect4* game = new Connect4();
-	BitboardConnect4* Bb = new BitboardConnect4();
-#endif
-
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
 	cout << "\tBut remember, all code is guilty until proven innocent !" << endl << endl;
+#ifdef TEST_API
+	test_api();
+#else
+	Connect4* game = new Connect4();
+	BitboardConnect4* Bb = new BitboardConnect4();
 
 	int result = 0, moveok;
 	Move move;
@@ -100,12 +96,9 @@ int main(int argc, char const *argv[])
 			cout << endl << Count::I();
 			cout << endl << "chosen move : " << move << endl;
 		}
-#ifdef CONNECT4
 		Bb = static_cast<BitboardConnect4*>(mcts.movePlayed(move));
-#endif
-#ifndef CONNECT4
-		Bb = mcts.movePlayed(move);
-#endif
+//		Bb = mcts.movePlayed(move);
+
 		if (mcts.winning_Strategy() == 10)
 		{
 			cout << "You don't know it yet, but you lost ! =D" << endl;
@@ -132,6 +125,9 @@ int main(int argc, char const *argv[])
 	}
 	delete game;
 	mcts.kill_tree();
+#endif
+
+
 	int s;
 	cin >> s;
 }
