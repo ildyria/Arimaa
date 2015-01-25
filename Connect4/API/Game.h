@@ -1,6 +1,6 @@
 #pragma once
-#include "../connect4/BitboardConnect4.h"
-#include "../connect4/Connect4.h"
+#include "../../MCTS/src/connect4/BitboardConnect4.h"
+#include "../../MCTS/src/connect4/Connect4.h"
 
 namespace api
 {

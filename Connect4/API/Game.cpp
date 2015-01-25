@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "../connect4/BitboardConnect4.h"
+#include "../../MCTS/src/connect4/BitboardConnect4.h"
 #include <algorithm>
 
 namespace api

@@ -1,6 +1,6 @@
 #pragma once
 #include "Game.h"
-#include "../mcts/Mcts.h"
+#include "../../MCTS/src/mcts/Mcts.h"
 
 #ifdef _WIN64
 #define CLOCK 1000

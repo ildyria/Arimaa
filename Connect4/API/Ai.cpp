@@ -1,5 +1,5 @@
 #include "Ai.h"
-#include "../tools/Count.h"
+#include "../../MCTS/src/tools/Count.h"
 
 #ifdef _WIN64
 #define CLOCK 1000
