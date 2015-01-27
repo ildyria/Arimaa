@@ -3,7 +3,7 @@
 
 #define PIECE_SIZE 135
 #define FREEZE_COLOR sf::Color(100,100,255)
-#define APPEARANCE_SPEED 10
+#define APPEARANCE_SPEED 25
 
 
 PieceSprite::PieceSprite(int playerID, Grid* g, std::string image) : BoardAlignedSprite(g, image)

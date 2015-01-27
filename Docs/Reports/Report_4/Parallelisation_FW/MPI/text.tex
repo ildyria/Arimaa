@@ -1,5 +1,7 @@
 The \emph{Message Passing Interface Standard} (\emph{MPI}) is a message passing library standard.
 We might use it for machine parallelization if the tests show it gives better results than \emph{CAF} (see part \ref{sec:caf}).
+In order to make the different machines communicate, it opens ssh connexions between them.
+The general structure of a MPI program can be seen in figure \ref{fig:mpi_struct}.
 
 \begin{figure}[!h]
 \centering
