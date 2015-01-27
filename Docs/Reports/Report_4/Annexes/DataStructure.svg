@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Généré par Microsoft Visio, SVG Export DataStructure.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="11.6929in" height="8.26772in"
+		viewBox="0 0 841.89 595.276" xml:space="preserve" color-interpolation-filters="sRGB" class="st21">
+	<v:documentProperties v:langID="1036" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:prompt="" v:val="VT0(0):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#f2f2f2;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st2 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st3 {fill:#000000;font-family:Calibri;font-size:1.00001em}
+		.st4 {fill:#ffffff;fill-opacity:0}
+		.st5 {stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75;visibility:hidden}
+		.st6 {fill:#000000;font-family:Calibri;font-size:0.833336em}
+		.st7 {fill:#ffffff}
+		.st8 {stroke:#000000;stroke-dasharray:1.5,0.75;stroke-linecap:butt;stroke-width:0.75}
+		.st9 {fill:#000000;font-family:Calibri;font-size:0.833336em;font-weight:bold}
+		.st10 {font-size:1em;text-decoration:underline}
+		.st11 {font-family:MS PGothic;font-size:1em;font-weight:normal}
+		.st12 {font-size:1em}
+		.st13 {font-size:1em;font-weight:normal}
+		.st14 {font-family:MS PGothic;font-size:1.20001em}
+		.st15 {font-size:1em;font-weight:bold}
+		.st16 {font-family:MS PGothic;font-size:1em}
+		.st17 {font-family:MS PGothic;font-size:1em;font-weight:bold;text-decoration:underline}
+		.st18 {font-family:MS PGothic;font-size:1em;font-weight:bold}
+		.st19 {marker-end:url(#mrkr14-449);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st20 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.22935779816514}
+		.st21 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend14">
+			<path d="M 3 -1 L 0 0 L 3 1 L 3 -1 " style="stroke-linecap:round;stroke-linejoin:round;fill:none"/>
+		</g>
+		<marker id="mrkr14-449" class="st20" v:arrowType="14" v:arrowSize="2" v:setback="13.08" refX="-13.08" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend14" transform="scale(-4.36,-4.36) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Page 1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<v:layer v:name="Lien" v:index="0"/>
+		<g id="group1-1" transform="translate(354.331,-369.36)" v:mID="1" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de la classe)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(3.8166351212537):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Move)"/>
+			</v:userDefs>
+			<title>Classe.72</title>
+			<desc>Move</desc>
+			<g id="shape2-2" v:mID="2" v:groupContext="shape">
+				<title>Feuille.2</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+				</v:userDefs>
+				<path d="M0 595.28 L229.61 595.28 L229.61 418.76 L0 418.76 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape3-4" v:mID="3" v:groupContext="shape" transform="translate(0,-176.512)">
+				<title>Feuille.3</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Move)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L229.61 595.28 L229.61 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape5-6" v:mID="5" v:groupContext="shape" transform="translate(221.102,-207.915)">
+				<title>Feuille.5</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape1-7" v:mID="1" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="114.803" cy="403.062" width="229.61" height="31.4037"/>
+				<text x="4" y="406.66" class="st3" v:langID="1041"><v:paragraph/><v:tabList/>Move</text>			</g>
+		</g>
+		<g id="shape6-9" v:mID="6" v:groupContext="shape" transform="translate(357.165,-531.034)">
+			<title>Membre.77</title>
+			<desc>std::string _data</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(std::string _data)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="111.969" cy="589.274" width="223.94" height="12.0036"/>
+			<rect x="0" y="583.272" width="223.937" height="12.0036" class="st4"/>
+			<rect x="0" y="583.272" width="223.937" height="12.0036" class="st5"/>
+			<text x="8.5" y="592.27" class="st6" v:langID="2057"><v:paragraph/><v:tabList/>std::string _data</text>		</g>
+		<g id="shape7-13" v:mID="7" v:groupContext="shape" transform="translate(357.165,-528.199)">
+			<title>Séparateur.78</title>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(-1):26"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(2):26"/>
+			</v:userDefs>
+			<path d="M0 593.86 L223.94 593.86 L0 593.86 Z" class="st7"/>
+			<path d="M0 593.86 L223.94 593.86" class="st8"/>
+		</g>
+		<g id="shape8-16" v:mID="8" v:groupContext="shape" transform="translate(357.165,-372.195)">
+			<title>Membre.79</title>
+			<desc>Public : Move() Move(std::string) Move(int) ~Move() int getIn...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Public :&#10;Move()&#10;Move(std::string)&#10;Move(int)&#10;~Move()&#10;int getInt()&#10;std::string getMove()&#10;void set(std::string)&#10;std::string get()&#10;bool compare(const Move) const&#10;std::ostream&#38; operator&#60;&#60; (std::ostream&#38;, Move&#38;)&#10;std::istream&#38; operator&#62;&#62; (std::istream&#38;, Move&#38;)&#10;bool operator== (const Move&#38;, const Move&#38;))"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="111.969" cy="517.274" width="223.94" height="156.004"/>
+			<rect x="0" y="439.272" width="223.937" height="156.004" class="st4"/>
+			<rect x="0" y="439.272" width="223.937" height="156.004" class="st5"/>
+			<text x="8.5" y="448.27" class="st9" v:langID="1041"><v:paragraph/><v:tabList/><tspan class="st10">Public </tspan><tspan
+						class="st10">:<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">Move</tspan><tspan
+						class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">Move</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan class="st11"
+						v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan class="st11"
+						v:langID="2057">string</tspan><tspan class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">Move</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">int</tspan><tspan class="st11">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">~</tspan><tspan class="st11" v:langID="2057">Move</tspan><tspan
+						class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">int getInt</tspan><tspan class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan
+						class="st11" v:langID="2057">string getMove</tspan><tspan class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">void set</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan class="st11"
+						v:langID="2057">string</tspan><tspan class="st11">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
+						class="st11" v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan class="st11"
+						v:langID="2057">string get</tspan><tspan class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">bool compare</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">const Move</tspan><tspan class="st11" v:langID="2057">) </tspan><tspan
+						class="st11" v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan class="st11"
+						v:langID="2057">ostream</tspan><tspan class="st11" v:langID="2057">&#38; </tspan><tspan class="st11"
+						v:langID="2057">operator</tspan><tspan class="st11" v:langID="2057">&#60;&#60; </tspan><tspan class="st11"
+						v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan
+						class="st11" v:langID="2057">ostream</tspan><tspan class="st11" v:langID="2057">&#38;, </tspan><tspan
+						class="st11" v:langID="2057">Move</tspan><tspan class="st11" v:langID="2057">&#38;</tspan><tspan
+						class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan class="st11"
+						v:langID="2057">istream</tspan><tspan class="st11" v:langID="2057">&#38; </tspan><tspan class="st11"
+						v:langID="2057">operator</tspan><tspan class="st11" v:langID="2057">&#62;&#62; </tspan><tspan class="st11"
+						v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan
+						class="st11" v:langID="2057">istream</tspan><tspan class="st11" v:langID="2057">&#38;, </tspan><tspan
+						class="st11" v:langID="2057">Move</tspan><tspan class="st11" v:langID="2057">&#38;</tspan><tspan
+						class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">bool operator</tspan><tspan class="st11" v:langID="2057">== (</tspan><tspan class="st11"
+						v:langID="2057">const Move</tspan><tspan class="st11" v:langID="2057">&#38;, </tspan><tspan class="st11"
+						v:langID="2057">const Move</tspan><tspan class="st11" v:langID="2057">&#38;</tspan><tspan class="st11"
+						v:langID="2057">)</tspan></text>		</g>
+		<g id="group9-93" transform="translate(354.331,-213.628)" v:mID="9" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de l’interface)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.59593536783854):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(2.6995582474744):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(TheGame)"/>
+			</v:userDefs>
+			<title>Interface</title>
+			<desc>TheGame</desc>
+			<g id="shape10-94" v:mID="10" v:groupContext="shape">
+				<title>Feuille.10</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.59593536783854):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+				</v:userDefs>
+				<path d="M0 595.28 L229.61 595.28 L229.61 505.6 L0 505.6 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape11-96" v:mID="11" v:groupContext="shape" transform="translate(0,-89.6731)">
+				<title>Feuille.11</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(1):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.59593536783854):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de l’interface)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(TheGame)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L229.61 595.28 L229.61 552.37 L0 552.37 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape12-98" v:mID="12" v:groupContext="shape" transform="translate(0,-116.577)">
+				<title>Feuille.12</title>
+				<desc>&#60;&#60;Interface&#62;&#62;</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(&#60;&#60;Interface&#62;&#62;)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(4,4,0,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="114.803" cy="587.274" width="229.61" height="16.0036"/>
+				<text x="4" y="592.27" class="st6" v:langID="1036"><v:paragraph/><v:tabList/>&#60;&#60;Interface&#62;&#62;</text>			</g>
+			<g id="shape13-100" v:mID="13" v:groupContext="shape" transform="translate(221.102,-132.58)">
+				<title>Feuille.13</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape9-101" v:mID="9" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(4,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="114.803" cy="492.151" width="229.61" height="26.9037"/>
+				<text x="4" y="493.5" class="st3" v:langID="1041"><v:paragraph/><v:tabList/>TheGame</text>			</g>
+		</g>
+		<g id="shape15-103" v:mID="15" v:groupContext="shape" transform="translate(357.165,-216.463)">
+			<title>Membre.71</title>
+			<desc>Public : ~TheGame() int end(const Bitboard*) void play(Move&#38;,...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Public :&#10;~TheGame()&#10;int end(const Bitboard*)&#10;void play(Move&#38;, Bitboard*)&#10;void diplayBoard(const Bitboard*)&#10;std::list&#60;Move&#62; listPossibleMoves(Bitboard*)&#10;int playRandomMoves(Bitboard*))"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="111.969" cy="553.274" width="223.94" height="84.0039"/>
+			<rect x="0" y="511.272" width="223.937" height="84.0039" class="st4"/>
+			<rect x="0" y="511.272" width="223.937" height="84.0039" class="st5"/>
+			<text x="8.5" y="520.27" class="st9" v:langID="1041"><v:paragraph/><v:tabList/><tspan class="st10">Public </tspan><tspan
+						class="st10">:<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">~</tspan><tspan
+						class="st11" v:langID="2057">TheGame</tspan><tspan class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">int end</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">const Bitboard</tspan><tspan class="st11" v:langID="2057">*)<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">void play</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">Move</tspan><tspan class="st11" v:langID="2057">&#38;, </tspan><tspan
+						class="st11" v:langID="2057">Bitboard</tspan><tspan class="st11" v:langID="2057">*)<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">void diplayBoard</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">const Bitboard</tspan><tspan class="st11" v:langID="2057">*</tspan><tspan
+						class="st11">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">std</tspan><tspan
+						class="st11" v:langID="2057">::</tspan><tspan class="st11" v:langID="2057">list</tspan><tspan class="st11"
+						v:langID="2057">&#60;</tspan><tspan class="st11" v:langID="2057">Move</tspan><tspan class="st11"
+						v:langID="2057">&#62;</tspan><tspan class="st11"> </tspan><tspan class="st11" v:langID="2057">listPossibleMoves</tspan><tspan
+						class="st11" v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">Bitboard</tspan><tspan
+						class="st11" v:langID="2057">*</tspan><tspan class="st11">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">int playRandomMoves</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">Bitboard</tspan><tspan class="st11" v:langID="2057">*</tspan><tspan
+						class="st11">)</tspan></text>		</g>
+		<g id="group16-144" transform="translate(639.638,-261.36)" v:mID="16" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de la classe)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(2.638187397865):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Bitboard)"/>
+			</v:userDefs>
+			<title>Classe</title>
+			<desc>Bitboard</desc>
+			<g id="shape17-145" v:mID="17" v:groupContext="shape">
+				<title>Feuille.17</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+				</v:userDefs>
+				<path d="M0 595.28 L184.25 595.28 L184.25 310.76 L0 310.76 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape18-147" v:mID="18" v:groupContext="shape" transform="translate(0,-284.512)">
+				<title>Feuille.18</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Bitboard)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L184.25 595.28 L184.25 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape20-149" v:mID="20" v:groupContext="shape" transform="translate(175.748,-315.916)">
+				<title>Feuille.20</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape16-150" v:mID="16" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="92.126" cy="295.062" width="184.26" height="31.4037"/>
+				<text x="4" y="298.66" class="st3" v:langID="2057"><v:paragraph/><v:tabList/>Bitboard</text>			</g>
+		</g>
+		<g id="shape21-152" v:mID="21" v:groupContext="shape" transform="translate(642.472,-483.033)">
+			<title>Membre</title>
+			<desc>std::vector&#60;uint64_t&#62; _boards short _toplay short _number sho...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(std::vector&#60;uint64_t&#62; _boards&#10;short _toplay&#10;short _number&#10;short _sizeX&#10;short _sizeY)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="89.2913" cy="565.274" width="178.59" height="60.0038"/>
+			<rect x="0" y="535.272" width="178.583" height="60.0038" class="st4"/>
+			<rect x="0" y="535.272" width="178.583" height="60.0038" class="st5"/>
+			<text x="8.5" y="544.27" class="st6" v:langID="2057"><v:paragraph/><v:tabList/>std::vector&#60;uint64_t&#62; _boards<v:newlineChar/><tspan
+						x="8.5" dy="1.2em" class="st12">short </tspan>_toplay<v:newlineChar/><tspan x="8.5" dy="1.2em" class="st12">short </tspan>_number<v:newlineChar/><tspan
+						x="8.5" dy="1.2em" class="st12">short </tspan>_sizeX<v:newlineChar/><tspan x="8.5" dy="1.2em" class="st12">short </tspan>_sizeY</text>		</g>
+		<g id="shape22-160" v:mID="22" v:groupContext="shape" transform="translate(642.472,-480.199)">
+			<title>Séparateur</title>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(-1):26"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(2):26"/>
+			</v:userDefs>
+			<path d="M0 593.86 L178.58 593.86 L0 593.86 Z" class="st7"/>
+			<path d="M0 593.86 L178.58 593.86" class="st8"/>
+		</g>
+		<g id="shape23-163" v:mID="23" v:groupContext="shape" transform="translate(642.472,-264.195)">
+			<title>Membre.23</title>
+			<desc>Public : Bitboard() Bitboard(int, int, int, int) ~Bitboard() ...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Public : &#10;Bitboard()&#10;Bitboard(int, int, int, int)&#10;~Bitboard()&#10;Bitboard* clone() const&#10;int getSizeX() const&#10;int getSizeY() const&#10;int getBit(int n, int x, int y) const&#10;int getBit(int n, int pos) const&#10;void setBit(int n, int x, int y)&#10;void setBit(int n, int pos)&#10;void clearBit(int n, int x, int y)&#10;void clearBit(int n, int pos)&#10;uint64_t getBoard(int n) const&#10;std::list&#60;int&#62; getEmpty(int n) const&#10;std::list&#60;int&#62; getOccupied(int n)&#10;int getPlayer() const&#10;void play())"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="89.2913" cy="487.273" width="178.59" height="216.004"/>
+			<rect x="0" y="379.271" width="178.583" height="216.004" class="st4"/>
+			<rect x="0" y="379.271" width="178.583" height="216.004" class="st5"/>
+			<text x="8.5" y="387.62" class="st9" v:langID="1041"><v:paragraph/><v:tabList/><tspan class="st10">Public </tspan><tspan
+						class="st10">: <v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">Bitboard</tspan><tspan
+						class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">Bitboard</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan class="st11"
+						v:langID="2057">int</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int</tspan><tspan class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">~</tspan><tspan class="st11" v:langID="2057">Bitboard</tspan><tspan
+						class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">Bitboard</tspan><tspan class="st11" v:langID="2057">* </tspan><tspan class="st11"
+						v:langID="2057">clone</tspan><tspan class="st11" v:langID="2057">() </tspan><tspan class="st11"
+						v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">int getSizeX</tspan><tspan
+						class="st11" v:langID="2057">() </tspan><tspan class="st11" v:langID="2057">const<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">int getSizeY</tspan><tspan class="st11" v:langID="2057">() </tspan><tspan
+						class="st11" v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">int getBit</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan class="st11"
+						v:langID="2057">int n</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int x</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int y</tspan><tspan class="st11" v:langID="2057">) </tspan><tspan class="st11"
+						v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">int getBit</tspan><tspan
+						class="st11" v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">int n</tspan><tspan class="st11"
+						v:langID="2057">, </tspan><tspan class="st11" v:langID="2057">int pos</tspan><tspan class="st11"
+						v:langID="2057">) </tspan><tspan class="st11" v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">void setBit</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">int n</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int x</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int y</tspan><tspan class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">void setBit</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">int n</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int pos</tspan><tspan class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">void clearBit</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">int n</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int x</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int y</tspan><tspan class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st11" v:langID="2057">void clearBit</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">int n</tspan><tspan class="st11" v:langID="2057">, </tspan><tspan class="st11"
+						v:langID="2057">int pos</tspan><tspan class="st11" v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.298em" class="st13" v:langID="2057">uint</tspan><tspan class="st13" v:langID="2057">64</tspan><tspan
+						class="st13" v:langID="2057">_</tspan><tspan class="st13" v:langID="2057">t</tspan><tspan class="st11"
+						v:langID="2057"> </tspan><tspan class="st11" v:langID="2057">getBoard</tspan><tspan class="st11"
+						v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">int n</tspan><tspan class="st11"
+						v:langID="2057">) </tspan><tspan class="st11" v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.233em" class="st11" v:langID="2057">std</tspan><tspan class="st11" v:langID="2057">::</tspan><tspan
+						class="st11" v:langID="2057">list</tspan><tspan class="st11" v:langID="2057">&#60;</tspan><tspan
+						class="st11" v:langID="2057">int</tspan><tspan class="st11" v:langID="2057">&#62; </tspan><tspan
+						class="st11" v:langID="2057">getEmpty</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">int n</tspan><tspan class="st11" v:langID="2057">) </tspan><tspan class="st11"
+						v:langID="2057">const<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">std</tspan><tspan
+						class="st11" v:langID="2057">::</tspan><tspan class="st11" v:langID="2057">list</tspan><tspan class="st11"
+						v:langID="2057">&#60;</tspan><tspan class="st11" v:langID="2057">int</tspan><tspan class="st11"
+						v:langID="2057">&#62; </tspan><tspan class="st11" v:langID="2057">getOccupied</tspan><tspan class="st11"
+						v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">int n</tspan><tspan class="st11"
+						v:langID="2057">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">int getPlayer</tspan><tspan
+						class="st11" v:langID="2057">() </tspan><tspan class="st11" v:langID="2057">const<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">void play</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11">)</tspan></text>		</g>
+		<g id="group25-276" transform="translate(18,-186.923)" v:mID="25" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de la classe)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(3.4595756424939):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(&#60;&#60;singleton&#62;&#62; &#10;Count)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.60282981228299):1"/>
+			</v:userDefs>
+			<title>Classe.25</title>
+			<desc>&#60;&#60;singleton&#62;&#62; Count</desc>
+			<g id="shape26-277" v:mID="26" v:groupContext="shape">
+				<title>Feuille.26</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.60282981228299):1"/>
+				</v:userDefs>
+				<path d="M0 595.28 L272.13 595.28 L272.13 248.33 L0 248.33 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape27-279" v:mID="27" v:groupContext="shape" transform="translate(0,-346.949)">
+				<title>Feuille.27</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.60282981228299):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(&#60;&#60;singleton&#62;&#62; &#10;Count)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L272.13 595.28 L272.13 551.87 L0 551.87 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape29-281" v:mID="29" v:groupContext="shape" transform="translate(263.622,-390.353)">
+				<title>Feuille.29</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape25-282" v:mID="25" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="136.063" cy="226.625" width="272.13" height="43.4037"/>
+				<text x="4" y="222.43" class="st6" v:langID="1041"><v:paragraph/><v:tabList/>&#60;&#60;singleton&#62;&#62; <v:newlineChar/><tspan
+							x="4" dy="1.15em" class="st14">Count</tspan></text>			</g>
+		</g>
+		<g id="shape30-285" v:mID="30" v:groupContext="shape" transform="translate(20.8346,-399.033)">
+			<title>Membre.30</title>
+			<desc>int _nodes int _bitboads int _bitboadsC4 int _nbleaves int _n...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(int _nodes&#10;int _bitboads&#10;int _bitboadsC4&#10;int _nbleaves&#10;int _nodes_created&#10;int _nodes_saved&#10;int _bitboads_saved&#10;int _bitboadsC4_saved&#10;int _nbleaves_saved&#10;int _max_depth&#10;static Count* UniqueInstance)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="133.228" cy="529.274" width="266.46" height="132.004"/>
+			<rect x="0" y="463.272" width="266.457" height="132.004" class="st4"/>
+			<rect x="0" y="463.272" width="266.457" height="132.004" class="st5"/>
+			<text x="8.5" y="472.27" class="st6" v:langID="2057"><v:paragraph/><v:tabList/>int _nodes<v:newlineChar/><tspan x="8.5"
+						dy="1.2em" class="st12">int </tspan>_bitboads<v:newlineChar/><tspan x="8.5" dy="1.2em" class="st12">int </tspan>_bitboadsC4<v:newlineChar/><tspan
+						x="8.5" dy="1.2em" class="st12">int </tspan>_nbleaves<v:newlineChar/><tspan x="8.5" dy="1.2em" class="st12">int </tspan>_nodes_created<v:newlineChar/><tspan
+						x="8.5" dy="1.2em" class="st12">int </tspan>_nodes_saved<v:newlineChar/><tspan x="8.5" dy="1.2em"
+						class="st12">int </tspan>_bitboads_saved<v:newlineChar/><tspan x="8.5" dy="1.2em" class="st12">int </tspan>_bitboadsC4_saved<v:newlineChar/><tspan
+						x="8.5" dy="1.2em" class="st12">int </tspan>_nbleaves_saved<v:newlineChar/><tspan x="8.5" dy="1.2em"
+						class="st12">int </tspan>_max_depth<v:newlineChar/><tspan x="8.5" dy="1.2em" class="st15">static</tspan> Count* UniqueInstance</text>		</g>
+		<g id="shape31-299" v:mID="31" v:groupContext="shape" transform="translate(20.8346,-396.199)">
+			<title>Séparateur.31</title>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(-1):26"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(2):26"/>
+			</v:userDefs>
+			<path d="M0 593.86 L266.46 593.86 L0 593.86 Z" class="st7"/>
+			<path d="M0 593.86 L266.46 593.86" class="st8"/>
+		</g>
+		<g id="shape32-302" v:mID="32" v:groupContext="shape" transform="translate(20.8346,-189.758)">
+			<title>Membre.32</title>
+			<desc>Count() ~Count() int 　 ratio(int&#38;, int&#38;) Public : static Coun...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Count()&#10;~Count()&#10;int 　   ratio(int&#38;, int&#38;)&#10;Public : &#10;static  Count* I()&#10;void 　addNode()&#10;void 　rmNode()&#10;void 　createNode(int)&#10;void 　addBitBoards()&#10;void 　rmBitBoards()&#10;void 　addBitBoardsC4()&#10;void 　rmBitBoardsC4()&#10;void 　saveNbLeaves(int)&#10;void 　saveMaxDepth(int)&#10;void 　clear()&#10;std::ostream&#38; operator&#60;&#60; (std::ostream&#38;, Count*))"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="133.228" cy="492.055" width="266.46" height="206.441"/>
+			<rect x="0" y="388.835" width="266.457" height="206.441" class="st4"/>
+			<rect x="0" y="388.835" width="266.457" height="206.441" class="st5"/>
+			<text x="8.5" y="404.4" class="st6" v:langID="2057"><v:paragraph/><v:tabList/>Count()<v:newlineChar/><tspan x="8.5"
+						dy="1.298em" class="st12">~</tspan>Count(<tspan class="st16" v:langID="1041">)<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.233em" class="st16">int <v:space/></tspan><tspan class="st16" v:langID="1041">　</tspan><tspan
+						class="st16" v:langID="1041">   </tspan><tspan class="st16">ratio</tspan><tspan class="st16">(</tspan><tspan
+						class="st16">int</tspan><tspan class="st16">&#38;, </tspan><tspan class="st16">int</tspan><tspan
+						class="st16">&#38;</tspan><tspan class="st16">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
+						class="st17" v:langID="1041">Public </tspan><tspan class="st17" v:langID="1041">:</tspan><tspan
+						class="st16" v:langID="1041"> </tspan><tspan x="8.5" dy="1.2em" class="st18">static</tspan><tspan
+						class="st16"> </tspan><tspan class="st16" v:langID="1041"> </tspan><tspan class="st16">Count</tspan><tspan
+						class="st16">* </tspan><tspan class="st16">I</tspan><tspan class="st16">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st16">void <v:space/></tspan><tspan class="st16" v:langID="1041">　</tspan><tspan
+						class="st16">addNode</tspan><tspan class="st16">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
+						class="st16">void <v:space/></tspan><tspan class="st16" v:langID="1041">　</tspan><tspan class="st16">rmNode</tspan><tspan
+						class="st16">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st16">void <v:space/></tspan><tspan
+						class="st16" v:langID="1041">　</tspan><tspan class="st16">createNode</tspan><tspan class="st16">(</tspan><tspan
+						class="st16">int</tspan><tspan class="st16" v:langID="1041">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st16">void <v:space/></tspan><tspan class="st16" v:langID="1041">　</tspan><tspan
+						class="st16">addBitBoards</tspan><tspan class="st16">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em"
+						class="st16">void <v:space/></tspan><tspan class="st16" v:langID="1041">　</tspan><tspan class="st16">rmBitBoards</tspan><tspan
+						class="st16">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st16">void <v:space/></tspan><tspan
+						class="st16" v:langID="1041">　</tspan><tspan class="st16">addBitBoardsC</tspan><tspan class="st16">4</tspan><tspan
+						class="st16">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st16">void <v:space/></tspan><tspan
+						class="st16" v:langID="1041">　</tspan><tspan class="st16">rmBitBoardsC</tspan><tspan class="st16">4</tspan><tspan
+						class="st16">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st16">void <v:space/></tspan><tspan
+						class="st16" v:langID="1041">　</tspan><tspan class="st16">saveNbLeaves</tspan><tspan class="st16">(</tspan><tspan
+						class="st16">int</tspan><tspan class="st16" v:langID="1041">)<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st16">void <v:space/></tspan><tspan class="st16" v:langID="1041">　</tspan><tspan
+						class="st16">saveMaxDepth</tspan><tspan class="st16">(</tspan><tspan class="st16">int</tspan><tspan
+						class="st16" v:langID="1041">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st16">void <v:space/></tspan><tspan
+						class="st16" v:langID="1041">　</tspan><tspan class="st16">clear</tspan><tspan class="st16">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st16">std</tspan><tspan class="st16">::</tspan><tspan class="st16">ostream</tspan><tspan
+						class="st16">&#38; </tspan><tspan class="st16">operator</tspan><tspan class="st16">&#60;&#60; </tspan><tspan
+						class="st16">(</tspan><tspan class="st16">std</tspan><tspan class="st16">::</tspan><tspan class="st16">ostream</tspan><tspan
+						class="st16">&#38;, </tspan><tspan class="st16">Count</tspan><tspan class="st16">*</tspan><tspan
+						class="st16" v:langID="1041">)</tspan></text>		</g>
+		<g id="group41-390" transform="translate(354.331,-48.3404)" v:mID="41" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de la classe)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(2.6995582474744):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Connect4)"/>
+			</v:userDefs>
+			<title>Classe.41</title>
+			<desc>Connect4</desc>
+			<g id="shape42-391" v:mID="42" v:groupContext="shape">
+				<title>Feuille.42</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+				</v:userDefs>
+				<path d="M0 595.28 L229.61 595.28 L229.61 493.6 L0 493.6 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape43-393" v:mID="43" v:groupContext="shape" transform="translate(0,-101.673)">
+				<title>Feuille.43</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Connect4)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L229.61 595.28 L229.61 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape45-395" v:mID="45" v:groupContext="shape" transform="translate(221.102,-133.077)">
+				<title>Feuille.45</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape41-396" v:mID="41" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="114.803" cy="477.901" width="229.61" height="31.4037"/>
+				<text x="4" y="481.5" class="st3" v:langID="1041"><v:paragraph/><v:tabList/>Connect4</text>			</g>
+		</g>
+		<g id="shape48-398" v:mID="48" v:groupContext="shape" transform="translate(357.165,-51.1751)">
+			<title>Membre.48</title>
+			<desc>Public : Connect4() ~Connect4() int end(const Bitboard*) void...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Public :&#10;Connect4()&#10;~Connect4()&#10;int end(const Bitboard*)&#10;void play(Move&#38;, Bitboard*)&#10;void diplayBoard(const Bitboard*)&#10;std::list&#60;Move&#62; listPossibleMoves(Bitboard*)&#10;int playRandomMoves(Bitboard*))"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="111.969" cy="547.274" width="223.94" height="96.0039"/>
+			<rect x="0" y="499.272" width="223.937" height="96.0039" class="st4"/>
+			<rect x="0" y="499.272" width="223.937" height="96.0039" class="st5"/>
+			<text x="8.5" y="507.62" class="st9" v:langID="1041"><v:paragraph/><v:tabList/><tspan class="st10">Public </tspan><tspan
+						class="st10">:<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11">Connect</tspan><tspan
+						class="st11">4</tspan><tspan class="st11">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">~</tspan><tspan class="st11">Connect</tspan><tspan class="st11">4</tspan><tspan
+						class="st11" v:langID="2057">()<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11"
+						v:langID="2057">int end</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan class="st11"
+						v:langID="2057">const Bitboard</tspan><tspan class="st11" v:langID="2057">*)<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">void play</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">Move</tspan><tspan class="st11" v:langID="2057">&#38;, </tspan><tspan
+						class="st11" v:langID="2057">Bitboard</tspan><tspan class="st11" v:langID="2057">*)<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.2em" class="st11" v:langID="2057">void diplayBoard</tspan><tspan class="st11" v:langID="2057">(</tspan><tspan
+						class="st11" v:langID="2057">const Bitboard</tspan><tspan class="st11" v:langID="2057">*</tspan><tspan
+						class="st11">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st11" v:langID="2057">std</tspan><tspan
+						class="st11" v:langID="2057">::</tspan><tspan class="st11" v:langID="2057">list</tspan><tspan class="st11"
+						v:langID="2057">&#60;</tspan><tspan class="st11" v:langID="2057">Move</tspan><tspan class="st11"
+						v:langID="2057">&#62;</tspan><tspan class="st11"> </tspan><tspan class="st11" v:langID="2057">listPossibleMoves</tspan><tspan
+						class="st11" v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">Bitboard</tspan><tspan
+						class="st11" v:langID="2057">*</tspan><tspan class="st11">)<v:newlineChar/><v:paragraph/></tspan><tspan
+						x="8.5" dy="1.298em" class="st11" v:langID="2057">int playRandomMoves</tspan><tspan class="st11"
+						v:langID="2057">(</tspan><tspan class="st11" v:langID="2057">Bitboard</tspan><tspan class="st11"
+						v:langID="2057">*</tspan><tspan class="st11">)</tspan></text>		</g>
+		<g id="group49-443" transform="translate(462.047,-181.417)" v:mID="49" v:groupContext="group" v:layerMember="0">
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="RelationshipName" v:prompt="" v:val="VT4()"/>
+				<v:ud v:nameU="ShowMulti" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Identifying" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="DXBegin" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(-0.029527559055118):1"/>
+				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(0.029527559055118):1"/>
+				<v:ud v:nameU="DYEnd" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(-1.5707963267949):32"/>
+				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(0):32"/>
+				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(0.0067105757816353):24"/>
+				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="DYEnd" v:prompt="" v:val="VT0(0.0067105757816353):24"/>
+				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(1.5707963267949):32"/>
+				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(1.5707963267949):32"/>
+			</v:userDefs>
+			<title>Héritage</title>
+			<g id="shape49-444" v:mID="49" v:groupContext="groupContent" v:layerMember="0">
+				<path d="M7.09 595.28 L7.09 572.87" class="st19"/>
+			</g>
+		</g>
+		<g id="group54-450" transform="translate(639.638,-146.703)" v:mID="54" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de la classe)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(2.1027068985974):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(BitboardConnect4)"/>
+			</v:userDefs>
+			<title>Classe.54</title>
+			<desc>BitboardConnect4</desc>
+			<g id="shape55-451" v:mID="55" v:groupContext="shape">
+				<title>Feuille.55</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+				</v:userDefs>
+				<path d="M0 595.28 L184.25 595.28 L184.25 529.6 L0 529.6 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape56-453" v:mID="56" v:groupContext="shape" transform="translate(0,-65.6731)">
+				<title>Feuille.56</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(BitboardConnect4)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L184.25 595.28 L184.25 563.87 L0 563.87 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape58-455" v:mID="58" v:groupContext="shape" transform="translate(175.748,-97.0768)">
+				<title>Feuille.58</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape54-456" v:mID="54" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="92.126" cy="513.901" width="184.26" height="31.4037"/>
+				<text x="4" y="517.5" class="st3" v:langID="1041"><v:paragraph/><v:tabList/>BitboardConnect4</text>			</g>
+		</g>
+		<g id="shape61-458" v:mID="61" v:groupContext="shape" transform="translate(642.472,-149.537)">
+			<title>Membre.61</title>
+			<desc>Public : BitboardConnect4() ~BitboardConnect4() BitboardConne...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Public :&#10;BitboardConnect4()&#10;~BitboardConnect4()&#10;BitboardConnect4* clone() const&#10;std::list&#60;int&#62; getEmpty(int n) const)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="89.2913" cy="565.274" width="178.59" height="60.0038"/>
+			<rect x="0" y="535.272" width="178.583" height="60.0038" class="st4"/>
+			<rect x="0" y="535.272" width="178.583" height="60.0038" class="st5"/>
+			<text x="8.5" y="542.3" class="st9" v:langID="1041"><v:paragraph/><v:tabList/><tspan class="st10">Public </tspan><tspan
+						class="st10">:<v:newlineChar/></tspan><tspan x="8.5" dy="1.298em" class="st13" v:langID="2057">BitboardConnect</tspan><tspan
+						class="st13" v:langID="2057">4</tspan><tspan class="st13" v:langID="2057">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.331em" class="st13" v:langID="2057">~</tspan><tspan class="st13" v:langID="2057">BitboardConnect</tspan><tspan
+						class="st13" v:langID="2057">4</tspan><tspan class="st13" v:langID="2057">()<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.331em" class="st13" v:langID="2057">BitboardConnect</tspan><tspan class="st13"
+						v:langID="2057">4</tspan><tspan class="st13" v:langID="2057">* </tspan><tspan class="st13" v:langID="2057">clone</tspan><tspan
+						class="st13" v:langID="2057">() </tspan><tspan class="st13" v:langID="2057">const<v:newlineChar/></tspan><tspan
+						x="8.5" dy="1.233em" class="st13" v:langID="2057">std</tspan><tspan class="st13" v:langID="2057">::</tspan><tspan
+						class="st13" v:langID="2057">list</tspan><tspan class="st13" v:langID="2057">&#60;</tspan><tspan
+						class="st13" v:langID="2057">int</tspan><tspan class="st13" v:langID="2057">&#62; </tspan><tspan
+						class="st13" v:langID="2057">getEmpty</tspan><tspan class="st13" v:langID="2057">(</tspan><tspan
+						class="st13" v:langID="2057">int n</tspan><tspan class="st13" v:langID="2057">) </tspan><tspan class="st13"
+						v:langID="2057">const</tspan></text>		</g>
+		<g id="group63-488" transform="translate(724.677,-243.78)" v:mID="63" v:groupContext="group" v:layerMember="0">
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="RelationshipName" v:prompt="" v:val="VT4()"/>
+				<v:ud v:nameU="ShowMulti" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Identifying" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="DXBegin" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(-0.029527559055118):1"/>
+				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(0.029527559055118):1"/>
+				<v:ud v:nameU="DYEnd" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(-1.5707963267949):32"/>
+				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(0):32"/>
+				<v:ud v:nameU="DYBegin" v:prompt="" v:val="VT0(0.0036625778824617):24"/>
+				<v:ud v:nameU="DXEnd" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="DYEnd" v:prompt="" v:val="VT0(0.0036625778824622):24"/>
+				<v:ud v:nameU="BeginAngle" v:prompt="" v:val="VT0(1.5707963267949):32"/>
+				<v:ud v:nameU="EndAngle" v:prompt="" v:val="VT0(1.5707963267949):32"/>
+			</v:userDefs>
+			<title>Héritage.63</title>
+			<g id="shape63-489" v:mID="63" v:groupContext="groupContent" v:layerMember="0">
+				<path d="M7.09 595.28 L7.09 587.51" class="st19"/>
+			</g>
+		</g>
+		<g id="group68-494" transform="translate(18,-36.3368)" v:mID="68" v:groupContext="group">
+			<v:userDefs>
+				<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(List)"/>
+				<v:ud v:nameU="msvSDContainerResize" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDContainerNoRibbon" v:prompt="" v:val="VT0(1):5"/>
+				<v:ud v:nameU="msvSDListAlignment" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="msvSDListDirection" v:prompt="" v:val="VT0(2):26"/>
+				<v:ud v:nameU="msvSDListItemMaster1" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster2" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListItemMaster3" v:prompt="" v:val="VT0(254):26"/>
+				<v:ud v:nameU="msvSDListRequiredCategories" v:prompt="" v:val="VT4(Member;Separator)"/>
+				<v:ud v:nameU="msvSDContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="msvSDListSpacing" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+				<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+				<v:ud v:nameU="TextOffset" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(Nom de la classe)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+				<v:ud v:nameU="BackGrnd" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="BackGrndLine" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="Test" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(3.7050018204724):1"/>
+				<v:ud v:nameU="EntityName" v:prompt="" v:val="VT4(&#60;&#60;singleton&#62;&#62;&#10;Random)"/>
+				<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.60282981228299):1"/>
+			</v:userDefs>
+			<title>Classe.68</title>
+			<desc>&#60;&#60;singleton&#62;&#62; Random</desc>
+			<g id="shape69-495" v:mID="69" v:groupContext="shape">
+				<title>Feuille.69</title>
+				<v:userDefs>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="HdrHgt" v:prompt="" v:val="VT0(0.60282981228299):1"/>
+				</v:userDefs>
+				<path d="M0 595.28 L271.13 595.28 L271.13 490.76 L0 490.76 L0 595.28 Z" class="st1"/>
+			</g>
+			<g id="shape70-497" v:mID="70" v:groupContext="shape" transform="translate(0,-104.511)">
+				<title>Feuille.70</title>
+				<v:userDefs>
+					<v:ud v:nameU="msvStructureType" v:prompt="" v:val="VT4(Heading)"/>
+					<v:ud v:nameU="msvSDContainerHeadingEdge" v:prompt="" v:val="VT4(Bottom)"/>
+					<v:ud v:nameU="StereoType" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="StereoTypeHgt" v:prompt="" v:val="VT0(0.22227273084852):1"/>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="TemplateParmHgt" v:prompt="" v:val="VT0(0):1"/>
+					<v:ud v:nameU="EmblOffset" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="Spacer" v:prompt="" v:val="VT0(0):26"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.43616263699002):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(Nom de la classe)"/>
+					<v:ud v:nameU="UsableHgt" v:prompt="" v:val="VT0(0.60282981228299):1"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(&#60;&#60;singleton&#62;&#62;&#10;Random)"/>
+				</v:userDefs>
+				<path d="M0 595.28 L271.13 595.28 L271.13 551.87 L0 551.87 L0 595.28 Z" class="st2"/>
+			</g>
+			<g id="shape72-499" v:mID="72" v:groupContext="shape" transform="translate(262.63,-147.915)">
+				<title>Feuille.72</title>
+				<desc>paramètre</desc>
+				<v:userDefs>
+					<v:ud v:nameU="TemplateParm" v:prompt="" v:val="VT0(0):5"/>
+					<v:ud v:nameU="DOPS" v:prompt="" v:val="VT0(1):27"/>
+					<v:ud v:nameU="Rounding" v:prompt="" v:val="VT0(0.11811023622047):24"/>
+					<v:ud v:nameU="UmlRole" v:prompt="" v:val="VT4(paramètre)"/>
+				</v:userDefs>
+				<v:textBlock v:margins="rect(2,4,2,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="0" cy="595.276" width="0" height="0"/>
+			</g>
+			<g id="shape68-500" v:mID="68" v:groupContext="groupContent">
+				<v:textBlock v:margins="rect(8.5,4,8.5,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="135.567" cy="469.062" width="271.14" height="43.4037"/>
+				<text x="4" y="464.86" class="st6" v:langID="1041"><v:paragraph/><v:tabList/>&#60;&#60;singleton&#62;&#62;<v:newlineChar/><tspan
+							x="4" dy="1.15em" class="st14">Random</tspan></text>			</g>
+		</g>
+		<g id="shape73-503" v:mID="73" v:groupContext="shape" transform="translate(20.8346,-102.01)">
+			<title>Membre.73</title>
+			<desc>static uint64_t _seed static Random* UniqueInstance static st...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(static uint64_t _seed&#10;static Random* UniqueInstance&#10;static std::mt19937_64 rng)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="132.732" cy="577.274" width="265.47" height="36.0037"/>
+			<rect x="0" y="559.272" width="265.465" height="36.0037" class="st4"/>
+			<rect x="0" y="559.272" width="265.465" height="36.0037" class="st5"/>
+			<text x="8.5" y="567.95" class="st9" v:langID="2057"><v:paragraph/><v:tabList/>static<tspan class="st13"> </tspan><tspan
+						class="st13">uint</tspan><tspan class="st13">64</tspan><tspan class="st13">_</tspan><tspan class="st13">t </tspan><tspan
+						class="st13">_</tspan><tspan class="st13">seed<v:newlineChar/></tspan><tspan x="8.5" dy="1.331em"
+						class="st12">static</tspan><tspan class="st13"> </tspan><tspan class="st13">Random</tspan><tspan
+						class="st13">* </tspan><tspan class="st13">UniqueInstance<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.233em" class="st12">static</tspan><tspan class="st13"> </tspan><tspan class="st13">std</tspan><tspan
+						class="st13">::</tspan><tspan class="st13">mt</tspan><tspan class="st13">19937</tspan><tspan class="st13">_</tspan><tspan
+						class="st13">64 </tspan><tspan class="st13">rng</tspan></text>		</g>
+		<g id="shape74-528" v:mID="74" v:groupContext="shape" transform="translate(20.8346,-99.1752)">
+			<title>Séparateur.74</title>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Separator)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(-1):26"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="ItemIndex" v:prompt="" v:val="VT0(2):26"/>
+			</v:userDefs>
+			<path d="M0 593.86 L265.46 593.86 L0 593.86 Z" class="st7"/>
+			<path d="M0 593.86 L265.46 593.86" class="st8"/>
+		</g>
+		<g id="shape75-531" v:mID="75" v:groupContext="shape" transform="translate(20.8346,-39.1714)">
+			<title>Membre.75</title>
+			<desc>Random(uint64_t) ~Random() Public : static Random* I(uint64_t...</desc>
+			<v:userDefs>
+				<v:ud v:nameU="msvShapeCategories" v:prompt="" v:val="VT4(Member)"/>
+				<v:ud v:nameU="MemberName" v:prompt="" v:val="VT4(-NomMembre)"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="WidthMin" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="UserWidth" v:prompt="" v:val="VT0(1.8897637795276):24"/>
+				<v:ud v:nameU="DarkerColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="DarkColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT0(1):26"/>
+				<v:ud v:nameU="BackLineColor" v:prompt="" v:val="VT0(0):26"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(0):5"/>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="MemberName" v:prompt=""
+						v:val="VT4(Random(uint64_t)&#10;~Random()&#10;Public :&#10;static Random* I(uint64_t)&#10;int getNum(int, int))"/>
+				<v:ud v:nameU="ContainerMargin" v:prompt="" v:val="VT0(0.039370078740157):24"/>
+				<v:ud v:nameU="BackFillColor" v:prompt="" v:val="VT5(#f2f2f2)"/>
+				<v:ud v:nameU="IsInstance" v:prompt="" v:val="VT0(1):5"/>
+			</v:userDefs>
+			<v:textBlock v:margins="rect(0,0,0,8.50394)" v:tabSpace="42.5197"/>
+			<v:textRect cx="132.732" cy="565.274" width="265.47" height="60.0038"/>
+			<rect x="0" y="535.272" width="265.465" height="60.0038" class="st4"/>
+			<rect x="0" y="535.272" width="265.465" height="60.0038" class="st5"/>
+			<text x="8.5" y="543.62" class="st6" v:langID="2057"><v:paragraph/><v:tabList/>Random(uint64_t)<v:newlineChar/><tspan
+						x="8.5" dy="1.298em" class="st12">~</tspan>Random()<v:newlineChar/><tspan x="8.5" dy="1.233em" class="st17"
+						v:langID="1041">Public </tspan><tspan class="st17" v:langID="1041">:<v:newlineChar/></tspan><tspan x="8.5"
+						dy="1.2em" class="st18">static</tspan><tspan class="st16"> </tspan><tspan class="st16">Random</tspan><tspan
+						class="st16">* </tspan><tspan class="st16">I</tspan><tspan class="st16">(</tspan><tspan class="st16">uint</tspan><tspan
+						class="st16">64</tspan><tspan class="st16">_</tspan><tspan class="st16">t</tspan><tspan class="st16"
+						v:langID="1041">)<v:newlineChar/></tspan><tspan x="8.5" dy="1.2em" class="st16">int getNum</tspan><tspan
+						class="st16">(</tspan><tspan class="st16">int</tspan><tspan class="st16">, </tspan><tspan class="st16">int</tspan><tspan
+						class="st16">)</tspan></text>		</g>
+	</g>
+</svg>
