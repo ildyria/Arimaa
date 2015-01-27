@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <sstream>
+#include <thread>
 #include "Screen.h"
 #include "InputHandler.h"
 #include "ResourceManager.h"
@@ -29,6 +30,7 @@ private:
 	bool m_p2AI;
 	api::Ai m_ai;
 	float m_someonePlayed;
+	bool m_AIThinking;
 	//UI
 	InputHandler* m_iHandler;
 	Grid* m_grid;
@@ -40,4 +42,5 @@ private:
 
 	void placePiece(int col);
 	bool currPlayerHuman();
+	void makeAIMove();
 };
