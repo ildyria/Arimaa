@@ -6,6 +6,7 @@ sf::View ConfigOptions::m_view;
 bool ConfigOptions::m_inFullscreen;
 InputHandler ConfigOptions::m_iHandler;
 std::string ConfigOptions::m_theme = "";
+int ConfigOptions::m_aiThinkingTime;
 
 void ConfigOptions::init()
 {
@@ -15,6 +16,10 @@ void ConfigOptions::init()
 	ini.SetMultiKey();
 	if (ini.LoadFile("Config.ini") == SI_OK)
 	{
+		/////////////////////GAMEPLAY///////////////////////////////
+		//Difficulty
+		m_aiThinkingTime = atoi(ini.GetValue("Gameplay", "Difficulty", "1"));
+
 		/////////////////////GRAPHICS///////////////////////////////
 		//Resoltion
 		m_resolution = sf::Vector2i(atoi(ini.GetValue("Graphics", "ScreenWidth", "1920")), atoi(ini.GetValue("Graphics", "ScreenHeight", "1080")));

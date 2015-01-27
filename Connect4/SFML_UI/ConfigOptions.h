@@ -32,8 +32,11 @@ public:
 	static inline bool inFullscreen() { return m_inFullscreen; }
 	static inline std::string getTheme() { return m_theme; }
 	static inline InputHandler* getIHandler() { return &m_iHandler; }
+	static inline int getAiThinkingTime() { return m_aiThinkingTime; }
 
 private:
+	static int m_aiThinkingTime;
+
 	static sf::Vector2i m_resolution;
 	static sf::View m_view;
 	static bool m_inFullscreen;

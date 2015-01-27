@@ -3,11 +3,9 @@
 #define NB_COL 7
 #define NB_ROW 7
 #define CENTER_OFFSET sf::Vector2f(0, 0)//67.5)
-#define TIME_LIMIT 1
-#define APPEAR_TIME .25f
 
 Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
-m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(false), m_p2AI(true), m_ai(TIME_LIMIT), m_AIThinking(false)
+m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(false), m_p2AI(true), m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false)
 {
 }
 
@@ -21,10 +19,6 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 {
 	int nextScreen = myID;
 	float elapsedTime = app.GetFrameTime();
-
-	m_someonePlayed -= elapsedTime; //derceasing the timer preventing the AI to play before a piece appears
-	if (m_someonePlayed < 0.f)
-		m_someonePlayed = 0.f;
 
 	sf::Event event;
 	while (app.GetEvent(event)) //waiting events' loop
@@ -59,7 +53,7 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		}
 	} //end of event loop
 
-	if (!currPlayerHuman() && !m_AIThinking && m_someonePlayed == 0.f) //if the AI plays this turn and enough time passed since last turn
+	if (!currPlayerHuman() && !m_AIThinking) //if the AI plays this turn and the AI is not thinking
 	{
 		m_AIThinking = true;
 		std::thread (&Connect4GameScreen::makeAIMove, this).detach();
@@ -114,13 +108,12 @@ void Connect4GameScreen::uninitialize ()
 
 void Connect4GameScreen::clickOn(sf::Vector2i square)
 {
-	if (currPlayerHuman() && m_someonePlayed == 0.f)  //if a human plays this turn and enough time passed since last turn
+	if (currPlayerHuman())  //if a human plays this turn
 	{
 		int col = square.x;
 		if (m_game.makeMove(col+1)) //tries to make a move
 		{
 			placePiece(col);
-			m_someonePlayed = APPEAR_TIME; //states that someone played during this frame
 		}
 	}
 }
@@ -148,6 +141,5 @@ void Connect4GameScreen::makeAIMove()
 	int col = m_ai.makeMove(!(m_p1AI && m_p2AI)) - 1;
 	m_game.makeMove(col + 1);
 	placePiece(col);
-	m_someonePlayed = APPEAR_TIME; //states that someone played during this frame
 	m_AIThinking = false;
 }
