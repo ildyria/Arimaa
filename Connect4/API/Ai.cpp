@@ -1,12 +1,6 @@
 #include "Ai.h"
 #include "../../MCTS/src/tools/Count.h"
 
-#ifdef _WIN64
-#define CLOCK 1000
-#else
-#define CLOCK 10000
-#endif
-
 using namespace mcts;
 
 namespace api {

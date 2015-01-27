@@ -1,6 +1,6 @@
 #include "BoardAlignedSprite.h"
 
-#define BOARD_SPEED 3000
+#define BOARD_SPEED 5000
 
 BoardAlignedSprite::BoardAlignedSprite(Grid* g) : sf::Sprite(), m_grid(g), m_goal(sf::Vector2f(-1, -1))
 {

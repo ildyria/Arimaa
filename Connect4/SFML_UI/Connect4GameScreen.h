@@ -28,6 +28,7 @@ private:
 	bool m_p1AI;
 	bool m_p2AI;
 	api::Ai m_ai;
+	float m_someonePlayed;
 	//UI
 	InputHandler* m_iHandler;
 	Grid* m_grid;
