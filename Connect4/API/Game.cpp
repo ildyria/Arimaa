@@ -2,6 +2,9 @@
 #include "../../MCTS/src/connect4/BitboardConnect4.h"
 #include <algorithm>
 
+using std::max;
+using std::min;
+
 namespace api
 {
 	Game::Game() :_board(new BitboardConnect4()), _game(new Connect4()), _lastMove(0)
@@ -84,8 +87,8 @@ namespace api
 
 			// horizontal...
 			auto xi = posx;
-			auto minxi = std::max(xi - 3, 0);
-			auto maxxi = std::min(xi + 3, _board->getSizeX() - 1);
+			auto minxi = max(xi - 3, 0);
+			auto maxxi = min(xi + 3, _board->getSizeX() - 1);
 			while (xi >= minxi && at(xi, posy) == winner) { xi--; };
 			minxi = xi + 1;
 			xi = posx;
@@ -101,16 +104,16 @@ namespace api
 
 			// vertical
 			int yi = posy;
-			auto minyi = std::max(posy - 3, 0);
 			int l = 0;
-			while (yi >= minyi && at(yi, posy) == winner)
+			while (yi >= 0 && at(posx, yi) == winner)
 			{
 				l++;
-				yi++;
+				yi--;
 			}
-			if (l == 4)
+			auto minyi = yi;
+			if (l >= 4)
 			{
-				for (yi = posy; yi > posy - 4; --yi)
+				for (yi = posy; yi > minyi; --yi)
 				{
 					Res.push_front(std::pair<int, int>(posx, yi));
 				}
@@ -120,10 +123,10 @@ namespace api
 //			std::cout << "diag1" << std::endl;
 			xi = posx;
 			yi = posy;
-			minxi = std::max(xi - 3, 0);
-			maxxi = std::min(xi + 3, _board->getSizeX() - 1);
-			minyi = std::max(yi - 3, 0);
-			auto maxyi = std::min(yi + 3, _board->getSizeY() - 1);
+			minxi = max(xi - 3, 0);
+			maxxi = min(xi + 3, _board->getSizeX() - 1);
+			minyi = max(yi - 3, 0);
+			auto maxyi = min(yi + 3, _board->getSizeY() - 1);
 			while (xi >= minxi && yi >= minyi && at(xi, yi) == winner)
 			{
 /*
@@ -160,10 +163,10 @@ namespace api
 //			std::cout << "diag2" << std::endl;
 			xi = posx;
 			yi = posy;
-			minxi = std::max(xi - 3, 0);
-			maxxi = std::min(xi + 3, _board->getSizeX() - 1);
-			minyi = std::max(yi - 3, 0);
-			maxyi = std::min(yi + 3, _board->getSizeY() - 1);
+			minxi = max(xi - 3, 0);
+			maxxi = min(xi + 3, _board->getSizeX() - 1);
+			minyi = max(yi - 3, 0);
+			maxyi = min(yi + 3, _board->getSizeY() - 1);
 			while (xi >= minxi && yi <= maxyi && at(xi, yi) == winner)
 			{
 /*

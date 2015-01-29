@@ -9,7 +9,7 @@ inline void test_api()
 	Game* game = new Game();
 	Ai* ai = new Ai(2);
 	TheGame* g = game->getGame();
-
+	
 	ai->init(game);
 
 	g->diplayBoard(game->getBitboard());
@@ -45,6 +45,7 @@ inline void test_api()
 
 	ai->init(game);
 	g->diplayBoard(game->getBitboard());
+
 	game->makeMove(4);
 	game->makeMove(3);
 

@@ -9,6 +9,7 @@
 #pragma once
 #include <list>
 #include "Count.h"
+#include "Memory.h"
 
 #define TN template<class N>
 #define FNN FreeObjects<N>::
@@ -46,7 +47,12 @@ TN FNN FreeObjects(){};
 
 TN void FNN set(int n)
 {
-	for (int i = 0; i < n; i++)
+
+	size_t m = (Memory::WinFUllInfo() / (sizeof(N)+ sizeof(Bitboard(7, 6, 2, 1))));
+	std::cout << (sizeof(N)+sizeof(Bitboard(7, 6, 2, 1))) << " size of Node ?? " << std::endl;
+//	std::cout << m << " nodes to be created" <<  std::endl;
+//	m = (n != 1000) ? m : n;
+	for (size_t i = 0; i < n; i++)
 	{
 		_freeNodes.push_front(new N());
 	}

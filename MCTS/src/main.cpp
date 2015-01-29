@@ -1,12 +1,14 @@
 //#define TEST_API
+//#define TEST_MEM
 
-#ifdef TEST_API
+#if defined(TEST_API)
 #include "api/Game.h"
 #include "api/Ai.h"
 #include "api/test.h"
 using namespace api;
 #else
 //#define DISPLAY_TREE
+#include "tools/Memory.h"
 
 #include "./tools/Count.h"
 
@@ -25,6 +27,10 @@ using std::cin;
 using std::endl;
 using std::list;
 
+
+
+
+
 int main(int argc, char const *argv[])
 {
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
@@ -32,6 +38,7 @@ int main(int argc, char const *argv[])
 #ifdef TEST_API
 	test_api();
 #else
+//	Memory::WinFUllInfo();
 	Connect4* game = new Connect4();
 	BitboardConnect4* Bb = new BitboardConnect4();
 
@@ -47,6 +54,8 @@ int main(int argc, char const *argv[])
 	Mcts mcts = Mcts(game,		// game
 					Bb,	// board to start with
 					args);
+
+	Memory::WinFUllInfo();
 
 	int IA = 2;
 	while (result == 0)
