@@ -96,6 +96,7 @@
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="PieceSprite.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="WinSign.h" />
@@ -119,6 +120,12 @@
     <ProjectReference Include="..\API\API.vcxproj">
       <Project>{8c18c0ac-6476-40d8-b18c-2345f96142b5}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SFML_UI.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Graphics\Icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

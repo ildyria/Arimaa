@@ -34,7 +34,7 @@ int main()
 	if(ConfigOptions::inFullscreen())
 		windowStyle |= Style::Fullscreen;
 	RenderWindow app(VideoMode(ConfigOptions::getResolution().x, ConfigOptions::getResolution().y, 32), "Connect4", windowStyle); //Création de la fenêtre app
-	//app.SetIcon(32, 32, ResourceManager::getImage("Icon.png")->GetPixelsPtr());
+	app.SetIcon(135, 135, ResourceManager::getImage("Icon.png")->GetPixelsPtr());
 	app.SetFramerateLimit(60);
 
 	sf::String loadingText("Loading...", *ResourceManager::getFont(), 48);
