@@ -1,12 +1,10 @@
 #include "PieceSprite.h"
 #include <iostream>
 
-#define PIECE_SIZE 135
 #define FREEZE_COLOR sf::Color(100,100,255)
-#define APPEARANCE_SPEED 25
 
 
-PieceSprite::PieceSprite(int playerID, Grid* g, std::string image) : BoardAlignedSprite(g, image)
+PieceSprite::PieceSprite(int playerID, Grid* g, std::string image, int appSpeed) : BoardAlignedSprite(g, image), m_appSpeed(appSpeed)
 {
 	spriteSetup(playerID);
 
@@ -21,10 +19,11 @@ PieceSprite::~PieceSprite(void)
 
 void PieceSprite::spriteSetup(int playerID)
 {
+	int size = (int) GetSize().x;
 	int x = 0;
-	int y = playerID * PIECE_SIZE;
-	SetSubRect(sf::IntRect(x, y, x + PIECE_SIZE, y + PIECE_SIZE));
-	SetCenter(PIECE_SIZE / 2, PIECE_SIZE / 2);
+	int y = playerID * size;
+	SetSubRect(sf::IntRect(x, y, x + size, y + size));
+	SetCenter((float)size / 2, (float)size / 2);
 }
 
 void PieceSprite::update(float elapsedTime)
@@ -33,7 +32,7 @@ void PieceSprite::update(float elapsedTime)
 	float ratio = GetScale().x;
 	if (ratio < 1) //if appearing
 	{
-		ratio += APPEARANCE_SPEED*elapsedTime;
+		ratio += m_appSpeed*elapsedTime;
 		if (ratio > 1)
 			ratio = 1;
 		SetScale(ratio, ratio);

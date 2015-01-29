@@ -35,14 +35,17 @@ private:
 	//UI
 	InputHandler* m_iHandler;
 	Grid* m_grid;
-	WinSign m_winSign;
 
 	sf::Sprite m_background;
 	std::list<PieceSprite*> m_pieces;
+	std::list<PieceSprite*> m_highlight;
 	sf::Sprite m_verticalHighlight;
 	bool m_verticalHighlightVisible;
+	WinSign m_winSign;
+
 
 	void placePiece(int col);
+	void placeHighlight(sf::Vector2i pos);
 	bool currPlayerHuman();
 	void makeAIMove();
 	void checkForWin();

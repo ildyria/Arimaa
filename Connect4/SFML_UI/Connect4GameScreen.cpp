@@ -12,8 +12,11 @@ m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false)
 
 Connect4GameScreen::~Connect4GameScreen(void)
 {
-	for (PieceSprite* s : m_pieces)
-		delete s;
+	for (PieceSprite* p : m_pieces)
+		delete p;
+
+	for (PieceSprite* h : m_highlight)
+		delete h;
 }
 
 int Connect4GameScreen::update (sf::RenderWindow &app)
@@ -63,6 +66,9 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 	for (PieceSprite* p : m_pieces)
 		p->update(elapsedTime);
 
+	for (PieceSprite* h : m_highlight)
+		h->update(elapsedTime);
+
 	m_winSign.update(elapsedTime);
 
 	return nextScreen;
@@ -75,6 +81,9 @@ void Connect4GameScreen::draw (sf::RenderWindow &app)
 
 	//START DRAWING
 	app.Draw(m_background);
+
+	for (PieceSprite* h : m_highlight)
+		app.Draw(*h);
 
 	for (PieceSprite* p : m_pieces)
 		app.Draw(*p);
@@ -136,6 +145,13 @@ void Connect4GameScreen::placePiece(int col)
 	m_pieces.back()->moveOnSquare(piecePos, false);
 }
 
+void Connect4GameScreen::placeHighlight(sf::Vector2i pos)
+{
+	sf::Vector2i piecePos(NB_COL - pos.x - 1, NB_ROW - pos.y - 1);
+	m_highlight.push_back(new PieceSprite(0, m_grid, "Highlight.png", 5));
+	m_highlight.back()->moveOnSquare(piecePos);
+}
+
 bool Connect4GameScreen::currPlayerHuman()
 {
 	if (m_game.activePlayer() == 1)
@@ -158,6 +174,14 @@ void Connect4GameScreen::checkForWin()
 {
 	if (gameOver())
 	{
+		//win sign
 		m_winSign.activate(m_game.getWinner()-1);
+
+		//highlight
+		auto highlightPos = m_game.getWinningLine();
+		for (std::pair<int, int> p : highlightPos)
+		{
+			placeHighlight(sfmlop::toVect2(p));
+		}
 	}
 }
