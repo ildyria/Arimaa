@@ -1,6 +1,6 @@
-The "C++ Actor Framework" or "CAF" or "Actor Model" describes concurrent activities "actors" that communicate only via message passing.Actors can create new actors (using function spawn)and monitor each other to build fault tolerent ,hierarchial systems.
+The \"C++ Actor Framework\" or \"CAF\" or \"Actor Model\" describes concurrent activities \"actors\" that communicate only via message passing.Actors can create new actors (using function spawn)and monitor each other to build fault tolerent ,hierarchial systems.
 CAF provides several actor implementations each covering a particular use case. All the actors network wide have unique logical address that can be used for identification & monitoring.For sending the messages an actor contains the address of an actor along with its type information.
-Actors can send message to another actor using the member function "send".CAF supports both asynchronous and synchronous communication. The member function "sync_send" sends synchronous request messages.
+Actors can send message to another actor using the member function \"send\".CAF supports both asynchronous and synchronous communication. The member function \"sync_send\" sends synchronous request messages.
 While receiving messages,the current behavior of an actor is its response to the next incoming message and includes (a)sending messages to other actors, (b) creation of more actors, and (c) setting a new behavior.An event-based actor, i.e., the default implementation in CAF, uses become to set its behavior.
 Publish/subscribe based group communication is also supported by CAF.Actors can join and leave groups and send messages to groups .
 To compile CAF, we need CMake and a c++11.To get and compile the sources,open a terminal and type:
