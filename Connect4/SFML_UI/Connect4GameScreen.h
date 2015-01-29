@@ -48,7 +48,9 @@ private:
 	void clickOn(sf::Vector2i square);
 	void moveCursor(int col);
 	void moveCursorRel(int offset);
-	void updateCursorSprite();
+	void updateCursorPos();
+	void updateCursorCol();
+	void setCursorCol(int col);
 	void placePiece(int col);
 	void placeHighlight(sf::Vector2i pos);
 	bool currPlayerHuman();

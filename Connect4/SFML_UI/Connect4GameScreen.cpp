@@ -3,6 +3,7 @@
 
 #define NB_COL 7
 #define NB_ROW 7
+#define NB_CURSOR 3
 
 Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
 m_grid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter()), m_game(new api::Game()), m_p1AI(ConfigOptions::getP1AI()), m_p2AI(ConfigOptions::getP2AI()),
@@ -126,7 +127,7 @@ void Connect4GameScreen::initialize ()
 	if (m_verticalHighlight.GetImage() == nullptr)
 	{
 		m_verticalHighlight.SetImage(*ResourceManager::getImage("VerticalHighlight.png"));
-		m_verticalHighlight.SetCenter(m_verticalHighlight.GetSize().x / 2, 0);
+		m_verticalHighlight.SetCenter(m_verticalHighlight.GetSize().x / (2 * NB_CURSOR), 0);
 	}
 
 	ResourceManager::getImage("Pieces.png");
@@ -136,6 +137,9 @@ void Connect4GameScreen::initialize ()
 
 	if (m_p1AI || m_p2AI) //if there is an AI, load the AI
 		m_ai.init(m_game);
+
+	setCursorCol(0); //set cursor to default color
+	updateCursorCol(); //if first player is human, set the cursor to the appropriate color
 }
 
 void Connect4GameScreen::uninitialize ()
@@ -155,6 +159,7 @@ void Connect4GameScreen::clickOn(sf::Vector2i square)
 		if (m_game->makeMove(col + 1)) //tries to make a move
 		{
 			placePiece(col);
+			updateCursorCol();
 			checkForWin();
 		}
 	}
@@ -169,7 +174,7 @@ void Connect4GameScreen::moveCursor(int col)
 	else
 		m_cursor = -1;
 
-	updateCursorSprite();
+	updateCursorPos();
 }
 
 void Connect4GameScreen::moveCursorRel(int offset)
@@ -179,10 +184,10 @@ void Connect4GameScreen::moveCursorRel(int offset)
 
 	m_cursor += offset;
 	m_cursor = (m_cursor + NB_COL) % NB_COL;
-	updateCursorSprite();
+	updateCursorPos();
 }
 
-void Connect4GameScreen::updateCursorSprite()
+void Connect4GameScreen::updateCursorPos()
 {
 	if (m_cursor == -1)
 		m_verticalHighlightVisible = false;
@@ -191,6 +196,23 @@ void Connect4GameScreen::updateCursorSprite()
 		m_verticalHighlightVisible = true;
 		m_verticalHighlight.SetPosition(m_grid.toPixels(sf::Vector2i(m_cursor, 0)).x, 0);
 	}
+}
+
+void Connect4GameScreen::updateCursorCol()
+{
+	if (currPlayerHuman()) //only shows the color of human players
+	{
+		setCursorCol(m_game->activePlayer());
+	}
+}
+
+void Connect4GameScreen::setCursorCol(int col)
+{
+	int height = (int)m_verticalHighlight.GetImage()->GetHeight();
+	int width = (int)m_verticalHighlight.GetImage()->GetWidth() / NB_CURSOR;
+	int x = col * width;
+	int y = 0;
+	m_verticalHighlight.SetSubRect(sf::IntRect(x, y, x + width, y + height));
 }
 
 void Connect4GameScreen::placePiece(int col)
@@ -220,9 +242,10 @@ bool Connect4GameScreen::currPlayerHuman()
 
 void Connect4GameScreen::makeAIMove()
 {
-	int col = m_ai.makeMove(!(m_p1AI && m_p2AI)) - 1;
+	int col = m_ai.makeMove(!(m_p1AI && m_p2AI)) - 1; //m_p1AI && m_p2AI means it's AI VS AI, so player didn't move since last time
 	m_game->makeMove(col + 1);
 	placePiece(col);
+	updateCursorCol();
 	checkForWin();
 	refreshDialogText();
 	m_AIThinking = false;
