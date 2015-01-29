@@ -31,6 +31,7 @@ private:
 	bool m_p2AI;
 	api::Ai m_ai;
 	bool m_AIThinking;
+	float m_resetTimer;
 
 	//UI
 	InputHandler* m_iHandler;

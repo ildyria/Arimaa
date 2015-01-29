@@ -21,7 +21,7 @@ void WinSign::loadAssets()
 	m_sprite.SetImage(*ResourceManager::getImage("Victory_Sign.png"));
 
 	m_sprite.SetPosition(WS_START_POS);
-	m_sprite.SetCenter(m_sprite.GetSize().x / 2, m_sprite.GetSize().y / (2 * NB_SIGNS));
+	m_sprite.SetCenter((float)m_sprite.GetImage()->GetWidth() / 2, (float)m_sprite.GetImage()->GetHeight() / (2 * NB_SIGNS));
 }
 
 void WinSign::unloadAssets()
@@ -64,8 +64,8 @@ void WinSign::activate(int player)
 	{
 		m_on = true;
 
-		int width = (int) m_sprite.GetSize().x;
-		int height = (int)m_sprite.GetSize().y / NB_SIGNS;
+		int width = (int) m_sprite.GetImage()->GetWidth();
+		int height = (int)m_sprite.GetImage()->GetHeight() / NB_SIGNS;
 		int x = 0;
 		int y = player * height;
 		m_sprite.SetSubRect(sf::IntRect(x, y, x + width, y + height));
@@ -78,5 +78,6 @@ void WinSign::unactivate()
 	{
 		m_on = false;
 		m_timer = 0;
+		m_sprite.SetPosition(WS_START_POS);
 	}
 }

@@ -4,10 +4,11 @@
 #define NB_COL 7
 #define NB_ROW 7
 #define NB_CURSOR 3
+#define RESET_TIME 5
 
 Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
 m_grid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter()), m_game(new api::Game()), m_p1AI(ConfigOptions::getP1AI()), m_p2AI(ConfigOptions::getP2AI()),
-m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false), m_cursor(-1)
+m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false), m_cursor(-1), m_resetTimer(0)
 {
 }
 
@@ -91,6 +92,14 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		m_bubble.untoggle();
 
 	m_bubble.update(elapsedTime);
+
+	//handles auto game reset
+	if (gameOver() && ConfigOptions::getAutoReset())
+	{
+		m_resetTimer += elapsedTime;
+		if (m_resetTimer > RESET_TIME)
+			resetGame();
+	}
 
 	return nextScreen;
 }
@@ -297,6 +306,8 @@ void Connect4GameScreen::resetGame()
 	if (m_p1AI || m_p2AI) //if there is an AI, load the AI
 		m_ai.init(m_game);
 
+	m_resetTimer = 0;
+
 	//resetting UI
 	for (PieceSprite* p : m_pieces)
 		delete p;
@@ -305,6 +316,8 @@ void Connect4GameScreen::resetGame()
 	for (PieceSprite* h : m_highlight)
 		delete h;
 	m_highlight.clear();
+
+	updateCursorCol();
 
 	m_winSign.unactivate();
 	m_bubble.untoggle();

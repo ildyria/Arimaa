@@ -10,6 +10,7 @@ int ConfigOptions::m_aiThinkingTime;
 bool ConfigOptions::m_p1AI;
 bool ConfigOptions::m_p2AI;
 bool ConfigOptions::m_dialogOn;
+bool ConfigOptions::m_autoReset;
 
 void ConfigOptions::init()
 {
@@ -25,6 +26,7 @@ void ConfigOptions::init()
 		m_p1AI = ini.GetBoolValue("Gameplay", "Player1AI", 0);
 		m_p2AI = ini.GetBoolValue("Gameplay", "Player2AI", 0);
 		m_dialogOn = ini.GetBoolValue("Gameplay", "ShowDialog", 0);
+		m_autoReset = ini.GetBoolValue("Gameplay", "AutoReset", 0);
 
 		/////////////////////GRAPHICS///////////////////////////////
 		//Resoltion
