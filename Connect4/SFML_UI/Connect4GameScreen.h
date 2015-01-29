@@ -10,6 +10,7 @@
 #include "CenteredGrid.h"
 #include "../API/Game.h"
 #include "../API/Ai.h"
+#include "WinSign.h"
 
 class Connect4GameScreen :
 	public Screen
@@ -30,9 +31,11 @@ private:
 	bool m_p2AI;
 	api::Ai m_ai;
 	bool m_AIThinking;
+
 	//UI
 	InputHandler* m_iHandler;
 	Grid* m_grid;
+	WinSign m_winSign;
 
 	sf::Sprite m_background;
 	std::list<PieceSprite*> m_pieces;
@@ -42,4 +45,7 @@ private:
 	void placePiece(int col);
 	bool currPlayerHuman();
 	void makeAIMove();
+	void checkForWin();
+
+	inline bool gameOver() { return m_game.getWinner() != 0; };
 };

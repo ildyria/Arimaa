@@ -97,6 +97,7 @@
     <ClInclude Include="PieceSprite.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Screen.h" />
+    <ClInclude Include="WinSign.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CenteredGrid.cpp" />
@@ -107,6 +108,7 @@
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="PieceSprite.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="WinSign.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MCTS\MCTS.vcxproj">

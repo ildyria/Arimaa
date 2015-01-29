@@ -5,7 +5,7 @@ class PieceSprite :
 	public BoardAlignedSprite
 {
 public:
-	PieceSprite(int playerID, Grid* g, std::string image = "Connect4/Pieces.png");
+	PieceSprite(int playerID, Grid* g, std::string image = "Pieces.png");
 	~PieceSprite(void);
 
 

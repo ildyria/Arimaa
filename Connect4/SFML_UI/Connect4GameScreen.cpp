@@ -5,7 +5,8 @@
 #define CENTER_OFFSET sf::Vector2f(0, 0)//67.5)
 
 Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
-m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(false), m_p2AI(true), m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false)
+m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(ConfigOptions::getP1AI()), m_p2AI(ConfigOptions::getP2AI()),
+m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false)
 {
 }
 
@@ -53,7 +54,7 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		}
 	} //end of event loop
 
-	if (!currPlayerHuman() && !m_AIThinking) //if the AI plays this turn and the AI is not thinking
+	if (!gameOver() && !currPlayerHuman() && !m_AIThinking) //if the AI plays this turn and the AI is not thinking and the game is not over
 	{
 		m_AIThinking = true;
 		std::thread (&Connect4GameScreen::makeAIMove, this).detach();
@@ -61,6 +62,8 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 	
 	for (PieceSprite* p : m_pieces)
 		p->update(elapsedTime);
+
+	m_winSign.update(elapsedTime);
 
 	return nextScreen;
 }
@@ -78,6 +81,8 @@ void Connect4GameScreen::draw (sf::RenderWindow &app)
 
 	if (m_verticalHighlightVisible)
 		app.Draw(m_verticalHighlight);
+
+	m_winSign.draw(app);
 	//STOP DRAWING
 
 	app.Display();
@@ -86,34 +91,38 @@ void Connect4GameScreen::draw (sf::RenderWindow &app)
 void Connect4GameScreen::initialize ()
 {
 	if(m_background.GetImage() == nullptr)
-		m_background.SetImage(*ResourceManager::getImage("Connect4/Board.png"));
+		m_background.SetImage(*ResourceManager::getImage("Board.png"));
 
 	if (m_verticalHighlight.GetImage() == nullptr)
 	{
-		m_verticalHighlight.SetImage(*ResourceManager::getImage("Connect4/VerticalHighlight.png"));
+		m_verticalHighlight.SetImage(*ResourceManager::getImage("VerticalHighlight.png"));
 		m_verticalHighlight.SetCenter(m_verticalHighlight.GetSize().x / 2, 0);
 	}
 
-	ResourceManager::getImage("Connect4/Pieces.png");
+	ResourceManager::getImage("Pieces.png");
+	m_winSign.loadAssets();
 
-	m_ai.init(&m_game);
+	if (m_p1AI || m_p2AI) //if there is an AI, load the AI
+		m_ai.init(&m_game);
 }
 
 void Connect4GameScreen::uninitialize ()
 {
-	ResourceManager::unloadImage("Connect4/Board.png");
-	ResourceManager::unloadImage("Connect4/Pieces.png");
-	ResourceManager::unloadImage("Connect4/VerticalHighlight.png");
+	ResourceManager::unloadImage("Board.png");
+	ResourceManager::unloadImage("Pieces.png");
+	ResourceManager::unloadImage("VerticalHighlight.png");
+	m_winSign.unloadAssets();
 }
 
 void Connect4GameScreen::clickOn(sf::Vector2i square)
 {
-	if (currPlayerHuman())  //if a human plays this turn
+	if (!gameOver() && currPlayerHuman())  //if a human plays this turn and the game is still on
 	{
 		int col = square.x;
 		if (m_game.makeMove(col+1)) //tries to make a move
 		{
 			placePiece(col);
+			checkForWin();
 		}
 	}
 }
@@ -141,5 +150,14 @@ void Connect4GameScreen::makeAIMove()
 	int col = m_ai.makeMove(!(m_p1AI && m_p2AI)) - 1;
 	m_game.makeMove(col + 1);
 	placePiece(col);
+	checkForWin();
 	m_AIThinking = false;
+}
+
+void Connect4GameScreen::checkForWin()
+{
+	if (gameOver())
+	{
+		m_winSign.activate(m_game.getWinner()-1);
+	}
 }

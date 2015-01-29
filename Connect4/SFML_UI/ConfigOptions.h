@@ -33,9 +33,13 @@ public:
 	static inline std::string getTheme() { return m_theme; }
 	static inline InputHandler* getIHandler() { return &m_iHandler; }
 	static inline int getAiThinkingTime() { return m_aiThinkingTime; }
+	static inline bool getP1AI() { return m_p1AI; }
+	static inline bool getP2AI() { return m_p2AI; }
 
 private:
 	static int m_aiThinkingTime;
+	static bool m_p1AI;
+	static bool m_p2AI;
 
 	static sf::Vector2i m_resolution;
 	static sf::View m_view;
