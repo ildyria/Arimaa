@@ -3,10 +3,9 @@
 
 #define NB_COL 7
 #define NB_ROW 7
-#define CENTER_OFFSET sf::Vector2f(0, 0)//67.5)
 
 Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
-m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(ConfigOptions::getP1AI()), m_p2AI(ConfigOptions::getP2AI()),
+m_grid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter()), m_game(new api::Game()), m_p1AI(ConfigOptions::getP1AI()), m_p2AI(ConfigOptions::getP2AI()),
 m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false), m_cursor(-1)
 {
 }
@@ -18,6 +17,8 @@ Connect4GameScreen::~Connect4GameScreen(void)
 
 	for (PieceSprite* h : m_highlight)
 		delete h;
+
+	delete m_game;
 }
 
 int Connect4GameScreen::update (sf::RenderWindow &app)
@@ -39,7 +40,7 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		else if (event.Type == sf::Event::MouseMoved)
 		{
 			sf::Vector2f pos = app.ConvertCoords(event.MouseMove.X, event.MouseMove.Y, &ConfigOptions::getView());
-			moveCursor(m_grid->toSquares(pos).x);
+			moveCursor(m_grid.toSquares(pos).x);
 		}
 		else if (m_iHandler->testEvent(event, "Left"))
 		{
@@ -52,14 +53,19 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		else if (m_iHandler->testEvent(event, "LClick"))
 		{
 			sf::Vector2f mouseCoords = app.ConvertCoords(event.MouseButton.X, event.MouseButton.Y, &ConfigOptions::getView());
-			sf::Vector2i s = m_grid->toSquares(mouseCoords);
-			if (m_grid->isOnGrid(s))
+			sf::Vector2i s = m_grid.toSquares(mouseCoords);
+			if (m_grid.isOnGrid(s))
 				clickOn(s);
 		}
 		else if (m_iHandler->testEvent(event, "Select"))
 		{
 			if (m_cursor != -1)
-				clickOn(sf::Vector2i(m_cursor,0));
+				clickOn(sf::Vector2i(m_cursor, 0));
+		}
+		else if (m_iHandler->testEvent(event, "Reset"))
+		{
+			if (!m_AIThinking) //dangerous to reset while the AI is working
+				resetGame();
 		}
 	} //end of event loop
 
@@ -129,7 +135,7 @@ void Connect4GameScreen::initialize ()
 	m_bubble.setPosition(sf::Vector2f(0, ConfigOptions::getNativeCenter().y / 2));
 
 	if (m_p1AI || m_p2AI) //if there is an AI, load the AI
-		m_ai.init(&m_game);
+		m_ai.init(m_game);
 }
 
 void Connect4GameScreen::uninitialize ()
@@ -146,7 +152,7 @@ void Connect4GameScreen::clickOn(sf::Vector2i square)
 	if (!gameOver() && currPlayerHuman())  //if a human plays this turn and the game is still on
 	{
 		int col = square.x;
-		if (m_game.makeMove(col+1)) //tries to make a move
+		if (m_game->makeMove(col + 1)) //tries to make a move
 		{
 			placePiece(col);
 			checkForWin();
@@ -158,7 +164,7 @@ void Connect4GameScreen::moveCursor(int col)
 {
 	sf::Vector2i v = sf::Vector2i(col, 0); //only considers the x value
 
-	if (m_grid->isOnGrid(v))
+	if (m_grid.isOnGrid(v))
 		m_cursor = col;
 	else
 		m_cursor = -1;
@@ -183,15 +189,15 @@ void Connect4GameScreen::updateCursorSprite()
 	else
 	{
 		m_verticalHighlightVisible = true;
-		m_verticalHighlight.SetPosition(m_grid->toPixels(sf::Vector2i(m_cursor, 0)).x, 0);
+		m_verticalHighlight.SetPosition(m_grid.toPixels(sf::Vector2i(m_cursor, 0)).x, 0);
 	}
 }
 
 void Connect4GameScreen::placePiece(int col)
 {
-	sf::Vector2i piecePos(col, NB_ROW - m_game.colHeight(col + 1));
+	sf::Vector2i piecePos(col, NB_ROW - m_game->colHeight(col + 1));
 	sf::Vector2i origPiecePos(col, 0);
-	m_pieces.push_back(new PieceSprite(m_game.activePlayer() - 1, m_grid));
+	m_pieces.push_back(new PieceSprite(m_game->activePlayer() - 1, &m_grid));
 	m_pieces.back()->moveOnSquare(origPiecePos);
 	m_pieces.back()->moveOnSquare(piecePos, false);
 }
@@ -199,13 +205,13 @@ void Connect4GameScreen::placePiece(int col)
 void Connect4GameScreen::placeHighlight(sf::Vector2i pos)
 {
 	sf::Vector2i piecePos(NB_COL - pos.x - 1, NB_ROW - pos.y - 1);
-	m_highlight.push_back(new PieceSprite(0, m_grid, "Highlight.png", 5));
+	m_highlight.push_back(new PieceSprite(0, &m_grid, "Highlight.png", 2));
 	m_highlight.back()->moveOnSquare(piecePos);
 }
 
 bool Connect4GameScreen::currPlayerHuman()
 {
-	if (m_game.activePlayer() == 1)
+	if (m_game->activePlayer() == 1)
 		return !m_p1AI;
 	//else
 	return !m_p2AI;
@@ -215,7 +221,7 @@ bool Connect4GameScreen::currPlayerHuman()
 void Connect4GameScreen::makeAIMove()
 {
 	int col = m_ai.makeMove(!(m_p1AI && m_p2AI)) - 1;
-	m_game.makeMove(col + 1);
+	m_game->makeMove(col + 1);
 	placePiece(col);
 	checkForWin();
 	refreshDialogText();
@@ -227,10 +233,10 @@ void Connect4GameScreen::checkForWin()
 	if (gameOver())
 	{
 		//win sign
-		m_winSign.activate(m_game.getWinner()-1);
+		m_winSign.activate(m_game->getWinner() - 1);
 
 		//highlight
-		auto highlightPos = m_game.getWinningLine();
+		auto highlightPos = m_game->getWinningLine();
 		for (std::pair<int, int> p : highlightPos)
 		{
 			placeHighlight(sfmlop::toVect2(p));
@@ -257,4 +263,26 @@ void Connect4GameScreen::refreshDialogText()
 		text = ss.str();
 	}
 	m_bubble.setText(text);
+}
+
+void Connect4GameScreen::resetGame()
+{
+	//resetting model
+	delete m_game;
+	m_game = new api::Game();
+
+	if (m_p1AI || m_p2AI) //if there is an AI, load the AI
+		m_ai.init(m_game);
+
+	//resetting UI
+	for (PieceSprite* p : m_pieces)
+		delete p;
+	m_pieces.clear();
+
+	for (PieceSprite* h : m_highlight)
+		delete h;
+	m_highlight.clear();
+
+	m_winSign.unactivate();
+	m_bubble.untoggle();
 }

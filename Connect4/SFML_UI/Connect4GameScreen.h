@@ -26,7 +26,7 @@ public:
 
 private:
 	//Game
-	api::Game m_game;
+	api::Game* m_game;
 	bool m_p1AI;
 	bool m_p2AI;
 	api::Ai m_ai;
@@ -34,7 +34,7 @@ private:
 
 	//UI
 	InputHandler* m_iHandler;
-	Grid* m_grid;
+	CenteredGrid m_grid;
 	int m_cursor;
 
 	sf::Sprite m_background;
@@ -55,6 +55,7 @@ private:
 	void makeAIMove();
 	void checkForWin();
 	void refreshDialogText();
+	void resetGame();
 
-	inline bool gameOver() { return m_game.getWinner() != 0; };
+	inline bool gameOver() { return m_game->getWinner() != 0; };
 };

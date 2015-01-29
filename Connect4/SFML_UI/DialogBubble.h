@@ -23,5 +23,9 @@ private:
 	sf::Sprite m_sprite;
 	sf::String m_text;
 	bool m_on;
+	float m_timer;
+	sf::Vector2f m_origPos;
+
+	void setOpacity(int op);
 };
 
