@@ -6,7 +6,7 @@
 
 Connect4GameScreen::Connect4GameScreen(unsigned int myID) : Screen(myID), m_iHandler(ConfigOptions::getIHandler()), m_verticalHighlightVisible(false),
 m_grid(new CenteredGrid(135, sf::Vector2i(NB_COL, NB_ROW), ConfigOptions::getNativeCenter() + CENTER_OFFSET)), m_game(), m_p1AI(ConfigOptions::getP1AI()), m_p2AI(ConfigOptions::getP2AI()),
-m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false)
+m_ai(ConfigOptions::getAiThinkingTime()), m_AIThinking(false), m_cursor(-1)
 {
 }
 
@@ -38,15 +38,15 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 		else if (event.Type == sf::Event::MouseMoved)
 		{
 			sf::Vector2f pos = app.ConvertCoords(event.MouseMove.X, event.MouseMove.Y, &ConfigOptions::getView());
-			sf::Vector2i squ = m_grid->toSquares(pos);
-			squ.y = 0; //only considers the x value
-			if (m_grid->isOnGrid(squ))
-			{
-				m_verticalHighlight.SetPosition(m_grid->toPixels(squ).x, 0);
-				m_verticalHighlightVisible = true;
-			}
-			else
-				m_verticalHighlightVisible = false;
+			moveCursor(m_grid->toSquares(pos).x);
+		}
+		else if (m_iHandler->testEvent(event, "Left"))
+		{
+			moveCursorRel(-1);
+		}
+		else if (m_iHandler->testEvent(event, "Right"))
+		{
+			moveCursorRel(1);
 		}
 		else if (m_iHandler->testEvent(event, "LClick"))
 		{
@@ -54,6 +54,11 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 			sf::Vector2i s = m_grid->toSquares(mouseCoords);
 			if (m_grid->isOnGrid(s))
 				clickOn(s);
+		}
+		else if (m_iHandler->testEvent(event, "Select"))
+		{
+			if (m_cursor != -1)
+				clickOn(sf::Vector2i(m_cursor,0));
 		}
 	} //end of event loop
 
@@ -133,6 +138,39 @@ void Connect4GameScreen::clickOn(sf::Vector2i square)
 			placePiece(col);
 			checkForWin();
 		}
+	}
+}
+
+void Connect4GameScreen::moveCursor(int col)
+{
+	sf::Vector2i v = sf::Vector2i(col, 0); //only considers the x value
+
+	if (m_grid->isOnGrid(v))
+		m_cursor = col;
+	else
+		m_cursor = -1;
+
+	updateCursorSprite();
+}
+
+void Connect4GameScreen::moveCursorRel(int offset)
+{
+	if (m_cursor == -1)
+		offset = (offset + 1) / 2; //going right from nothing places you in col 0, going left in col -1
+
+	m_cursor += offset;
+	m_cursor = (m_cursor + NB_COL) % NB_COL;
+	updateCursorSprite();
+}
+
+void Connect4GameScreen::updateCursorSprite()
+{
+	if (m_cursor == -1)
+		m_verticalHighlightVisible = false;
+	else
+	{
+		m_verticalHighlightVisible = true;
+		m_verticalHighlight.SetPosition(m_grid->toPixels(sf::Vector2i(m_cursor, 0)).x, 0);
 	}
 }
 

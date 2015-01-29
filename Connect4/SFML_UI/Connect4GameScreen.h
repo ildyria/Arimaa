@@ -21,7 +21,6 @@ public:
 	void draw (sf::RenderWindow &app);
 	void initialize ();
 	void uninitialize ();
-	void clickOn(sf::Vector2i square);
 	~Connect4GameScreen(void);
 
 private:
@@ -35,6 +34,7 @@ private:
 	//UI
 	InputHandler* m_iHandler;
 	Grid* m_grid;
+	int m_cursor;
 
 	sf::Sprite m_background;
 	std::list<PieceSprite*> m_pieces;
@@ -43,7 +43,10 @@ private:
 	bool m_verticalHighlightVisible;
 	WinSign m_winSign;
 
-
+	void clickOn(sf::Vector2i square);
+	void moveCursor(int col);
+	void moveCursorRel(int offset);
+	void updateCursorSprite();
 	void placePiece(int col);
 	void placeHighlight(sf::Vector2i pos);
 	bool currPlayerHuman();
