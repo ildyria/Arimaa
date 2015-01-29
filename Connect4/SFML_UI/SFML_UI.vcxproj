@@ -92,6 +92,7 @@
     <ClInclude Include="CenteredGrid.h" />
     <ClInclude Include="ConfigOptions.h" />
     <ClInclude Include="Connect4GameScreen.h" />
+    <ClInclude Include="DialogBubble.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="PieceSprite.h" />
@@ -101,6 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CenteredGrid.cpp" />
+    <ClCompile Include="DialogBubble.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="BoardAlignedSprite.cpp" />
     <ClCompile Include="ConfigOptions.cpp" />

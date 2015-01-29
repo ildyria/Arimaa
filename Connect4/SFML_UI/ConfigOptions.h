@@ -35,11 +35,13 @@ public:
 	static inline int getAiThinkingTime() { return m_aiThinkingTime; }
 	static inline bool getP1AI() { return m_p1AI; }
 	static inline bool getP2AI() { return m_p2AI; }
+	static inline bool getDialogOn() { return m_dialogOn; }
 
 private:
 	static int m_aiThinkingTime;
 	static bool m_p1AI;
 	static bool m_p2AI;
+	static bool m_dialogOn;
 
 	static sf::Vector2i m_resolution;
 	static sf::View m_view;

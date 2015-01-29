@@ -11,6 +11,7 @@
 #include "../API/Game.h"
 #include "../API/Ai.h"
 #include "WinSign.h"
+#include "DialogBubble.h"
 
 class Connect4GameScreen :
 	public Screen
@@ -42,6 +43,7 @@ private:
 	sf::Sprite m_verticalHighlight;
 	bool m_verticalHighlightVisible;
 	WinSign m_winSign;
+	DialogBubble m_bubble;
 
 	void clickOn(sf::Vector2i square);
 	void moveCursor(int col);
@@ -52,6 +54,7 @@ private:
 	bool currPlayerHuman();
 	void makeAIMove();
 	void checkForWin();
+	void refreshDialogText();
 
 	inline bool gameOver() { return m_game.getWinner() != 0; };
 };

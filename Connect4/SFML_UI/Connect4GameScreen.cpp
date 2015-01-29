@@ -1,4 +1,5 @@
 #include "Connect4GameScreen.h"
+#include <sstream>
 
 #define NB_COL 7
 #define NB_ROW 7
@@ -76,6 +77,14 @@ int Connect4GameScreen::update (sf::RenderWindow &app)
 
 	m_winSign.update(elapsedTime);
 
+	//the AI speaks when not thinking
+	if (ConfigOptions::getDialogOn() && (m_p1AI || m_p2AI) && !m_AIThinking && !gameOver())
+		m_bubble.toggle();
+	else
+		m_bubble.untoggle();
+
+	m_bubble.update(elapsedTime);
+
 	return nextScreen;
 }
 
@@ -97,6 +106,7 @@ void Connect4GameScreen::draw (sf::RenderWindow &app)
 		app.Draw(m_verticalHighlight);
 
 	m_winSign.draw(app);
+	m_bubble.draw(app);
 	//STOP DRAWING
 
 	app.Display();
@@ -115,6 +125,8 @@ void Connect4GameScreen::initialize ()
 
 	ResourceManager::getImage("Pieces.png");
 	m_winSign.loadAssets();
+	m_bubble.loadAssets();
+	m_bubble.setPosition(sf::Vector2f(0, ConfigOptions::getNativeCenter().y / 2));
 
 	if (m_p1AI || m_p2AI) //if there is an AI, load the AI
 		m_ai.init(&m_game);
@@ -126,6 +138,7 @@ void Connect4GameScreen::uninitialize ()
 	ResourceManager::unloadImage("Pieces.png");
 	ResourceManager::unloadImage("VerticalHighlight.png");
 	m_winSign.unloadAssets();
+	m_bubble.unloadAssets();
 }
 
 void Connect4GameScreen::clickOn(sf::Vector2i square)
@@ -205,6 +218,7 @@ void Connect4GameScreen::makeAIMove()
 	m_game.makeMove(col + 1);
 	placePiece(col);
 	checkForWin();
+	refreshDialogText();
 	m_AIThinking = false;
 }
 
@@ -222,4 +236,25 @@ void Connect4GameScreen::checkForWin()
 			placeHighlight(sfmlop::toVect2(p));
 		}
 	}
+}
+
+void Connect4GameScreen::refreshDialogText()
+{
+	double chances = m_ai.estimateWinChances();
+	std::string text;
+	if (chances > 1) //winning for sure
+	{
+		text = "I've already won.";
+	}
+	else if (chances < 0) //loosing for sure
+	{
+		text = "I've already lost.";
+	}
+	else //not sure
+	{
+		std::stringstream ss;
+		ss << "I'm " << (int)(chances * 100) << "% sure" << std::endl << "of winning.";
+		text = ss.str();
+	}
+	m_bubble.setText(text);
 }
