@@ -15,6 +15,9 @@
 #include "../interfaces/Move.h"
 #include "../tools/FastLog.h"
 #define FASTLOG
+#define MAXI std::max
+
+using std::max;
 
 namespace mcts
 {
@@ -60,10 +63,9 @@ namespace mcts
 			if (_uct != -1 && _uct != 10)
 			{
 #ifdef FASTLOG
-				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * FastLog::fast_log(visits + 1) / std::max(_visits, 1));
-#endif
-#ifndef FASTLOG
-				_uct = _wins / static_cast<double>(std::max(_visits, 1)) + sqrt(2.0 * log(static_cast<double>(visits + 1)) / std::max(_visits, 1));
+				_uct = _wins / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * FastLog::fast_log(visits + 1) / max(_visits, 1));
+#else
+				_uct = _wins / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * log(static_cast<double>(visits + 1)) / max(_visits, 1));
 #endif
 			}
 #ifdef DEBUG_NODE
@@ -185,7 +187,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return (_uct != -1) ? ((_uct != 10) ? static_cast<double>(_wins) / static_cast<double>(std::max(1, _visits)) : 2) : 0; };
+		inline double getProba() { return (_uct != -1) ? ((_uct != 10) ? static_cast<double>(_wins) / static_cast<double>(max(1, _visits)) : 2) : 0; };
 
 		/**
 		 * \fn getVisits()

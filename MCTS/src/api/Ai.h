@@ -5,7 +5,11 @@
 #ifdef _WIN64
 #define CLOCK 1000
 #else
+#ifdef _WIN32
+#define CLOCK 1000
+#else //Linux
 #define CLOCK 10000
+#endif
 #endif
 
 namespace api {

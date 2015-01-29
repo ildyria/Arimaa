@@ -1,12 +1,6 @@
 #include "Ai.h"
 #include "../tools/Count.h"
 
-#ifdef _WIN64
-#define CLOCK 1000
-#else
-#define CLOCK 10000
-#endif
-
 using namespace mcts;
 
 namespace api {
@@ -29,6 +23,7 @@ namespace api {
 		if (_ai != nullptr)
 		{
 			_ai->kill_tree();
+			delete _ai;
 		}
 		_game = g;
 		_ai = new Mcts(_game->getGame(), _game->getBitboard()->clone(), _param);

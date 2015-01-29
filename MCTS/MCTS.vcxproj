@@ -267,6 +267,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\api\Ai.cpp" />
+    <ClCompile Include="src\api\Game.cpp" />
     <ClCompile Include="src\api\test.h" />
     <ClCompile Include="src\connect4\BitboardConnect4.cpp" />
     <ClCompile Include="src\connect4\Connect4.cpp" />
@@ -279,6 +281,8 @@
     <ClCompile Include="src\tools\Random.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\api\Ai.h" />
+    <ClInclude Include="src\api\Game.h" />
     <ClInclude Include="src\connect4\BitboardConnect4.h" />
     <ClInclude Include="src\connect4\Connect4.h" />
     <ClInclude Include="src\interfaces\Bitboard.h" />
@@ -290,6 +294,7 @@
     <ClInclude Include="src\tools\Count.h" />
     <ClInclude Include="src\tools\FastLog.h" />
     <ClInclude Include="src\tools\FreeObjects.h" />
+    <ClInclude Include="src\tools\Memory.h" />
     <ClInclude Include="src\tools\Random.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

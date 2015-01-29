@@ -23,6 +23,7 @@ namespace api {
 		if (_ai != nullptr)
 		{
 			_ai->kill_tree();
+			delete _ai;
 		}
 		_game = g;
 		_ai = new Mcts(_game->getGame(), _game->getBitboard()->clone(), _param);
