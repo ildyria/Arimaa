@@ -1,0 +1,17 @@
+digraph "D:/Arimaa/MCTS/src/tools" {
+	graph [compound=true];
+	node [label="\N", fontsize=10, fontname=Helvetica];
+	edge [labelfontsize=10, labelfontname=Helvetica];
+	graph [bb="0,0,86,84"];
+	subgraph clusterdir_eee68f3bf6d15852b5ccbf717cece8a9 {
+		graph [bgcolor="#ddddee"];
+		graph [pencolor=black];
+		graph [label=src];
+		graph [fontname=Helvetica];
+		graph [fontsize=10];
+		graph [URL="dir_eee68f3bf6d15852b5ccbf717cece8a9.html"];
+		graph [lp="43,68"];
+		graph [bb="8,8,78,76"];
+		dir_940f7a42ddb959d5367111834802447a [label=tools, shape=box, style=filled, fillcolor="#eeeeff", pencolor=black, URL="dir_940f7a42ddb959d5367111834802447a.html", pos="43,34", width="0.75", height="0.50"];
+	}
+}

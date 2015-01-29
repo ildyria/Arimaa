@@ -1,0 +1,7 @@
+digraph "Graphical Class Hierarchy" {
+	graph [rankdir=LR];
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,56,16"];
+	Node1 [label=Count, height="0.22", width="0.56", color=black, fillcolor=white, style=filled, URL="$class_count.html", tooltip="Count class : SINGLETON. ", pos="28,8", rects="8,0,48,16"];
+}

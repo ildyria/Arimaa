@@ -1,0 +1,12 @@
+digraph "D:/Arimaa/MCTS/src/debug/Debug.h" {
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,170,96"];
+	Node1 [label="D:/Arimaa/MCTS/src\l/debug/Debug.h", height="0.39", width="1.58", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="92,74", rects="35,60,150,88"];
+	Node2 [label=iostream, height="0.22", width="0.69", color=grey75, fillcolor=white, style=filled, pos="25,16", rects="0,8,51,24"];
+	Node3 [label=fstream, height="0.22", width="0.67", color=grey75, fillcolor=white, style=filled, pos="92,16", rects="68,8,116,24"];
+	Node4 [label=string, height="0.22", width="0.50", color=grey75, fillcolor=white, style=filled, pos="152,16", rects="134,8,171,24"];
+	Node1 -> Node2 [color=midnightblue, style=solid, pos="e,34,24 76,60 65,51 51,39 41,29"];
+	Node1 -> Node3 [color=midnightblue, style=solid, pos="e,92,24 92,60 92,52 92,42 92,33"];
+	Node1 -> Node4 [color=midnightblue, style=solid, pos="e,144,24 107,60 116,51 128,39 138,30"];
+}

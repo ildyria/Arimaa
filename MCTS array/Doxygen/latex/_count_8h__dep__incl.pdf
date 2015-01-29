@@ -1,0 +1,21 @@
+digraph "D:/Arimaa/MCTS/src/tools/Count.h" {
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,430,236"];
+	Node1 [label="D:/Arimaa/MCTS/src\l/tools/Count.h", height="0.39", width="1.58", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="237,214", rects="180,200,295,228"];
+	Node2 [label="D:/Arimaa/MCTS/src\l/interfaces/Bitboard.h", height="0.39", width="1.61", color=black, fillcolor=white, style=filled, URL="$_bitboard_8h.html", tooltip="Define class Bitboard. ", pos="237,150", rects="179,136,295,164"];
+	Node3 [label="D:/Arimaa/MCTS/src\l/connect4/BitboardConnect4.h", height="0.39", width="2.19", color=black, fillcolor=white, style=filled, URL="$_bitboard_connect4_8h.html", tooltip="Define class BitboardConnect4. ", pos="79,86", rects="0,72,159,100"];
+	Node4 [label="D:/Arimaa/MCTS/src\l/interfaces/TheGame.h", height="0.39", width="1.69", color=black, fillcolor=white, style=filled, URL="$_the_game_8h.html", tooltip="Define class skelleton for an abstract class. ", pos="237,86", rects="176,72,298,100"];
+	Node5 [label="D:/Arimaa/MCTS/src\l/connect4/Connect4.h", height="0.39", width="1.61", color=black, fillcolor=white, style=filled, URL="$_connect4_8h.html", tooltip="Define class Connect4. ", pos="104,22", rects="46,8,162,36"];
+	Node6 [label="D:/Arimaa/MCTS/src\l/mcts/Mcts.h", height="0.39", width="1.58", color=black, fillcolor=white, style=filled, URL="$_mcts_8h.html", tooltip="Define class Mcts. ", pos="372,22", rects="315,8,430,36"];
+	Node7 [label="D:/Arimaa/MCTS/src\l/tictactoe/TicTacToe.h", height="0.39", width="1.61", color=black, fillcolor=white, style=filled, URL="$_tic_tac_toe_8h.html", tooltip="Define class TicTacToe. ", pos="238,22", rects="180,8,297,36"];
+	Node8 [label="D:/Arimaa/MCTS/src\l/mcts/Node.h", height="0.39", width="1.58", color=black, fillcolor=white, style=filled, URL="$_node_8h.html", tooltip="Define class Node. ", pos="373,86", rects="316,72,431,100"];
+	Node1 -> Node2 [dir=back, color=midnightblue, style=solid, pos="s,237,200 237,190 237,181 237,172 237,164"];
+	Node2 -> Node3 [dir=back, color=midnightblue, style=solid, pos="s,202,136 193,132 169,122 137,110 114,100"];
+	Node2 -> Node4 [dir=back, color=midnightblue, style=solid, pos="s,237,136 237,126 237,117 237,108 237,100"];
+	Node4 -> Node5 [dir=back, color=midnightblue, style=solid, pos="s,208,72 201,68 180,58 154,46 134,36"];
+	Node4 -> Node6 [dir=back, color=midnightblue, style=solid, pos="s,267,72 275,68 296,58 322,46 342,36"];
+	Node4 -> Node7 [dir=back, color=midnightblue, style=solid, pos="s,237,72 238,62 238,53 238,44 238,36"];
+	Node2 -> Node8 [dir=back, color=midnightblue, style=solid, pos="s,267,136 275,132 297,122 323,110 343,100"];
+	Node8 -> Node6 [dir=back, color=midnightblue, style=solid, pos="s,373,72 372,63 372,54 372,44 372,36"];
+}

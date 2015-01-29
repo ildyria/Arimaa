@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy" {
+	graph [rankdir=LR];
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,206,16"];
+	Node1 [label=Bitboard, height="0.22", width="0.72", color=black, fillcolor=white, style=filled, URL="$class_bitboard.html", pos="35,8", rects="9,0,62,16"];
+	Node2 [label=BitboardConnect4, height="0.22", width="1.36", color=black, fillcolor=white, style=filled, URL="$class_bitboard_connect4.html", tooltip="BitboardConnect4 class. ", pos="148,8", rects="99,0,198,16"];
+	Node1 -> Node2 [dir=back, color=midnightblue, style=solid, pos="s,62,8 72,8 80,8 89,8 98,8"];
+}

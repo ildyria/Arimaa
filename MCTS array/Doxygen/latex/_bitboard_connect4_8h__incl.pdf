@@ -1,0 +1,18 @@
+digraph "D:/Arimaa/MCTS/src/connect4/BitboardConnect4.h" {
+	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
+	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
+	graph [bb="0,0,246,200"];
+	Node1 [label="D:/Arimaa/MCTS/src\l/connect4/BitboardConnect4.h", height="0.39", width="2.19", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="108,178", rects="29,164,188,192"];
+	Node2 [label="../interfaces/Bitboard.h", height="0.22", width="1.64", color=black, fillcolor=white, style=filled, URL="$_bitboard_8h.html", tooltip="Define class Bitboard. ", pos="108,120", rects="49,112,168,128"];
+	Node3 [label="stdint.h", height="0.22", width="0.61", color=grey75, fillcolor=white, style=filled, pos="22,68", rects="0,60,45,76"];
+	Node4 [label=vector, height="0.22", width="0.56", color=grey75, fillcolor=white, style=filled, pos="82,68", rects="62,60,102,76"];
+	Node5 [label=list, height="0.22", width="0.39", color=grey75, fillcolor=white, style=filled, pos="134,68", rects="120,60,149,76"];
+	Node6 [label="../tools/Count.h", height="0.22", width="1.11", color=black, fillcolor=white, style=filled, URL="$_count_8h.html", tooltip="Define singleton Count. ", pos="206,68", rects="166,60,247,76"];
+	Node7 [label=iostream, height="0.22", width="0.69", color=grey75, fillcolor=white, style=filled, pos="206,16", rects="181,8,232,24"];
+	Node1 -> Node2 [color=midnightblue, style=solid, pos="e,108,128 108,164 108,156 108,146 108,137"];
+	Node2 -> Node3 [color=midnightblue, style=solid, pos="e,35,76 95,112 80,103 59,90 42,81"];
+	Node2 -> Node4 [color=midnightblue, style=solid, pos="e,86,76 104,112 100,104 95,94 90,84"];
+	Node2 -> Node5 [color=midnightblue, style=solid, pos="e,130,76 112,112 116,104 121,94 126,84"];
+	Node2 -> Node6 [color=midnightblue, style=solid, pos="e,191,76 123,112 140,103 164,90 183,80"];
+	Node6 -> Node7 [color=midnightblue, style=solid, pos="e,206,24 206,60 206,53 206,42 206,33"];
+}
