@@ -321,4 +321,6 @@ void Connect4GameScreen::resetGame()
 
 	m_winSign.unactivate();
 	m_bubble.untoggle();
+
+	m_bubble.setText("After you.");
 }
