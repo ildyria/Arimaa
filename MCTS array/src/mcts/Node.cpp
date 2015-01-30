@@ -27,12 +27,14 @@ namespace mcts {
 
 	void Node::set(Move& move, Node* parent)
 	{
+		_lock = false;
 		_parent = parent;
 		_move = move;
 	}
 
 	void Node::unset()
 	{
+		_lock = false;
 		_terminal = -1;
 		_visits = 0;
 		_wins = 0;

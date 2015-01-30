@@ -51,7 +51,7 @@ namespace mcts {
 			int simulL = 1,
 			int numVisitExplo = 1,
 			int numBitboard = 2,
-			double percentRAM = 0.8
+			double percentRAM = 0.9
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo), _numBitboard(numBitboard), _percentRAM(percentRAM)
 		{
 #ifdef _WIN64
