@@ -98,13 +98,14 @@ namespace mcts{
 			}
 			else
 			{
-				node->setChildrens(_next, ListOfMoves.size());
+				auto tmp = _next;
 				for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 				{
 					_next->set(*iter, node);
 					_next->play(node->getPlayer());
 					_next++;
 				}
+				node->setChildrens(tmp, ListOfMoves.size()); // update at the end, concurency race...
 			}
 			node->releaseLock();
 		}
