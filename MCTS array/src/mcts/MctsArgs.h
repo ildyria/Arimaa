@@ -48,7 +48,7 @@ namespace mcts {
 			int depth = 40,
 			int timelimit = 10000,
 			int simulR = 10000000,
-			int simulL = 1,
+			int simulL = 2,
 			int numVisitExplo = 1,
 			int numBitboard = 2,
 			double percentRAM = 0.9

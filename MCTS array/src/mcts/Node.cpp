@@ -13,15 +13,15 @@ using std::log;
 
 
 namespace mcts {
-	Node::Node() : _visits(0), _wins(0), _terminal(-1), _uct(0), _toplay(1), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _addr(this), _lock(false)
+	Node::Node() : _addr(this), _visits(0), _wins(0), _terminal(-1), _uct(0), _toplay(1), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
 	{
 	}
 
-	Node::Node(int player) : _visits(0), _wins(0), _terminal(-1), _uct(0), _toplay(player), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _addr(this), _lock(false)
+	Node::Node(int player) : _addr(this), _visits(0), _wins(0), _terminal(-1), _uct(0), _toplay(player), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
 	{
 	}
 
-	Node::Node(Node* p_parent, int player, Move& move) : _visits(0), _wins(0), _terminal(-1), _toplay(player), _move(move), _firstchild(nullptr), _nbchildren(0), _parent(p_parent), _addr(this), _lock(false)
+	Node::Node(Node* p_parent, int player, Move& move) : _addr(this), _visits(0), _wins(0), _terminal(-1), _toplay(player), _move(move), _firstchild(nullptr), _nbchildren(0), _parent(p_parent), _lock(false)
 	{
 	}
 
@@ -135,8 +135,10 @@ namespace mcts {
 
 	int Node::count()
 	{
-		auto val = 0;
+		if (_firstchild == nullptr) return 1;
+
 		auto itL = _firstchild;
+		auto val = 0;
 		for (int i = 0; i < _nbchildren; ++i)
 		{
 			val += itL->count();
@@ -148,8 +150,10 @@ namespace mcts {
 
 	int Node::max_depth()
 	{
-		auto val = 0;
+		if (_firstchild == nullptr) return 1;
+
 		auto itL = _firstchild;
+		auto val = 0;
 		for (int i = 0; i < _nbchildren; ++i)
 		{
 			auto cur = itL->max_depth();

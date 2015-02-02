@@ -116,17 +116,17 @@ namespace mcts{
 	void Mcts::playRandom(Node* node, Bitboard* Bb)
 	{
 		int nodet;
-/*
+
 		for (int i = 0; i < _param->getSimulationPerLeaves(); ++i)
 		{
-*/
 #ifdef DEBUG_MCTS
 			cout << endl << "round n " << (i + 1) << endl;
 #endif // DEBUG_MCTS
-//			Bitboard* Bb = node->getState()->clone();
-			nodet = _game->playRandomMoves(Bb);
+			Bitboard* Bb2 = Bb->clone();
+			nodet = _game->playRandomMoves(Bb2);
+			delete Bb2;
 			node->update(nodet);
-//		}
+		}
 	}
 
 
@@ -227,7 +227,7 @@ namespace mcts{
 		*ptrDest = *NewRoot;					// copy root
 		next++;									// next free space in Tdest
 
-		while (ptrDest->getParent() != nullptr)
+		while (ptrDest->getParent() != nullptr || ptrDest == &Tdest[0]) // no parents OR root
 		{
 			auto ListOfNodes = ptrDest->getChildren();
 			ptTemp = ListOfNodes.first;
@@ -237,7 +237,6 @@ namespace mcts{
 				for (int i = 0; i < ListOfNodes.second; i++)
 				{
 					*next = *ptTemp;			// recopy of chidlren
-//					next->addr();
 					next->setParent(ptrDest);	// set their parent to current ptr
 					ptTemp++;
 					next++;
@@ -278,7 +277,7 @@ namespace mcts{
 			explore();
 		}
 		cout << endl << "start search : " << static_cast<double>(start) / CLOCKS_PER_SEC << "s.";
-		cout << endl << "end search : " << static_cast<double>(clock()) / CLOCKS_PER_SEC << "s in " << static_cast<double>(clock() - start) * 1000 / CLOCKS_PER_SEC << "ms and " << i << " simulations." << endl;
+		cout << endl << "end search : " << static_cast<double>(clock()) / CLOCKS_PER_SEC << "s in " << static_cast<double>(clock() - start) * 1000 / CLOCKS_PER_SEC << "ms and " << i*_param->getSimulationPerLeaves() << " simulations." << endl;
 		return _tree[0].select_child_WR()->getMove();
 	}
 
