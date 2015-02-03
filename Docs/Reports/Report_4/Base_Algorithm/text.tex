@@ -2,14 +2,14 @@ The base algorithm is a simple implementation of the MCTS algorithm. All the fun
 It take as a parameter the abstract class \textit{TheGame}, the position (\textit{Bitboard}) to start the search with and an object (\textit{MctsArg}) to set the parameter to the MCTS algorithm such as the time to search on, the depth of the tree, the number of simulation to run and the number of nodes to create in the tree.
 The following Class Diagram represent the links between the differents kinds of objects.
 \begin{figure}[H] 
-\centerline{\includegraphics[scale=1]{Base_Algorithm/Img/MCTSsimple.png}}
+\centerline{\includegraphics[width=0.6\textwidth]{Base_Algorithm/Img/MCTSsimple.png}}
 \caption{\label{fig:MCTSClassDiagram}\textit{Class Diagram of the mcts package}}
 \end{figure}
 The Object Node represent the tree, it is stored as an array in the mcts object. A detailed implementation is provided in the Data Structure part.\\
 The singleton \textit{Count} is used for the statistics (such as the number of leaves, nodes created and the number of simultions run). Whilst providing statistics it also make sure that no  memory leaks are happening, monitoring the creation and destructions of the main objects.\\ 
 The following figure represent the order of the call for the main function while providing some details about the implementation.
 \begin{figure}[H]
-\centerline{\includegraphics[scale=0.70]{Base_Algorithm/Img/Algorithm.png}}
+\centerline{\includegraphics[width=0.7\textwidth]{Base_Algorithm/Img/Algorithm.png}}
 \caption{\label{fig:MCTSAlgorithm}\textit{Monte Carlo algorithm}}
 \end{figure}
 \noindent

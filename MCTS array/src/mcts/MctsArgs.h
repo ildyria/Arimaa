@@ -29,7 +29,6 @@ namespace mcts {
 		int _simulationPerLeaves;
 		int _numberOfVisitBeforeExploration;
 		int _maxNumberOfLeaves;
-		int _numBitboard;
 		double _percentRAM;
 
 	public:
@@ -50,9 +49,8 @@ namespace mcts {
 			int simulR = 10000000,
 			int simulL = 2,
 			int numVisitExplo = 1,
-			int numBitboard = 2,
 			double percentRAM = 0.9
-			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo), _numBitboard(numBitboard), _percentRAM(percentRAM)
+			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo), _percentRAM(percentRAM)
 		{
 #ifdef _WIN64
 			_maxNumberOfLeaves = Memory::WinFUllInfo() * _percentRAM / (size_t(2) * sizeof(Node));
