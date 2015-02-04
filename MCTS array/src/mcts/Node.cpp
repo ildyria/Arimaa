@@ -78,7 +78,7 @@ namespace mcts {
 		Node* itL = _firstchild;
 		for (int i = 0; i < _nbchildren; ++i)
 		{
-			itL->UCT(max(_visits,1));
+			itL->UCT((_visits < 1) ? 1 : _visits);
 			if (compareUCT(max, itL))
 			{
 				max = itL;
