@@ -53,12 +53,11 @@ namespace mcts {
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo), _percentRAM(percentRAM)
 		{
 #ifdef _WIN64
-			_maxNumberOfLeaves = Memory::WinFUllInfo() * _percentRAM / (size_t(2) * sizeof(Node));
-
+			_maxNumberOfLeaves = Memory::getfreememory() * _percentRAM / (size_t(2) * sizeof(Node));
 #elif defined(_WIN32)
-			_maxNumberOfLeaves = 2000000000 * size_t(2) / (size_t(5) * sizeof(Node)); // maximum size is 2 Go...
+			_maxNumberOfLeaves = 1024*1024*1024*2 * size_t(2) / (size_t(5) * sizeof(Node)); // maximum size is 2 Go...
 #else // LINUX
-			_maxNumberOfLeaves = Memory::WinFUllInfo() * size_t(2) / (size_t(5) * sizeof(Node));
+			_maxNumberOfLeaves = Memory::getfreememory() * size_t(2) / (size_t(5) * sizeof(Node));
 #endif
 			std::cout << "max num of leaves : " << _maxNumberOfLeaves << std::endl;
 		};

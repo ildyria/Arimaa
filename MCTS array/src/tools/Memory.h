@@ -16,6 +16,7 @@
 
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
 #include <stdio.h>
+#include <string.h>
 
 #endif
 
@@ -29,7 +30,8 @@ class Memory
 	~Memory() {};
 
 public:
-	static size_t WinFUllInfo()
+#if defined(_WIN32) || defined(_WIN64)
+	static int getfreememory()
 	{
 		MEMORYSTATUSEX statex;
 
@@ -40,14 +42,68 @@ public:
 		_tprintf(TEXT("There is  %*ld percent of memory in use.\n"), WIDTH, statex.dwMemoryLoad);
 		_tprintf(TEXT("There are %*I64d total MB of physical memory.\n"), WIDTH, statex.ullTotalPhys / (DIV*DIV));
 		_tprintf(TEXT("There are %*I64d free  MB of physical memory.\n"), WIDTH, statex.ullAvailPhys / (DIV*DIV));
-//		_tprintf(TEXT("There are %*I64d total KB of paging file.\n"), WIDTH, statex.ullTotalPageFile / DIV);
-//		_tprintf(TEXT("There are %*I64d free  KB of paging file.\n"), WIDTH, statex.ullAvailPageFile / DIV);
-//		_tprintf(TEXT("There are %*I64d total KB of virtual memory.\n"), WIDTH, statex.ullTotalVirtual / DIV);
-//		_tprintf(TEXT("There are %*I64d free  KB of virtual memory.\n"), WIDTH, statex.ullAvailVirtual / DIV);
-		// Show the amount of extended memory available.
-//		_tprintf(TEXT("There are %*I64d free  KB of extended memory.\n"), WIDTH, statex.ullAvailExtendedVirtual / DIV);
 		return statex.ullAvailPhys;
 	}
 
-
+#elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
+	static int getfreememory()
+	{
+			// Return the amount of free memory in kbytes.
+			// Returns -1 if something went wrong.
+			int returnValue;
+			const int BUFFER_SIZE = 1000;
+			char buffer[BUFFER_SIZE];
+			FILE *fInput;
+			int loop;
+			int len;
+			char ch;
+			returnValue = -1;
+			fInput = fopen("/proc/meminfo", "r");
+			if (fInput != NULL)
+			{
+				while (!feof(fInput))
+				{
+					fgets(buffer, BUFFER_SIZE - 1, fInput);
+					if (feof(fInput))
+					{
+						break;
+					}
+					buffer[BUFFER_SIZE - 1] = 0;
+					// Look for serial number
+					if (strncmp(buffer, "MemFree:", 8) == 0)
+					{
+						// Extract mem free from the line.
+						for (loop = 0; loop<BUFFER_SIZE; loop++)
+						{
+							ch = buffer[loop];
+							if (ch == ':')
+							{
+								returnValue = 0;
+								continue;
+							}
+							if (ch == 0)
+							{
+								break;
+							}
+							if (returnValue >= 0)
+							{
+								if (ch >= 'A')
+								{
+									break;
+								}
+								if ((ch >= '0') && (ch <= '9'))
+								{
+									returnValue = returnValue * 10 + (ch - '0');
+								}
+							}
+						}
+						break;
+					}
+				}
+				fclose(fInput);
+			}
+			_tprintf(TEXT("There are %*I64d free  MB of physical memory.\n"), WIDTH, returnValue / DIV);
+			return returnValue*DIV;
+		}
+#endif
 };

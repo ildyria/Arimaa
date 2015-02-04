@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
 					Bb,	// board to start with
 					args);
 
-	Memory::WinFUllInfo();
+	Memory::getfreememory();
 
 	int IA = 2;
 	while (result == 0)
