@@ -1,7 +1,15 @@
 Given the size of the data our software will be working on, it requires an efficient way of storing them. There are 2 kinds of data, on the first hand the ones the programs works on; on the other hand, the parameters and utilities.
-\subsection{Boards and nodes}
+\subsection{Representation of the playouts}
 \subsubsection{Bitboards}
 Boards are stored as bitboard. As the game is played on a \ensuremath{8\times8} board, it is convinient to use a 64 bit integer to store the positions of the pieces. That way, each and every of a kind of pieces are stored on the same x64 integer, saving space as opposed to a matrix \ensuremath{8\times8} retaining all the informations. Players own rabbits, cats, dogs, horses, camel and elephant; thus using 6 integers for each player do the job. Adding an additionnal bitboard to store the position of every pieces of each players helps to increase the speed of the algorithm by reducing the number of test required to be done during the playout phases. It also allows quick tests and modifications such as bit twiddling given the nature of the data.
+
+\subsubsection{Game abstraction}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 \subsubsection{Nodes}
 \begin{figure}[H] 
@@ -24,7 +32,7 @@ N = \frac{R \times 90\%}{2}
 
 We chose to limit the memory used by the tree to 90\% of the available memory in order to not overload the RAM and to let some left for other operations such as simulations. It also allows us to make sure that the swap will not be used to store the tree as it heavily impacts on the speed of its exploration.
 \newpage
-\subsection{parameters and Utilities}
+\subsection{Parameters and Utilities}
 \subsubsection{Parameters}
 Instead of directly passing all the parameters to the mcts object at its intentiation, we decided to create an object that would provide them given appropriate inline getters. The point of this is to allow quick modification on the parameters without having to rewrite some parts of the mcts to make sure that each files are updated. The main idea applied here is to separate the data from the algorithm with the same principle as the MVC design pattern.
 \begin{figure}[H] 

@@ -4,7 +4,7 @@ Given the size of the tree to be explored (at least 400 million nodes), a Root p
 \caption{\label{fig:RAMTree}\textit{Memory used before and after the creation of nodes}.}
 \end{figure}
 
-With this in mind, a Tree parallelisation strategy has to be implemented on the Computer. It can be done by multithreading the \textit{While // loop simulations} descriped in the base algorithm implementation\ref{fig:MCTSAlgorithm}.
+A tree parallelisation strategy has to be implemented on the computer. It can be done by multithreading the \textit{While // loop simulations} descriped in the base algorithm implementation\ref{fig:MCTSAlgorithm}.
 
 Using OpenMP, this is easily implented with a single \#pragma statement :\\
 \textbf{\#pragma omp parallel shared(i,timeend)}\\

@@ -1,6 +1,6 @@
 The parallelization strategy we have chosen for this project is \emph{Root-Root parallelization}.
-\emph{Root parallelization} consists in giving the tree to develop to every thread, letting them develop it randomly without any communication with the environment during a certain amount of time, and then merging the results of each tree.
-This method has the great benefit of minimizing the communication between the actors (the threeads or the machines).
+\emph{Root parallelization} consists in giving the tree that we want to develop to every thread, letting them develop it randomly without any communication with the environment during a certain amount of time, and then merging the results of each tree.
+This method has the great benefit of minimizing the communication between the actors (the threads or the machines).
 That is because they only communicate at the beginning and at the end of the algorithm, without needing any further synchronization.
 The \textit{Root Parallelization} is depicted in figure \ref{fig:root}.
 
