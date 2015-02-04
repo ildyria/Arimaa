@@ -1,8 +1,7 @@
 #ifdef _WIN64
 #include <intrin.h>
 #define LOGV1
-#endif
-#ifndef _WIN64
+#else
 #define LOGV2
 #endif
 

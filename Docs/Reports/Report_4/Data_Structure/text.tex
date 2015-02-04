@@ -1,24 +1,51 @@
-Given the size of the data our software will be working on, it requires an efficient way of storing them.
-
-There are 2 kinds of data, on the first hand the ones the programs works on; on the other hand, the parameters and utilities.
+Given the size of the data our software will be working on, it requires an efficient way of storing them. There are 2 kinds of data, on the first hand the ones the programs works on; on the other hand, the parameters and utilities.
 \subsection{Boards and nodes}
-Boards are stored as bitboard. As the game is played on a 8x8 board, it is convinient to use a 64 bit integer to store the positions of the pieces. That way, each and every of a kind of pieces are stored on the same integer, saving space compared to a matrix 8 x 8. Players own rabits, cats, dogs, horses, camel and elephant; thus using 6 integer for each player do the job. Adding an additionnal bitboard to store the position of every pieces of each players helps to increase the speed of the algorithm by reducing the number of test required to be done during the playout phases.
+\subsubsection{Bitboards}
+Boards are stored as bitboard. As the game is played on a \ensuremath{8\times8} board, it is convinient to use a 64 bit integer to store the positions of the pieces. That way, each and every of a kind of pieces are stored on the same x64 integer, saving space as opposed to a matrix \ensuremath{8\times8} retaining all the informations. Players own rabits, cats, dogs, horses, camel and elephant; thus using 6 integer for each player do the job. Adding an additionnal bitboard to store the position of every pieces of each players helps to increase the speed of the algorithm by reducing the number of test required to be done during the playout phases. It also allows quick tests and modifications such as bittwingling given the nature of the data.
 
+\subsubsection{Nodes}
 \begin{figure}[H] 
 \centerline{\includegraphics[scale=0.8]{Data_Structure/Img/Node.png}}
-\caption{\label{fig:array}\textit{Details of the data cointained in a node}.}
+\caption{\label{fig:nodedetails}\textit{Details of the data cointained in a node}.}
 \end{figure}
-Nodes contains statistics about the previous results, a pointer to their parent, a pointer to the first of their children and the number of children they own. They are stored in an array set at the begining of the program, thus grouping them on a countinuous memory segment. Therefore the time to gain access to them is decreased.
+Nodes contains statistics about the previous results, a pointer to their parent, a pointer to the first of their children and the number of children they own. They are stored in an array (\textit{\_tree}) set at the begining of the program, thus grouping them on a countinuous memory segment. Therefore the time to gain access to them is decreased.
+
+\subsubsection{Prunning}
 \begin{figure}[H] 
 \centerline{\includegraphics[width=\textwidth]{Data_Structure/Img/array.png}}
-\caption{\label{fig:array}\textit{Prunning of the tree}.}
+\caption{\label{fig:arrayprunning}\textit{Prunning of the tree (before and after)}.}
 \end{figure}
-In order to prune the tree, we use the following method : create a copy of the current tree (\textit{\_tree}) into a buffer (\textit{\_buff}). The root of the buffer tree will be a copy the chosen node. Then the children are saved going up through the branches. The advantage of this method is that you only copy the nodes you want to keep. However the memory used of the buffer need to be the same as the one of the tree before the prunning. Thus the maximum memory that can be used by the tree (\textit{\_tree}) is half the memory used by the program. In order to dermine the number of leaves to be created, the program check how much memory there is left on the computer and use a fixed percentage of it.
+In order to prune the tree, we use the following method : create a copy of the current tree (\textit{\_tree}) into a buffer (\textit{\_buff}). The root of the buffer tree will be a copy the chosen node. Then the children are saved going dpwn through the branches. The advantage of this method is that you only copy the nodes you want to keep. However the memory used of the buffer need to be the same as the one of the tree before the prunning. Thus the maximum memory that can be used by the tree (\textit{\_tree}) is half the memory used by the program. In order to dermine the number of leaves to be created, the program checks how much memory there is left on the computer and use a fixed percentage of it.
 \begin{equation}
 N = \frac{R \times 90\%}{2}
 \end{equation}
 \ensuremath{N} = number of leaves.\\
 \ensuremath{R} = RAM left to use.
 
-We chose to limit the memory used by the tree to 90\% of the aviable memory in order to not overload the RAM and to let some left for other operations such as simulations.
-\subsection{Utilities and parameters}
+We chose to limit the memory used by the tree to 90\% of the aviable memory in order to not overload the RAM and to let some left for other operations such as simulations. It also allow us to make sure that the swap won't be used to store the tree as it heavily impact on the speed of its exploration.
+\newpage
+\subsection{parameters and Utilities}
+\subsubsection{Parameters}
+Instead of directly passing all the parameters to the mcts object at its intentiation, we decided to create an object that would provide them given appropriate inline getters. The point of this is to allow quick modification on the parameters without having to rewrite some parts of the mcts to make sure that each files are updated. The main idea applied here is to separate the data from the algorithm with the same principle as the MVC design pattern.
+\begin{figure}[H] 
+\centerline{\includegraphics[scale=0.8]{Data_Structure/Img/MctsArgs.png}}
+\caption{\label{fig:mctsargsuml}\textit{Details of the parameters of the algorithm}.}
+\end{figure}
+
+\subsubsection{Fast log}
+The MCTS algorithm does not require an exact value of the \ensuremath{ln(x)} function in order to calculate the UCT value of a node. As numbers are stored in binary on computers, it is more interesting to get the value of their log in base 2 and to divide it by \ensuremath{ln(2)}. 
+\begin{equation}
+ln(x) = \frac{log2(x)}{ln(2)}
+\end{equation}
+\begin{equation}
+ln(x) = log2(x) \times \frac{1}{ln(2)}
+\end{equation}
+\begin{equation}
+ln(x) = log2(x) \times 0.69314718f
+\end{equation}
+Depending on the main operating system (Windows or Linux), the calculus of \ensuremath{log2(x)} will differ. On linux, a quadratic approximation is made, for more details, refer to annexes\ref{subsec:fastLog}. On windows, \textit{\_BitScanReverse64(\&y, x)} is slightly faster. 
+
+\subsubsection{Random numbers : Mercene Twister}
+Given the number of playouts to be simulated, the MCTS algorithm requires a fast random number generator, the Mercene Twister which is implemented in the STL is faster than the basic rand() function. Therefore we decided to use it.
+
+

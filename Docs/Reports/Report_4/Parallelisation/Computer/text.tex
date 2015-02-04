@@ -1,6 +1,14 @@
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Given the size of the tree to be explored (at least 400 000 000 nodes), a Root paralellisation strategy on computers could not be kept. A 11 000 000 nodes tree require about 2 Go of RAM\ref{fig:RAMTree}. If this should be timed by 40 and the number of core, there would be not enough space.
+\begin{figure}[H]
+\centerline{\includegraphics[width=0.6\textwidth]{Parallelisation/Computer/Img/RAM.png}}
+\caption{\label{fig:RAMTree}\textit{Memory used before and after the creation of nodes}.}
+\end{figure}
+
+With this in mind, a Tree paralellisation strategy has to be implemented on the Computer. It can be done by multithreading the \textit{While // loop simulations} descriped in the base algorithm implementation\ref{fig:MCTSAlgorithm}.
+
+Using OpenMP, this is easily implented with a single \#pragma statement :\\
+\textbf{\#pragma omp parallel shared(i,timeend)}\\
+where \textit{i}, the number of simulation run and \textit{timeend}, the time until simulations are to be run are defined as shared variables.
+
+In order to prevent any conflict between threads, a small critical section has to control the tree expansion. This can be done by using the following statement before the call of \textit{UpdateNode(node)}:\\
+\textbf{\#pragma omp critical}
