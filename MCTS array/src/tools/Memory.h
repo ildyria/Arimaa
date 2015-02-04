@@ -1,13 +1,12 @@
 #pragma once
+// Use to convert bytes to KB
+#define DIV 1024
 
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
 #include <psapi.h>
 #include <stdio.h>
 #include <tchar.h>
-
-// Use to convert bytes to KB
-#define DIV 1024
 
 // Specify the width of the field in which to print the numbers. 
 // The asterisk in the format specifier "%*I64d" takes an integer 
