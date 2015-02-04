@@ -101,7 +101,7 @@ public:
 				}
 				fclose(fInput);
 			}
-			_tprintf(TEXT("There are %*I64d free  MB of physical memory.\n"), WIDTH, returnValue / DIV);
+			std::cout << "There are " << (returnValue / DIV) <<" free MB of physical memory.\n" << std::endl;
 			return returnValue*DIV;
 		}
 #endif
