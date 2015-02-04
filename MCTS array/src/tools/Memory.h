@@ -54,7 +54,6 @@ public:
 			char buffer[BUFFER_SIZE];
 			FILE *fInput;
 			int loop;
-			int len;
 			char ch;
 			returnValue = -1;
 			fInput = fopen("/proc/meminfo", "r");

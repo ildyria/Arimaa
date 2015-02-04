@@ -28,7 +28,6 @@ namespace mcts{
 				_state(Bb),
 				_maxdepthreached(false)
 	{
-		auto itB = _buff.begin();
 		cleanTree(_tree);
 		cleanTree(_buff);
 		Count::I()->clear();
