@@ -3,7 +3,7 @@ We might use it for machine parallelization if the tests show it gives better re
 In order to make the different machines communicate, it opens ssh connexions between them.
 The general structure of a MPI program can be seen in figure \ref{fig:mpi_struct}.
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.5\textwidth]{Parallelisation/Cluster/Img/prog_structure.png}
 \caption{General MPI Program Structure. \cite{mpi_tuto}}
@@ -22,7 +22,7 @@ They allow to make a similar operation on every process of a given communicator.
 For example, it is possible to spread data from a single process to each other process, or on the contrary to regroup data from every process into a single one (as represented in figure \ref{fig:mpi_ccr}.
 This will be especially useful for the algorithm, as it will require to regroup the results of every process (see part \ref{sec:paralstrat}).
 
-\begin{figure}[!h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.6\textwidth]{Parallelisation/Cluster/Img/MPI_Gather.png}
 \caption{Example of a Collective Communication Routine. \cite{mpi_tuto}}
