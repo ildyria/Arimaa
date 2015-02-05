@@ -55,6 +55,9 @@ $RECYCLE.BIN/*
 *.ilk
 *.idb
 
+# Visio cache
+*.~vsdx
+
 # GCC
 *.o
 *.d
