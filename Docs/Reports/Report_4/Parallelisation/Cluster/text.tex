@@ -1,5 +1,18 @@
+The parallelization strategy we have chosen to use on clusters is \emph{Root parallelization}.
+\emph{Root parallelization} consists in giving the tree that we want to develop to every thread, letting them develop it randomly without any communication with the environment during a certain amount of time, and then merging the results of each tree.
+It is depicted in figure \ref{fig:root}.
+
+This method has the great benefit of minimizing the communication between the machines, as they only communicate at the beginning and at the end of the algorithm, without needing any further synchronization.
+In order to apply this strategy, we have chosen a master-slave approach, with one master machine collecting the results of every other machine once they are done with their processing.
+
+\begin{figure}[!ht] 
+\centerline{\includegraphics[scale=0.5]{Parallelisation/Strategy/Img/root.png}}
+   \caption{Overview of \emph{Root Parallelization} \cite{parallel_comp}}
+\label{fig:root}
+\end{figure}
+
 The \emph{Message Passing Interface Standard} (\emph{MPI}) is a message passing library standard.
-We might use it for machine parallelization if the tests show it gives better results than \emph{CAF} (see part \ref{sec:caf}).
+We might use it for machine parallelization if the tests give satisfying results.
 In order to make the different machines communicate, it opens ssh connexions between them.
 The general structure of a MPI program can be seen in figure \ref{fig:mpi_struct}.
 
@@ -20,7 +33,7 @@ Synchronized sending request only return after the message has been received, wh
 Another type of routines handled by MPI is Collective Communication Routines.
 They allow to make a similar operation on every process of a given communicator.
 For example, it is possible to spread data from a single process to each other process, or on the contrary to regroup data from every process into a single one (as represented in figure \ref{fig:mpi_ccr}.
-This will be especially useful for the algorithm, as it will require to regroup the results of every process (see part \ref{sec:paralstrat}).
+This will be especially useful for the algorithm, as it will require to regroup the results of every process.
 
 \begin{figure}[H]
 \centering
