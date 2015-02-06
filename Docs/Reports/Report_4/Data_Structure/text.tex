@@ -1,4 +1,4 @@
-Given the size of the data our software will be working on, it requires an efficient way of storing them. There are 2 kinds of data, on the first hand the ones the programs works on; on the other hand, the parameters and utilities.
+Given the size of the data our software will be working on, it requires an efficient way of storing them. There are 2 kinds of data, on the first hand the ones the program works on; on the other hand, the parameters and utilities.
 \subsection{Representation of the playouts}
 \subsubsection{Bitboards}
 Boards are stored as bitboard. As the game is played on a \ensuremath{8\times8} board, it is convenient to use a 64 bit integer to store the position of the pieces. That way, each and every kind of pieces are stored on the same x64 integer, saving space as opposed to a matrix \ensuremath{8\times8} retaining all the informations. Players own rabbits, cats, dogs, horses, camel and elephant; thus using 6 integers for each player do the job. Adding an additionnal bitboard to store the position of every pieces of each players helps to increase the speed of the algorithm by reducing the number of test required to be done during the playout phases. It also allows quick tests and modifications such as bit twiddling given the nature of the data.
@@ -15,7 +15,7 @@ Nodes contain statistics about the previous results, a pointer to their parent, 
 \centerline{\includegraphics[width=\textwidth]{Data_Structure/Img/array.png}}
 \caption{\label{fig:arrayprunning}\textit{Prunning of the tree (before and after)}.}
 \end{figure}
-In order to prune the tree, we use the following method : create a copy of the current tree (\textit{\_tree}) into a buffer (\textit{\_buff}). The root of the buffer tree will be a copy the chosen node. Then the children are saved going down through the branches. The advantage of this method is that you only copy the nodes you want to keep. However the memory used by the buffer needs to be the same as the one of the tree before the prunning. Thus the maximum memory that can be used by the tree (\textit{\_tree}) is half the memory used by the program. In order to dermine the number of leaves to be created, the program checks how much memory there is left on the computer and use a fixed percentage of it.
+In order to prune the tree, we use the following method : create a copy of the current tree (\textit{\_tree}) into a buffer (\textit{\_buff}). The root of the buffer tree will be a copy of the chosen node. Then the children are saved going down through the branches. The advantage of this method is that you only copy the nodes you want to keep. However the memory used by the buffer needs to be the same as the one of the tree before the prunning. Thus the maximum memory that can be used by the tree (\textit{\_tree}) is half the memory used by the program. In order to dermine the number of leaves to be created, the program checks how much memory there is left on the computer and use a fixed percentage of it.
 \begin{equation}
 N = \frac{R \times 90\%}{2}
 \end{equation}
@@ -38,7 +38,7 @@ In order to know the moves that can be played and the winning conditions, the mc
 \medskip\\
 \textit{\textbf{listPossibleMoves}} : list all the possible moves given a board, this is used when a node is to be expanded.
 \medskip\\
-\textit{\textbf{playRandomMoves}} : play random moves until a final state is reached and return the winner, this is the random simulation part.
+\textit{\textbf{playRandomMoves}} : play random moves until a final state is reached and return the winner. This is the random simulation part.
 
 \newpage
 \subsection{Parameters and utilities}
@@ -50,7 +50,7 @@ Instead of directly passing all the parameters to the mcts object at its instant
 \end{figure}
 
 \subsubsection{Fast log}
-The MCTS algorithm does not require an exact value of the \ensuremath{ln(x)} function in order to calculate the UCT value of a node. As numbers are stored in binary on computers, it is more interesting to get  their log in base 2 and to divide it by \ensuremath{ln(2)}. 
+The MCTS algorithm does not require an exact value of the \ensuremath{ln(x)} function in order to calculate the UCT value of a node. As numbers are stored in binary on computers, it is more interesting to get their log in base 2 and to divide it by \ensuremath{ln(2)}. 
 \begin{equation}
 ln(x) = \frac{log2(x)}{ln(2)}
 \end{equation}

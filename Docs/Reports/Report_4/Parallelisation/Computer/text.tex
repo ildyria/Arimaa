@@ -34,7 +34,7 @@ This method of parallelization can be done by multithreading the \textit{While /
 \textbf{\#pragma omp parallel shared(i,timeend)}\\
 where \textit{i}, the number of simulation run and \textit{timeend}, the time until simulations are to be run are defined as shared variables.
 
-In order to prevent any conflicts between threads, a small critical section has to control the lock of the nodes. Placing the following statement before \textit{node->getLock()} do the job :\\
+In order to prevent any conflict between threads, a small critical section has to control the lock of the nodes. Placing the following statement before \textit{node->getLock()} do the job :\\
 \textbf{\#pragma omp critical}
 
 \begin{figure}[H]
