@@ -1,3 +1,4 @@
+//#include <vld.h>
 //#define TEST_API
 #define TEST_MEM
 
@@ -96,6 +97,7 @@ int main(int argc, char const *argv[])
 					IA = (IA == 2) ? 1 : 2;
 					moveok = 1;
 				}
+				delete &tmp;
 			}
 		}
 
@@ -139,7 +141,6 @@ int main(int argc, char const *argv[])
 	delete game;
 	mcts.kill_tree();
 #endif
-
 
 	int s;
 	cin >> s;

@@ -41,7 +41,7 @@ public:
 		_tprintf(TEXT("There is  %*ld percent of memory in use.\n"), WIDTH, statex.dwMemoryLoad);
 		_tprintf(TEXT("There are %*I64d total MB of physical memory.\n"), WIDTH, statex.ullTotalPhys / (DIV*DIV));
 		_tprintf(TEXT("There are %*I64d free  MB of physical memory.\n"), WIDTH, statex.ullAvailPhys / (DIV*DIV));
-		return statex.ullAvailPhys;
+		return static_cast<int>(statex.ullAvailPhys);
 	}
 
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)

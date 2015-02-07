@@ -104,7 +104,7 @@ namespace mcts{
 					_next->play(node->getPlayer());
 					_next++;
 				}
-				node->setChildrens(tmp, ListOfMoves.size()); // update at the end, concurency race...
+				node->setChildrens(tmp, static_cast<int>(ListOfMoves.size())); // update at the end, concurency race...
 			}
 			node->releaseLock();
 		}
@@ -263,7 +263,7 @@ namespace mcts{
 		_maxdepthreached = false;
 		int i = 0;
 		int start = clock();
-		int timeend = start + (static_cast<double>(_param->getTimeLimitSimulationPerRoot()) / 1000 * CLOCKS_PER_SEC);
+		int timeend = start + static_cast<int>(_param->getTimeLimitSimulationPerRoot() / 1000 * CLOCKS_PER_SEC);
 #ifdef OPENMP
 #pragma omp parallel shared(i,timeend)
 #endif

@@ -44,7 +44,7 @@ namespace api {
 		 * 
 		 * \return thinking time in seconds
 		 */
-		int getThinkingTime();
+		double getThinkingTime();
 
 		/**
 		 * \fn setThinkingTime(int t = 5)

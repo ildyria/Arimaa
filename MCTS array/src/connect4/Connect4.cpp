@@ -165,7 +165,7 @@ void Connect4::play(Move& position, Bitboard* board)
 		boardused >>= board->getSizeX();
 	}
 	
-	board->setBit(board->getPlayer() - 1, board->getSizeX() - position.getMove(), i);
+	board->setBit(board->getPlayer() - 1, board->getSizeX() - static_cast<int>(position.getMove()), i);
 	board->play();
 }
 
@@ -235,7 +235,7 @@ int Connect4::playRandomMoves(Bitboard* board)
 	while (nodet < 1)
 	{
 		ListOfMoves = board->getEmpty(0);
-		chosen = Random::I()->getNum(0, ListOfMoves.size() - 1);
+		chosen = Random::I()->getNum(0, static_cast<int>(ListOfMoves.size()) - 1);
 		for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 		{
 			if (chosen == 0)

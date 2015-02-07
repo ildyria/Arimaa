@@ -19,7 +19,7 @@ namespace api {
 		_param->setTimeLimitSimulationPerRoot(t * CLOCK);
 	}
 
-	int Ai::getThinkingTime()
+	double Ai::getThinkingTime()
 	{
 		return _param->getTimeLimitSimulationPerRoot() / CLOCK;
 	}
@@ -46,7 +46,7 @@ namespace api {
 		_ai->print_tree(2);
 		_ai->movePlayed(m);
 		Count::I()->clear();
-		return m.getMove();
+		return static_cast<int>(m.getMove());
 	}
 
 	double Ai::estimateWinChances()
