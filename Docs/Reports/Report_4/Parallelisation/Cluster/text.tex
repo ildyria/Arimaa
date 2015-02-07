@@ -1,5 +1,5 @@
 The parallelization strategy we have chosen to use on clusters is \emph{Root parallelization}.
-\emph{Root parallelization} consists in giving the tree that we want to develop to every thread, letting them develop it randomly without any communication with the environment during a certain amount of time, and then merging the results of each tree.
+\emph{Root parallelization} consists in giving the tree that we want to develop to every actor (here each machine is an actor), letting them develop it randomly without any communication with the environment during a certain amount of time, and then merging the results of each tree.
 It is depicted in figure \ref{fig:root}.
 
 This method has the great benefit of minimizing the communication between the machines, as they only communicate at the beginning and at the end of the algorithm, without needing any further synchronization.
@@ -12,7 +12,7 @@ In order to apply this strategy, we have chosen a master-slave approach, with on
 \end{figure}
 
 The \emph{Message Passing Interface Standard} (\emph{MPI}) is a message passing library standard.
-We might use it for machine parallelization if the tests give satisfying results.
+We plan to use it for machine parallelization if the tests give satisfying results.
 In order to make the different machines communicate, it opens ssh connexions between them.
 The general structure of a MPI program can be seen in figure \ref{fig:mpi_struct}.
 
@@ -28,16 +28,16 @@ Within a communicator, every process has its own unique, integer identifier assi
 These ranks are used by the programmer to specify the source and destination of messages.
 
 MPI allows for synchronized, blocking and non blocking routines.
-Synchronized sending request only return after the message has been received, while blocking ones return after it is safe to modify the data in the sending buffer, and non blocking ones return immediately after sending the order, but offer no guarantee that it has already been executed.
+Synchronized sending requests only return after the message has been received, while blocking ones return after it is safe to modify the data in the sending buffer, and non blocking ones return immediately after sending the order, but offer no guarantee that it has already been executed.
 
 Another type of routines handled by MPI is Collective Communication Routines.
 They allow to make a similar operation on every process of a given communicator.
-For example, it is possible to spread data from a single process to each other process, or on the contrary to regroup data from every process into a single one (as represented in figure \ref{fig:mpi_ccr}.
+For example, it is possible to spread data from a single process to each other process, or on the contrary to regroup data from every process into a single one (as represented in figure \ref{fig:mpi_ccr}), where all the data is gathered in task 1).
 This will be especially useful for the algorithm, as it will require to regroup the results of every process.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=.6\textwidth]{Parallelisation/Cluster/Img/MPI_Gather.png}
-\caption{Example of a Collective Communication Routine. \cite{mpi_tuto}}
+\caption[Example of a Collective Communication Routine (\cite{mpi_tuto}). ]{Example of a Collective Communication Routine (\cite{mpi_tuto}). Here we can see task 1 gathering the data from every other task.}
 \label{fig:mpi_ccr}
 \end{figure}

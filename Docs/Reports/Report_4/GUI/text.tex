@@ -2,7 +2,7 @@
 
 A user interface (\emph{UI}) will help visualizing the game.
 It will be coded in \emph{C++} and will use the graphic library \emph{SFML 1.6}.
-Its funcionnalities will include the following:
+Its functionalities will include the following:
 \begin{itemize}
 	\item 1 Versus 1, player versus AI and AI versus AI
 	\item Mouse and keyboard controls
@@ -24,16 +24,16 @@ Its funcionnalities will include the following:
 A UML diagram for the UI is presented in figure \ref{fig:UML_UI}.
 In this diagram, you can see three modules:
 \begin{itemize}
-	\item The model, rogrouping the rules of Arimaa
+	\item The model, regrouping the rules of Arimaa
 	\item The UI itself, handling the inputs and outputs, and interfacing with the Model
-	\item The SFML, a library that loads and displays the assets
+	\item The SFML, a library that loads and displays the assets (such as text and sprites\footnote{A computer graphic which may be moved on-screen and otherwise manipulated as a single entity.})
 \end{itemize}
 
 \subsection{The model}
 
 The model handles the rules of the game.
 A game is modelized by the class \emph{Game}.
-This class conains a \emph{Board}, itself containing instances of \emph{Piece}.
+This class contains a \emph{Board}, itself containing instances of \emph{Piece}.
 While the \emph{Board} allows any and all modifications to the pieces' placement, the \emph{Game} only allows actions that follow the rules.
 This is done through the use of the \emph{Move} class, representing a move in the game.
 Any instance of the \emph{Move} class can be verified by the \emph{Game}, and executed if found valid.
