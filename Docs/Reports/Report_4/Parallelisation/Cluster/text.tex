@@ -1,15 +1,24 @@
 The parallelization strategy we have chosen to use on clusters is \emph{Root parallelization}.
 \emph{Root parallelization} consists in giving the tree that we want to develop to every actor (here each machine is an actor), letting them develop it randomly without any communication with the environment during a certain amount of time, and then merging the results of each tree.
 It is depicted in figure \ref{fig:root}.
-
 This method has the great benefit of minimizing the communication between the machines, as they only communicate at the beginning and at the end of the algorithm, without needing any further synchronization.
-In order to apply this strategy, we have chosen a master-slave approach, with one master machine collecting the results of every other machine once they are done with their processing.
 
 \begin{figure}[!ht] 
 \centerline{\includegraphics[scale=0.5]{Parallelisation/Strategy/Img/root.png}}
    \caption{Overview of \emph{Root Parallelization} \cite{parallel_comp}}
 \label{fig:root}
 \end{figure}
+
+In order to apply this strategy, we have chosen a master-slave approach, with one master machine collecting the results of every other machine once they are done with their processing.
+The algorithm will proceed as follows :
+\begin{itemize}
+	\item The master will asynchronously send the state of the game to the slaves
+	\item The slaves will get the state of the game sent by the master with blocking receive requests
+	\item Every machine will run its simulations by itself, building its own tree
+	\item At regular intervals, each slave will asynchronously send messages with the current state of its tree
+	\item The master will then receive these messages with asynchronous receive requests, and update its own tree with their results
+	\item At the end of the given time, the master will process the best move with the help of its tree
+\end{itemize}
 
 The \emph{Message Passing Interface Standard} (\emph{MPI}) is a message passing library standard.
 We plan to use it for machine parallelization if the tests give satisfying results.
