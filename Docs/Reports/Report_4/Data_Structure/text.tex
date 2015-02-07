@@ -1,7 +1,7 @@
-Given the size of the data our software will be working on, it requires an efficient way of storing them. There are 2 kinds of data, on the first hand the ones the program works on; on the other hand, the parameters and utilities.
+Reading only 2 moves ahead on Arimaa requires at least \ensuremath{20 000^2 = 4 \times 10^8} positions to be explored. If the size of a node is 100 octets, in order to store such a tree, we would require \ensuremath{4\times10^{10} octets \approx 37,3 Gio}. Given the size of the data our software will be working on, it requires an efficient way of storing them. There are 2 kinds of data, on one hand the ones the program works on; on the other hand, the parameters and utilities.
 \subsection{Representation of the playouts}
 \subsubsection{Bitboards}
-Boards are stored as bitboard. As the game is played on a \ensuremath{8\times8} board, it is convenient to use a 64 bit integer to store the position of the pieces. That way, each and every kind of pieces are stored on the same x64 integer, saving space as opposed to a matrix \ensuremath{8\times8} retaining all the informations. Players own rabbits, cats, dogs, horses, camel and elephant; thus using 6 integers for each player do the job. Adding an additionnal bitboard to store the position of every pieces of each players helps to increase the speed of the algorithm by reducing the number of test required to be done during the playout phases. It also allows quick tests and modifications such as bit twiddling given the nature of the data.
+Boards are stored as bitboards. As the game is played on a \ensuremath{8\times8} board, it is convenient to use a 64 bit integer to store the position of the pieces. That way, each and every kind of pieces is stored on the same x64 integer, saving space as opposed to a matrix \ensuremath{8\times8} retaining all the informations. Players own rabbits, cats, dogs, horses, camel and elephant; thus using 6 integers for each player is the least . Adding a bitboard to store the position of every piece of each players helps to increase the speed of the algorithm by reducing the number of tests required to be done during the playout phases. It also allows quick tests and modifications such as bit twiddling given the nature of the data.
 
 \subsubsection{Nodes}
 \begin{figure}[H] 
@@ -11,11 +11,12 @@ Boards are stored as bitboard. As the game is played on a \ensuremath{8\times8} 
 Nodes contain statistics about the previous results, a pointer to their parent, a pointer to the first of their children and the number of children they own. They are stored in an array (\textit{\_tree}) set at the begining of the program, thus grouping them on a countinuous memory segment. Therefore the time to gain access to them is decreased.
 
 \subsubsection{Prunning}
+Once a move has been played, only the sub-tree of its node is being kept. The others have to be discarded in order to get back some memory. The process of removing this branches is called prunning.
 \begin{figure}[H] 
 \centerline{\includegraphics[width=\textwidth]{Data_Structure/Img/array.png}}
 \caption{\label{fig:arrayprunning}\textit{Prunning of the tree (before and after)}.}
 \end{figure}
-In order to prune the tree, we use the following method : create a copy of the current tree (\textit{\_tree}) into a buffer (\textit{\_buff}). The root of the buffer tree will be a copy of the chosen node. Then the children are saved going down through the branches. The advantage of this method is that you only copy the nodes you want to keep. However the memory used by the buffer needs to be the same as the one of the tree before the prunning. Thus the maximum memory that can be used by the tree (\textit{\_tree}) is half the memory used by the program. In order to dermine the number of leaves to be created, the program checks how much memory there is left on the computer and use a fixed percentage of it.
+In order to prune the tree, we use the following method : create a copy of the current tree (\textit{\_tree}) into a buffer (\textit{\_buff}). The root of the buffer tree will be a copy of the node. Then the children are saved going down through the branches. The advantage of this method is that you only copy the nodes you want to keep. However the memory used by the buffer needs to be the same as the one of the tree before the prunning. Thus the maximum memory that can be used by the tree (\textit{\_tree}) is half the memory used by the program. In order to dermine the number of leaves to be created, the program checks how much memory there is left on the computer and use a fixed percentage of it.
 \begin{equation}
 N = \frac{R \times 90\%}{2}
 \end{equation}
@@ -29,7 +30,7 @@ We chose to limit the memory used by the tree to 90\% of the available memory in
 \centerline{\includegraphics[scale=0.8]{Data_Structure/Img/TheGame.png}}
 \caption{\label{fig:thegamedetails}\textit{Details of methods cointained in the interface TheGame}.}
 \end{figure}
-In order to know the moves that can be played and the winning conditions, the mcts algorithm has to have access to a class describing the game. This abstract class is implemented and passed as a parameter at the instantiation of the mcts object. It allows genericity in the algorithm and permits to use it on any board games such as Connect4 or Arimaa. This interface has 4 main methods : 
+In order to know the moves that can be played and the winning conditions, the mcts algorithm has to access to a class describing the game. This abstract class is implemented and passed as a parameter at the instantiation of the mcts object. It allows genericity in the algorithm and permits to use it on any board games such as Connect4 or Arimaa. This interface has 4 main methods : 
 
 \noindent
 \textit{\textbf{end}} : check if the board provided is a final state.
@@ -43,7 +44,7 @@ In order to know the moves that can be played and the winning conditions, the mc
 \newpage
 \subsection{Parameters and utilities}
 \subsubsection{Parameters}
-Instead of directly passing all the parameters to the mcts object at its instantiation, we decided to create an object that would provide them, given appropriate inline getters. The point of this is to allow quick modification on the parameters without having to rewrite some parts of the mcts to make sure that each files is updated. The main idea applied here is to separate the data from the algorithm with the same principle as the MVC design pattern.
+Instead of directly passing all the parameters to the mcts object at its instantiation, we decided to create an object that would provide them, given appropriate inline getters. The point of this is to allow quick modification on the parameters without having to rewrite some parts of the mcts to make sure that each files is updated. The main idea applied here is to separate the data from the algorithm with the same principle as the parameter object pattern.
 \begin{figure}[H] 
 \centerline{\includegraphics[scale=0.8]{Data_Structure/Img/MctsArgs.png}}
 \caption{\label{fig:mctsargsuml}\textit{Details of the parameters of the algorithm}.}
@@ -52,10 +53,10 @@ Instead of directly passing all the parameters to the mcts object at its instant
 \subsubsection{Fast log}
 The MCTS algorithm does not require an exact value of the \ensuremath{ln(x)} function in order to calculate the UCT value of a node. As numbers are stored in binary on computers, it is more interesting to get their log in base 2 and to divide it by \ensuremath{ln(2)}. 
 \begin{equation}
-ln(x) = \frac{log2(x)}{ln(2)}
+log2(x) = \frac{ln(x)}{ln(2)}
 \end{equation}
 \begin{equation}
-ln(x) = log2(x) \times \frac{1}{ln(2)}
+ln(x) = log2(x) \times ln(2)
 \end{equation}
 \begin{equation}
 ln(x) = log2(x) \times 0.69314718f
