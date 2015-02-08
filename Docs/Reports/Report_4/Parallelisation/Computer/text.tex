@@ -1,4 +1,4 @@
-Given the size of the tree to be explored (at least \ensuremath{4 \times 10^8} nodes, see \ref{sec:DS}), a root parallelisation strategy within a machine can not be applied. A 11 million nodes tree requires about 2 Gio of RAM. Should it be timed by 40 (\ensuremath{11 \times 10^6 \times 40 \approx 4 \times 10^8}), it would requires 80 Gio of RAM. Multiple threads, each working on seperate trees, would requires much more memory than available.
+Given the size of the tree to be explored (at least \ensuremath{4 \times 10^8} nodes, see \ref{sec:DS}), a root parallelisation strategy within a machine can not be applied. A 11-million-nodes tree requires about 2 Gio of RAM. Should it be timed by 40 (\ensuremath{11 \times 10^6 \times 40 \approx 4 \times 10^8}), it would requires 80 Gio of RAM. Multiple threads, each working on seperate trees, would requires much more memory than there is available.
 % \bigskip
 % \begin{center}
 % 	\begin{tabular}{ | c | c | c |}
@@ -32,9 +32,9 @@ Each node also has a boolean to serve as a lock in order to prevent concurency. 
 
 This method of parallelization can be done by multithreading the \textit{While // loop simulations} descriped in the base algorithm implementation \ref{fig:MCTSAlgorithmOMP}. Using OpenMP, this is easily implented with a single \#pragma statement :\\
 \textbf{\#pragma omp parallel shared(i,timeend)}\\
-where \textit{i}, the number of simulation run and \textit{timeend}, the time until simulations are to be run are defined as shared variables. That way, we make sure that the time limit and total number of simulations are not overtaken. 
+where \textit{i} (the number of simulation run), and \textit{timeend} (the time until simulations are to be run), are defined as shared variables. That way, we make sure that the time limit and total number of simulations are not overtaken. 
 
-In order to prevent any conflict between threads, a small critical section has to control the lock of the nodes. Placing the following statement before \textit{node->getLock()} do the job :\\
+In order to prevent any conflict between threads, a small critical section has to control the lock of the nodes. Placing the following statement before \textit{node->getLock()} achieves this :\\
 \textbf{\#pragma omp critical}
 
 \begin{figure}[H]
