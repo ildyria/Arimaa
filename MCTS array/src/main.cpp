@@ -97,7 +97,6 @@ int main(int argc, char const *argv[])
 					IA = (IA == 2) ? 1 : 2;
 					moveok = 1;
 				}
-				delete &tmp;
 			}
 		}
 

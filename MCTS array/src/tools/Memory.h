@@ -49,7 +49,7 @@ public:
 	{
 			// Return the amount of free memory in kbytes.
 			// Returns -1 if something went wrong.
-			unsigned long returnValue;
+			long returnValue;
 			const int BUFFER_SIZE = 1000;
 			char buffer[BUFFER_SIZE];
 			FILE *fInput;
@@ -100,8 +100,8 @@ public:
 				}
 				fclose(fInput);
 			}
-			std::cout << "There are " << (returnValue >> 10) <<" free MB of physical memory.\n" << std::endl;
-			return returnValue<<10;
+			std::cout << "There are " << returnValue <<" free MB of physical memory.\n" << std::endl;
+			return static_cast<unsigned long>(returnValue <<10);
 		}
 #endif
 };
