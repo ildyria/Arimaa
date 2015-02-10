@@ -25,7 +25,7 @@ namespace mcts {
 
 		int _depth;
 		int _timeLimitsimulationPerRoot;
-		int _simulationPerRoot;
+		unsigned long _simulationPerRoot;
 		int _simulationPerLeaves;
 		int _numberOfVisitBeforeExploration;
 		unsigned long _maxNumberOfLeaves;
@@ -46,7 +46,7 @@ namespace mcts {
 		explicit inline MctsArgs(
 			int depth = 40,
 			int timelimit = 10000,
-			int simulR = 10000000,
+			unsigned long simulR = 10000000,
 			int simulL = 2,
 			int numVisitExplo = 1,
 			double percentRAM = 0.9
@@ -68,7 +68,7 @@ namespace mcts {
 			return _depth;
 		};
 
-		inline void setTimeLimitSimulationPerRoot(int t = 2000)
+		inline void setTimeLimitSimulationPerRoot(unsigned t = 2000)
 		{
 			_timeLimitsimulationPerRoot = t;
 		};
@@ -78,7 +78,7 @@ namespace mcts {
 			return _timeLimitsimulationPerRoot;
 		};
 
-		inline int getSimulationPerRoot()
+		inline unsigned long getSimulationPerRoot()
 		{
 			return _simulationPerRoot;
 		};

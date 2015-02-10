@@ -168,7 +168,7 @@ namespace mcts{
 #ifdef OPTIMIZED_MCTS
 		elseif(nodet < 3 && nodet > 0 && nodet != node->getPlayer()) // losing move !
 		{
-			node->forceSetUCT(10);
+			node->forceSetUCT(42);
 			feedbackWinningMove(node);
 			node->update(nodet);
 		}
@@ -180,7 +180,7 @@ namespace mcts{
 		delete Bb;
 	}
 
-	void Mcts::updateLosingParent(Node* node) // for each parent check if uct = -1 => if yes it's a winning move for the opponent, he has to play here : uct = 10
+	void Mcts::updateLosingParent(Node* node) // for each parent check if uct = -1 => if yes it's a winning move for the opponent, he has to play here : uct = 42
 	{
 		bool loser = true;
 		if (node->getParent() == nullptr) return; // root hahaha
@@ -193,16 +193,17 @@ namespace mcts{
 		}
 		if (loser)
 		{
-			node->getParent()->forceSetUCT(10);
+			node->getParent()->forceSetUCT(42);
 			feedbackWinningMove(node->getParent());
 		}
 	}
 
 	void Mcts::feedbackWinningMove(Node* node) // if someone has a winning move given a position, we must not go to that position.
 	{
-		if (node->getUCT() != 10) return;
-			node->getParent()->forceSetUCT(-1);
-			updateLosingParent(node->getParent());
+		if (node->getUCT() != 42 || node->getParent() == nullptr) return;
+
+		node->getParent()->forceSetUCT(-1);
+		updateLosingParent(node->getParent());
 	}
 
 	void Mcts::cleanTree(std::vector<Node> &T)
@@ -261,7 +262,7 @@ namespace mcts{
 		cout << endl << "turn : " << _root->getState()->getPlayer();
 #endif // DISPLAY_MCTS
 		_maxdepthreached = false;
-		int i = 0;
+		unsigned long i = 0;
 		int start = clock();
 		int timeend = start + static_cast<int>(_param->getTimeLimitSimulationPerRoot() / 1000 * CLOCKS_PER_SEC);
 #ifdef OPENMP
@@ -299,6 +300,6 @@ namespace mcts{
 
 	double Mcts::winning_Strategy()
 	{
-		return (_tree[0].getUCT() != 10 && _tree[0].getUCT() != -1) ? _tree[0].getProba() : _tree[0].getUCT();
+		return (_tree[0].getUCT() != 42 && _tree[0].getUCT() != -1) ? _tree[0].getProba() : _tree[0].getUCT();
 	}
 }

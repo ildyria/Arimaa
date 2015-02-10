@@ -82,7 +82,7 @@ namespace mcts {
 			if (compareUCT(max, itL))
 			{
 				max = itL;
-				if (max->getUCT() == 10) return max; // quicker get out because there is nothing better to be played (winning move)
+				if (max->getUCT() == 42) return max; // quicker get out because there is nothing better to be played (winning move)
 			}
 			itL++;
 		}

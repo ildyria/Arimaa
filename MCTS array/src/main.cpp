@@ -113,7 +113,7 @@ int main(int argc, char const *argv[])
 		}
 		Bb = static_cast<BitboardConnect4*>(mcts.movePlayed(move));
 
-		if (mcts.winning_Strategy() == 10)
+		if (mcts.winning_Strategy() == 42)
 		{
 			cout << "You don't know it yet, but you lost ! =D" << endl;
 		};

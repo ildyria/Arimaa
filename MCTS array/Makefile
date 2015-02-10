@@ -1,7 +1,7 @@
 CC=g++
 BIN=bin
 INCLUDE=-I src/connect4 -I src/interfaces -I src/mcts -I src/tools -I src/api -I src
-CFLAGS=-O2 -fopenmp -c -Wall -std=c++11 $(INCLUDE)
+CFLAGS=-O2 -g -Wpadded -fopenmp -c -Wall -std=c++11 $(INCLUDE)
 LDFLAGS=-fopenmp -std=c++11
 SOURCES=BitboardConnect4.cpp Connect4.cpp Bitboard.cpp Move.cpp Mcts.cpp Node.cpp Random.cpp Count.cpp Ai.cpp Game.cpp main.cpp
 OBJECTS=$(addprefix $(BIN)/, $(SOURCES:.cpp=.o))

@@ -39,9 +39,9 @@ namespace mcts
 	class Node
 	{
 		Node*	_addr;
-		int		_visits;
-		double	_wins;
-		int		_terminal;
+		unsigned int _visits;
+		double 	_wins;
+		short	_terminal;
 		double	_uct;
 		short	_toplay;
 		Move	_move;
@@ -55,20 +55,16 @@ namespace mcts
 		 * \fn UCT
 		 * \brief calculate the UCT value of a node and record it.
 		 * \details winrate + sqrt(2)*log(total of visit / visits)
-		 * if uct is set to 10 => we don't update the value : move that has to be played (win)
+		 * if uct is set to 42 => we don't update the value : move that has to be played (win)
 		 * if uct is set to -1 => we don't change the value either : move that should not be played (loss)
 		 * 
 		 * \param visits number of visits on the parent node.
 		 */
 		inline void UCT(int visits) {
-			if (_uct != -1 && _uct != 10)
+			if (_uct != -1 && _uct != 42)
 			{
-				_uct = _wins / static_cast<double>(max(_visits, 1)) + sqrt(2.0 * FastLog::fast_log(visits + 1) / max(_visits, 1));
+				_uct = _wins / static_cast<double>((_visits > 1) ? _visits : 1) + sqrt(2.0 * FastLog::fast_log(visits + 1) / (_visits > 1) ? _visits : 1);
 			}
-#ifdef DEBUG_NODE
-			cout << "_uct " << " = " << static_cast<double>(_wins) << " / " << static_cast<double>(max(_visits, 1)) << " + sqrt(2.0 * log( " << static_cast<double>(visits + 1) << " / " << max(_visits, 1) << ")" << endl;
-			cout << "_uct = " << _uct << endl;
-#endif //DEBUG_NODE
 		};
 
 	public :
@@ -184,7 +180,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return (_uct != -1) ? ((_uct != 10) ? static_cast<double>(_wins) / static_cast<double>(max(1, _visits)) : 2) : 0; };
+		inline double getProba() { return (_uct != -1) ? ((_uct != 10) ? static_cast<double>(_wins) / static_cast<double>((_visits > 1)? _visits : 1) : 2) : 0; };
 
 		/**
 		 * \fn getVisits()
