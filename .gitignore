@@ -62,7 +62,6 @@ $RECYCLE.BIN/*
 *.o
 *.d
 
-
 # =========================
 # Operating System Files
 # =========================
@@ -126,6 +125,7 @@ Arimaa/UpgradeLog.htm
 # Biv Trash files...
 # =========================
 MCTS/x64/Debug/*
+www/includes/conf.php
 
 # =========================
 # BAPTISTE Trash files...
