@@ -73,7 +73,7 @@ public:
 	 * \fun compare(const Move b)
 	 * \brief Used with the == operator. Required for the class to stay inheritable. 
 	 */
-	virtual inline bool compare(const Move b) const { return _data == b._data; };
+	virtual inline bool compare(const Move& b) const { return _data == b._data; };
 
 
 	/**

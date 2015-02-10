@@ -44,7 +44,7 @@ namespace mcts {
 		 * \return [description]
 		 */
 		explicit inline MctsArgs(
-			int depth = 40,
+			int depth = 44,
 			int timelimit = 10000,
 			unsigned long simulR = 10000000,
 			int simulL = 2,

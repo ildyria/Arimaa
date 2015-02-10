@@ -63,7 +63,7 @@ namespace mcts
 		inline void UCT(int visits) {
 			if (_uct != -1 && _uct != 42)
 			{
-				_uct = _wins / static_cast<double>((_visits > 1) ? _visits : 1) + sqrt(2.0 * FastLog::fast_log(visits + 1) / (_visits > 1) ? _visits : 1);
+				_uct = _wins / static_cast<double>(_visits > 1 ? _visits : 1) + sqrt(2.0 * FastLog::fast_log(visits + 1) / ((_visits > 1) ? _visits : 1));
 			}
 		};
 
@@ -180,7 +180,7 @@ namespace mcts
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba() { return (_uct != -1) ? ((_uct != 10) ? static_cast<double>(_wins) / static_cast<double>((_visits > 1)? _visits : 1) : 2) : 0; };
+		inline double getProba() { return (_uct != -1) ? ((_uct != 42) ? static_cast<double>(_wins) / static_cast<double>(_visits > 1? _visits : 1) : 2) : 0; };
 
 		/**
 		 * \fn getVisits()
