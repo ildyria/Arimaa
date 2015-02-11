@@ -1,31 +1,21 @@
-﻿#Project Arimaa – CR16 : Wednesday, February, 4th
-Presents : Gabriel, Prateek, Benoit, with Christian Raymond and Nikos Parlavantzas
+﻿#Project Arimaa – CR17 : Wednesday, February, 11th
+Presents : Gabriel (through Skype), Prateek, Benoit, Baptiste, with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
 - MCTS : new issues / improvements (*Benoît*)
-- Report first draft (*Everybody*)
+- Report final version (*Everybody*)
+- MPI VS 0MQ
 
-###Report
-- 4.1 is to be merged with 4.3 into 4.1
-- 4.2 needs an explaination of the tree parallelisation
-- Picture from 4.2 can be replaced by an array
-- update Data structure annexes (Arimaa, smaller C4, remove BBC4)
-- add TheGame interface in Data Structure part see lorem ipsum.
+##MCTS
+- Reduction of the size of the nodes (88B -> 64B)
 
-To be sent by the 5th to the supervisors
-Will be corrected by the 7th, then corrections will be made
+##MPI VS 0MQ
+- 0MQ safer for large clusters (MPI fails if any machine fails)
 
-###MCTS
-Contiguous data seems promising, with ~10x as much simulations within the same time.
-
-##Next meeting : 02/11
+##Next meeting : 02/25
 Tasks :
 - Benoît :
-  * Report corrections
+  * MCTS array structure
 - Prateek :
-  * Conclusion
-  * Report corrections
+  * Research 0MQ
 - Gabriel :
-  * Report corrections
-  * Tests MPI
-
-The final version of the report will be submitted at that date
+  * Tests MPI VS 0MQ
