@@ -13,15 +13,15 @@ using std::log;
 
 
 namespace mcts {
-	Node::Node() : _addr(this), _visits(0), _wins(0), _terminal(-1), _uct(0), _toplay(1), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
+	Node::Node() : _addr(this), _visits(0), _wins(0), _terminal(255), _uct(0), _toplay(1), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
 	{
 	}
 
-	Node::Node(int player) : _addr(this), _visits(0), _wins(0), _terminal(-1), _uct(0), _toplay(player), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
+	Node::Node(short player) : _addr(this), _visits(0), _wins(0), _terminal(255), _uct(0), _toplay(player), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
 	{
 	}
 
-	Node::Node(Node* p_parent, int player, Move& move) : _addr(this), _visits(0), _wins(0), _terminal(-1), _toplay(player), _move(move), _firstchild(nullptr), _nbchildren(0), _parent(p_parent), _lock(false)
+	Node::Node(Node* p_parent, short player, Move& move) : _addr(this), _visits(0), _wins(0), _terminal(255), _toplay(player), _move(move), _firstchild(nullptr), _nbchildren(0), _parent(p_parent), _lock(false)
 	{
 	}
 
@@ -35,7 +35,7 @@ namespace mcts {
 	void Node::unset()
 	{
 		_lock = false;
-		_terminal = -1;
+		_terminal = 255;
 		_visits = 0;
 		_wins = 0;
 		_uct = 0;
@@ -48,14 +48,14 @@ namespace mcts {
 	void Node::update(int win){
 		if (win != _toplay && win != 3)
 		{
-			_wins += 1;
+			_wins += 2;
 		}
 		elseif(win == 3)
 		{
-			_wins += 0.5;
+			_wins += 1;
 		}
 
-		_visits += 1;
+//		_visits += 1;
 		if (_parent != nullptr)
 		{
 			_parent->update(win);
@@ -78,7 +78,7 @@ namespace mcts {
 		Node* itL = _firstchild;
 		for (int i = 0; i < _nbchildren; ++i)
 		{
-			itL->UCT((_visits < 1) ? 1 : _visits);
+			itL->UCT((_visits < 2) ? 2 : _visits);
 			if (compareUCT(max, itL))
 			{
 				max = itL;
@@ -120,8 +120,8 @@ namespace mcts {
 			}
 			cout << endl << tabs << "-> " ;
 			cout << _move;
-			cout << " (" << _terminal;
-			cout << ", " << _visits << " (" << round(getProba()*100) << "%)";
+			cout << " (" << (_terminal & 255);
+			cout << ", " << _visits/2 << " (" << round(getProba()*100) << "%)";
 			cout << ", " << _uct << ")";
 
 			auto itL = _firstchild;

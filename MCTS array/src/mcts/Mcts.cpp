@@ -66,7 +66,7 @@ namespace mcts{
 		bool locked = false;
 		int nodet = node->getTerminal();
 
-		if (nodet == -1) { // first time we are here, check if terminate
+		if (nodet == 255) { // first time we are here, check if terminate
 			nodet = _game->end(Bb);
 			node->setTerminal(nodet);
 		}
@@ -85,7 +85,7 @@ namespace mcts{
 				#pragma omp critical
 				locked = node->getLock();
 			}
-			if (locked) return -2;
+			if (locked) return 255;
 
 			list<Move> ListOfMoves;
 			list<Move>::iterator iter;
@@ -93,7 +93,7 @@ namespace mcts{
 			ListOfMoves = _game->listPossibleMoves(Bb);
 			if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
 			{
-				nodet = -2;
+				nodet = 255;
 			}
 			else
 			{
@@ -136,9 +136,10 @@ namespace mcts{
 		int nodet;
 		Bitboard* Bb = _state->clone();
 		nodet = UpdateNode(node,Bb); // update and exploration
-		while (depth < _param->getDepth() && nodet <= 0 && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != -2)
+		while (depth < _param->getDepth() && (nodet == 0 || nodet == 255) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != -2)
 		{
 			node = node->select_child_UCT();
+			node->addVirtualLoss(_param->getSimulationPerLeaves());
 			auto m = node->getMove();
 			_game->play(m, Bb);
 			nodet = UpdateNode(node,Bb);
@@ -158,21 +159,19 @@ namespace mcts{
 			}
 		}
 
-		if (nodet <= 0) // no victory found yet
+		if (nodet == 0 || nodet == 255) // no victory found yet
 		{
 #ifdef DISPLAY_MCTS
 			cout << endl << "depth reached : start random";
 #endif // DISPLAY_MCTS
 			playRandom(node, Bb);
 		}
-#ifdef OPTIMIZED_MCTS
 		elseif(nodet < 3 && nodet > 0 && nodet != node->getPlayer()) // losing move !
 		{
 			node->forceSetUCT(42);
 			feedbackWinningMove(node);
 			node->update(nodet);
 		}
-#endif //OPTIMIZED_MCTS
 		else
 		{
 			node->update(nodet);

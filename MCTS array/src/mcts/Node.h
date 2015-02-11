@@ -38,18 +38,19 @@ namespace mcts
 	 */
 	class Node
 	{
-		Node*	_addr;
-		unsigned int _visits;
-		double 	_wins;
-		short	_terminal;
-		double	_uct;
-		short	_toplay;
-		Move	_move;
+		double	_uct;			// 8 bytes
+		unsigned long _visits;	// 8 bytes
+		unsigned long _wins;	// 8 bytes
 
-		Node*	_firstchild;
-		int		_nbchildren;
-		Node*	_parent;
-		bool	_lock;
+		int		_nbchildren;	// 4 bytes (if linux, 8 bytes if Win...)
+		short	_toplay;		// 2 bytes (if linux, 8 bytes if Win ??)
+		char	_terminal;		// 1 byte
+		bool	_lock;			// 1 byte
+
+		Node*	_addr;			// 8 bytes
+		Move	_move;			// 8 bytes (uint64)
+		Node*	_firstchild;	// 8 bytes
+		Node*	_parent;		// 8 bytes
 
 		/**
 		 * \fn UCT
@@ -76,7 +77,7 @@ namespace mcts
 		*
 		* \param state : Board to create the node with
 		*/
-		explicit Node(int player);
+		explicit Node(short player);
 
 		/**
 		 * \fn Node(Node* p_parent, Bitboard state, Move& move);
@@ -86,7 +87,7 @@ namespace mcts
 		 * \param state : Bitboard after the move
 		 * \param move : move played
 		 */
-		Node(Node* parent, int player, Move& move);
+		Node(Node* parent, short player, Move& move);
 
 		/**
 		 * \fn ~Node()
@@ -101,7 +102,7 @@ namespace mcts
 		*
 		* \param value of the terminal
 		*/
-		inline void setTerminal(int terminal) { _terminal = terminal; };
+		inline void setTerminal(int terminal) { _terminal = (char)(terminal & 255); };
 
 		/**
 		* \fn setTerminal(int terminal)
@@ -134,7 +135,7 @@ namespace mcts
 		*
 		* \return 0 if not, 1 if player 1 wins, 2 if player 2 wins, 3 if tie
 		*/
-		inline int getTerminal() { return _terminal; };
+		inline int getTerminal() { return (_terminal & 255); };
 
 		/**
 		* \fn getState()
@@ -142,7 +143,7 @@ namespace mcts
 		*
 		* \return the Board of the current node
 		*/
-		int getPlayer() { return _toplay; };
+		short getPlayer() { return _toplay; };
 
 		/**
 		* \fn getMove()
@@ -181,6 +182,13 @@ namespace mcts
 		 * \return return the winrate of a node
 		 */
 		inline double getProba() { return (_uct != -1) ? ((_uct != 42) ? static_cast<double>(_wins) / static_cast<double>(_visits > 1? _visits : 1) : 2) : 0; };
+
+
+		/**
+		 * \fn addVirtualLoss(int i)
+		 * \brief add virtual losses
+		 */
+		inline void addVirtualLoss(int i) { _visits += (i*2); };
 
 		/**
 		 * \fn getVisits()
