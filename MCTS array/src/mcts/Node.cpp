@@ -13,15 +13,15 @@ using std::log;
 
 
 namespace mcts {
-	Node::Node() : _addr(this), _visits(0), _wins(0), _terminal(255), _uct(0), _toplay(1), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
+	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(255), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
 	{
 	}
 
-	Node::Node(short player) : _addr(this), _visits(0), _wins(0), _terminal(255), _uct(0), _toplay(player), _move(Move()), _firstchild(nullptr), _nbchildren(0), _parent(nullptr), _lock(false)
+	Node::Node(short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(255), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
 	{
 	}
 
-	Node::Node(Node* p_parent, short player, Move& move) : _addr(this), _visits(0), _wins(0), _terminal(255), _toplay(player), _move(move), _firstchild(nullptr), _nbchildren(0), _parent(p_parent), _lock(false)
+	Node::Node(Node* p_parent, short player, Move& move) : _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(255), _lock(false), _move(move), _firstchild(nullptr), _parent(p_parent)//, _addr(this)
 	{
 	}
 

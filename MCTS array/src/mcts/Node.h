@@ -47,10 +47,10 @@ namespace mcts
 		char	_terminal;		// 1 byte
 		bool	_lock;			// 1 byte
 
-		Node*	_addr;			// 8 bytes
 		Move	_move;			// 8 bytes (uint64)
 		Node*	_firstchild;	// 8 bytes
 		Node*	_parent;		// 8 bytes
+//		Node*	_addr;			// 8 bytes
 
 		/**
 		 * \fn UCT
@@ -165,7 +165,7 @@ namespace mcts
 		* \fn clearParents()
 		* \brief clear the parents' list
 		*/
-		inline void setParent(Node* n) { _parent = n; _addr = this; };
+		inline void setParent(Node* n) { _parent = n; };//_addr = this; };
 
 		/**
 		 * \fn getParents()
