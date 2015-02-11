@@ -4,12 +4,21 @@ Presents : Gabriel (through Skype), Prateek, Benoit, Baptiste, with Christian R
 - MCTS : new issues / improvements (*Benoît*)
 - Report final version (*Everybody*)
 - MPI VS ØMQ
+- What to put in the HTML page
 
 ##MCTS
 - Reduction of the size of the nodes (88B -> 64B)
 
 ##MPI VS ØMQ
 - ØMQ safer for large clusters (MPI fails if any machine fails)
+
+##HTML page
+- 1A4
+- In English and in French
+- Technologies used
+- Overview of the algorithm
+- No technical details (not meant for specialists)
+- Serves as "advertisement"
 
 ##Next meeting : 02/25
 Tasks :
