@@ -10,6 +10,6 @@ The \textit{Root Parallelization} is depicted in figure \ref{fig:root}.
 \label{fig:root}
 \end{figure}
 
-\emph{Root-Root parallelization} consists in applying this strategy on two levels : on threads and on machines.
+\emph{Root-Root parallelization} consists in applying this strategy on two levels: on threads and on machines.
 For this we have chosen a master-slave approach, with one master machine collecting the results of every other machine once they are done with their processing.
 The same structure will be repeated locally on each machine, with one master thread collecting the results of the other threads.

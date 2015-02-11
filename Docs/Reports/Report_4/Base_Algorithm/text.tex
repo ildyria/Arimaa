@@ -14,20 +14,20 @@ The figure\ref{fig:MCTSAlgorithm} below represents the order of calls for the ma
 \caption{\label{fig:MCTSAlgorithm}\textit{Overview of the implementation of the function GetBestMove()}}
 \end{figure}
 \noindent
-\textit{\textbf{explore}} : start the exploration of the tree.
+\textit{\textbf{explore}}: start the exploration of the tree.
 \medskip\\
-\textit{\textbf{UpdateNode}} : make sure the node has children and update its terminal value if required.
+\textit{\textbf{UpdateNode}}: make sure the node has children and update its terminal value if required.
 \medskip\\
-\textit{\textbf{select\_child\_UCT}} : go through all the children of a node and return the one with the highest result at the UCT function (refer to the \textit{pre-analysis report, part 3.4.4}).
+\textit{\textbf{select\_child\_UCT}}: go through all the children of a node and return the one with the highest result at the UCT function (refer to the \textit{pre-analysis report, part 3.4.4}).
 \medskip\\
-\textit{\textbf{playRandom}} : start to run the random simulations and return the winner/tie.
+\textit{\textbf{playRandom}}: start to run the random simulations and return the winner/tie.
 \medskip\\
-\textit{\textbf{update}} : update the node statistics and feed the result back to its parents.
+\textit{\textbf{update}}: update the node statistics and feed the result back to its parents.
 \medskip\\
-\textit{\textbf{forceSetUCT}} : In the event of a winning move, the uct value is set to 42 in order to make sure that each and every further exploration goes through that node, (all the values calculated by the UCT function are below 42).
+\textit{\textbf{forceSetUCT}}: In the event of a winning move, the uct value is set to 42 in order to make sure that each and every further exploration goes through that node, (all the values calculated by the UCT function are below 42).
 \medskip\\
-\textit{\textbf{feedbackWinningMove}} : feed the winning move back to its parent: one does not want to go to that position because it would be a winning strategy for the opponent.
+\textit{\textbf{feedbackWinningMove}}: feed the winning move back to its parent: one does not want to go to that position because it would be a winning strategy for the opponent.
 \medskip\\
-\textit{\textbf{updateLosingParent}} : in the event of all the siblings being a losing move, update its UCT value to winning strategy in order to propagate the results.
+\textit{\textbf{updateLosingParent}}: in the event of all the siblings being a losing move, update its UCT value to winning strategy in order to propagate the results.
 \medskip\\
-\textit{\textbf{select\_child\_WR}} : return the child with the highest win rate.\\
+\textit{\textbf{select\_child\_WR}}: return the child with the highest win rate.\\
