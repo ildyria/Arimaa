@@ -13,15 +13,15 @@ using std::log;
 
 
 namespace mcts {
-	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(255), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
+	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<char>(255)), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
 	{
 	}
 
-	Node::Node(short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(255), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
+	Node::Node(unsigned short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<char>(255)), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
 	{
 	}
 
-	Node::Node(Node* p_parent, short player, Move& move) : _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(255), _lock(false), _move(move), _firstchild(nullptr), _parent(p_parent)//, _addr(this)
+	Node::Node(Node* p_parent, unsigned short player, Move& move) : _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<char>(255)), _lock(false), _move(move), _firstchild(nullptr), _parent(p_parent)//, _addr(this)
 	{
 	}
 
@@ -35,7 +35,7 @@ namespace mcts {
 	void Node::unset()
 	{
 		_lock = false;
-		_terminal = 255;
+		_terminal = static_cast<char>(255);
 		_visits = 0;
 		_wins = 0;
 		_uct = 0;
@@ -45,7 +45,7 @@ namespace mcts {
 		_toplay = 1;
 	}
 
-	void Node::update(int win){
+	void Node::update(unsigned int win){
 		if (win != _toplay && win != 3)
 		{
 			_wins += 2;
@@ -58,6 +58,7 @@ namespace mcts {
 //		_visits += 1;
 		if (_parent != nullptr)
 		{
+			take_a_chill_pill(0); // HELLO LEEK !
 			_parent->update(win);
 		}
 	}
@@ -72,11 +73,12 @@ namespace mcts {
 		return a->getProba() < b->getProba();
 	}
 
-	Node* Node::select_child_UCT(){
+	Node* Node::select_child_UCT()
+	{
 
 		Node* max = _firstchild;
 		Node* itL = _firstchild;
-		for (int i = 0; i < _nbchildren; ++i)
+		for (unsigned int i = 0; i < _nbchildren; ++i)
 		{
 			itL->UCT((_visits < 2) ? 2 : _visits);
 			if (compareUCT(max, itL))
@@ -93,7 +95,7 @@ namespace mcts {
 	{
 		Node* max = _firstchild;
 		Node* itL = _firstchild;
-		for (int i = 0; i < _nbchildren; ++i)
+		for (unsigned int i = 0; i < _nbchildren; ++i)
 		{
 			if (compareWR(max, itL))
 			{
@@ -105,12 +107,12 @@ namespace mcts {
 		return max;
 	}
 
-	void Node::print_tree(int numtab, int depth)
+	void Node::print_tree(unsigned int numtab,unsigned int depth)
 	{
-		if (depth >= 0)
+		if (depth > 0)
 		{
 			string tabs = "";
-			for (int i = 0; i < numtab; ++i)
+			for (unsigned int i = 0; i < numtab; ++i)
 			{
 				tabs += " ";
 				if (i + 1 < numtab)
@@ -125,7 +127,7 @@ namespace mcts {
 			cout << ", " << _uct << ")";
 
 			auto itL = _firstchild;
-			for (int i = 0; i < _nbchildren; ++i)
+			for (unsigned int i = 0; i < _nbchildren; ++i)
 			{
 				itL->print_tree(numtab + 1, depth - 1);
 				itL++;
@@ -133,13 +135,13 @@ namespace mcts {
 		}
 	}
 
-	int Node::count()
+	unsigned int Node::count()
 	{
 		if (_firstchild == nullptr) return 1;
 
 		auto itL = _firstchild;
 		auto val = 0;
-		for (int i = 0; i < _nbchildren; ++i)
+		for (unsigned int i = 0; i < _nbchildren; ++i)
 		{
 			val += itL->count();
 			itL++;
@@ -148,13 +150,13 @@ namespace mcts {
 		return val + 1;
 	}
 
-	int Node::max_depth()
+	unsigned int Node::max_depth()
 	{
 		if (_firstchild == nullptr) return 1;
 
 		auto itL = _firstchild;
-		auto val = 0;
-		for (int i = 0; i < _nbchildren; ++i)
+		unsigned int val = 0;
+		for (unsigned int i = 0; i < _nbchildren; ++i)
 		{
 			auto cur = itL->max_depth();
 			if (val < cur) val = cur;

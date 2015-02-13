@@ -2,8 +2,9 @@
 
 #include "Mcts.h"
 #define elseif else if
-#define OPTIMIZED_MCTS
-#include <time.h>
+#define SLOW 0 // 5 ms 
+// #include <time.h>
+#include <chrono>
 
 //#define DEBUG_MCTS
 //#define DISPLAY_MCTS
@@ -24,10 +25,20 @@ namespace mcts{
 				:_game(game),
 				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
 				_buff(std::vector<Node>(args->getMaxNumberOfLeaves())),
+				// _parents(
+				// 	std::vector<std::vector<Node*>> (omp_get_num_procs(), std::vector<Node*>(args->getDepth() + 1, nullptr))
+				// 	),
 				_param(args),
 				_state(Bb),
 				_maxdepthreached(false)
 	{
+		cout << "number of thread : " << omp_get_num_procs() << endl;
+		// #pragma omp parallel
+		// {
+		// 	int tid = omp_get_thread_num();
+		// 	printf("Hello World from thread = %d\n", tid);
+		// }
+
 		cleanTree(_tree);
 		cleanTree(_buff);
 		Count::I()->clear();
@@ -41,7 +52,7 @@ namespace mcts{
 		UpdateNode(&_tree[0], _state);
 		auto ListOfNodes = _tree[0].getChildren();
 		auto iter = ListOfNodes.first;
-		for (auto i = 0; i < ListOfNodes.second; ++i)
+		for (unsigned int i = 0; i < ListOfNodes.second; ++i)
 		{
 			if (iter->getMove() == move) // we got the move played !
 			{
@@ -61,17 +72,17 @@ namespace mcts{
 		return _state;
 	}
 
-	int Mcts::UpdateNode(Node* node, Bitboard* Bb)
+	unsigned int Mcts::UpdateNode(Node* node, Bitboard* Bb)
 	{
 		bool locked = false;
-		int nodet = node->getTerminal();
+		unsigned int nodet = node->getTerminal();
 
 		if (nodet == 255) { // first time we are here, check if terminate
 			nodet = _game->end(Bb);
 			node->setTerminal(nodet);
 		}
 
-		if (nodet == 0 && node->getChildren().first != nullptr)
+		if (nodet == 255 && node->getChildren().first != nullptr)
 		{
 			return nodet;
 		}
@@ -85,7 +96,7 @@ namespace mcts{
 				#pragma omp critical
 				locked = node->getLock();
 			}
-			if (locked) return 255;
+			if (locked) return 254;
 
 			list<Move> ListOfMoves;
 			list<Move>::iterator iter;
@@ -93,7 +104,7 @@ namespace mcts{
 			ListOfMoves = _game->listPossibleMoves(Bb);
 			if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
 			{
-				nodet = 255;
+				nodet = 254;
 			}
 			else
 			{
@@ -104,7 +115,7 @@ namespace mcts{
 					_next->play(node->getPlayer());
 					_next++;
 				}
-				node->setChildrens(tmp, static_cast<int>(ListOfMoves.size())); // update at the end, concurency race...
+				node->setChildrens(tmp, static_cast<unsigned int>(ListOfMoves.size())); // update at the end, concurency race...
 			}
 			node->releaseLock();
 		}
@@ -114,13 +125,10 @@ namespace mcts{
 
 	void Mcts::playRandom(Node* node, Bitboard* Bb)
 	{
-		int nodet;
+		unsigned int nodet;
 
-		for (int i = 0; i < _param->getSimulationPerLeaves(); ++i)
+		for (unsigned int i = 0; i < _param->getSimulationPerLeaves(); ++i)
 		{
-#ifdef DEBUG_MCTS
-			cout << endl << "round n " << (i + 1) << endl;
-#endif // DEBUG_MCTS
 			Bitboard* Bb2 = Bb->clone();
 			nodet = _game->playRandomMoves(Bb2);
 			delete Bb2;
@@ -132,44 +140,41 @@ namespace mcts{
 	void Mcts::explore()
 	{
 		Node* node = &_tree[0];
-		int depth = 0;
-		int nodet;
+		unsigned int depth = 0;
+		unsigned int nodet;
 		Bitboard* Bb = _state->clone();
 		nodet = UpdateNode(node,Bb); // update and exploration
-		while (depth < _param->getDepth() && (nodet == 0 || nodet == 255) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != -2)
+		node->addVirtualLoss(_param->getSimulationPerLeaves());
+
+		// _parents[omp_get_thread_num()][depth] = &_tree[0];
+
+		while (depth < _param->getDepth() && (nodet == 0 || nodet > 3) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != 254)
 		{
+			++depth;
 			node = node->select_child_UCT();
+			// record the parent => should make a function for it.
+			// _parents[omp_get_thread_num()][depth] = node;
+
 			node->addVirtualLoss(_param->getSimulationPerLeaves());
 			auto m = node->getMove();
 			_game->play(m, Bb);
 			nodet = UpdateNode(node,Bb);
-#ifdef DISPLAY_MCTS
-			if (depth == 0)
-			{
-				cout << endl << "Node to explore : " << endl;
-
-			}
-			cout << node->getMove() << " > ";
-#endif // DISPLAY_MCTS
-			++depth;
-			if (depth == _param->getDepth() && !_maxdepthreached)
-			{
-				_maxdepthreached = true;
-				cout << endl << "max depth reached : " << _param->getDepth() << "moves ahead.";
-			}
 		}
 
-		if (nodet == 0 || nodet == 255) // no victory found yet
+		// if (depth == _param->getDepth() && !_maxdepthreached)
+		// {
+		// 	_maxdepthreached = true;
+		// 	cout << endl << "max depth reached : " << _param->getDepth() << "moves ahead.";
+		// }
+
+		if (nodet == 0 || nodet > 3) // no victory found yet
 		{
-#ifdef DISPLAY_MCTS
-			cout << endl << "depth reached : start random";
-#endif // DISPLAY_MCTS
 			playRandom(node, Bb);
 		}
 		elseif(nodet < 3 && nodet > 0 && nodet != node->getPlayer()) // losing move !
 		{
 			node->forceSetUCT(42);
-			feedbackWinningMove(node);
+			// feedbackWinningMove(node);
 			node->update(nodet);
 		}
 		else
@@ -185,7 +190,7 @@ namespace mcts{
 		if (node->getParent() == nullptr) return; // root hahaha
 		auto ListChilds = node->getParent()->getChildren();
 		Node* ptr = ListChilds.first;
-		for (int i = 0; (i < ListChilds.second && loser); ++i)
+		for (unsigned int i = 0; (i < ListChilds.second && loser); ++i)
 		{
 			if (ptr->getUCT() != -1) loser = false;
 			ptr++;
@@ -233,7 +238,7 @@ namespace mcts{
 			if (ptTemp != nullptr)				// if children add them to _buff
 			{
 				ptrDest->setChildrens(next, ListOfNodes.second); // update the node of the parents
-				for (int i = 0; i < ListOfNodes.second; i++)
+				for (unsigned int i = 0; i < ListOfNodes.second; i++)
 				{
 					*next = *ptTemp;			// recopy of chidlren
 					next->setParent(ptrDest);	// set their parent to current ptr
@@ -257,30 +262,23 @@ namespace mcts{
 
 	Move Mcts::GetBestMove()
 	{
-#ifdef DISPLAY_MCTS
-		cout << endl << "turn : " << _root->getState()->getPlayer();
-#endif // DISPLAY_MCTS
 		_maxdepthreached = false;
 		unsigned long i = 0;
-		int start = clock();
-		int timeend = start + static_cast<int>(_param->getTimeLimitSimulationPerRoot() / 1000 * CLOCKS_PER_SEC);
+		auto start_time = std::chrono::high_resolution_clock::now();
+		auto end_time = start_time + std::chrono::milliseconds(_param->getTimeLimitSimulationPerRoot());
 #ifdef OPENMP
-#pragma omp parallel shared(i,timeend)
+#pragma omp parallel shared(i,end_time)
 #endif
-		while (clock() < timeend && i < _param->getSimulationPerRoot())
+		while (std::chrono::high_resolution_clock::now() < end_time && i < _param->getSimulationPerRoot())
 		{
 			i++;
-#ifdef DISPLAY_MCTS
-			cout << endl << "simulation n : " << i;
-#endif // DISPLAY_MCTS
 			explore();
 		}
-		cout << endl << "start search : " << static_cast<double>(start) / CLOCKS_PER_SEC << "s.";
-		cout << endl << "end search : " << static_cast<double>(clock()) / CLOCKS_PER_SEC << "s in " << static_cast<double>(clock() - start) * 1000 / CLOCKS_PER_SEC << "ms and " << i*_param->getSimulationPerLeaves() << " simulations." << endl;
+		cout << endl << "Searched for " << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-start_time).count() << "ms and " << i*_param->getSimulationPerLeaves() << " simulations." << endl;
 		return _tree[0].select_child_WR()->getMove();
 	}
 
-	void Mcts::print_tree(int depth)
+	void Mcts::print_tree(unsigned int depth)
 	{
 		auto d = (depth == 0) ? _param->getDepth() : depth;
 		_tree[0].print_tree(0, d);
@@ -300,5 +298,14 @@ namespace mcts{
 	double Mcts::winning_Strategy()
 	{
 		return (_tree[0].getUCT() != 42 && _tree[0].getUCT() != -1) ? _tree[0].getProba() : _tree[0].getUCT();
+	}
+
+	void Mcts::take_a_chill_pill(unsigned long i)
+	{
+		// struct timespec tim, tim2;
+		// tim.tv_sec = 0;
+		// tim.tv_nsec = SLOW; // 1 ms sec
+		// nanosleep(&tim , &tim2);
+		printf("%d : %ld\n", omp_get_thread_num(),i);
 	}
 }

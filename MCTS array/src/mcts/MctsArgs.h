@@ -23,11 +23,11 @@ namespace mcts {
 	class MctsArgs
 	{
 
-		int _depth;
-		int _timeLimitsimulationPerRoot;
+		unsigned int _depth;
+		unsigned int _timeLimitsimulationPerRoot;
 		unsigned long _simulationPerRoot;
-		int _simulationPerLeaves;
-		int _numberOfVisitBeforeExploration;
+		unsigned int _simulationPerLeaves;
+		unsigned int _numberOfVisitBeforeExploration;
 		unsigned long _maxNumberOfLeaves;
 		double _percentRAM;
 
@@ -44,13 +44,13 @@ namespace mcts {
 		 * \return [description]
 		 */
 		explicit inline MctsArgs(
-			int depth = 44,
-			int timelimit = 10000,
+			unsigned int depth = 44,
+			unsigned int timelimit = 10000,
 			unsigned long simulR = 10000000,
-			int simulL = 2,
-			int numVisitExplo = 1,
+			unsigned int simulL = 2,
+			unsigned int numVisitExplo = 1,
 			double percentRAM = 0.9
-			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(numVisitExplo), _percentRAM(percentRAM)
+			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
 #if defined(_WIN64)
 			_maxNumberOfLeaves = static_cast<unsigned long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
@@ -60,20 +60,22 @@ namespace mcts {
 #else
 			_maxNumberOfLeaves = static_cast<unsigned long>((static_cast<unsigned long>(1) << 31) * _percentRAM / (2 * sizeof(Node))); // maximum size is 2 Go...
 #endif
+			std::cout << "size of node : " << sizeof(Node) << std::endl;
+
 			std::cout << "max num of leaves : " << _maxNumberOfLeaves << std::endl;
 		};
 
-		inline int getDepth()
+		inline unsigned int getDepth()
 		{
 			return _depth;
 		};
 
-		inline void setTimeLimitSimulationPerRoot(unsigned t = 2000)
+		inline void setTimeLimitSimulationPerRoot(unsigned int t = 2000)
 		{
 			_timeLimitsimulationPerRoot = t;
 		};
 
-		inline double getTimeLimitSimulationPerRoot()
+		inline unsigned int getTimeLimitSimulationPerRoot()
 		{
 			return _timeLimitsimulationPerRoot;
 		};
@@ -83,17 +85,17 @@ namespace mcts {
 			return _simulationPerRoot;
 		};
 
-		inline int getSimulationPerLeaves()
+		inline unsigned int getSimulationPerLeaves()
 		{
 			return _simulationPerLeaves;
 		};
 
-		inline int getNumberOfVisitBeforeExploration()
+		inline unsigned int getNumberOfVisitBeforeExploration()
 		{
 			return _numberOfVisitBeforeExploration;
 		};
 
-		inline int getMaxNumberOfLeaves()
+		inline unsigned long getMaxNumberOfLeaves()
 		{
 			return _maxNumberOfLeaves;
 		}

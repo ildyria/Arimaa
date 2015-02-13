@@ -25,6 +25,8 @@ namespace mcts
 		TheGame* _game;
 		std::vector<Node> _tree;
 		std::vector<Node> _buff;
+		// std::vector<std::vector<Node*>> _parents;
+
 		MctsArgs* _param;
 		Node* _next;
 		Bitboard* _state;
@@ -41,7 +43,7 @@ namespace mcts
 		* \param  node to be updated
 		* \return      the state of the board : 0, 1, 2, or 3 .
 		*/
-		int UpdateNode(Node* node, Bitboard* Bb);
+		unsigned int UpdateNode(Node* node, Bitboard* Bb);
 
 
 		/**
@@ -134,7 +136,7 @@ namespace mcts
 		 * 
 		 * \param depth How deep we want to search, 1 by default
 		 */
-		void print_tree(int depth = 1);
+		void print_tree(unsigned int depth = 1);
 
 		/**
 		 * \fn kill_tree()
@@ -149,5 +151,7 @@ namespace mcts
 		void get_Number_Leaves();
 
 		double winning_Strategy();
+
+		void take_a_chill_pill(unsigned long i);
 	};
 }

@@ -42,8 +42,8 @@ namespace mcts
 		unsigned long _visits;	// 8 bytes
 		unsigned long _wins;	// 8 bytes
 
-		int		_nbchildren;	// 4 bytes (if linux, 8 bytes if Win...)
-		short	_toplay;		// 2 bytes (if linux, 8 bytes if Win ??)
+		unsigned int _nbchildren;	// 4 bytes (if linux, 8 bytes if Win...) // a passer en unsigned ?
+		unsigned short	_toplay;	// 2 bytes (if linux, 8 bytes if Win ??)
 		char	_terminal;		// 1 byte
 		bool	_lock;			// 1 byte
 
@@ -61,10 +61,10 @@ namespace mcts
 		 * 
 		 * \param visits number of visits on the parent node.
 		 */
-		inline void UCT(int visits) {
+		inline void UCT(unsigned long visits) {
 			if (_uct != -1 && _uct != 42)
 			{
-				_uct = _wins / static_cast<double>(_visits > 1 ? _visits : 1) + sqrt(2.0 * FastLog::fast_log(visits + 1) / ((_visits > 1) ? _visits : 1));
+				_uct = _wins / static_cast<double>(_visits > 1 ? _visits : 1) + sqrt(2.0 * FastLog::fast_log((visits >> 1) + 1) / ((_visits > 2) ? _visits >> 1 : 1));
 			}
 		};
 
@@ -77,7 +77,7 @@ namespace mcts
 		*
 		* \param state : Board to create the node with
 		*/
-		explicit Node(short player);
+		explicit Node(unsigned short player);
 
 		/**
 		 * \fn Node(Node* p_parent, Bitboard state, Move& move);
@@ -87,7 +87,7 @@ namespace mcts
 		 * \param state : Bitboard after the move
 		 * \param move : move played
 		 */
-		Node(Node* parent, short player, Move& move);
+		Node(Node* parent, unsigned short player, Move& move);
 
 		/**
 		 * \fn ~Node()
@@ -102,7 +102,7 @@ namespace mcts
 		*
 		* \param value of the terminal
 		*/
-		inline void setTerminal(int terminal) { _terminal = (char)(terminal & 255); };
+		inline void setTerminal(unsigned int terminal) { _terminal = static_cast<char>(terminal & 255); };
 
 		/**
 		* \fn setTerminal(int terminal)
@@ -110,7 +110,7 @@ namespace mcts
 		*
 		* \param value of the terminal
 		*/
-		inline void setChildrens(Node* c, int n) { _firstchild = c; _nbchildren = n; };
+		inline void setChildrens(Node* c, unsigned int n) { _firstchild = c; _nbchildren = n; };
 
 		/**
 		* \fn forceSetUCT
@@ -135,7 +135,7 @@ namespace mcts
 		*
 		* \return 0 if not, 1 if player 1 wins, 2 if player 2 wins, 3 if tie
 		*/
-		inline int getTerminal() { return (_terminal & 255); };
+		inline unsigned int getTerminal() { return (_terminal & 255); };
 
 		/**
 		* \fn getState()
@@ -143,7 +143,7 @@ namespace mcts
 		*
 		* \return the Board of the current node
 		*/
-		short getPlayer() { return _toplay; };
+		unsigned short getPlayer() { return _toplay; };
 
 		/**
 		* \fn getMove()
@@ -159,7 +159,7 @@ namespace mcts
 		 *
 		 * \return return the list of the childrens
 		 */
-		inline std::pair<Node*, int> getChildren() { return std::pair<Node*, int>(_firstchild, _nbchildren); };
+		inline std::pair<Node*, unsigned int> getChildren() { return std::pair<Node*, unsigned int>(_firstchild, _nbchildren); };
 
 		/**
 		* \fn clearParents()
@@ -188,7 +188,7 @@ namespace mcts
 		 * \fn addVirtualLoss(int i)
 		 * \brief add virtual losses
 		 */
-		inline void addVirtualLoss(int i) { _visits += (i*2); };
+		inline void addVirtualLoss(unsigned int i) { _visits += (i*2); };
 
 		/**
 		 * \fn getVisits()
@@ -196,7 +196,7 @@ namespace mcts
 		 *
 		 * \return return the number of visits
 		 */
-		inline int getVisits() { return _visits; };
+		inline unsigned long getVisits() { return _visits; };
 
 		/**
 		 * \fn compare()
@@ -256,7 +256,7 @@ namespace mcts
 		 * 
 		 * \param win int representing the last winner : 1 2 or 3
 		 */
-		void update(int win);
+		void update(unsigned int win);
 
 		/**
 		 * \fn print_tree(int numtab, int depth)
@@ -265,24 +265,25 @@ namespace mcts
 		 * \param numtab the depth we are in the tree in order to insert \t in front of the display
 		 * \param depth How deep we want to dive in the tree
 		 */
-		void print_tree(int numtab, int depth);
+		void print_tree(unsigned int numtab, unsigned int depth);
 
 		/**
 		 * \fn count()
 		 * \brief recursive function that count the number of leaves of the subtree.
 		 * \return number of leaves of the sub tree.
 		 */
-		int count();
+		unsigned int count();
 
-		int max_depth();
+		unsigned int max_depth();
 
-		inline void play(int i = 0)
+		inline void play(unsigned short i = 0)
 		{
 			_toplay = (i == 0) ? ((_toplay == 1) ? 2 : 1) : ((i == 1) ? 2 : 1);
 		};
 
 		inline bool getLock()
 		{
+			// printf("%p locked.\n",(void*)this); // trop lent !!!!
 			bool t = _lock;
 			_lock = true;
 			return t;
@@ -290,7 +291,13 @@ namespace mcts
 
 		inline void releaseLock()
 		{
+			// printf("%p unlocked.\n",(void*)this); // trop lent !!!!
 			_lock = false;
+		}
+
+		inline void take_a_chill_pill(unsigned long i)
+		{
+			printf("%d : %ld\n", omp_get_thread_num(),i);
 		}
 
 	};
