@@ -25,9 +25,7 @@ namespace mcts{
 				:_game(game),
 				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
 				_buff(std::vector<Node>(args->getMaxNumberOfLeaves())),
-				// _parents(
-				// 	std::vector<std::vector<Node*>> (omp_get_num_procs(), std::vector<Node*>(args->getDepth() + 1, nullptr))
-				// 	),
+				_parents(std::vector<std::pair<std::vector<Node*>,unsigned int>> (omp_get_num_procs(), std::pair<std::vector<Node*>,unsigned int>(std::vector<Node*>(args->getDepth() + 1, nullptr),0))),
 				_param(args),
 				_state(Bb),
 				_maxdepthreached(false)
@@ -132,10 +130,19 @@ namespace mcts{
 			Bitboard* Bb2 = Bb->clone();
 			nodet = _game->playRandomMoves(Bb2);
 			delete Bb2;
-			node->update(nodet);
+			feedback(nodet);
+			//node->update(nodet);
 		}
 	}
 
+	void Mcts::feedback(unsigned int nodet)
+	{
+		take_a_chill_pill(nodet);
+		for (auto i = _parents[omp_get_thread_num()].second; i >= 0; --i)
+		{
+			_parents[omp_get_thread_num()].first[i]->update(nodet);
+		}
+	}
 
 	void Mcts::explore()
 	{
@@ -146,14 +153,16 @@ namespace mcts{
 		nodet = UpdateNode(node,Bb); // update and exploration
 		node->addVirtualLoss(_param->getSimulationPerLeaves());
 
-		// _parents[omp_get_thread_num()][depth] = &_tree[0];
+		_parents[omp_get_thread_num()].first[depth] = &_tree[0];
+		_parents[omp_get_thread_num()].second = 0;
 
 		while (depth < _param->getDepth() && (nodet == 0 || nodet > 3) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != 254)
 		{
 			++depth;
 			node = node->select_child_UCT();
 			// record the parent => should make a function for it.
-			// _parents[omp_get_thread_num()][depth] = node;
+			_parents[omp_get_thread_num()].first[depth] = node;
+			_parents[omp_get_thread_num()].second = depth;
 
 			node->addVirtualLoss(_param->getSimulationPerLeaves());
 			auto m = node->getMove();
@@ -175,11 +184,13 @@ namespace mcts{
 		{
 			node->forceSetUCT(42);
 			// feedbackWinningMove(node);
-			node->update(nodet);
+			feedback(nodet);
+//			node->update(nodet);
 		}
 		else
 		{
-			node->update(nodet);
+			feedback(nodet);
+			// node->update(nodet);
 		}
 		delete Bb;
 	}

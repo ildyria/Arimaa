@@ -54,7 +54,6 @@ namespace mcts {
 		{
 #if defined(_WIN64)
 			_maxNumberOfLeaves = static_cast<unsigned long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
-//#elif defined(_WIN32)
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
 			_maxNumberOfLeaves = static_cast<unsigned long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
 #else

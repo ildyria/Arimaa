@@ -56,11 +56,11 @@ namespace mcts {
 		}
 
 //		_visits += 1;
-		if (_parent != nullptr)
-		{
-			take_a_chill_pill(0); // HELLO LEEK !
-			_parent->update(win);
-		}
+		// if (_parent != nullptr)
+		// {
+		// 	take_a_chill_pill(0); // HELLO LEEK !
+		// 	_parent->update(win);
+		// }
 	}
 
 	bool Node::compareUCT(Node* a, Node* b)

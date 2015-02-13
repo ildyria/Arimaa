@@ -1,22 +1,21 @@
 //#include <vld.h>
 //#define TEST_API
-#define TEST_MEM
 
 #if defined(TEST_API)
-#include "api/Game.h"
-#include "api/Ai.h"
-#include "api/test.h"
-using namespace api;
+	#include "api/Game.h"
+	#include "api/Ai.h"
+	#include "api/test.h"
+	using namespace api;
 #else
-#define DISPLAY_TREE
-#include "tools/Memory.h"
+//	#define DISPLAY_TREE
+	#include "tools/Memory.h"
 
-#include "./tools/Count.h"
+	#include "./tools/Count.h"
 
-#include "./mcts/Mcts.h"
+	#include "./mcts/Mcts.h"
 
-#include "./connect4/Connect4.h"
-#include "./connect4/BitboardConnect4.h"
+	#include "./connect4/Connect4.h"
+	#include "./connect4/BitboardConnect4.h"
 #endif
 
 #include <thread>
@@ -38,12 +37,7 @@ int main(int argc, char const *argv[])
 	cout << "\tBut remember, all code is guilty until proven innocent !" << endl << endl;
 #ifdef TEST_API
 	test_api();
-/*
-	cout << Memory::getPeakRSS() << endl;
-	cout << Memory::getCurrentRSS() << endl;
-*/
 #else
-//	Memory::WinFUllInfo();
 	Connect4* game = new Connect4();
 	BitboardConnect4* Bb = new BitboardConnect4();
 	int result = 0, moveok;

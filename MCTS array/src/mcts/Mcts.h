@@ -25,7 +25,8 @@ namespace mcts
 		TheGame* _game;
 		std::vector<Node> _tree;
 		std::vector<Node> _buff;
-		// std::vector<std::vector<Node*>> _parents;
+		std::vector<std::pair<std::vector<Node*>,unsigned int>> _parents;
+		// std::vector<unsigned int> _parents_index;
 
 		MctsArgs* _param;
 		Node* _next;
@@ -153,5 +154,7 @@ namespace mcts
 		double winning_Strategy();
 
 		void take_a_chill_pill(unsigned long i);
+
+		void feedback(unsigned int nodet);
 	};
 }
