@@ -52,13 +52,13 @@ namespace mcts {
 			double percentRAM = 0.9
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
-#if defined(_WIN64)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
-#elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
-#else
+// #if defined(_WIN64)
+// 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
+// #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
+// 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
+// #else
 			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (2 * sizeof(Node))); // maximum size is 2 Go...
-#endif
+// #endif
 			std::cout << "size of node : " << sizeof(Node) << std::endl;
 
 			std::cout << "max num of leaves : " << _maxNumberOfLeaves << std::endl;

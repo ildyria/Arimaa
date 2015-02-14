@@ -29,10 +29,6 @@ using std::cin;
 using std::endl;
 using std::list;
 
-
-
-
-
 int main(int argc, char const *argv[])
 {
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;

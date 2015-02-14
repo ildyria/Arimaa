@@ -9,6 +9,7 @@
 #pragma once
 #include "../tools/typedef.h"
 #include "Node.h"
+#include "../tools/Memento.h"
 #include "MctsArgs.h"
 #include "../interfaces/TheGame.h"
 
@@ -26,7 +27,9 @@ namespace mcts
 		TheGame* _game;
 		std::vector<Node> _tree;
 		std::vector<Node> _buff;
-		std::vector<std::pair<std::vector<Node*>,u_int>> _parents;
+//		std::vector<std::pair<std::vector<Node*>,u_int>> _parents;
+		std::vector<Memento<Node*>> _parents;
+
 		// std::vector<unsigned int> _parents_index;
 
 		MctsArgs* _param;

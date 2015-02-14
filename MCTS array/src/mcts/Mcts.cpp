@@ -25,7 +25,7 @@ namespace mcts{
 				:_game(game),
 				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
 				_buff(std::vector<Node>(args->getMaxNumberOfLeaves())),
-				_parents(std::vector<std::pair<std::vector<Node*>,u_int>> (omp_get_num_procs(), std::pair<std::vector<Node*>,u_int>(std::vector<Node*>(args->getDepth() + 1, nullptr),0))),
+				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->getDepth() + 1))),
 				_param(args),
 				_state(Bb),
 				_maxdepthreached(false)
@@ -144,9 +144,12 @@ namespace mcts{
 
 	void Mcts::feedback(u_int nodet)
 	{
-		for (int i = _parents[omp_get_thread_num()].second; i >= 0; --i)
+		_parents[omp_get_thread_num()].rewind();
+		Node* n = _parents[omp_get_thread_num()].get();
+		while(n != nullptr)
 		{
-			_parents[omp_get_thread_num()].first[i]->update(nodet);
+			n->update(nodet);
+			n = _parents[omp_get_thread_num()].get();
 		}
 	}
 
@@ -158,16 +161,14 @@ namespace mcts{
 		u_int nodet = UpdateNode(node, Bb); // update and exploration
 		node->addVirtualLoss(_param->getSimulationPerLeaves());
 
-		_parents[omp_get_thread_num()].first[depth] = &_tree[0];
-		_parents[omp_get_thread_num()].second = 0;
+		_parents[omp_get_thread_num()].reset();
+		_parents[omp_get_thread_num()].push(&_tree[0]);
 
 		while (depth < _param->getDepth() && (nodet == 0 || nodet > 3) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != 255)
 		{
 			++depth;
 			node = node->select_child_UCT();
-			// record the parent => should make a function for it.
-			_parents[omp_get_thread_num()].first[depth] = node;
-			_parents[omp_get_thread_num()].second = depth;
+			_parents[omp_get_thread_num()].push(node);
 
 			node->addVirtualLoss(_param->getSimulationPerLeaves());
 			auto m = node->getMove();
