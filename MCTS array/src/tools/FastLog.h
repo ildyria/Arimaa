@@ -1,3 +1,6 @@
+#pragma once
+#include "typedef.h"
+
 #ifdef _WIN64
 #include <intrin.h>
 #define LOGV1
@@ -12,9 +15,9 @@ class FastLog
 	~FastLog() {};
 public:
 #ifdef LOGV1
-	static inline unsigned long log2(const int& x)
+	static inline u_long log2(const int& x)
 	{
-		unsigned long y;
+		u_long y;
 		_BitScanReverse64(&y, x);
 		return y;
 	}
@@ -41,7 +44,7 @@ public:
 	}
 #endif
 
-	static inline double times_log2(const unsigned long &val)
+	static inline double times_log2(const u_long &val)
 	{
 		return (val * 0.69314718f);
 	}

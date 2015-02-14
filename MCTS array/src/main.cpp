@@ -1,6 +1,8 @@
 //#include <vld.h>
 //#define TEST_API
 
+#include "tools/typedef.h"
+
 #if defined(TEST_API)
 	#include "api/Game.h"
 	#include "api/Ai.h"
@@ -40,7 +42,8 @@ int main(int argc, char const *argv[])
 #else
 	Connect4* game = new Connect4();
 	BitboardConnect4* Bb = new BitboardConnect4();
-	int result = 0, moveok;
+	int result = 0;
+	int moveok;
 	Move move;
 
 	MctsArgs* args = new MctsArgs();

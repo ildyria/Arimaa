@@ -25,7 +25,7 @@ namespace mcts{
 				:_game(game),
 				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
 				_buff(std::vector<Node>(args->getMaxNumberOfLeaves())),
-				_parents(std::vector<std::pair<std::vector<Node*>,unsigned int>> (omp_get_num_procs(), std::pair<std::vector<Node*>,unsigned int>(std::vector<Node*>(args->getDepth() + 1, nullptr),0))),
+				_parents(std::vector<std::pair<std::vector<Node*>,u_int>> (omp_get_num_procs(), std::pair<std::vector<Node*>,u_int>(std::vector<Node*>(args->getDepth() + 1, nullptr),0))),
 				_param(args),
 				_state(Bb),
 				_maxdepthreached(false)
@@ -51,12 +51,12 @@ namespace mcts{
 		UpdateNode(&_tree[0], _state);
 		auto ListOfNodes = _tree[0].getChildren();
 		auto iter = ListOfNodes.first;
-		for (unsigned int i = 0; i < ListOfNodes.second; ++i)
+		for (u_int i = 0; i < ListOfNodes.second; ++i)
 		{
 			if (iter->getMove() == move) // we got the move played !
 			{
 				auto m = iter->getMove();
-				cout << "move played by ... : " << m << endl;
+				// cout << "move played by ... : " << m << endl;
 				break;
 			}
 			iter++;
@@ -64,19 +64,15 @@ namespace mcts{
 		copyTree(iter,_buff);
 		copyTree(&_buff[0], _tree);
 		findNext(_tree);
-/*
-		_buff[0].setHasParent();		// set root parent to null
-		_tree[0].setHasParent();		// set root parent to null
-*/
 
 		_game->play(move, _state);
 		return _state;
 	}
 
-	unsigned int Mcts::UpdateNode(Node* node, Bitboard* Bb)
+	u_int Mcts::UpdateNode(Node* node, Bitboard* Bb)
 	{
 		bool locked = false;
-		unsigned int nodet = node->getTerminal();
+		u_int nodet = node->getTerminal();
 
 		if (nodet == 128) { // first time we are here, check if terminate
 			nodet = _game->end(Bb);
@@ -97,6 +93,7 @@ namespace mcts{
 		if (node->getChildren().first == nullptr) // not explored yet => explore
 		{
 			// super small critical region =D
+			// what about using a lock here ?
 			if (omp_in_parallel())
 			{
 				#pragma omp critical
@@ -124,7 +121,7 @@ namespace mcts{
 					tmp2->play(node->getPlayer());
 					tmp2++;
 				}
-				node->setChildrens(tmp, static_cast<unsigned int>(ListOfMoves.size())); // update at the end, concurency race...
+				node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
 			}
 			node->releaseLock();
 		}
@@ -134,19 +131,18 @@ namespace mcts{
 
 	void Mcts::playRandom(Node* node, Bitboard* Bb)
 	{
-		unsigned int nodet;
+		u_int nodet;
 
-		for (unsigned int i = 0; i < _param->getSimulationPerLeaves(); ++i)
+		for (u_int i = 0; i < _param->getSimulationPerLeaves(); ++i)
 		{
 			Bitboard* Bb2 = Bb->clone();
 			nodet = _game->playRandomMoves(Bb2);
 			delete Bb2;
 			feedback(nodet);
-			//node->update(nodet);
 		}
 	}
 
-	void Mcts::feedback(unsigned int nodet)
+	void Mcts::feedback(u_int nodet)
 	{
 		for (int i = _parents[omp_get_thread_num()].second; i >= 0; --i)
 		{
@@ -157,9 +153,9 @@ namespace mcts{
 	void Mcts::explore()
 	{
 		Node* node = &_tree[0];
-		unsigned int depth = 0;
+		u_int depth = 0;
 		Bitboard* Bb = _state->clone();
-		unsigned int nodet = UpdateNode(node, Bb); // update and exploration
+		u_int nodet = UpdateNode(node, Bb); // update and exploration
 		node->addVirtualLoss(_param->getSimulationPerLeaves());
 
 		_parents[omp_get_thread_num()].first[depth] = &_tree[0];
@@ -210,7 +206,7 @@ namespace mcts{
 		if (node->getParent() == nullptr) return; // root hahaha
 		auto ListChilds = node->getParent()->getChildren();
 		Node* ptr = ListChilds.first;
-		for (unsigned int i = 0; (i < ListChilds.second && loser); ++i)
+		for (u_int i = 0; (i < ListChilds.second && loser); ++i)
 		{
 			if (ptr->getUCT() != -1) loser = false;
 			ptr++;
@@ -234,7 +230,7 @@ namespace mcts{
 	{
 		Node* ptr = &T[1];
 		Node* lstptr = &T[(_param->getMaxNumberOfLeaves() -1)];
-		while (ptr != lstptr)// && ptr->getChildren().second != static_cast<unsigned int>(-1))
+		while (ptr != lstptr)// && ptr->getChildren().second != static_cast<u_int>(-1))
 		{
 			ptr->unset();
 			ptr++;
@@ -259,7 +255,7 @@ namespace mcts{
 			if (ptTemp != nullptr)				// if children add them to _buff
 			{
 				ptrDest->setChildrens(next, ListOfNodes.second); // update the node of the parents
-				for (unsigned int i = 0; i < ListOfNodes.second; i++)
+				for (u_int i = 0; i < ListOfNodes.second; i++)
 				{
 					*next = *ptTemp;			// recopy of chidlren
 					ptTemp++;
@@ -284,7 +280,7 @@ namespace mcts{
 	Move Mcts::GetBestMove()
 	{
 		_maxdepthreached = false;
-		unsigned long i = 0;
+		u_long i = 0;
 		auto start_time = std::chrono::high_resolution_clock::now();
 		auto end_time = start_time + std::chrono::milliseconds(_param->getTimeLimitSimulationPerRoot());
 #ifdef OPENMP
@@ -299,7 +295,7 @@ namespace mcts{
 		return _tree[0].select_child_WR()->getMove();
 	}
 
-	void Mcts::print_tree(unsigned int depth)
+	void Mcts::print_tree(u_int depth)
 	{
 		auto d = (depth == 0) ? _param->getDepth() : depth;
 		_tree[0].print_tree(0, d);
@@ -325,7 +321,7 @@ namespace mcts{
 		return (_tree[0].getUCT() != 42 && _tree[0].getUCT() != -1) ? _tree[0].getProba() : _tree[0].getUCT();
 	}
 
-	void Mcts::take_a_chill_pill(unsigned long i)
+	void Mcts::take_a_chill_pill(u_long i)
 	{
 		// struct timespec tim, tim2;
 		// tim.tv_sec = 0;

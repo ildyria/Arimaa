@@ -13,6 +13,7 @@
 #include "../interfaces/Bitboard.h"
 #include "../interfaces/Move.h"
 #include "../tools/FastLog.h"
+#include "../tools/typedef.h"
 #define FASTLOG
 
 using std::max;
@@ -38,19 +39,17 @@ namespace mcts
 	 */
 	class Node
 	{
-		double	_uct;			// 8 bytes
-		unsigned long _visits;	// 8 bytes
-		unsigned long _wins;	// 8 bytes
+		double	_uct;		// 8 bytes
+		u_long _visits;		// 8 bytes
+		u_long _wins;		// 8 bytes
 
-		unsigned int _nbchildren;	// 4 bytes (if linux, 8 bytes if Win...) // a passer en unsigned ?
-		unsigned short	_toplay;	// 2 bytes (if linux, 8 bytes if Win ??)
-		char	_terminal;		// 1 byte
-		bool	_lock;			// 1 byte
+		u_int _nbchildren;	// 4 bytes (if linux, 8 bytes if Win...) // a passer en unsigned ?
+		u_short	_toplay;	// 2 bytes (if linux, 8 bytes if Win ??)
+		char	_terminal;	// 1 byte
+		bool	_lock;		// 1 byte
 
-		Move	_move;			// 8 bytes (uint64)
-		Node*	_firstchild;	// 8 bytes
-//		Node*	_parent;		// 8 bytes
-//		Node*	_addr;			// 8 bytes
+		Move	_move;		// 8 bytes (uint64)
+		Node*	_firstchild;// 8 bytes
 
 		/**
 		 * \fn UCT
@@ -61,7 +60,7 @@ namespace mcts
 		 * 
 		 * \param visits number of visits on the parent node.
 		 */
-		inline void UCT(unsigned long visits) {
+		inline void UCT(u_long visits) {
 			if (_uct != -1 && _uct != 42)
 			{
 				_uct = _wins / static_cast<double>(_visits > 1 ? _visits : 1) + sqrt(2.0 * FastLog::fast_log((visits >> 1) + 1) / ((_visits > 2) ? _visits >> 1 : 1));
@@ -77,7 +76,7 @@ namespace mcts
 		*
 		* \param state : Board to create the node with
 		*/
-		explicit Node(unsigned short player);
+		explicit Node(u_short player);
 
 		/**
 		 * \fn Node(Node* p_parent, Bitboard state, Move& move);
@@ -87,8 +86,7 @@ namespace mcts
 		 * \param state : Bitboard after the move
 		 * \param move : move played
 		 */
-//		Node(Node* parent, unsigned short player, Move& move);
-		Node(unsigned short player, Move& move);
+		Node(u_short player, Move& move);
 
 		/**
 		 * \fn ~Node()
@@ -103,7 +101,7 @@ namespace mcts
 		*
 		* \param value of the terminal
 		*/
-		inline void setTerminal(unsigned int terminal) { _terminal = static_cast<char>(terminal & 255); };
+		inline void setTerminal(u_int terminal) { _terminal = static_cast<char>(terminal & 255); };
 
 		/**
 		* \fn setTerminal(int terminal)
@@ -111,7 +109,7 @@ namespace mcts
 		*
 		* \param value of the terminal
 		*/
-		inline void setChildrens(Node* c, unsigned int n) { _firstchild = c; _nbchildren = n; };
+		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; };
 
 		/**
 		* \fn forceSetUCT
@@ -136,20 +134,23 @@ namespace mcts
 		*
 		* \return 0 if not, 1 if player 1 wins, 2 if player 2 wins, 3 if tie
 		*/
-		inline unsigned int getTerminal() { return (_terminal & 255); };
+		inline u_int getTerminal() { return (_terminal & 255); };
 
 		inline bool hasParent() { return _terminal != 64; };
+
 		inline void setHasParent() { _terminal = static_cast<char>(128); };
+
 		inline void clearParent() { _terminal = static_cast<char>(64); };
 
 		inline bool toBeExplored() { return _terminal == static_cast<char>(128); }
+
 		/**
 		* \fn getState()
 		* \brief getter for the Board
 		*
 		* \return the Board of the current node
 		*/
-		unsigned short getPlayer() { return _toplay; };
+		u_short getPlayer() { return _toplay; };
 
 		/**
 		* \fn getMove()
@@ -165,7 +166,7 @@ namespace mcts
 		 *
 		 * \return return the list of the childrens
 		 */
-		inline std::pair<Node*, unsigned int> getChildren() { return std::pair<Node*, unsigned int>(_firstchild, _nbchildren); };
+		inline std::pair<Node*, u_int> getChildren() { return std::pair<Node*, u_int>(_firstchild, _nbchildren); };
 
 		/**
 		 * \fn getProba()
@@ -180,7 +181,7 @@ namespace mcts
 		 * \fn addVirtualLoss(int i)
 		 * \brief add virtual losses
 		 */
-		inline void addVirtualLoss(unsigned int i) { _visits += (i*2); };
+		inline void addVirtualLoss(u_int i) { _visits += (i*2); };
 
 		/**
 		 * \fn getVisits()
@@ -188,7 +189,7 @@ namespace mcts
 		 *
 		 * \return return the number of visits
 		 */
-		inline unsigned long getVisits() { return _visits; };
+		inline u_long getVisits() { return _visits; };
 
 		/**
 		 * \fn compare()
@@ -234,7 +235,7 @@ namespace mcts
 		* \param move : move played
 		* \param terminal : set if node is terminal or not. By default, not explored.
 		*/
-		void set(Move& move); // , Node* parent);
+		void set(Move& move);
 
 		/**
 		* \fn unset()
@@ -248,7 +249,7 @@ namespace mcts
 		 * 
 		 * \param win int representing the last winner : 1 2 or 3
 		 */
-		void update(unsigned int win);
+		void update(u_int win);
 
 		/**
 		 * \fn print_tree(int numtab, int depth)
@@ -257,20 +258,13 @@ namespace mcts
 		 * \param numtab the depth we are in the tree in order to insert \t in front of the display
 		 * \param depth How deep we want to dive in the tree
 		 */
-		void print_tree(unsigned int numtab, unsigned int depth);
+		void print_tree(u_int numtab, u_int depth);
 
-		/**
-		 * \fn count()
-		 * \brief recursive function that count the number of leaves of the subtree.
-		 * \return number of leaves of the sub tree.
-		 */
 /*
-		unsigned int count();
-
-		unsigned int max_depth();
+		u_int max_depth();
 */
 
-		inline void play(unsigned short i = 0)
+		inline void play(u_short i = 0)
 		{
 			_toplay = (i == 0) ? ((_toplay == 1) ? 2 : 1) : ((i == 1) ? 2 : 1);
 		};
@@ -289,7 +283,7 @@ namespace mcts
 			_lock = false;
 		}
 
-		inline void take_a_chill_pill(unsigned long i)
+		inline void take_a_chill_pill(u_long i)
 		{
 			printf("%d : %ld\n", omp_get_thread_num(),i);
 		}

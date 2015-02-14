@@ -1,3 +1,5 @@
+#pragma once
+#include "typedef.h"
 #include <vector>
 
 template <class N> class Memento

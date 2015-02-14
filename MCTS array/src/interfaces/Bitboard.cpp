@@ -82,7 +82,8 @@ list<int> Bitboard::getOccupied(int n)
 	list<int> rtm;
 	int i = 0;
 	int max = _sizeX*_sizeY;
-	unsigned long long board = _boards[n];
+//	unsigned long long board = _boards[n];
+	numtyp board = _boards[n];
 
 	while (board != 0 && i < max)
 	{
@@ -103,7 +104,8 @@ list<int> Bitboard::getEmpty(int n) const
 	list<int> rtm;
 	int i = 0;
 	int max = _sizeX*_sizeY;
-	unsigned long long board = _boards[n];
+//	unsigned long long board = _boards[n];
+	numtyp board = _boards[n];
 
 	while (board != 0 && i < max)
 	{

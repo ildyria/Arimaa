@@ -7,6 +7,7 @@
  *
  */
 #pragma once
+#include "typedef.h"
 #include <cstdlib>
 #include <stdint.h>
 #include <random>

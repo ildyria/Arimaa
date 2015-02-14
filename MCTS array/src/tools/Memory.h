@@ -1,4 +1,6 @@
 #pragma once
+#include "typedef.h"
+
 // Use to convert bytes to KB
 //#define DIV 1024
 
@@ -101,7 +103,7 @@ public:
 				fclose(fInput);
 			}
 			std::cout << "There are " << returnValue <<" free MB of physical memory.\n" << std::endl;
-			return static_cast<unsigned long>(returnValue <<10);
+			return static_cast<u_long>(returnValue <<10);
 		}
 #endif
 };

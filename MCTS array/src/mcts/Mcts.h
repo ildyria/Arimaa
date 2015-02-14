@@ -7,6 +7,7 @@
  *
  */
 #pragma once
+#include "../tools/typedef.h"
 #include "Node.h"
 #include "MctsArgs.h"
 #include "../interfaces/TheGame.h"
@@ -25,7 +26,7 @@ namespace mcts
 		TheGame* _game;
 		std::vector<Node> _tree;
 		std::vector<Node> _buff;
-		std::vector<std::pair<std::vector<Node*>,unsigned int>> _parents;
+		std::vector<std::pair<std::vector<Node*>,u_int>> _parents;
 		// std::vector<unsigned int> _parents_index;
 
 		MctsArgs* _param;
@@ -44,7 +45,7 @@ namespace mcts
 		* \param  node to be updated
 		* \return      the state of the board : 0, 1, 2, or 3 .
 		*/
-		unsigned int UpdateNode(Node* node, Bitboard* Bb);
+		u_int UpdateNode(Node* node, Bitboard* Bb);
 
 
 		/**
@@ -137,7 +138,7 @@ namespace mcts
 		 * 
 		 * \param depth How deep we want to search, 1 by default
 		 */
-		void print_tree(unsigned int depth = 1);
+		void print_tree(u_int depth = 1);
 
 		/**
 		 * \fn kill_tree()
@@ -153,8 +154,8 @@ namespace mcts
 
 		double winning_Strategy();
 
-		void take_a_chill_pill(unsigned long i);
+		void take_a_chill_pill(u_long i);
 
-		void feedback(unsigned int nodet);
+		void feedback(u_int nodet);
 	};
 }
