@@ -49,7 +49,7 @@ namespace mcts
 
 		Move	_move;			// 8 bytes (uint64)
 		Node*	_firstchild;	// 8 bytes
-		Node*	_parent;		// 8 bytes
+//		Node*	_parent;		// 8 bytes
 //		Node*	_addr;			// 8 bytes
 
 		/**
@@ -87,7 +87,8 @@ namespace mcts
 		 * \param state : Bitboard after the move
 		 * \param move : move played
 		 */
-		Node(Node* parent, unsigned short player, Move& move);
+//		Node(Node* parent, unsigned short player, Move& move);
+		Node(unsigned short player, Move& move);
 
 		/**
 		 * \fn ~Node()
@@ -137,6 +138,11 @@ namespace mcts
 		*/
 		inline unsigned int getTerminal() { return (_terminal & 255); };
 
+		inline bool hasParent() { return _terminal != 64; };
+		inline void setHasParent() { _terminal = static_cast<char>(128); };
+		inline void clearParent() { _terminal = static_cast<char>(64); };
+
+		inline bool toBeExplored() { return _terminal == static_cast<char>(128); }
 		/**
 		* \fn getState()
 		* \brief getter for the Board
@@ -160,20 +166,6 @@ namespace mcts
 		 * \return return the list of the childrens
 		 */
 		inline std::pair<Node*, unsigned int> getChildren() { return std::pair<Node*, unsigned int>(_firstchild, _nbchildren); };
-
-		/**
-		* \fn clearParents()
-		* \brief clear the parents' list
-		*/
-		inline void setParent(Node* n) { _parent = n; };//_addr = this; };
-
-		/**
-		 * \fn getParents()
-		 * \brief getter for the parents
-		 *
-		 * \return return the list of the parents
-		 */
-		inline Node* getParent() { return _parent; };
 
 		/**
 		 * \fn getProba()
@@ -242,7 +234,7 @@ namespace mcts
 		* \param move : move played
 		* \param terminal : set if node is terminal or not. By default, not explored.
 		*/
-		void set(Move& move, Node* parent);
+		void set(Move& move); // , Node* parent);
 
 		/**
 		* \fn unset()
@@ -272,9 +264,11 @@ namespace mcts
 		 * \brief recursive function that count the number of leaves of the subtree.
 		 * \return number of leaves of the sub tree.
 		 */
+/*
 		unsigned int count();
 
 		unsigned int max_depth();
+*/
 
 		inline void play(unsigned short i = 0)
 		{

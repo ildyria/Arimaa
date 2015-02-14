@@ -13,33 +13,36 @@ using std::log;
 
 
 namespace mcts {
-	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<char>(255)), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
+	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<char>(64)), _lock(false), _move(Move()), _firstchild(nullptr)//, _parent(nullptr)//, _addr(this)
 	{
 	}
 
-	Node::Node(unsigned short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<char>(255)), _lock(false), _move(Move()), _firstchild(nullptr), _parent(nullptr)//, _addr(this)
+	Node::Node(unsigned short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<char>(64)), _lock(false), _move(Move()), _firstchild(nullptr)//, _parent(nullptr)//, _addr(this)
 	{
 	}
 
-	Node::Node(Node* p_parent, unsigned short player, Move& move) : _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<char>(255)), _lock(false), _move(move), _firstchild(nullptr), _parent(p_parent)//, _addr(this)
+//	Node::Node(Node* p_parent, unsigned short player, Move& move) : _visits(0), _wins(0), _nbchildren(-1), _toplay(player), _terminal(static_cast<char>(250)), _lock(false), _move(move), _firstchild(nullptr), _parent(p_parent)//, _addr(this)
+	Node::Node(unsigned short player, Move& move) : _visits(0), _wins(0), _nbchildren(-1), _toplay(player), _terminal(static_cast<char>(64)), _lock(false), _move(move), _firstchild(nullptr)//, _parent(p_parent)//, _addr(this)
 	{
 	}
 
-	void Node::set(Move& move, Node* parent)
+	void Node::set(Move& move)//, Node* parent)
 	{
 		_lock = false;
-		_parent = parent;
+//		_parent = parent;
+		setHasParent(); // define it has a parent !
+		_nbchildren = 0;
 		_move = move;
 	}
 
 	void Node::unset()
 	{
 		_lock = false;
-		_terminal = static_cast<char>(255);
+//		_terminal = static_cast<char>(64);
+		clearParent();
 		_visits = 0;
 		_wins = 0;
 		_uct = 0;
-		_parent = nullptr;
 		_firstchild = nullptr;
 		_nbchildren = 0;
 		_toplay = 1;
@@ -54,13 +57,6 @@ namespace mcts {
 		{
 			_wins += 1;
 		}
-
-//		_visits += 1;
-		// if (_parent != nullptr)
-		// {
-		// 	take_a_chill_pill(0); // HELLO LEEK !
-		// 	_parent->update(win);
-		// }
 	}
 
 	bool Node::compareUCT(Node* a, Node* b)
@@ -135,7 +131,7 @@ namespace mcts {
 		}
 	}
 
-	unsigned int Node::count()
+/*	unsigned int Node::count()
 	{
 		if (_firstchild == nullptr) return 1;
 
@@ -163,7 +159,7 @@ namespace mcts {
 			itL++;
 		}
 		return val + 1;
-	}
+	}*/
 
 	Node::~Node()
 	{

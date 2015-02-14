@@ -301,6 +301,7 @@
     <ClInclude Include="src\mcts\Node.h" />
     <ClInclude Include="src\tools\Count.h" />
     <ClInclude Include="src\tools\FastLog.h" />
+    <ClInclude Include="src\tools\Memento.h" />
     <ClInclude Include="src\tools\Memory.h" />
     <ClInclude Include="src\tools\Random.h" />
   </ItemGroup>

@@ -48,7 +48,7 @@ namespace mcts {
 			unsigned int timelimit = 10000,
 			unsigned long simulR = 10000000,
 			unsigned int simulL = 2,
-			unsigned int numVisitExplo = 1,
+			unsigned int numVisitExplo = 10,
 			double percentRAM = 0.9
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{

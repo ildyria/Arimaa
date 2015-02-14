@@ -41,7 +41,8 @@ namespace mcts{
 		cleanTree(_buff);
 		Count::I()->clear();
 		Move* random = new Move();
-		_tree[0].set(*random, nullptr);
+		_tree[0].set(*random);
+		_tree[0].hasParent();
 		_next = (&_tree[0]) + 1;
 	}
 
@@ -63,8 +64,10 @@ namespace mcts{
 		copyTree(iter,_buff);
 		copyTree(&_buff[0], _tree);
 		findNext(_tree);
-		_buff[0].setParent(nullptr);		// set root parent to null
-		_tree[0].setParent(nullptr);		// set root parent to null
+/*
+		_buff[0].setHasParent();		// set root parent to null
+		_tree[0].setHasParent();		// set root parent to null
+*/
 
 		_game->play(move, _state);
 		return _state;
@@ -75,12 +78,17 @@ namespace mcts{
 		bool locked = false;
 		unsigned int nodet = node->getTerminal();
 
-		if (nodet == 255) { // first time we are here, check if terminate
+		if (nodet == 128) { // first time we are here, check if terminate
 			nodet = _game->end(Bb);
 			node->setTerminal(nodet);
 		}
 
-		if (nodet == 255 && node->getChildren().first != nullptr)
+		if (nodet > 0)
+		{
+			return nodet;
+		}
+
+		if (nodet == 0 && node->getChildren().first != nullptr)
 		{
 			return nodet;
 		}
@@ -94,11 +102,12 @@ namespace mcts{
 				#pragma omp critical
 				locked = node->getLock();
 			}
-			if (locked) return 254;
+			if (locked) return 255;
 
 			list<Move> ListOfMoves;
 			list<Move>::iterator iter;
 
+			// will need to rethink the concurency on the _next variable... might be ugly...
 			ListOfMoves = _game->listPossibleMoves(Bb);
 			if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
 			{
@@ -107,11 +116,13 @@ namespace mcts{
 			else
 			{
 				auto tmp = _next;
+				auto tmp2 = _next;
+				_next += ListOfMoves.size();
 				for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
 				{
-					_next->set(*iter, node);
-					_next->play(node->getPlayer());
-					_next++;
+					tmp2->set(*iter);
+					tmp2->play(node->getPlayer());
+					tmp2++;
 				}
 				node->setChildrens(tmp, static_cast<unsigned int>(ListOfMoves.size())); // update at the end, concurency race...
 			}
@@ -137,8 +148,7 @@ namespace mcts{
 
 	void Mcts::feedback(unsigned int nodet)
 	{
-		take_a_chill_pill(nodet);
-		for (auto i = _parents[omp_get_thread_num()].second; i >= 0; --i)
+		for (int i = _parents[omp_get_thread_num()].second; i >= 0; --i)
 		{
 			_parents[omp_get_thread_num()].first[i]->update(nodet);
 		}
@@ -148,15 +158,14 @@ namespace mcts{
 	{
 		Node* node = &_tree[0];
 		unsigned int depth = 0;
-		unsigned int nodet;
 		Bitboard* Bb = _state->clone();
-		nodet = UpdateNode(node,Bb); // update and exploration
+		unsigned int nodet = UpdateNode(node, Bb); // update and exploration
 		node->addVirtualLoss(_param->getSimulationPerLeaves());
 
 		_parents[omp_get_thread_num()].first[depth] = &_tree[0];
 		_parents[omp_get_thread_num()].second = 0;
 
-		while (depth < _param->getDepth() && (nodet == 0 || nodet > 3) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != 254)
+		while (depth < _param->getDepth() && (nodet == 0 || nodet > 3) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != 255)
 		{
 			++depth;
 			node = node->select_child_UCT();
@@ -195,7 +204,7 @@ namespace mcts{
 		delete Bb;
 	}
 
-	void Mcts::updateLosingParent(Node* node) // for each parent check if uct = -1 => if yes it's a winning move for the opponent, he has to play here : uct = 42
+/*	void Mcts::updateLosingParent(Node* node) // for each parent check if uct = -1 => if yes it's a winning move for the opponent, he has to play here : uct = 42
 	{
 		bool loser = true;
 		if (node->getParent() == nullptr) return; // root hahaha
@@ -219,17 +228,18 @@ namespace mcts{
 
 		node->getParent()->forceSetUCT(-1);
 		updateLosingParent(node->getParent());
-	}
+	}*/
 
 	void Mcts::cleanTree(std::vector<Node> &T)
 	{
 		Node* ptr = &T[1];
 		Node* lstptr = &T[(_param->getMaxNumberOfLeaves() -1)];
-		while (ptr->getParent() != nullptr && ptr != lstptr)
+		while (ptr != lstptr)// && ptr->getChildren().second != static_cast<unsigned int>(-1))
 		{
 			ptr->unset();
 			ptr++;
 		}
+		cout << "clean tree : " << (ptr - &T[0]) << endl;
 	}
 
 	void Mcts::copyTree(Node* NewRoot, std::vector<Node> &Tdest)
@@ -242,7 +252,7 @@ namespace mcts{
 		*ptrDest = *NewRoot;					// copy root
 		next++;									// next free space in Tdest
 
-		while (ptrDest->getParent() != nullptr || ptrDest == &Tdest[0]) // no parents OR root
+		while (ptrDest->hasParent() || ptrDest == &Tdest[0]) // no parents OR root
 		{
 			auto ListOfNodes = ptrDest->getChildren();
 			ptTemp = ListOfNodes.first;
@@ -252,7 +262,6 @@ namespace mcts{
 				for (unsigned int i = 0; i < ListOfNodes.second; i++)
 				{
 					*next = *ptTemp;			// recopy of chidlren
-					next->setParent(ptrDest);	// set their parent to current ptr
 					ptTemp++;
 					next++;
 				}
@@ -264,10 +273,11 @@ namespace mcts{
 	void Mcts::findNext(std::vector<Node>& T)
 	{
 		_next = &T[1];
-		while (_next->getParent() != nullptr)
+		while (_next->hasParent())
 		{
 			_next++;
 		}
+		cout << "next: " << (_next - &T[0]) << endl;
 	}
 
 
@@ -302,8 +312,12 @@ namespace mcts{
 
 	void Mcts::get_Number_Leaves()
 	{
-		Count::I()->saveNbLeaves(_tree[0].count());
-		Count::I()->saveMaxDepth(_tree[0].max_depth());
+//		uint64_t num;
+		auto num = _next - &_tree[0];
+
+		Count::I()->saveNbLeaves(static_cast<int>(num));
+//		Count::I()->saveMaxDepth(_tree[0].max_depth());
+
 	}
 
 	double Mcts::winning_Strategy()

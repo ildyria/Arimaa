@@ -30,7 +30,7 @@ class Memory
 
 public:
 #if defined(_WIN32) || defined(_WIN64)
-	static unsigned long getfreememory()
+	static DWORDLONG getfreememory()
 	{
 		MEMORYSTATUSEX statex;
 
@@ -41,11 +41,11 @@ public:
 		_tprintf(TEXT("There is  %*ld percent of memory in use.\n"), WIDTH, statex.dwMemoryLoad);
 		_tprintf(TEXT("There are %*I64d total MB of physical memory.\n"), WIDTH, statex.ullTotalPhys >> 20);
 		_tprintf(TEXT("There are %*I64d free  MB of physical memory.\n"), WIDTH, statex.ullAvailPhys >> 20);
-		return static_cast<unsigned long>(statex.ullAvailPhys);
+		return statex.ullAvailPhys;
 	}
 
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-	static unsigned long getfreememory()
+	static unsigned long long getfreememory()
 	{
 			// Return the amount of free memory in kbytes.
 			// Returns -1 if something went wrong.
