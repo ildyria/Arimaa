@@ -1,8 +1,0 @@
-digraph "D:/Arimaa/MCTS/src/tools/Random.h" {
-	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
-	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
-	graph [bb="0,0,114,96"];
-	Node1 [label="D:/Arimaa/MCTS/src\l/tools/Random.h", height="0.39", width="1.58", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="57,74", rects="0,60,115,88"];
-	Node2 [label=cstdlib, height="0.22", width="0.56", color=grey75, fillcolor=white, style=filled, pos="57,16", rects="37,8,78,24"];
-	Node1 -> Node2 [color=midnightblue, style=solid, pos="e,57,24 57,60 57,52 57,42 57,33"];
-}
