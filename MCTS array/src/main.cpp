@@ -9,7 +9,7 @@
 	#include "api/test.h"
 	using namespace api;
 #else
-//	#define DISPLAY_TREE
+	#define DISPLAY_TREE
 	#include "tools/Memory.h"
 
 	#include "./tools/Count.h"
@@ -95,10 +95,10 @@ int main(int argc, char const *argv[])
 
 		if (Bb->getPlayer() == IA)
 		{
-			cout << endl << "AI turn... please wait.";
+			cout << endl << "AI turn... please wait." << endl;
 			move = mcts.GetBestMove();
 #ifdef DISPLAY_TREE
-			mcts.print_tree(2);
+			mcts.print_tree(3);
 #endif // DISPLAY_TREE
 			mcts.get_Number_Leaves();
 			cout << endl << Count::I();

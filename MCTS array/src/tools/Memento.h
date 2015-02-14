@@ -10,9 +10,7 @@ template <class N> class Memento
 
 public:
 	explicit Memento(short n) : _states(std::vector<N>(n)), _readNext(0), _writeNext(0) {};
-	~Memento()
-	{
-	};
+	~Memento() {};
 
 	inline void rewind()
 	{
@@ -37,22 +35,4 @@ public:
 		_readNext--;
 		return data;
 	}
-
-
-	/* test stuff , probably not working, but you never know... */
-	// void applyFunIncr(void* fun, void* arg)
-	// {
-	// 	for (_readNext = 0; _readNext < _writeNext; ++_readNext)
-	// 	{
-	// 		_states[_readNext]->*fun(*arg);
-	// 	}
-	// }
-
-	// void applyFunDecr(void* fun, void* arg)
-	// {
-	// 	for (_readNext = (_writeNext - 1); _readNext >= 0; --_readNext)
-	// 	{
-	// 		_states[_readNext]->*fun(*arg);
-	// 	}
-	// }
 };

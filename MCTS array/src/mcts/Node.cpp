@@ -28,7 +28,7 @@ namespace mcts {
 	void Node::set(Move& move)
 	{
 		_lock = false;
-		setHasParent(); // define it has a parent !
+		setHasParent();
 		_nbchildren = 0;
 		_move = move;
 	}
@@ -43,17 +43,6 @@ namespace mcts {
 		_firstchild = nullptr;
 		_nbchildren = 0;
 		_toplay = 1;
-	}
-
-	void Node::update(u_int win){
-		if (win != _toplay && win != 3)
-		{
-			_wins += 2;
-		}
-		elseif(win == 3)
-		{
-			_wins += 1;
-		}
 	}
 
 	bool Node::compareUCT(Node* a, Node* b)

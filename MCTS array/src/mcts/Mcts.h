@@ -27,10 +27,7 @@ namespace mcts
 		TheGame* _game;
 		std::vector<Node> _tree;
 		std::vector<Node> _buff;
-//		std::vector<std::pair<std::vector<Node*>,u_int>> _parents;
 		std::vector<Memento<Node*>> _parents;
-
-		// std::vector<unsigned int> _parents_index;
 
 		MctsArgs* _param;
 		Node* _next;
@@ -69,21 +66,7 @@ namespace mcts
 		*/
 		void explore();
 
-		/**
-		 * \fn updateLosingParent(Node* node)
-		 * \brief Function which check if all children are losing, if so, update the uct value of the node to 10, marking it as a winning strategy.
-		 * 
-		 * \param node : Node to check
-		 */
-		void updateLosingParent(Node* node);
-
-		/**
-		 * \fn feedbackWinningMove(Node* node)
-		 * \brief Function which update the uct value to -1 of a node if one of the children is identified as a winning strategy (uct = 10), marking it as an losing node.
-		 * 
-		 * \param node : Node to check
-		 */
-		void feedbackWinningMove(Node* node);
+		void feedbackWinLose();
 
 		void cleanTree(std::vector<Node> &T);
 

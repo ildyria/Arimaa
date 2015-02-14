@@ -14,7 +14,6 @@
 #include "../interfaces/Move.h"
 #include "../tools/FastLog.h"
 #include "../tools/typedef.h"
-#define FASTLOG
 
 using std::max;
 
@@ -150,7 +149,7 @@ namespace mcts
 		*
 		* \return the Board of the current node
 		*/
-		u_short getPlayer() { return _toplay; };
+		inline u_short getPlayer() { return _toplay; };
 
 		/**
 		* \fn getMove()
@@ -158,7 +157,7 @@ namespace mcts
 		*
 		* \return the last move played to access the current node
 		*/
-		Move getMove() { return _move; };
+		inline Move getMove() { return _move; };
 
 		/**
 		 * \fn getChildren()
@@ -249,7 +248,9 @@ namespace mcts
 		 * 
 		 * \param win int representing the last winner : 1 2 or 3
 		 */
-		void update(u_int win);
+		inline void update(u_int win) {
+			_wins += (win != _toplay && win != 3) ? 2 : (win == 3) ? 1 : 0;
+		};
 
 		/**
 		 * \fn print_tree(int numtab, int depth)

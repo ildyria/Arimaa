@@ -3,11 +3,7 @@
 #include "Mcts.h"
 #define elseif else if
 #define SLOW 0 // 5 ms 
-// #include <time.h>
 #include <chrono>
-
-//#define DEBUG_MCTS
-//#define DISPLAY_MCTS
 
 using std::list;
 using std::cout;
@@ -56,7 +52,6 @@ namespace mcts{
 			if (iter->getMove() == move) // we got the move played !
 			{
 				auto m = iter->getMove();
-				// cout << "move played by ... : " << m << endl;
 				break;
 			}
 			iter++;
@@ -153,6 +148,49 @@ namespace mcts{
 		}
 	}
 
+	void Mcts::feedbackWinLose()
+	{
+		_parents[omp_get_thread_num()].rewind();
+
+		Node* n = _parents[omp_get_thread_num()].get(); // take the second
+		n->forceSetUCT(42);
+
+		n = _parents[omp_get_thread_num()].get();
+		bool winloser = true;
+		bool loser = true;
+		Node* ptr = nullptr;
+		std::pair<Node*, u_int> ListChilds;
+		while(n != nullptr && winloser)
+		{
+			if(loser)
+			{
+				n->forceSetUCT(-1);
+				loser = false;
+			}
+			else
+			{
+				loser = true;
+				ListChilds = n->getChildren();
+				ptr = ListChilds.first;
+				for (u_int i = 0; (i < ListChilds.second && loser); ++i)
+				{
+					if (ptr->getUCT() != -1) loser = false;
+					ptr++;
+				}
+
+				if (loser)
+				{
+					n->forceSetUCT(42);
+				}
+				else
+				{
+					winloser = false;
+				}
+			}
+			n = _parents[omp_get_thread_num()].get();
+		}
+	}
+
 	void Mcts::explore()
 	{
 		Node* node = &_tree[0];
@@ -188,44 +226,15 @@ namespace mcts{
 		}
 		elseif(nodet < 3 && nodet > 0 && nodet != node->getPlayer()) // losing move !
 		{
-			node->forceSetUCT(42);
-			// feedbackWinningMove(node);
 			feedback(nodet);
-//			node->update(nodet);
+			feedbackWinLose();
 		}
 		else
 		{
 			feedback(nodet);
-			// node->update(nodet);
 		}
 		delete Bb;
 	}
-
-/*	void Mcts::updateLosingParent(Node* node) // for each parent check if uct = -1 => if yes it's a winning move for the opponent, he has to play here : uct = 42
-	{
-		bool loser = true;
-		if (node->getParent() == nullptr) return; // root hahaha
-		auto ListChilds = node->getParent()->getChildren();
-		Node* ptr = ListChilds.first;
-		for (u_int i = 0; (i < ListChilds.second && loser); ++i)
-		{
-			if (ptr->getUCT() != -1) loser = false;
-			ptr++;
-		}
-		if (loser)
-		{
-			node->getParent()->forceSetUCT(42);
-			feedbackWinningMove(node->getParent());
-		}
-	}
-
-	void Mcts::feedbackWinningMove(Node* node) // if someone has a winning move given a position, we must not go to that position.
-	{
-		if (node->getUCT() != 42 || node->getParent() == nullptr) return;
-
-		node->getParent()->forceSetUCT(-1);
-		updateLosingParent(node->getParent());
-	}*/
 
 	void Mcts::cleanTree(std::vector<Node> &T)
 	{
@@ -309,7 +318,6 @@ namespace mcts{
 
 	void Mcts::get_Number_Leaves()
 	{
-//		uint64_t num;
 		auto num = _next - &_tree[0];
 
 		Count::I()->saveNbLeaves(static_cast<int>(num));

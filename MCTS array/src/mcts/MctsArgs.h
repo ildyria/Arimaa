@@ -18,7 +18,6 @@ namespace mcts {
 	 *	int _simulationPerRoot = number of simulations to run per Root.
 	 *	int _simulationPerLeaves = number of simulations to run per Leaves.
 	 *	int _numberOfVisitBeforeExploration = number of visits on a node before expanding its children.
-	 * 
 	 */
 	class MctsArgs
 	{
@@ -41,24 +40,23 @@ namespace mcts {
 		 * \param timelimit : time limit for the simulations
 		 * \param t : number of root simulations
 		 * \param s : number of leaf simulations
-		 * \return [description]
 		 */
 		explicit inline MctsArgs(
 			u_int depth = 44,
 			u_int timelimit = 10000,
 			u_long simulR = 10000000,
 			u_int simulL = 2,
-			u_int numVisitExplo = 6,
+			u_int numVisitExplo = 4,
 			double percentRAM = 0.9
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
-// #if defined(_WIN64)
-// 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
-// #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-// 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
-// #else
+#if defined(_WIN64)
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
+#elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
+#else
 			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (2 * sizeof(Node))); // maximum size is 2 Go...
-// #endif
+#endif
 			std::cout << "size of node : " << sizeof(Node) << std::endl;
 
 			std::cout << "max num of leaves : " << _maxNumberOfLeaves << std::endl;
