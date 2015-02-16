@@ -12,6 +12,7 @@
 #include "../interfaces/TheGame.h"
 #include "Node.h"
 #include "MctsArgs.h"
+#include "../tools/ChillPill.h"
 #include <chrono>
 
 namespace mcts

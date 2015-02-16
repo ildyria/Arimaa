@@ -10,8 +10,9 @@
 	using namespace api;
 #else
 //	#define DISPLAY_TREE
-	#include "tools/Memory.h"
+	#include "./tools/Memory.h"
 
+	#include "./tools/ChillPill.h"
 	#include "./tools/Count.h"
 
 	#include "./mcts/Mcts.h"

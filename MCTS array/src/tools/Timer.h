@@ -6,6 +6,7 @@
 using std::chrono::time_point;
 using std::chrono::system_clock;
 using std::chrono::milliseconds;
+using std::chrono::microseconds;
 using std::chrono::nanoseconds;
 using std::chrono::duration_cast;
 using std::chrono::duration;
