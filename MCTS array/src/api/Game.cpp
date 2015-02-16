@@ -21,7 +21,7 @@ namespace api
 		return 0;
 	}
 
-	int Game::getLastMove()
+	long Game::getLastMove()
 	{
 		return _lastMove;
 	}
@@ -64,7 +64,7 @@ namespace api
 		{
 			auto m = Move(col);
 			_game->play(m, _board);
-			_lastMove = col;
+			_lastMove = static_cast<long>(col);
 			return true;
 		};
 		return false;
@@ -77,8 +77,8 @@ namespace api
 
 	std::list<std::pair<int, int>> Game::getWinningLine()
 	{
-		auto posy = colHeight(_lastMove) -1;
-		auto posx = _board->getSizeX() - _lastMove;
+		auto posy = colHeight(static_cast<int>(_lastMove)) -1;
+		auto posx = _board->getSizeX() - static_cast<int>(_lastMove);
 		std::list<std::pair<int, int>> Res;
 		auto winner = getWinner();
 

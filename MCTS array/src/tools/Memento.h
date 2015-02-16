@@ -13,9 +13,9 @@
  */
 template <class N> class Memento
 {
+	int _readNext;
+	int _writeNext;
 	std::vector<N> _states;
-	short _readNext;
-	short _writeNext;
 
 public:
 
@@ -24,7 +24,7 @@ public:
 	 * \details constructor
 	 * \param n number of states you want to save
 	 */
-	explicit Memento(short n) : _states(std::vector<N>(n)), _readNext(0), _writeNext(0) {};
+	explicit Memento(short n) : _readNext(0), _writeNext(0), _states(std::vector<N>(n)) {};
 
 	/**
 	 * \fn ~Memento()

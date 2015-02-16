@@ -36,7 +36,6 @@ namespace mcts
 		MctsArgs* _param;
 		Node* _next;
 		Bitboard* _state;
-//		bool _maxdepthreached;
 		omp_lock_t _lockNode;
 		omp_lock_t _lockNext;
 		std::vector<Memento<Node*>> _parents;

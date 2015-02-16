@@ -7,18 +7,18 @@ using std::cout;
 using std::endl;
 using std::max;
 
-Bitboard::Bitboard() : _boards(vector<numtyp>(3)), _toplay(1), _number(3)
+Bitboard::Bitboard() : _toplay(1), _number(3), _boards(vector<numtyp>(3))
 {
-	for (int i = 0; i < _number; i++)
+	for (u_int i = 0; i < _number; i++)
 	{
 		_boards[i] = static_cast<numtyp>(0);
 	}
 	Count::I()->addBitBoards();
 }
 
-Bitboard::Bitboard(int n, int toplay) : _boards(vector<numtyp>(n)), _toplay(toplay), _number(n)
+Bitboard::Bitboard(int n, int toplay) : _toplay(toplay), _number(n), _boards(vector<numtyp>(n))
 {
-	for (int i = 0; i < _number; i++)
+	for (u_int i = 0; i < _number; i++)
 	{
 		_boards[i] = static_cast<numtyp>(0);
 	}

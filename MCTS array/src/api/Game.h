@@ -8,7 +8,7 @@ namespace api
 	{
 		Bitboard* _board;
 		TheGame* _game;
-		int _lastMove;
+		long _lastMove;
 
 	public:
 
@@ -41,7 +41,7 @@ namespace api
 		 * 
 		 * \return _lastMove
 		 */
-		int getLastMove();
+		long getLastMove();
 
 		//  Savoir la hauteur de chaque colonne (je peux le déduire de la fonction précédente mais ça serait plus joli comme ça)
 		/**

@@ -17,12 +17,12 @@ namespace mcts{
 				Bitboard* Bb,
 				MctsArgs* args)
 				:_game(game),
-				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
-				_buff(std::vector<Node>(args->getMaxNumberOfLeaves())),
-				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->getDepth() + 1))),
 				_param(args),
+				_next(nullptr),
 				_state(Bb),
-				_maxdepthreached(false)
+				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->getDepth() + 1))),
+				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
+				_buff(std::vector<Node>(args->getMaxNumberOfLeaves()))
 	{
 		cout << "number of thread : " << omp_get_num_procs() << endl;
 		// #pragma omp parallel
@@ -221,12 +221,6 @@ namespace mcts{
 			nodet = UpdateNode(node,Bb);
 		}
 
-		// if (depth == _param->getDepth() && !_maxdepthreached)
-		// {
-		// 	_maxdepthreached = true;
-		// 	cout << endl << "max depth reached : " << _param->getDepth() << "moves ahead.";
-		// }
-
 		if (nodet == 0 || nodet > 3) // no victory found yet
 		{
 			playRandom(node, Bb);
@@ -296,7 +290,6 @@ namespace mcts{
 
 	Move Mcts::GetBestMove()
 	{
-		_maxdepthreached = false;
 		u_long i = 0;
 		auto start_time = high_resolution_clock::now();
 		auto end_time = start_time + milliseconds(_param->getTimeLimitSimulationPerRoot());

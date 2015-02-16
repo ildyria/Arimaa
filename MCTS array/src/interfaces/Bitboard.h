@@ -29,9 +29,9 @@ class Bitboard
 {
 
 protected:
+	u_int _toplay;
+	u_int _number;
 	std::vector<numtyp> _boards;
-	short _toplay;
-	short _number;
 
 public:
 	/**
@@ -171,7 +171,7 @@ public:
 	*
 	* \return player to play (1 or 2)
 	*/
-	virtual inline int getPlayer() const { return _toplay; };
+	virtual inline int getPlayer() const { return static_cast<int>(_toplay); };
 
 	/**
 	* \fn play
@@ -179,7 +179,7 @@ public:
 	*/
 	virtual inline void play()
 	{
-		static const short lookup[3] = { 0, 2, 1 };
+		static const u_int lookup[3] = { 0, 2, 1 };
 		_toplay = lookup[_toplay];
 	};
 };
