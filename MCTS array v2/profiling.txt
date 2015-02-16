@@ -1,0 +1,503 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 19.95      3.73     3.73   602557     0.00     0.00  mcts::Node::select_child_UCT()
+ 18.50      7.18     3.46   148880     0.00     0.00  Connect4::playRandomMoves(Bitboard*)
+ 12.48      9.51     2.33  1654634     0.00     0.00  Connect4::checkHorizontal(Bitboard const*)
+ 10.07     11.39     1.88  2049388     0.00     0.00  Connect4::checkVertical(Bitboard const*)
+  6.08     12.53     1.14  2247179     0.00     0.00  Connect4::checkDiag2(Bitboard const*)
+  5.41     13.54     1.01  2293515     0.00     0.00  Connect4::checkDiag1(Bitboard const*)
+  4.66     14.41     0.87  2685330     0.00     0.00  BitboardConnect4::getEmpty(int) const
+  4.20     15.20     0.79 28964094     0.00     0.00  Bitboard::getBoard(int) const
+  3.75     15.90     0.70 60646983     0.00     0.00  Move::Move()
+  1.87     16.25     0.35   117247     0.00     0.00  mcts::Mcts::feedback(unsigned int)
+  1.74     16.57     0.33  1988687     0.00     0.00  Connect4::end(Bitboard const*)
+  1.63     16.88     0.31        2     0.15     8.68  mcts::Mcts::explore()
+  1.50     17.16     0.28        8     0.04     0.04  mcts::Mcts::copyTree(mcts::Node*, std::vector<mcts::Node, std::allocator<mcts::Node> >&)
+  1.45     17.43     0.27  2075540     0.00     0.00  Connect4::checkNull(Bitboard const*)
+  0.88     17.59     0.17                             Bitboard::clearBit(int, int)
+  0.86     17.75     0.16   544994     0.00     0.00  Count::I()
+  0.75     17.89     0.14  1546345     0.00     0.00  Bitboard::setBit(int, int, int)
+  0.67     18.02     0.13   661962     0.00     0.00  Connect4::play(Move&, Bitboard*)
+  0.40     18.09     0.08   576668     0.00     0.00  mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*)
+  0.37     18.16     0.07   149560     0.00     0.00  BitboardConnect4::clone() const
+  0.35     18.23     0.07 60646982     0.00     0.00  mcts::Node::Node()
+  0.35     18.29     0.07  1921641     0.00     0.00  Bitboard::play()
+  0.35     18.36     0.07  1582671     0.00     0.00  Bitboard::getPlayer() const
+  0.24     18.40     0.05   188359     0.00     0.00  BitboardConnect4::~BitboardConnect4()
+  0.21     18.44     0.04  1382163     0.00     0.00  Move::~Move()
+  0.16     18.47     0.03   904805     0.00     0.00  Move::getMove()
+  0.16     18.50     0.03   154166     0.00     0.00  Bitboard::~Bitboard()
+  0.16     18.53     0.03    52544     0.00     0.00  Connect4::listPossibleMoves(Bitboard*)
+  0.16     18.56     0.03        4     0.01     0.01  mcts::Mcts::findNext(std::vector<mcts::Node, std::allocator<mcts::Node> >&, mcts::Node*&)
+  0.11     18.58     0.02    89866     0.00     0.00  mcts::Mcts::playRandom(mcts::Node*, Bitboard*)
+  0.11     18.60     0.02                             Bitboard::clone() const
+  0.08     18.62     0.02   184852     0.00     0.00  std::_List_base<Move, std::allocator<Move> >::_M_clear()
+  0.08     18.63     0.02                             mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*)
+  0.05     18.64     0.01       10     0.00     0.00  mcts::Mcts::cleanTree(std::vector<mcts::Node, std::allocator<mcts::Node> >&)
+  0.05     18.65     0.01                             Move::~Move()
+  0.05     18.66     0.01                             Bitboard::getBit(int, int) const
+  0.03     18.67     0.01 15277007     0.00     0.00  mcts::Node::unset()
+  0.03     18.67     0.01   270003     0.00     0.00  BitboardConnect4::~BitboardConnect4()
+  0.03     18.68     0.01                             mcts::Mcts::movePlayed(Move&)
+  0.03     18.68     0.01                             mcts::Node::~Node()
+  0.03     18.69     0.01                             std::vector<mcts::Node, std::allocator<mcts::Node> >::~vector()
+  0.00     18.69     0.00   557822     0.00     0.00  Move::Move(int)
+  0.00     18.69     0.00   373265     0.00     0.00  mcts::Node::set(Move&)
+  0.00     18.69     0.00      602     0.00     0.00  mcts::Mcts::feedbackWinLose()
+  0.00     18.69     0.00       23     0.00     0.00  Move::get()
+  0.00     18.69     0.00       23     0.00     0.00  std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...)
+  0.00     18.69     0.00        5     0.00     0.00  char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)
+  0.00     18.69     0.00        2     0.00     0.00  mcts::Node::select_child_WR()
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN16BitboardConnect4C2Ev
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3api2AiC2Ei
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN3api4GameC2Ev
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4MoveC2Ev
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4mcts4MctsC2EP7TheGameP8BitboardPNS_8MctsArgsE
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN4mcts4NodeC2Ev
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN5Count14UniqueInstanceE
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN6Random14UniqueInstanceE
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN8BitboardC2Ev
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I__ZN8Connect4C2Ev
+  0.00     18.69     0.00        1     0.00     0.00  _GLOBAL__sub_I_main
+  0.00     18.69     0.00        1     0.00     0.00  Bitboard::Bitboard(int, int)
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+ 
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this 
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 2 byte(s) for 0.05% of 18.69 seconds
+
+index % time    self  children    called     name
+                               56337             mcts::Mcts::explore() [1]
+                0.31   17.06       2/2           mcts::Mcts::GetBestMove() [2]
+[1]     92.9    0.31   17.06       2+56337   mcts::Mcts::explore() [1]
+                0.02   12.67   89866/89866       mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [3]
+                3.73    0.00  602557/602557      mcts::Node::select_child_UCT() [6]
+                0.08    0.21  576664/576668      mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+                0.13    0.11  661958/661962      Connect4::play(Move&, Bitboard*) [21]
+                0.00    0.04   55132/270003      BitboardConnect4::~BitboardConnect4() [22]
+                0.03    0.01   54096/149560      BitboardConnect4::clone() const [26]
+                0.02    0.00  512012/1921641     Bitboard::play() [30]
+                0.02    0.00  578154/1382163     Move::~Move() [32]
+                0.00    0.00     932/117247      mcts::Mcts::feedback(unsigned int) [17]
+                0.00    0.00     602/602         mcts::Mcts::feedbackWinLose() [56]
+                               56337             mcts::Mcts::explore() [1]
+-----------------------------------------------
+                                                 <spontaneous>
+[2]     92.9    0.00   17.36                 mcts::Mcts::GetBestMove() [2]
+                0.31   17.06       2/2           mcts::Mcts::explore() [1]
+                0.00    0.00       2/2           mcts::Node::select_child_WR() [60]
+-----------------------------------------------
+                0.02   12.67   89866/89866       mcts::Mcts::explore() [1]
+[3]     67.9    0.02   12.67   89866         mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [3]
+                3.46    8.63  148880/148880      Connect4::playRandomMoves(Bitboard*) [4]
+                0.35    0.00  116315/117247      mcts::Mcts::feedback(unsigned int) [17]
+                0.00    0.15  214871/270003      BitboardConnect4::~BitboardConnect4() [22]
+                0.04    0.03   95464/149560      BitboardConnect4::clone() const [26]
+-----------------------------------------------
+                3.46    8.63  148880/148880      mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [3]
+[4]     64.7    3.46    8.63  148880         Connect4::playRandomMoves(Bitboard*) [4]
+                0.32    6.72 1961078/1988687     Connect4::end(Bitboard const*) [5]
+                0.84    0.09 2584435/2685330     BitboardConnect4::getEmpty(int) const [11]
+                0.26    0.11 2018709/2075540     Connect4::checkNull(Bitboard const*) [16]
+                0.10    0.00 1110759/1546345     Bitboard::setBit(int, int, int) [25]
+                0.10    0.00 3518406/28964094     Bitboard::getBoard(int) const [12]
+                0.05    0.00 1409625/1921641     Bitboard::play() [30]
+                0.05    0.00 1157688/1582671     Bitboard::getPlayer() const [31]
+-----------------------------------------------
+                0.00    0.09   27609/1988687     mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+                0.32    6.72 1961078/1988687     Connect4::playRandomMoves(Bitboard*) [4]
+[5]     38.2    0.33    6.81 1988687         Connect4::end(Bitboard const*) [5]
+                2.33    0.09 1654634/1654634     Connect4::checkHorizontal(Bitboard const*) [7]
+                1.88    0.13 2049388/2049388     Connect4::checkVertical(Bitboard const*) [8]
+                1.14    0.12 2247179/2247179     Connect4::checkDiag2(Bitboard const*) [9]
+                1.01    0.12 2293515/2293515     Connect4::checkDiag1(Bitboard const*) [10]
+-----------------------------------------------
+                3.73    0.00  602557/602557      mcts::Mcts::explore() [1]
+[6]     19.9    3.73    0.00  602557         mcts::Node::select_child_UCT() [6]
+-----------------------------------------------
+                2.33    0.09 1654634/1654634     Connect4::end(Bitboard const*) [5]
+[7]     12.9    2.33    0.09 1654634         Connect4::checkHorizontal(Bitboard const*) [7]
+                0.09    0.00 3225986/28964094     Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                1.88    0.13 2049388/2049388     Connect4::end(Bitboard const*) [5]
+[8]     10.7    1.88    0.13 2049388         Connect4::checkVertical(Bitboard const*) [8]
+                0.13    0.00 4722293/28964094     Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                1.14    0.12 2247179/2247179     Connect4::end(Bitboard const*) [5]
+[9]      6.7    1.14    0.12 2247179         Connect4::checkDiag2(Bitboard const*) [9]
+                0.12    0.00 4299057/28964094     Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                1.01    0.12 2293515/2293515     Connect4::end(Bitboard const*) [5]
+[10]     6.1    1.01    0.12 2293515         Connect4::checkDiag1(Bitboard const*) [10]
+                0.12    0.00 4491178/28964094     Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                0.03    0.00  100895/2685330     Connect4::listPossibleMoves(Bitboard*) [29]
+                0.84    0.09 2584435/2685330     Connect4::playRandomMoves(Bitboard*) [4]
+[11]     5.2    0.87    0.10 2685330         BitboardConnect4::getEmpty(int) const [11]
+                0.10    0.00 3554478/28964094     Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                0.00    0.00      10/28964094     Connect4::diplayBoard(Bitboard const*) [46]
+                0.02    0.00  908279/28964094     Connect4::play(Move&, Bitboard*) [21]
+                0.09    0.00 3225986/28964094     Connect4::checkHorizontal(Bitboard const*) [7]
+                0.10    0.00 3518406/28964094     Connect4::playRandomMoves(Bitboard*) [4]
+                0.10    0.00 3554478/28964094     BitboardConnect4::getEmpty(int) const [11]
+                0.12    0.00 4244407/28964094     Connect4::checkNull(Bitboard const*) [16]
+                0.12    0.00 4299057/28964094     Connect4::checkDiag2(Bitboard const*) [9]
+                0.12    0.00 4491178/28964094     Connect4::checkDiag1(Bitboard const*) [10]
+                0.13    0.00 4722293/28964094     Connect4::checkVertical(Bitboard const*) [8]
+[12]     4.2    0.79    0.00 28964094         Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                                                 <spontaneous>
+[13]     4.2    0.02    0.77                 mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [13]
+                0.07    0.70 60646982/60646982     mcts::Node::Node() [14]
+                0.00    0.00       2/10          mcts::Mcts::cleanTree(std::vector<mcts::Node, std::allocator<mcts::Node> >&) [37]
+                0.00    0.00       1/544994      Count::I() [24]
+                0.00    0.00       1/60646983     Move::Move() [15]
+                0.00    0.00       1/373265      mcts::Node::set(Move&) [55]
+-----------------------------------------------
+                0.07    0.70 60646982/60646982     mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [13]
+[14]     4.1    0.07    0.70 60646982         mcts::Node::Node() [14]
+                0.70    0.00 60646982/60646983     Move::Move() [15]
+-----------------------------------------------
+                0.00    0.00       1/60646983     mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [13]
+                0.70    0.00 60646982/60646983     mcts::Node::Node() [14]
+[15]     3.7    0.70    0.00 60646983         Move::Move() [15]
+-----------------------------------------------
+                0.01    0.00   56831/2075540     mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+                0.26    0.11 2018709/2075540     Connect4::playRandomMoves(Bitboard*) [4]
+[16]     2.1    0.27    0.12 2075540         Connect4::checkNull(Bitboard const*) [16]
+                0.12    0.00 4244407/28964094     Bitboard::getBoard(int) const [12]
+-----------------------------------------------
+                0.00    0.00     932/117247      mcts::Mcts::explore() [1]
+                0.35    0.00  116315/117247      mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [3]
+[17]     1.9    0.35    0.00  117247         mcts::Mcts::feedback(unsigned int) [17]
+-----------------------------------------------
+                                                 <spontaneous>
+[18]     1.8    0.01    0.32                 mcts::Mcts::movePlayed(Move&) [18]
+                0.28    0.00       8/8           mcts::Mcts::copyTree(mcts::Node*, std::vector<mcts::Node, std::allocator<mcts::Node> >&) [20]
+                0.03    0.00       4/4           mcts::Mcts::findNext(std::vector<mcts::Node, std::allocator<mcts::Node> >&, mcts::Node*&) [34]
+                0.01    0.00       8/10          mcts::Mcts::cleanTree(std::vector<mcts::Node, std::allocator<mcts::Node> >&) [37]
+                0.00    0.00       4/576668      mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+                0.00    0.00       4/661962      Connect4::play(Move&, Bitboard*) [21]
+                0.00    0.00      16/1382163     Move::~Move() [32]
+                0.00    0.00       4/1921641     Bitboard::play() [30]
+-----------------------------------------------
+                0.00    0.00       4/576668      mcts::Mcts::movePlayed(Move&) [18]
+                0.08    0.21  576664/576668      mcts::Mcts::explore() [1]
+[19]     1.5    0.08    0.21  576668         mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+                0.00    0.09   27609/1988687     Connect4::end(Bitboard const*) [5]
+                0.03    0.05   52544/52544       Connect4::listPossibleMoves(Bitboard*) [29]
+                0.02    0.01  184852/184852      std::_List_base<Move, std::allocator<Move> >::_M_clear() [35]
+                0.01    0.00   56831/2075540     Connect4::checkNull(Bitboard const*) [16]
+                0.00    0.00  373264/373265      mcts::Node::set(Move&) [55]
+-----------------------------------------------
+                0.28    0.00       8/8           mcts::Mcts::movePlayed(Move&) [18]
+[20]     1.5    0.28    0.00       8         mcts::Mcts::copyTree(mcts::Node*, std::vector<mcts::Node, std::allocator<mcts::Node> >&) [20]
+-----------------------------------------------
+                0.00    0.00       4/661962      mcts::Mcts::movePlayed(Move&) [18]
+                0.13    0.11  661958/661962      mcts::Mcts::explore() [1]
+[21]     1.3    0.13    0.11  661962         Connect4::play(Move&, Bitboard*) [21]
+                0.04    0.00  435586/1546345     Bitboard::setBit(int, int, int) [25]
+                0.03    0.00  904805/904805      Move::getMove() [33]
+                0.02    0.00  908279/28964094     Bitboard::getBoard(int) const [12]
+                0.02    0.00  424983/1582671     Bitboard::getPlayer() const [31]
+-----------------------------------------------
+                0.00    0.04   55132/270003      mcts::Mcts::explore() [1]
+                0.00    0.15  214871/270003      mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [3]
+[22]     1.1    0.01    0.19  270003         BitboardConnect4::~BitboardConnect4() [22]
+                0.03    0.08  154166/154166      Bitboard::~Bitboard() [27]
+                0.05    0.04  188359/188359      BitboardConnect4::~BitboardConnect4() [28]
+-----------------------------------------------
+                                                 <spontaneous>
+[23]     0.9    0.17    0.00                 Bitboard::clearBit(int, int) [23]
+-----------------------------------------------
+                0.00    0.00       1/544994      BitboardConnect4::BitboardConnect4() [44]
+                0.00    0.00       1/544994      Bitboard::Bitboard(int, int) [45]
+                0.00    0.00       1/544994      mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [13]
+                0.00    0.00       6/544994      mcts::Mcts::get_Number_Leaves() [43]
+                0.04    0.00  139507/544994      BitboardConnect4::clone() const [26]
+                0.04    0.00  149623/544994      BitboardConnect4::~BitboardConnect4() [28]
+                0.08    0.00  255855/544994      Bitboard::~Bitboard() [27]
+[24]     0.9    0.16    0.00  544994         Count::I() [24]
+-----------------------------------------------
+                0.04    0.00  435586/1546345     Connect4::play(Move&, Bitboard*) [21]
+                0.10    0.00 1110759/1546345     Connect4::playRandomMoves(Bitboard*) [4]
+[25]     0.7    0.14    0.00 1546345         Bitboard::setBit(int, int, int) [25]
+-----------------------------------------------
+                0.03    0.01   54096/149560      mcts::Mcts::explore() [1]
+                0.04    0.03   95464/149560      mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [3]
+[26]     0.6    0.07    0.04  149560         BitboardConnect4::clone() const [26]
+                0.04    0.00  139507/544994      Count::I() [24]
+-----------------------------------------------
+                0.03    0.08  154166/154166      BitboardConnect4::~BitboardConnect4() [22]
+[27]     0.6    0.03    0.08  154166         Bitboard::~Bitboard() [27]
+                0.08    0.00  255855/544994      Count::I() [24]
+-----------------------------------------------
+                0.05    0.04  188359/188359      BitboardConnect4::~BitboardConnect4() [22]
+[28]     0.5    0.05    0.04  188359         BitboardConnect4::~BitboardConnect4() [28]
+                0.04    0.00  149623/544994      Count::I() [24]
+-----------------------------------------------
+                0.03    0.05   52544/52544       mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+[29]     0.4    0.03    0.05   52544         Connect4::listPossibleMoves(Bitboard*) [29]
+                0.03    0.00  100895/2685330     BitboardConnect4::getEmpty(int) const [11]
+                0.01    0.00  302895/1382163     Move::~Move() [32]
+                0.00    0.00  557822/557822      Move::Move(int) [54]
+-----------------------------------------------
+                0.00    0.00       4/1921641     mcts::Mcts::movePlayed(Move&) [18]
+                0.02    0.00  512012/1921641     mcts::Mcts::explore() [1]
+                0.05    0.00 1409625/1921641     Connect4::playRandomMoves(Bitboard*) [4]
+[30]     0.3    0.07    0.00 1921641         Bitboard::play() [30]
+-----------------------------------------------
+                0.02    0.00  424983/1582671     Connect4::play(Move&, Bitboard*) [21]
+                0.05    0.00 1157688/1582671     Connect4::playRandomMoves(Bitboard*) [4]
+[31]     0.3    0.07    0.00 1582671         Bitboard::getPlayer() const [31]
+-----------------------------------------------
+                0.00    0.00      16/1382163     mcts::Mcts::movePlayed(Move&) [18]
+                0.01    0.00  302895/1382163     Connect4::listPossibleMoves(Bitboard*) [29]
+                0.01    0.00  501098/1382163     std::_List_base<Move, std::allocator<Move> >::_M_clear() [35]
+                0.02    0.00  578154/1382163     mcts::Mcts::explore() [1]
+[32]     0.2    0.04    0.00 1382163         Move::~Move() [32]
+-----------------------------------------------
+                0.03    0.00  904805/904805      Connect4::play(Move&, Bitboard*) [21]
+[33]     0.2    0.03    0.00  904805         Move::getMove() [33]
+-----------------------------------------------
+                0.03    0.00       4/4           mcts::Mcts::movePlayed(Move&) [18]
+[34]     0.2    0.03    0.00       4         mcts::Mcts::findNext(std::vector<mcts::Node, std::allocator<mcts::Node> >&, mcts::Node*&) [34]
+-----------------------------------------------
+                0.02    0.01  184852/184852      mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+[35]     0.2    0.02    0.01  184852         std::_List_base<Move, std::allocator<Move> >::_M_clear() [35]
+                0.01    0.00  501098/1382163     Move::~Move() [32]
+-----------------------------------------------
+                                                 <spontaneous>
+[36]     0.1    0.02    0.00                 Bitboard::clone() const [36]
+-----------------------------------------------
+                0.00    0.00       2/10          mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [13]
+                0.01    0.00       8/10          mcts::Mcts::movePlayed(Move&) [18]
+[37]     0.1    0.01    0.01      10         mcts::Mcts::cleanTree(std::vector<mcts::Node, std::allocator<mcts::Node> >&) [37]
+                0.01    0.00 15277007/15277007     mcts::Node::unset() [40]
+-----------------------------------------------
+                                                 <spontaneous>
+[38]     0.1    0.01    0.00                 Move::~Move() [38]
+-----------------------------------------------
+                                                 <spontaneous>
+[39]     0.1    0.01    0.00                 Bitboard::getBit(int, int) const [39]
+-----------------------------------------------
+                0.01    0.00 15277007/15277007     mcts::Mcts::cleanTree(std::vector<mcts::Node, std::allocator<mcts::Node> >&) [37]
+[40]     0.0    0.01    0.00 15277007         mcts::Node::unset() [40]
+-----------------------------------------------
+                                                 <spontaneous>
+[41]     0.0    0.01    0.00                 mcts::Node::~Node() [41]
+-----------------------------------------------
+                                                 <spontaneous>
+[42]     0.0    0.01    0.00                 std::vector<mcts::Node, std::allocator<mcts::Node> >::~vector() [42]
+-----------------------------------------------
+                                                 <spontaneous>
+[43]     0.0    0.00    0.00                 mcts::Mcts::get_Number_Leaves() [43]
+                0.00    0.00       6/544994      Count::I() [24]
+-----------------------------------------------
+                                                 <spontaneous>
+[44]     0.0    0.00    0.00                 BitboardConnect4::BitboardConnect4() [44]
+                0.00    0.00       1/1           Bitboard::Bitboard(int, int) [45]
+                0.00    0.00       1/544994      Count::I() [24]
+-----------------------------------------------
+                0.00    0.00       1/1           BitboardConnect4::BitboardConnect4() [44]
+[45]     0.0    0.00    0.00       1         Bitboard::Bitboard(int, int) [45]
+                0.00    0.00       1/544994      Count::I() [24]
+-----------------------------------------------
+                                                 <spontaneous>
+[46]     0.0    0.00    0.00                 Connect4::diplayBoard(Bitboard const*) [46]
+                0.00    0.00      10/28964094     Bitboard::getBoard(int) const [12]
+                0.00    0.00       5/5           char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [59]
+-----------------------------------------------
+                0.00    0.00  557822/557822      Connect4::listPossibleMoves(Bitboard*) [29]
+[54]     0.0    0.00    0.00  557822         Move::Move(int) [54]
+-----------------------------------------------
+                0.00    0.00       1/373265      mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [13]
+                0.00    0.00  373264/373265      mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [19]
+[55]     0.0    0.00    0.00  373265         mcts::Node::set(Move&) [55]
+-----------------------------------------------
+                0.00    0.00     602/602         mcts::Mcts::explore() [1]
+[56]     0.0    0.00    0.00     602         mcts::Mcts::feedbackWinLose() [56]
+-----------------------------------------------
+                0.00    0.00      23/23          operator<<(std::ostream&, Move&) [119]
+[57]     0.0    0.00    0.00      23         Move::get() [57]
+                0.00    0.00      23/23          std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [58]
+-----------------------------------------------
+                0.00    0.00      23/23          Move::get() [57]
+[58]     0.0    0.00    0.00      23         std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...) [58]
+-----------------------------------------------
+                0.00    0.00       5/5           Connect4::diplayBoard(Bitboard const*) [46]
+[59]     0.0    0.00    0.00       5         char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag) [59]
+-----------------------------------------------
+                0.00    0.00       2/2           mcts::Mcts::GetBestMove() [2]
+[60]     0.0    0.00    0.00       2         mcts::Node::select_child_WR() [60]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[61]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN16BitboardConnect4C2Ev [61]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[62]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN3api2AiC2Ei [62]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[63]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN3api4GameC2Ev [63]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[64]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4MoveC2Ev [64]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[65]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4mcts4MctsC2EP7TheGameP8BitboardPNS_8MctsArgsE [65]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[66]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN4mcts4NodeC2Ev [66]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[67]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN5Count14UniqueInstanceE [67]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[68]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN6Random14UniqueInstanceE [68]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[69]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN8BitboardC2Ev [69]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[70]     0.0    0.00    0.00       1         _GLOBAL__sub_I__ZN8Connect4C2Ev [70]
+-----------------------------------------------
+                0.00    0.00       1/1           __libc_csu_init [126]
+[71]     0.0    0.00    0.00       1         _GLOBAL__sub_I_main [71]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+
+Index by function name
+
+  [61] _GLOBAL__sub_I__ZN16BitboardConnect4C2Ev [18] mcts::Mcts::movePlayed(Move&) [27] Bitboard::~Bitboard()
+  [62] _GLOBAL__sub_I__ZN3api2AiC2Ei [3] mcts::Mcts::playRandom(mcts::Node*, Bitboard*) [10] Connect4::checkDiag1(Bitboard const*)
+  [63] _GLOBAL__sub_I__ZN3api4GameC2Ev [56] mcts::Mcts::feedbackWinLose() [9] Connect4::checkDiag2(Bitboard const*)
+  [64] _GLOBAL__sub_I__ZN4MoveC2Ev [1] mcts::Mcts::explore() [8] Connect4::checkVertical(Bitboard const*)
+  [65] _GLOBAL__sub_I__ZN4mcts4MctsC2EP7TheGameP8BitboardPNS_8MctsArgsE [20] mcts::Mcts::copyTree(mcts::Node*, std::vector<mcts::Node, std::allocator<mcts::Node> >&) [7] Connect4::checkHorizontal(Bitboard const*)
+  [66] _GLOBAL__sub_I__ZN4mcts4NodeC2Ev [17] mcts::Mcts::feedback(unsigned int) [4] Connect4::playRandomMoves(Bitboard*)
+  [67] _GLOBAL__sub_I__ZN5Count14UniqueInstanceE [34] mcts::Mcts::findNext(std::vector<mcts::Node, std::allocator<mcts::Node> >&, mcts::Node*&) [29] Connect4::listPossibleMoves(Bitboard*)
+  [68] _GLOBAL__sub_I__ZN6Random14UniqueInstanceE [37] mcts::Mcts::cleanTree(std::vector<mcts::Node, std::allocator<mcts::Node> >&) [5] Connect4::end(Bitboard const*)
+  [69] _GLOBAL__sub_I__ZN8BitboardC2Ev [13] mcts::Mcts::Mcts(TheGame*, Bitboard*, mcts::MctsArgs*) [21] Connect4::play(Move&, Bitboard*)
+  [70] _GLOBAL__sub_I__ZN8Connect4C2Ev [60] mcts::Node::select_child_WR() [16] Connect4::checkNull(Bitboard const*)
+  [71] _GLOBAL__sub_I_main     [6] mcts::Node::select_child_UCT() [58] std::string __gnu_cxx::__to_xstring<std::string, char>(int (*)(char*, unsigned long, char const*, __va_list_tag*), unsigned long, char const*, ...)
+  [22] BitboardConnect4::~BitboardConnect4() [55] mcts::Node::set(Move&) [26] BitboardConnect4::clone() const
+  [28] BitboardConnect4::~BitboardConnect4() [40] mcts::Node::unset() [11] BitboardConnect4::getEmpty(int) const
+  [57] Move::get()            [14] mcts::Node::Node()     [36] Bitboard::clone() const
+  [33] Move::getMove()        [41] mcts::Node::~Node()    [39] Bitboard::getBit(int, int) const
+  [54] Move::Move(int)        [24] Count::I()             [12] Bitboard::getBoard(int) const
+  [15] Move::Move()           [30] Bitboard::play()       [31] Bitboard::getPlayer() const
+  [38] Move::~Move()          [25] Bitboard::setBit(int, int, int) [59] char* std::string::_S_construct<char*>(char*, char*, std::allocator<char> const&, std::forward_iterator_tag)
+  [32] Move::~Move()          [23] Bitboard::clearBit(int, int) [35] std::_List_base<Move, std::allocator<Move> >::_M_clear()
+  [19] mcts::Mcts::UpdateNode(mcts::Node*, Bitboard*) [45] Bitboard::Bitboard(int, int) [42] std::vector<mcts::Node, std::allocator<mcts::Node> >::~vector()
