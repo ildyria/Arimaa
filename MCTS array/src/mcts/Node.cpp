@@ -1,15 +1,9 @@
 #include "Node.h"
-#define elseif else if
-#include "../tools/Count.h"
 
-using std::max_element;
-using std::min_element;
-using std::max;
 using std::cout;
 using std::endl;
 using std::string;
 using std::list;
-using std::log;
 
 
 namespace mcts {
@@ -45,24 +39,16 @@ namespace mcts {
 		_toplay = 1;
 	}
 
-	bool Node::compareUCT(Node* a, Node* b)
-	{
-		return (*a)._uct < (*b)._uct;
-	}
-
-	bool Node::compareWR(Node* a, Node* b)
-	{
-		return a->getProba() < b->getProba();
-	}
-
 	Node* Node::select_child_UCT()
 	{
 
 		Node* max = _firstchild;
 		Node* itL = _firstchild;
+		// save the value : we can't have the risk of it being modified during the selection
+		int visit = _visits;
 		for (u_int i = 0; i < _nbchildren; ++i)
 		{
-			itL->UCT((_visits < 2) ? 2 : _visits);
+			itL->UCT(visit);
 			if (compareUCT(max, itL))
 			{
 				max = itL;
@@ -116,21 +102,6 @@ namespace mcts {
 			}
 		}
 	}
-
-/*	u_int Node::max_depth()
-	{
-		if (_firstchild == nullptr) return 1;
-
-		auto itL = _firstchild;
-		u_int val = 0;
-		for (u_int i = 0; i < _nbchildren; ++i)
-		{
-			auto cur = itL->max_depth();
-			if (val < cur) val = cur;
-			itL++;
-		}
-		return val + 1;
-	}*/
 
 	Node::~Node()
 	{

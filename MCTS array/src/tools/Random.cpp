@@ -1,8 +1,5 @@
 //#define DISPLAY_RNG
 #include "Random.h"
-#include <iostream>
-#include <omp.h>
-#include <ctime>
 
 using std::srand;
 using std::rand;
@@ -24,22 +21,4 @@ Random::Random(uint64_t new_seed)
 
 Random::~Random()
 {
-}
-
-Random* Random::I(uint64_t seed)
-{
-	if (UniqueInstance != nullptr)
-	{
-		return UniqueInstance;
-	}
-	
-	if (seed == 0)
-	{
-		UniqueInstance = new Random(time(nullptr) + omp_get_thread_num());
-	}
-	else
-	{
-		UniqueInstance = new Random(seed);
-	}
-	return UniqueInstance;
 }

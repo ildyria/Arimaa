@@ -8,6 +8,8 @@
 */
 #pragma once
 #include "../interfaces/TheGame.h"
+#include <sstream>
+#include "../tools/Random.h"
 
 /**
  * \brief Connect4 class
@@ -25,7 +27,7 @@ public:
 
 	/**
 	 * \fn ~Connect4()
-	 * @brief basic destructor
+	 * \brief basic destructor
 	 */
 	virtual ~Connect4() {}
 

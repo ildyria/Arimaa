@@ -61,13 +61,13 @@ public:
 	 * 
 	 * \param data
 	 */
-	virtual inline void set(numtyp data);
+	virtual inline void set(numtyp data) { _data = data; };
 
 	/**
 	 * \fun get()
 	 * @brief getter of the move. Used with the << operator. Required for the class to stay inheritable.
 	 */
-	virtual inline std::string get();
+	virtual inline std::string get() { return std::to_string(_data); };
 
 	/**
 	 * \fun compare(const Move b)

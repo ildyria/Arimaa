@@ -9,7 +9,7 @@
 	#include "api/test.h"
 	using namespace api;
 #else
-	#define DISPLAY_TREE
+//	#define DISPLAY_TREE
 	#include "tools/Memory.h"
 
 	#include "./tools/Count.h"
@@ -21,7 +21,7 @@
 #endif
 
 #include <thread>
-#define elseif else if
+#include "tools/Random.h"
 
 using namespace mcts;
 using std::cout;
@@ -41,6 +41,7 @@ int main(int argc, char const *argv[])
 	int result = 0;
 	int moveok;
 	Move move;
+	Random::I();
 
 	MctsArgs* args = new MctsArgs();
 
@@ -109,7 +110,7 @@ int main(int argc, char const *argv[])
 		if (mcts.winning_Strategy() == 42)
 		{
 			cout << "You don't know it yet, but you lost ! =D" << endl;
-		};
+		}
 		mcts.get_Number_Leaves();
 		cout << endl << Count::I();
 

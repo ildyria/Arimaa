@@ -13,11 +13,13 @@ namespace mcts {
 	 * \brief MctsArgs class
 	 * \details 
 	 *  options for the MCTS Algorithm
-	 *	int _depth = depth to explore before running random simulations.
-	 *	int _timeLimitsimulationPerRoot = time limit in ms
-	 *	int _simulationPerRoot = number of simulations to run per Root.
-	 *	int _simulationPerLeaves = number of simulations to run per Leaves.
-	 *	int _numberOfVisitBeforeExploration = number of visits on a node before expanding its children.
+	 *	u_int _depth = depth to explore before running random simulations.
+	 *	u_int _timeLimitsimulationPerRoot = time limit in ms
+	 *	u_long _simulationPerRoot = number of simulations to run per Root.
+	 *	u_int _simulationPerLeaves = number of simulations to run per Leaves.
+	 *	u_int _numberOfVisitBeforeExploration = number of visits on a node before expanding its children.
+	 *	u_long _maxNumberOfLeaves = maximum number of nodes in the tree, defined by available memory * _percentRAM / 2
+	 *	double _percentRAM = percentage of RAM to use by the trees
 	 */
 	class MctsArgs
 	{
@@ -50,7 +52,9 @@ namespace mcts {
 			double percentRAM = 0.9
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
-#if defined(_WIN64)
+#if defined(LIMIT_MEMORY)
+			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (2 * sizeof(Node))); // maximum size is 2 Go...
+#elif defined(_WIN64)
 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
@@ -62,43 +66,86 @@ namespace mcts {
 			std::cout << "max num of leaves : " << _maxNumberOfLeaves << std::endl;
 		};
 
+		/**
+		 * \fn getDepth() 
+		 * \brief getter for _depth
+		 * 
+		 * \return maximum depth
+		 */
 		inline u_int getDepth()
 		{
 			return _depth;
 		};
 
+		/**
+		 * \fn setTimeLimitSimulationPerRoot(u_int t = 2000) 
+		 * \brief allow to change the time limit for the simulations between executions
+		 */
 		inline void setTimeLimitSimulationPerRoot(u_int t = 2000)
 		{
 			_timeLimitsimulationPerRoot = t;
 		};
 
+		/**
+		 * \fn getTimeLimitSimulationPerRoot() 
+		 * \brief getter for _timeLimitsimulationPerRoot
+		 * 
+		 * \return maximum time limite to run the simulations
+		 */
 		inline u_int getTimeLimitSimulationPerRoot()
 		{
 			return _timeLimitsimulationPerRoot;
 		};
 
+		/**
+		 * \fn getSimulationPerRoot() 
+		 * \brief getter for _simulationPerRoot
+		 * 
+		 * \return maximum number of simulations to run at the root
+		 */
 		inline u_long getSimulationPerRoot()
 		{
 			return _simulationPerRoot;
 		};
 
+		/**
+		 * \fn getSimulationPerLeaves() 
+		 * \brief getter for _simulationPerLeaves
+		 * 
+		 * \return maximum number of simulations to run at the leaves
+		 */
 		inline u_int getSimulationPerLeaves()
 		{
 			return _simulationPerLeaves;
 		};
 
+		/**
+		 * \fn getNumberOfVisitBeforeExploration() 
+		 * \brief getter for _numberOfVisitBeforeExploration
+		 * 
+		 * \return number of simulations to run before exploring a node
+		 */
 		inline u_int getNumberOfVisitBeforeExploration()
 		{
 			return _numberOfVisitBeforeExploration;
 		};
 
+		/**
+		 * \fn getMaxNumberOfLeaves() 
+		 * \brief getter for _maxNumberOfLeaves
+		 * 
+		 * \return maximum number of leaves in the tree
+		 */
 		inline u_long getMaxNumberOfLeaves()
 		{
 			return _maxNumberOfLeaves;
 		}
-		inline ~MctsArgs()
-		{
-		}
+
+		/**
+		 * \fn ~MctsArgs() 
+		 * \brief destructor...
+		 */
+		inline ~MctsArgs() {}
 	};
 
 }

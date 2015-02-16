@@ -8,10 +8,11 @@
  */
 #pragma once
 #include "../tools/typedef.h"
-#include "Node.h"
 #include "../tools/Memento.h"
-#include "MctsArgs.h"
 #include "../interfaces/TheGame.h"
+#include "Node.h"
+#include "MctsArgs.h"
+#include <chrono>
 
 namespace mcts
 {
@@ -19,66 +20,108 @@ namespace mcts
 	/**
 	 * \brief Mcts class
 	 * \details 
-		Node* _root = adress of the node considered as the root of the tree.
-		MctsArgs _param = options of the MCTS algorithm
+		TheGame* _game = pointer to the game
+		MctsArgs* _param = options of the MCTS algorithm;
+		Node* _next = pointer for the next node to be set;
+		Bitboard* _state = starting bitboard : current position of the game;
+		omp_lock_t _lockNode : lock in order to get the lock of a node (critical);
+		omp_lock_t _lockNext : lock in order to set the _next (critical);
+		std::vector<Memento<Node*>> _parents : memento design pattern in order to feed back the results;
+		std::vector<Node> _tree : main tree;
+		std::vector<Node> _buff : buffer tree used for the prunning;
 	 */
 	class Mcts
 	{
 		TheGame* _game;
-		std::vector<Node> _tree;
-		std::vector<Node> _buff;
-		std::vector<Memento<Node*>> _parents;
-
 		MctsArgs* _param;
 		Node* _next;
 		Bitboard* _state;
-		bool _maxdepthreached;
+//		bool _maxdepthreached;
+		omp_lock_t _lockNode;
+		omp_lock_t _lockNext;
+		std::vector<Memento<Node*>> _parents;
+		std::vector<Node> _tree;
+		std::vector<Node> _buff;
 
 		/**
-		* \fn UpdateNode(Node* node)
-		* \details Update a node :
-		* - check state of the node
-		* if -1 : fetch the children (possible moves) and update the state
-		* if 0 and no children : fetch the children and update the state
-		* else : return the state
-		*
-		* \param  node to be updated
-		* \return      the state of the board : 0, 1, 2, or 3 .
-		*/
+		 * \fn UpdateNode(Node* node, Bitboard* Bb)
+		 * \details Update a node :
+		 * - check state of the node
+		 * if 128 : fetch the children (possible moves) and update the state
+		 * if 0 and no children : fetch the children and update the state
+		 * else : return the state
+		 *
+		 * \param  node to be updated
+		 * \param  Bb state of the board
+		 * \return the state of the board : 0, 1, 2, 3, or 255 if cannot be explored (locked / memory limit) .
+		 */
 		u_int UpdateNode(Node* node, Bitboard* Bb);
 
 
 		/**
-		* \fn playRandom(Node* node)
-		* \details play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)
-		*
-		* \param node node to run the simulations from
-		*/
+		 * \fn playRandom(Node* node,  Bitboard* Bb)
+		 * \details play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)
+		 *
+		 * \param node node to run the simulations from
+		 * \param Bb state of the board
+		 */
 		void playRandom(Node* node, Bitboard* Bb);
 
 		/**
-		* \fn explore()
-		* \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
-		* if depth = 0, run playRandom
-		* if the node is a terminal, then update the stats :
-		* - set uct to 10 if it's a win
-		* - set parent's uct to -1 if it's a loss (we must never go to that node)
-		*/
+		 * \fn explore()
+		 * \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
+		 * if depth = 0, run playRandom
+		 * if the node is a terminal, then update the stats :
+		 * - set uct to 42 if it's a win
+		 * - set parent's uct to -1 if it's a loss (we must never go to that node)
+		 */
 		void explore();
 
+		/**
+		 * \fn feedbackWinLose()
+		 * \details feedback the results to the parents (winning and losing move) in order to fasten the search
+		 */
 		void feedbackWinLose();
 
-		void cleanTree(std::vector<Node> &T);
+		/**
+		 * \fn cleanTree(std::vector<Node> &T)
+		 * \brief unset all the nodes of the given tree
+		 * 
+		 * \param T tree to be erased
+		 */
+		static void cleanTree(std::vector<Node> &T);
 
-		void copyTree(Node* NewRoot, std::vector<Node> &Tdest);
+		/**
+		 * \fn copyTree(Node* NewRoot, std::vector<Node> &Tdest)
+		 * \brief copy the subtree with NewRoot into Tdest
+		 * 
+		 * \param NewRoot subtree to be kept
+		 * \param Tdest tree to be returned
+		 */
+		static void copyTree(Node* NewRoot, std::vector<Node> &Tdest);
 
-		void findNext(std::vector<Node> &T);
+		/** \fn findNext(std::vector<Node> &T, Node*& n);
+		 *	\brief reset the value of _next
+		 * 
+		 * \param T tree to be visited
+		 * \param n pointer for _next
+		 */
+		static void findNext(std::vector<Node> &T, Node*& n);
+
+		/**
+		 * \fn feedback
+		 * \brief feedback the results to the parents in order to update their _win value
+		 * 
+		 * \param nodet value of the simulation
+		 */
+		void feedback(u_int nodet);
+
 	public:
 		/**
 		 * \fn Mcts()
-		 * \brief Not implemented
+		 * \brief Not used
 		 */
-		Mcts();
+		Mcts() {};
 
 		/**
 		 * \fn Mcts(TheGame* game, Bitboard* Bb, MctsArgs args)
@@ -109,7 +152,6 @@ namespace mcts
 		 */
 		Bitboard* movePlayed(Move& move);
 
-
 		/**
 		 * \fn GetBestMove()
 		 * \brief main function of the algorithm, run the exploration, simulations and returns the best move given the results
@@ -138,10 +180,10 @@ namespace mcts
 		 */
 		void get_Number_Leaves();
 
+		/**
+		 * \fn winning_Strategy()
+		 * \return the winning rate of the last move, -1 if losing, 2 if it was a winning strategy
+		 */
 		double winning_Strategy();
-
-		void take_a_chill_pill(u_long i);
-
-		void feedback(u_int nodet);
 	};
 }

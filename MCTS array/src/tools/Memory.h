@@ -1,30 +1,29 @@
 #pragma once
 #include "typedef.h"
 
-// Use to convert bytes to KB
-//#define DIV 1024
-
 #if defined(_WIN32) || defined(_WIN64)
-#include <windows.h>
-#include <psapi.h>
-#include <stdio.h>
-#include <tchar.h>
-
-// Specify the width of the field in which to print the numbers. 
-// The asterisk in the format specifier "%*I64d" takes an integer 
-// argument and uses it to pad and right justify the number.
-#define WIDTH 7
+	#include <windows.h>
+	#include <psapi.h>
+	#include <stdio.h>
+	#include <tchar.h>
+	// Specify the width of the field in which to print the numbers. 
+	// The asterisk in the format specifier "%*I64d" takes an integer 
+	// argument and uses it to pad and right justify the number.
+	#define WIDTH 7
 
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-#include <stdio.h>
-#include <string.h>
-
+	#include <stdio.h>
+	#include <string.h>
 #endif
 
 #include <iostream>
 #include <ostream>
 
 
+/**
+ * \brief Memory class
+ * \details class to get the size of the free memory
+ */
 class Memory
 {
 	Memory() {};

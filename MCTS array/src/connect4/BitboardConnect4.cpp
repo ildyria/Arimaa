@@ -3,7 +3,7 @@
 using std::list;
 
 
-BitboardConnect4::BitboardConnect4() : Bitboard(7,6,2,1)
+BitboardConnect4::BitboardConnect4() : Bitboard(2,1)
 {
 	Count::I()->addBitBoardsC4();
 }
@@ -17,8 +17,8 @@ BitboardConnect4::~BitboardConnect4()
 list<int> BitboardConnect4::getEmpty(int n) const
 {
 	list<int> rtm;
-	int i = getSizeX();
-	unsigned long long board = (getBoard(0) | getBoard(1)) >> ((getSizeY() - 1) * getSizeX());
+	int i = SIZEX;
+	unsigned long long board = (getBoard(0) | getBoard(1)) >> ((SIZEY - 1) * SIZEX);
 	while (board != 0 && i > 0)
 	{
 		if ((board & 1) == 0)

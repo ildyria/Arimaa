@@ -4,7 +4,6 @@
 using std::string;
 using std::ostream;
 using std::istream;
-using std::to_string;
 
 Move::Move()
 {
@@ -23,15 +22,6 @@ Move::~Move()
 {
 }
 
-void Move::set(numtyp data)
-{
-	_data = data;
-}
-
-string Move::get()
-{
-	return to_string(_data);
-}
 
 ostream& operator<<(ostream& stream, Move& move)
 {

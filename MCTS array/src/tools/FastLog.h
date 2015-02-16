@@ -8,7 +8,9 @@
 #define LOGV2
 #endif
 
-
+/**
+ * \brief FastLog class
+ */
 class FastLog
 {
 	FastLog() {};

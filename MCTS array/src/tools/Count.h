@@ -34,7 +34,7 @@ class Count
 	Count();
 	~Count();
 
-	inline int ratio(int& a, int& b)
+	static inline int ratio(int& a, int& b)
 	{
 		return (b != 0) ? (a * 100 / b) - 100 : 0;
 	}

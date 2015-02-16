@@ -11,6 +11,9 @@
 #include <cstdlib>
 #include <stdint.h>
 #include <random>
+#include <omp.h>
+#include <ctime>
+#include <iostream>
 
 /**
  * \brief Random class : SINGLETON
@@ -34,7 +37,22 @@ public:
 	 * \param  seed optionnal, allow us to set the seed in case singleton hasn't been initialized
 	 * \return      the object.
 	 */
-	static Random* I(uint64_t seed = 0);
+	static inline Random* I(uint64_t seed = 0) {
+			if (UniqueInstance != nullptr)
+			{
+				return UniqueInstance;
+			}
+
+			if (seed == 0)
+			{
+				UniqueInstance = new Random(time(nullptr) + omp_get_thread_num());
+			}
+			else
+			{
+				UniqueInstance = new Random(seed);
+			}
+			return UniqueInstance;
+		};
 	
 	/**
 	 * \fn getNum

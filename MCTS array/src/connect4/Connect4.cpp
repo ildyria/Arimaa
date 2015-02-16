@@ -1,7 +1,4 @@
 #include "Connect4.h"
-#include <sstream>
-#define elseif else if
-#include "../tools/Random.h"
 
 //#define DISPLAY_C4
 using std::string;
@@ -45,9 +42,9 @@ int Connect4::checkHorizontal(const Bitboard* board)
 	numtyp boardused = static_cast<numtyp>(15); // 0001111 in binary
 	numtyp board1 = board->getBoard(0);
 	numtyp board2 = board->getBoard(1);
-	for (int y = 0; y < board->getSizeY(); y++)
+	for (int y = 0; y < SIZEY; y++)
 	{
-		for (int x = 0; x <= board->getSizeX() - 4; x++)
+		for (int x = 0; x <= SIZEX - 4; x++)
 		{
 			if ((boardused & board1) == boardused)
 			{
@@ -67,13 +64,13 @@ int Connect4::checkHorizontal(const Bitboard* board)
 int Connect4::checkVertical(const Bitboard* board)
 {
 	numtyp boardused = static_cast<numtyp>(1);
-	boardused += (boardused << board->getSizeX()) + (boardused << (board->getSizeX() * 2)) + (boardused << (board->getSizeX() * 3));
+	boardused += (boardused << SIZEX) + (boardused << (SIZEX * 2)) + (boardused << (SIZEX * 3));
 
 	numtyp board1 = board->getBoard(0);
 	numtyp board2 = board->getBoard(1);
-	for (int y = 0; y <= board->getSizeY() - 4; y++)
+	for (int y = 0; y <= SIZEY - 4; y++)
 	{
-		for (int x = 0; x < board->getSizeX(); x++)
+		for (int x = 0; x < SIZEX; x++)
 		{
 			if ((boardused & board1) == boardused)
 			{
@@ -92,13 +89,13 @@ int Connect4::checkVertical(const Bitboard* board)
 int Connect4::checkDiag1(const Bitboard* board)
 {
 	numtyp boardused = static_cast<numtyp>(1);
-	boardused += (boardused << (board->getSizeX() + 1)) + (boardused << ((board->getSizeX() + 1) * 2)) + (boardused << ((board->getSizeX() + 1) * 3));
+	boardused += (boardused << (SIZEX + 1)) + (boardused << ((SIZEX + 1) * 2)) + (boardused << ((SIZEX + 1) * 3));
 
 	numtyp board1 = board->getBoard(0);
 	numtyp board2 = board->getBoard(1);
-	for (int y = 0; y <= board->getSizeY() - 4; y++)
+	for (int y = 0; y <= SIZEY - 4; y++)
 	{
-		for (int x = 0; x <= board->getSizeX() - 4; x++)
+		for (int x = 0; x <= SIZEX - 4; x++)
 		{
 			if ((boardused & board1) == boardused)
 			{
@@ -119,13 +116,13 @@ int Connect4::checkDiag2(const Bitboard* board)
 {
 	numtyp boardused = static_cast<numtyp>(1);
 	boardused <<= 3; // 1000
-	boardused += (boardused << (board->getSizeX() - 1)) + (boardused << ((board->getSizeX() - 1) * 2)) + (boardused << ((board->getSizeX() - 1) * 3));
+	boardused += (boardused << (SIZEX - 1)) + (boardused << ((SIZEX - 1) * 2)) + (boardused << ((SIZEX - 1) * 3));
 
 	numtyp board1 = board->getBoard(0);
 	numtyp board2 = board->getBoard(1);
-	for (int y = 0; y <= board->getSizeY() - 4; y++)
+	for (int y = 0; y <= SIZEY - 4; y++)
 	{
-		for (int x = 0; x <= board->getSizeX() - 4; x++)
+		for (int x = 0; x <= SIZEX - 4; x++)
 		{
 			if ((boardused & board1) == boardused)
 			{
@@ -162,10 +159,10 @@ void Connect4::play(Move& position, Bitboard* board)
 	while( (boardused & 1) == 1)
 	{
 		i++;
-		boardused >>= board->getSizeX();
+		boardused >>= SIZEX;
 	}
 	
-	board->setBit(board->getPlayer() - 1, board->getSizeX() - static_cast<int>(position.getMove()), i);
+	board->setBit(board->getPlayer() - 1, SIZEX - static_cast<int>(position.getMove()), i);
 	board->play();
 }
 
@@ -249,10 +246,10 @@ int Connect4::playRandomMoves(Bitboard* board)
 				while ((boardused & 1) == 1)
 				{
 					i++;
-					boardused >>= board->getSizeX();
+					boardused >>= SIZEX;
 				}
 
-				board->setBit(board->getPlayer() - 1, board->getSizeX() - *iter, i);
+				board->setBit(board->getPlayer() - 1, SIZEX - *iter, i);
 				board->play();
 				break;
 			}

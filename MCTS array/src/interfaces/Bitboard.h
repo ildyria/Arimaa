@@ -8,6 +8,8 @@
  */
 #pragma once
 #include <stdint.h>
+#include <iostream>     // std::cout
+#include <algorithm>    // std::for_each
 #include <vector>
 #include <list>
 #include "../tools/Count.h"
@@ -30,8 +32,6 @@ protected:
 	std::vector<numtyp> _boards;
 	short _toplay;
 	short _number;
-	short _sizeX;
-	short _sizeY;
 
 public:
 	/**
@@ -49,7 +49,7 @@ public:
 	 * \param n		 : number of boards to be created
 	 * \param toplay : player to play
 	 */
-	Bitboard(int sizeX, int sizeY, int n, int toplay);
+	Bitboard(int n, int toplay);
 
 	/**
 	 * \fn ~Bitboard
@@ -71,19 +71,13 @@ public:
 	* \fn getSizeX
 	* \brief blabla
 	*/
-	virtual int getSizeX() const
-	{
-		return _sizeX;
-	}
+	virtual inline int getSizeX() const { return SIZEX; }
 
 	/**
 	* \fn getSizeY
 	* \brief blabla
 	*/
-	virtual int getSizeY() const
-	{
-		return _sizeY;
-	}
+	virtual inline int getSizeY() const { return SIZEY; }
 
 	/**
 	 * \fn getBit
@@ -94,7 +88,7 @@ public:
 	 * \param y position y
 	 * \return the value of the bit (0 or 1)
 	 */
-	virtual int getBit(int n, int x, int y) const;
+	virtual inline int getBit(int n, int x, int y) const { return int((_boards[n]) >> (x + y*SIZEX)) & 1; };
 
 	/**
 	* \fn getBit
@@ -104,7 +98,7 @@ public:
 	* \param pos position of the bit
 	* \return the value of the bit (0 or 1)
 	*/
-	virtual int getBit(int n, int pos) const;
+	virtual inline int getBit(int n, int pos) const { return int((_boards[n]) >> pos) & 1; };
 
 	/**
 	 * \fn setBit
@@ -114,7 +108,7 @@ public:
 	 * \param x position x
 	 * \param y position y
 	 */
-	virtual void setBit(int n, int x, int y);
+	virtual inline void setBit(int n, int x, int y) { _boards[n] |= (static_cast<numtyp>(1) << (x + y*SIZEX)); };
 
 	/**
 	* \fn setBit
@@ -123,7 +117,7 @@ public:
 	* \param n bitboard to search
 	* \param pos position of the bit
 	*/
-	virtual void setBit(int n, int pos);
+	virtual inline void setBit(int n, int pos) { _boards[n] |= (static_cast<numtyp>(1) << pos); };
 
 	/**
 	 * \fn clearBit
@@ -133,7 +127,7 @@ public:
 	 * \param x position x
 	 * \param y position y
 	 */
-	virtual void clearBit(int n, int x, int y);
+	virtual inline void clearBit(int n, int x, int y) { _boards[n] &= ~(static_cast<numtyp>(1) << (x + y*SIZEX)); };
 
 	/**
 	* \fn clearBit
@@ -142,7 +136,7 @@ public:
 	* \param n bitboard to search
 	* \param pos position of the bit
 	*/
-	virtual void clearBit(int n, int pos);
+	virtual inline void clearBit(int n, int pos) { _boards[n] &= ~(static_cast<numtyp>(1) << (pos)); };
 
 	/**
 	* \fn getBoard
@@ -183,6 +177,10 @@ public:
 	* \fn play
 	* \brief swap players
 	*/
-	virtual inline void play() { _toplay = (_toplay == 1) ? 2 : 1; };
+	virtual inline void play()
+	{
+		static const short lookup[3] = { 0, 2, 1 };
+		_toplay = lookup[_toplay];
+	};
 };
 

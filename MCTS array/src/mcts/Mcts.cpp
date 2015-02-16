@@ -1,19 +1,17 @@
 #define OPENMP
 
 #include "Mcts.h"
-#define elseif else if
-#define SLOW 0 // 5 ms 
-#include <chrono>
 
 using std::list;
 using std::cout;
 using std::endl;
+using std::chrono::time_point;
+using std::chrono::system_clock;
+using std::chrono::high_resolution_clock;
+using std::chrono::milliseconds;
+using std::chrono::duration_cast;
 
 namespace mcts{
-
-	Mcts::Mcts()
-	{
-	}
 
 	Mcts::Mcts(	TheGame* game,
 				Bitboard* Bb,
@@ -32,7 +30,8 @@ namespace mcts{
 		// 	int tid = omp_get_thread_num();
 		// 	printf("Hello World from thread = %d\n", tid);
 		// }
-
+		omp_init_lock(&_lockNode);
+		omp_init_lock(&_lockNext);
 		cleanTree(_tree);
 		cleanTree(_buff);
 		Count::I()->clear();
@@ -51,14 +50,15 @@ namespace mcts{
 		{
 			if (iter->getMove() == move) // we got the move played !
 			{
-				auto m = iter->getMove();
 				break;
 			}
 			iter++;
 		}
 		copyTree(iter,_buff);
+		cleanTree(_tree);
 		copyTree(&_buff[0], _tree);
-		findNext(_tree);
+		cleanTree(_buff);
+		findNext(_tree, _next);
 
 		_game->play(move, _state);
 		return _state;
@@ -66,7 +66,7 @@ namespace mcts{
 
 	u_int Mcts::UpdateNode(Node* node, Bitboard* Bb)
 	{
-		bool locked = false;
+		bool locked;
 		u_int nodet = node->getTerminal();
 
 		if (nodet == 128) { // first time we are here, check if terminate
@@ -84,42 +84,49 @@ namespace mcts{
 			return nodet;
 		}
 
-
+/*
 		if (node->getChildren().first == nullptr) // not explored yet => explore
 		{
+*/
 			// super small critical region =D
-			// what about using a lock here ?
+/*
 			if (omp_in_parallel())
 			{
-				#pragma omp critical
+*/
+//				#pragma omp critical
+				omp_set_lock(&_lockNode);
 				locked = node->getLock();
-			}
+				omp_unset_lock(&_lockNode);
+//			}
 			if (locked) return 255;
 
 			list<Move> ListOfMoves;
 			list<Move>::iterator iter;
 
-			// will need to rethink the concurency on the _next variable... might be ugly...
 			ListOfMoves = _game->listPossibleMoves(Bb);
 			if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
 			{
-				nodet = 254;
+				return 255; // this is extremly dangerous : the node stays locked ! We need to unlock it when we will prune the tree
 			}
-			else
+			Node* tmp2;
+			Node* tmp;
+
+			// _next concurency
+			omp_set_lock(&_lockNext);
+			tmp2 = _next;
+			_next += ListOfMoves.size();
+			omp_unset_lock(&_lockNext);
+
+			//				tmp = tmp2;
+			for (iter = ListOfMoves.begin(), tmp = tmp2; iter != ListOfMoves.end(); ++iter, ++tmp2)
 			{
-				auto tmp = _next;
-				auto tmp2 = _next;
-				_next += ListOfMoves.size();
-				for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
-				{
-					tmp2->set(*iter);
-					tmp2->play(node->getPlayer());
-					tmp2++;
-				}
-				node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
+				tmp2->set(*iter);
+				tmp2->play(node->getPlayer());
+				//					tmp2++;
 			}
+			node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
 			node->releaseLock();
-		}
+//		}
 
 		return nodet;
 	}
@@ -158,7 +165,7 @@ namespace mcts{
 		n = _parents[omp_get_thread_num()].get();
 		bool winloser = true;
 		bool loser = true;
-		Node* ptr = nullptr;
+		Node* ptr;
 		std::pair<Node*, u_int> ListChilds;
 		while(n != nullptr && winloser)
 		{
@@ -239,8 +246,8 @@ namespace mcts{
 	void Mcts::cleanTree(std::vector<Node> &T)
 	{
 		Node* ptr = &T[1];
-		Node* lstptr = &T[(_param->getMaxNumberOfLeaves() -1)];
-		while (ptr != lstptr)// && ptr->getChildren().second != static_cast<u_int>(-1))
+		Node* lstptr = &T[(T.size() -1)];
+		while (ptr != lstptr && ptr->hasParent())// && ptr->getChildren().second != static_cast<u_int>(-1))
 		{
 			ptr->unset();
 			ptr++;
@@ -250,12 +257,12 @@ namespace mcts{
 
 	void Mcts::copyTree(Node* NewRoot, std::vector<Node> &Tdest)
 	{
-		cleanTree(Tdest);
 		auto next = &Tdest[0];					// place ptrDest at the begining of the destination array
 		auto ptrDest = &Tdest[0];				// place ptrDest at the begining of the destination array
 		Node* ptTemp;							// pointer to loop on the childrens of each ptr
 
 		*ptrDest = *NewRoot;					// copy root
+		ptrDest->releaseLock();
 		next++;									// next free space in Tdest
 
 		while (ptrDest->hasParent() || ptrDest == &Tdest[0]) // no parents OR root
@@ -268,6 +275,7 @@ namespace mcts{
 				for (u_int i = 0; i < ListOfNodes.second; i++)
 				{
 					*next = *ptTemp;			// recopy of chidlren
+					next->releaseLock();		// makes sure that all nodes are unlocked !
 					ptTemp++;
 					next++;
 				}
@@ -276,32 +284,31 @@ namespace mcts{
 		}
 	}
 
-	void Mcts::findNext(std::vector<Node>& T)
+	void Mcts::findNext(std::vector<Node>& T, Node*& n)
 	{
-		_next = &T[1];
-		while (_next->hasParent())
+		n = &T[1];
+		while (n->hasParent())
 		{
-			_next++;
+			n++;
 		}
-		cout << "next: " << (_next - &T[0]) << endl;
+		cout << "next: " << (n - &T[0]) << endl;
 	}
-
 
 	Move Mcts::GetBestMove()
 	{
 		_maxdepthreached = false;
 		u_long i = 0;
-		auto start_time = std::chrono::high_resolution_clock::now();
-		auto end_time = start_time + std::chrono::milliseconds(_param->getTimeLimitSimulationPerRoot());
+		auto start_time = high_resolution_clock::now();
+		auto end_time = start_time + milliseconds(_param->getTimeLimitSimulationPerRoot());
 #ifdef OPENMP
 #pragma omp parallel shared(i,end_time)
 #endif
-		while (std::chrono::high_resolution_clock::now() < end_time && i < _param->getSimulationPerRoot())
+		while (high_resolution_clock::now() < end_time && i < _param->getSimulationPerRoot())
 		{
 			i++;
 			explore();
 		}
-		cout << endl << "Searched for " << std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-start_time).count() << "ms and " << i*_param->getSimulationPerLeaves() << " simulations." << endl;
+		cout << endl << "Searched for " << duration_cast<milliseconds>(high_resolution_clock::now()-start_time).count() << "ms and " << i*_param->getSimulationPerLeaves() << " simulations." << endl;
 		return _tree[0].select_child_WR()->getMove();
 	}
 
@@ -319,23 +326,12 @@ namespace mcts{
 	void Mcts::get_Number_Leaves()
 	{
 		auto num = _next - &_tree[0];
-
 		Count::I()->saveNbLeaves(static_cast<int>(num));
 //		Count::I()->saveMaxDepth(_tree[0].max_depth());
-
 	}
 
 	double Mcts::winning_Strategy()
 	{
 		return (_tree[0].getUCT() != 42 && _tree[0].getUCT() != -1) ? _tree[0].getProba() : _tree[0].getUCT();
-	}
-
-	void Mcts::take_a_chill_pill(u_long i)
-	{
-		// struct timespec tim, tim2;
-		// tim.tv_sec = 0;
-		// tim.tv_nsec = SLOW; // 1 ms sec
-		// nanosleep(&tim , &tim2);
-		printf("%d : %ld\n", omp_get_thread_num(),i);
 	}
 }
