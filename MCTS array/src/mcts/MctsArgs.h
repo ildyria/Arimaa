@@ -52,14 +52,20 @@ namespace mcts {
 			double percentRAM = 0.9
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
-#if defined(LIMIT_MEMORY)
-			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (2 * sizeof(Node))); // maximum size is 2 Go...
-#elif defined(_WIN64)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
-#elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (2 * sizeof(Node)));
+#if defined(DOUBLE_TREE)
+	#define TREE 2
 #else
-			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (2 * sizeof(Node))); // maximum size is 2 Go...
+	#define TREE 1
+#endif
+
+#if defined(LIMIT_MEMORY)
+			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (TREE * sizeof(Node))); // maximum size is 2 Go...
+#elif defined(_WIN64)
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (TREE * sizeof(Node)));
+#elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (TREE * sizeof(Node)));
+#else
+			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (TREE * sizeof(Node))); // maximum size is 2 Go...
 #endif
 			std::cout << "size of node : " << sizeof(Node) << std::endl;
 

@@ -21,8 +21,10 @@ namespace mcts{
 				_next(nullptr),
 				_state(Bb),
 				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->getDepth() + 1))),
-				_tree(std::vector<Node>(args->getMaxNumberOfLeaves())),
-				_buff(std::vector<Node>(args->getMaxNumberOfLeaves()))
+				_tree(std::vector<Node>(args->getMaxNumberOfLeaves()))
+#if defined(DOUBLE_TREE)
+				, _buff(std::vector<Node>(args->getMaxNumberOfLeaves()))
+#endif
 	{
 		cout << "number of thread : " << omp_get_num_procs() << endl;
 		// #pragma omp parallel
@@ -33,10 +35,16 @@ namespace mcts{
 		omp_init_lock(&_lockNode);
 		omp_init_lock(&_lockNext);
 		Tree<Node>::cleanTree(_tree);
+#if defined(DOUBLE_TREE)
 		Tree<Node>::cleanTree(_buff);
+#endif
 		Count::I()->clear();
 		Move* random = new Move();
+#if defined(DOUBLE_TREE)
 		_tree[0].set(*random);
+#else
+		_tree[0].set(*random,nullptr);
+#endif 
 		_tree[0].hasParent();
 		_next = (&_tree[0]) + 1;
 	}
@@ -54,8 +62,12 @@ namespace mcts{
 			}
 			iter++;
 		}
-		Tree<Node>::execute(iter, _tree, _buff, _next);
 
+#if defined(DOUBLE_TREE)
+		Tree<Node>::execute(iter, _tree, _buff, _next);
+#else
+		Tree<Node>::execute(iter, _tree, _next);
+#endif
 		_game->play(move, _state);
 		return _state;
 	}
@@ -83,9 +95,7 @@ namespace mcts{
 /*
 		if (node->getChildren().first == nullptr) // not explored yet => explore
 		{
-*/
 			// super small critical region =D
-/*
 			if (omp_in_parallel())
 			{
 */
@@ -113,12 +123,14 @@ namespace mcts{
 			_next += ListOfMoves.size();
 			omp_unset_lock(&_lockNext);
 
-			//				tmp = tmp2;
 			for (iter = ListOfMoves.begin(), tmp = tmp2; iter != ListOfMoves.end(); ++iter, ++tmp2)
 			{
+#if defined(DOUBLE_TREE)
 				tmp2->set(*iter);
+#else
+				tmp2->set(*iter, node);
+#endif
 				tmp2->play(node->getPlayer());
-				//					tmp2++;
 			}
 			node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
 			node->releaseLock();

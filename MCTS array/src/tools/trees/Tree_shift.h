@@ -15,24 +15,13 @@
 template<class N> class Tree
 {
 public:
-	static void execute(N* iter, std::vector<N>& _tree, std::vector<N>& _buff, N*& _next)
+	static void execute(N* iter, std::vector<N>& _tree, N*& _next)
 	{
-		// strategy 1
-/*
-		copyTree(iter, _buff);
-		cleanTree(_tree);
-		copyTree(&_buff[0], _tree);
-		cleanTree(_buff);
-		findNext(_tree, _next);
-*/
-
-		// strategy 2 
 		markTrash(iter, _tree);
 		compactTree(_tree);
 		std::cout << "compacted" << std::endl;
 		resetNodes(_tree);
 		findNext(_tree, _next);
-
 	}
 
 	static void cleanTree(std::vector<N> &T)
@@ -47,36 +36,6 @@ public:
 		std::cout << "clean tree : " << (ptr - &T[0]) << std::endl;
 	}
 
-	/* FIRST STRATEGY : 2 arrays */
-	static void copyTree(N* NewRoot, std::vector<N> &Tdest)
-	{
-		auto next = &Tdest[0];					// place ptrDest at the begining of the destination array
-		auto ptrDest = &Tdest[0];				// place ptrDest at the begining of the destination array
-		N* ptTemp;							// pointer to loop on the childrens of each ptr
-
-		*ptrDest = *NewRoot;					// copy root
-		ptrDest->releaseLock();
-		++next;									// next free space in Tdest
-
-		while (ptrDest->hasParent() || ptrDest == &Tdest[0]) // no parents OR root
-		{
-			auto ListOfNodes = ptrDest->getChildren();
-			ptTemp = ListOfNodes.first;
-			if (ptTemp != nullptr)				// if children add them to _buff
-			{
-				ptrDest->setChildrens(next, ListOfNodes.second); // update the node of the parents
-				for (u_int i = 0; i < ListOfNodes.second; i++)
-				{
-					*next = *ptTemp;			// recopy of chidlren
-					next->releaseLock();		// makes sure that all nodes are unlocked !
-					++ptTemp;
-					++next;
-				}
-			}
-			++ptrDest;
-		}
-	}
-
 	static void findNext(std::vector<N>& T, N*& n)
 	{
 		n = &T[1];
@@ -87,8 +46,6 @@ public:
 		std::cout << "next: " << (n - &T[0]) << std::endl;
 	}
 
-
-	/* SECOND STRATEGY : 1 arrays */
 	// mark all nodes to be removed as not attributed (no parents)
 	static void markTrash(N* NewRoot, std::vector<N> &T)
 	{
@@ -133,7 +90,7 @@ public:
 	static void compactTree(std::vector<N> &T)
 	{
 		N* empty = findNextHole(&T[0],T);
-		N* child = nullptr;
+		N* child;
 		if (empty != nullptr)
 		{
 			child = findNextSegment(empty, T);
@@ -141,7 +98,7 @@ public:
 		u_int n;
 		while (empty != nullptr && child != nullptr)
 		{
-			n = findAndUpdateParent(child,T);
+			n = UpdateParent(child, empty);
 			if (n != 0)
 			{
 				copySubTree(child, n, empty);
@@ -186,22 +143,12 @@ public:
 		return start;
 	}
 
-	static u_int findAndUpdateParent(N* child, std::vector<N>& _tree)
+	static u_int UpdateParent(N* child, N* newadress)
 	{
-		N* start = &_tree[0];
-		auto num = child - start;
-		std::pair<N*, u_int> childList;
-		for (auto i = 0; i < num; ++i)
-		{
-			childList = start->getChildren();
-			if (childList.first == child)
-			{
-				start->updateFirstChild(child);
-				return childList.second;
-			}
-			++start;
-		}
-		return 0;
+		N* parent = child->getParent();
+		if (parent == nullptr) return 0;
+		parent->updateFirstChild(newadress);
+		return parent->getChildren().second;
 	}
 
 	// copy a portion into another and mark the moved as "available" : no parents
@@ -209,9 +156,11 @@ public:
 	{
 		N* node_from = from_p;
 		N* node_to = to_p;
+		N* papa = from_p->getParent();
 		for (u_int i = 0; i < from_n; ++i)
 		{
 			*node_to = *node_from;
+			node_to->setParent(papa);
 			node_from->clearParent();
 			++node_to;
 			++node_from;

@@ -54,6 +54,10 @@ namespace mcts
 
 		Move	_move;		// 8 bytes (uint64)
 		Node*	_firstchild;// 8 bytes
+#if !defined(DOUBLE_TREE)
+		Node*	_parent;// 8 bytes
+#endif
+
 
 		/**
 		 * \fn UCT
@@ -117,80 +121,98 @@ namespace mcts
 		inline u_int getTerminal() { return (_terminal & 255); };
 
 		/**
-		* \fn hasParent()
-		* \brief quick check if has parents
-		*/
+		 * \fn hasParent()
+		 * \brief quick check if has parents
+		 */
 		inline bool hasParent() { return _terminal != 64; };
 
 		/**
-		* \fn setHasParent()
-		* \brief setter for parents => not explored
-		*/
+		 * \fn setHasParent()
+		 * \brief setter for parents => not explored
+		 */
 		inline void setHasParent() { _terminal = static_cast<char>(128); };
 
 		/**
-		* \fn clearParent()
-		* \brief setter for no parents
-		*/
+		 * \fn clearParent()
+		 * \brief setter for no parents
+		 */
 		inline void clearParent() { _terminal = static_cast<char>(64); };
 
+#if !defined(DOUBLE_TREE)
 		/**
-		* \fn forceSetUCT
-		* \brief setter for _uct(int uct)
-		* \details it allows us to force a value to uct : 42 or -1 in order to make sure that some moves must or mustn't be played
-		*
-		* \param value of the uct
+		* \fn setParent(Node* n)
+		* \brief setter for parent
 		*/
+		inline void setParent(Node* n) { _parent = n; };
+
+		/**
+		 * \fn getParent()
+		 * \brief getter for parent
+		 */
+		inline Node* getParent() { return _parent; };
+#endif
+
+		/**
+		 * \fn forceSetUCT
+		 * \brief setter for _uct(int uct)
+		 * \details it allows us to force a value to uct : 42 or -1 in order to make sure that some moves must or mustn't be played
+		 *
+		 * \param value of the uct
+		 */
 		inline void forceSetUCT(int uct) { if (_uct == -1) return; _uct = uct; };
 
 		/**
-		* \fn getUCT()
-		* \brief getter for _uct
-		*
-		* \return value of the uct
-		*/
+		 * \fn getUCT()
+		 * \brief getter for _uct
+		 *
+		 * \return value of the uct
+		 */
 		inline double getUCT() { return _uct; };
 
 		/**
-		* \fn getPlayer()
-		* \brief getter for the player to move
-		*
-		* \return the player with the move
-		*/
+		 * \fn getPlayer()
+		 * \brief getter for the player to move
+		 *
+		 * \return the player with the move
+	 	 */
 		inline u_short getPlayer() { return _toplay; };
 
 		/**
-		* \fn set(Move& move)
-		* \brief reset its parameters and set the move played
-		*
-		* \param move : move played
-		*/
+		 * \fn set(Move& move)
+		 * \brief reset its parameters and set the move played
+		 *
+		 * \param move : move played
+		 */
+#if defined(DOUBLE_TREE)
 		void set(Move& move);
+#else
+		void set(Move& move, Node* parent);
+#endif
 
 		/**
-		* \fn getMove()
-		* \brief getter for the move
-		*
-		* \return the last move played to access the current node
-		*/
+		 * \fn getMove()
+		 * \brief getter for the move
+		 *
+		 * \return the last move played to access the current node
+		 */
 		inline Move getMove() { return _move; };
 
 		/**
-		* \fn setChildrens(Node* c, u_int n)
-		* \brief setter for the children
-		*
-		* \param c address of the first child
-		* \param n number of children
-		*/
+		 * \fn setChildrens(Node* c, u_int n)
+		 * \brief setter for the children
+		 *
+		 * \param c address of the first child
+		 * \param n number of children
+		 */
 		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; };
 
 		/**
-		* \fn setChildrens(Node* c, u_int n)
-		* \brief setter for the children
-		*
-		* \param c address of the first child
-		* \param n number of children
-		*/
+		 * \fn setChildrens(Node* c, u_int n)
+		 * \brief setter for the children
+		 *
+		 * \param c address of the first child
+		 * \param n number of children
+		 */
 		inline void updateFirstChild(Node* c) { _firstchild = c; };
 
 		/**
@@ -261,17 +283,17 @@ namespace mcts
 		Node* select_child_UCT();
 		
 		/**
-		* \fn select_child_WR()
-		* \brief fecth the childrens and select the one with the highest WR
-		*
-		* \return Return the Node with the best UCT
-		*/
+		 * \fn select_child_WR()
+		 * \brief fecth the childrens and select the one with the highest WR
+		 *
+		 * \return Return the Node with the best UCT
+		 */
 		Node* select_child_WR();
 
 		/**
-		* \fn unset()
-		* \brief clear data of a node
-		*/
+		 * \fn unset()
+		 * \brief clear data of a node
+		 */
 		void unset();
 
 		/**
@@ -324,14 +346,14 @@ namespace mcts
 
 
 		/**
-		* \fn getLock()
-		* \brief try to capture the lock
-		* \details function intended to be used in a critical section.
-		* if the lock is set (returns true), it means that a thread is already working on the node
-		* if the lock is not set (returns false but set the lock to true) no one is working on the node
-		* 
-		* \return the previous value of the lock 
-		*/
+		 * \fn getLock()
+		 * \brief try to capture the lock
+		 * \details function intended to be used in a critical section.
+		 * if the lock is set (returns true), it means that a thread is already working on the node
+		 * if the lock is not set (returns false but set the lock to true) no one is working on the node
+		 * 
+		 * \return the previous value of the lock 
+		 */
 		inline bool getLock()
 		{
 			// printf("%p locked.\n",(void*)this); // trop lent !!!!
@@ -341,9 +363,9 @@ namespace mcts
 		}
 
 		/**
-		* \fn releaseLock()
-		* \brief release the lock
-		*/
+		 * \fn releaseLock()
+		 * \brief release the lock
+		 */
 		inline void releaseLock()
 		{
 			// printf("%p unlocked.\n",(void*)this); // trop lent !!!!

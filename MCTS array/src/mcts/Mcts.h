@@ -8,12 +8,16 @@
  */
 #pragma once
 #include "../tools/typedef.h"
+#if defined(DOUBLE_TREE)
+	#include "../tools/trees/Tree_cache.h"
+#else
+	#include "../tools/trees/Tree_shift.h"
+#endif
 #include "../tools/Memento.h"
 #include "../interfaces/TheGame.h"
 #include "Node.h"
 #include "MctsArgs.h"
 #include "../tools/ChillPill.h"
-#include "../tools/trees/Tree.h"
 #include <chrono>
 
 namespace mcts
@@ -42,7 +46,9 @@ namespace mcts
 		omp_lock_t _lockNext;
 		std::vector<Memento<Node*>> _parents;
 		std::vector<Node> _tree;
+#if defined(DOUBLE_TREE)
 		std::vector<Node> _buff;
+#endif
 
 		/**
 		 * \fn UpdateNode(Node* node, Bitboard* Bb)

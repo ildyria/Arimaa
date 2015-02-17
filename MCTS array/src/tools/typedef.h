@@ -7,4 +7,5 @@ typedef unsigned short u_short;
 #define elseif else if
 #define SIZEX 7
 #define SIZEY 6
-#define LIMIT_MEMORY
+/*#define LIMIT_MEMORY*/
+#define DOUBLE_TREE
