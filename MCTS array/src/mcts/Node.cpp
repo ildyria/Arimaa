@@ -7,21 +7,21 @@ using std::list;
 
 
 namespace mcts {
-	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<char>(64)), _lock(false), _move(Move()), _firstchild(nullptr)
+	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<unsigned char>(0x40)), _lock(false), _move(Move()), _firstchild(nullptr)
 	{
 #if !defined(DOUBLE_TREE)
 		_parent = nullptr;
 #endif
 	}
 
-	Node::Node(u_short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<char>(64)), _lock(false), _move(Move()), _firstchild(nullptr)
+	Node::Node(u_short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<unsigned char>(0x40)), _lock(false), _move(Move()), _firstchild(nullptr)
 	{
 #if !defined(DOUBLE_TREE)
 		_parent = nullptr;
 #endif
 	}
 
-	Node::Node(u_short player, Move& move) : _visits(0), _wins(0), _nbchildren(-1), _toplay(player), _terminal(static_cast<char>(64)), _lock(false), _move(move), _firstchild(nullptr)
+	Node::Node(u_short player, Move& move) : _visits(0), _wins(0), _nbchildren(-1), _toplay(player), _terminal(static_cast<unsigned char>(0x40)), _lock(false), _move(move), _firstchild(nullptr)
 	{
 #if !defined(DOUBLE_TREE)
 		_parent = nullptr;

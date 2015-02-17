@@ -310,6 +310,7 @@
     <ClInclude Include="src\tools\Random.h" />
     <ClInclude Include="src\tools\Timer.h" />
     <ClInclude Include="src\tools\trees\Tree_cache.h" />
+    <ClInclude Include="src\tools\trees\Tree_dump.h" />
     <ClInclude Include="src\tools\trees\Tree_shift.h" />
     <ClInclude Include="src\tools\typedef.h" />
   </ItemGroup>

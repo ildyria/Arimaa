@@ -49,7 +49,7 @@ namespace mcts
 
 		u_int _nbchildren;	// 4 bytes
 		u_short	_toplay;	// 2 bytes
-		char	_terminal;	// 1 byte
+		unsigned char	_terminal;	// 1 byte
 		bool	_lock;		// 1 byte
 
 		Move	_move;		// 8 bytes (uint64)
@@ -110,7 +110,7 @@ namespace mcts
 		 *
 		 * \param value of the terminal
 		 */
-		inline void setTerminal(u_int terminal) { _terminal = static_cast<char>(terminal & 255); };
+		inline void setTerminal(u_int terminal) { _terminal = static_cast<unsigned char>(terminal & 0xFF); };
 
 		/**
 		 * \fn getTerminal()
@@ -118,25 +118,25 @@ namespace mcts
 		 *
 		 * \return 0 if no win yest, 1 if player 1 wins, 2 if player 2 wins, 3 if tie, 64 if no parents, 128 if not explored
 		 */
-		inline u_int getTerminal() { return (_terminal & 255); };
+		inline u_int getTerminal() { return (_terminal & 0xFF); };
 
 		/**
 		 * \fn hasParent()
 		 * \brief quick check if has parents
 		 */
-		inline bool hasParent() { return _terminal != 64; };
+		inline bool hasParent() { return _terminal != 0x40; };
 
 		/**
 		 * \fn setHasParent()
 		 * \brief setter for parents => not explored
 		 */
-		inline void setHasParent() { _terminal = static_cast<char>(128); };
+		inline void setHasParent() { _terminal = static_cast<unsigned char>(0x80); };
 
 		/**
 		 * \fn clearParent()
 		 * \brief setter for no parents
 		 */
-		inline void clearParent() { _terminal = static_cast<char>(64); };
+		inline void clearParent() { _terminal = static_cast<unsigned char>(0x40); };
 
 #if !defined(DOUBLE_TREE)
 		/**
