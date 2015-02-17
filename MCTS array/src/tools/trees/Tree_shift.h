@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include "../Timer.h"
+#include "Tree_dump.h"
 
 template<class N> class Tree
 {
@@ -12,9 +13,12 @@ public:
 		Timer* t = new Timer();
 		t->start();
 
+		Tree_dump<N>::out(_tree,"before.txt");
 		markTrash(iter, _tree);
 		std::cout << "trash marked" << std::endl;
+		Tree_dump<N>::out(_tree,"marked.txt");
 		compactTree(_tree);
+		Tree_dump<N>::out(_tree,"compacted.txt");
 		std::cout << "compacted" << std::endl;
 		resetNodes(_tree);
 		findNext(_tree, _next);
@@ -188,6 +192,7 @@ public:
 			{
 				ptr->unset();
 			}
+			++ptr;
 		}
 	}
 
