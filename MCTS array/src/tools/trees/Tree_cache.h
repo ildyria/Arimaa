@@ -19,7 +19,7 @@ public:
 	{
 		N* ptr = &T[1];
 		N* lstptr = &T[(T.size() - 1)];
-		while (ptr != lstptr && ptr->hasParent())// && ptr->getChildren().second != static_cast<u_int>(-1))
+		while (ptr != lstptr && ptr->hasParent())
 		{
 			ptr->unset();
 			++ptr;

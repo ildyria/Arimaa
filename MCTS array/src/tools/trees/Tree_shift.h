@@ -2,24 +2,33 @@
 #include "../typedef.h"
 #include <vector>
 #include <iostream>
+#include "../Timer.h"
 
 template<class N> class Tree
 {
 public:
 	static void execute(N* iter, std::vector<N>& _tree, N*& _next)
 	{
+		Timer* t = new Timer();
+		t->start();
+
 		markTrash(iter, _tree);
+		std::cout << "trash marked" << std::endl;
 		compactTree(_tree);
 		std::cout << "compacted" << std::endl;
 		resetNodes(_tree);
 		findNext(_tree, _next);
+
+		t->stop();
+		std::cout << "recycling duration : " << duration_cast<milliseconds>(t->result()).count() << "ms." << std::endl;
+		delete t;
 	}
 
 	static void cleanTree(std::vector<N> &T)
 	{
 		N* ptr = &T[1];
 		N* lstptr = &T[(T.size() - 1)];
-		while (ptr != lstptr && ptr->hasParent())// && ptr->getChildren().second != static_cast<u_int>(-1))
+		while (ptr != lstptr && ptr->hasParent())
 		{
 			ptr->unset();
 			++ptr;
@@ -106,7 +115,7 @@ public:
 			empty = findNextHole((empty + n), T);
 			if (empty != nullptr)
 			{
-				child = findNextSegment(child, T);
+				child = findNextSegment(empty, T);
 			}
 		}
 	}

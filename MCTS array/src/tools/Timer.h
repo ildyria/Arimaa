@@ -33,7 +33,7 @@ public:
 		end_time = high_resolution_clock::now();
 	}
 	
-	duration<system_clock::rep, system_clock::period> results()
+	duration<system_clock::rep, system_clock::period> result()
 	{
 		return end_time - start_time;
 	}
