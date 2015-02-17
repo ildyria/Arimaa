@@ -1,8 +1,0 @@
-digraph BitboardConnect4 {
-	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
-	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
-	graph [bb="0,0,98,84"];
-	Node1 [label=BitboardConnect4, height="0.22", width="1.36", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="49,16", rects="0,8,99,24"];
-	Node2 [label=Bitboard, height="0.22", width="0.72", color=black, fillcolor=white, style=filled, URL="$class_bitboard.html", pos="49,68", rects="23,60,76,76"];
-	Node2 -> Node1 [dir=back, color=midnightblue, style=solid, pos="s,49,60 49,51 49,42 49,31 49,24"];
-}

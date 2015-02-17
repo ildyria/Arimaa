@@ -1,8 +1,0 @@
-digraph Connect4 {
-	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
-	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
-	graph [bb="0,0,58,84"];
-	Node1 [label=Connect4, height="0.22", width="0.78", color=black, fillcolor=grey75, style=filled, fontcolor=black, pos="29,16", rects="1,8,57,24"];
-	Node2 [label=TheGame, height="0.22", width="0.81", color=black, fillcolor=white, style=filled, URL="$class_the_game.html", tooltip="TheGame class. ", pos="29,68", rects="0,60,58,76"];
-	Node2 -> Node1 [dir=back, color=midnightblue, style=solid, pos="s,29,60 29,51 29,42 29,31 29,24"];
-}

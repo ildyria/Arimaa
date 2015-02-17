@@ -1,7 +1,0 @@
-digraph "Graphical Class Hierarchy" {
-	graph [rankdir=LR];
-	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
-	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
-	graph [bb="0,0,76,16"];
-	Node1 [label="mcts::Mcts", height="0.22", width="0.81", color=black, fillcolor=white, style=filled, URL="$classmcts_1_1_mcts.html", tooltip="Mcts class. ", pos="38,8", rects="9,0,68,16"];
-}

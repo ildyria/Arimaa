@@ -1,7 +1,0 @@
-digraph "Graphical Class Hierarchy" {
-	graph [rankdir=LR];
-	node [label="\N", fontname=Helvetica, fontsize=10, shape=record];
-	edge [fontname=Helvetica, fontsize=10, labelfontname=Helvetica, labelfontsize=10];
-	graph [bb="0,0,60,16"];
-	Node1 [label=Debug, height="0.22", width="0.58", color=black, fillcolor=white, style=filled, URL="$class_debug.html", pos="30,8", rects="9,0,52,16"];
-}
