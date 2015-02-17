@@ -135,15 +135,6 @@ namespace mcts
 		inline void clearParent() { _terminal = static_cast<char>(64); };
 
 		/**
-		* \fn setChildrens(Node* c, u_int n)
-		* \brief setter for the children
-		*
-		* \param c address of the first child
-		* \param n number of children
-		*/
-		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; };
-
-		/**
 		* \fn forceSetUCT
 		* \brief setter for _uct(int uct)
 		* \details it allows us to force a value to uct : 42 or -1 in order to make sure that some moves must or mustn't be played
@@ -169,12 +160,38 @@ namespace mcts
 		inline u_short getPlayer() { return _toplay; };
 
 		/**
+		* \fn set(Move& move)
+		* \brief reset its parameters and set the move played
+		*
+		* \param move : move played
+		*/
+		void set(Move& move);
+
+		/**
 		* \fn getMove()
 		* \brief getter for the move
 		*
 		* \return the last move played to access the current node
 		*/
 		inline Move getMove() { return _move; };
+
+		/**
+		* \fn setChildrens(Node* c, u_int n)
+		* \brief setter for the children
+		*
+		* \param c address of the first child
+		* \param n number of children
+		*/
+		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; };
+
+		/**
+		* \fn setChildrens(Node* c, u_int n)
+		* \brief setter for the children
+		*
+		* \param c address of the first child
+		* \param n number of children
+		*/
+		inline void updateFirstChild(Node* c) { _firstchild = c; };
 
 		/**
 		 * \fn getChildren()
@@ -250,14 +267,6 @@ namespace mcts
 		* \return Return the Node with the best UCT
 		*/
 		Node* select_child_WR();
-
-		/**
-		* \fn set(Move& move)
-		* \brief reset its parameters and set the move played
-		*
-		* \param move : move played
-		*/
-		void set(Move& move);
 
 		/**
 		* \fn unset()

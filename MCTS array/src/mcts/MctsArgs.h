@@ -45,8 +45,8 @@ namespace mcts {
 		 */
 		explicit inline MctsArgs(
 			u_int depth = 44,
-			u_int timelimit = 10000,
-			u_long simulR = 10000000,
+			u_int timelimit = 20000,
+			u_long simulR = 100000000,
 			u_int simulL = 2,
 			u_int numVisitExplo = 4,
 			double percentRAM = 0.9

@@ -32,8 +32,8 @@ namespace mcts{
 		// }
 		omp_init_lock(&_lockNode);
 		omp_init_lock(&_lockNext);
-		cleanTree(_tree);
-		cleanTree(_buff);
+		Tree<Node>::cleanTree(_tree);
+		Tree<Node>::cleanTree(_buff);
 		Count::I()->clear();
 		Move* random = new Move();
 		_tree[0].set(*random);
@@ -54,11 +54,7 @@ namespace mcts{
 			}
 			iter++;
 		}
-		copyTree(iter,_buff);
-		cleanTree(_tree);
-		copyTree(&_buff[0], _tree);
-		cleanTree(_buff);
-		findNext(_tree, _next);
+		Tree<Node>::execute(iter, _tree, _buff, _next);
 
 		_game->play(move, _state);
 		return _state;
@@ -235,57 +231,6 @@ namespace mcts{
 			feedback(nodet);
 		}
 		delete Bb;
-	}
-
-	void Mcts::cleanTree(std::vector<Node> &T)
-	{
-		Node* ptr = &T[1];
-		Node* lstptr = &T[(T.size() -1)];
-		while (ptr != lstptr && ptr->hasParent())// && ptr->getChildren().second != static_cast<u_int>(-1))
-		{
-			ptr->unset();
-			ptr++;
-		}
-		cout << "clean tree : " << (ptr - &T[0]) << endl;
-	}
-
-	void Mcts::copyTree(Node* NewRoot, std::vector<Node> &Tdest)
-	{
-		auto next = &Tdest[0];					// place ptrDest at the begining of the destination array
-		auto ptrDest = &Tdest[0];				// place ptrDest at the begining of the destination array
-		Node* ptTemp;							// pointer to loop on the childrens of each ptr
-
-		*ptrDest = *NewRoot;					// copy root
-		ptrDest->releaseLock();
-		next++;									// next free space in Tdest
-
-		while (ptrDest->hasParent() || ptrDest == &Tdest[0]) // no parents OR root
-		{
-			auto ListOfNodes = ptrDest->getChildren();
-			ptTemp = ListOfNodes.first;
-			if (ptTemp != nullptr)				// if children add them to _buff
-			{
-				ptrDest->setChildrens(next, ListOfNodes.second); // update the node of the parents
-				for (u_int i = 0; i < ListOfNodes.second; i++)
-				{
-					*next = *ptTemp;			// recopy of chidlren
-					next->releaseLock();		// makes sure that all nodes are unlocked !
-					ptTemp++;
-					next++;
-				}
-			}
-			ptrDest++;
-		}
-	}
-
-	void Mcts::findNext(std::vector<Node>& T, Node*& n)
-	{
-		n = &T[1];
-		while (n->hasParent())
-		{
-			n++;
-		}
-		cout << "next: " << (n - &T[0]) << endl;
 	}
 
 	Move Mcts::GetBestMove()

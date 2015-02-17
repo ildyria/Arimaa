@@ -309,6 +309,7 @@
     <ClInclude Include="src\tools\Memory.h" />
     <ClInclude Include="src\tools\Random.h" />
     <ClInclude Include="src\tools\Timer.h" />
+    <ClInclude Include="src\tools\trees\Tree.h" />
     <ClInclude Include="src\tools\typedef.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -13,6 +13,7 @@
 #include "Node.h"
 #include "MctsArgs.h"
 #include "../tools/ChillPill.h"
+#include "../tools/trees/Tree.h"
 #include <chrono>
 
 namespace mcts
@@ -82,31 +83,6 @@ namespace mcts
 		 * \details feedback the results to the parents (winning and losing move) in order to fasten the search
 		 */
 		void feedbackWinLose();
-
-		/**
-		 * \fn cleanTree(std::vector<Node> &T)
-		 * \brief unset all the nodes of the given tree
-		 * 
-		 * \param T tree to be erased
-		 */
-		static void cleanTree(std::vector<Node> &T);
-
-		/**
-		 * \fn copyTree(Node* NewRoot, std::vector<Node> &Tdest)
-		 * \brief copy the subtree with NewRoot into Tdest
-		 * 
-		 * \param NewRoot subtree to be kept
-		 * \param Tdest tree to be returned
-		 */
-		static void copyTree(Node* NewRoot, std::vector<Node> &Tdest);
-
-		/** \fn findNext(std::vector<Node> &T, Node*& n);
-		 *	\brief reset the value of _next
-		 * 
-		 * \param T tree to be visited
-		 * \param n pointer for _next
-		 */
-		static void findNext(std::vector<Node> &T, Node*& n);
 
 		/**
 		 * \fn feedback
