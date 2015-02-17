@@ -3,15 +3,6 @@
 #include <vector>
 #include <iostream>
 
-/**
- * \brief Memento template class
- * \details allow us to remember the previous states/nodes visited in the algorithm
- * 	std::vector<N> _states = states memorized;
- *	short _readNext = pointer to the next reading state, -1 if nothing to read;
- *	short _writeNext = pointer to the next writting state;
- *	WARNING THERE IS NO OVERFLOW CHECK, IF YOU GO OVER THE LIMIT, IT WILL CRASH
- *	Works best with a pointer type
- */
 template<class N> class Tree
 {
 public:
@@ -83,14 +74,15 @@ public:
 			++ptr;
 		}
 		T[0] = *NewRoot;
-		NewRoot->clearParent();
+		updateFirstChild(&T[0],ptr);
+		NewRoot->unset();
 		std::cout << "number of trashes : " << numberOfTrashes << std::endl;
 	}
 
 	static void compactTree(std::vector<N> &T)
 	{
-		N* empty = findNextHole(&T[0],T);
-		N* child;
+		N* empty = findNextHole(&T[1],T);
+		N* child = nullptr;
 		if (empty != nullptr)
 		{
 			child = findNextSegment(empty, T);
@@ -106,11 +98,15 @@ public:
 			else
 			{
 				std::cout << "Houston, we lost contact !" << std::endl;
+				std::cout << "distance to earth    : " <<  empty - &T[0] << std::endl;
+				std::cout << "distance to the moon : " <<  child - &T[0] << std::endl;
+				std::cout << "distance to sun      : " <<  child->getParent() - &T[0] << std::endl;
+				exit(2);
 			}
 			empty = findNextHole((empty + n), T);
 			if (empty != nullptr)
 			{
-				child = findNextSegment(empty, T);
+				child = findNextSegment(child, T);
 			}
 		}
 	}
@@ -146,7 +142,11 @@ public:
 	static u_int UpdateParent(N* child, N* newadress)
 	{
 		N* parent = child->getParent();
-		if (parent == nullptr) return 0;
+		if (parent == nullptr)
+			{
+				std::cout << "Houston, we are losing contact !" << std::endl;
+				return 0;
+			}
 		parent->updateFirstChild(newadress);
 		return parent->getChildren().second;
 	}
@@ -154,6 +154,7 @@ public:
 	// copy a portion into another and mark the moved as "available" : no parents
 	static void copySubTree(N* from_p , u_int& from_n, N* to_p)
 	{
+		N* child_buff;
 		N* node_from = from_p;
 		N* node_to = to_p;
 		N* papa = from_p->getParent();
@@ -161,6 +162,7 @@ public:
 		{
 			*node_to = *node_from;
 			node_to->setParent(papa);
+			updateFirstChild(node_to,child_buff);
 			node_from->clearParent();
 			++node_to;
 			++node_from;
@@ -178,5 +180,11 @@ public:
 				ptr->unset();
 			}
 		}
+	}
+
+	static inline void updateFirstChild(N* node, N*& child_buff)
+	{
+		child_buff = node->getChildren().first;
+		if(child_buff != nullptr) child_buff->setParent(node);
 	}
 };

@@ -3,15 +3,6 @@
 #include <vector>
 #include <iostream>
 
-/**
- * \brief Memento template class
- * \details allow us to remember the previous states/nodes visited in the algorithm
- * 	std::vector<N> _states = states memorized;
- *	short _readNext = pointer to the next reading state, -1 if nothing to read;
- *	short _writeNext = pointer to the next writting state;
- *	WARNING THERE IS NO OVERFLOW CHECK, IF YOU GO OVER THE LIMIT, IT WILL CRASH
- *	Works best with a pointer type
- */
 template<class N> class Tree
 {
 public:

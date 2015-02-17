@@ -8,4 +8,4 @@ typedef unsigned short u_short;
 #define SIZEX 7
 #define SIZEY 6
 /*#define LIMIT_MEMORY*/
-#define DOUBLE_TREE
+// #define DOUBLE_TREE
