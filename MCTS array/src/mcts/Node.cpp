@@ -7,37 +7,38 @@ using std::list;
 
 
 namespace mcts {
-	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<unsigned char>(0x40)), _lock(false), _move(Move()), _firstchild(nullptr)
-	{
+	Node::Node() : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(1), _terminal(static_cast<unsigned char>(128)), _lock(false), _move(Move()), _firstchild(nullptr)
 #if !defined(DOUBLE_TREE)
-		_parent = nullptr;
+		, _self(nullptr)
 #endif
+	{
 	}
 
-	Node::Node(u_short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<unsigned char>(0x40)), _lock(false), _move(Move()), _firstchild(nullptr)
-	{
+	Node::Node(u_short player) : _uct(0), _visits(0), _wins(0), _nbchildren(0), _toplay(player), _terminal(static_cast<unsigned char>(128)), _lock(false), _move(Move()), _firstchild(nullptr)
 #if !defined(DOUBLE_TREE)
-		_parent = nullptr;
+		, _self(nullptr)
 #endif
+	{
 	}
 
-	Node::Node(u_short player, Move& move) : _visits(0), _wins(0), _nbchildren(-1), _toplay(player), _terminal(static_cast<unsigned char>(0x40)), _lock(false), _move(move), _firstchild(nullptr)
-	{
+	Node::Node(u_short player, Move& move) : _visits(0), _wins(0), _nbchildren(-1), _toplay(player), _terminal(static_cast<unsigned char>(128)), _lock(false), _move(move), _firstchild(nullptr)
 #if !defined(DOUBLE_TREE)
-		_parent = nullptr;
+		, _self(nullptr)
 #endif
+	{
 	}
 
 #if defined(DOUBLE_TREE)
 	void Node::set(Move& move)
 #else
-	void Node::set(Move& move, Node* parent)
+	void Node::set(Move& move, Node** self)
 #endif
 	{
 		_lock = false;
 		setHasParent();
 #if !defined(DOUBLE_TREE)
-		_parent = parent;
+		_self = self;
+		*self = this;
 #endif
 		_nbchildren = 0;
 		_move = move;
@@ -48,7 +49,7 @@ namespace mcts {
 		_lock = false;
 		clearParent();
 #if !defined(DOUBLE_TREE)
-		_parent = nullptr;
+		_self = nullptr;
 #endif
 		_visits = 0;
 		_wins = 0;
@@ -60,9 +61,13 @@ namespace mcts {
 
 	Node* Node::select_child_UCT()
 	{
-
+#if defined(DOUBLE_TREE)
 		Node* max = _firstchild;
 		Node* itL = _firstchild;
+#else
+		Node* max = *_firstchild;
+		Node* itL = *_firstchild;
+#endif
 		// save the value : we can't have the risk of it being modified during the selection
 		int visit = _visits;
 		for (u_int i = 0; i < _nbchildren; ++i)
@@ -80,8 +85,13 @@ namespace mcts {
 
 	Node* Node::select_child_WR()
 	{
+#if defined(DOUBLE_TREE)
 		Node* max = _firstchild;
 		Node* itL = _firstchild;
+#else
+		Node* max = *_firstchild;
+		Node* itL = *_firstchild;
+#endif
 		for (u_int i = 0; i < _nbchildren; ++i)
 		{
 			if (compareWR(max, itL))
@@ -113,7 +123,11 @@ namespace mcts {
 			cout << ", " << _visits/2 << " (" << round(getProba()*100) << "%)";
 			cout << ", " << _uct << ")";
 
-			auto itL = _firstchild;
+#if defined(DOUBLE_TREE)
+			Node* itL = _firstchild;
+#else
+			Node* itL = *_firstchild;
+#endif
 			for (u_int i = 0; i < _nbchildren; ++i)
 			{
 				itL->print_tree(numtab + 1, depth - 1);

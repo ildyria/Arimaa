@@ -13,19 +13,24 @@ public:
 		myfile.open(file_name, std::ios::out | std::ios::trunc);
 
 		N* ptr = &T[0];
+		auto terminal = ptr->getTerminal();
 		for(auto i = 0; (i < T.size() && ptr->hasParent()); ++i)
 		{
-
+		
 #if !defined(DOUBLE_TREE)
 			myfile << ptr->getParent() << " => ";
 #endif
 			myfile << ptr;
-			myfile << " : " << ptr->getTerminal();
+			myfile << " : " << terminal;
 			myfile << ", " << ptr->getProba();
-			myfile << ", " << ptr->getChildren().first;
-			myfile << " (" << ptr->getChildren().second << ")";
+			if (ptr->getTerminal() == 0)
+			{
+				myfile << ", " << ptr->getChildren().first;
+				myfile << " (" << ptr->getChildren().second << ")";
+			}
 			myfile << "\n";
 			++ptr;
+			terminal = ptr->getTerminal();
 		}
 
 		myfile.close();

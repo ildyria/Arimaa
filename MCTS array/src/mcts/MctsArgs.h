@@ -50,23 +50,23 @@ namespace mcts {
 			u_long simulR = 100000000,
 			u_int simulL = 2,
 			u_int numVisitExplo = 4,
-			double percentRAM = 0.9
+			double percentRAM = 0.95
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
 #if defined(DOUBLE_TREE)
-	#define TREE 2
+	#define DIVIDE 2 * sizeof(Node)
 #else
-	#define TREE 1
+	#define DIVIDE (sizeof(Node) + 2*sizeof(void*))
 #endif
 
 #if defined(LIMIT_MEMORY)
-			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (TREE * sizeof(Node))); // maximum size is 2 Go...
+			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
 #elif defined(_WIN64)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (TREE * sizeof(Node)));
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (DIVIDE));
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (TREE * sizeof(Node)));
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (DIVIDE));
 #else
-			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (TREE * sizeof(Node))); // maximum size is 2 Go...
+			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
 #endif
 			std::cout << "size of node : " << sizeof(Node) << std::endl;
 

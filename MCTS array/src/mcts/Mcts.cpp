@@ -24,6 +24,8 @@ namespace mcts{
 				_tree(std::vector<Node>(args->getMaxNumberOfLeaves()))
 #if defined(DOUBLE_TREE)
 				, _buff(std::vector<Node>(args->getMaxNumberOfLeaves()))
+#else
+				, _index(Tree_index<Node>(args->getMaxNumberOfLeaves()))
 #endif
 	{
 		cout << "number of thread : " << omp_get_num_procs() << endl;
@@ -43,7 +45,8 @@ namespace mcts{
 #if defined(DOUBLE_TREE)
 		_tree[0].set(*random);
 #else
-		_tree[0].set(*random,nullptr);
+		Node** address;
+		_tree[0].set(*random, _index.get(address));
 #endif 
 		_tree[0].hasParent();
 		_next = (&_tree[0]) + 1;
@@ -66,7 +69,7 @@ namespace mcts{
 #if defined(DOUBLE_TREE)
 		Tree<Node>::execute(iter, _tree, _buff, _next);
 #else
-		Tree<Node>::execute(iter, _tree, _next);
+		Tree<Node>::execute(iter, _tree, _index, _next);
 #endif
 		_game->play(move, _state);
 		return _state;
@@ -74,69 +77,80 @@ namespace mcts{
 
 	u_int Mcts::UpdateNode(Node* node, Bitboard* Bb)
 	{
-		bool locked;
 		u_int nodet = node->getTerminal();
 
-		if (nodet == 128) { // first time we are here, check if terminate
+		if (nodet == 64) { // first time we are here, check if terminate
 			nodet = _game->end(Bb);
-			node->setTerminal(nodet);
-		}
-
-		if (nodet > 0)
-		{
-			return nodet;
-		}
-
-		if (nodet == 0 && node->getChildren().first != nullptr)
-		{
-			return nodet;
-		}
-
-/*
-		if (node->getChildren().first == nullptr) // not explored yet => explore
-		{
-			// super small critical region =D
-			if (omp_in_parallel())
+			if ((nodet & 7) > 0)
 			{
-*/
-//				#pragma omp critical
-				omp_set_lock(&_lockNode);
-				locked = node->getLock();
-				omp_unset_lock(&_lockNode);
-//			}
-			if (locked) return 255;
-
-			list<Move> ListOfMoves;
-			list<Move>::iterator iter;
-
-			ListOfMoves = _game->listPossibleMoves(Bb);
-			if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
-			{
-				return 255; // this is extremly dangerous : the node stays locked ! We need to unlock it when we will prune the tree
+				node->setTerminal(nodet);  // terminal node : winner or tie
 			}
-			Node* tmp2;
-			Node* tmp;
-
-			// _next concurency
-			omp_set_lock(&_lockNext);
-			tmp2 = _next;
-			_next += ListOfMoves.size();
-			omp_unset_lock(&_lockNext);
-
-			for (iter = ListOfMoves.begin(), tmp = tmp2; iter != ListOfMoves.end(); ++iter, ++tmp2)
+			else
 			{
-#if defined(DOUBLE_TREE)
-				tmp2->set(*iter);
-#else
-				tmp2->set(*iter, node);
-#endif
-				tmp2->play(node->getPlayer());
+				node->setTerminal(32);	// non terminal but not explored YET
+				nodet = 32;
 			}
-			node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
-			node->releaseLock();
+		}
+		return nodet;
+	}
+
+	void Mcts::Expand(Node* node, Bitboard* Bb, u_int& nodet) {
+		if (nodet != 32)
+		{
+			return;
+		}
+		bool locked;
+
+		// super small critical region =D
+//		if (omp_in_parallel())
+//		{
+//			#pragma omp critical
+			omp_set_lock(&_lockNode);
+			locked = node->getLock();
+			omp_unset_lock(&_lockNode);
 //		}
 
-		return nodet;
+		if (locked)
+		{
+			nodet = 16;
+			return;
+		}
+
+		list<Move> ListOfMoves;
+		list<Move>::iterator iter;
+
+		ListOfMoves = _game->listPossibleMoves(Bb);
+		if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
+		{
+			node->setTerminal(16);	// non terminal but not explored YET
+			nodet = 16;
+			return; // this is extremly dangerous : the node stays locked ! We need to unlock it when we will prune the tree
+		}
+		Node* tmp2;
+		Node* tmp;
+
+		// _next concurency
+		omp_set_lock(&_lockNext);
+		tmp2 = _next;
+		_next += ListOfMoves.size();
+		omp_unset_lock(&_lockNext);
+#if !defined(DOUBLE_TREE)
+		Node** buff;
+#endif
+		for (iter = ListOfMoves.begin(), tmp = tmp2; iter != ListOfMoves.end(); ++iter, ++tmp2)
+		{
+#if defined(DOUBLE_TREE)
+			tmp2->set(*iter);
+#else
+			tmp2->set(*iter, _index.get(buff));
+#endif
+			tmp2->play(node->getPlayer());
+		}
+		node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
+		nodet = 0;
+		node->releaseLock();
+
+		return;
 	}
 
 	void Mcts::playRandom(Node* node, Bitboard* Bb)
@@ -211,29 +225,53 @@ namespace mcts{
 		Node* node = &_tree[0];
 		u_int depth = 0;
 		Bitboard* Bb = _state->clone();
-		u_int nodet = UpdateNode(node, Bb); // update and exploration
 		node->addVirtualLoss(_param->getSimulationPerLeaves());
+		u_int nodet = UpdateNode(node, Bb);
 
 		_parents[omp_get_thread_num()].reset();
 		_parents[omp_get_thread_num()].push(&_tree[0]);
-
-		while (depth < _param->getDepth() && (nodet == 0 || nodet > 3) && node->getVisits() > _param->getNumberOfVisitBeforeExploration() && nodet != 255)
+		Move m;
+		while (depth < _param->getDepth() && (nodet == 0 || nodet > 16))
 		{
-			++depth;
+			/*
+			10000000 : has no parents				: 2^7 = 128
+			01000000 : not visited					: 2^6 = 64
+			00100000 : non terminal not explored	: 2^5 = 32
+			00010000 : non terminal locked			: 2^4 = 16
+			00001000 :
+			00000100 : tie							: 2^2 = 4
+			00000010 : player 2 wins				: 2^1 = 2
+			00000001 : player 1 wins				: 2^0 = 1
+			00000000 : non terminal explored		: 0
+			*/
+			if (nodet == 32)
+			{
+				if (node->getVisits() > _param->getNumberOfVisitBeforeExploration())
+				{
+					Expand(node, Bb, nodet);
+					if (nodet == 16) break;
+				}
+				else
+				{
+					break;
+				}
+			}
+
 			node = node->select_child_UCT();
 			_parents[omp_get_thread_num()].push(node);
-
 			node->addVirtualLoss(_param->getSimulationPerLeaves());
-			auto m = node->getMove();
+			m = node->getMove();
 			_game->play(m, Bb);
-			nodet = UpdateNode(node,Bb);
+			nodet = UpdateNode(node, Bb);
+			++depth;
 		}
 
-		if (nodet == 0 || nodet > 3) // no victory found yet
+		if (nodet == 0 || nodet > 4) // no victory found yet
 		{
 			playRandom(node, Bb);
 		}
-		elseif(nodet < 3 && nodet > 0 && nodet != node->getPlayer()) // losing move !
+//		elseif(nodet < 4 && nodet > 0 && nodet != node->getPlayer()) // losing move !
+		elseif((nodet | node->getPlayer()) == 3) // losing move !
 		{
 			feedback(nodet);
 			feedbackWinLose();

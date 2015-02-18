@@ -146,7 +146,7 @@ int Connect4::checkNull(const Bitboard* board)
 	boardused >>= 22; // full board
 	if (((board->getBoard(0) | board->getBoard(1)) & boardused) == boardused)
 	{
-		return 3;
+		return 4;
 	}
 	return 0;
 }

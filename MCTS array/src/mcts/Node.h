@@ -30,12 +30,15 @@ namespace mcts
 		u_int _nbchildren = number of children
 		u_short _toplay = player to play
 		char _terminal = determine if the node has be visited or is a terminal :
-		10000000 : not visited
-		00000000 : non terminal
-		00000001 : player 1 wins
-		00000010 : player 2 wins
-		00000011 : tie
-		01000000 : has no parents
+		10000000 : has no parents				: 2^7 = 128
+		01000000 : not visited					: 2^6 = 64
+		00100000 : non terminal not explored	: 2^5 = 32
+		00010000 : non terminal locked			: 2^4 = 16
+		00001000 : 
+		00000100 : tie							: 2^2 = 4
+		00000010 : player 2 wins				: 2^1 = 2
+		00000001 : player 1 wins				: 2^0 = 1
+		00000000 : non terminal explored		: 0
 		bool _lock : lock for the exploration
 
 		Move _move = last move been played
@@ -53,9 +56,11 @@ namespace mcts
 		bool	_lock;		// 1 byte
 
 		Move	_move;		// 8 bytes (uint64)
+#if defined(DOUBLE_TREE)
 		Node*	_firstchild;// 8 bytes
-#if !defined(DOUBLE_TREE)
-		Node*	_parent;// 8 bytes
+#else
+		Node**	_firstchild;// 8 bytes
+		Node**	_self;// 8 bytes
 #endif
 
 
@@ -116,7 +121,16 @@ namespace mcts
 		 * \fn getTerminal()
 		 * \brief getter for the _termianl
 		 *
-		 * \return 0 if no win yest, 1 if player 1 wins, 2 if player 2 wins, 3 if tie, 64 if no parents, 128 if not explored
+		 * \return 
+		 * 		10000000 : has no parents				: 2^7 = 128
+		 *		01000000 : not visited					: 2^6 = 64
+		 *		00100000 : non terminal not explored	: 2^5 = 32
+		 *		00010000 : non terminal locked			: 2^4 = 16
+		 *		00001000 : 
+		 *		00000100 : tie							: 2^2 = 4
+		 *		00000010 : player 2 wins				: 2^1 = 2
+		 *		00000001 : player 1 wins				: 2^0 = 1
+		 *		00000000 : non terminal explored		: 0
 		 */
 		inline u_int getTerminal() { return (_terminal & 0xFF); };
 
@@ -124,32 +138,64 @@ namespace mcts
 		 * \fn hasParent()
 		 * \brief quick check if has parents
 		 */
-		inline bool hasParent() { return _terminal != 0x40; };
+		inline bool hasParent() { return _terminal != static_cast<unsigned char>(128); };
 
 		/**
 		 * \fn setHasParent()
 		 * \brief setter for parents => not explored
 		 */
-		inline void setHasParent() { _terminal = static_cast<unsigned char>(0x80); };
+		inline void setHasParent() { _terminal >>= 1; };
 
 		/**
 		 * \fn clearParent()
 		 * \brief setter for no parents
 		 */
-		inline void clearParent() { _terminal = static_cast<unsigned char>(0x40); };
+		inline void clearParent()
+		{
+			_terminal = static_cast<unsigned char>(128);
+		};
+
+		/**
+		* \fn clearParent()
+		* \brief setter for no parents
+		*/
+		inline void unlockTerminal()
+		{
+			if (_terminal == static_cast<unsigned char>(16)) 
+				_terminal = static_cast<unsigned char>(32);
+		};
 
 #if !defined(DOUBLE_TREE)
 		/**
-		* \fn setParent(Node* n)
+		* \fn setNewAddress(Node** n)
 		* \brief setter for parent
 		*/
-		inline void setParent(Node* n) { _parent = n; };
+		inline void setNewAddress(Node* n) { *_self = n; };
 
 		/**
-		 * \fn getParent()
-		 * \brief getter for parent
+		* \fn removeFromIndex()
+		* \brief setter for parent
+		*/
+		inline void removeFromIndex()
+		{
+			*_self = nullptr;
+			_self = nullptr;
+		};
+	
+		/**
+		* \fn cleanAddress()
+		* \brief setter for parent
+		*/
+		inline void cleanAddress()
+		{
+			_self = nullptr;
+		};
+
+		/**
+		 * \fn getAddress()
+		 * \brief getter for the address
 		 */
-		inline Node* getParent() { return _parent; };
+		inline Node** getAddress() { return _self; };
 #endif
 
 		/**
@@ -186,7 +232,7 @@ namespace mcts
 #if defined(DOUBLE_TREE)
 		void set(Move& move);
 #else
-		void set(Move& move, Node* parent);
+		void set(Move& move, Node** self);
 #endif
 
 		/**
@@ -204,7 +250,11 @@ namespace mcts
 		 * \param c address of the first child
 		 * \param n number of children
 		 */
-		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; };
+#if defined(DOUBLE_TREE)
+		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; _terminal = static_cast<unsigned char>(0); };
+#else
+		inline void setChildrens(Node* c, u_int n) { _firstchild = c->_self; _nbchildren = n; _terminal = static_cast<unsigned char>(0); };
+#endif
 
 		/**
 		 * \fn setChildrens(Node* c, u_int n)
@@ -213,7 +263,9 @@ namespace mcts
 		 * \param c address of the first child
 		 * \param n number of children
 		 */
+#if defined(DOUBLE_TREE)
 		inline void updateFirstChild(Node* c) { _firstchild = c; };
+#endif
 
 		/**
 		 * \fn getChildren()
@@ -221,7 +273,11 @@ namespace mcts
 		 *
 		 * \return return the first child and number of siblings
 		 */
+#if defined(DOUBLE_TREE)
 		inline std::pair<Node*, u_int> getChildren() { return std::pair<Node*, u_int>(_firstchild, _nbchildren); };
+#else
+		inline std::pair<Node*, u_int> getChildren() { return std::pair<Node*, u_int>(*_firstchild, _nbchildren); };
+#endif
 
 		/**
 		 * \fn getProba()
@@ -302,18 +358,18 @@ namespace mcts
 		 * \details using a lookup table remove a branch : gain in term of cycle and prediction during the execution
 		 * 	lookup[8] = {0, 0, 2, 1, 0, 2, 0, 1}
 		 * 	index 0 and 4 are never used
-		 *	win = 1, _toplay = 1 => 0 (index 1)
-		 *	win = 2, _toplay = 1 => 2 (index 2)
-		 *	win = 3, _toplay = 1 => 1 (index 3)
-		 *	win = 1, _toplay = 2 => 2 (index 5)
-		 *	win = 2, _toplay = 2 => 0 (index 6)
-		 *	win = 3, _toplay = 2 => 1 (index 7)
+		 *	win = 001, _toplay = 001 (1) => 0 (index 001 : 1)
+		 *	win = 010, _toplay = 001 (1) => 2 (index 011 : 3)
+		 *	win = 100, _toplay = 001 (1) => 1 (index 101 : 5)
+		 *	win = 001, _toplay = 010 (2) => 2 (index 011 : 3)
+		 *	win = 010, _toplay = 010 (2) => 0 (index 010 : 2)
+		 *	win = 100, _toplay = 010 (2) => 1 (index 110 : 6)
  		 *
 		 * \param win int representing the last winner : 1 2 or 3
 		 */
 		inline void update(u_int win) {
-			static const u_int lookup[8] = {0, 0, 2, 1, 0, 2, 0, 1}; // lookup table removes branches
-			_wins += lookup[win+((_toplay & 2)<<1)];
+			static const u_int lookup[7] = {0, 0, 0, 2, 0, 1, 1}; // lookup table removes branches
+			_wins += lookup[(win|_toplay)];
 		};
 
 		/**
@@ -340,8 +396,8 @@ namespace mcts
 		 */
 		inline void play(int i = 0)
 		{
-			static const u_short lookup[5] = { 2, 2, 1, 2, 1 };
-			_toplay = lookup[((_toplay & 2)<<1) + i];
+			static const u_short lookup[3] = { 1, 2, 1 };
+			_toplay = lookup[i];
 		};
 
 

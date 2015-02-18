@@ -12,6 +12,7 @@
 	#include "../tools/trees/Tree_cache.h"
 #else
 	#include "../tools/trees/Tree_shift.h"
+	#include "../tools/trees/Tree_index.h"
 #endif
 #include "../tools/Memento.h"
 #include "../interfaces/TheGame.h"
@@ -48,6 +49,8 @@ namespace mcts
 		std::vector<Node> _tree;
 #if defined(DOUBLE_TREE)
 		std::vector<Node> _buff;
+#else
+		Tree_index<Node> _index;
 #endif
 
 		/**
@@ -63,7 +66,7 @@ namespace mcts
 		 * \return the state of the board : 0, 1, 2, 3, or 255 if cannot be explored (locked / memory limit) .
 		 */
 		u_int UpdateNode(Node* node, Bitboard* Bb);
-
+		void Expand(Node* node, Bitboard* Bb, u_int& nodet);
 
 		/**
 		 * \fn playRandom(Node* node,  Bitboard* Bb)
@@ -124,7 +127,11 @@ namespace mcts
 		* \fn UpdateRoot()
 		* \brief calls UpdateNode(_root)
 		*/
-		inline void UpdateRoot() { UpdateNode(&_tree[0],_state); };
+		inline void UpdateRoot()
+		{
+			u_int tmp = UpdateNode(&_tree[0],_state);
+			Expand(&_tree[0], _state, tmp);
+		};
 
 		/**
 		 * \fn movePlayed(Move& move)

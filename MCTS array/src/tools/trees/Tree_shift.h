@@ -3,24 +3,26 @@
 #include <vector>
 #include <iostream>
 #include "../Timer.h"
-#include "Tree_dump.h"
+//#include "Tree_dump.h"
+#include "Tree_index.h"
 
 template<class N> class Tree
 {
 public:
-	static void execute(N* iter, std::vector<N>& _tree, N*& _next)
+	static void execute(N* iter, std::vector<N>& _tree, Tree_index<N>& _index, N*& _next)
 	{
 		Timer* t = new Timer();
 		t->start();
 
-		Tree_dump<N>::out(_tree,"before.txt");
+//		Tree_dump<N>::out(_tree,"before.txt");
 		markTrash(iter, _tree);
 		std::cout << "trash marked" << std::endl;
-		Tree_dump<N>::out(_tree,"marked.txt");
+//		Tree_dump<N>::out(_tree,"marked.txt");
 		compactTree(_tree);
-		Tree_dump<N>::out(_tree,"compacted.txt");
+//		Tree_dump<N>::out(_tree,"compacted.txt");
 		std::cout << "compacted" << std::endl;
 		resetNodes(_tree);
+		_index.init();
 		findNext(_tree, _next);
 
 		t->stop();
@@ -60,7 +62,7 @@ public:
 		{
 			if (ptTemp != NewRoot)
 			{
-				ptTemp->clearParent(); // define all first children but the chosen one as useless !
+				ptTemp->removeFromIndex(); // remove them from index
 				numberOfTrashes++;
 			}
 			++ptTemp;
@@ -69,25 +71,24 @@ public:
 		N* ptr = &T[1];
 		for (int i = 1; i < T.size(); ++i)
 		{
-			if (!ptr->hasParent()) // if doesn't have parent, then children has to be cleared too !
+			if (ptr->getAddress() == nullptr) // if doesn't have address, then children has to be cleared too !
 			{
-				ListOfNodes = ptr->getChildren();
-				ptTemp = ListOfNodes.first;
-				if (ptTemp != nullptr)
+				if (ptr->getTerminal() == 0)
 				{
+					ListOfNodes = ptr->getChildren();
+					ptTemp = ListOfNodes.first;
 					for (u_int i = 0; i < ListOfNodes.second; ++i)
 					{
-						ptTemp->clearParent();
-						++ptTemp;
+						ptTemp->removeFromIndex();
 						numberOfTrashes++;
+						++ptTemp;
 					}
-
 				}
 			}
 			++ptr;
 		}
 		T[0] = *NewRoot;
-		updateFirstChild(&T[0],ptr);
+		T[0].setNewAddress(&T[0]);
 		NewRoot->unset();
 		std::cout << "number of trashes : " << numberOfTrashes << std::endl;
 	}
@@ -100,23 +101,9 @@ public:
 		{
 			child = findNextSegment(empty, T);
 		}
-		u_int n;
 		while (empty != nullptr && child != nullptr)
 		{
-			n = UpdateParent(child, empty);
-			if (n != 0)
-			{
-				copySubTree(child, n, empty);
-			}
-			else
-			{
-				std::cout << "Houston, we lost contact !" << std::endl;
-				std::cout << "distance to earth    : " <<  empty - &T[0] << std::endl;
-				std::cout << "distance to the moon : " <<  child - &T[0] << std::endl;
-				std::cout << "distance to sun      : " <<  child->getParent() - &T[0] << std::endl;
-				exit(2);
-			}
-			empty = findNextHole((empty + n), T);
+			empty = copySubTree(child, empty, &T[T.size() - 1]);
 			if (empty != nullptr)
 			{
 				child = findNextSegment(empty, T);
@@ -128,7 +115,7 @@ public:
 	{
 		N* start = startwith;
 		N* end = &_tree[_tree.size() - 1];
-		while (start != end && start->hasParent())
+		while (start != end && start->getAddress() != nullptr)
 		{
 			++start;
 		}
@@ -142,7 +129,7 @@ public:
 	{
 		N* start = startwith;
 		N* end = &_tree[_tree.size() - 1];
-		while (start != end && !start->hasParent())
+		while (start != end && start->getAddress() == nullptr)
 		{
 			++start;
 		}
@@ -152,34 +139,29 @@ public:
 		return start;
 	}
 
-	static u_int UpdateParent(N* child, N* newadress)
+	// copy a portion into another and mark the moved as "available" : no parents, but do not remove them from index !!! else you would lose them.
+	static N* copySubTree(N* from_p, N* to_p, N* end)
 	{
-		N* parent = child->getParent();
-		if (parent == nullptr)
-			{
-				std::cout << "Houston, we are losing contact !" << std::endl;
-				return 0;
-			}
-		parent->updateFirstChild(newadress);
-		return parent->getChildren().second;
-	}
-
-	// copy a portion into another and mark the moved as "available" : no parents
-	static void copySubTree(N* from_p , u_int& from_n, N* to_p)
-	{
-		N* child_buff;
 		N* node_from = from_p;
 		N* node_to = to_p;
-		N* papa = from_p->getParent();
-		for (u_int i = 0; i < from_n; ++i)
+		while (node_from->getAddress() != nullptr && node_from != end)
 		{
 			*node_to = *node_from;
-			node_to->setParent(papa);
-			updateFirstChild(node_to,child_buff);
-			node_from->clearParent();
+			node_to->setNewAddress(node_to);
+			node_from->cleanAddress();
 			++node_to;
 			++node_from;
 		}
+
+		if (node_from == end && node_from->getAddress() != nullptr)
+		{
+			*node_to = *node_from;
+			node_to->setNewAddress(node_to);
+			node_from->cleanAddress();
+			return nullptr;
+		}
+
+		return node_to;
 	}
 
 	static void resetNodes(std::vector<N>& _tree)
@@ -188,17 +170,12 @@ public:
 		for (int i = 1; i < _tree.size(); ++i)
 		{
 			ptr->releaseLock(); // just to be sure
-			if (!ptr->hasParent()) 
+			ptr->unlockTerminal();
+			if (ptr->getAddress() == nullptr)
 			{
 				ptr->unset();
 			}
 			++ptr;
 		}
-	}
-
-	static inline void updateFirstChild(N* node, N*& child_buff)
-	{
-		child_buff = node->getChildren().first;
-		if(child_buff != nullptr) child_buff->setParent(node);
 	}
 };

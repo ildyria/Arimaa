@@ -39,23 +39,27 @@ public:
 	{
 		auto next = &Tdest[0];					// place ptrDest at the begining of the destination array
 		auto ptrDest = &Tdest[0];				// place ptrDest at the begining of the destination array
-		N* ptTemp;							// pointer to loop on the childrens of each ptr
+		N* ptTemp;								// pointer to loop on the childrens of each ptr
 
 		*ptrDest = *NewRoot;					// copy root
 		ptrDest->releaseLock();
+		ptrDest->unlockTerminal();
 		++next;									// next free space in Tdest
 
+		std::pair<N*, u_int> ListOfNodes;
+		// could be improved : 2 calls of terminals...
 		while (ptrDest->hasParent() || ptrDest == &Tdest[0]) // no parents OR root
 		{
-			auto ListOfNodes = ptrDest->getChildren();
-			ptTemp = ListOfNodes.first;
-			if (ptTemp != nullptr)				// if children add them to _buff
+			if (ptrDest->getTerminal() == 0)	// has children
 			{
+				ListOfNodes = ptrDest->getChildren();
+				ptTemp = ListOfNodes.first;
 				ptrDest->setChildrens(next, ListOfNodes.second); // update the node of the parents
 				for (u_int i = 0; i < ListOfNodes.second; i++)
 				{
 					*next = *ptTemp;			// recopy of chidlren
 					next->releaseLock();		// makes sure that all nodes are unlocked !
+					next->unlockTerminal();
 					++ptTemp;
 					++next;
 				}

@@ -36,7 +36,7 @@ public:
 	 * \brief check if the game end
 	 * \details returns 1 if player 1 wins
 	 * returns 2 if player 2 wins
-	 * returns 3 if the game is a tie
+	 * returns 4 if the game is a tie
 	 * returns 0 if the game hasn't ended yet
 	 * \return integer corresponding to the state of the Board
 	 */
@@ -83,7 +83,7 @@ public:
 	 * \brief check if the board is full.
 	 * 
 	 * \param board Bitboard
-	 * \return 0 or 3 if board is full
+	 * \return 0 or 4 if board is full
 	 */
 	int checkNull(const Bitboard* board);
 
