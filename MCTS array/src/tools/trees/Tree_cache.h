@@ -3,14 +3,15 @@
 #include <vector>
 #include <iostream>
 #include "../Timer.h"
+#include "../Count.h"
 
 template<class N> class Tree
 {
 public:
 	static void execute(N* iter, std::vector<N>& _tree, std::vector<N>& _buff, N*& _next)
 	{
-		Timer* t = new Timer();
-		t->start();
+		Timer t = Timer();
+		t.start();
 
 		copyTree(iter, _buff);
 		cleanTree(_tree);
@@ -18,9 +19,8 @@ public:
 		cleanTree(_buff);
 		findNext(_tree, _next);
 
-		t->stop();
-		std::cout << "recycling duration : " << duration_cast<milliseconds>(t->result()).count() << "ms." << std::endl;
-		delete t;
+		t.stop();
+		std::cout << "recycling duration : " << Count::format(duration_cast<milliseconds>(t.result()).count()) << " ms." << std::endl;
 	}
 
 	static void cleanTree(std::vector<N> &T)
@@ -32,7 +32,7 @@ public:
 			ptr->unset();
 			++ptr;
 		}
-		std::cout << "clean tree : " << (ptr - &T[0]) << std::endl;
+		std::cout << "clean tree : " << Count::format(ptr - &T[0]) << std::endl;
 	}
 
 	static void copyTree(N* NewRoot, std::vector<N> &Tdest)
@@ -75,6 +75,6 @@ public:
 		{
 			++n;
 		}
-		std::cout << "next: " << (n - &T[0]) << std::endl;
+		std::cout << "next: " << Count::format(n - &T[0]) << std::endl;
 	}
 };

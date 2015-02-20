@@ -46,7 +46,7 @@ namespace mcts {
 		 */
 		explicit inline MctsArgs(
 			u_int depth = 44,
-			u_int timelimit = 10000,
+			u_int timelimit = 60000,
 			u_long simulR = 100000000,
 			u_int simulL = 2,
 			u_int numVisitExplo = 4,
@@ -70,7 +70,7 @@ namespace mcts {
 #endif
 			std::cout << "size of node : " << sizeof(Node) << std::endl;
 
-			std::cout << "max num of leaves : " << _maxNumberOfLeaves << std::endl;
+			std::cout << "max num of leaves : " << Count::format(_maxNumberOfLeaves) << std::endl;
 		};
 
 		/**

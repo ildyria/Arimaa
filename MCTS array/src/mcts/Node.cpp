@@ -49,6 +49,7 @@ namespace mcts {
 		_lock = false;
 		clearParent();
 #if !defined(DOUBLE_TREE)
+//		*self = nullptr;
 		_self = nullptr;
 #endif
 		_visits = 0;
