@@ -1,11 +1,12 @@
 #pragma once
 #include "../typedef.h"
 #include <vector>
-#include <iostream>
 #include "../Timer.h"
-//#include "Tree_dump.h"
+#include "Tree_dump.h"
 #include "Tree_index.h"
 #include "../Count.h"
+#include <iostream>
+#include "Tree_integrity_check.h"
 
 template<class N> class Tree
 {
@@ -13,18 +14,30 @@ public:
 	static void execute(N* iter, std::vector<N>& _tree, Tree_index<N>& _index, N*& _next)
 	{
 		Timer t = Timer();
+		u_long full = _tree[0].count();
+		u_long keep = iter->count();
+		std::cout << "count full ...    " << Count::format(full) << std::endl;
+		std::cout << "count index ...   " << Count::format(_index.count()) << std::endl;
+		std::cout << "count to keep ... " << Count::format(keep) << std::endl;
+		std::cout << "count to kill ... " << Count::format(full - keep) << std::endl;
+
 		t.start();
 
-//		Tree_dump<N>::out(_tree,"before.txt");
+		Tree_dump<N>::out(_tree,"before.txt");
+		Tree_integrity_check<N>::execute(_tree, _index);
 		markTrash(iter, _tree);
 		std::cout << "trash marked" << std::endl;
-//		Tree_dump<N>::out(_tree,"marked.txt");
+		Tree_dump<N>::out(_tree,"marked.txt");
 		compactTree(_tree);
-//		Tree_dump<N>::out(_tree,"compacted.txt");
+		Tree_dump<N>::out(_tree,"compacted.txt");
 		std::cout << "compacted" << std::endl;
-//		resetNodes(_tree);
 		_index.init();
+		Tree_integrity_check<N>::execute(_tree, _index);
 		findNext(_tree, _next);
+
+		u_long left = _tree[0].count();
+		std::cout << "count left ...  " << Count::format(left) << std::endl;
+		std::cout << "count index ... " << Count::format(_index.count()) << std::endl;
 
 		t.stop();
 		std::cout << "recycling duration : " << Count::format(duration_cast<milliseconds>(t.result()).count()) << " ms." << std::endl;
@@ -45,11 +58,12 @@ public:
 	static void findNext(std::vector<N>& T, N*& n)
 	{
 		n = &T[1];
-		while (n->hasParent())
+		while (n->getAddress() != nullptr)
 		{
 			++n;
 		}
-		std::cout << std::endl << "next: " << Count::format(n - &T[0]) << std::endl;
+		auto t = n - &T[0];
+		std::cout << std::endl << "next: " << Count::format(t) << std::endl;
 	}
 
 	// mark all nodes to be removed as not attributed (no parents)
@@ -92,6 +106,7 @@ public:
 		T[0] = *NewRoot;
 		T[0].setNewAddress(&T[0]);
 		NewRoot->cleanAddress();
+		numberOfTrashes++;
 		std::cout << std::endl << "number of trashes : " << Count::format(numberOfTrashes) << std::endl;
 	}
 

@@ -312,6 +312,7 @@
     <ClInclude Include="src\tools\trees\Tree_cache.h" />
     <ClInclude Include="src\tools\trees\Tree_dump.h" />
     <ClInclude Include="src\tools\trees\Tree_index.h" />
+    <ClInclude Include="src\tools\trees\Tree_integrity_check.h" />
     <ClInclude Include="src\tools\trees\Tree_shift.h" />
     <ClInclude Include="src\tools\typedef.h" />
   </ItemGroup>

@@ -137,6 +137,19 @@ namespace mcts {
 		}
 	}
 
+	u_long Node::count()
+	{
+		if (_terminal != 0) return 1;
+		auto itL = *_firstchild;
+		auto val = 0;
+		for (u_int i = 0; i < _nbchildren; ++i)
+		{
+			val += itL->count();
+			itL++;
+		}
+		return val + 1;
+	}
+
 	Node::~Node()
 	{
 	}

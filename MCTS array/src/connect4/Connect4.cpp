@@ -176,11 +176,11 @@ void Connect4::diplayBoard(const Bitboard* board)
 	std::stringbuf buffer;
 	std::ostream os(&buffer);
 	os << std::endl;
-	for (int y = 5; y >= 0; --y)
+	for (int y = (SIZEY - 1); y >= 0; --y)
 	{
-		for (int k = 0; k < 7; ++k) os << "+---";
+		for (int k = 0; k < SIZEX; ++k) os << "+---";
 		os << "+" << std::endl;
-		for (int x = 0; x < 7; ++x)
+		for (int x = 0; x < SIZEX; ++x)
 		{
 			check >>= 1;
 			os << "| ";
@@ -200,9 +200,9 @@ void Connect4::diplayBoard(const Bitboard* board)
 		}
 		os << "|" << std::endl;
 	}
-	for (int k = 0; k < 7; ++k) os << "+---";
+	for (int k = 0; k < SIZEX; ++k) os << "+---";
 	os << "+" << std::endl;
-	for (int k = 1; k <= 7; ++k) os << "  " << k << " ";
+	for (int k = 1; k <= SIZEX; ++k) os << "  " << k << " ";
 	os << std::endl;
 	std::cout << buffer.str() << std::endl;
 

@@ -1,5 +1,3 @@
-#define OPENMP
-
 #include "Mcts.h"
 
 using std::list;
@@ -45,8 +43,8 @@ namespace mcts{
 #if defined(DOUBLE_TREE)
 		_tree[0].set(*random);
 #else
-		Node** address;
-		_tree[0].set(*random, _index.get(address));
+		Node** address = _index.get();
+		_tree[0].set(*random, address);
 #endif 
 		_tree[0].hasParent();
 		_next = (&_tree[0]) + 1;
@@ -115,7 +113,7 @@ namespace mcts{
 			nodet = 16;
 			return;
 		}
-
+		if (node == &_tree[0]) printf("expanding\n");
 		list<Move> ListOfMoves;
 		list<Move>::iterator iter;
 
@@ -142,7 +140,8 @@ namespace mcts{
 #if defined(DOUBLE_TREE)
 			tmp2->set(*iter);
 #else
-			tmp2->set(*iter, _index.get(buff));
+			buff = _index.get();
+			tmp2->set(*iter, buff);
 #endif
 			tmp2->play(node->getPlayer());
 		}
@@ -289,14 +288,19 @@ namespace mcts{
 		auto start_time = high_resolution_clock::now();
 		auto end_time = start_time + milliseconds(_param->getTimeLimitSimulationPerRoot());
 #ifdef OPENMP
-#pragma omp parallel shared(i,end_time)
+		#pragma omp parallel shared(i,end_time)
+		{
 #endif
 		while (high_resolution_clock::now() < end_time && i < _param->getSimulationPerRoot())
 		{
 			i++;
 			explore();
 		}
-		cout << endl << "Searched for " << duration_cast<milliseconds>(high_resolution_clock::now()-start_time).count() << "ms and " << i*_param->getSimulationPerLeaves() << " simulations." << endl;
+#ifdef OPENMP
+	#pragma omp barrier
+	}
+#endif
+		cout << endl << "Searched for " << Count::format(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) << "ms and " << Count::format(i*_param->getSimulationPerLeaves()) << " simulations." << endl;
 		return _tree[0].select_child_WR()->getMove();
 	}
 

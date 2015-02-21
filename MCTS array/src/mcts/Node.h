@@ -46,6 +46,12 @@ namespace mcts
 	 */
 	class Node
 	{
+#if defined(DOUBLE_TREE)
+		Node*	_firstchild;// 8 bytes
+#else
+		Node**	_self;// 8 bytes
+		Node**	_firstchild;// 8 bytes
+#endif
 		double	_uct;		// 8 bytes
 		u_long _visits;		// 8 bytes
 		u_long _wins;		// 8 bytes
@@ -56,12 +62,6 @@ namespace mcts
 		bool	_lock;		// 1 byte
 
 		Move	_move;		// 8 bytes (uint64)
-#if defined(DOUBLE_TREE)
-		Node*	_firstchild;// 8 bytes
-#else
-		Node**	_firstchild;// 8 bytes
-		Node**	_self;// 8 bytes
-#endif
 
 
 		/**
@@ -380,6 +380,8 @@ namespace mcts
 		 * \param depth How deep we want to dive in the tree
 		 */
 		void print_tree(u_int numtab, u_int depth);
+
+		u_long count();
 
 		/**
 		 * \fn play(int i = 0)

@@ -46,10 +46,10 @@ namespace mcts {
 		 */
 		explicit inline MctsArgs(
 			u_int depth = 44,
-			u_int timelimit = 60000,
+			u_int timelimit = 2000,
 			u_long simulR = 100000000,
 			u_int simulL = 2,
-			u_int numVisitExplo = 4,
+			u_int numVisitExplo = 2,
 			double percentRAM = 0.95
 			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
@@ -67,6 +67,9 @@ namespace mcts {
 			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (DIVIDE));
 #else
 			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
+#endif
+#if defined(HARD_LIMIT_MEMORY)
+			_maxNumberOfLeaves = 2048;
 #endif
 			std::cout << "size of node : " << sizeof(Node) << std::endl;
 

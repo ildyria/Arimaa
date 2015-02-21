@@ -12,7 +12,6 @@ public:
 	{
 		Timer t = Timer();
 		t.start();
-
 		copyTree(iter, _buff);
 		cleanTree(_tree);
 		copyTree(&_buff[0], _tree);

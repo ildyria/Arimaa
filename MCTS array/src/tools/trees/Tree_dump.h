@@ -2,24 +2,48 @@
 #include "../typedef.h"
 #include <vector>
 #include <iostream>
-#include <fstream>
+//#include <fstream>
+using std::cout;
 
 template<class N> class Tree_dump
 {
 public:
 	static void out(std::vector<N>& T,std::string file_name)
 	{
-		std::ofstream myfile;
-		myfile.open(file_name, std::ios::out | std::ios::trunc);
+#if defined(DUMP_TREES)
+		//		std::ofstream myfile;
+//		myfile.open(file_name, std::ios::out | std::ios::trunc);
 
 		N* ptr = &T[0];
 		auto terminal = ptr->getTerminal();
-		for(auto i = 0; (i < T.size() && ptr->hasParent()); ++i)
+		u_long modulo = (static_cast<u_long>(1) << 6) - 1;
+//		for (u_long i = 0; (i < static_cast<u_long>(T.size()) && ptr->hasParent()); ++i)
+		for (u_long i = 0; (i < static_cast<u_long>(T.size())); ++i)
 		{
-		
-#if !defined(DOUBLE_TREE)
-			myfile << ptr->getParent() << " => ";
-#endif
+			terminal = ptr->getTerminal();
+			if ((i & modulo) == 0) cout << std::endl;
+			if (ptr->getAddress() == nullptr)
+			{
+				cout << "_";
+			}
+			else if (terminal == 64)
+			{
+				cout << "X";
+			}
+			else if (terminal == 32)
+			{
+				cout << "N";
+			}
+			else if (terminal == 16)
+			{
+				cout << "L";
+			}
+			else
+			{
+				cout << (terminal & 7);
+			}
+
+/*
 			myfile << ptr;
 			myfile << " : " << terminal;
 			myfile << ", " << ptr->getProba();
@@ -29,11 +53,12 @@ public:
 				myfile << " (" << ptr->getChildren().second << ")";
 			}
 			myfile << "\n";
+*/
 			++ptr;
-			terminal = ptr->getTerminal();
 		}
-
-		myfile.close();
+		cout << std::endl;
+#endif
+//		myfile.close();
 	}
 
 };
