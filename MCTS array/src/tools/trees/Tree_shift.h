@@ -16,6 +16,7 @@ public:
 		Timer t = Timer();
 		u_long full = _tree[0].count();
 		u_long keep = iter->count();
+		std::cout << std::endl;
 		std::cout << "count full ...    " << Count::format(full) << std::endl;
 		std::cout << "count index ...   " << Count::format(_index.count()) << std::endl;
 		std::cout << "count to keep ... " << Count::format(keep) << std::endl;
@@ -114,7 +115,7 @@ public:
 	{
 		u_long i;
 		N* to = &T[1];
-		N* from = &T[1];
+		N* from = &T[2];
 		N* end = &T[T.size()-1];
 		N** address_to;
 		N** address_from;
@@ -126,9 +127,8 @@ public:
 			++from;
 			address_from = from->getAddress();
 		}
-		bool copied = (from == end);
+		bool copied = ((from == end) && (address_from == nullptr));
 		--from;
-
 
 		for (i = 1; i < T.size(); ++i)
 		{
@@ -138,19 +138,24 @@ public:
 				if (!copied)
 				{
 					++from;
-					if (from < to) from = to;
+					if (from < to) from = to; // never supposed to happen, but you never know...
 					address_from = from->getAddress();
 					while (address_from == nullptr && from < end)
 					{
 						++from;
 						address_from = from->getAddress();
 					}
+
 					if (address_from != nullptr)
 					{
 						*to = *from;
 						to->setNewAddress(to);
-						from->cleanAddress();
 					}
+					else
+					{
+						to->unset();
+					}
+					from->unset();
 					copied = (from == end);
 				}
 				else

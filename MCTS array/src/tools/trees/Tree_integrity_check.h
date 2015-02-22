@@ -12,28 +12,21 @@ public:
 	static void execute(std::vector<N>& _tree, Tree_index<N>& _index)
 	{
 #if defined(TREE_INTEGRITY)
-		std::cout << "INTEGRITY CHECK START" << std::endl;
+		std::cout << std::endl << "INTEGRITY CHECK START" << std::endl;
 		N* ptr = &_tree[0];
 		N** address;
 		for (u_long i = 0; i < static_cast<u_long>(_tree.size()); ++i)
 		{
-			try
+			address = ptr->getAddress();
+			if (address == nullptr && ptr->hasParent())
 			{
-				address = ptr->getAddress();
-				if (address == nullptr && ptr->hasParent())
-				{
-					std::cout << "tree integrity failed with " << i << " : null address" << std::endl;
-				}
-			}
-			catch (...)
-			{
-				std::cout << "tree integrity failed with " << i << std::endl;
+				std::cout << "tree integrity failed with " << i << " : null address" << std::endl;
 			}
 			++ptr;
 		}
+		std::cout << "Tree done" << std::endl;
 
 
-		std::vector<N*>* addresses = _index.get_address();
 		std::vector<N**>* pt_to_addresses = _index.get_empty();
 		N*** min = _index.get_next();
 		N*** ptr_addr = &((*pt_to_addresses)[0]);
@@ -41,11 +34,28 @@ public:
 		{
 			if (*ptr_addr != nullptr && **ptr_addr != nullptr && !(ptr_addr < min))
 			{
-				std::cout << "index integrity failed with " << i << " : pointing to a not empty space !!" << std::endl;
+				std::cout << "pointer to index integrity failed with " << i << " : pointing to a not empty space !!" << std::endl;
 			}
 			++ptr_addr;
 		}
+		std::cout << "pointer to index done" << std::endl;
 
+		std::vector<N*>* addresses = _index.get_address();
+		N** address_to = &((*addresses)[0]);
+		for (u_long i = 0; i < static_cast<u_long>(_tree.size()); ++i)
+		{
+			if (*address_to != nullptr)
+			{
+				if (!(*address_to)->hasParent())
+				{
+					std::cout << "index integrity failed with " << i << " : pointing to empty node" << std::endl;
+				}
+			}
+			++address_to;
+		}
+		std::cout << "index done" << std::endl;
+
+		/*
 		N** address_to = &((*addresses)[0]);
 		ptr_addr = &((*pt_to_addresses)[0]);
 		auto end = &((*pt_to_addresses)[_tree.size()-1]);
@@ -68,7 +78,7 @@ public:
 				}
 			}
 			++address_to;
-		}
+		}*/
 		std::cout << "INTEGRITY CHECK END" << std::endl;
 #endif
 	}
