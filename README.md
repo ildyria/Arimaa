@@ -1,30 +1,14 @@
-﻿#Project Arimaa – CR17 : Wednesday, February, 11th
-Presents : Gabriel (through Skype), Prateek, Benoit, Baptiste, with Christian Raymond and Nikos Parlavantzas
+﻿#Project Arimaa – CR18 : Wednesday, February, 25th
+Presents : Gabriel, Prateek, Benoit, with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
 - MCTS : new issues / improvements (*Benoît*)
-- Report final version (*Everybody*)
-- MPI VS ØMQ
-- What to put in the HTML page
+- MPI and ØMQ tests (*Gabriel*)
 
-##MCTS
-- Reduction of the size of the nodes (88B -> 64B)
-
-##MPI VS ØMQ
-- ØMQ safer for large clusters (MPI fails if any machine fails)
-
-##HTML page
-- 1A4
-- In English and in French
-- Technologies used
-- Overview of the algorithm
-- No technical details (not meant for specialists)
-- Serves as "advertisement"
-
-##Next meeting : 02/25
+##Next meeting : 03/04
 Tasks :
 - Benoît :
-  * MCTS array structure
+  * 
 - Prateek :
-  * Research ØMQ
+  * 
 - Gabriel :
-  * Tests MPI VS ØMQ
+  * 
