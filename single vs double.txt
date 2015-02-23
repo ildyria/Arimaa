@@ -1,0 +1,70 @@
+Double array : 
+MAX_2 = RAM / 2 x Node
+
+Node* _firstchild;// 8 bytes
+double	_uct; // 8 bytes
+u_long _visits; // 8 bytes
+u_long _wins; // 8 bytes
+u_int _nbchildren; // 4 bytes
+u_short	_toplay; // 2 bytes
+unsigned char	_terminal; // 1 byte
+bool	_lock; // 1 byte
+Move _move; // 8 bytes (uint64)
+= 48 bytes
+
+MAX_2 = RAM / 96
+
+
+
+Single array :
+MAX_1 = RAM / (Node + 2 void*)
+
+Node** _self;// 8 bytes
+Node** _firstchild;// 8 bytes
+double	_uct; // 8 bytes
+u_long _visits; // 8 bytes
+u_long _wins; // 8 bytes
+u_int _nbchildren; // 4 bytes
+u_short	_toplay; // 2 bytes
+unsigned char	_terminal; // 1 byte
+bool	_lock; // 1 byte
+Move _move; // 8 bytes (uint64)
+= 56 bytes
+
+void* = 8
+
+MAX_1 = RAM / (56 + 16)
+MAX_1 = RAM / 72
+
+Comparaison Single vs Double
+
+MAX_1 x 80 = MAX_2 x 96
+MAX_1 = MAX_2 x 96 / 72
+MAX_1 = MAX_2 x 1,33
+
+augmentation de 33%
+-------------------------------
+
+#pragma omp sections
+{
+	#pragma omp section
+	marking
+
+	#pragma omp section
+	cleaning index of index
+}
+
+#pragma omp sections
+{
+	#pragma omp section
+	swapping
+
+	#pragma omp section
+	updating value of the index
+	/!\ synchronisation /!\
+	must not go further than swapping
+	use shared variables
+
+	#pragma omp section
+	record empty values of the index
+}
