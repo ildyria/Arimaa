@@ -28,37 +28,53 @@ public:
 
 		Tree_dump<N>::out(_tree,"before.txt");
 		Tree_integrity_check<N>::execute(_tree, _index);
-		#pragma omp sections
+		#pragma omp parallel sections
 		{
 			#pragma omp section
-			markTrash(iter, _tree);
+			{
+				printf("mark trash core : %d\n", omp_get_thread_num());
+				markTrash(iter, _tree);
+				printf("trash marked\n");
+			}
 
 			#pragma omp section
+			{
+			printf("index clear core : %d\n", omp_get_thread_num());
 			_index.clear();
+			}
 		}
-		std::cout << "trash marked" << std::endl;
+
 		Tree_dump<N>::out(_tree, "marked.txt");
-		#pragma omp sections
+		#pragma omp parallel sections
 		{
 			#pragma omp section
-			compactTree(_tree);
+			{
+				printf("compacting core : %d\n", omp_get_thread_num());
+				compactTree(_tree);
+				Tree_dump<N>::out(_tree, "compacted.txt");
+				printf("tree compacted\n");
+			}
 
 			#pragma omp section
-			_index.fill();
+			{
+				printf("build index core : %d\n", omp_get_thread_num());
+				_index.fill();
+			}
 
 			#pragma omp section
-			_index.reset_next();
+			{
+				printf("reset index core : %d\n", omp_get_thread_num());
+				_index.reset_next();
+			}
 		}
-		Tree_dump<N>::out(_tree, "compacted.txt");
-		std::cout << "compacted" << std::endl;
 		Tree_integrity_check<N>::execute(_tree, _index);
 		findNext(_tree, _next);
+		t.stop();
 
 		u_long left = _tree[0].count();
 		std::cout << "count left ...  " << Count::format(left) << std::endl;
 		std::cout << "count index ... " << Count::format(_index.count()) << std::endl;
 
-		t.stop();
 		std::cout << "recycling duration : " << Count::format(duration_cast<milliseconds>(t.result()).count()) << " ms." << std::endl;
 	}
 
