@@ -31,55 +31,36 @@ public:
 
 	inline void init()
 	{
-		u_long j = 0;
-		// let's speed things up a bit !
-		// or not... 10 times slower ?? DAFUCK
-/*
-		#pragma omp parallel shared(j)
-		{
-			int id, Nthread;
-			u_long i, istart, iend;
-			id = omp_get_thread_num();
-			Nthread = omp_get_num_threads();
-			
-			istart = id*static_cast<u_long>(_address.size()) / Nthread;
-			iend = (id + 1)*static_cast<u_long>(_address.size()) / Nthread;
-			if (id == Nthread - 1) iend = static_cast<u_long>(_address.size());
-			for (i = istart; i < iend; i++)
-			{
-				_empty[i] = nullptr;
-			}
-			
-			#pragma omp barrier
-			i = id;
-			iend = static_cast<u_long>(_address.size());
-			while (i < iend)
-			{
-				if (_address[i] == nullptr)
-				{
-					#pragma omp critical
-					{
-						_empty[j] = &_address[i];
-						j++;
-					}
-				}
-				i += Nthread;
-			}
-		}
-*/
+		clear();
+		fill();
+		reset_next();
+	}
+
+	inline void clear()
+	{
 		for (u_long i = 0; i < _address.size(); i++)
 		{
 			_empty[i] = nullptr;
+		}
+	}
+
+	inline void fill()
+	{
+		u_long j = 0;
+		for (u_long i = 0; i < _address.size(); i++)
+		{
 			if (_address[i] == nullptr)
 			{
 				_empty[j] = &_address[i];
 				j++;
 			}
 		}
-		
-		_next = &_empty[0];
 	}
 
+	inline void reset_next()
+	{
+		_next = &_empty[0];
+	}
 
 	inline N** get()
 	{

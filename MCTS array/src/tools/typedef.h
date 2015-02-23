@@ -14,7 +14,7 @@ typedef unsigned short u_short;
 //#define HARD_LIMIT_MEMORY	// 2048 nodes max
 
 //#define DUMP_TREES			// dump trees in the console (only use with HARD_LIMIT_MEMORY)
-#define TREE_INTEGRITY		// check the integrity of the tree, slow down the prunning
+//#define TREE_INTEGRITY		// check the integrity of the tree, slow down the prunning
 
 #define OPENMP				// enable multi threading
 

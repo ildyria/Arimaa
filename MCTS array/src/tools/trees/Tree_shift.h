@@ -8,8 +8,10 @@
 #include <iostream>
 #include "Tree_integrity_check.h"
 
+
 template<class N> class Tree
 {
+	static u_long compacting;
 public:
 	static void execute(N* iter, std::vector<N>& _tree, Tree_index<N>& _index, N*& _next)
 	{
@@ -26,13 +28,29 @@ public:
 
 		Tree_dump<N>::out(_tree,"before.txt");
 		Tree_integrity_check<N>::execute(_tree, _index);
-		markTrash(iter, _tree);
+		#pragma omp sections
+		{
+			#pragma omp section
+			markTrash(iter, _tree);
+
+			#pragma omp section
+			_index.clear();
+		}
 		std::cout << "trash marked" << std::endl;
-		Tree_dump<N>::out(_tree,"marked.txt");
-		compactTree(_tree);
-		Tree_dump<N>::out(_tree,"compacted.txt");
+		Tree_dump<N>::out(_tree, "marked.txt");
+		#pragma omp sections
+		{
+			#pragma omp section
+			compactTree(_tree);
+
+			#pragma omp section
+			_index.fill();
+
+			#pragma omp section
+			_index.reset_next();
+		}
+		Tree_dump<N>::out(_tree, "compacted.txt");
 		std::cout << "compacted" << std::endl;
-		_index.init();
 		Tree_integrity_check<N>::execute(_tree, _index);
 		findNext(_tree, _next);
 
@@ -113,7 +131,6 @@ public:
 
 	static void compactTree(std::vector<N> &T)
 	{
-		u_long i;
 		N* to = &T[1];
 		N* from = &T[2];
 		N* end = &T[T.size()-1];
@@ -130,7 +147,7 @@ public:
 		bool copied = ((from == end) && (address_from == nullptr));
 		--from;
 
-		for (i = 1; i < T.size(); ++i)
+		for (compacting = 1; compacting < T.size(); ++compacting)
 		{
 			address_to = to->getAddress();
 			if (address_to == nullptr)
@@ -168,4 +185,23 @@ public:
 			++to;
 		}
 	}
+	/*
+	static void addressTree(std::vector<N> &T)
+	{
+		u_long i;
+		N* ptr = &T[0];
+		for (i = 0; i < T.size(); ++i)
+		{
+			while (i == compacting){}; // not really pretty
+			if (ptr->getAddress() != nullptr)
+			{
+				ptr->setNewAddress(ptr);
+			}
+			ptr++;
+		}
+	}
+	*/
+
 };
+
+template<class N> u_long Tree<N>::compacting = 0;

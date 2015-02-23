@@ -1,0 +1,26 @@
+2 cores for shifting :
+1 moves things, 1 update addresses
+796 ms
+766 ms
+671 ms
+734 ms
+687 ms
+
+-----
+
+1 core for shifting :
+1 moves things and update the addresses
+593 ms
+796 ms
+656 ms
+562 ms
+609 ms
+578 ms
+
+------------------------------------------------
+
+The marking of the nodes and the cleanning of the index are done with parallelization.
+
+Building the index of the tree and the shifting are also done with parallelization.
+
+=)
