@@ -6,8 +6,8 @@ typedef unsigned short u_short;
 
 #define elseif else if
 
-#define SIZEX 7
-#define SIZEY 6
+#define SIZEX 8
+#define SIZEY 8
 #define TIME_SEARCH 10
 
 //#define LIMIT_MEMORY		// 2 Go max

@@ -154,7 +154,7 @@ int Connect4::checkNull(const Bitboard* board)
 void Connect4::play(Move& position, Bitboard* board)
 {
 	numtyp boardused = board->getBoard(0) | board->getBoard(1); // get what places are used.
-	boardused >>= (7 - position.getMove());
+	boardused >>= (SIZEX - position.getMove());
 	int i = 0;
 	while( (boardused & 1) == 1)
 	{
@@ -171,7 +171,7 @@ void Connect4::diplayBoard(const Bitboard* board)
 	numtyp board0 = board->getBoard(0); // get what places are used.
 	numtyp board1 = board->getBoard(1);
 	numtyp check = static_cast<numtyp>(1);
-	check = check << 42;
+	check = check << (SIZEX * SIZEY - 1);
 
 	std::stringbuf buffer;
 	std::ostream os(&buffer);
@@ -182,7 +182,6 @@ void Connect4::diplayBoard(const Bitboard* board)
 		os << "+" << std::endl;
 		for (int x = 0; x < SIZEX; ++x)
 		{
-			check >>= 1;
 			os << "| ";
 			if ((board0 & check) == check)
 			{
@@ -197,6 +196,7 @@ void Connect4::diplayBoard(const Bitboard* board)
 				os << " ";
 			}
 			os << " ";
+			check >>= 1;
 		}
 		os << "|" << std::endl;
 	}
@@ -241,7 +241,7 @@ int Connect4::playRandomMoves(Bitboard* board)
 				std::cout << " > " << *iter ;
 #endif // DISPLAY_C4
 				numtyp boardused = board->getBoard(0) | board->getBoard(1); // get what places are used.
-				boardused >>= (7 - *iter);
+				boardused >>= (SIZEX - *iter);
 				int i = 0;
 				while ((boardused & 1) == 1)
 				{
