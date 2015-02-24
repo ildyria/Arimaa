@@ -29,7 +29,7 @@ class Count
 	long _bitboadsC4_saved;
 	long _nbleaves_saved;
 
-	int _max_depth;
+	long _max_depth;
 
 	static Count* UniqueInstance;
 	

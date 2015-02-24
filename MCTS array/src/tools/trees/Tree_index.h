@@ -6,9 +6,9 @@
 template <class N> class Tree_index
 {
 	N*** _next;					// next empty space (Yup, not kidding a pointer to a pointer to a pointer of N ! And no, i'm not crazy ! =D)
-	std::vector<N*> _address;	// address book
-	std::vector<N**> _empty;	// free spaces in the book
-	omp_lock_t _lockAddrBook;
+	omp_lock_t		_lockAddrBook;
+	std::vector<N*>		_address;	// address book
+	std::vector<N**>	_empty;	// free spaces in the book
 
 public:
 
