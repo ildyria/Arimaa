@@ -8,6 +8,7 @@
  */
 #pragma once
 #include "../tools/typedef.h"
+#include <omp.h>
 #if defined(DOUBLE_TREE)
 	#include "../tools/trees/Tree_cache.h"
 #else
@@ -54,7 +55,7 @@ namespace mcts
 #endif
 
 		/**
-		 * \fn UpdateNode(Node* node, Bitboard* Bb)
+		 * \fn update_node(Node* node, Bitboard* Bb)
 		 * \details Update a node :
 		 * - check state of the node
 		 * if 128 : fetch the children (possible moves) and update the state
@@ -65,22 +66,22 @@ namespace mcts
 		 * \param  Bb state of the board
 		 * \return the state of the board : 0, 1, 2, 3, or 255 if cannot be explored (locked / memory limit) .
 		 */
-		u_int UpdateNode(Node* node, Bitboard* Bb);
-		void Expand(Node* node, Bitboard* Bb, u_int& nodet);
+		u_int update_node(Node* node, Bitboard* Bb);
+		void expand_node(Node* node, Bitboard* Bb, u_int& nodet);
 
 		/**
-		 * \fn playRandom(Node* node,  Bitboard* Bb)
+		 * \fn start_ramdom_playouts(Node* node,  Bitboard* Bb)
 		 * \details play _simulationPerLeaves simulations of games with completely randoms moves starting from the board of that node, upate the stats each time we reach a final state (win or loss, tie are considered as loss)
 		 *
 		 * \param node node to run the simulations from
 		 * \param Bb state of the board
 		 */
-		void playRandom(Node* node, Bitboard* Bb);
+		void start_ramdom_playouts(Node* node, Bitboard* Bb);
 
 		/**
 		 * \fn explore()
 		 * \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
-		 * if depth = 0, run playRandom
+		 * if depth = 0, run start_ramdom_playouts
 		 * if the node is a terminal, then update the stats :
 		 * - set uct to 42 if it's a win
 		 * - set parent's uct to -1 if it's a loss (we must never go to that node)
@@ -88,18 +89,18 @@ namespace mcts
 		void explore();
 
 		/**
-		 * \fn feedbackWinLose()
-		 * \details feedback the results to the parents (winning and losing move) in order to fasten the search
+		 * \fn feedback_sure_wins_loss()
+		 * \details feedback_results the results to the parents (winning and losing move) in order to fasten the search
 		 */
-		void feedbackWinLose();
+		void feedback_sure_wins_loss();
 
 		/**
-		 * \fn feedback
-		 * \brief feedback the results to the parents in order to update their _win value
+		 * \fn feedback_results
+		 * \brief feedback_results the results to the parents in order to update their _win value
 		 * 
 		 * \param nodet value of the simulation
 		 */
-		void feedback(u_int nodet);
+		void feedback_results(u_int nodet);
 
 	public:
 		/**
@@ -124,30 +125,30 @@ namespace mcts
 		~Mcts() {}
 
 		/**
-		* \fn UpdateRoot()
-		* \brief calls UpdateNode(_root)
+		* \fn update_root()
+		* \brief calls update_node(_root)
 		*/
-		inline void UpdateRoot()
+		inline void update_root()
 		{
-			u_int tmp = UpdateNode(&_tree[0],_state);
-			Expand(&_tree[0], _state, tmp);
+			u_int tmp = update_node(&_tree[0],_state);
+			expand_node(&_tree[0], _state, tmp);
 		};
 
 		/**
-		 * \fn movePlayed(Move& move)
+		 * \fn move_played(Move& move)
 		 * \brief play a move on the tree, prune all the node that are useless.
 		 * 
 		 * \param move move played
 		 */
-		Bitboard* movePlayed(Move& move);
+		Bitboard* move_played(Move& move);
 
 		/**
-		 * \fn GetBestMove()
+		 * \fn get_best_move()
 		 * \brief main function of the algorithm, run the exploration, simulations and returns the best move given the results
 		 * 
 		 * \return move chosen by the algorithm
 		 */
-		Move GetBestMove();
+		Move get_best_move();
 
 		/**
 		 * \fn print_tree(int depth = 1)
@@ -164,15 +165,15 @@ namespace mcts
 		void kill_tree();
 
 		/**
-		 * \fn get_Number_Leaves()
+		 * \fn get_number_leaves()
 		 * \brief count the number of leaves of the tree.
 		 */
-		void get_Number_Leaves();
+		void get_number_leaves();
 
 		/**
-		 * \fn winning_Strategy()
+		 * \fn winning_chances()
 		 * \return the winning rate of the last move, -1 if losing, 2 if it was a winning strategy
 		 */
-		double winning_Strategy();
+		double winning_chances();
 	};
 }

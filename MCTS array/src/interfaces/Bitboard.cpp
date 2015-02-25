@@ -5,7 +5,6 @@ using std::list;
 using std::cin;
 using std::cout;
 using std::endl;
-using std::max;
 
 Bitboard::Bitboard() : _toplay(1), _number(3), _boards(vector<numtyp>(3))
 {
@@ -34,7 +33,7 @@ Bitboard::~Bitboard()
 	Count::I()->rmBitBoards();
 }
 
-list<int> Bitboard::getOccupied(int n)
+list<int> Bitboard::get_occupied(int n)
 {
 	list<int> rtm;
 	int i = 0;
@@ -54,7 +53,7 @@ list<int> Bitboard::getOccupied(int n)
 	return rtm;
 }
 
-list<int> Bitboard::getEmpty(int n) const
+list<int> Bitboard::get_empty(int n) const
 {
 	list<int> rtm;
 	int i = 0;

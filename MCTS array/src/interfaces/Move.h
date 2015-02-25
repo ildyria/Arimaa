@@ -50,10 +50,10 @@ public:
 	virtual ~Move();
 
 	/**
-	 * \fn getMove()
+	 * \fn get_move()
 	 * \brief return the move as a string.
 	 */
-	virtual inline numtyp getMove() { return _data; };
+	virtual inline numtyp get_move() { return _data; };
 
 	/**
 	 * \fun set()

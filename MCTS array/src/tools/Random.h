@@ -8,12 +8,10 @@
  */
 #pragma once
 #include "typedef.h"
-#include <cstdlib>
 #include <stdint.h>
 #include <random>
 #include <omp.h>
 #include <ctime>
-#include <iostream>
 
 /**
  * \brief Random class : SINGLETON
@@ -55,13 +53,13 @@ public:
 		};
 	
 	/**
-	 * \fn getNum
+	 * \fn get_min_max
 	 * \brief returns an interger random number between min and max included.
 	 * \param  min minimum integer to be returned
 	 * \param  max maximum integer to be returned
 	 * \return     random integer 
 	 */
-	inline int getNum(int min, int max) {
+	inline int get_min_max(int min, int max) {
 		int n = rng() % (max - min + 1) + min;
 		return n;
 	}

@@ -1,4 +1,7 @@
 #pragma once
+#include <cinttypes>
+
+typedef uint64_t numtyp;
 
 typedef unsigned int u_int;
 typedef unsigned long u_long;
@@ -8,7 +11,7 @@ typedef unsigned short u_short;
 
 #define SIZEX 8
 #define SIZEY 8
-#define TIME_SEARCH 10
+#define TIME_SEARCH 2
 
 //#define LIMIT_MEMORY		// 2 Go max
 //#define HARD_LIMIT_MEMORY	// 2048 nodes max

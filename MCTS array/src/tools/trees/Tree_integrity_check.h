@@ -1,7 +1,6 @@
 #pragma once
 #include "../typedef.h"
 #include <vector>
-#include "../Timer.h"
 #include "Tree_index.h"
 #include "../Count.h"
 #include <iostream>
@@ -18,7 +17,7 @@ public:
 		for (u_long i = 0; i < static_cast<u_long>(_tree.size()); ++i)
 		{
 			address = ptr->getAddress();
-			if (address == nullptr && ptr->hasParent())
+			if (address == nullptr && ptr->has_parent())
 			{
 				std::cout << "tree integrity failed with " << i << " : null address" << std::endl;
 			}
@@ -46,7 +45,7 @@ public:
 		{
 			if (*address_to != nullptr)
 			{
-				if (!(*address_to)->hasParent())
+				if (!(*address_to)->has_parent())
 				{
 					std::cout << "index integrity failed with " << i << " : pointing to empty node" << std::endl;
 				}

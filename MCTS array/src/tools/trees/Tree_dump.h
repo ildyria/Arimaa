@@ -3,7 +3,6 @@
 #include <vector>
 #include <iostream>
 //#include <fstream>
-using std::cout;
 
 template<class N> class Tree_dump
 {
@@ -15,12 +14,12 @@ public:
 //		myfile.open(file_name, std::ios::out | std::ios::trunc);
 
 		N* ptr = &T[0];
-		auto terminal = ptr->getTerminal();
+		auto terminal = ptr->get_terminal();
 		u_long modulo = (static_cast<u_long>(1) << 6) - 1;
-//		for (u_long i = 0; (i < static_cast<u_long>(T.size()) && ptr->hasParent()); ++i)
+//		for (u_long i = 0; (i < static_cast<u_long>(T.size()) && ptr->has_parent()); ++i)
 		for (u_long i = 0; (i < static_cast<u_long>(T.size())); ++i)
 		{
-			terminal = ptr->getTerminal();
+			terminal = ptr->get_terminal();
 			if ((i & modulo) == 0) cout << std::endl;
 			if (ptr->getAddress() == nullptr)
 			{
@@ -46,11 +45,11 @@ public:
 /*
 			myfile << ptr;
 			myfile << " : " << terminal;
-			myfile << ", " << ptr->getProba();
-			if (ptr->getTerminal() == 0)
+			myfile << ", " << ptr->get_proba();
+			if (ptr->get_terminal() == 0)
 			{
-				myfile << ", " << ptr->getChildren().first;
-				myfile << " (" << ptr->getChildren().second << ")";
+				myfile << ", " << ptr->get_children().first;
+				myfile << " (" << ptr->get_children().second << ")";
 			}
 			myfile << "\n";
 */

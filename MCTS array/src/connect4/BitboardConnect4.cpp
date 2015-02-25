@@ -14,11 +14,11 @@ BitboardConnect4::~BitboardConnect4()
 	Count::I()->rmBitBoardsC4();
 }
 
-list<int> BitboardConnect4::getEmpty(int n) const
+list<int> BitboardConnect4::get_empty(int n) const
 {
 	list<int> rtm;
 	int i = SIZEX;
-	unsigned long long board = (getBoard(0) | getBoard(1)) >> ((SIZEY - 1) * SIZEX);
+	unsigned long long board = (get_board(0) | get_board(1)) >> ((SIZEY - 1) * SIZEX);
 	while (board != 0 && i > 0)
 	{
 		if ((board & 1) == 0)

@@ -42,12 +42,12 @@ public:
 	}
 
 	/**
-	 * \fn getEmpty(int n)
+	 * \fn get_empty(int n)
 	 * \brief return the list of the empty positions of the boards, in this cases the columns that are not full.
 	 * 
 	 * \param n useless parameter but required by the parent class.
 	 * \return list of the number of the available positions.
 	 */
-	virtual std::list<int> getEmpty(int n) const override;
+	virtual std::list<int> get_empty(int n) const override;
 };
 

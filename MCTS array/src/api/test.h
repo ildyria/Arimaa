@@ -12,25 +12,25 @@ inline void test_api()
 
 	ai->init(game);
 
-	g->diplayBoard(game->getBitboard());
+	g->diplay_board(game->getBitboard());
 
 	game->makeMove(4);
 
-	g->diplayBoard(game->getBitboard());
+	g->diplay_board(game->getBitboard());
 
 	cout << game->makeMove(ai->makeMove(true)) << endl;
-	g->diplayBoard(game->getBitboard());
-
-	game->makeMove(4);
-	cout << game->makeMove(ai->makeMove(true)) << endl;
-	g->diplayBoard(game->getBitboard());
+	g->diplay_board(game->getBitboard());
 
 	game->makeMove(4);
 	cout << game->makeMove(ai->makeMove(true)) << endl;
-	g->diplayBoard(game->getBitboard());
+	g->diplay_board(game->getBitboard());
 
 	game->makeMove(4);
-	g->diplayBoard(game->getBitboard());
+	cout << game->makeMove(ai->makeMove(true)) << endl;
+	g->diplay_board(game->getBitboard());
+
+	game->makeMove(4);
+	g->diplay_board(game->getBitboard());
 
 	cout << game->canMakeMove(4) << endl;
 	cout << game->colHeight(4) << endl;
@@ -44,7 +44,7 @@ inline void test_api()
 	g = game->getGame();
 
 	ai->init(game);
-	g->diplayBoard(game->getBitboard());
+	g->diplay_board(game->getBitboard());
 	game->makeMove(4);
 	game->makeMove(3);
 
@@ -74,7 +74,7 @@ inline void test_api()
 
 	game->makeMove(1);
 
-	g->diplayBoard(game->getBitboard());
+	g->diplay_board(game->getBitboard());
 	cout << game->getWinner() << endl;
 	cout << "test 2 passed" << endl;
 	auto wl = game->getWinningLine();

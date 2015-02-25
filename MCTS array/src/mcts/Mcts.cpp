@@ -18,12 +18,12 @@ namespace mcts{
 				_param(args),
 				_next(nullptr),
 				_state(Bb),
-				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->getDepth() + 1))),
-				_tree(std::vector<Node>(args->getMaxNumberOfLeaves()))
+				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->get_max_depth() + 1))),
+				_tree(std::vector<Node>(args->get_max_max_number_of_leaves()))
 #if defined(DOUBLE_TREE)
-				, _buff(std::vector<Node>(args->getMaxNumberOfLeaves()))
+				, _buff(std::vector<Node>(args->get_max_max_number_of_leaves()))
 #else
-				, _index(Tree_index<Node>(args->getMaxNumberOfLeaves()))
+				, _index(Tree_index<Node>(args->get_max_max_number_of_leaves()))
 #endif
 	{
 		cout << "number of thread : " << omp_get_num_procs() << endl;
@@ -34,9 +34,9 @@ namespace mcts{
 		// }
 		omp_init_lock(&_lockNode);
 		omp_init_lock(&_lockNext);
-		Tree<Node>::cleanTree(_tree);
+		Tree<Node>::clean_tree(_tree);
 #if defined(DOUBLE_TREE)
-		Tree<Node>::cleanTree(_buff);
+		Tree<Node>::clean_tree(_buff);
 #endif
 		Count::I()->clear();
 		Move* random = new Move();
@@ -46,18 +46,18 @@ namespace mcts{
 		Node** address = _index.get();
 		_tree[0].set(*random, address);
 #endif 
-		_tree[0].hasParent();
+		_tree[0].has_parent();
 		_next = (&_tree[0]) + 1;
 	}
 
-	Bitboard* Mcts::movePlayed(Move& move)
+	Bitboard* Mcts::move_played(Move& move)
 	{
-		UpdateNode(&_tree[0], _state);
-		auto ListOfNodes = _tree[0].getChildren();
+		update_node(&_tree[0], _state);
+		auto ListOfNodes = _tree[0].get_children();
 		auto iter = ListOfNodes.first;
 		for (u_int i = 0; i < ListOfNodes.second; ++i)
 		{
-			if (iter->getMove() == move) // we got the move played !
+			if (iter->get_move() == move) // we got the move played !
 			{
 				break;
 			}
@@ -73,26 +73,26 @@ namespace mcts{
 		return _state;
 	}
 
-	u_int Mcts::UpdateNode(Node* node, Bitboard* Bb)
+	u_int Mcts::update_node(Node* node, Bitboard* Bb)
 	{
-		u_int nodet = node->getTerminal();
+		u_int nodet = node->get_terminal();
 
 		if (nodet == 64) { // first time we are here, check if terminate
 			nodet = _game->end(Bb);
 			if ((nodet & 7) > 0)
 			{
-				node->setTerminal(nodet);  // terminal node : winner or tie
+				node->set_terminal(nodet);  // terminal node : winner or tie
 			}
 			else
 			{
-				node->setTerminal(32);	// non terminal but not explored YET
+				node->set_terminal(32);	// non terminal but not explored YET
 				nodet = 32;
 			}
 		}
 		return nodet;
 	}
 
-	void Mcts::Expand(Node* node, Bitboard* Bb, u_int& nodet) {
+	void Mcts::expand_node(Node* node, Bitboard* Bb, u_int& nodet) {
 		if (nodet != 32)
 		{
 			return;
@@ -104,7 +104,7 @@ namespace mcts{
 //		{
 //			#pragma omp critical
 			omp_set_lock(&_lockNode);
-			locked = node->getLock();
+			locked = node->get_lock();
 			omp_unset_lock(&_lockNode);
 //		}
 
@@ -117,10 +117,10 @@ namespace mcts{
 		list<Move> ListOfMoves;
 		list<Move>::iterator iter;
 
-		ListOfMoves = _game->listPossibleMoves(Bb);
-		if (&_tree[0] + _param->getMaxNumberOfLeaves() < _next + ListOfMoves.size())
+		ListOfMoves = _game->list_possible_moves(Bb);
+		if (&_tree[0] + _param->get_max_max_number_of_leaves() < _next + ListOfMoves.size())
 		{
-			node->setTerminal(16);	// non terminal but not explored YET
+			node->set_terminal(16);	// non terminal but not explored YET
 			nodet = 16;
 			return; // this is extremly dangerous : the node stays locked ! We need to unlock it when we will prune the tree
 		}
@@ -143,29 +143,29 @@ namespace mcts{
 			buff = _index.get();
 			tmp2->set(*iter, buff);
 #endif
-			tmp2->play(node->getPlayer());
+			tmp2->play(node->get_player());
 		}
-		node->setChildrens(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
+		node->set_children(tmp, static_cast<u_int>(ListOfMoves.size())); // update at the end, concurency race...
 		nodet = 0;
-		node->releaseLock();
+		node->release_lock();
 
 		return;
 	}
 
-	void Mcts::playRandom(Node* node, Bitboard* Bb)
+	void Mcts::start_ramdom_playouts(Node* node, Bitboard* Bb)
 	{
 		u_int nodet;
 
-		for (u_int i = 0; i < _param->getSimulationPerLeaves(); ++i)
+		for (u_int i = 0; i < _param->get_max_num_simulation_per_leaves(); ++i)
 		{
 			Bitboard* Bb2 = Bb->clone();
-			nodet = _game->playRandomMoves(Bb2);
+			nodet = _game->play_random_moves(Bb2);
 			delete Bb2;
-			feedback(nodet);
+			feedback_results(nodet);
 		}
 	}
 
-	void Mcts::feedback(u_int nodet)
+	void Mcts::feedback_results(u_int nodet)
 	{
 		_parents[omp_get_thread_num()].rewind();
 		Node* n = _parents[omp_get_thread_num()].get();
@@ -176,12 +176,12 @@ namespace mcts{
 		}
 	}
 
-	void Mcts::feedbackWinLose()
+	void Mcts::feedback_sure_wins_loss()
 	{
 		_parents[omp_get_thread_num()].rewind();
 
 		Node* n = _parents[omp_get_thread_num()].get(); // take the second
-		n->forceSetUCT(42);
+		n->force_set_UCT(42);
 
 		n = _parents[omp_get_thread_num()].get();
 		bool winloser = true;
@@ -192,23 +192,23 @@ namespace mcts{
 		{
 			if(loser)
 			{
-				n->forceSetUCT(-1);
+				n->force_set_UCT(-1);
 				loser = false;
 			}
 			else
 			{
 				loser = true;
-				ListChilds = n->getChildren();
+				ListChilds = n->get_children();
 				ptr = ListChilds.first;
 				for (u_int i = 0; (i < ListChilds.second && loser); ++i)
 				{
-					if (ptr->getUCT() != -1) loser = false;
+					if (ptr->get_UCT() != -1) loser = false;
 					ptr++;
 				}
 
 				if (loser)
 				{
-					n->forceSetUCT(42);
+					n->force_set_UCT(42);
 				}
 				else
 				{
@@ -224,13 +224,13 @@ namespace mcts{
 		Node* node = &_tree[0];
 		u_int depth = 0;
 		Bitboard* Bb = _state->clone();
-		node->addVirtualLoss(_param->getSimulationPerLeaves());
-		u_int nodet = UpdateNode(node, Bb);
+		node->add_virtual_loss(_param->get_max_num_simulation_per_leaves());
+		u_int nodet = update_node(node, Bb);
 
 		_parents[omp_get_thread_num()].reset();
 		_parents[omp_get_thread_num()].push(&_tree[0]);
 		Move m;
-		while (depth < _param->getDepth() && (nodet == 0 || nodet > 16))
+		while (depth < _param->get_max_depth() && (nodet == 0 || nodet > 16))
 		{
 			/*
 			10000000 : has no parents				: 2^7 = 128
@@ -245,9 +245,9 @@ namespace mcts{
 			*/
 			if (nodet == 32)
 			{
-				if (node->getVisits() > _param->getNumberOfVisitBeforeExploration())
+				if (node->get_visits() > _param->get_number_of_number_of_visit_before_exploration())
 				{
-					Expand(node, Bb, nodet);
+					expand_node(node, Bb, nodet);
 					if (nodet == 16) break;
 				}
 				else
@@ -258,40 +258,40 @@ namespace mcts{
 
 			node = node->select_child_UCT();
 			_parents[omp_get_thread_num()].push(node);
-			node->addVirtualLoss(_param->getSimulationPerLeaves());
-			m = node->getMove();
+			node->add_virtual_loss(_param->get_max_num_simulation_per_leaves());
+			m = node->get_move();
 			_game->play(m, Bb);
-			nodet = UpdateNode(node, Bb);
+			nodet = update_node(node, Bb);
 			++depth;
 		}
 
 		if (nodet == 0 || nodet > 4) // no victory found yet
 		{
-			playRandom(node, Bb);
+			start_ramdom_playouts(node, Bb);
 		}
-//		elseif(nodet < 4 && nodet > 0 && nodet != node->getPlayer()) // losing move !
-		elseif((nodet | node->getPlayer()) == 3) // losing move !
+//		elseif(nodet < 4 && nodet > 0 && nodet != node->get_player()) // losing move !
+		elseif((nodet | node->get_player()) == 3) // losing move !
 		{
-			feedback(nodet);
-			feedbackWinLose();
+			feedback_results(nodet);
+			feedback_sure_wins_loss();
 		}
 		else
 		{
-			feedback(nodet);
+			feedback_results(nodet);
 		}
 		delete Bb;
 	}
 
-	Move Mcts::GetBestMove()
+	Move Mcts::get_best_move()
 	{
 		u_long i = 0;
 		auto start_time = high_resolution_clock::now();
-		auto end_time = start_time + milliseconds(_param->getTimeLimitSimulationPerRoot());
+		auto end_time = start_time + milliseconds(_param->get_time_limit_simulation_per_root());
 #ifdef OPENMP
 		#pragma omp parallel shared(i,end_time)
 		{
 #endif
-		while (high_resolution_clock::now() < end_time && i < _param->getSimulationPerRoot())
+		while (high_resolution_clock::now() < end_time && i < _param->get_max_num_simulation_per_root())
 		{
 			i++;
 			explore();
@@ -300,13 +300,13 @@ namespace mcts{
 	#pragma omp barrier
 	}
 #endif
-		cout << endl << "Searched for " << Count::format(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) << "ms and " << Count::format(i*_param->getSimulationPerLeaves()) << " simulations." << endl;
-		return _tree[0].select_child_WR()->getMove();
+		cout << endl << "Searched for " << Count::format(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) << "ms and " << Count::format(i*_param->get_max_num_simulation_per_leaves()) << " simulations." << endl;
+		return _tree[0].select_child_WR()->get_move();
 	}
 
 	void Mcts::print_tree(u_int depth)
 	{
-		auto d = (depth == 0) ? _param->getDepth() : depth;
+		auto d = (depth == 0) ? _param->get_max_depth() : depth;
 		_tree[0].print_tree(0, d);
 	}
 
@@ -315,15 +315,15 @@ namespace mcts{
 		_tree.clear();
 	}
 
-	void Mcts::get_Number_Leaves()
+	void Mcts::get_number_leaves()
 	{
 		auto num = _next - &_tree[0];
 		Count::I()->saveNbLeaves(static_cast<int>(num));
 //		Count::I()->saveMaxDepth(_tree[0].max_depth());
 	}
 
-	double Mcts::winning_Strategy()
+	double Mcts::winning_chances()
 	{
-		return (_tree[0].getUCT() != 42 && _tree[0].getUCT() != -1) ? _tree[0].getProba() : _tree[0].getUCT();
+		return (_tree[0].get_UCT() != 42 && _tree[0].get_UCT() != -1) ? _tree[0].get_proba() : _tree[0].get_UCT();
 	}
 }

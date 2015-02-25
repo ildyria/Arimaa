@@ -7,9 +7,6 @@
  *
  */
 #pragma once
-#include <stdint.h>
-#include <iostream>     // std::cout
-#include <algorithm>    // std::for_each
 #include <vector>
 #include <list>
 #include "../tools/Count.h"
@@ -23,8 +20,6 @@
  *	short _sizeX  : number of rows of the bitboards;
  *	short _sizeY  : number of lines of the bitboards;
  */
-typedef uint64_t numtyp;
-
 class Bitboard
 {
 
@@ -139,39 +134,39 @@ public:
 	virtual inline void clearBit(int n, int pos) { _boards[n] &= ~(static_cast<numtyp>(1) << (pos)); };
 
 	/**
-	* \fn getBoard
+	* \fn get_board
 	* \brief return the given board
 	*
 	* \param n board to look for
 	* \return board number n
 	*/
-	virtual inline numtyp getBoard(int n) const { return _boards[n]; };
+	virtual inline numtyp get_board(int n) const { return _boards[n]; };
 
 	/**
-	 * \fn getEmpty
+	 * \fn get_empty
 	 * \brief list 0 bits of a given board
 	 * 
 	 * \param n board to look at
 	 * \return list of the empty positions (0 to size² -1)
 	 */
-	virtual std::list<int> getEmpty(int n) const;
+	virtual std::list<int> get_empty(int n) const;
 
 	/**
-	 * \fn getOccupied
+	 * \fn get_occupied
 	 * \brief list 1 bits of a given board
 	 * 
 	 * \param n board to look at
 	 * \return list of the set positions (0 to size² -1)
 	 */
-	virtual std::list<int> getOccupied(int n);
+	virtual std::list<int> get_occupied(int n);
 
 	/**
-	* \fn getPlayer
+	* \fn get_player
 	* \brief return the player to play
 	*
 	* \return player to play (1 or 2)
 	*/
-	virtual inline int getPlayer() const { return static_cast<int>(_toplay); };
+	virtual inline int get_player() const { return static_cast<int>(_toplay); };
 
 	/**
 	* \fn play

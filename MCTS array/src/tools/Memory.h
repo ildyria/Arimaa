@@ -3,7 +3,7 @@
 
 #if defined(_WIN32) || defined(_WIN64)
 	#include <windows.h>
-	#include <psapi.h>
+//	#include <psapi.h>
 	#include <stdio.h>
 	#include <tchar.h>
 	// Specify the width of the field in which to print the numbers. 
@@ -30,7 +30,7 @@ class Memory
 
 public:
 #if defined(_WIN32) || defined(_WIN64)
-	static DWORDLONG getfreememory()
+	static DWORDLONG get_free_memory()
 	{
 		MEMORYSTATUSEX statex;
 
@@ -45,7 +45,7 @@ public:
 	}
 
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-	static unsigned long long getfreememory()
+	static unsigned long long get_free_memory()
 	{
 			// Return the amount of free memory in kbytes.
 			// Returns -1 if something went wrong.

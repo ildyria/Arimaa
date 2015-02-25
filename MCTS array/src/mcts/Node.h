@@ -10,8 +10,6 @@
 #include "../tools/typedef.h"
 #include <iostream>
 #include <algorithm>
-#include <omp.h>
-#include "../interfaces/Bitboard.h"
 #include "../interfaces/Move.h"
 #include "../tools/FastLog.h"
 
@@ -85,6 +83,7 @@ namespace mcts
 	public:
 
 		Node();
+
 		/**
 		 * \fn Node(u_short player)
 		 * \brief create a node given a player
@@ -110,15 +109,15 @@ namespace mcts
 		virtual ~Node();
 
 		/**
-		 * \fn setTerminal(u_int terminal)
+		 * \fn set_terminal(u_int terminal)
 		 * \brief setter for _terminal
 		 *
 		 * \param value of the terminal
 		 */
-		inline void setTerminal(u_int terminal) { _terminal = static_cast<unsigned char>(terminal & 0xFF); };
+		inline void set_terminal(u_int terminal) { _terminal = static_cast<unsigned char>(terminal & 0xFF); };
 
 		/**
-		 * \fn getTerminal()
+		 * \fn get_terminal()
 		 * \brief getter for the _termianl
 		 *
 		 * \return 
@@ -132,34 +131,34 @@ namespace mcts
 		 *		00000001 : player 1 wins				: 2^0 = 1
 		 *		00000000 : non terminal explored		: 0
 		 */
-		inline u_int getTerminal() { return (_terminal & 0xFF); };
+		inline u_int get_terminal() { return (_terminal & 0xFF); };
 
 		/**
-		 * \fn hasParent()
+		 * \fn has_parent()
 		 * \brief quick check if has parents
 		 */
-		inline bool hasParent() { return _terminal != static_cast<unsigned char>(128); };
+		inline bool has_parent() { return _terminal != static_cast<unsigned char>(128); };
 
 		/**
-		 * \fn setHasParent()
+		 * \fn set_has_parent()
 		 * \brief setter for parents => not explored
 		 */
-		inline void setHasParent() { _terminal >>= 1; };
+		inline void set_has_parent() { _terminal >>= 1; };
 
 		/**
-		 * \fn clearParent()
+		 * \fn clear_parent()
 		 * \brief setter for no parents
 		 */
-		inline void clearParent()
+		inline void clear_parent()
 		{
 			_terminal = static_cast<unsigned char>(128);
 		};
 
 		/**
-		* \fn clearParent()
+		* \fn clear_parent()
 		* \brief setter for no parents
 		*/
-		inline void unlockTerminal()
+		inline void unlock_terminal()
 		{
 			if (_terminal == static_cast<unsigned char>(16)) 
 				_terminal = static_cast<unsigned char>(32);
@@ -167,26 +166,26 @@ namespace mcts
 
 #if !defined(DOUBLE_TREE)
 		/**
-		* \fn setNewAddress(Node** n)
+		* \fn set_new_address(Node** n)
 		* \brief setter for parent
 		*/
-		inline void setNewAddress(Node* n) { *_self = n; };
+		inline void set_new_address(Node* n) { *_self = n; };
 
 		/**
-		* \fn removeFromIndex()
+		* \fn remove_from_index()
 		* \brief setter for parent
 		*/
-		inline void removeFromIndex()
+		inline void remove_from_index()
 		{
 			*_self = nullptr;
 			_self = nullptr;
 		};
 	
 		/**
-		* \fn cleanAddress()
+		* \fn clean_address()
 		* \brief setter for parent
 		*/
-		inline void cleanAddress()
+		inline void clean_address()
 		{
 			_self = nullptr;
 		};
@@ -199,29 +198,29 @@ namespace mcts
 #endif
 
 		/**
-		 * \fn forceSetUCT
+		 * \fn force_set_UCT
 		 * \brief setter for _uct(int uct)
 		 * \details it allows us to force a value to uct : 42 or -1 in order to make sure that some moves must or mustn't be played
 		 *
 		 * \param value of the uct
 		 */
-		inline void forceSetUCT(int uct) { if (_uct == -1) return; _uct = uct; };
+		inline void force_set_UCT(int uct) { if (_uct == -1) return; _uct = uct; };
 
 		/**
-		 * \fn getUCT()
+		 * \fn get_UCT()
 		 * \brief getter for _uct
 		 *
 		 * \return value of the uct
 		 */
-		inline double getUCT() { return _uct; };
+		inline double get_UCT() { return _uct; };
 
 		/**
-		 * \fn getPlayer()
+		 * \fn get_player()
 		 * \brief getter for the player to move
 		 *
 		 * \return the player with the move
 	 	 */
-		inline u_short getPlayer() { return _toplay; };
+		inline u_short get_player() { return _toplay; };
 
 		/**
 		 * \fn set(Move& move)
@@ -236,57 +235,50 @@ namespace mcts
 #endif
 
 		/**
-		 * \fn getMove()
+		 * \fn get_move()
 		 * \brief getter for the move
 		 *
 		 * \return the last move played to access the current node
 		 */
-		inline Move getMove() { return _move; };
+		inline Move get_move() { return _move; };
 
 		/**
-		 * \fn setChildrens(Node* c, u_int n)
+		 * \fn set_children(Node* c, u_int n)
 		 * \brief setter for the children
 		 *
 		 * \param c address of the first child
 		 * \param n number of children
 		 */
 #if defined(DOUBLE_TREE)
-		inline void setChildrens(Node* c, u_int n) { _firstchild = c; _nbchildren = n; _terminal = static_cast<unsigned char>(0); };
+		inline void set_children(Node* c, u_int n) { _firstchild = c; _nbchildren = n; _terminal = static_cast<unsigned char>(0); };
 #else
-		inline void setChildrens(Node* c, u_int n) { _firstchild = c->_self; _nbchildren = n; _terminal = static_cast<unsigned char>(0); };
+		inline void set_children(Node* c, u_int n) { _firstchild = c->_self; _nbchildren = n; _terminal = static_cast<unsigned char>(0); };
 #endif
 
-		/**
-		 * \fn setChildrens(Node* c, u_int n)
-		 * \brief setter for the children
-		 *
-		 * \param c address of the first child
-		 * \param n number of children
-		 */
 #if defined(DOUBLE_TREE)
-		inline void updateFirstChild(Node* c) { _firstchild = c; };
+		inline void update_first_child(Node* c) { _firstchild = c; };
 #endif
 
 		/**
-		 * \fn getChildren()
+		 * \fn get_children()
 		 * \brief getter for the children
 		 *
 		 * \return return the first child and number of siblings
 		 */
 #if defined(DOUBLE_TREE)
-		inline std::pair<Node*, u_int> getChildren() { return std::pair<Node*, u_int>(_firstchild, _nbchildren); };
+		inline std::pair<Node*, u_int> get_children() { return std::pair<Node*, u_int>(_firstchild, _nbchildren); };
 #else
-		inline std::pair<Node*, u_int> getChildren() { return std::pair<Node*, u_int>(*_firstchild, _nbchildren); };
+		inline std::pair<Node*, u_int> get_children() { return std::pair<Node*, u_int>(*_firstchild, _nbchildren); };
 #endif
 
 		/**
-		 * \fn getProba()
+		 * \fn get_proba()
 		 * \brief getter for the winrate
 		 * \details using a lookup table remove a branch : gain in term of cycle and prediction during the execution
 		 *
 		 * \return return the winrate of a node
 		 */
-		inline double getProba()
+		inline double get_proba()
 		{
 			if (!(_uct == -1 || _uct == 42))
 			{
@@ -297,18 +289,18 @@ namespace mcts
 		};
 
 		/**
-		 * \fn addVirtualLoss(int i)
+		 * \fn add_virtual_loss(int i)
 		 * \brief add virtual losses
 		 */
-		inline void addVirtualLoss(u_int i) { _visits += (i << 1); };
+		inline void add_virtual_loss(u_int i) { _visits += (i << 1); };
 
 		/**
-		 * \fn getVisits()
+		 * \fn get_visits()
 		 * \brief getter for the number of visits
 		 *
 		 * \return return the number of visits
 		 */
-		inline u_long getVisits() { return _visits; };
+		inline u_long get_visits() { return _visits; };
 
 		/**
 		 * \fn compare()
@@ -318,17 +310,17 @@ namespace mcts
 		 * \param Node b
 		 * \return true if a's uct is greater than b's uct value.
 		 */
-		inline static bool compareUCT(Node* a, Node* b) { return a->_uct < b->_uct; };
+		inline static bool compare_UCT(Node* a, Node* b) { return a->_uct < b->_uct; };
 
 		/**
-		* \fn compareWR()
+		* \fn compare_WR()
 		* \brief compare Node* a and Node *b,
 		*
 		* \param Node a
 		* \param Node b
 		* \return true if a's WR is greater than b's WR value.
 		*/
-		inline static bool compareWR(Node* a, Node* b) { return a->getProba() < b->getProba(); };
+		inline static bool compare_WR(Node* a, Node* b) { return a->get_proba() < b->get_proba(); };
 
 		/**
 		 * \fn select_child_UCT()
@@ -404,7 +396,7 @@ namespace mcts
 
 
 		/**
-		 * \fn getLock()
+		 * \fn get_lock()
 		 * \brief try to capture the lock
 		 * \details function intended to be used in a critical section.
 		 * if the lock is set (returns true), it means that a thread is already working on the node
@@ -412,7 +404,7 @@ namespace mcts
 		 * 
 		 * \return the previous value of the lock 
 		 */
-		inline bool getLock()
+		inline bool get_lock()
 		{
 			// printf("%p locked.\n",(void*)this); // trop lent !!!!
 			bool t = _lock;
@@ -421,10 +413,10 @@ namespace mcts
 		}
 
 		/**
-		 * \fn releaseLock()
+		 * \fn release_lock()
 		 * \brief release the lock
 		 */
-		inline void releaseLock()
+		inline void release_lock()
 		{
 			// printf("%p unlocked.\n",(void*)this); // trop lent !!!!
 			_lock = false;

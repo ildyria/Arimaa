@@ -41,28 +41,28 @@ public:
 	virtual void play(Move& position, Bitboard* board) = 0;
 
 	/**
-	* \fn diplayBoard(const Bitboard* board)
+	* \fn diplay_board(const Bitboard* board)
 	* \brief display the board of the given Bitboard
 	*
 	* \param board : Bitboard to be displayed
 	*/
-	virtual void diplayBoard(const Bitboard* board) = 0;
+	virtual void diplay_board(const Bitboard* board) = 0;
 
 	/**
-	* \fn listPossibleMoves(Bitboard* board)
+	* \fn list_possible_moves(Bitboard* board)
 	* \brief return a list of all possible moves given a board
 	*
 	* \param board Bitboard to be looked at
 	* \return the list of the possible moves
 	*/
-	virtual std::list<Move> listPossibleMoves(Bitboard* board) = 0;
+	virtual std::list<Move> list_possible_moves(Bitboard* board) = 0;
 
 	/**
-	* \fn playRandomMoves(Bitboard* board)
+	* \fn play_random_moves(Bitboard* board)
 	* \brief play random moves until the game reach an end and return the int corresponding to the winner (1 2 or 3)
 	*
 	* \param board Bitboard to be looked at
 	* \return winner of the current game
 	*/
-	virtual int playRandomMoves(Bitboard* board) = 0;
+	virtual int play_random_moves(Bitboard* board) = 0;
 };

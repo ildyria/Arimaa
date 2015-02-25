@@ -54,17 +54,17 @@ int main(int argc, char const *argv[])
 					Bb,	// board to start with
 					args);
 
-	Memory::getfreememory();
+	Memory::get_free_memory();
 
 	int IA = 2;
 	while (result == 0)
 	{
-		mcts.UpdateRoot();
-		game->diplayBoard(Bb);
+		mcts.update_root();
+		game->diplay_board(Bb);
 
-		if (Bb->getPlayer() != IA)
+		if (Bb->get_player() != IA)
 		{
-			Listtoprint = game->listPossibleMoves(Bb);
+			Listtoprint = game->list_possible_moves(Bb);
 			cout << endl << "possible moves : ";
 			for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
 				cout << *iter << " ";
@@ -95,30 +95,30 @@ int main(int argc, char const *argv[])
 			}
 		}
 
-		if (Bb->getPlayer() == IA)
+		if (Bb->get_player() == IA)
 		{
 			cout << endl << "AI turn... please wait." << endl;
-			move = mcts.GetBestMove();
+			move = mcts.get_best_move();
 #ifdef DISPLAY_TREE
 			mcts.print_tree(3);
 #endif // DISPLAY_TREE
-			mcts.get_Number_Leaves();
+			mcts.get_number_leaves();
 			cout << endl << Count::I();
 			cout << endl << "chosen move : " << move << endl;
 		}
-		Bb = static_cast<BitboardConnect4*>(mcts.movePlayed(move));
+		Bb = static_cast<BitboardConnect4*>(mcts.move_played(move));
 
-		if (mcts.winning_Strategy() == 42)
+		if (mcts.winning_chances() == 42)
 		{
 			cout << "You don't know it yet, but you lost ! =D" << endl;
 		}
-		mcts.get_Number_Leaves();
+		mcts.get_number_leaves();
 		cout << endl << Count::I();
 
 		result = game->end(Bb);
 	}
 	cout << endl;
-	game->diplayBoard(Bb);
+	game->diplay_board(Bb);
 
 	if (result == 1)
 	{

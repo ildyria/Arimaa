@@ -62,9 +62,9 @@ namespace mcts {
 #if defined(LIMIT_MEMORY)
 			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
 #elif defined(_WIN64)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (DIVIDE));
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::get_free_memory() * _percentRAM / (DIVIDE));
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
-			_maxNumberOfLeaves = static_cast<u_long>(Memory::getfreememory() * _percentRAM / (DIVIDE));
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::get_free_memory() * _percentRAM / (DIVIDE));
 #else
 			std::cout << "Memory limited..." << std::endl;
 			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
@@ -78,76 +78,76 @@ namespace mcts {
 		};
 
 		/**
-		 * \fn getDepth() 
+		 * \fn get_max_depth() 
 		 * \brief getter for _depth
 		 * 
 		 * \return maximum depth
 		 */
-		inline u_int getDepth()
+		inline u_int get_max_depth()
 		{
 			return _depth;
 		};
 
 		/**
-		 * \fn setTimeLimitSimulationPerRoot(u_int t = 2000) 
+		 * \fn set_time_limit_simulation_per_root(u_int t = 2000) 
 		 * \brief allow to change the time limit for the simulations between executions
 		 */
-		inline void setTimeLimitSimulationPerRoot(u_int t = 2000)
+		inline void set_time_limit_simulation_per_root(u_int t = 2000)
 		{
 			_timeLimitsimulationPerRoot = t;
 		};
 
 		/**
-		 * \fn getTimeLimitSimulationPerRoot() 
+		 * \fn get_time_limit_simulation_per_root() 
 		 * \brief getter for _timeLimitsimulationPerRoot
 		 * 
 		 * \return maximum time limite to run the simulations
 		 */
-		inline u_int getTimeLimitSimulationPerRoot()
+		inline u_int get_time_limit_simulation_per_root()
 		{
 			return _timeLimitsimulationPerRoot;
 		};
 
 		/**
-		 * \fn getSimulationPerRoot() 
+		 * \fn get_max_num_simulation_per_root() 
 		 * \brief getter for _simulationPerRoot
 		 * 
 		 * \return maximum number of simulations to run at the root
 		 */
-		inline u_long getSimulationPerRoot()
+		inline u_long get_max_num_simulation_per_root()
 		{
 			return _simulationPerRoot;
 		};
 
 		/**
-		 * \fn getSimulationPerLeaves() 
+		 * \fn get_max_num_simulation_per_leaves() 
 		 * \brief getter for _simulationPerLeaves
 		 * 
 		 * \return maximum number of simulations to run at the leaves
 		 */
-		inline u_int getSimulationPerLeaves()
+		inline u_int get_max_num_simulation_per_leaves()
 		{
 			return _simulationPerLeaves;
 		};
 
 		/**
-		 * \fn getNumberOfVisitBeforeExploration() 
+		 * \fn get_number_of_number_of_visit_before_exploration() 
 		 * \brief getter for _numberOfVisitBeforeExploration
 		 * 
 		 * \return number of simulations to run before exploring a node
 		 */
-		inline u_int getNumberOfVisitBeforeExploration()
+		inline u_int get_number_of_number_of_visit_before_exploration()
 		{
 			return _numberOfVisitBeforeExploration;
 		};
 
 		/**
-		 * \fn getMaxNumberOfLeaves() 
+		 * \fn get_max_max_number_of_leaves() 
 		 * \brief getter for _maxNumberOfLeaves
 		 * 
 		 * \return maximum number of leaves in the tree
 		 */
-		inline u_long getMaxNumberOfLeaves()
+		inline u_long get_max_max_number_of_leaves()
 		{
 			return _maxNumberOfLeaves;
 		}

@@ -37,7 +37,7 @@ namespace api
 			throw "unexpected size...";
 		}
 
-		board = _board->getBoard(0) | _board->getBoard(1);
+		board = _board->get_board(0) | _board->get_board(1);
 		board >>= (sizeX - col); // get the column
 		while ((board & 1) == 1)
 		{
@@ -49,7 +49,7 @@ namespace api
 
 	int Game::activePlayer()
 	{
-		return _board->getPlayer();
+		return _board->get_player();
 	}
 
 

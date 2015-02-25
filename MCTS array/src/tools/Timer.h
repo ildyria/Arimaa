@@ -1,6 +1,4 @@
 #pragma once
-#include "typedef.h"
-#include <omp.h>
 #include <chrono>
 
 using std::chrono::time_point;

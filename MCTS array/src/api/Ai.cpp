@@ -1,11 +1,7 @@
 #include "Ai.h"
 #include "../tools/Count.h"
 
-#ifdef _WIN64
 #define CLOCK 1000
-#else
-#define CLOCK 10000
-#endif
 
 using namespace mcts;
 
@@ -16,12 +12,12 @@ namespace api {
 
 	void Ai::setThinkingTime(int t)
 	{
-		_param->setTimeLimitSimulationPerRoot(t * CLOCK);
+		_param->set_time_limit_simulation_per_root(t * CLOCK);
 	}
 
 	double Ai::getThinkingTime()
 	{
-		return _param->getTimeLimitSimulationPerRoot() / CLOCK;
+		return _param->get_time_limit_simulation_per_root() / CLOCK;
 	}
 
 	void Ai::init(Game* g)
@@ -39,18 +35,18 @@ namespace api {
 	{
 		if(player){
 			auto m = Move(_game->getLastMove());
-			_ai->UpdateRoot();
-			_ai->movePlayed(m);
+			_ai->update_root();
+			_ai->move_played(m);
 		}
-		auto m = _ai->GetBestMove();
+		auto m = _ai->get_best_move();
 		_ai->print_tree(2);
-		_ai->movePlayed(m);
+		_ai->move_played(m);
 		Count::I()->clear();
-		return static_cast<int>(m.getMove());
+		return static_cast<int>(m.get_move());
 	}
 
 	double Ai::estimateWinChances()
 	{
-		return _ai->winning_Strategy();
+		return _ai->winning_chances();
 	}
 }

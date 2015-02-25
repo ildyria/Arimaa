@@ -3,7 +3,6 @@
 using std::cout;
 using std::endl;
 using std::string;
-using std::list;
 
 
 namespace mcts {
@@ -35,7 +34,7 @@ namespace mcts {
 #endif
 	{
 		_lock = false;
-		setHasParent();
+		set_has_parent();
 #if !defined(DOUBLE_TREE)
 		_self = self;
 		*self = this;
@@ -47,9 +46,8 @@ namespace mcts {
 	void Node::unset()
 	{
 		_lock = false;
-		clearParent();
+		clear_parent();
 #if !defined(DOUBLE_TREE)
-//		*self = nullptr;
 		_self = nullptr;
 #endif
 		_visits = 0;
@@ -74,10 +72,10 @@ namespace mcts {
 		for (u_int i = 0; i < _nbchildren; ++i)
 		{
 			itL->UCT(visit);
-			if (compareUCT(max, itL))
+			if (compare_UCT(max, itL))
 			{
 				max = itL;
-				if (max->getUCT() == 42) return max; // quicker get out because there is nothing better to be played (winning move)
+				if (max->get_UCT() == 42) return max; // quicker get out because there is nothing better to be played (winning move)
 			}
 			itL++;
 		}
@@ -95,10 +93,10 @@ namespace mcts {
 #endif
 		for (u_int i = 0; i < _nbchildren; ++i)
 		{
-			if (compareWR(max, itL))
+			if (compare_WR(max, itL))
 			{
 				max = itL;
-				if (max->getProba() == 2) return max; // quicker get out because there is nothing better to be played (winning move)
+				if (max->get_proba() == 2) return max; // quicker get out because there is nothing better to be played (winning move)
 			}
 			itL++;
 		}
@@ -121,7 +119,7 @@ namespace mcts {
 			cout << endl << tabs << "-> " ;
 			cout << _move;
 			cout << " (" << (_terminal & 255);
-			cout << ", " << _visits/2 << " (" << round(getProba()*100) << "%)";
+			cout << ", " << _visits/2 << " (" << round(get_proba()*100) << "%)";
 			cout << ", " << _uct << ")";
 
 #if defined(DOUBLE_TREE)
@@ -140,7 +138,11 @@ namespace mcts {
 	u_long Node::count()
 	{
 		if (_terminal != 0) return 1;
+#if defined(DOUBLE_TREE)
+		auto itL = _firstchild;
+#else
 		auto itL = *_firstchild;
+#endif
 		auto val = 0;
 		for (u_int i = 0; i < _nbchildren; ++i)
 		{
