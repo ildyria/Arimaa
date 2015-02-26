@@ -9,7 +9,7 @@
 	#include "api/test.h"
 	using namespace api;
 #else
-//	#define DISPLAY_TREE
+	#define DISPLAY_TREE
 	#include "./tools/Memory.h"
 
 	#include "./tools/ChillPill.h"
@@ -107,6 +107,10 @@ int main(int argc, char const *argv[])
 			cout << endl << "chosen move : " << move << endl;
 		}
 		Bb = static_cast<BitboardConnect4*>(mcts.move_played(move));
+
+#ifdef DISPLAY_TREE
+		mcts.print_tree(3);
+#endif // DISPLAY_TREE
 
 		if (mcts.winning_chances() == 42)
 		{

@@ -119,18 +119,19 @@ namespace mcts {
 			cout << endl << tabs << "-> " ;
 			cout << _move;
 			cout << " (" << (_terminal & 255);
-			cout << ", " << _visits/2 << " (" << round(get_proba()*100) << "%)";
+			cout << ", " << _visits << " (" << round(get_proba()*100) << "%)";
 			cout << ", " << _uct << ")";
-
+			if (_terminal == 0){
 #if defined(DOUBLE_TREE)
-			Node* itL = _firstchild;
+				Node* itL = _firstchild;
 #else
-			Node* itL = *_firstchild;
+				Node* itL = *_firstchild;
 #endif
-			for (u_int i = 0; i < _nbchildren; ++i)
-			{
-				itL->print_tree(numtab + 1, depth - 1);
-				itL++;
+				for (u_int i = 0; i < _nbchildren; ++i)
+				{
+					itL->print_tree(numtab + 1, depth - 1);
+					itL++;
+				}
 			}
 		}
 	}

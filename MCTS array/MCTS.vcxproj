@@ -280,6 +280,7 @@
   <ItemGroup>
     <ClCompile Include="src\api\Ai.cpp" />
     <ClCompile Include="src\api\Game.cpp" />
+    <ClCompile Include="src\arimaa_simple\Arimaa.cpp" />
     <ClCompile Include="src\connect4\BitboardConnect4.cpp" />
     <ClCompile Include="src\connect4\Connect4.cpp" />
     <ClCompile Include="src\interfaces\Bitboard.cpp" />
@@ -294,6 +295,7 @@
     <ClInclude Include="src\api\Ai.h" />
     <ClInclude Include="src\api\Game.h" />
     <ClInclude Include="src\api\test.h" />
+    <ClInclude Include="src\arimaa_simple\Arimaa.h" />
     <ClInclude Include="src\connect4\BitboardConnect4.h" />
     <ClInclude Include="src\connect4\Connect4.h" />
     <ClInclude Include="src\interfaces\Bitboard.h" />

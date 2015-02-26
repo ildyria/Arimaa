@@ -22,3 +22,6 @@ typedef unsigned short u_short;
 #define OPENMP				// enable multi threading
 
 //#define DOUBLE_TREE			// double tree strategy : safer but less nodes
+#define PRUNE_NUMBER			600
+
+#define SAFE_TREE

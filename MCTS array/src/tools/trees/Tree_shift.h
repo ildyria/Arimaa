@@ -48,6 +48,23 @@ template<class N> class Tree
 					}
 				}
 			}
+#ifdef PRUNE_NUMBER
+			else
+			{
+				if (ptr->get_terminal() == 0 && ptr->get_visits() < PRUNE_NUMBER)
+				{
+					ListOfNodes = ptr->get_children();
+					ptTemp = ListOfNodes.first;
+					for (u_int j = 0; j < ListOfNodes.second; ++j)
+					{
+						ptTemp->remove_from_index();
+						numberOfTrashes++;
+						++ptTemp;
+					}
+					ptr->set_terminal(32);
+				}
+			}
+#endif
 			++ptr;
 		}
 		T[0] = *NewRoot;
@@ -108,7 +125,7 @@ template<class N> class Tree
 					to->unset();
 				}
 			}
-			to->release_lock(); // just to be sure
+			to->release_lock();
 			to->unlock_terminal();
 			++to;
 		}
