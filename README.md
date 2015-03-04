@@ -1,21 +1,20 @@
-﻿#Project Arimaa – CR18 : Wednesday, February, 25th
-Presents : Gabriel, Benoît, with Christian Raymond and Nikos Parlavantzas
+﻿#Project Arimaa – CR19 : Wednesday, March, 4th
+Presents : Gabriel, Benoît, Prateek, with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
 - MCTS : new issues / improvements (*Benoît*)
 - MPI and ØMQ tests (*Gabriel*)
 
 ##MCTS
-- Single array with index : +50% nodes, +50% time for pruning
+- Implementation of simple version of Arimaa has started
 
 ##Parallelization
-- Have the UCT function for the workers build fewer deeper branches
-- Collection of result : proceed by voting ?
-- Compare work distribution with Pachi
+- Difficulties connecting different machines with MPI and ØMQ
+- MPI needs a machine file
+- Tests for distribution can be done on one machine for now
 
-##Next meeting : 03/04
+##Next meeting : 10/04
 Tasks :
 - Benoît :
-  * Keep improving MCTS
-  * Implement MCTS on a simpler version of Arimaa (6x6, 3 types of pawns)
+  * Keep Implementing MCTS on a simpler version of Arimaa (6x6, 3 types of pawns)
 - Gabriel :
   * Keep testing MPI / ØMQ
