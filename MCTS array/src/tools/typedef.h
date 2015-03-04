@@ -9,9 +9,9 @@ typedef unsigned short u_short;
 
 #define elseif else if
 
-#define SIZEX 8
-#define SIZEY 8
-#define TIME_SEARCH 2
+#define SIZEX 7
+#define SIZEY 6
+#define TIME_SEARCH 10
 
 //#define LIMIT_MEMORY		// 2 Go max
 //#define HARD_LIMIT_MEMORY	// 2048 nodes max
@@ -22,6 +22,6 @@ typedef unsigned short u_short;
 #define OPENMP				// enable multi threading
 
 //#define DOUBLE_TREE			// double tree strategy : safer but less nodes
-#define PRUNE_NUMBER			600
+#define PRUNE_NUMBER			500
 
 #define SAFE_TREE
