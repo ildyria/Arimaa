@@ -10,8 +10,8 @@
 #include <string>
 #include <iostream>
 #include <stdint.h>
+#include "../tools/typedef.h"
 
-typedef uint64_t numtyp;
 /**
  * \brief Move class
  * \details Move objects, nothing more to say.
@@ -43,6 +43,7 @@ public:
 	 */
 	explicit Move(int move);
 
+	explicit Move(numtyp move);
 	/**
 	 * \fn ~Move()
 	 * \brief basic destructor

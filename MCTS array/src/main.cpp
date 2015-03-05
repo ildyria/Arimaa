@@ -17,8 +17,13 @@
 
 	#include "./mcts/Mcts.h"
 
-	#include "./connect4/Connect4.h"
-	#include "./connect4/BitboardConnect4.h"
+	#if defined(ARIMAA)
+		#include "./arimaa_simple/Arimaa.h"
+//		#include "./arimaa_simple/BitboardConnect4.h"
+	#else
+		#include "./connect4/Connect4.h"
+		#include "./connect4/BitboardConnect4.h"
+	#endif
 #endif
 
 #include <thread>
@@ -37,8 +42,21 @@ int main(int argc, char const *argv[])
 #ifdef TEST_API
 	test_api();
 #else
+#if defined(ARIMAA)
+	Arimaa* game = new Arimaa();
+	Bitboard* Bb = new Bitboard((NB_PIECE+1)*2,1);
+	std::string t = "";
+	game->diplay_board(Bb);
+	while (t != "exit")
+	{
+		cin >> t;
+		game->convert_move(t);
+	}
+	exit(1);
+#else
 	Connect4* game = new Connect4();
 	BitboardConnect4* Bb = new BitboardConnect4();
+#endif
 	int result = 0;
 	int moveok;
 	Move move;
@@ -106,7 +124,12 @@ int main(int argc, char const *argv[])
 			cout << endl << Count::I();
 			cout << endl << "chosen move : " << move << endl;
 		}
+
+#if defined(ARIMAA)
+		Bb = mcts.move_played(move);
+#else
 		Bb = static_cast<BitboardConnect4*>(mcts.move_played(move));
+#endif
 
 #ifdef DISPLAY_TREE
 		mcts.print_tree(3);

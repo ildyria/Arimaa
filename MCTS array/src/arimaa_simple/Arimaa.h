@@ -1,9 +1,9 @@
 /**
-* \file Connect4.h
-* \brief Define class Connect4
+* \file Arimaa.h
+* \brief Define class Arimaa
 * \author Benoit Viguier
 * \version 1.0
-* \date December 25th 2014
+* \date March 4rf 2015
 *
 */
 #pragma once
@@ -17,6 +17,60 @@
  */
 class Arimaa : public TheGame
 {
+	/*
+	use a short (16 bit) to check environement :
+	4 bits : position nsew friend ?
+	4 bits : position nsew smaller enemy => possible push / pull
+	4 bits : position of same threat enemy => no push / no frozen
+	4 bits : position nsew greater enemy => possible frozen
+	
+	
+	
+	*/
+
+
+
+
+
+
+	void move_n(Bitboard* board, int n, int pos);
+	void move_s(Bitboard* board, int n, int pos);
+	void move_e(Bitboard* board, int n, int pos);
+	void move_w(Bitboard* board, int n, int pos);
+
+	inline bool close_player(Bitboard* board, int pos, int player) { return close_piece(board, pos, (NB_PIECE + 1)*player - 1); }
+
+	bool close_piece(Bitboard* board, int pos, int boardnum);
+
+	int is_free_n(Bitboard* board, int pos)
+	{
+		
+	};
+	int is_free_s(Bitboard* board, int pos)
+	{
+		
+	};
+	int is_free_e(Bitboard* board, int pos)
+	{
+		
+	};
+	int is_free_w(Bitboard* board, int pos)
+	{
+		
+	};
+
+	bool maybe_frozen(Bitboard* board, int pos, int player_to_play, int piece) // check if stronger enemy close to the position
+	{
+		bool frozen = false;
+		int start = (NB_PIECE+1)*(2 - player_to_play) + piece + 1;
+		for (int i = start; i < (NB_PIECE+1); ++i)
+		{
+			frozen |= close_piece(board, pos, i); // possible optimisation : add !frozen in the control structure...
+		}
+		return frozen;
+	}
+
+
 
 public:
 	/**
@@ -86,6 +140,7 @@ public:
 	* \return winner of the current game
 	*/
 	virtual int play_random_moves(Bitboard* board) override;
+	Move convert_move(std::string move);
 };
 
 

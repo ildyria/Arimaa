@@ -1,4 +1,5 @@
 #include "Arimaa.h"
+#include <map>
 
 //#define DISPLAY_C4
 using std::string;
@@ -10,133 +11,7 @@ Arimaa::Arimaa()
 
 int Arimaa::end(const Bitboard* board)
 {
-	int res = check_horizontal(board);
-	if (res > 0)
-	{
-		return res;
-	}
-
-	res = check_vertical(board);
-	if (res > 0)
-	{
-		return res;
-	}
-
-	res = check_fst_diag(board);
-	if (res > 0)
-	{
-		return res;
-	}
-
-	res = check_snd_diag(board);
-	if (res > 0)
-	{
-		return res;
-	}
-
 	return check_null(board);
-}
-
-int Arimaa::check_horizontal(const Bitboard* board)
-{
-	numtyp boardused = static_cast<numtyp>(15); // 0001111 in binary
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
-	for (int y = 0; y < SIZEY; y++)
-	{
-		for (int x = 0; x <= SIZEX - 4; x++)
-		{
-			if ((boardused & board1) == boardused)
-			{
-				return 1;
-			}
-			elseif((boardused & board2) == boardused)
-			{
-				return 2;
-			}
-			boardused <<= 1;
-		}
-		boardused <<= 3;
-	}
-	return 0;
-}
-
-int Arimaa::check_vertical(const Bitboard* board)
-{
-	numtyp boardused = static_cast<numtyp>(1);
-	boardused += (boardused << SIZEX) + (boardused << (SIZEX * 2)) + (boardused << (SIZEX * 3));
-
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
-	for (int y = 0; y <= SIZEY - 4; y++)
-	{
-		for (int x = 0; x < SIZEX; x++)
-		{
-			if ((boardused & board1) == boardused)
-			{
-				return 1;
-			}
-			elseif((boardused & board2) == boardused)
-			{
-				return 2;
-			}
-			boardused <<= 1;
-		}
-	}
-	return 0;
-}
-
-int Arimaa::check_fst_diag(const Bitboard* board)
-{
-	numtyp boardused = static_cast<numtyp>(1);
-	boardused += (boardused << (SIZEX + 1)) + (boardused << ((SIZEX + 1) * 2)) + (boardused << ((SIZEX + 1) * 3));
-
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
-	for (int y = 0; y <= SIZEY - 4; y++)
-	{
-		for (int x = 0; x <= SIZEX - 4; x++)
-		{
-			if ((boardused & board1) == boardused)
-			{
-				return 1;
-			}
-			elseif((boardused & board2) == boardused)
-			{
-				return 2;
-			}
-			boardused <<= 1;
-		}
-		boardused <<= 3;
-	}
-	return 0;
-}
-
-int Arimaa::check_snd_diag(const Bitboard* board)
-{
-	numtyp boardused = static_cast<numtyp>(1);
-	boardused <<= 3; // 1000
-	boardused += (boardused << (SIZEX - 1)) + (boardused << ((SIZEX - 1) * 2)) + (boardused << ((SIZEX - 1) * 3));
-
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
-	for (int y = 0; y <= SIZEY - 4; y++)
-	{
-		for (int x = 0; x <= SIZEX - 4; x++)
-		{
-			if ((boardused & board1) == boardused)
-			{
-				return 1;
-			}
-			elseif((boardused & board2) == boardused)
-			{
-				return 2;
-			}
-			boardused <<= 1;
-		}
-		boardused <<= 3;
-	}
-	return 0;
 }
 
 int Arimaa::check_null(const Bitboard* board)
@@ -168,28 +43,87 @@ void Arimaa::play(Move& position, Bitboard* board)
 
 void Arimaa::diplay_board(const Bitboard* board)
 {
-	numtyp board0 = board->get_board(0); // get what places are used.
-	numtyp board1 = board->get_board(1);
+	std::vector<numtyp> boards = std::vector<numtyp>((NB_PIECE+1)*2, 0);
+	for (int i = 0; i < boards.size(); ++i)
+	{
+		boards[i] = board->get_board(i);
+	}
 	numtyp check = static_cast<numtyp>(1);
 	check = check << (SIZEX * SIZEY - 1);
 
 	std::stringbuf buffer;
 	std::ostream os(&buffer);
 	os << std::endl;
+	static const std::vector<char> colChar = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 	for (int y = (SIZEY - 1); y >= 0; --y)
 	{
+		os << "   ";
 		for (int k = 0; k < SIZEX; ++k) os << "+---";
 		os << "+" << std::endl;
+		// 0 : rabbit 
+		// 1 : cat
+		// 2 : dog
+		// 3 : horse
+		// 4 : camel
+		// 5 : elephant
+		// 6 : all gold
+		os << " " << (y + 1) << " ";
 		for (int x = 0; x < SIZEX; ++x)
 		{
 			os << "| ";
-			if ((board0 & check) == check)
+			if ((boards[NB_PIECE] & check) == check)
 			{
-				os << "O";
+				if ((boards[0] & check) == check)
+				{
+					os << "R";
+				}
+				elseif ((boards[1] & check) == check)
+				{
+					os << "C";
+				}
+				elseif((boards[2] & check) == check)
+				{
+					os << "D";
+				}
+				elseif((boards[3] & check) == check)
+				{
+					os << "H";
+				}
+				elseif((boards[4] & check) == check)
+				{
+					os << "M"; // because of cat
+				}
+				elseif((boards[5] & check) == check)
+				{
+					os << "E";
+				}
 			}
-			elseif((board1 & check) == check)
+			elseif((boards[2*NB_PIECE + 1] & check) == check)
 			{
-				os << "X";
+				if ((boards[NB_PIECE + 1] & check) == check)
+				{
+					os << "r";
+				}
+				elseif((boards[NB_PIECE + 2] & check) == check)
+				{
+					os << "c";
+				}
+				elseif((boards[NB_PIECE + 3] & check) == check)
+				{
+					os << "d";
+				}
+				elseif((boards[NB_PIECE + 4] & check) == check)
+				{
+					os << "h";
+				}
+				elseif((boards[NB_PIECE + 5] & check) == check)
+				{
+					os << "m"; // because of cat
+				}
+				elseif((boards[NB_PIECE + 6] & check) == check)
+				{
+					os << "e";
+				}
 			}
 			else
 			{
@@ -200,12 +134,45 @@ void Arimaa::diplay_board(const Bitboard* board)
 		}
 		os << "|" << std::endl;
 	}
+	os << "   ";
 	for (int k = 0; k < SIZEX; ++k) os << "+---";
 	os << "+" << std::endl;
-	for (int k = 1; k <= SIZEX; ++k) os << "  " << k << " ";
+	os << "   ";
+	for (int k = 0; k < SIZEX; ++k) os << "  " << colChar[k] << " ";
 	os << std::endl;
 	std::cout << buffer.str() << std::endl;
+}
 
+void Arimaa::move_n(Bitboard* board, int n, int pos)
+{
+	board->clearBit(n, pos);
+	board->setBit(n, (pos+SIZEX));
+}
+
+void Arimaa::move_s(Bitboard* board, int n, int pos)
+{
+	board->clearBit(n, pos);
+	board->setBit(n, (pos - SIZEX));
+}
+
+void Arimaa::move_e(Bitboard* board, int n, int pos)
+{
+	board->clearBit(n, pos);
+	board->setBit(n, (pos - 1));
+}
+
+void Arimaa::move_w(Bitboard* board, int n, int pos)
+{
+	board->clearBit(n, pos);
+	board->setBit(n, (pos + 1));
+}
+
+bool Arimaa::close_piece(Bitboard* board, int pos, int boardnum)
+{
+	numtyp boards = board->get_board(boardnum);
+	numtyp mask = static_cast<numtyp>(1) << pos;
+	mask = mask << 1 | mask >> 1 | mask << SIZEX | mask >> SIZEX; // warning if pos in close to the side edges... WILL NEED CHECK
+	return (boards & mask) > 0;
 }
 
 list<Move> Arimaa::list_possible_moves(Bitboard* board)
@@ -260,4 +227,35 @@ int Arimaa::play_random_moves(Bitboard* board)
 	}
 
 	return nodet;
+}
+
+Move Arimaa::convert_move(string move)
+{
+	auto transform = std::map<char, int>();
+	transform.insert(std::pair<char, int>('n', 0)); // north
+	transform.insert(std::pair<char, int>('e', 1)); // east
+	transform.insert(std::pair<char, int>('w', 2)); // west
+	transform.insert(std::pair<char, int>('s', 3)); // south
+	transform.insert(std::pair<char, int>('A', SIZEX - 1)); // first col
+	transform.insert(std::pair<char, int>('B', SIZEX - 2)); // second col...
+	transform.insert(std::pair<char, int>('C', SIZEX - 3));
+	transform.insert(std::pair<char, int>('D', SIZEX - 4));
+	transform.insert(std::pair<char, int>('E', SIZEX - 5));
+	transform.insert(std::pair<char, int>('F', SIZEX - 6));
+	transform.insert(std::pair<char, int>('G', SIZEX - 7));
+	transform.insert(std::pair<char, int>('H', SIZEX - 8));
+	transform.insert(std::pair<char, int>('1', 1)); // first row
+	transform.insert(std::pair<char, int>('2', 2)); // second row...
+	transform.insert(std::pair<char, int>('3', 3));
+	transform.insert(std::pair<char, int>('4', 4));
+	transform.insert(std::pair<char, int>('5', 5));
+	transform.insert(std::pair<char, int>('6', 6));
+	transform.insert(std::pair<char, int>('7', 7));
+	transform.insert(std::pair<char, int>('8', 8));
+
+	numtyp futurmove;
+	futurmove = transform[move[0]] + (transform[move[1]] - 1)*SIZEX + 64 * transform[move[2]];
+	std::cout << futurmove << std::endl;
+	std::cout << (futurmove >> 6) << std::endl;
+	return Move(futurmove);
 }
