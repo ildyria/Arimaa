@@ -20,26 +20,26 @@ public:
 		for (u_long i = 0; (i < static_cast<u_long>(T.size())); ++i)
 		{
 			terminal = ptr->get_terminal();
-			if ((i & modulo) == 0) cout << std::endl;
+			if ((i & modulo) == 0) std::cout << std::endl;
 			if (ptr->getAddress() == nullptr)
 			{
-				cout << "_";
+				std::cout << "_";
 			}
 			else if (terminal == 64)
 			{
-				cout << "X";
+				std::cout << "X";
 			}
 			else if (terminal == 32)
 			{
-				cout << "N";
+				std::cout << "N";
 			}
 			else if (terminal == 16)
 			{
-				cout << "L";
+				std::cout << "L";
 			}
 			else
 			{
-				cout << (terminal & 7);
+				std::cout << (terminal & 7);
 			}
 
 /*
@@ -55,7 +55,7 @@ public:
 */
 			++ptr;
 		}
-		cout << std::endl;
+		std::cout << std::endl;
 #endif
 //		myfile.close();
 	}

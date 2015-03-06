@@ -143,28 +143,11 @@ void Arimaa::diplay_board(const Bitboard* board)
 	std::cout << buffer.str() << std::endl;
 }
 
-void Arimaa::move_n(Bitboard* board, int n, int pos)
+void Arimaa::move(Bitboard* board, int n, int pos, int type)
 {
+	static const int move_type[] = {SIZEX, -1, -SIZEX, 1};
 	board->clearBit(n, pos);
-	board->setBit(n, (pos+SIZEX));
-}
-
-void Arimaa::move_s(Bitboard* board, int n, int pos)
-{
-	board->clearBit(n, pos);
-	board->setBit(n, (pos - SIZEX));
-}
-
-void Arimaa::move_e(Bitboard* board, int n, int pos)
-{
-	board->clearBit(n, pos);
-	board->setBit(n, (pos - 1));
-}
-
-void Arimaa::move_w(Bitboard* board, int n, int pos)
-{
-	board->clearBit(n, pos);
-	board->setBit(n, (pos + 1));
+	board->setBit(n, (pos + move_type[]));
 }
 
 bool Arimaa::close_piece(Bitboard* board, int pos, int boardnum)

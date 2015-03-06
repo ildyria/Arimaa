@@ -1,23 +1,23 @@
 #include "Ai.h"
 #include "../tools/Count.h"
 
-#define CLOCK 1000
+#define CLOCKTOCK 1000
 
 using namespace mcts;
 
 namespace api {
-	Ai::Ai(int t) :_param(new MctsArgs(40, t*CLOCK)), _ai(nullptr), _game(nullptr)
+	Ai::Ai(int t) :_param(new MctsArgs(40, t*CLOCKTOCK)), _ai(nullptr), _game(nullptr)
 	{
 	}
 
 	void Ai::setThinkingTime(int t)
 	{
-		_param->set_time_limit_simulation_per_root(t * CLOCK);
+		_param->set_time_limit_simulation_per_root(t * CLOCKTOCK);
 	}
 
 	double Ai::getThinkingTime()
 	{
-		return _param->get_time_limit_simulation_per_root() / CLOCK;
+		return _param->get_time_limit_simulation_per_root() / CLOCKTOCK;
 	}
 
 	void Ai::init(Game* g)

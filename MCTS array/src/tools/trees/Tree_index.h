@@ -6,9 +6,9 @@
 template <class N> class Tree_index
 {
 	N*** _next;					// next empty space (Yup, not kidding a pointer to a pointer to a pointer of N ! And no, i'm not crazy ! =D)
-	omp_lock_t		_lockAddrBook;
 	std::vector<N*>		_address;	// address book
 	std::vector<N**>	_empty;	// free spaces in the book
+	omp_lock_t*		_lockAddrBook;
 
 public:
 
@@ -19,8 +19,10 @@ public:
 	 */
 	explicit Tree_index(u_long n = 1) : _next(nullptr), _address(std::vector<N*>(n,nullptr)), _empty(std::vector<N**>(n,nullptr))
 	{
+
 		init();
-		omp_init_lock(&_lockAddrBook);
+		_lockAddrBook = new omp_lock_t();
+		omp_init_lock(_lockAddrBook);
 	};
 
 	/**
@@ -65,10 +67,10 @@ public:
 	inline N** get()
 	{
 		N** buff;
-		omp_set_lock(&_lockAddrBook);
+		omp_set_lock(_lockAddrBook);
 		buff = *_next;
 		++_next;
-		omp_unset_lock(&_lockAddrBook);
+		omp_unset_lock(_lockAddrBook);
 		return buff; // return the next free space in the _address book
 	}
 

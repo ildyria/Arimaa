@@ -20,44 +20,20 @@ class Arimaa : public TheGame
 	/*
 	use a short (16 bit) to check environement :
 	4 bits : position nsew friend ?
-	4 bits : position nsew smaller enemy => possible push / pull
+	4 bits : position nsew smaller enemy => maybe possible push / pull
 	4 bits : position of same threat enemy => no push / no frozen
 	4 bits : position nsew greater enemy => possible frozen
-	
-	
-	
 	*/
 
 
 
 
 
-
-	void move_n(Bitboard* board, int n, int pos);
-	void move_s(Bitboard* board, int n, int pos);
-	void move_e(Bitboard* board, int n, int pos);
-	void move_w(Bitboard* board, int n, int pos);
+	void move(Bitboard* board, int n, int pos, int type);
 
 	inline bool close_player(Bitboard* board, int pos, int player) { return close_piece(board, pos, (NB_PIECE + 1)*player - 1); }
 
 	bool close_piece(Bitboard* board, int pos, int boardnum);
-
-	int is_free_n(Bitboard* board, int pos)
-	{
-		
-	};
-	int is_free_s(Bitboard* board, int pos)
-	{
-		
-	};
-	int is_free_e(Bitboard* board, int pos)
-	{
-		
-	};
-	int is_free_w(Bitboard* board, int pos)
-	{
-		
-	};
 
 	bool maybe_frozen(Bitboard* board, int pos, int player_to_play, int piece) // check if stronger enemy close to the position
 	{

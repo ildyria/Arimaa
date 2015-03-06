@@ -138,10 +138,12 @@ public:
 		u_long full = _tree[0].count();
 		u_long keep = iter->count();
 		std::cout << std::endl;
+#ifdef TREE_SHIFT_PRINT
 		std::cout << "count full ...    " << Count::format(full) << std::endl;
 		std::cout << "count index ...   " << Count::format(_index.count()) << std::endl;
 		std::cout << "count to keep ... " << Count::format(keep) << std::endl;
 		std::cout << "count to kill ... " << Count::format(full - keep) << std::endl;
+#endif
 
 		t.start();
 
@@ -191,10 +193,12 @@ public:
 		t.stop();
 
 		u_long left = _tree[0].count();
+#ifdef TREE_SHIFT_PRINT
 		std::cout << "count left ...  " << Count::format(left) << std::endl;
 		std::cout << "count index ... " << Count::format(_index.count()) << std::endl;
 
 		std::cout << "recycling duration : " << Count::format(duration_cast<milliseconds>(t.result()).count()) << " ms." << std::endl;
+#endif
 	}
 
 	static void clean_tree(std::vector<N> &T)

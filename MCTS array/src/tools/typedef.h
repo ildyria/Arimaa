@@ -27,6 +27,7 @@ typedef unsigned short u_short;
 
 //#define DUMP_TREES			// dump trees in the console (only use with HARD_LIMIT_MEMORY)
 //#define TREE_INTEGRITY		// check the integrity of the tree, slow down the prunning
+#define TREE_SHIFT_PRINT
 
 #define OPENMP				// enable multi threading
 
