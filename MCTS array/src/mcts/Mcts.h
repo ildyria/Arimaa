@@ -79,16 +79,6 @@ namespace mcts
 		void start_ramdom_playouts(Node* node, Bitboard* Bb);
 
 		/**
-		 * \fn explore()
-		 * \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
-		 * if depth = 0, run start_ramdom_playouts
-		 * if the node is a terminal, then update the stats :
-		 * - set uct to 42 if it's a win
-		 * - set parent's uct to -1 if it's a loss (we must never go to that node)
-		 */
-		void explore();
-
-		/**
 		 * \fn feedback_sure_wins_loss()
 		 * \details feedback_results the results to the parents (winning and losing move) in order to fasten the search
 		 */
@@ -141,6 +131,16 @@ namespace mcts
 		 * \param move move played
 		 */
 		Bitboard* move_played(Move& move);
+
+		/**
+		* \fn explore()
+		* \details if depth is > 0, fetch the possible moves and chose the best using UCT, and decrease depth by 1.
+		* if depth = 0, run start_ramdom_playouts
+		* if the node is a terminal, then update the stats :
+		* - set uct to 42 if it's a win
+		* - set parent's uct to -1 if it's a loss (we must never go to that node)
+		*/
+		void explore();
 
 		/**
 		 * \fn get_best_move()

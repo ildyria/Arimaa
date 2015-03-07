@@ -147,7 +147,7 @@ void Arimaa::move(Bitboard* board, int n, int pos, int type)
 {
 	static const int move_type[] = {SIZEX, -1, -SIZEX, 1};
 	board->clearBit(n, pos);
-	board->setBit(n, (pos + move_type[]));
+	board->setBit(n, (pos + move_type[type]));
 }
 
 bool Arimaa::close_piece(Bitboard* board, int pos, int boardnum)

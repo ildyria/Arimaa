@@ -59,6 +59,7 @@ int main(int argc, char const *argv[])
 #endif
 	int result = 0;
 	int moveok;
+	u_long more;
 	Move move;
 	Random::I();
 
@@ -82,34 +83,57 @@ int main(int argc, char const *argv[])
 
 		if (Bb->get_player() != IA)
 		{
-			Listtoprint = game->list_possible_moves(Bb);
-			cout << endl << "possible moves : ";
-			for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
-				cout << *iter << " ";
-			}
-			cout << "or -1 to pass.";
-
 			moveok = 0;
-			while (moveok == 0)
+			more = 0;
+			#pragma omp parallel shared(moveok,more)
 			{
-				std::string tmp;
-				cout << endl << "Your move ?" << endl;
-				cin >> tmp;
-				move = Move(tmp);
-				iter = find(Listtoprint.begin(), Listtoprint.end(), move);
-				if (iter != Listtoprint.end())
+				if (omp_get_thread_num() == 0)
 				{
-					moveok = 1;
+					Listtoprint = game->list_possible_moves(Bb);
+					cout << endl << "possible moves : ";
+					for (iter = Listtoprint.begin(); iter != Listtoprint.end(); ++iter){
+						cout << *iter << " ";
+					}
+					cout << "or -1 to pass.";
+					while (moveok == 0)
+					{
+						std::string tmp;
+						cout << endl << "Your move ?" << endl;
+						cin >> tmp;
+						move = Move(tmp);
+						iter = find(Listtoprint.begin(), Listtoprint.end(), move);
+						if (iter != Listtoprint.end())
+						{
+							#pragma omp atomic
+							moveok += 1;
+						}
+						elseif(tmp == "exit")
+						{
+							exit(0);
+						}
+						elseif(tmp == "-1")
+						{
+							IA = (IA == 2) ? 1 : 2;
+							#pragma omp atomic
+							moveok += 1;
+						}
+					}
 				}
-				elseif(tmp == "exit")
+				elseif(argc == 1)
 				{
-					exit(0);
+					while (moveok == 0)
+					{
+						#pragma omp atomic
+						more += 1;
+						
+						mcts.explore();
+					}
 				}
-				elseif(tmp == "-1")
-				{
-					IA = (IA == 2) ? 1 : 2;
-					moveok = 1;
-				}
+			}
+			if (more > 0)
+			{
+				cout << endl << "Thank you for taking your time." << endl;
+				cout << "you allowed me to do " << Count::format(more) << " more simulations. <3" << endl;
 			}
 		}
 
