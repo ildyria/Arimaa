@@ -21,7 +21,7 @@ namespace api
 		return 0;
 	}
 
-	long Game::getLastMove()
+	u_long Game::getLastMove()
 	{
 		return _lastMove;
 	}

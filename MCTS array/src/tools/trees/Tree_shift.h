@@ -135,10 +135,10 @@ public:
 	static void execute(N* iter, std::vector<N>& _tree, Tree_index<N>& _index, N*& _next)
 	{
 		Timer t = Timer();
+#ifdef TREE_SHIFT_PRINT
 		u_long full = _tree[0].count();
 		u_long keep = iter->count();
 		std::cout << std::endl;
-#ifdef TREE_SHIFT_PRINT
 		std::cout << "count full ...    " << Count::format(full) << std::endl;
 		std::cout << "count index ...   " << Count::format(_index.count()) << std::endl;
 		std::cout << "count to keep ... " << Count::format(keep) << std::endl;
@@ -192,8 +192,8 @@ public:
 		find_next(_tree, _next);
 		t.stop();
 
-		u_long left = _tree[0].count();
 #ifdef TREE_SHIFT_PRINT
+		u_long left = _tree[0].count();
 		std::cout << "count left ...  " << Count::format(left) << std::endl;
 		std::cout << "count index ... " << Count::format(_index.count()) << std::endl;
 
