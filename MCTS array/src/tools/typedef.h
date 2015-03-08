@@ -9,7 +9,9 @@ typedef unsigned short u_short;
 
 #define elseif else if
 
-#define TIME_SEARCH 10
+#define TIME_SEARCH 1
+
+//#define TEST_API
 
 //#define ARIMAA
 

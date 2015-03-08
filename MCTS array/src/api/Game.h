@@ -90,7 +90,7 @@ namespace api
 		 * 0 if the game is not ended yet
 		 * 1 if player 1 wins
 		 * 2 if player 2 wins
-		 * 3 if it is tie
+		 * 4 if it is tie
 		 * 
 		 * \return integer defining the winner.
 		 */
