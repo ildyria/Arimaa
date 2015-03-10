@@ -153,14 +153,14 @@ public:
 		{
 			#pragma omp section
 			{
-				printf("mark trash core : %d\n", omp_get_thread_num());
+//				printf("mark trash core : %d\n", omp_get_thread_num());
 				mark_trash(iter, _tree);
 				printf("trash marked\n");
 			}
 
 			#pragma omp section
 			{
-			printf("index clear core : %d\n", omp_get_thread_num());
+//			printf("index clear core : %d\n", omp_get_thread_num());
 			_index.clear();
 			}
 		}
@@ -170,7 +170,7 @@ public:
 		{
 			#pragma omp section
 			{
-				printf("compacting core : %d\n", omp_get_thread_num());
+//				printf("compacting core : %d\n", omp_get_thread_num());
 				compact_tree(_tree);
 				Tree_dump<N>::out(_tree, "compacted.txt");
 				printf("tree compacted\n");
@@ -178,13 +178,13 @@ public:
 
 			#pragma omp section
 			{
-				printf("build index core : %d\n", omp_get_thread_num());
+//				printf("build index core : %d\n", omp_get_thread_num());
 				_index.fill();
 			}
 
 			#pragma omp section
 			{
-				printf("reset index core : %d\n", omp_get_thread_num());
+//				printf("reset index core : %d\n", omp_get_thread_num());
 				_index.reset_next();
 			}
 		}

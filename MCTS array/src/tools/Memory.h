@@ -50,12 +50,15 @@ public:
 			// Return the amount of free memory in kbytes.
 			// Returns -1 if something went wrong.
 			long returnValue;
+			long returnValue2;
 			const int BUFFER_SIZE = 1000;
 			char buffer[BUFFER_SIZE];
 			FILE *fInput;
 			int loop;
 			char ch;
 			returnValue = -1;
+			returnValue2 = -1;
+
 			fInput = fopen("/proc/meminfo", "r");
 			if (fInput != nullptr)
 			{
@@ -95,11 +98,42 @@ public:
 								}
 							}
 						}
+//						break;
+					}
+					if (strncmp(buffer, "MemAvailable:", 13) == 0)
+					{
+						for (loop = 0; loop<BUFFER_SIZE; loop++)
+						{
+							ch = buffer[loop];
+							if (ch == ':')
+							{
+								returnValue2 = 0;
+								continue;
+							}
+							if (ch == 0)
+							{
+								break;
+							}
+							if (returnValue2 >= 0)
+							{
+								if (ch >= 'A')
+								{
+									break;
+								}
+								if ((ch >= '0') && (ch <= '9'))
+								{
+									returnValue2 = returnValue2 * 10 + (ch - '0');
+								}
+							}
+						}
 						break;
 					}
+
 				}
 				fclose(fInput);
 			}
+			// take the maximum
+			returnValue = (returnValue2 > returnValue) ? returnValue2 : returnValue;
 			std::cout << "There are " << returnValue <<" free MB of physical memory.\n" << std::endl;
 			return static_cast<u_long>(returnValue <<10);
 		}

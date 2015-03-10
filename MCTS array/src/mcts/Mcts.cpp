@@ -113,7 +113,7 @@ namespace mcts{
 			nodet = 16;
 			return;
 		}
-		if (node == &_tree[0]) printf("expanding\n");
+//		if (node == &_tree[0]) printf("expanding\n");
 		list<Move> ListOfMoves;
 		list<Move>::iterator iter;
 
