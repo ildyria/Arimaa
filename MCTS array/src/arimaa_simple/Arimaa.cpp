@@ -35,6 +35,11 @@ u_long Arimaa::get_mask_w(const u_long& mask)
 	return mask << 1;
 }
 
+u_long Arimaa::checkBorder(const u_long& pos)
+{
+	return (((pos & TOP_BORDER) != 0) << 3) | (((pos & RIGHT_BORDER) != 0) << 2) | (((pos & BOTTOM_BORDER) != 0) << 1) | ((pos & LEFT_BORDER) != 0);
+}
+
 
 int Arimaa::end(const Bitboard* board)
 {
@@ -59,7 +64,7 @@ void Arimaa::play(Move& position, Bitboard* board)
 void Arimaa::diplay_board(const Bitboard* board)
 {
 	std::vector<numtyp> boards = std::vector<numtyp>((NB_PIECE+1)*2, 0);
-	for (int i = 0; i < boards.size(); ++i)
+	for (u_int i = 0; i < boards.size(); ++i)
 	{
 		boards[i] = board->get_board(i);
 	}
@@ -184,14 +189,14 @@ u_long Arimaa::get_situation(const int& pos, Bitboard* board)
 		returnval |= (check_neighbour(board, mask_e, piece_rank, player)) << 2;
 	}
 
-	if (!(result & 2)) // NOT ON BORDER RIGHT
+	if (!(result & 2)) // NOT ON BORDER BOTTOM
 	{
 		u_long mask_s = get_mask_s(mask);
 
 		returnval |= (check_neighbour(board, mask_s, piece_rank, player)) << 1;
 	}
 
-	if (!(result & 1)) // NOT ON BORDER RIGHT
+	if (!(result & 1)) // NOT ON BORDER LEFT
 	{
 		u_long mask_w = get_mask_w(mask);
 
@@ -252,54 +257,12 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 list<Move> Arimaa::list_possible_moves(Bitboard* board)
 {
 	list<Move> moves;
-	list<int> listmoves = board->get_empty(0);
-	list<int>::iterator iter;
-	for (iter = listmoves.begin(); iter != listmoves.end(); ++iter)
-	{
-		moves.push_front(Move(*iter));
-	}
-	listmoves.clear();
 	return moves;
 }
 
 int Arimaa::play_random_moves(Bitboard* board)
 {
-	list<int> ListOfMoves;
-	list<int>::iterator iter;
-	int chosen, nodet;
-
 	nodet = end(board);
-
-	while (nodet < 1)
-	{
-		ListOfMoves = board->get_empty(0);
-		chosen = Random::I()->get_min_max(0, static_cast<int>(ListOfMoves.size()) - 1);
-		for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
-		{
-			if (chosen == 0)
-			{
-#ifdef DISPLAY_C4
-				std::cout << " > " << *iter ;
-#endif // DISPLAY_C4
-				numtyp boardused = board->get_board(0) | board->get_board(1); // get what places are used.
-				boardused >>= (SIZEX - *iter);
-				int i = 0;
-				while ((boardused & 1) == 1)
-				{
-					i++;
-					boardused >>= SIZEX;
-				}
-
-				board->setBit(board->get_player() - 1, SIZEX - *iter, i);
-				board->play();
-				break;
-			}
-			--chosen;
-		}
-		nodet = end(board);
-		ListOfMoves.clear();
-	}
-
 	return nodet;
 }
 
@@ -330,6 +293,6 @@ Move Arimaa::convert_move(string move)
 	numtyp futurmove;
 	futurmove = transform[move[0]] + (transform[move[1]] - 1)*SIZEX + 64 * transform[move[2]];
 	std::cout << futurmove << std::endl;
-	std::cout << (futurmove >> 6) << std::endl;
+//	std::cout << (futurmove >> 6) << std::endl;
 	return Move(futurmove);
 }

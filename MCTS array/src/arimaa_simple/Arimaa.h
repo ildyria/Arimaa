@@ -35,14 +35,11 @@ class Arimaa : public TheGame
 
 	u_long check_neighbour(const Bitboard* board, const u_long& mask, const int& piece_rank, const int& player); // check if stronger enemy close to the position
 
-	u_long checkBorder(const u_long& pos)
-	{
-		return (((pos & TOP_BORDER) != 0) << 3) | (((pos & RIGHT_BORDER) != 0) << 2) | (((pos & BOTTOM_BORDER) != 0) << 1) | ((pos & LEFT_BORDER) != 0);
-	}
+	u_long checkBorder(const u_long& pos);
 
 	void move(Bitboard* board, int n, int pos, int type);
 
-	bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum);
+	bool close_piece(const Bitboard* board, const u_long& mask, const int& boardnum);
 
 	u_long get_mask(const int& pos);
 	u_long get_mask_n(const u_long& mask);
