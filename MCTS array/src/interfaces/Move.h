@@ -43,7 +43,9 @@ public:
 	 */
 	explicit Move(int move);
 
+#if defined(_WIN32) || defined(_WIN64)
 	explicit Move(u_long move);
+#endif
 	
 	explicit Move(numtyp move);
 	/**

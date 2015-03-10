@@ -18,9 +18,11 @@ Move::Move(int move) : _data(move)
 {
 }
 
+#if defined(_WIN32) || defined(_WIN64)
 Move::Move(u_long move) : _data(move)
 {
 }
+#endif
 
 Move::Move(numtyp move) : _data(move)
 {
