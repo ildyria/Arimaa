@@ -12,41 +12,43 @@
 #include "../tools/Random.h"
 
 /**
- * \brief Connect4 class
+ * \brief Arimaa class
  * \details Class that contains the functions required to play the game.
  */
 class Arimaa : public TheGame
 {
 	/*
-	use a short (16 bit) to check environement :
-	4 bits : position nsew friend ?
-	4 bits : position nsew smaller enemy => maybe possible push / pull
-	4 bits : position of same threat enemy => no push / no frozen
-	4 bits : position nsew greater enemy => possible frozen
+
+	order of checks :
+	check border
+	check friend
+	check enemy same
+	check enemy light
+	check enemy strong
+
+	4 bits : position nesw greater enemy => possible frozen
+	4 bits : position nesw friend ?
+	4 bits : position of same threat enemy (OR PIECE ON BORDER) => no push / no frozen
+	4 bits : position nesw smaller enemy => maybe possible push / pull
 	*/
+	u_long get_situation(const int& pos, Bitboard* board);
 
+	u_long check_neighbour(const Bitboard* board, const u_long& mask, const int& piece_rank, const int& player); // check if stronger enemy close to the position
 
-
-
+	u_long checkBorder(const u_long& pos)
+	{
+		return (((pos & TOP_BORDER) != 0) << 3) | (((pos & RIGHT_BORDER) != 0) << 2) | (((pos & BOTTOM_BORDER) != 0) << 1) | ((pos & LEFT_BORDER) != 0);
+	}
 
 	void move(Bitboard* board, int n, int pos, int type);
 
-	inline bool close_player(Bitboard* board, int pos, int player) { return close_piece(board, pos, (NB_PIECE + 1)*player - 1); }
+	bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum);
 
-	bool close_piece(Bitboard* board, int pos, int boardnum);
-
-	bool maybe_frozen(Bitboard* board, int pos, int player_to_play, int piece) // check if stronger enemy close to the position
-	{
-		bool frozen = false;
-		int start = (NB_PIECE+1)*(2 - player_to_play) + piece + 1;
-		for (int i = start; i < (NB_PIECE+1); ++i)
-		{
-			frozen |= close_piece(board, pos, i); // possible optimisation : add !frozen in the control structure...
-		}
-		return frozen;
-	}
-
-
+	u_long get_mask(const int& pos);
+	u_long get_mask_n(const u_long& mask);
+	u_long get_mask_e(const u_long& mask);
+	u_long get_mask_s(const u_long& mask);
+	u_long get_mask_w(const u_long& mask);
 
 public:
 	/**
@@ -71,15 +73,6 @@ public:
 	 * \return integer corresponding to the state of the Board
 	 */
 	virtual int end(const Bitboard* board) override;
-
-	/**
-	 * \fn check_null
-	 * \brief check if the board is full.
-	 * 
-	 * \param board Bitboard
-	 * \return 0 or 4 if board is full
-	 */
-	int check_null(const Bitboard* board);
 
 	/**
 	* \fn play
@@ -116,6 +109,7 @@ public:
 	* \return winner of the current game
 	*/
 	virtual int play_random_moves(Bitboard* board) override;
+	
 	Move convert_move(std::string move);
 };
 

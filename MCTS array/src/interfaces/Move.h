@@ -43,6 +43,8 @@ public:
 	 */
 	explicit Move(int move);
 
+	explicit Move(u_long move);
+	
 	explicit Move(numtyp move);
 	/**
 	 * \fn ~Move()

@@ -9,20 +9,35 @@ Arimaa::Arimaa()
 {
 }
 
-int Arimaa::end(const Bitboard* board)
+
+u_long Arimaa::get_mask(const int& pos)
 {
-	return check_null(board);
+	return (static_cast<numtyp>(1) << pos);
 }
 
-int Arimaa::check_null(const Bitboard* board)
+u_long Arimaa::get_mask_n(const u_long& mask)
 {
-	numtyp boardused = static_cast<numtyp>(0);
-	boardused = ~boardused;
-	boardused >>= 22; // full board
-	if (((board->get_board(0) | board->get_board(1)) & boardused) == boardused)
-	{
-		return 4;
-	}
+	return mask << SIZEX;
+}
+
+u_long Arimaa::get_mask_e(const u_long& mask)
+{
+	return mask >> 1;
+}
+
+u_long Arimaa::get_mask_s(const u_long& mask)
+{
+	return mask >> SIZEX;
+}
+
+u_long Arimaa::get_mask_w(const u_long& mask)
+{
+	return mask << 1;
+}
+
+
+int Arimaa::end(const Bitboard* board)
+{
 	return 0;
 }
 
@@ -143,18 +158,94 @@ void Arimaa::diplay_board(const Bitboard* board)
 	std::cout << buffer.str() << std::endl;
 }
 
+u_long Arimaa::get_situation(const int& pos, Bitboard* board)
+{
+	u_long result = checkBorder(pos); // n e s w : 8 4 2 1 
+	u_long mask = get_mask(pos);
+	u_long returnval = 0;
+
+	int piece_rank = 0;
+	int player = board->get_player();
+
+	/*in theory there is no need to do the top and bottom check. Only left and Right are mandatory : slight optimisation possible later */
+
+	// /!\ HERE WE ASSUME a strictly positive number is equivalent to bool(true)
+	if (!(result & 8)) // NOT ON BORDER TOP
+	{
+		u_long mask_n = get_mask_n(mask);
+
+		returnval |= (check_neighbour(board, mask_n, piece_rank, player)) << 3;
+	}
+
+	if (!(result & 4)) // NOT ON BORDER RIGHT
+	{
+		u_long mask_e = get_mask_e(mask);
+
+		returnval |= (check_neighbour(board, mask_e, piece_rank, player)) << 2;
+	}
+
+	if (!(result & 2)) // NOT ON BORDER RIGHT
+	{
+		u_long mask_s = get_mask_s(mask);
+
+		returnval |= (check_neighbour(board, mask_s, piece_rank, player)) << 1;
+	}
+
+	if (!(result & 1)) // NOT ON BORDER RIGHT
+	{
+		u_long mask_w = get_mask_w(mask);
+
+		returnval |= (check_neighbour(board, mask_w, piece_rank, player));
+	}
+
+	returnval |= (result << 4);
+	return returnval;
+}
+
+u_long Arimaa::check_neighbour(const Bitboard* board, const u_long& mask, const int& piece_rank, const int& player)
+{
+	int enemy_player = 2 - player;
+	// look for friends
+	bool close = close_piece(board, mask, (NB_PIECE + 1)*player - 1);
+
+	bool prey = false;
+	bool same = false;
+	bool frozen = false;
+
+	// look for weaker enemy
+	int start = (NB_PIECE + 1)*enemy_player;
+	int end = (NB_PIECE + 1)*enemy_player + piece_rank;
+	for (int i = start; i < end; ++i)
+	{
+		prey |= close_piece(board, mask, i); // possible optimisation : add !frozen in the control structure...
+	}
+
+	// look for same enemy
+	start = (NB_PIECE + 1)*enemy_player + piece_rank;
+	same |= close_piece(board, mask, start); // possible optimisation : add !frozen in the control structure...
+
+	// look for stronger enemy
+	start = (NB_PIECE + 1)*enemy_player + piece_rank + 1;
+	for (int i = start; i < (NB_PIECE + 1); ++i)
+	{
+		frozen |= close_piece(board, mask, i); // possible optimisation : add !frozen in the control structure...
+	}
+
+	return static_cast<u_long>(frozen) << 12 | static_cast<u_long>(close) << 8 | static_cast<u_long>(same) << 4 | static_cast<u_long>(prey);
+}
+
 void Arimaa::move(Bitboard* board, int n, int pos, int type)
 {
-	static const int move_type[] = {SIZEX, -1, -SIZEX, 1};
+	static const int move_type[] = {SIZEX, -1, -SIZEX, 1}; // n : 0, e : 1, s : 2, w : 3
 	board->clearBit(n, pos);
 	board->setBit(n, (pos + move_type[type]));
 }
 
-bool Arimaa::close_piece(Bitboard* board, int pos, int boardnum)
+bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum)
 {
 	numtyp boards = board->get_board(boardnum);
-	numtyp mask = static_cast<numtyp>(1) << pos;
-	mask = mask << 1 | mask >> 1 | mask << SIZEX | mask >> SIZEX; // warning if pos in close to the side edges... WILL NEED CHECK
+
+	// compacted : 
 	return (boards & mask) > 0;
 }
 

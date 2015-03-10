@@ -9,7 +9,7 @@ typedef unsigned short u_short;
 
 #define elseif else if
 
-#define TIME_SEARCH 1
+#define TIME_SEARCH 3
 
 //#define TEST_API
 
@@ -18,6 +18,11 @@ typedef unsigned short u_short;
 #ifdef ARIMAA
 	#define SIZEX 6
 	#define SIZEY 6
+
+	#define TOP_BORDER 67645734912
+	#define BOTTOM_BORDER 63
+	#define LEFT_BORDER 34905131040
+	#define RIGHT_BORDER 1090785345
 #else
 	#define SIZEX 7
 	#define SIZEY 6

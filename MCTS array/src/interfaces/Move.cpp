@@ -18,6 +18,10 @@ Move::Move(int move) : _data(move)
 {
 }
 
+Move::Move(u_long move) : _data(move)
+{
+}
+
 Move::Move(numtyp move) : _data(move)
 {
 }
