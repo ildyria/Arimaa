@@ -50,12 +50,16 @@ namespace api {
 		return _ai->winning_chances();
 	}
 
-	v_stat Ai::getMovesStatistics()
+	v_stat Ai::exploreAndGetMovesStatistics()
 	{
 		return _ai->get_moves_statistics();
 	}
 
-	void Ai::explore()
+	void Ai::explore(){
+		_ai->get_best_move();
+	}
+
+	void Ai::exploreSingle()
 	{
 		_ai->explore();
 	}

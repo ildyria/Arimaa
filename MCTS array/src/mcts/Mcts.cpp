@@ -312,7 +312,7 @@ namespace mcts{
 
 	void Mcts::kill_tree()
 	{
-		_tree.clear();
+		_tree.clear(); // CHECK IT.
 	}
 
 	void Mcts::get_number_leaves()

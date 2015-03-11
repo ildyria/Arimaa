@@ -87,6 +87,8 @@ namespace api {
 		v_stat getMovesStatistics();
 
 		void explore();
+
+		void exploreSingle();
 	};
 }
 
