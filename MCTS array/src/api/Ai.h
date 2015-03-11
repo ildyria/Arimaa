@@ -9,6 +9,7 @@
 #endif
 
 namespace api {
+
 	/**
 	 * \class Ai
 	 * \brief Converter to manage the AI by the GUI
@@ -17,7 +18,7 @@ namespace api {
 	{
 		mcts::MctsArgs* _param;
 		mcts::Mcts* _ai;
-		Game* _game;
+		api::Game* _game;
 
 	public:
 		/**
@@ -82,6 +83,10 @@ namespace api {
 		 * \return winning chances
 		 */
 		double estimateWinChances();
+
+		v_stat getMovesStatistics();
+
+		void explore();
 	};
 }
 

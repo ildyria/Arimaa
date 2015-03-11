@@ -66,8 +66,9 @@ namespace mcts
 		 * \param  Bb state of the board
 		 * \return the state of the board : 0, 1, 2, 3, or 255 if cannot be explored (locked / memory limit) .
 		 */
-		u_int update_node(Node* node, Bitboard* Bb);
 		void expand_node(Node* node, Bitboard* Bb, u_int& nodet);
+
+		u_int update_node(Node* node, Bitboard* Bb);
 
 		/**
 		 * \fn start_ramdom_playouts(Node* node,  Bitboard* Bb)
@@ -175,5 +176,7 @@ namespace mcts
 		 * \return the winning rate of the last move, -1 if losing, 2 if it was a winning strategy
 		 */
 		double winning_chances();
+
+		v_stat get_moves_statistics();
 	};
 }

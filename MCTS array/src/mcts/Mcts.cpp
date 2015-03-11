@@ -326,4 +326,22 @@ namespace mcts{
 	{
 		return (_tree[0].get_UCT() != 42 && _tree[0].get_UCT() != -1) ? _tree[0].get_proba() : _tree[0].get_UCT();
 	}
+
+	v_stat Mcts::get_moves_statistics()
+	{
+		auto terminal = _tree[0].get_terminal();
+
+		if (terminal != 0) return v_stat(); // no children => no stats
+
+		auto listChildren = _tree[0].get_children();
+		v_stat return_vect = v_stat(listChildren.second);
+		auto first = listChildren.first;
+		for (u_int i = 0; i < listChildren.second; ++i)
+		{
+			return_vect[i] = n_stat(first->get_move().get_move(), p_stat(first->get_wins(), first->get_visits()));
+			++first;
+		}
+
+		return return_vect;
+	}
 }

@@ -303,6 +303,14 @@ namespace mcts
 		inline u_long get_visits() { return _visits; };
 
 		/**
+		* \fn get_wins()
+		* \brief getter for the number of wins
+		*
+		* \return return the number of wins
+		*/
+		inline u_long get_wins() { return _wins; };
+
+		/**
 		 * \fn compare()
 		 * \brief compare Node* a and Node *b,
 		 *

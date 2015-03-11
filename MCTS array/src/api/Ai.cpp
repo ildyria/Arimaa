@@ -49,4 +49,14 @@ namespace api {
 	{
 		return _ai->winning_chances();
 	}
+
+	v_stat Ai::getMovesStatistics()
+	{
+		return _ai->get_moves_statistics();
+	}
+
+	void Ai::explore()
+	{
+		_ai->explore();
+	}
 }

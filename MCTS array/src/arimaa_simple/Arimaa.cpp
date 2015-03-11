@@ -262,7 +262,7 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 
 int Arimaa::play_random_moves(Bitboard* board)
 {
-	nodet = end(board);
+	auto nodet = end(board);
 	return nodet;
 }
 
