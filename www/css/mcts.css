@@ -39,7 +39,8 @@ h3, .h3 {
 	font-size: 14pt;
 	margin-bottom: 0px;	
 	margin-top: 12px;	
-	color: #000;	
+	color: #000;
+	font-weight: bold;
 }
 
 h4, .h4 {
@@ -128,6 +129,7 @@ div {
 /* padding-bottom */
 .pb2 { padding-bottom: 2px; }
 .pb10 { padding-bottom: 10px; }
+.pb20 { padding-bottom: 20px; }
 
 /* padding-top */
 .pt5 { padding-top: 5px; }
@@ -146,6 +148,7 @@ div {
 /* heigh */ 
 .h30 { height: 30px; }
 .h40 { height: 40px; }
+.h50 { height: 50px; }
 .h60 { height: 60px; }
 .h64 { height: 64px; }
 .h80 { height: 80px; }
