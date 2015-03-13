@@ -50,7 +50,7 @@ namespace api {
 		return _ai->winning_chances();
 	}
 
-	v_stat Ai::exploreAndGetMovesStatistics()
+	v_stat Ai::getMovesStatistics()
 	{
 		return _ai->get_moves_statistics();
 	}
