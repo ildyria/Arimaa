@@ -10,6 +10,7 @@
 #include "../interfaces/TheGame.h"
 #include <sstream>
 #include "../tools/Random.h"
+#include "arimaa_tools.h"
 
 /**
  * \brief Arimaa class
@@ -46,6 +47,12 @@ class Arimaa : public TheGame
 	u_long get_mask_e(const u_long& mask);
 	u_long get_mask_s(const u_long& mask);
 	u_long get_mask_w(const u_long& mask);
+
+	bool is_frozen(const u_long& situation);
+
+	u_long possible_move(const u_long& situation);
+
+	u_long possible_push_pull(const u_long& pos, const u_long& situation, const Bitboard* board);
 
 public:
 	/**
