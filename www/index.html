@@ -17,8 +17,8 @@
 		<div class="grid_4">
 			<img src="image/Insa-rennes-logo.svg.png">
 		</div>
-		<div class="prefix_8 grid_2 mt20"><h3>DOWNLOAD</h3></div>
-		<div class="grid_2 mt20"><a href="docs.html"><h3>DOCUMENTATION</h3></a></div>
+<!-- 		<div class="prefix_8 grid_2 mt20"><h3>DOWNLOAD</h3></div>
+		<div class="grid_2 mt20"><a href="docs.html"><h3>DOCUMENTATION</h3></a></div> -->
 		<div class="clear">&nbsp;</div>
 	</div>
 </div>
@@ -38,12 +38,20 @@
 <div class="bgwhite zi0">
 	<div class="container_16">
 		<div class="grid_8 tacenter pt20">
-			<h2>Monte Carlo Tree Search Algorithm</h2>
-			<img src="image/mcts-steps-4.png" class="h350" />
+			<img src="image/mcts-steps-4.png" class="h250" />
 		</div>
-		<div class="grid_8 tacenter pt20">
-			<img src="image/UCT.png" class="h150" />
-
+		<div class="grid_8 taleft pt20">
+			<!-- <img src="image/UCT.png" class="h150" /> -->
+			<h2>Monte Carlo Tree Search Algorithm</h2>
+			<br />
+			The purpose of this project is to create an Artificial Intelligence software for the game Arimaa able to compete against humans using the Monte Carlo Tree Search algorithm.
+			<br />
+			<br />
+			Due to the high number of branches (500 times more than chess), it is impossible to explore all the position.
+			<br />
+			<br />
+			Using probability, random simulations and backtracking, the <br>
+			Monte Carlo Tree Search Algorithm provides a way to decrease the number of boards to be visited.
 		</div>
 		<div class="clear mb20">&nbsp;</div>
 	</div>
@@ -52,12 +60,15 @@
 <div class="bggray zi0">
 	<div class="container_16">
 		<div class="grid_8 tacenter mt20 mb20">
-			<h2>Tree Parallelisation</h2>
+			<h2>Tree Parallelisation...</h2>
 			<img src="image/tree.png" class="h250" >
 		</div>
-		<div class="grid_8 tacenter mt20 mb20">
+		<div class="grid_8 taleft mt20 mb20">
 			<h2>on the multicore CPU.</h2>
-			<img src="image/xeon.png">
+			<div class="tacenter mt10 mb10"><img src="image/xeon.png"><br></div>
+			This software has been optimized to take advantage of the power provided by the growing popularity of multicore computers.<br>
+			<br>
+			Each core is working on its own part of the tree, multiplying the speed of the search up to 8 times !
 		</div>
 		<div class="clear">&nbsp;</div>
 	</div>
@@ -66,24 +77,35 @@
 <div class="bgwhite zi0 mt20 mb20">
 	<div class="container_16">
 		<div class="grid_8 tacenter">
-			<h2>Root Parallelisation...</h2>
+			<h2>Root Distribution...</h2>
 			<img src="image/root.png">
 		</div>
-		<div class="grid_8 tacenter">
+		<div class="grid_8 taleft">
 			<h2>on a set of clusters.</h2>
-			<img src="image/cluster.png">
+			<div class="tacenter mt10 mb10"><img src="image/cluster.png"></div>
+		</div>
+		<div class="prefix_3 grid_12 suffix_3 tacenter">
+			Should you be seeking for more power, you can unleash it on a set of cluster, taking advantage of the distribution of the simulations all over the network. Using a Master-Workers implementation each computer added to your cluster increase the odds of finding the best move.
+			<br>
+			<br>
+			As each worker has its own copy of the tree, it minimize the interaction between them, thus decreasing the inteferences and speeding up researches.
 		</div>
 		<div class="clear">&nbsp;</div>
 	</div>
 </div>
 
-<div class="bggray zi0 mt20 mb20">
+<div class="bggray zi0 mt20 pt20 pb20">
 	<div class="container_16">
-		<div class="grid_16 tacenter">
+		<div class="grid_8 taright">
 			<img src="image/Linux.png" class="h100" />
 			<img src="image/g5kmap.png" class="h100" />
 			<img src="image/logo.gif" class="h100" />
 		</div>
+		<div class="grid_8 taleft">
+		Beno&icirc;t Viguier - Gabriel Prevosto - Prateek Bhatnagar<br><br>
+        Supervisors: Nikolaos Parlavantzas &amp; Christian Raymond
+		</div>
+
 		<div class="clear">&nbsp;</div>
 	</div>
 </div>

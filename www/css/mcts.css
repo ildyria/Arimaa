@@ -83,7 +83,7 @@ ol li {
 }
 
 div {
-	font-size: 11pt;
+	font-size: 14pt;
 }
 
 
@@ -192,3 +192,5 @@ div {
 .zi0 {z-index: 0;}
 .zi1 {z-index: 1;}
 .zi10 {z-index: 10;}
+
+.red {color: rgb(255,0,0); font-weight: bold;}
