@@ -30,6 +30,11 @@
 		</div>
 		<div class="clear">&nbsp;</div>
 		<div class="prefix_4 grid_8 suffix_4 mt10 mb20">
+			<br />
+			<center>
+			The purpose of this project is to create an Artificial Intelligence software able to play Arimaa against humans or other A.I.s using the Monte Carlo Tree Search algorithm.
+			</center>
+			<br />
 			<img src="image/Arimaa.png">
 		</div>
 		<div class="clear">&nbsp;</div>
@@ -44,14 +49,11 @@
 			<!-- <img src="image/UCT.png" class="h150" /> -->
 			<h2>Monte Carlo Tree Search Algorithm</h2>
 			<br />
-			The purpose of this project is to create an Artificial Intelligence software for the game Arimaa able to compete against humans using the Monte Carlo Tree Search algorithm.
+			Due to the high number of branches (500 times more than chess), it is impossible to explore every possibility.
 			<br />
 			<br />
-			Due to the high number of branches (500 times more than chess), it is impossible to explore all the position.
-			<br />
-			<br />
-			Using probability, random simulations and backtracking, the <br>
-			Monte Carlo Tree Search Algorithm provides a way to decrease the number of boards to be visited.
+			Using probabilities, random simulations and backtracking, the <br>
+			Monte Carlo Tree Search Algorithm provides a way to decrease the number of possibilities to be explored.
 		</div>
 		<div class="clear mb20">&nbsp;</div>
 	</div>
@@ -64,11 +66,11 @@
 			<img src="image/tree.png" class="h250" >
 		</div>
 		<div class="grid_8 taleft mt20 mb20">
-			<h2>on the multicore CPU.</h2>
+			<h2>on multicore CPUs.</h2>
 			<div class="tacenter mt10 mb10"><img src="image/xeon.png"><br></div>
-			This software has been optimized to take advantage of the power provided by the growing popularity of multicore computers.<br>
+			This software takes advantage of the power provided by the growing popularity of multicore computers.<br>
 			<br>
-			Each core is working on its own part of the tree, multiplying the speed of the search up to 8 times !
+			Each core is working on its own part of the tree, making the search up to 8 times faster !
 		</div>
 		<div class="clear">&nbsp;</div>
 	</div>
@@ -85,10 +87,10 @@
 			<div class="tacenter mt10 mb10"><img src="image/cluster.png"></div>
 		</div>
 		<div class="prefix_3 grid_12 suffix_3 tacenter">
-			Should you be seeking for more power, you can unleash it on a set of cluster, taking advantage of the distribution of the simulations all over the network. Using a Master-Workers implementation each computer added to your cluster increase the odds of finding the best move.
+			For even more processing power, the algorithm can distribute its work among several machines. Using a Master-Worker strategy, each computer added to the cluster increases the odds of finding an advantageous move.
 			<br>
 			<br>
-			As each worker has its own copy of the tree, it minimize the interaction between them, thus decreasing the inteferences and speeding up researches.
+			As each worker has its own copy of the tree, there is but few communications between the machines, thus decreasing the amount of inteference and speeding up the search.
 		</div>
 		<div class="clear">&nbsp;</div>
 	</div>
@@ -102,7 +104,9 @@
 			<img src="image/logo.gif" class="h100" />
 		</div>
 		<div class="grid_8 taleft">
-		Beno&icirc;t Viguier - Gabriel Prevosto - Prateek Bhatnagar<br><br>
+		Prateek Bhatnagar - Baptiste Bignon - Mika&iuml;l Demirdelen<br>
+		Gabriel Prevosto - Dan Seeruttun--Marie - Beno&icirc;t Viguier<br>
+		<br>
         Supervisors: Nikolaos Parlavantzas &amp; Christian Raymond
 		</div>
 
