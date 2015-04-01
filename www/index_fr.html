@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fast &amp; Furious Game Playing : Monte Carlo Drift</title>
+	<meta name="author" content="Benoit Viguier" />
+	<meta name="keywords"  content="MCTS, Monte Carlo Tree Search, Arimaa, Game, Tree" />
+	<meta name="Resource-type" content="document" />
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/960.css" />
+	<link rel="stylesheet" type="text/css" href="css/mcts.css" />
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+</head>
+<body>
+<div class="header bgwhiteA zi10">
+	<div class="container_16">
+		<div class="grid_4">
+			<img src="image/Insa-rennes-logo.svg.png">
+		</div>
+<!-- 		<div class="prefix_8 grid_2 mt20"><h3>DOWNLOAD</h3></div>
+		<div class="grid_2 mt20"><a href="docs.html"><h3>DOCUMENTATION</h3></a></div> -->
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+<div class="bggray zi0">
+	<div class="container_16 pt90">
+		<div class="prefix_2 grid_12 suffix_2 tacenter">
+			<h1>Fast &amp; Furious Game Playing : Monte Carlo Drift</h1>
+			<h2>Une Intelligence Aritificielle pour Arimaa utilisant MCTS</h2>
+		</div>
+		<div class="clear">&nbsp;</div>
+		<div class="prefix_4 grid_8 suffix_4 mt10 mb20">
+			<br />
+			<center>
+			Le but de ce projet est la cr&eacuteation d'une Intelligence Artificielle capable de jouer &agrave Arimaa contre des humains ou d'autres I.A.s &agrave l'aide de l'algorithme Monte Carlo Tree Search.
+			</center>
+			<br />
+			<img src="image/Arimaa.png">
+		</div>
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+<div class="bgwhite zi0">
+	<div class="container_16">
+		<div class="grid_8 tacenter pt20">
+			<img src="image/mcts-steps-4.png" class="h250" />
+		</div>
+		<div class="grid_8 taleft pt20">
+			<!-- <img src="image/UCT.png" class="h150" /> -->
+			<h2>L'algorithme Monte Carlo Tree Search</h2>
+			<br />
+			A cause du grand nombre de coups possibles (500 fois plus qu'aus &eacutechecs), il est impossible de tous les explorer.
+			<br />
+			<br />
+			A l'aide de probabilit&eacutes, de simulation al&eacuteatoires et de backtracking, l'algorithme Monte Carlo Tree Search permet de r&eacuteduire le nombre de possiblit&eacutes &agrave explorer.
+		</div>
+		<div class="clear mb20">&nbsp;</div>
+	</div>
+</div>
+
+<div class="bggray zi0">
+	<div class="container_16">
+		<div class="grid_8 tacenter mt20 mb20">
+			<h2>Parall&eacutelisation...</h2>
+			<img src="image/tree.png" class="h250" >
+		</div>
+		<div class="grid_8 taleft mt20 mb20">
+			<h2>sur des processeurs multic&oelig;urs.</h2>
+			<div class="tacenter mt10 mb10"><img src="image/xeon.png"><br></div>
+			L'intelligence artificielle est capable d'utiliser plusieurs c&oelig;urs afin d'augmenter le nombre de simulations effectu&eacutees.<br>
+			<br>
+			Chaque c&oelig;ur travaille sur une partie de l'arbre, rendant la recherche jusqu'&agrave 8 fois plus rapide !
+		</div>
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+
+<div class="bgwhite zi0 mt20 mb20">
+	<div class="container_16">
+		<div class="grid_8 tacenter">
+			<h2>Distribution...</h2>
+			<img src="image/root.png">
+		</div>
+		<div class="grid_8 taleft">
+			<h2>sur un r&eacuteseau de grappes.</h2>
+			<div class="tacenter mt10 mb10"><img src="image/cluster.png"></div>
+		</div>
+		<div class="prefix_3 grid_12 suffix_3 tacenter">
+			Pour avoir encore plus de puissance de calcul, l'Intelligence Artificielle peut distribuer les calculs sur plusieurs ordinateurs. Avec une strat&eacutegie Master Worker, chaque ordinateur ajout&eacute &agrave la grappe augmente les chances de trouver un coup avantageux.
+			<br>
+			<br>
+			Comme chaque "worker" a sa propre copie de l'arbre, il n'y a que peu de communications entre les ordinateurs ; cela r&eacuteduit donc les interf&eacuterences et le temps que prend la recherche du coup &agrave effectuer.
+		</div>
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+
+<div class="bggray zi0 mt20 pt20 pb20">
+	<div class="container_16">
+		<div class="grid_8 taright">
+			<img src="image/Linux.png" class="h100" />
+			<img src="image/g5kmap.png" class="h100" />
+			<img src="image/logo.gif" class="h100" />
+		</div>
+		<div class="grid_8 taleft">
+		Prateek Bhatnagar - Baptiste Bignon - Mika&iuml;l Demirdelen<br>
+		Gabriel Prevosto - Dan Seeruttun--Marie - Beno&icirc;t Viguier<br>
+		<br>
+        Encadrants : Nikolaos Parlavantzas &amp; Christian Raymond
+		</div>
+
+		<div class="clear">&nbsp;</div>
+	</div>
+</div>
+</body>
+</html>
