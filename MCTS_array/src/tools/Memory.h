@@ -64,7 +64,7 @@ public:
 			{
 				while (!feof(fInput))
 				{
-					fgets(buffer, BUFFER_SIZE - 1, fInput);
+					if(fgets(buffer, BUFFER_SIZE - 1, fInput) != nullptr){}; // remove another warning... thx Rodrigue...
 					if (feof(fInput))
 					{
 						break;

@@ -15,7 +15,7 @@ typedef std::vector<n_stat> v_stat;
 
 #define elseif else if
 
-#define TIME_SEARCH 5
+#define TIME_SEARCH 30
 
 //#define TEST_API
 
@@ -36,6 +36,7 @@ typedef std::vector<n_stat> v_stat;
 
 #define NB_PIECE 3
 
+
 //#define LIMIT_MEMORY		// 2 Go max
 //#define HARD_LIMIT_MEMORY	// 2048 nodes max
 //#define DUMP_TREES			// dump trees in the console (only use with HARD_LIMIT_MEMORY)
@@ -44,7 +45,7 @@ typedef std::vector<n_stat> v_stat;
 
 #define OPENMP				// enable multi threading
 
-//#define DOUBLE_TREE			// double tree strategy : safer but less nodes
+#define DOUBLE_TREE			// double tree strategy : safer but less nodes
 #define PRUNE_NUMBER			10
 
 #define SAFE_TREE
