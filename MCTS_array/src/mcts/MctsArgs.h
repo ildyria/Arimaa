@@ -8,6 +8,13 @@
  */
 #pragma once
 #include "../tools/typedef.h"
+
+#if defined(DOUBLE_TREE)
+	#define DIVIDE 2 * sizeof(Node)
+#else
+	#define DIVIDE (sizeof(Node) + 2*sizeof(void*))
+#endif
+
 namespace mcts {
 
 	/**
@@ -51,17 +58,9 @@ namespace mcts {
 			u_int simulL = 2,
 			u_int numVisitExplo = 2,
 			double percentRAM = 0.95
-			) : _depth(depth), _timeLimitsimulationPerRoot(timelimit), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
+			) : _depth(depth), _timeLimitsimulationPerRoot(TIME_SEARCH * 1000), _simulationPerRoot(simulR), _simulationPerLeaves(simulL), _numberOfVisitBeforeExploration(2*numVisitExplo), _percentRAM(percentRAM)
 		{
-#if defined(DOUBLE_TREE)
-	#define DIVIDE 2 * sizeof(Node)
-#else
-	#define DIVIDE (sizeof(Node) + 2*sizeof(void*))
-#endif
-
-#if defined(LIMIT_MEMORY)
-			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
-#elif defined(_WIN64)
+#if defined(_WIN64)
 			_maxNumberOfLeaves = static_cast<u_long>(Memory::get_free_memory() * _percentRAM / (DIVIDE));
 #elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
 			_maxNumberOfLeaves = static_cast<u_long>(Memory::get_free_memory() * _percentRAM / (DIVIDE));
@@ -69,13 +68,41 @@ namespace mcts {
 			std::cout << "Memory limited..." << std::endl;
 			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
 #endif
-#if defined(HARD_LIMIT_MEMORY)
-			_maxNumberOfLeaves = 2048;
-#endif
-			std::cout << "size of node : " << sizeof(Node) << std::endl;
 
+			std::cout << "size of node : " << sizeof(Node) << std::endl;
 			std::cout << "max num of leaves : " << Count::format(_maxNumberOfLeaves) << std::endl;
 		};
+
+		explicit inline MctsArgs(
+			prog_options& options,
+			u_int depth = 44,
+			u_int numVisitExplo = 2
+			) : _depth(depth),
+				_timeLimitsimulationPerRoot(options.time_to_search*1000),
+				_simulationPerRoot(100000000),
+				_simulationPerLeaves(2),
+				_numberOfVisitBeforeExploration(2*numVisitExplo),
+				_percentRAM(options.percent_memory)
+		{
+
+			if(options.memory_limited)
+				_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(options.hard_memory) << 20) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
+			else
+			{
+#if defined(_WIN64)
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::get_free_memory() * _percentRAM / (DIVIDE));
+#elif defined(__linux__) || defined(__linux) || defined(linux) || defined(__gnu_linux__)
+			_maxNumberOfLeaves = static_cast<u_long>(Memory::get_free_memory() * _percentRAM / (DIVIDE));
+#else
+			std::cout << "Memory limited..." << std::endl;
+			_maxNumberOfLeaves = static_cast<u_long>((static_cast<u_long>(1) << 31) * _percentRAM / (DIVIDE)); // maximum size is 2 Go...
+#endif
+			}
+
+			std::cout << "size of node : " << sizeof(Node) << std::endl;
+			std::cout << "max num of leaves : " << Count::format(_maxNumberOfLeaves) << std::endl;
+		};
+
 
 		/**
 		 * \fn get_max_depth() 

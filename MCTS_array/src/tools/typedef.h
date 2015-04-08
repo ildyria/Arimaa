@@ -13,7 +13,20 @@ typedef std::pair<u_long, u_long> p_stat;
 typedef std::pair < numtyp, p_stat> n_stat;
 typedef std::vector<n_stat> v_stat;
 
+typedef struct prog_options {
+	double percent_memory; // 8
+	short hard_memory; // 2
+	short time_to_search; // 2 
+	bool memory_limited; // 1
+	bool think_while_waiting; // 1
+	bool updated;	// 1
+	bool foo2;	// youhouuuuu....
+} prog_options;
+
 #define elseif else if
+
+
+
 
 #define TIME_SEARCH 30
 
@@ -37,8 +50,6 @@ typedef std::vector<n_stat> v_stat;
 #define NB_PIECE 3
 
 
-//#define LIMIT_MEMORY		// 2 Go max
-//#define HARD_LIMIT_MEMORY	// 2048 nodes max
 //#define DUMP_TREES			// dump trees in the console (only use with HARD_LIMIT_MEMORY)
 //#define TREE_INTEGRITY		// check the integrity of the tree, slow down the prunning
 //#define TREE_SHIFT_PRINT

@@ -28,6 +28,7 @@
 
 #include <thread>
 #include "tools/Random.h"
+#include "tools/read_args.h"
 
 using namespace mcts;
 using std::cout;
@@ -35,49 +36,17 @@ using std::cin;
 using std::endl;
 using std::list;
 
+
+
+
 int main(int argc, char const *argv[])
 {
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
 	cout << "\tBut remember, all code is guilty until proven innocent !" << endl << endl;
 
-	int think_while_waiting = 1;
+	prog_options options = read_args(argc, argv);
 
-	// report settings
-	for (int i = 1; i < argc; i++)
-		{
-			if(strcmp(argv[i],"-nothx") == 0)
-			{
-				think_while_waiting = 0;
-				cout << "Ok, i won't think while waiting for your move." << endl;
-			}
-			elseif(strcmp(argv[i],"-n") == 0)
-			{
-				if(i + 1 < argc)
-				{
-					i++;
-					int num_proc_to_use = 1;
-					num_proc_to_use = max(num_proc_to_use, std::stoi(argv[i],nullptr,0));
-					num_proc_to_use = num_proc_to_use > omp_get_num_procs() ? omp_get_num_procs() : num_proc_to_use ;
-					cout << num_proc_to_use << " core selected over " << omp_get_num_procs() << "." << endl;
-				 	omp_set_num_threads(num_proc_to_use);
-				}
-				else
-				{
-					cout << "-n require an additionnal parameter." << endl;
-					exit(1);
-				}
-			}
-			elseif(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"--help") == 0 || strcmp(argv[i],"help") == 0)
-			{
-					cout << "-nothx : programm doesn't think while waiting for player's move." << endl;
-					cout << "-n <num> : number of process to use while thinking." << endl;
-					exit(1);
-			}
-			else
-			{
-				printf("Argument %d:%s\n",i,argv[i]);
-			}
-		}
+	int think_while_waiting = options.think_while_waiting;
 
 
 #ifdef TEST_API
@@ -104,7 +73,15 @@ int main(int argc, char const *argv[])
 	Move move;
 	Random::I();
 
-	MctsArgs* args = new MctsArgs();
+	MctsArgs* args;
+	if(options.updated)
+	{
+		args = new MctsArgs(options);
+	}
+	else
+	{
+		args = new MctsArgs();
+	}
 
 	list<Move> Listtoprint;
 	list<Move>::iterator iter;
