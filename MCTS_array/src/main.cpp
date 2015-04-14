@@ -27,7 +27,7 @@
 
 #include <thread>
 #include "tools/Random.h"
-#include "tools/bench.h"
+#include "tools/Bench.h"
 #include "tools/read_args.h"
 
 using namespace mcts;

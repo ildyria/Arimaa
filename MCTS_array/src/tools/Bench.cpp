@@ -54,4 +54,24 @@ void Bench::run()
 		std::cout << (i+1) << " : " << _results[i] << "\n";
 	}
 	std::cout << std::endl;
+
+	// prepare data for graph
+	std::vector<double> to_graph = std::vector<double>(0);
+	double reference_val = static_cast<double>(_results[0]);
+	for (u_int i = 0; i < _num_cpu; ++i)
+	{
+		to_graph.push_back(_results[i]/reference_val);
+	}
+
+	for (int i = 0; i < 81; ++i)
+	{
+		printf("-");
+	}
+	printf("\n");
+
+	Graph* g = new Graph(to_graph);
+	g->draw();
+
+	delete g;
+
 }
