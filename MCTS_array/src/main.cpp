@@ -27,6 +27,7 @@
 
 #include <thread>
 #include "tools/Random.h"
+#include "tools/Graph.h"
 #include "tools/Bench.h"
 #include "tools/read_args.h"
 

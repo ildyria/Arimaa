@@ -125,6 +125,7 @@ Arimaa/UpgradeLog.htm
 # Biv Trash files...
 # =========================
 MCTS/x64/Debug/*
+MCTS_array/bin/*
 www/includes/conf.php
 
 # =========================
