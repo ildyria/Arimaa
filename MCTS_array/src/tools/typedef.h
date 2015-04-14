@@ -20,7 +20,7 @@ typedef struct prog_options {
 	bool memory_limited; // 1
 	bool think_while_waiting; // 1
 	bool updated;	// 1
-	bool foo2;	// youhouuuuu....
+	bool bench;		// 1
 } prog_options;
 
 #define elseif else if

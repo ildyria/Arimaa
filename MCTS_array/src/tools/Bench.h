@@ -1,0 +1,21 @@
+#pragma once
+#include "typedef.h"
+#include "../interfaces/TheGame.h"
+#include "../mcts/Mcts.h"
+#include "../mcts/MctsArgs.h"
+
+class Bench
+{
+	TheGame* _game;
+	mcts::MctsArgs* _param;
+	Bitboard* _bb;
+	u_long _num_cpu;
+	std::vector<u_long> _results;
+
+	u_long stress(mcts::Mcts* mcts);
+
+public:
+	Bench(TheGame* game, Bitboard* Bb, mcts::MctsArgs* args);
+	~Bench();
+	void run();
+};

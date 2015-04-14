@@ -11,6 +11,7 @@ prog_options read_args(int& argc, char const* argv[])
 	options.time_to_search = 5;
 	options.percent_memory = 0.95;
 	options.updated = false;
+	options.bench = false;
 
 	// report settings
 	for (int i = 1; i < argc; i++)
@@ -93,6 +94,12 @@ prog_options read_args(int& argc, char const* argv[])
 				std::cout << options.hard_memory << "Mo will be used." << std::endl;
 				options.updated = true;
 			}
+		}
+		elseif(strcmp(argv[i],"-b") == 0 || strcmp(argv[i],"--bench") == 0)
+		{
+			options.bench = true;
+			options.updated = true;
+			options.time_to_search = 30;
 		}
 		elseif(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"--help") == 0 || strcmp(argv[i],"help") == 0)
 		{

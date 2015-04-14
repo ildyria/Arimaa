@@ -1,4 +1,3 @@
-//#include <vld.h>
 //#define TEST_API
 
 #include "tools/typedef.h"
@@ -28,6 +27,7 @@
 
 #include <thread>
 #include "tools/Random.h"
+#include "tools/bench.h"
 #include "tools/read_args.h"
 
 using namespace mcts;
@@ -81,6 +81,13 @@ int main(int argc, char const *argv[])
 	else
 	{
 		args = new MctsArgs();
+	}
+
+	if(options.bench)
+	{
+		Bench bench = Bench(game,Bb,args);
+		bench.run();
+		exit(1);
 	}
 
 	list<Move> Listtoprint;
