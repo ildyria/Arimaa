@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <string>
+#include <sstream>
 #include <iostream>     // std::cout
 #include <algorithm>    // std::min_element, std::max_element
 
@@ -11,8 +13,9 @@ class Graph
 	std::vector<coord> _vals;
 	std::vector<double>& _data;
 	u_long _num_data;
+	u_long _scale_x;
 public:
-	Graph(std::vector<double>& data, int xscale = 0, double yscale = 0);
+	Graph(std::vector<double>& data, double xscale = 1.0);
 	~Graph(){};
 	void compute();	
 	void draw();

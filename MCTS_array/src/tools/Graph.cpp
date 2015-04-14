@@ -2,7 +2,7 @@
 #define GRAPH_SIZE_X 80
 #define GRAPH_SIZE_Y 20
 
-Graph::Graph(std::vector<double>& data, int xscale, double yscale) : 
+Graph::Graph(std::vector<double>& data, double xscale) : 
 	_map(std::vector<std::vector<u_short>>(GRAPH_SIZE_X+1,std::vector<u_short>(GRAPH_SIZE_Y+1,0))),
 	_vals(std::vector<coord>(0)),
 	_data(data)
@@ -10,6 +10,7 @@ Graph::Graph(std::vector<double>& data, int xscale, double yscale) :
 	double max_val = *std::max_element(data.begin(), data.end());
 
 	_num_data = _data.size();
+	_scale_x = xscale*GRAPH_SIZE_Y/(max_val+1);
 	for (u_int i = 0; i < _num_data; ++i)
 	{
 		u_int xpos = (i+1)*(GRAPH_SIZE_X/(_num_data+1));
@@ -27,14 +28,34 @@ void Graph::compute()
 
 void Graph::draw()
 {
-	for (int y = GRAPH_SIZE_Y; y >=0; --y)
+
+	//
+	//  GRAPH
+	//
+	for (int y = GRAPH_SIZE_Y; y >0; --y)
 	{
 		for (u_int x = 0; x < GRAPH_SIZE_X; ++x)
 		{
 			if(x == 0)
 			{
-				printf("\u2502");
-			}else 			if(_map[x][y] == 1)
+				//
+				//  Y AXIS
+				//
+				if(y % _scale_x == 0)
+				{
+					printf("%2ld \u2524", y/_scale_x);
+				}
+				else
+				{
+					printf("   \u2502");
+				}
+			}
+
+			//
+			//  DATA
+			//
+
+			else if(_map[x][y] == 1)
 			{
 				printf("+");
 			}
@@ -46,39 +67,51 @@ void Graph::draw()
 		printf("\n");
 	}
 
-	printf("\u253C");
 	// for (u_int x = 0; x < GRAPH_SIZE_X; ++x)
 	// {
 	// 	printf("\u2500");
 	// }
+
+	// 
+	// X AXIS
+	// 
+	printf("   \u253C");
+	u_int i = 1;
+	std::stringstream axe_x_val;
+	axe_x_val << "   0";
 	for (u_int x = 1; x < GRAPH_SIZE_X; ++x)
 	{
 		if(x % (GRAPH_SIZE_X/(_num_data+1)) == 0)
 			printf("\u252C");
 		else
 			printf("\u2500");
-	}
-	printf("\n");
 
-	u_int i = 1;
-	for (u_int x = 0; x < GRAPH_SIZE_X; ++x)
-	{
-		if(x == 0)
+
+		if((x-1) % (GRAPH_SIZE_X/(_num_data+1)) == 0)
 		{
-			printf("0");
-			x++;
-		}
-		else if(x % (GRAPH_SIZE_X/(_num_data+1)) == 0)
-		{
-			printf("%2d",i);
+			printf("\u2500");
+			if(i == 1)
+			{
+				axe_x_val << " ";
+			}
+			if (i < 10)
+			{
+				axe_x_val << " " << i;
+			}
+			else
+			{
+				axe_x_val << i;
+			}
 			i++;
 			x++;
 		}
 		else if(i > _num_data) break;
 		else
-			printf(" ");
+			axe_x_val << " ";
+
 	}
 	printf("\n");
+	std::cout << axe_x_val.str() << std::endl;
 }
 
 void Graph::test(){

@@ -86,6 +86,8 @@ int main(int argc, char const *argv[])
 
 	if(options.bench)
 	{
+		// Graph::test();
+		// exit(1);
 		Bench bench = Bench(game,Bb,args);
 		bench.run();
 		exit(1);
