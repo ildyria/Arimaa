@@ -53,6 +53,7 @@ typedef struct prog_options {
 //#define DUMP_TREES			// dump trees in the console (only use with HARD_LIMIT_MEMORY)
 //#define TREE_INTEGRITY		// check the integrity of the tree, slow down the prunning
 //#define TREE_SHIFT_PRINT
+//#define TREE_CLEAN_DISPLAY
 
 #define OPENMP				// enable multi threading
 

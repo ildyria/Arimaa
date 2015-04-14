@@ -26,7 +26,9 @@ namespace mcts{
 				, _index(Tree_index<Node>(args->get_max_max_number_of_leaves()))
 #endif
 	{
+/*
 		cout << "number of thread : " << omp_get_num_procs() << endl;
+*/		
 		// #pragma omp parallel
 		// {
 		// 	int tid = omp_get_thread_num();
