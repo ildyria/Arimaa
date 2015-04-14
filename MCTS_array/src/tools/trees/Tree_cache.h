@@ -52,7 +52,9 @@ public:
 		find_next(_tree, _next);
 
 		t.stop();
+#ifdef TREE_CLEAN_DISPLAY
 		std::cout << "recycling duration : " << Count::format(duration_cast<milliseconds>(t.result()).count()) << " ms." << std::endl;
+#endif // TREE_CACHE_H
 	}
 
 	static void clean_tree(std::vector<N> &T)
@@ -64,7 +66,10 @@ public:
 			ptr->unset();
 			++ptr;
 		}
+
+#ifdef TREE_CLEAN_DISPLAY
 		std::cout << "clean tree : " << Count::format(ptr - &T[0]) << std::endl;
+#endif // TREE_CACHE_H
 	}
 
 
@@ -76,6 +81,8 @@ public:
 		{
 			++n;
 		}
+#ifdef TREE_CLEAN_DISPLAY
 		std::cout << "next: " << Count::format(n - &T[0]) << std::endl;
+#endif // TREE_CACHE_H
 	}
 };

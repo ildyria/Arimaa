@@ -39,19 +39,25 @@ void Bench::run()
 
 	for (u_int i = 0; i < _num_cpu; ++i)
 	{
+		std::cout << "bench " << (i+1) << "/" << _num_cpu << std::endl;
 		omp_set_num_threads(i+1);
 		Bb = _bb->clone();
 		mcts = new mcts::Mcts(_game, Bb, _param);
 		Move move = Move(4);
+		mcts->update_root();
 		mcts->move_played(move);
-		_results.push_back(stress(mcts));
+		_results[i] = stress(mcts);
 		delete mcts;
 		delete Bb;
 	}
 
+	std::cout << "Results : " << std::endl;
+	printf("cores  --- simulations\n");
 	for (u_int i = 0; i < _num_cpu; ++i)
 	{
-		std::cout << (i+1) << " : " << _results[i] << "\n";
+		printf("  %2d    |   ", (i+1));
+		std::cout << Count::format(_results[i]) << std::endl;
 	}
+	printf("----------------------\n");
 	std::cout << std::endl;
 }
