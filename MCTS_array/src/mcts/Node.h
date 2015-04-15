@@ -415,9 +415,13 @@ namespace mcts
 		inline bool get_lock()
 		{
 			// printf("%p locked.\n",(void*)this); // trop lent !!!!
-			bool t = _lock;
-			_lock = true;
-			return t;
+			// bool t = false;
+			// #pragma omp atomic capture
+			// {
+			// 	t = _lock |= true;
+			// }
+			// return t;
+			return __sync_lock_test_and_set(&_lock,true);
 		}
 
 		/**
@@ -427,7 +431,8 @@ namespace mcts
 		inline void release_lock()
 		{
 			// printf("%p unlocked.\n",(void*)this); // trop lent !!!!
-			_lock = false;
+			#pragma omp atomic write
+			this->_lock = false;
 		}
 	};
 };
