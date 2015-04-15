@@ -31,6 +31,22 @@ u_long Bench::stress(mcts::Mcts* mcts)
 	return i;
 }
 
+void Bench::status_bar(int state, int full, int num ,int total)
+{
+    int barWidth = 70;
+	float progress = static_cast<float>(state)/full;
+    std::cout << "[";
+    int pos = barWidth * progress;
+    for (int i = 0; i < barWidth; ++i) {
+        if (i <= pos) std::cout << "\u2591";
+        else std::cout << " ";
+    }
+    std::cout << "] " << int(progress * 100.0) << " \u0025 : ";
+	std::cout << num << "/" << total << "\r";
+    std::cout.flush();
+}
+
+
 void Bench::run()
 {
 
@@ -39,19 +55,24 @@ void Bench::run()
 
 	for (u_int i = 0; i < _num_cpu; ++i)
 	{
-		std::cout << "bench " << (i+1) << "/" << _num_cpu << std::endl;
+		// std::cout << "bench " << (i+1) << "/" << _num_cpu << " : " << std::flush;
+		status_bar(4*i+1, _num_cpu*4,(i+1),_num_cpu);
 		omp_set_num_threads(i+1);
 		Bb = _bb->clone();
 		mcts = new mcts::Mcts(_game, Bb, _param);
 		Move move = Move(4);
 		mcts->update_root();
 		mcts->move_played(move);
+		status_bar(4*i+2, _num_cpu*4,(i+1),_num_cpu);
 		_results[i] = stress(mcts);
+		status_bar(4*i+4, _num_cpu*4,(i+1),_num_cpu);
 		delete mcts;
 		delete Bb;
+		status_bar(4*i+4, _num_cpu*4,(i+1),_num_cpu);
 	}
 
-	std::cout << "Results : " << std::endl;
+
+	std::cout << "\nResults : " << std::endl;
 	printf("cores  --- simulations\n");
 	for (u_int i = 0; i < _num_cpu; ++i)
 	{

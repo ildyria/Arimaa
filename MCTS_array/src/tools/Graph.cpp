@@ -82,18 +82,12 @@ void Graph::draw()
 	for (u_int x = 1; x < GRAPH_SIZE_X; ++x)
 	{
 		if(x % (GRAPH_SIZE_X/(_num_data+1)) == 0)
+		{
 			printf("\u252C");
-		else
-			printf("\u2500");
-
-
-		if((x-1) % (GRAPH_SIZE_X/(_num_data+1)) == 0)
+		}
+		else if((x+1) % (GRAPH_SIZE_X/(_num_data+1)) == 0)
 		{
 			printf("\u2500");
-			if(i == 1)
-			{
-				axe_x_val << " ";
-			}
 			if (i < 10)
 			{
 				axe_x_val << " " << i;
@@ -103,12 +97,16 @@ void Graph::draw()
 				axe_x_val << i;
 			}
 			i++;
-			x++;
 		}
-		else if(i > _num_data) break;
+		else if(i > _num_data)
+		{
+			break;
+		}
 		else
+		{
+			printf("\u2500");
 			axe_x_val << " ";
-
+		}
 	}
 	printf("\n");
 	std::cout << axe_x_val.str() << std::endl;

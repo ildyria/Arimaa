@@ -15,6 +15,7 @@ class Bench
 	std::vector<u_long> _results;
 
 	u_long stress(mcts::Mcts* mcts);
+	void status_bar(int state, int full, int num ,int total);
 
 public:
 	Bench(TheGame* game, Bitboard* Bb, mcts::MctsArgs* args);
