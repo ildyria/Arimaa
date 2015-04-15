@@ -421,7 +421,7 @@ namespace mcts
 			// 	t = _lock |= true;
 			// }
 			// return t;
-			return __sync_lock_test_and_set(&_lock,true);
+			return __sync_val_compare_and_swap(&_lock,false,true);
 		}
 
 		/**
