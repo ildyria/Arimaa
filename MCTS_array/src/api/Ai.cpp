@@ -61,6 +61,7 @@ namespace api {
 
 	void Ai::exploreSingle()
 	{
-		_ai->explore();
+		Memento<Node*> parents = Memento<Node*>(_param->get_max_depth() + 1);
+		_ai->explore(parents);
 	}
 }

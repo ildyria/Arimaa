@@ -46,7 +46,6 @@ namespace mcts
 		Bitboard* _state;
 		omp_lock_t _lockNode;
 		omp_lock_t _lockNext;
-		std::vector<Memento<Node*>> _parents;
 		std::vector<Node> _tree;
 #if defined(DOUBLE_TREE)
 		std::vector<Node> _buff;
@@ -77,13 +76,13 @@ namespace mcts
 		 * \param node node to run the simulations from
 		 * \param Bb state of the board
 		 */
-		void start_ramdom_playouts(Node* node, Bitboard* Bb);
+		void start_ramdom_playouts(Node* node, Bitboard* Bb, Memento<Node*>& parents);
 
 		/**
 		 * \fn feedback_sure_wins_loss()
 		 * \details feedback_results the results to the parents (winning and losing move) in order to fasten the search
 		 */
-		void feedback_sure_wins_loss();
+		void feedback_sure_wins_loss(Memento<Node*>& parents);
 
 		/**
 		 * \fn feedback_results
@@ -91,7 +90,7 @@ namespace mcts
 		 * 
 		 * \param nodet value of the simulation
 		 */
-		void feedback_results(u_int nodet);
+		void feedback_results(u_int nodet, Memento<Node*>& parents);
 
 	public:
 		/**
@@ -141,7 +140,7 @@ namespace mcts
 		* - set uct to 42 if it's a win
 		* - set parent's uct to -1 if it's a loss (we must never go to that node)
 		*/
-		void explore();
+		void explore(Memento<Node*>& parents);
 
 		/**
 		 * \fn get_best_move()

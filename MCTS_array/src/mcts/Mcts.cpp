@@ -18,7 +18,6 @@ namespace mcts{
 				_param(args),
 				_next(nullptr),
 				_state(Bb),
-				_parents(std::vector<Memento<Node*>> (omp_get_num_procs(), Memento<Node*>(args->get_max_depth() + 1))),
 				_tree(std::vector<Node>(args->get_max_max_number_of_leaves()))
 #if defined(DOUBLE_TREE)
 				, _buff(std::vector<Node>(args->get_max_max_number_of_leaves()))
@@ -157,7 +156,7 @@ namespace mcts{
 		return;
 	}
 
-	void Mcts::start_ramdom_playouts(Node* node, Bitboard* Bb)
+	void Mcts::start_ramdom_playouts(Node* node, Bitboard* Bb, Memento<Node*>& parents)
 	{
 		u_int nodet;
 
@@ -166,29 +165,29 @@ namespace mcts{
 			Bitboard* Bb2 = Bb->clone();
 			nodet = _game->play_random_moves(Bb2);
 			delete Bb2;
-			feedback_results(nodet);
+			feedback_results(nodet, parents);
 		}
 	}
 
-	void Mcts::feedback_results(u_int nodet)
+	void Mcts::feedback_results(u_int nodet, Memento<Node*>& parents)
 	{
-		_parents[omp_get_thread_num()].rewind();
-		Node* n = _parents[omp_get_thread_num()].get();
+		parents.rewind();
+		Node* n = parents.get();
 		while(n != nullptr)
 		{
 			n->update(nodet);
-			n = _parents[omp_get_thread_num()].get();
+			n = parents.get();
 		}
 	}
 
-	void Mcts::feedback_sure_wins_loss()
+	void Mcts::feedback_sure_wins_loss(Memento<Node*>& parents)
 	{
-		_parents[omp_get_thread_num()].rewind();
+		parents.rewind();
 
-		Node* n = _parents[omp_get_thread_num()].get(); // take the second
+		Node* n = parents.get(); // take the second
 		n->force_set_UCT(42);
 
-		n = _parents[omp_get_thread_num()].get();
+		n = parents.get();
 		bool winloser = true;
 		bool loser = true;
 		Node* ptr;
@@ -220,11 +219,11 @@ namespace mcts{
 					winloser = false;
 				}
 			}
-			n = _parents[omp_get_thread_num()].get();
+			n = parents.get();
 		}
 	}
 
-	void Mcts::explore()
+	void Mcts::explore(Memento<Node*>& parents)
 	{
 		Node* node = &_tree[0];
 		u_int depth = 0;
@@ -232,8 +231,8 @@ namespace mcts{
 		node->add_virtual_loss(_param->get_max_num_simulation_per_leaves());
 		u_int nodet = update_node(node, Bb);
 
-		_parents[omp_get_thread_num()].reset();
-		_parents[omp_get_thread_num()].push(&_tree[0]);
+		parents.reset();
+		parents.push(&_tree[0]);
 		Move m;
 		while (depth < _param->get_max_depth() && (nodet == 0 || nodet > 16))
 		{
@@ -262,7 +261,7 @@ namespace mcts{
 			}
 
 			node = node->select_child_UCT();
-			_parents[omp_get_thread_num()].push(node);
+			parents.push(node);
 			node->add_virtual_loss(_param->get_max_num_simulation_per_leaves());
 			m = node->get_move();
 			_game->play(m, Bb);
@@ -272,17 +271,17 @@ namespace mcts{
 
 		if (nodet == 0 || nodet > 4) // no victory found yet
 		{
-			start_ramdom_playouts(node, Bb);
+			start_ramdom_playouts(node, Bb, parents);
 		}
 //		elseif(nodet < 4 && nodet > 0 && nodet != node->get_player()) // losing move !
 		elseif((nodet | node->get_player()) == 3) // losing move !
 		{
-			feedback_results(nodet);
-			feedback_sure_wins_loss();
+			feedback_results(nodet, parents);
+			feedback_sure_wins_loss(parents);
 		}
 		else
 		{
-			feedback_results(nodet);
+			feedback_results(nodet, parents);
 		}
 		delete Bb;
 	}
@@ -292,21 +291,18 @@ namespace mcts{
 		u_long i = 0;
 		auto start_time = high_resolution_clock::now();
 		auto end_time = start_time + milliseconds(_param->get_time_limit_simulation_per_root());
-#ifdef OPENMP
-		#pragma omp parallel shared(i,end_time)
+		Memento<Node*> parents = Memento<Node*>(_param->get_max_depth() + 1);
+		#pragma omp parallel shared(i,end_time) firstprivate(parents)
 		{
-#endif
-		while (high_resolution_clock::now() < end_time && i < _param->get_max_num_simulation_per_root())
-		{
-			#pragma omp atomic
-			i++;
-			
-			explore();
+			while (high_resolution_clock::now() < end_time && i < _param->get_max_num_simulation_per_root())
+			{
+				#pragma omp atomic
+				i++;
+				
+				explore(parents);
+			}
+		#pragma omp barrier
 		}
-#ifdef OPENMP
-	#pragma omp barrier
-	}
-#endif
 		cout << endl << "Searched for " << Count::format(duration_cast<milliseconds>(high_resolution_clock::now() - start_time).count()) << "ms and " << Count::format(i*_param->get_max_num_simulation_per_leaves()) << " simulations." << endl;
 		return _tree[0].select_child_WR()->get_move();
 	}

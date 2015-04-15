@@ -113,7 +113,9 @@ int main(int argc, char const *argv[])
 		{
 			moveok = 0;
 			more = 0;
-			#pragma omp parallel shared(moveok,think_while_waiting,more)
+			Memento<mcts::Node*> parents = Memento<mcts::Node*>(args->get_max_depth() + 1);
+
+			#pragma omp parallel shared(moveok,think_while_waiting,more) firstprivate(parents)
 			{
 				if (omp_get_thread_num() == 0)
 				{
@@ -154,7 +156,7 @@ int main(int argc, char const *argv[])
 						#pragma omp atomic
 						more += 1;
 						
-						mcts.explore();
+						mcts.explore(parents);
 					}
 				}
 			}

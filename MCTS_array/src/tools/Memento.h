@@ -24,7 +24,7 @@ public:
 	 * \details constructor
 	 * \param n number of states you want to save
 	 */
-	explicit Memento(short n) : _readNext(0), _writeNext(0), _states(std::vector<N>(n)) {};
+	explicit Memento(short n=50) : _readNext(0), _writeNext(0), _states(std::vector<N>(n)) {};
 
 	/**
 	 * \fn ~Memento()
