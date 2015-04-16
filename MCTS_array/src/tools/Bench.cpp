@@ -23,12 +23,13 @@ u_long Bench::stress(mcts::Mcts* mcts)
 	{
 		while (high_resolution_clock::now() < end_time && i < _param->get_max_num_simulation_per_root())
 		{
+			#pragma omp atomic
 			i++;
 			mcts->explore();
 		}
 		#pragma omp barrier
 	}
-	return i;
+	return i*_param->get_max_num_simulation_per_leaves();
 }
 
 void Bench::status_bar(int state, int full, int num ,int total)
