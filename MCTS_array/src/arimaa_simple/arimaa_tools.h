@@ -15,7 +15,7 @@
 class Arimaa_tools
 {
 
-public: 
+public:
 	static inline u_long compare_0_u(const u_long& u1, const u_long& u2) {
 		return static_cast<u_long>((u1 & u2) == 0);
 	};
@@ -30,5 +30,10 @@ public:
 
 	static inline bool compare_1_b(const u_long& u1, const u_long& u2) {
 		return (u1 & u2) != 0;
+	};
+
+	static inline u_short get_pos_push(const u_short& n) {
+		static const short lookup[] = {1,-SIZEX,-1,SIZEX};
+		return lookup[n];
 	};
 };
