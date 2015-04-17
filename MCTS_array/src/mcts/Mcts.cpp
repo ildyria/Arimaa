@@ -228,7 +228,7 @@ namespace mcts{
 		Node* node = &_tree[0];
 		u_int depth = 0;
 		Bitboard* Bb = _state->clone();
-		node->add_virtual_loss(_param->get_max_num_simulation_per_leaves());
+		// node->add_virtual_loss(_param->get_max_num_simulation_per_leaves());
 		u_int nodet = update_node(node, Bb);
 
 		parents.reset();
@@ -249,6 +249,11 @@ namespace mcts{
 			*/
 			if (nodet == 32)
 			{
+
+				// TESTING PURPOSE ONLU
+				// 
+				break;
+
 				if (node->get_visits() > _param->get_number_of_number_of_visit_before_exploration())
 				{
 					expand_node(node, Bb, nodet);
@@ -292,11 +297,10 @@ namespace mcts{
 		auto start_time = high_resolution_clock::now();
 		auto end_time = start_time + milliseconds(_param->get_time_limit_simulation_per_root());
 		Memento<Node*> parents = Memento<Node*>(_param->get_max_depth() + 1);
-		#pragma omp parallel shared(i,end_time) firstprivate(parents)
+		#pragma omp parallel shared(end_time) firstprivate(parents) reduction(+:i)
 		{
 			while (high_resolution_clock::now() < end_time && i < _param->get_max_num_simulation_per_root())
 			{
-				#pragma omp atomic
 				i++;
 				
 				explore(parents);

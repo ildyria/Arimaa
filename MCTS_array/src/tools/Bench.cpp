@@ -21,7 +21,7 @@ u_long Bench::stress(mcts::Mcts* mcts)
 	auto end_time = start_time + milliseconds(_param->get_time_limit_simulation_per_root());
 	Memento<mcts::Node*> parents = Memento<mcts::Node*>(_param->get_max_depth() + 1);
 
-	#pragma omp parallel shared(i,end_time) firstprivate(parents)
+	#pragma omp parallel shared(end_time) firstprivate(parents) reduction(+:i)
 	{
 		while (high_resolution_clock::now() < end_time && i < _param->get_max_num_simulation_per_root())
 		{
