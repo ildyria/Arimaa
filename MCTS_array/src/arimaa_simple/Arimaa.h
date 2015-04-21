@@ -61,6 +61,8 @@ class Arimaa : public TheGame
 
 	u_long possible_push(const u_long& mask, const u_long& situation, const Bitboard* board);
 
+	std::vector<std::list<int>> get_pieces(Bitboard* board);
+
 	std::list<u_long> generate_move(const u_long& situation, u_long possible_push, const u_short& pos, const u_short& board_num, Bitboard* board); // possible_push is copied THIS IS INTENDED
 public:
 	/**

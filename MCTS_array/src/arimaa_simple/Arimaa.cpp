@@ -3,10 +3,43 @@
 
 using std::string;
 using std::list;
+// TODO :
+// 
+//	rabbits should not move backward
+// 
+//	traps
+//
+//	end condition :
+// 		> X turns => to be sure that random simulation happend to finish
+// 		rabbit to an end
+// 		no piece can move	
+//
+//	generate 4 moves
+//	
+//	play move
+//	
+//	play random move
+//		chose random piece
+//		play a random generated move
+//	
+//	start board ???
+
 
 Arimaa::Arimaa()
 {
 }
+
+std::vector<std::list<int>> Arimaa::get_pieces(Bitboard* board)
+{
+	std::vector<std::list<int>> result = std::vector<std::list<int>>(NB_PIECE,std::list<int>());
+	int j = 0;
+	for (int i = (board->get_player() - 1)*(NB_PIECE + 1); i < (board->get_player() - 1)*(NB_PIECE + 1) + NB_PIECE; ++i)
+	{
+		result[j] = board->get_occupied(i);
+		j++;
+	}
+	return result;
+};
 
 u_short Arimaa::get_piece_board_num(const u_short& pos, Bitboard* board)
 {
@@ -78,6 +111,8 @@ u_long Arimaa::checkBorder(const u_long& mask)
 
 int Arimaa::end(const Bitboard* board)
 {
+	throw std::logic_error("move not implemented.");
+
 	return 0;
 }
 
@@ -193,7 +228,8 @@ void Arimaa::diplay_board(const Bitboard* board)
 	for (int k = 0; k < SIZEX; ++k) os << "+---";
 	os << "+" << std::endl;
 	os << "   ";
-	for (int k = 0; k < SIZEX; ++k) os << "  " << colChar[k] << " ";
+	for (int k = 0; k < SIZEX; ++k) os << "  " << (k + 'A') << " ";
+	// for (int k = 0; k < SIZEX; ++k) os << "  " << colChar[k] << " ";
 	os << std::endl;
 	std::cout << buffer.str() << std::endl;
 }
@@ -341,35 +377,39 @@ u_long Arimaa::possible_push(const u_long& mask, const u_long& situation, const 
 	return result;
 }
 
-// 5 args need to be improved... Registry...
-std::list<u_long> Arimaa::generate_move(const u_long& situation, u_long possible_push, const u_short& pos, const u_short& board_num, Bitboard* board)
+std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
 {
+	u_long mask = get_mask(pos);
+	u_long possible_push_result = possible_push(mask, situation, board);
+
 	std::list<u_long> res = std::list<u_long>();
 	// generate push
 	u_long mask_push = static_cast<u_long>(1);
 	u_short nsew = 0;
-	while (possible_push != 0)
+	while (possible_push_result != 0)
 	{
-		if((possible_push & mask_push) > 0)
+		if((possible_push_result & mask_push) > 0)
 		{
 			u_short pos_to_move = pos + Arimaa_tools::get_pos_push(nsew/4);
 			u_short board_num_prey = get_piece_board_num(pos_to_move, board);
 
+			// prey move
 			u_long move = static_cast<u_long>(board_num_prey);
 			move = (move << 6) | static_cast<u_long>(pos_to_move);
 			move = (move << 2) | static_cast<u_long>(nsew % 4);
 
+			// piece move
 			u_long move2 = static_cast<u_long>(board_num);
 			move = (move << 6) | static_cast<u_long>(pos);
 			move = (move << 2) | static_cast<u_long>(nsew/4);
-
 			res.push_back(((move << 16) | move2));
 		}
-		possible_push^=mask_push;
+		possible_push_result^=mask_push;
 		mask_push<<=1;
 		nsew++;
 	}
 
+	// generate pull and normal move
 	u_short possible_move_res = possible_move(situation);
 	nsew = 0;
 	mask_push = static_cast<u_long>(1);
@@ -377,14 +417,15 @@ std::list<u_long> Arimaa::generate_move(const u_long& situation, u_long possible
 	{
 		if((possible_move_res & mask_push) > 0)
 		{
+
+			// normal move
 			u_long move = static_cast<u_long>(board_num);
 			move = (move << 6) | static_cast<u_long>(pos);
 			move = (move << 2) | static_cast<u_long>(nsew);
-
 			res.push_back(move);
 
 			u_long mask_pull = static_cast<u_long>(1);
-			// add pull now
+			// add pull now (prey)
 			for (int i = 0; i < 4; ++i)
 			{
 				if((situation & mask_pull) > 0)
@@ -442,6 +483,9 @@ u_long Arimaa::check_neighbour(const Bitboard* board, const u_long& mask, const 
 
 void Arimaa::move(Bitboard* board, int n, u_short pos, int type)
 {
+	throw std::logic_error("move not implemented.");
+	// TO BE COMPLETED !!!!!
+
 	board->clearBit(n, static_cast<int>(pos));
 	board->setBit(n, (pos + Arimaa_tools::get_pos_push(type)));
 }
@@ -449,19 +493,35 @@ void Arimaa::move(Bitboard* board, int n, u_short pos, int type)
 bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum)
 {
 	numtyp boards = board->get_board(boardnum);
-
 	// compacted : 
 	return (boards & mask) > 0;
 }
 
 list<Move> Arimaa::list_possible_moves(Bitboard* board)
 {
+	std::vector<std::list<int>> pieces = get_pieces(board);
+	for (auto piece_rank = pieces.begin() ; piece_rank != pieces.end(); ++piece_rank)
+	{
+		for (auto pos = (*piece_rank).begin(); pos != (*piece_rank).end(); ++pos)
+		{
+			u_short position = static_cast<u_short>(*pos);
+			u_long situation = get_situation(position, board);
+			u_short board_num = get_piece_board_num(pos_to_move, board);
+			if(!is_frozen(situation))
+			{
+				std::list<u_long> moves_available = generate_move(situation, position, board_num, board);
+			}
+		}
+	}
+
 	list<Move> moves;
 	return moves;
 }
 
 int Arimaa::play_random_moves(Bitboard* board)
 {
+	throw std::logic_error("move not implemented.");
+
 	auto nodet = end(board);
 	return nodet;
 }
