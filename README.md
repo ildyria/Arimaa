@@ -1,26 +1,28 @@
-﻿#Project Arimaa – CR20 : Wednesday, March, 11th
+﻿#Project Arimaa – CR21 : Wednesday, April, 29th
 Presents : Gabriel, Benoît, Prateek, with Christian Raymond and Nikos Parlavantzas
 ##Order of business :
-- MCTS : new issues / improvements (*Benoît*)
-- MPI and ØMQ tests (*Gabriel*)
-- Rodrigue (*Benoît*)
+- MCTS : scalability (*Benoît*)
+- MPI asynchronous voting (*Gabriel*)
 
-##MCTS
-- Now able to work during the opponent's turn
-- For distributed calculus, use a UCT function that prioritizes deep branches
+##MCTS scalability
+
+- OpenMP does its job just fine
+- Performances fail to rise beyond a certain limit for MCTS (~3 times for 8 cores)
 
 ##Parallelization
-- MPI : works at the department (at last)
-- ØMQ : might be installed at the department (?)
-- First implementation of the Master-Worker strategy (with MPI) with dummy values
 
-##Rodrigue
-- Too old, processors have low frequency
-- Bigger tree but fewer simulations
+- Works with asynchrounous calls
+- Will soon be paired with MCTS and Connect4
 
-##Next meeting : 03/18
+##Time management
+
+- Leave ZeroMQ
+- Only try on Grid5000 if enough time
+
+
+##Next meeting : 05/06
 Tasks :
 - Benoît :
   * Finish the implementation of the simple version of Arimaa
 - Gabriel :
-  * Apply distribution on MCTS and test it (at least with MPI)
+  * Apply MPI parallelisation on MCTS and test it
