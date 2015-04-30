@@ -13,6 +13,15 @@ prog_options read_args(int& argc, char const* argv[])
 	options.updated = false;
 	options.bench = false;
 
+	options.test_api = false;
+	options.foo1 = false;
+	options.foo2 = false;
+	options.foo3 = false;
+	options.foo4 = false;
+	options.foo5 = false;
+	options.foo6 = false;
+	options.foo7 = false;
+
 	// report settings
 	for (int i = 1; i < argc; i++)
 	{
@@ -101,6 +110,12 @@ prog_options read_args(int& argc, char const* argv[])
 			options.updated = true;
 			options.time_to_search = 30;
 		}
+		elseif(strcmp(argv[i],"-a") == 0 || strcmp(argv[i],"--api") == 0)
+		{
+			options.test_api = true;
+			options.updated = true;
+			options.time_to_search = 2;
+		}
 		elseif(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"--help") == 0 || strcmp(argv[i],"help") == 0)
 		{
 				std::cout << "-nothx : programm doesn't think while waiting for player's move." << std::endl;
@@ -108,6 +123,9 @@ prog_options read_args(int& argc, char const* argv[])
 				std::cout << "-m <num> : max memory to use." << std::endl;
 				std::cout << "-hm : memory limited (2 Go by default)." << std::endl;
 				std::cout << "-p <num> : percent of max memory to use." << std::endl;
+				std::cout << "-----------------" << std::endl;
+				std::cout << "-a : test api." << std::endl;
+				std::cout << "-b : benchmark." << std::endl;
 	//			std::cout << "-A : define the game as Arimaa." << std::endl;
 				exit(1);
 		}

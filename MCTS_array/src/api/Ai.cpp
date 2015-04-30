@@ -1,5 +1,4 @@
 #include "Ai.h"
-#include "../tools/Count.h"
 
 #define CLOCKTOCK 1000
 
@@ -7,6 +6,10 @@ using namespace mcts;
 
 namespace api {
 	Ai::Ai(int t) :_param(new MctsArgs(40, t*CLOCKTOCK)), _ai(nullptr), _game(nullptr)
+	{
+	}
+
+	Ai::Ai(prog_options& options) :_param(new MctsArgs(options)), _ai(nullptr), _game(nullptr)
 	{
 	}
 
@@ -31,6 +34,17 @@ namespace api {
 		// clone of the BitBoard because it will be deleted once the root is destroyed
 	}
 
+	// void Ai::next_board(Game* g)
+	// {
+	// 	if (_ai != nullptr)
+	// 	{
+	// 		_ai->kill_tree();
+	// 	}
+		
+	// 	_ai = new Mcts(_game->getGame(), _game->getBitboard()->clone(), _param);
+	// 	// clone of the BitBoard because it will be deleted once the root is destroyed
+	// }
+
 	int Ai::makeMove(bool player)
 	{
 		if(player){
@@ -43,6 +57,13 @@ namespace api {
 		_ai->move_played(m);
 		Count::I()->clear();
 		return static_cast<int>(m.get_move());
+	}
+
+	void Ai::makeMove(u_long move)
+	{
+		auto m = Move(move);
+		_ai->update_root();
+		_ai->move_played(m);
 	}
 
 	double Ai::estimateWinChances()

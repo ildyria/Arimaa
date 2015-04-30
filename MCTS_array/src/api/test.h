@@ -1,10 +1,11 @@
 #include "Game.h"
 #include "Ai.h"
+#include "../tools/typedef.h"
 
 using namespace api;
 using namespace std;
 
-inline void test_api()
+inline void test_api(prog_options& options)
 {
 	Game* game = new Game();
 	Ai* ai = new Ai(2);
@@ -34,6 +35,13 @@ inline void test_api()
 
 	cout << game->canMakeMove(4) << endl;
 	cout << game->colHeight(4) << endl;
+
+	v_stat dump = ai->getMovesStatistics();
+	std::cout << "move - win / full" << std::endl;
+	for(auto t = dump.begin(); t != dump.end(); ++t)
+	{
+		std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+	}
 
 	delete game;
 	delete ai;

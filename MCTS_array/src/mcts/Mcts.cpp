@@ -319,7 +319,11 @@ namespace mcts{
 
 	void Mcts::kill_tree()
 	{
-		_tree.clear(); // CHECK IT.
+		Tree<Node>::clean_tree(_tree);
+#if defined(DOUBLE_TREE)
+		Tree<Node>::clean_tree(_buff);
+#endif
+//		_tree.clear();
 	}
 
 	void Mcts::get_number_leaves()

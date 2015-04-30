@@ -32,17 +32,24 @@ class Arimaa : public TheGame
 	4 bits : position of same threat enemy (OR PIECE ON BORDER) => no push / no frozen
 	4 bits : position nesw smaller enemy => maybe possible push / pull
 	*/
-	u_long get_situation(const int& pos, Bitboard* board);
+	u_short get_piece_board_num(const u_short& pos, Bitboard* board);
+	u_short get_piece_board_num(const u_long& mask, Bitboard* board);
 
-	u_long check_neighbour(const Bitboard* board, const u_long& mask, const int& piece_rank, const int& player); // check if stronger enemy close to the position
+	u_short get_piece_rank(const u_short& pos, Bitboard* board);
+	u_short get_piece_rank(const u_long& mask, Bitboard* board);
 
-	u_long checkBorder(const u_long& pos);
+	u_long get_situation(const u_short& pos, Bitboard* board);
 
-	void move(Bitboard* board, int n, int pos, int type);
+	u_long check_neighbour(const Bitboard* board, const u_long& mask, const u_short& piece_rank, const int& player); // check if stronger enemy close to the position
+
+	u_long checkBorder(const u_long& mask);
+
+	void move(Bitboard* board, int n, u_short pos, int type);
 
 	bool close_piece(const Bitboard* board, const u_long& mask, const int& boardnum);
 
-	u_long get_mask(const int& pos);
+	// to pass to inline would be a great idea
+	u_long get_mask(const u_short& pos);
 	u_long get_mask_n(const u_long& mask);
 	u_long get_mask_e(const u_long& mask);
 	u_long get_mask_s(const u_long& mask);
@@ -50,10 +57,13 @@ class Arimaa : public TheGame
 
 	bool is_frozen(const u_long& situation);
 
-	u_long possible_move(const u_long& situation);
+	u_short possible_move(const u_long& situation);
 
-	u_long possible_push_pull(const u_long& pos, const u_long& situation, const Bitboard* board);
+	u_long possible_push(const u_long& mask, const u_long& situation, const Bitboard* board);
 
+	std::vector<std::list<int>> get_pieces(Bitboard* board);
+
+	std::list<u_long> generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board); // possible_push is copied THIS IS INTENDED
 public:
 	/**
 	 * \fn Connect4()

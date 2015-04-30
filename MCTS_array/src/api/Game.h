@@ -1,6 +1,9 @@
 #pragma once
 #include "../connect4/BitboardConnect4.h"
 #include "../connect4/Connect4.h"
+#include "../tools/typedef.h"
+#include "../connect4/BitboardConnect4.h"
+#include <algorithm>
 
 namespace api
 {

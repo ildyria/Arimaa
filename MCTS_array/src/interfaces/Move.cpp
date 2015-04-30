@@ -18,13 +18,7 @@ Move::Move(int move) : _data(move)
 {
 }
 
-#if defined(_WIN32) || defined(_WIN64)
 Move::Move(u_long move) : _data(move)
-{
-}
-#endif
-
-Move::Move(numtyp move) : _data(move)
 {
 }
 
@@ -41,7 +35,7 @@ ostream& operator<<(ostream& stream, Move& move)
 
 istream& operator>>(istream& stream, Move& move)
 {
-	numtyp data;
+	u_long data;
 	stream >> data;
 	move.set(data);
 	return stream;

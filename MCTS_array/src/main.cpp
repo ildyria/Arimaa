@@ -1,4 +1,4 @@
-//#define TEST_API
+#define TEST_API
 
 #include "tools/typedef.h"
 
@@ -45,14 +45,17 @@ int main(int argc, char const *argv[])
 	cout << endl << "\t\t    If it compiles then it works ! " << endl;
 	cout << "\tBut remember, all code is guilty until proven innocent !" << endl << endl;
 
+
 	prog_options options = read_args(argc, argv);
+
+	if(options.test_api)
+	{
+		test_api(options);
+		exit(1);
+	}
 
 	int think_while_waiting = options.think_while_waiting;
 
-
-#ifdef TEST_API
-	test_api();
-#else
 #if defined(ARIMAA)
 	Arimaa* game = new Arimaa();
 	Bitboard* Bb = new Bitboard((NB_PIECE+1)*2,1);
@@ -215,7 +218,6 @@ int main(int argc, char const *argv[])
 	}
 	delete game;
 	mcts.kill_tree();
-#endif
 
 	int s;
 	cin >> s;

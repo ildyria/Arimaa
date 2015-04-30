@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "../connect4/BitboardConnect4.h"
-#include <algorithm>
 
 using std::min;
 using std::max;
@@ -29,7 +27,7 @@ namespace api
 	int Game::colHeight(int col)
 	{
 		int i = 0;
-		numtyp board;
+		u_long board;
 		auto sizeX = _board->getSizeX();
 
 		if (col <= 0 || col > sizeX)
@@ -120,7 +118,6 @@ namespace api
 			}
 
 			// Diag1
-//			std::cout << "diag1" << std::endl;
 			xi = posx;
 			yi = posy;
 			minxi = max(xi - 3, 0);
@@ -129,9 +126,6 @@ namespace api
 			auto maxyi = min(yi + 3, _board->getSizeY() - 1);
 			while (xi >= minxi && yi >= minyi && at(xi, yi) == winner)
 			{
-/*
-				std::cout << xi << ";" << yi << std::endl;
-*/
 				xi--; yi--;
 			}
 			minxi = xi + 1;
@@ -141,9 +135,6 @@ namespace api
 			yi = posy;
 			while (xi <= maxxi && yi <= maxyi && at(xi, yi) == winner)
 			{
-/*
-				std::cout << xi << ";" << yi << std::endl;
-*/
 				xi++; yi++;
 			}
 			maxxi = xi - 1;
@@ -159,7 +150,6 @@ namespace api
 			}
 
 			// Diag2
-//			std::cout << "diag2" << std::endl;
 			xi = posx;
 			yi = posy;
 			minxi = max(xi - 3, 0);
@@ -168,9 +158,6 @@ namespace api
 			maxyi = min(yi + 3, _board->getSizeY() - 1);
 			while (xi >= minxi && yi <= maxyi && at(xi, yi) == winner)
 			{
-/*
-				std::cout << xi << ";" << yi << std::endl;
-*/
 				xi--; yi++;
 			};
 			minxi = xi + 1;
@@ -179,10 +166,6 @@ namespace api
 			yi = posy;
 			while (xi <= maxxi && yi >= minyi && at(xi, yi) == winner)
 			{
-/*
-				std::cout << "diag2" << std::endl;
-				std::cout << xi << ";" << yi << std::endl;
-*/
 				xi++; yi--;
 			};
 			maxxi = xi - 1;
