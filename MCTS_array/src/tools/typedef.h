@@ -21,6 +21,14 @@ typedef struct prog_options {
 	bool think_while_waiting; // 1
 	bool updated;	// 1
 	bool bench;		// 1
+	bool test_api;	// 1
+	bool foo1;		// 1
+	bool foo2;		// 1
+	bool foo3;		// 1
+	bool foo4;		// 1
+	bool foo5;		// 1
+	bool foo6;		// 1
+	bool foo7;		// 1
 } prog_options;
 
 #define elseif else if
@@ -28,7 +36,7 @@ typedef struct prog_options {
 
 
 
-#define TIME_SEARCH 30
+#define TIME_SEARCH 2
 
 //#define TEST_API
 

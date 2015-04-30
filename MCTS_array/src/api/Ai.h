@@ -1,12 +1,8 @@
 #pragma once
 #include "Game.h"
 #include "../mcts/Mcts.h"
-
-#ifdef _WIN64
-#define CLOCK 1000
-#else
-#define CLOCK 10000
-#endif
+#include "../tools/typedef.h"
+#include "../tools/Count.h"
 
 namespace api {
 
@@ -28,7 +24,9 @@ namespace api {
 		 * \param t time in seconds
 		 */
 		explicit Ai(int t = 5);
-		
+
+		explicit Ai(prog_options& options);
+
 		/**
 		 * \fn ~Ai()
 		 * \brief basic destructor

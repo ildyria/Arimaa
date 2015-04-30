@@ -506,7 +506,7 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 		{
 			u_short position = static_cast<u_short>(*pos);
 			u_long situation = get_situation(position, board);
-			u_short board_num = get_piece_board_num(pos_to_move, board);
+			u_short board_num = get_piece_board_num(position, board);
 			if(!is_frozen(situation))
 			{
 				std::list<u_long> moves_available = generate_move(situation, position, board_num, board);
