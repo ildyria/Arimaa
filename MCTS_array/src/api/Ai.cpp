@@ -34,16 +34,16 @@ namespace api {
 		// clone of the BitBoard because it will be deleted once the root is destroyed
 	}
 
-	void Ai::next_board(Game* g)
-	{
-		if (_ai != nullptr)
-		{
-			_ai->kill_tree();
-		}
+	// void Ai::next_board(Game* g)
+	// {
+	// 	if (_ai != nullptr)
+	// 	{
+	// 		_ai->kill_tree();
+	// 	}
 		
-		_ai = new Mcts(_game->getGame(), _game->getBitboard()->clone(), _param);
-		// clone of the BitBoard because it will be deleted once the root is destroyed
-	}
+	// 	_ai = new Mcts(_game->getGame(), _game->getBitboard()->clone(), _param);
+	// 	// clone of the BitBoard because it will be deleted once the root is destroyed
+	// }
 
 	int Ai::makeMove(bool player)
 	{
