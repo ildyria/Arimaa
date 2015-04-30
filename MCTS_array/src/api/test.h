@@ -36,6 +36,13 @@ inline void test_api(prog_options& options)
 	cout << game->canMakeMove(4) << endl;
 	cout << game->colHeight(4) << endl;
 
+	v_stat dump = ai->getMovesStatistics();
+	std::cout << "move - win / full" << std::endl;
+	for(auto t = dump.begin(); t != dump.end(); ++t)
+	{
+		std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+	}
+
 	delete game;
 	delete ai;
 	

@@ -177,5 +177,19 @@ public:
 		static const u_int lookup[3] = { 0, 2, 1 };
 		_toplay = lookup[_toplay];
 	};
+
+	/**
+	 * \fn serialize
+	 * \brief serialize the bitboard in order to be send elsewhere.
+	 */
+	virtual std::vector<u_long> serialize();
+
+	/**
+	 * \fn import
+	 * \brief import a bit board : last data = player to play
+	 * 
+	 * \param data
+	 */
+	virtual void import(std::vector<u_long>& data);
 };
 

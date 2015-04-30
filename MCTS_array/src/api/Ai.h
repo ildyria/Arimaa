@@ -71,6 +71,8 @@ namespace api {
 		 */
 		int makeMove(bool player = true);
 
+		void makeMove(u_long move);
+
 		/**
 		 * \fn estimateWinChances()
 		 * \brief returns the winning chances of the last move played

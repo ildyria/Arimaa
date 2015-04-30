@@ -77,3 +77,24 @@ list<int> Bitboard::get_empty(int n) const
 	}
 	return rtm;
 }
+
+std::vector<u_long> Bitboard::serialize()
+{
+	std::vector<u_long> res = std::vector<u_long>(_number + 1);
+	res[_number] = 	static_cast<u_long>(_toplay);
+	for(u_int i = 0; i < _number; ++i)
+	{
+		res[i] = _boards[i];
+	}
+	return res;
+}
+
+void Bitboard::import(std::vector<u_long>& data)
+{
+	_toplay = static_cast<u_int>(data[_number]);
+	for(u_int i = 0; i < _number; ++i)
+	{
+		_boards[i] = data[i];
+	}
+}
+

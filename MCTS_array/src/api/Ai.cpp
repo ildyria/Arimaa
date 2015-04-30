@@ -59,6 +59,13 @@ namespace api {
 		return static_cast<int>(m.get_move());
 	}
 
+	void Ai::makeMove(u_long move)
+	{
+		auto m = Move(move);
+		_ai->update_root();
+		_ai->move_played(m);
+	}
+
 	double Ai::estimateWinChances()
 	{
 		return _ai->winning_chances();
