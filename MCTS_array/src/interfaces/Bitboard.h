@@ -26,7 +26,7 @@ class Bitboard
 protected:
 	u_int _toplay;
 	u_int _number;
-	std::vector<numtyp> _boards;
+	std::vector<u_long> _boards;
 
 public:
 	/**
@@ -103,7 +103,7 @@ public:
 	 * \param x position x
 	 * \param y position y
 	 */
-	virtual inline void setBit(int n, int x, int y) { _boards[n] |= (static_cast<numtyp>(1) << (x + y*SIZEX)); };
+	virtual inline void setBit(int n, int x, int y) { _boards[n] |= (static_cast<u_long>(1) << (x + y*SIZEX)); };
 
 	/**
 	* \fn setBit
@@ -112,7 +112,7 @@ public:
 	* \param n bitboard to search
 	* \param pos position of the bit
 	*/
-	virtual inline void setBit(int n, int pos) { _boards[n] |= (static_cast<numtyp>(1) << pos); };
+	virtual inline void setBit(int n, int pos) { _boards[n] |= (static_cast<u_long>(1) << pos); };
 
 	/**
 	 * \fn clearBit
@@ -122,7 +122,7 @@ public:
 	 * \param x position x
 	 * \param y position y
 	 */
-	virtual inline void clearBit(int n, int x, int y) { _boards[n] &= ~(static_cast<numtyp>(1) << (x + y*SIZEX)); };
+	virtual inline void clearBit(int n, int x, int y) { _boards[n] &= ~(static_cast<u_long>(1) << (x + y*SIZEX)); };
 
 	/**
 	* \fn clearBit
@@ -131,7 +131,7 @@ public:
 	* \param n bitboard to search
 	* \param pos position of the bit
 	*/
-	virtual inline void clearBit(int n, int pos) { _boards[n] &= ~(static_cast<numtyp>(1) << (pos)); };
+	virtual inline void clearBit(int n, int pos) { _boards[n] &= ~(static_cast<u_long>(1) << (pos)); };
 
 	/**
 	* \fn get_board
@@ -140,7 +140,7 @@ public:
 	* \param n board to look for
 	* \return board number n
 	*/
-	virtual inline numtyp get_board(int n) const { return _boards[n]; };
+	virtual inline u_long get_board(int n) const { return _boards[n]; };
 
 	/**
 	 * \fn get_empty

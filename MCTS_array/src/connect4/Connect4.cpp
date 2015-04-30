@@ -39,9 +39,9 @@ int Connect4::end(const Bitboard* board)
 
 int Connect4::check_horizontal(const Bitboard* board)
 {
-	numtyp boardused = static_cast<numtyp>(15); // 0001111 in binary
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
+	u_long boardused = static_cast<u_long>(15); // 0001111 in binary
+	u_long board1 = board->get_board(0);
+	u_long board2 = board->get_board(1);
 	for (int y = 0; y < SIZEY; y++)
 	{
 		for (int x = 0; x <= SIZEX - 4; x++)
@@ -63,11 +63,11 @@ int Connect4::check_horizontal(const Bitboard* board)
 
 int Connect4::check_vertical(const Bitboard* board)
 {
-	numtyp boardused = static_cast<numtyp>(1);
+	u_long boardused = static_cast<u_long>(1);
 	boardused += (boardused << SIZEX) + (boardused << (SIZEX * 2)) + (boardused << (SIZEX * 3));
 
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
+	u_long board1 = board->get_board(0);
+	u_long board2 = board->get_board(1);
 	for (int y = 0; y <= SIZEY - 4; y++)
 	{
 		for (int x = 0; x < SIZEX; x++)
@@ -88,11 +88,11 @@ int Connect4::check_vertical(const Bitboard* board)
 
 int Connect4::check_fst_diag(const Bitboard* board)
 {
-	numtyp boardused = static_cast<numtyp>(1);
+	u_long boardused = static_cast<u_long>(1);
 	boardused += (boardused << (SIZEX + 1)) + (boardused << ((SIZEX + 1) * 2)) + (boardused << ((SIZEX + 1) * 3));
 
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
+	u_long board1 = board->get_board(0);
+	u_long board2 = board->get_board(1);
 	for (int y = 0; y <= SIZEY - 4; y++)
 	{
 		for (int x = 0; x <= SIZEX - 4; x++)
@@ -114,12 +114,12 @@ int Connect4::check_fst_diag(const Bitboard* board)
 
 int Connect4::check_snd_diag(const Bitboard* board)
 {
-	numtyp boardused = static_cast<numtyp>(1);
+	u_long boardused = static_cast<u_long>(1);
 	boardused <<= 3; // 1000
 	boardused += (boardused << (SIZEX - 1)) + (boardused << ((SIZEX - 1) * 2)) + (boardused << ((SIZEX - 1) * 3));
 
-	numtyp board1 = board->get_board(0);
-	numtyp board2 = board->get_board(1);
+	u_long board1 = board->get_board(0);
+	u_long board2 = board->get_board(1);
 	for (int y = 0; y <= SIZEY - 4; y++)
 	{
 		for (int x = 0; x <= SIZEX - 4; x++)
@@ -141,7 +141,7 @@ int Connect4::check_snd_diag(const Bitboard* board)
 
 int Connect4::check_null(const Bitboard* board)
 {
-	numtyp boardused = static_cast<numtyp>(0);
+	u_long boardused = static_cast<u_long>(0);
 	boardused = ~boardused;
 	boardused >>= 22; // full board
 	if (((board->get_board(0) | board->get_board(1)) & boardused) == boardused)
@@ -153,7 +153,7 @@ int Connect4::check_null(const Bitboard* board)
 
 void Connect4::play(Move& position, Bitboard* board)
 {
-	numtyp boardused = board->get_board(0) | board->get_board(1); // get what places are used.
+	u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
 	boardused >>= (SIZEX - position.get_move());
 	int i = 0;
 	while( (boardused & 1) == 1)
@@ -168,9 +168,9 @@ void Connect4::play(Move& position, Bitboard* board)
 
 void Connect4::diplay_board(const Bitboard* board)
 {
-	numtyp board0 = board->get_board(0); // get what places are used.
-	numtyp board1 = board->get_board(1);
-	numtyp check = static_cast<numtyp>(1);
+	u_long board0 = board->get_board(0); // get what places are used.
+	u_long board1 = board->get_board(1);
+	u_long check = static_cast<u_long>(1);
 	check = check << (SIZEX * SIZEY - 1);
 
 	std::stringbuf buffer;
@@ -240,7 +240,7 @@ int Connect4::play_random_moves(Bitboard* board)
 #ifdef DISPLAY_C4
 				std::cout << " > " << *iter ;
 #endif // DISPLAY_C4
-				numtyp boardused = board->get_board(0) | board->get_board(1); // get what places are used.
+				u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
 				boardused >>= (SIZEX - *iter);
 				int i = 0;
 				while ((boardused & 1) == 1)

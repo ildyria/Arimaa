@@ -6,20 +6,20 @@ using std::cin;
 using std::cout;
 using std::endl;
 
-Bitboard::Bitboard() : _toplay(1), _number(3), _boards(vector<numtyp>(3))
+Bitboard::Bitboard() : _toplay(1), _number(3), _boards(vector<u_long>(3))
 {
 	for (u_int i = 0; i < _number; i++)
 	{
-		_boards[i] = static_cast<numtyp>(0);
+		_boards[i] = static_cast<u_long>(0);
 	}
 	Count::I()->addBitBoards();
 }
 
-Bitboard::Bitboard(int n, int toplay) : _toplay(toplay), _number(n), _boards(vector<numtyp>(n))
+Bitboard::Bitboard(int n, int toplay) : _toplay(toplay), _number(n), _boards(vector<u_long>(n))
 {
 	for (u_int i = 0; i < _number; i++)
 	{
-		_boards[i] = static_cast<numtyp>(0);
+		_boards[i] = static_cast<u_long>(0);
 	}
 	Count::I()->addBitBoards();
 }
@@ -38,7 +38,7 @@ list<int> Bitboard::get_occupied(int n)
 	list<int> rtm;
 	int i = 0;
 	int max = SIZEX*SIZEY;
-	numtyp board = _boards[n];
+	u_long board = _boards[n];
 
 	while (board != 0 && i < max)
 	{
@@ -58,7 +58,7 @@ list<int> Bitboard::get_empty(int n) const
 	list<int> rtm;
 	int i = 0;
 	int max = SIZEX*SIZEY;
-	numtyp board = _boards[n];
+	u_long board = _boards[n];
 
 	while (board != 0 && i < max)
 	{

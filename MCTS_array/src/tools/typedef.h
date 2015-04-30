@@ -3,14 +3,12 @@
 #include <utility>
 #include <vector>
 
-typedef uint64_t numtyp;
-
 typedef unsigned int u_int;
 typedef unsigned long u_long;
 typedef unsigned short u_short;
 
 typedef std::pair<u_long, u_long> p_stat;
-typedef std::pair < numtyp, p_stat> n_stat;
+typedef std::pair <u_long, p_stat> n_stat;
 typedef std::vector<n_stat> v_stat;
 
 typedef struct prog_options {
