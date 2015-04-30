@@ -80,7 +80,7 @@ u_short Arimaa::get_piece_rank(const u_long& mask, Bitboard* board)
 
 u_long Arimaa::get_mask(const u_short& pos)
 {
-	return (static_cast<numtyp>(1) << pos);
+	return (static_cast<u_long>(1) << pos);
 }
 
 u_long Arimaa::get_mask_n(const u_long& mask)
@@ -118,7 +118,7 @@ int Arimaa::end(const Bitboard* board)
 
 void Arimaa::play(Move& position, Bitboard* board)
 {
-	numtyp boardused = board->get_board(0) | board->get_board(1); // get what places are used.
+	u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
 	boardused >>= (SIZEX - position.get_move());
 	int i = 0;
 	while( (boardused & 1) == 1)
@@ -133,12 +133,12 @@ void Arimaa::play(Move& position, Bitboard* board)
 
 void Arimaa::diplay_board(const Bitboard* board)
 {
-	std::vector<numtyp> boards = std::vector<numtyp>((NB_PIECE+1)*2, 0);
+	std::vector<u_long> boards = std::vector<u_long>((NB_PIECE+1)*2, 0);
 	for (u_int i = 0; i < boards.size(); ++i)
 	{
 		boards[i] = board->get_board(i);
 	}
-	numtyp check = static_cast<numtyp>(1);
+	u_long check = static_cast<u_long>(1);
 	check = check << (SIZEX * SIZEY - 1);
 
 	std::stringbuf buffer;
@@ -492,7 +492,7 @@ void Arimaa::move(Bitboard* board, int n, u_short pos, int type)
 
 bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum)
 {
-	numtyp boards = board->get_board(boardnum);
+	u_long boards = board->get_board(boardnum);
 	// compacted : 
 	return (boards & mask) > 0;
 }
@@ -550,7 +550,7 @@ Move Arimaa::convert_move(string move)
 	transform.insert(std::pair<char, int>('7', 7));
 	transform.insert(std::pair<char, int>('8', 8));
 
-	numtyp futurmove;
+	u_long futurmove;
 	// futurmove = NESW | pos  
 	futurmove = transform[move[0]] + (transform[move[1]] - 1)*SIZEX + 64 * transform[move[2]];
 	std::cout << futurmove << std::endl;

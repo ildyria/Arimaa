@@ -27,7 +27,7 @@ namespace api
 	int Game::colHeight(int col)
 	{
 		int i = 0;
-		numtyp board;
+		u_long board;
 		auto sizeX = _board->getSizeX();
 
 		if (col <= 0 || col > sizeX)

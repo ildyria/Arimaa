@@ -18,7 +18,7 @@
  */
 class Move
 {
-	numtyp _data;
+	u_long _data;
 
 public:
 	/**
@@ -41,13 +41,9 @@ public:
 	 * 
 	 * \param move : move to be recorded
 	 */
-	explicit Move(int move);
-
-#if defined(_WIN32) || defined(_WIN64)
+	explicit Move(int move);	
 	explicit Move(u_long move);
-#endif
-	
-	explicit Move(numtyp move);
+
 	/**
 	 * \fn ~Move()
 	 * \brief basic destructor
@@ -58,7 +54,7 @@ public:
 	 * \fn get_move()
 	 * \brief return the move as a string.
 	 */
-	virtual inline numtyp get_move() { return _data; };
+	virtual inline u_long get_move() { return _data; };
 
 	/**
 	 * \fun set()
@@ -66,7 +62,7 @@ public:
 	 * 
 	 * \param data
 	 */
-	virtual inline void set(numtyp data) { _data = data; };
+	virtual inline void set(u_long data) { _data = data; };
 
 	/**
 	 * \fun get()
