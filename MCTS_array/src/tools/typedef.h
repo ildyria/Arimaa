@@ -11,6 +11,36 @@ typedef std::pair<u_long, u_long> p_stat;
 typedef std::pair <u_long, p_stat> n_stat;
 typedef std::vector<n_stat> v_stat;
 
+//Adds up the 2 statistics
+p_stat operator += (p_stat a, p_stat b)
+{
+	a.first += b.first;
+	a.second += b.second;
+	return a;
+}
+
+//Adds up the statistics that share the same IDs (the vector is considered unordered)
+v_stat operator += (v_stat a, v_stat b)
+{
+	for (auto itA = a.begin(); itA != a.end(); ++itA)
+	{
+		bool found = false;
+		for (auto itB = b.begin(); itB != b.end() && !found; ++itB)
+		{
+			if (itA->first == itB->first)
+			{
+				itA->second += itB->second;
+				found = true;
+			}
+			if (!found)
+			{
+				a.push_back(*itB);
+			}
+		}
+	}
+	return a;
+}
+
 typedef struct prog_options {
 	double percent_memory; // 8
 	short hard_memory; // 2
