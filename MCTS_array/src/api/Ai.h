@@ -2,7 +2,7 @@
 #include "Game.h"
 #include "../mcts/Mcts.h"
 #include "../tools/typedef.h"
-#include "../tools/Count.h"
+#include "../tools/benching/Count.h"
 
 namespace api {
 

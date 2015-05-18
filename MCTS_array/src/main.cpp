@@ -11,8 +11,8 @@
 //	#define DISPLAY_TREE
 	#include "./tools/Memory.h"
 
-	#include "./tools/ChillPill.h"
-	#include "./tools/Count.h"
+	#include "./tools/benching/ChillPill.h"
+	#include "./tools/benching/Count.h"
 
 	#include "./mcts/Mcts.h"
 
@@ -27,8 +27,8 @@
 
 #include <thread>
 #include "tools/Random.h"
-#include "tools/Graph.h"
-#include "tools/Bench.h"
+#include "tools/benching/Graph.h"
+#include "tools/benching/Bench.h"
 #include "tools/read_args.h"
 
 using namespace mcts;
