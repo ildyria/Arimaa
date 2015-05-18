@@ -9,7 +9,7 @@
 #pragma once
 #include <vector>
 #include <list>
-#include "../tools/Count.h"
+#include "../tools/benching/Count.h"
 #include "../tools/typedef.h"
 
 /**
