@@ -91,5 +91,10 @@ public:
 	 * \fun operator==
 	 */
 	friend inline bool operator== (const Move &ma, const Move &mb) { return ma.compare(mb); };
+
+	inline bool operator< (const Move &mb) const { return _data < mb._data; };
+
+	inline bool operator> (const Move &mb) const { return _data > mb._data; };
+
 };
 

@@ -55,6 +55,8 @@ class Arimaa : public TheGame
 	u_long get_mask_s(const u_long& mask);
 	u_long get_mask_w(const u_long& mask);
 
+	u_long is_rabbit(const u_short& piece_rank, const int player);
+
 	bool is_frozen(const u_long& situation);
 
 	u_short possible_move(const u_long& situation);

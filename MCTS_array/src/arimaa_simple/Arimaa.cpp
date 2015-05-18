@@ -3,6 +3,7 @@
 
 using std::string;
 using std::list;
+
 // TODO :
 // 
 //	rabbits should not move backward
@@ -11,9 +12,9 @@ using std::list;
 //
 //	end condition :
 // 		> X turns => to be sure that random simulation happend to finish
-// 		rabbit to an end
-// 		every rabbits are dead
-// 		no piece can move	
+// 		rabbit to an end => DONE
+// 		every rabbits are dead => DONE
+// 		no piece can move
 //
 //	generate 4 moves
 //	
@@ -113,13 +114,13 @@ u_long Arimaa::checkBorder(const u_long& mask)
 int Arimaa::end(const Bitboard* board)
 {
 	// win by no rabit
-	if(board->get_board(0) == 0) 			return 2 // player 1 has no rabits => player 2 win
-	if(board->get_board(NB_PIECE + 1) == 0) return 1 // player 2 has no rabits => player 1 win
+	if(board->get_board(0) == 0) 			return 2; // player 1 has no rabits => player 2 win
+	if(board->get_board(NB_PIECE + 1) == 0) return 1; // player 2 has no rabits => player 1 win
 
 
 	// win by rabit to border
-	if(TOP_BORDER & board->get_board(0))				return 2
-	if(BOTTOM_BORDER & board->get_board(NB_PIECE + 1))	return 1
+	if(TOP_BORDER & board->get_board(0))				return 2;
+	if(BOTTOM_BORDER & board->get_board(NB_PIECE + 1))	return 1;
 
 	// win by no move possible
 	// DO I REALLY HAVE TO CHECK THAT ONE ? ='(
@@ -229,11 +230,23 @@ void Arimaa::diplay_board(const Bitboard* board)
 	for (int k = 0; k < SIZEX; ++k) os << "+---";
 	os << "+" << std::endl;
 	os << "   ";
-	for (int k = 0; k < SIZEX; ++k) os << "  " << (k + 'A') << " ";
+	for (int k = 0; k < SIZEX; ++k) os << "  " << static_cast<char>(k + 'A') << " ";
 	// for (int k = 0; k < SIZEX; ++k) os << "  " << colChar[k] << " ";
 	os << std::endl;
 	std::cout << buffer.str() << std::endl;
 }
+
+u_long Arimaa::is_rabbit(const u_short& piece_rank, const int player)
+{
+	if (!piece_rank)
+	{
+		/* code */
+	}
+	return static_cast<u_long>
+	return static_cast<u_long>
+}
+
+
 
 u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 {
@@ -244,7 +257,7 @@ u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 	u_short piece_rank = get_piece_rank(mask, board);
 	int player = board->get_player(); // 1 or 2 // 0 or 1 ???
 
-	/*in theory there is no need to do the top and bottom check. Only left and Right are mandatory : slight optimisation possible later */
+	/*in theory there is no need to do the top and bottom check. Only left and Right are mandatory : slight optimisation possible later ? */
 
 	// /!\ HERE WE ASSUME a strictly positive number is equivalent to bool(true)
 	if (!(result & 8)) // NOT ON BORDER TOP
@@ -555,6 +568,6 @@ Move Arimaa::convert_move(string move)
 	// futurmove = NESW | pos  
 	futurmove = transform[move[0]] + (transform[move[1]] - 1)*SIZEX + 64 * transform[move[2]];
 	std::cout << futurmove << std::endl;
-	//	std::cout << (futurmove >> 6) << std::endl;
+	std::cout << (futurmove >> 6) << std::endl;
 	return Move(futurmove);
 }
