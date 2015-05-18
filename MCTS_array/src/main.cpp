@@ -1,28 +1,23 @@
-#define TEST_API
-
 #include "tools/typedef.h"
 
-#if defined(TEST_API)
-	#include "api/Game.h"
-	#include "api/Ai.h"
-	#include "api/test.h"
-	using namespace api;
-#else
+#include "api/Game.h"
+#include "api/Ai.h"
+#include "api/test.h"
+
 //	#define DISPLAY_TREE
-	#include "./tools/Memory.h"
+#include "tools/Memory.h"
 
-	#include "./tools/benching/ChillPill.h"
-	#include "./tools/benching/Count.h"
+#include "tools/benching/ChillPill.h"
+#include "tools/benching/Count.h"
 
-	#include "./mcts/Mcts.h"
+#include "mcts/Mcts.h"
 
-	#if defined(ARIMAA)
-		#include "./arimaa_simple/Arimaa.h"
-//		#include "./arimaa_simple/BitboardConnect4.h"
-	#else
-		#include "./connect4/Connect4.h"
-		#include "./connect4/BitboardConnect4.h"
-	#endif
+#if defined(ARIMAA)
+	#include "arimaa_simple/Arimaa.h"
+//	#include "arimaa_simple/BitboardConnect4.h"
+#else
+	#include "connect4/Connect4.h"
+	#include "connect4/BitboardConnect4.h"
 #endif
 
 #include <thread>
@@ -31,6 +26,7 @@
 #include "tools/benching/Bench.h"
 #include "tools/read_args.h"
 
+using namespace api;
 using namespace mcts;
 using std::cout;
 using std::cin;
@@ -71,6 +67,7 @@ int main(int argc, char const *argv[])
 	Connect4* game = new Connect4();
 	BitboardConnect4* Bb = new BitboardConnect4();
 #endif
+
 	int result = 0;
 	int moveok;
 	u_long more;
