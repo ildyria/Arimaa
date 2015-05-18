@@ -2,8 +2,8 @@
 #include "../typedef.h"
 #include <vector>
 #include <iostream>
-#include "../Timer.h"
-#include "../Count.h"
+#include "../benching/Timer.h"
+#include "../benching/Count.h"
 
 template<class N> class Tree
 {
