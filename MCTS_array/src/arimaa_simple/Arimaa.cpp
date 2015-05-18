@@ -12,6 +12,7 @@ using std::list;
 //	end condition :
 // 		> X turns => to be sure that random simulation happend to finish
 // 		rabbit to an end
+// 		every rabbits are dead
 // 		no piece can move	
 //
 //	generate 4 moves
@@ -111,23 +112,23 @@ u_long Arimaa::checkBorder(const u_long& mask)
 
 int Arimaa::end(const Bitboard* board)
 {
-	throw std::logic_error("move not implemented.");
+	// win by no rabit
+	if(board->get_board(0) == 0) 			return 2 // player 1 has no rabits => player 2 win
+	if(board->get_board(NB_PIECE + 1) == 0) return 1 // player 2 has no rabits => player 1 win
 
+
+	// win by rabit to border
+	if(TOP_BORDER & board->get_board(0))				return 2
+	if(BOTTOM_BORDER & board->get_board(NB_PIECE + 1))	return 1
+
+	// win by no move possible
+	// DO I REALLY HAVE TO CHECK THAT ONE ? ='(
 	return 0;
 }
 
 void Arimaa::play(Move& position, Bitboard* board)
 {
-	u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
-	boardused >>= (SIZEX - position.get_move());
-	int i = 0;
-	while( (boardused & 1) == 1)
-	{
-		i++;
-		boardused >>= SIZEX;
-	}
-	
-	board->setBit(board->get_player() - 1, SIZEX - static_cast<int>(position.get_move()), i); // to update
+
 	board->play();
 }
 
