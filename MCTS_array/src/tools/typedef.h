@@ -11,6 +11,13 @@ typedef std::pair<u_long, u_long> p_stat;
 typedef std::pair <u_long, p_stat> n_stat;
 typedef std::vector<n_stat> v_stat;
 
+
+//Adds up the 2 statistics
+p_stat operator += (p_stat a, p_stat b);
+
+//Adds up the statistics that share the same IDs (the vector is considered unordered)
+v_stat operator += (v_stat a, v_stat b);
+
 typedef struct prog_options {
 	double percent_memory; // 8
 	short hard_memory; // 2
@@ -30,9 +37,6 @@ typedef struct prog_options {
 } prog_options;
 
 #define elseif else if
-
-
-
 
 #define TIME_SEARCH 2
 
