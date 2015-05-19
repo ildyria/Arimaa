@@ -684,7 +684,7 @@ int Arimaa::play_random_moves(Bitboard* board)
 
 		auto nodet = end(board);
 		if(nodet > 0) return nodet;
-		iterations ++
+		iterations ++;
 	}
 	return 0;
 }
