@@ -631,10 +631,11 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 
 std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 {
-
 	std::list<u_long> moves_available;
 	std::list<u_long> moves_available_simple;
 	std::list<u_long> moves_available_double;
+	std::list<u_long>::iterator it;
+
 	std::vector<std::list<int>> pieces = get_pieces(board);
 	for (auto piece_rank = pieces.begin() ; piece_rank != pieces.end(); ++piece_rank)
 	{
@@ -647,6 +648,10 @@ std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 			{
 				moves_available_simple = generate_move_simple(situation, position, board_num, board);
 				moves_available_double = generate_move_double(situation, position, board_num, board);
+				it = moves_available.begin();
+				moves_available.splice(it,moves_available_simple);
+				it = moves_available.begin();
+				moves_available.splice(it,moves_available_double);
 			}
 		}
 	}
@@ -655,30 +660,73 @@ std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 }
 
 
-
-
 list<Move> Arimaa::list_possible_moves(Bitboard* board)
 {
 	Bitboard* board_temp;
-	std::list<u_long> moves_available_1;
-
-	board_temp = board->clone();
-	moves_available_1 = list_moves_available(board);
-	for (auto iter_moves = moves_available_1.begin(); iter_moves != moves_available_1.end(); ++iter_moves)
-	{
-		*iter_moves;
-
-	}
+	Bitboard* board_temp2;
+	Bitboard* board_temp3;
+	std::list<u_long> first_moves_available;
 	list<Move> moves;
+	
+	constexpr u_long move_mask_1 = (static_cast<u_long>(1) << 16) - 1;
+	constexpr u_long move_mask_2 = move_mask_1 << 16;
+	constexpr u_long move_mask_3 = move_mask_2 << 16;
+	constexpr u_long move_mask_4 = move_mask_3 << 16;
+
+	constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
+	constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
+	constexpr u_long nsew_mask = (static_cast<u_long>(1) << 2) - 1;
+
+	// move is : num | pos | nsew
+
+	// 1 2 1
+	// 1 1 2
+	// 1 1 1 1
+	// 2   1 1
+	// 2   2
+	u_long temp_move;
+
+	first_moves_available = list_moves_available(board);
+	for (auto iter_moves = first_moves_available.begin(); iter_moves != first_moves_available.end(); ++iter_moves)
+	{
+		temp_move = *iter_moves;
+
+		int num_board = static_cast<int>((temp_move & num_mask) >> 8);
+		u_short pos = static_cast<u_short>(((temp_move & move_mask_1) >> 2) & pos_mask);
+		int nsew = static_cast<int>((temp_move & move_mask_1) & nsew_mask);
+		board_temp = board->clone();
+		move(board_temp, num_board, pos, nsew);
+
+		if(temp_move & move_mask_2) // 2 moves at once
+		{
+			int num_board = static_cast<int>(((temp_move >> 16) & num_mask) >> 8);
+			u_short pos = static_cast<u_short>(((temp_move >> 16) >> 2) & pos_mask);
+			int nsew = static_cast<int>((temp_move >> 16) & nsew_mask);
+			board_temp2 = board->clone();
+			move(board_temp2, num_board, pos, nsew);
+
+			// 2 moves are applied now we can start the search... for the next 2 moves... 
+			Arimaa::list_moves_available(board_temp2);
+
+			delete board_temp2; // MANDATORY ELSE MEMORY LEAK
+		}
+		else
+		{
+			// here we have still 3 moves lefts
+
+
+		}
+		delete board_temp; // MANDATORY ELSE MEMORY LEAK
+	}
 	return moves;
 }
 
 int Arimaa::play_random_moves(Bitboard* board)
 {
-	throw std::logic_error("move not implemented.");
 	int iterations = 0;
 	while(iterations < 120)
 	{
+		throw std::logic_error("move not implemented.");
 
 
 
