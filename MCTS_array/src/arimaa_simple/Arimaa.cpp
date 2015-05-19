@@ -387,7 +387,31 @@ u_long Arimaa::possible_push(const u_long& mask, const u_long& situation, const 
 	return result;
 }
 
-std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
+std::list<u_long> Arimaa::generate_move_simple(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
+{
+	std::list<u_long> res = std::list<u_long>();
+	// generate pull and normal move
+	u_short possible_move_res = possible_move(situation);
+	u_short nsew = 0;
+	u_long mask_push = static_cast<u_long>(1);
+	while (possible_move_res != 0)
+	{
+		if((possible_move_res & mask_push) > 0)
+		{
+			// normal move
+			u_long move = static_cast<u_long>(board_num);
+			move = (move << 6) | static_cast<u_long>(pos);
+			move = (move << 2) | static_cast<u_long>(nsew);
+			res.push_back(move);
+		}
+		possible_move_res ^= mask_push;
+		mask_push<<=1;
+		nsew++;
+	}
+	return res;
+}
+
+std::list<u_long> Arimaa::generate_move_double(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
 {
 	u_long mask = get_mask(pos);
 	u_long possible_push_result = possible_push(mask, situation, board);
@@ -400,7 +424,7 @@ std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& 
 	{
 		if((possible_push_result & mask_push) > 0)
 		{
-			u_short pos_to_move = pos + Arimaa_tools::get_pos_push(nsew/4);
+			u_short pos_to_move = pos + Arimaa_tools::get_pos_next(nsew/4);
 			u_short board_num_prey = get_piece_board_num(pos_to_move, board);
 
 			// prey move
@@ -440,7 +464,7 @@ std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& 
 			{
 				if((situation & mask_pull) > 0)
 				{
-					u_short pos_to_move = pos + Arimaa_tools::get_pos_push(nsew/4);
+					u_short pos_to_move = pos + Arimaa_tools::get_pos_next(nsew/4);
 					u_short board_num_prey = get_piece_board_num(pos_to_move, board);
 
 					u_long move2 = static_cast<u_long>(board_num_prey);
@@ -589,11 +613,13 @@ void Arimaa::apply_traps(Bitboard* board)
 
 void Arimaa::move(Bitboard* board, int n, u_short pos, int type)
 {
-	throw std::logic_error("move not implemented.");
-	// TO BE COMPLETED !!!!!
-
 	board->clearBit(n, static_cast<int>(pos));
-	board->setBit(n, (pos + Arimaa_tools::get_pos_push(type)));
+	board->clearBit(NB_PIECE + static_cast<int>(n/(NB_PIECE+1))*(NB_PIECE + 1), static_cast<int>(pos));
+
+	board->setBit(n, pos + Arimaa_tools::get_pos_next(type));
+	board->setBit(NB_PIECE + static_cast<int>(n/(NB_PIECE+1))*(NB_PIECE + 1), pos + Arimaa_tools::get_pos_next(type));
+
+	apply_traps(board);
 }
 
 bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum)
@@ -603,10 +629,11 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 	return (boards & mask) > 0;
 }
 
-list<Move> Arimaa::list_possible_moves(Bitboard* board)
+std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 {
-	std::vector<std::list<int>> pieces = get_pieces(board);
+
 	std::list<u_long> moves_available;
+	std::vector<std::list<int>> pieces = get_pieces(board);
 	for (auto piece_rank = pieces.begin() ; piece_rank != pieces.end(); ++piece_rank)
 	{
 		for (auto pos = (*piece_rank).begin(); pos != (*piece_rank).end(); ++pos)
@@ -621,6 +648,24 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 		}
 	}
 
+	return moves_available;
+}
+
+
+
+
+list<Move> Arimaa::list_possible_moves(Bitboard* board)
+{
+	Bitboard* board_temp;
+	std::list<u_long> moves_available_1;
+
+	board_temp = board->clone();
+	moves_available_1 = list_moves_available(board);
+	for (auto iter_moves = moves_available_1.begin(); iter_moves != moves_available_1.end(); ++iter_moves)
+	{
+		*iter_moves;
+
+	}
 	list<Move> moves;
 	return moves;
 }
@@ -628,9 +673,17 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 int Arimaa::play_random_moves(Bitboard* board)
 {
 	throw std::logic_error("move not implemented.");
+	int iterations = 0;
+	while(iterations < 120)
+	{
 
-	auto nodet = end(board);
-	return nodet;
+
+
+		auto nodet = end(board);
+		if(nodet > 0) return nodet;
+		iterations ++
+	}
+	return 0;
 }
 
 Move Arimaa::convert_move(string move)

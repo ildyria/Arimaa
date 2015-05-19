@@ -66,18 +66,22 @@ class Arimaa : public TheGame
 
 	std::vector<std::list<int>> get_pieces(Bitboard* board);
 
-	std::list<u_long> generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board); // possible_push is copied THIS IS INTENDED
+	std::list<u_long> generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board);
+
+	std::list<u_long> list_moves_available(Bitboard* board);
+
+	void play_simple_move(const u_long& );
 
 
 public:
 	/**
-	 * \fn Connect4()
-	 * \brief constructor of the Game Connect4.
+	 * \fn Arimaa()
+	 * \brief constructor of the Game Arimaa.
 	 */
 	Arimaa();
 
 	/**
-	 * \fn ~Connect4()
+	 * \fn ~Arimaa()
 	 * \brief basic destructor
 	 */
 	virtual ~Arimaa() {}

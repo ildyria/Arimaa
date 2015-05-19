@@ -32,7 +32,7 @@ public:
 		return (u1 & u2) != 0;
 	};
 
-	static inline u_short get_pos_push(const u_short& n) {
+	static inline u_short get_pos_next(const u_short& n) {
 		static const short lookup[] = {1,-SIZEX,-1,SIZEX};
 		return lookup[n];
 	};
