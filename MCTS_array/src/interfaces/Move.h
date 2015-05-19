@@ -71,13 +71,6 @@ public:
 	virtual inline std::string get() { return std::to_string(_data); };
 
 	/**
-	 * \fun compare(const Move b)
-	 * \brief Used with the == operator. Required for the class to stay inheritable. 
-	 */
-	virtual inline bool compare(const Move& b) const { return _data == b._data; };
-
-
-	/**
 	 * \fun operator<<
 	 */
 	friend std::ostream& operator<< (std::ostream& stream, Move &move);
@@ -90,7 +83,7 @@ public:
 	/**
 	 * \fun operator==
 	 */
-	friend inline bool operator== (const Move &ma, const Move &mb) { return ma.compare(mb); };
+	inline bool operator== (const Move &mb) { return _data == mb._data; };
 
 	inline bool operator< (const Move &mb) const { return _data < mb._data; };
 

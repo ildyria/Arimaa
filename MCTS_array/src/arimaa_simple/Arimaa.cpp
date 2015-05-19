@@ -6,12 +6,12 @@ using std::list;
 
 // TODO :
 // 
-//	rabbits should not move backward
+//	rabbits should not move backward => DONE
 // 
 //	traps
 //
 //	end condition :
-// 		> X turns => to be sure that random simulation happend to finish
+// 		> X turns => to be sure that random simulation happend to finish => to be implemented in the play random
 // 		rabbit to an end => DONE
 // 		every rabbits are dead => DONE
 // 		no piece can move
@@ -66,7 +66,7 @@ u_short Arimaa::get_piece_board_num(const u_long& mask, Bitboard* board)
 	}
 
 	printf("SHOULD NEVER HAPPEN\n");
-	// should never be the case	
+	// should never be the case
 	return 0;
 };
 
@@ -146,7 +146,6 @@ void Arimaa::diplay_board(const Bitboard* board)
 	std::stringbuf buffer;
 	std::ostream os(&buffer);
 	os << std::endl;
-	static const std::vector<char> colChar = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 	for (int y = (SIZEY - 1); y >= 0; --y)
 	{
 		os << "   ";
@@ -231,21 +230,18 @@ void Arimaa::diplay_board(const Bitboard* board)
 	os << "+" << std::endl;
 	os << "   ";
 	for (int k = 0; k < SIZEX; ++k) os << "  " << static_cast<char>(k + 'A') << " ";
-	// for (int k = 0; k < SIZEX; ++k) os << "  " << colChar[k] << " ";
 	os << std::endl;
 	std::cout << buffer.str() << std::endl;
 }
 
 u_long Arimaa::is_rabbit(const u_short& piece_rank, const int player)
 {
-	if (!piece_rank)
-	{
-		/* code */
-	}
-	return static_cast<u_long>
-	return static_cast<u_long>
-}
+	if (!piece_rank == 0) return static_cast<u_long>(0);
 
+	// n e s w : 8 4 2 1
+	if (player == 0) return static_cast<u_long>(8); // player 1 is north so rabbit can't go north => define him as being on the north border
+	return static_cast<u_long>(4); // idem mutatis mutandis
+}
 
 
 u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
@@ -256,7 +252,7 @@ u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 
 	u_short piece_rank = get_piece_rank(mask, board);
 	int player = board->get_player(); // 1 or 2 // 0 or 1 ???
-
+	u_long rabbit = is_rabbit(piece_rank,player);
 	/*in theory there is no need to do the top and bottom check. Only left and Right are mandatory : slight optimisation possible later ? */
 
 	// /!\ HERE WE ASSUME a strictly positive number is equivalent to bool(true)
@@ -288,7 +284,7 @@ u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 		returnval |= (check_neighbour(board, mask_w, piece_rank, player));
 	}
 
-	returnval |= (result << 4);
+	returnval |= ((result|rabbit) << 4);
 	return returnval;
 }
 
@@ -493,6 +489,102 @@ u_long Arimaa::check_neighbour(const Bitboard* board, const u_long& mask, const 
 	}
 
 	return static_cast<u_long>(frozen) << 12 | static_cast<u_long>(close) << 8 | static_cast<u_long>(same) << 4 | static_cast<u_long>(prey);
+}
+
+void Arimaa::apply_traps(Bitboard* board)
+{
+	std::vector<u_long> boards = std::vector<u_long>((NB_PIECE+1)*2, 0);
+	for (u_int i = 0; i < boards.size(); ++i)
+	{
+		boards[i] = board->get_board(i);
+	}
+#if SIZEX == 6
+	constexpr int pos_trap1 = 7;
+	constexpr int pos_trap2 = 10;
+	constexpr int pos_trap3 = 25;
+	constexpr int pos_trap4 = 28;
+	constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
+	constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
+	constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
+	constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
+	constexpr u_long friends1 = (static_cast<u_long>(1) << 1) | (static_cast<u_long>(1) << 6) | (static_cast<u_long>(1) << 8) | (static_cast<u_long>(1) << 13); 
+	constexpr u_long friends2 = friends1 << 2; 
+	constexpr u_long friends3 = friends1 << 18;
+	constexpr u_long friends4 = friends3 << 4; 
+#else
+	constexpr int pos_trap1 = 18;
+	constexpr int pos_trap2 = 21;
+	constexpr int pos_trap3 = 42;
+	constexpr int pos_trap4 = 45;
+	constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
+	constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
+	constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
+	constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
+	constexpr u_long friends1 = (static_cast<u_long>(1) << 10) | (static_cast<u_long>(1) << 17) | (static_cast<u_long>(1) << 19) | (static_cast<u_long>(1) << 26); 
+	constexpr u_long friends2 = friends1 << 4;
+	constexpr u_long friends3 = friends1 << 24;
+	constexpr u_long friends4 = friends3 << 4;
+#endif
+
+	// player 1
+	if((boards[NB_PIECE] & trap1) && !(boards[NB_PIECE] & friends1))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap1);
+		}
+	}
+	if((boards[NB_PIECE] & trap2) && !(boards[NB_PIECE] & friends2))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap2);
+		}
+	}
+	if((boards[NB_PIECE] & trap3) && !(boards[NB_PIECE] & friends3))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap3);
+		}
+	}
+	if((boards[NB_PIECE] & trap4) && !(boards[NB_PIECE] & friends4))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap4);
+		}
+	}
+
+	// player 2
+	if((boards[2*NB_PIECE+1] & trap1) && !(boards[2*NB_PIECE+1] & friends1))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap1);
+		}
+	}
+	if((boards[2*NB_PIECE+1] & trap2) && !(boards[2*NB_PIECE+1] & friends2))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap2);
+		}
+	}
+	if((boards[2*NB_PIECE+1] & trap3) && !(boards[2*NB_PIECE+1] & friends3))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap3);
+		}
+	}
+	if((boards[2*NB_PIECE+1] & trap4) && !(boards[2*NB_PIECE+1] & friends4))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap4);
+		}
+	}
 }
 
 void Arimaa::move(Bitboard* board, int n, u_short pos, int type)
