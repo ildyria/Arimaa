@@ -8,7 +8,7 @@ using std::list;
 // 
 //	rabbits should not move backward => DONE
 // 
-//	traps
+//	traps => DONE
 //
 //	end condition :
 // 		> X turns => to be sure that random simulation happend to finish => to be implemented in the play random
@@ -606,6 +606,7 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 list<Move> Arimaa::list_possible_moves(Bitboard* board)
 {
 	std::vector<std::list<int>> pieces = get_pieces(board);
+	std::list<u_long> moves_available;
 	for (auto piece_rank = pieces.begin() ; piece_rank != pieces.end(); ++piece_rank)
 	{
 		for (auto pos = (*piece_rank).begin(); pos != (*piece_rank).end(); ++pos)
@@ -615,7 +616,7 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 			u_short board_num = get_piece_board_num(position, board);
 			if(!is_frozen(situation))
 			{
-				std::list<u_long> moves_available = generate_move(situation, position, board_num, board);
+				moves_available = generate_move(situation, position, board_num, board);
 			}
 		}
 	}
