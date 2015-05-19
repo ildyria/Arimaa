@@ -66,7 +66,8 @@ class Arimaa : public TheGame
 
 	std::vector<std::list<int>> get_pieces(Bitboard* board);
 
-	std::list<u_long> generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board);
+	std::list<u_long> generate_move_simple(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board);
+	std::list<u_long> generate_move_double(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board);
 
 	std::list<u_long> list_moves_available(Bitboard* board);
 

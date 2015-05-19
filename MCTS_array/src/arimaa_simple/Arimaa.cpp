@@ -522,33 +522,33 @@ void Arimaa::apply_traps(Bitboard* board)
 	{
 		boards[i] = board->get_board(i);
 	}
-#if SIZEX == 6
-	constexpr int pos_trap1 = 7;
-	constexpr int pos_trap2 = 10;
-	constexpr int pos_trap3 = 25;
-	constexpr int pos_trap4 = 28;
-	constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
-	constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
-	constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
-	constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
-	constexpr u_long friends1 = (static_cast<u_long>(1) << 1) | (static_cast<u_long>(1) << 6) | (static_cast<u_long>(1) << 8) | (static_cast<u_long>(1) << 13); 
-	constexpr u_long friends2 = friends1 << 2; 
-	constexpr u_long friends3 = friends1 << 18;
-	constexpr u_long friends4 = friends3 << 4; 
-#else
-	constexpr int pos_trap1 = 18;
-	constexpr int pos_trap2 = 21;
-	constexpr int pos_trap3 = 42;
-	constexpr int pos_trap4 = 45;
-	constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
-	constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
-	constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
-	constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
-	constexpr u_long friends1 = (static_cast<u_long>(1) << 10) | (static_cast<u_long>(1) << 17) | (static_cast<u_long>(1) << 19) | (static_cast<u_long>(1) << 26); 
-	constexpr u_long friends2 = friends1 << 4;
-	constexpr u_long friends3 = friends1 << 24;
-	constexpr u_long friends4 = friends3 << 4;
-#endif
+	#if SIZEX == 6
+		constexpr int pos_trap1 = 7;
+		constexpr int pos_trap2 = 10;
+		constexpr int pos_trap3 = 25;
+		constexpr int pos_trap4 = 28;
+		constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
+		constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
+		constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
+		constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
+		constexpr u_long friends1 = (static_cast<u_long>(1) << 1) | (static_cast<u_long>(1) << 6) | (static_cast<u_long>(1) << 8) | (static_cast<u_long>(1) << 13); 
+		constexpr u_long friends2 = friends1 << 2; 
+		constexpr u_long friends3 = friends1 << 18;
+		constexpr u_long friends4 = friends3 << 4; 
+	#else
+		constexpr int pos_trap1 = 18;
+		constexpr int pos_trap2 = 21;
+		constexpr int pos_trap3 = 42;
+		constexpr int pos_trap4 = 45;
+		constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
+		constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
+		constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
+		constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
+		constexpr u_long friends1 = (static_cast<u_long>(1) << 10) | (static_cast<u_long>(1) << 17) | (static_cast<u_long>(1) << 19) | (static_cast<u_long>(1) << 26); 
+		constexpr u_long friends2 = friends1 << 4;
+		constexpr u_long friends3 = friends1 << 24;
+		constexpr u_long friends4 = friends3 << 4;
+	#endif
 
 	// player 1
 	if((boards[NB_PIECE] & trap1) && !(boards[NB_PIECE] & friends1))
@@ -633,6 +633,8 @@ std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 {
 
 	std::list<u_long> moves_available;
+	std::list<u_long> moves_available_simple;
+	std::list<u_long> moves_available_double;
 	std::vector<std::list<int>> pieces = get_pieces(board);
 	for (auto piece_rank = pieces.begin() ; piece_rank != pieces.end(); ++piece_rank)
 	{
@@ -643,7 +645,8 @@ std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 			u_short board_num = get_piece_board_num(position, board);
 			if(!is_frozen(situation))
 			{
-				moves_available = generate_move(situation, position, board_num, board);
+				moves_available_simple = generate_move_simple(situation, position, board_num, board);
+				moves_available_double = generate_move_double(situation, position, board_num, board);
 			}
 		}
 	}
