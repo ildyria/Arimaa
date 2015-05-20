@@ -84,10 +84,21 @@ namespace api {
 		 */
 		double estimateWinChances();
 
+		/*
+		 *  \fn getMovesStatistics()
+		 *  \brief returns the statistics of the move like the cost associated with the move
+		*/
+
 		v_stat getMovesStatistics();
-
+		/*
+		*  \fn explore()
+		*  \brief returns the best move to the AI
+		*/
 		void explore();
-
+		/*
+		*  \fn exploreSingle()
+		*  \brief returns all the possible available moves for the AI
+		*/
 		void exploreSingle();
 	};
 }
