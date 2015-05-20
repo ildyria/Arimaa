@@ -14,7 +14,7 @@ using std::list;
 // 		> X turns => to be sure that random simulation happend to finish => to be implemented in the play random
 // 		rabbit to an end => DONE
 // 		every rabbits are dead => DONE
-// 		no piece can move
+// 		no piece can move => DONE but only during simulations
 //
 //	generate 4 moves => DONE
 //	
@@ -22,9 +22,9 @@ using std::list;
 //
 //	play multiple move => DONE
 //
-//	play random move
-//		chose random piece
-//		play a random generated move
+//	play random move => DONE
+//		chose random piece => DONE
+//		play a random generated move => DONE
 //	
 //	start board ???
 
@@ -259,7 +259,7 @@ u_long Arimaa::is_rabbit(const u_short& piece_rank, const int player)
 	if (!piece_rank == 0) return static_cast<u_long>(0);
 
 	// n e s w : 8 4 2 1
-	if (player == 0) return static_cast<u_long>(8); // player 1 is north so rabbit can't go north => define him as being on the north border
+	if (player == 1) return static_cast<u_long>(8); // player 1 is north so rabbit can't go north => define him as being on the north border
 	return static_cast<u_long>(4); // idem mutatis mutandis
 }
 
@@ -651,7 +651,7 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 
 template<int num> std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 {
-	std::list<u_long> moves_available;
+	std::list<u_long> moves_available = std::list<u_long>();
 	std::list<u_long> moves_available_simple;
 	std::list<u_long> moves_available_double;
 	std::list<u_long>::iterator it;
@@ -834,17 +834,94 @@ int Arimaa::play_random_moves(Bitboard* board)
 	int iterations = 0;
 	while(iterations < 120)
 	{
+		u_short num_move = 0;
+		while(num_move < 4)
+		{
+			bool valable = false;
+			std::vector<std::list<int>> pieces = get_pieces(board);
+			std::list<u_long> moves_available = std::list<u_long>();
 
+			int array_size = static_cast<int>(pieces.size());
+			while(!valable && array_size > 0)
+			{
+				auto chosen = Random::I()->get_min_max(0, array_size - 1);
+				std::list<int> list_piece = pieces[chosen];
 
+				auto it = list_piece.begin();
+				int num = list_piece.size();
+				int pos;
+				if(num)
+				{
+					advance(it, Random::I()->get_min_max(0, num - 1));
+					pos = *it;
+				}
+				else
+				{
+					pieces.erase (pieces.begin()+chosen);
+					array_size --;
+					continue;
+				}
 
+				u_short position = static_cast<u_short>(pos);
+				u_long situation = get_situation(position, board);
+				u_short board_num = get_piece_board_num(position, board);
 
+				if(!is_frozen(situation))
+				{
 
+					if(num_move < 3)
+					{
+						auto moves_available_double = generate_move_double(situation, position, board_num, board);
+						auto iter_moves = moves_available.begin();
+						moves_available.splice(iter_moves,moves_available_double);
+					}
+					auto moves_available_simple = generate_move_simple(situation, position, board_num, board);
+					auto iter_moves = moves_available.begin();
+					moves_available.splice(iter_moves,moves_available_simple);
+				}
 
+				if(moves_available.size() > 0)
+				{
+					valable = true;
+				}
+				else
+				{
+					list_piece.erase(it);
+				}
+			}
 
+			if (array_size == 0) // no moves possibles
+			{
+				return 1 - board->get_player();
+			}
+			else
+			{
+				constexpr u_long move_mask = (static_cast<u_long>(1) << 16) - 1;
+				constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
+				constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
+				constexpr u_long nsew_mask = (static_cast<u_long>(1) << 2) - 1;
 
+				int num_board;
+				u_short pos;
+				int nsew;
 
+				auto it = moves_available.begin();
+				advance(it, Random::I()->get_min_max(0, static_cast<int>(moves_available.size()) - 1));
 
+				u_long moves = *it;
 
+				while(moves)
+				{
+					nsew = static_cast<int>((moves & move_mask) & nsew_mask);
+					pos = static_cast<u_short>(((moves & move_mask) >> 2) & pos_mask);
+					num_board = static_cast<int>(((moves & move_mask) >> 8) & num_mask);
+					move(board, num_board, pos, nsew);
+					moves >>= 16;
+					num_move++;
+				}
+			}
+		}
+		board->play();
 		auto nodet = end(board);
 		if(nodet > 0) return nodet;
 		iterations ++;

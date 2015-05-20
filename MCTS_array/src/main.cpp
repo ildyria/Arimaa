@@ -14,7 +14,6 @@
 
 #if defined(ARIMAA)
 	#include "arimaa_simple/Arimaa.h"
-//	#include "arimaa_simple/BitboardConnect4.h"
 #else
 	#include "connect4/Connect4.h"
 	#include "connect4/BitboardConnect4.h"
