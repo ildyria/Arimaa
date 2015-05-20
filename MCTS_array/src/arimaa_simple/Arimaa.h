@@ -133,8 +133,4 @@ public:
 	* \return winner of the current game
 	*/
 	virtual int play_random_moves(Bitboard* board) override;
-	
-	Move convert_move(std::string move);
 };
-
-

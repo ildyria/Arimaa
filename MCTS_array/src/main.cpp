@@ -60,7 +60,7 @@ int main(int argc, char const *argv[])
 	while (t != "exit")
 	{
 		cin >> t;
-		game->convert_move(t);
+		Arimaa_tools::convert_move(t);
 	}
 	exit(1);
 #else

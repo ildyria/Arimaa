@@ -16,10 +16,12 @@ using std::list;
 // 		every rabbits are dead => DONE
 // 		no piece can move
 //
-//	generate 4 moves
+//	generate 4 moves => DONE
 //	
-//	play move
-//	
+//	play single move => DONE
+//
+//	play multiple move => DONE
+//
 //	play random move
 //		chose random piece
 //		play a random generated move
@@ -129,6 +131,24 @@ int Arimaa::end(const Bitboard* board)
 
 void Arimaa::play(Move& position, Bitboard* board)
 {
+	constexpr u_long move_mask = (static_cast<u_long>(1) << 16) - 1;
+	constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
+	constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
+	constexpr u_long nsew_mask = (static_cast<u_long>(1) << 2) - 1;
+	int num_board;
+	u_short pos;
+	int nsew;
+
+	u_long moves = position.get_move();
+
+	for(int i = 0 ; i < 4; ++i)
+	{
+		nsew = static_cast<int>((moves & move_mask) & nsew_mask);
+		pos = static_cast<u_short>(((moves & move_mask) >> 2) & pos_mask);
+		num_board = static_cast<int>(((moves & move_mask) >> 8) & num_mask);
+		move(board, num_board, pos, nsew);
+		moves >>= 16;
+	}
 
 	board->play();
 }
@@ -676,8 +696,8 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 	
 	constexpr u_long move_mask_1 = (static_cast<u_long>(1) << 16) - 1;
 	constexpr u_long move_mask_2 = move_mask_1 << 16;
-//	constexpr u_long move_mask_3 = move_mask_2 << 16;
-//	constexpr u_long move_mask_4 = move_mask_3 << 16;
+	//	constexpr u_long move_mask_3 = move_mask_2 << 16;
+	//	constexpr u_long move_mask_4 = move_mask_3 << 16;
 
 	constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
 	constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
@@ -814,7 +834,14 @@ int Arimaa::play_random_moves(Bitboard* board)
 	int iterations = 0;
 	while(iterations < 120)
 	{
-		throw std::logic_error("move not implemented.");
+
+
+
+
+
+
+
+
 
 
 
@@ -825,34 +852,3 @@ int Arimaa::play_random_moves(Bitboard* board)
 	return 0;
 }
 
-Move Arimaa::convert_move(string move)
-{
-	auto transform = std::map<char, int>();
-	transform.insert(std::pair<char, int>('n', 3)); // north
-	transform.insert(std::pair<char, int>('e', 2)); // east
-	transform.insert(std::pair<char, int>('w', 1)); // west
-	transform.insert(std::pair<char, int>('s', 0)); // south
-	transform.insert(std::pair<char, int>('A', SIZEX - 1)); // first col
-	transform.insert(std::pair<char, int>('B', SIZEX - 2)); // second col...
-	transform.insert(std::pair<char, int>('C', SIZEX - 3));
-	transform.insert(std::pair<char, int>('D', SIZEX - 4));
-	transform.insert(std::pair<char, int>('E', SIZEX - 5));
-	transform.insert(std::pair<char, int>('F', SIZEX - 6));
-	transform.insert(std::pair<char, int>('G', SIZEX - 7));
-	transform.insert(std::pair<char, int>('H', SIZEX - 8));
-	transform.insert(std::pair<char, int>('1', 1)); // first row
-	transform.insert(std::pair<char, int>('2', 2)); // second row...
-	transform.insert(std::pair<char, int>('3', 3));
-	transform.insert(std::pair<char, int>('4', 4));
-	transform.insert(std::pair<char, int>('5', 5));
-	transform.insert(std::pair<char, int>('6', 6));
-	transform.insert(std::pair<char, int>('7', 7));
-	transform.insert(std::pair<char, int>('8', 8));
-
-	u_long futurmove;
-	// futurmove = NESW | pos  
-	futurmove = transform[move[0]] + (transform[move[1]] - 1)*SIZEX + 64 * transform[move[2]];
-	std::cout << futurmove << std::endl;
-	std::cout << (futurmove >> 6) << std::endl;
-	return Move(futurmove);
-}
