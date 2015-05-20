@@ -415,13 +415,14 @@ namespace mcts
 		inline bool get_lock()
 		{
 			// printf("%p locked.\n",(void*)this); // trop lent !!!!
-			// bool t = false;
+			bool t = _lock;
+			_lock = true;
 			// #pragma omp atomic capture
 			// {
-			// 	t = _lock |= true;
+			// t = _lock |= true;
 			// }
-			// return t;
-			return __sync_val_compare_and_swap(&_lock,false,true);
+			return t;
+			// return __sync_val_compare_and_swap(&_lock,false,true);
 		}
 
 		/**
@@ -431,7 +432,7 @@ namespace mcts
 		inline void release_lock()
 		{
 			// printf("%p unlocked.\n",(void*)this); // trop lent !!!!
-			#pragma omp atomic write
+			// #pragma omp atomic write
 			this->_lock = false;
 		}
 	};

@@ -27,7 +27,7 @@ typedef struct prog_options {
 	bool updated;	// 1
 	bool bench;		// 1
 	bool test_api;	// 1
-	bool foo1;		// 1
+	bool arimaa;	// 1
 	bool foo2;		// 1
 	bool foo3;		// 1
 	bool foo4;		// 1
@@ -42,7 +42,7 @@ typedef struct prog_options {
 
 //#define TEST_API
 
-// #define ARIMAA
+//#define ARIMAA
 
 #ifdef ARIMAA
 	#define SIZEX 6

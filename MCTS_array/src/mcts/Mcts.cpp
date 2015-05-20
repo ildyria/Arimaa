@@ -104,9 +104,9 @@ namespace mcts{
 //		if (omp_in_parallel())
 //		{
 //			#pragma omp critical
-			// omp_set_lock(&_lockNode);
+			omp_set_lock(&_lockNode);
 			locked = node->get_lock();
-			// omp_unset_lock(&_lockNode);
+			omp_unset_lock(&_lockNode);
 //		}
 
 		if (locked)
@@ -129,13 +129,13 @@ namespace mcts{
 		Node* tmp;
 
 		// _next concurency
-		// omp_set_lock(&_lockNext);
-		#pragma omp atomic capture
-		{
+		omp_set_lock(&_lockNext);
+		// #pragma omp atomic capture
+		// {
 			tmp2 = _next;
 			_next += ListOfMoves.size();
-		}
-		// omp_unset_lock(&_lockNext);
+		// }
+		omp_unset_lock(&_lockNext);
 #if !defined(DOUBLE_TREE)
 		Node** buff;
 #endif
