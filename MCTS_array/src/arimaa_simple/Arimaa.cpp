@@ -456,7 +456,7 @@ std::list<u_long> Arimaa::generate_move_double(const u_long& situation, const u_
 			u_long move = static_cast<u_long>(board_num);
 			move = (move << 6) | static_cast<u_long>(pos);
 			move = (move << 2) | static_cast<u_long>(nsew);
-			res.push_back(move);
+			// res.push_back(move);
 
 			u_long mask_pull = static_cast<u_long>(1);
 			// add pull now (prey)
@@ -629,7 +629,7 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 	return (boards & mask) > 0;
 }
 
-std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
+template<int num> std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 {
 	std::list<u_long> moves_available;
 	std::list<u_long> moves_available_simple;
@@ -646,12 +646,15 @@ std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 			u_short board_num = get_piece_board_num(position, board);
 			if(!is_frozen(situation))
 			{
+				if(num > 1)
+				{
+					moves_available_double = generate_move_double(situation, position, board_num, board);
+					it = moves_available.begin();
+					moves_available.splice(it,moves_available_double);
+				}
 				moves_available_simple = generate_move_simple(situation, position, board_num, board);
-				moves_available_double = generate_move_double(situation, position, board_num, board);
 				it = moves_available.begin();
 				moves_available.splice(it,moves_available_simple);
-				it = moves_available.begin();
-				moves_available.splice(it,moves_available_double);
 			}
 		}
 	}
@@ -666,12 +669,15 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 	Bitboard* board_temp2;
 	Bitboard* board_temp3;
 	std::list<u_long> first_moves_available;
-	list<Move> moves;
+	std::list<u_long> moves_available1;
+	std::list<u_long> moves_available2;
+	std::list<u_long> moves_available3;
+	list<Move> moves = list<Move>();
 	
 	constexpr u_long move_mask_1 = (static_cast<u_long>(1) << 16) - 1;
 	constexpr u_long move_mask_2 = move_mask_1 << 16;
-	constexpr u_long move_mask_3 = move_mask_2 << 16;
-	constexpr u_long move_mask_4 = move_mask_3 << 16;
+//	constexpr u_long move_mask_3 = move_mask_2 << 16;
+//	constexpr u_long move_mask_4 = move_mask_3 << 16;
 
 	constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
 	constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
@@ -685,13 +691,15 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 	// 2   1 1
 	// 2   2
 	u_long temp_move;
+	u_long temp_move2;
+	u_long temp_move3;
 
-	first_moves_available = list_moves_available(board);
-	for (auto iter_moves = first_moves_available.begin(); iter_moves != first_moves_available.end(); ++iter_moves)
+	first_moves_available = list_moves_available<4>(board);
+	for (auto iter_moves = first_moves_available.begin(), iter_end = first_moves_available.end(); iter_moves != iter_end; ++iter_moves)
 	{
 		temp_move = *iter_moves;
 
-		int num_board = static_cast<int>((temp_move & num_mask) >> 8);
+		int num_board = static_cast<int>((temp_move >> 8) & num_mask);
 		u_short pos = static_cast<u_short>(((temp_move & move_mask_1) >> 2) & pos_mask);
 		int nsew = static_cast<int>((temp_move & move_mask_1) & nsew_mask);
 		board_temp = board->clone();
@@ -699,22 +707,102 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 
 		if(temp_move & move_mask_2) // 2 moves at once
 		{
-			int num_board = static_cast<int>(((temp_move >> 16) & num_mask) >> 8);
+			int num_board = static_cast<int>(((temp_move >> 16) >> 8) & num_mask);
 			u_short pos = static_cast<u_short>(((temp_move >> 16) >> 2) & pos_mask);
 			int nsew = static_cast<int>((temp_move >> 16) & nsew_mask);
 			board_temp2 = board->clone();
 			move(board_temp2, num_board, pos, nsew);
 
 			// 2 moves are applied now we can start the search... for the next 2 moves... 
-			Arimaa::list_moves_available(board_temp2);
-
+			moves_available1 = Arimaa::list_moves_available<2>(board_temp2);
+			for(auto iter_move2 = moves_available1.begin(), iter_end2 = moves_available1.end(); iter_move2 != iter_end2  ; ++iter_move2)
+			{
+				temp_move2 = *iter_move2;
+				if(temp_move2 & move_mask_2) // 2 moves at once
+				{
+					u_long result = temp_move2 << 32 | temp_move;
+					moves.push_back(Move(result)); // 2 2
+				}
+				else
+				{
+					int num_board = static_cast<int>(((temp_move2 & move_mask_1) >> 8) & num_mask);
+					u_short pos = static_cast<u_short>(((temp_move2 & move_mask_1) >> 2) & pos_mask);
+					int nsew = static_cast<int>((temp_move2 & move_mask_1) & nsew_mask);
+					board_temp3 = board_temp2->clone();
+					move(board_temp3, num_board, pos, nsew);
+					moves_available2 = Arimaa::list_moves_available<1>(board_temp3);
+					
+					for(auto iter_move3 = moves_available2.begin(), iter_end3 = moves_available2.end(); iter_move3 != iter_end3  ; ++iter_move3)
+					{
+						u_long result = (*iter_move3) << 48 | temp_move2 << 32 | temp_move;
+						moves.push_back(Move(result)); // 2 1 1
+					}
+					delete board_temp3;
+				}
+			}
 			delete board_temp2; // MANDATORY ELSE MEMORY LEAK
 		}
 		else
 		{
 			// here we have still 3 moves lefts
+			moves_available1 = Arimaa::list_moves_available<3>(board_temp);
+			for(auto iter_move2 = moves_available1.begin(), iter_end2 = moves_available1.end(); iter_move2 != iter_end2  ; ++iter_move2)
+			{
+				temp_move2 = *iter_move2;
+				int num_board = static_cast<int>((temp_move2 >> 8) & num_mask);
+				u_short pos = static_cast<u_short>(((temp_move2 & move_mask_1) >> 2) & pos_mask);
+				int nsew = static_cast<int>((temp_move2 & move_mask_1) & nsew_mask);
+				board_temp2 = board_temp->clone();
+				move(board_temp2, num_board, pos, nsew);
 
+				if(temp_move2 & move_mask_2) // 1 2
+				{
+					int num_board = static_cast<int>(((temp_move2 >> 16) >> 8) & num_mask);
+					u_short pos = static_cast<u_short>(((temp_move2 >> 16) >> 2) & pos_mask);
+					int nsew = static_cast<int>((temp_move2 >> 16) & nsew_mask);
+					board_temp3 = board_temp2->clone();
+					move(board_temp3, num_board, pos, nsew);
 
+					moves_available2 = Arimaa::list_moves_available<1>(board_temp3);
+					for(auto iter_move3 = moves_available2.begin(), iter_end3 = moves_available2.end(); iter_move3 != iter_end3  ; ++iter_move3)
+					{
+						u_long result = (*iter_move3) << 48 | temp_move2 << 16 | temp_move;
+						moves.push_back(Move(result)); // 1 2 1
+					}
+					delete board_temp3;
+				}
+				else // 1 1 
+				{
+					// 2 moves are applied now we can start the search... for the next 2 moves... 
+					moves_available2 = Arimaa::list_moves_available<2>(board_temp2);
+					for(auto iter_move3 = moves_available2.begin(), iter_end2 = moves_available2.end(); iter_move3 != iter_end2  ; ++iter_move3)
+					{
+						temp_move3 = *iter_move3;
+						if(temp_move3 & move_mask_2) // 2 moves at once
+						{
+							u_long result = temp_move3 << 32 | temp_move2 << 16 | temp_move;
+							moves.push_back(Move(result)); // 1 1 2
+						}
+						else
+						{
+							int num_board = static_cast<int>(((temp_move3 & move_mask_1) >> 8) & num_mask);
+							u_short pos = static_cast<u_short>(((temp_move3 & move_mask_1) >> 2) & pos_mask);
+							int nsew = static_cast<int>((temp_move3 & move_mask_1) & nsew_mask);
+							board_temp3 = board_temp2->clone();
+							move(board_temp3, num_board, pos, nsew);
+							moves_available3 = Arimaa::list_moves_available<1>(board_temp3);
+							
+							for(auto iter_move3 = moves_available3.begin(), iter_end3 = moves_available3.end(); iter_move3 != iter_end3  ; ++iter_move3)
+							{
+								u_long result = (*iter_move3) << 48 | temp_move3 << 32 | temp_move2 << 16 | temp_move;
+								moves.push_back(Move(result)); // 1 1 1 1
+							}
+							delete board_temp3;
+						}
+					}
+				}
+				delete board_temp2;
+			}
 		}
 		delete board_temp; // MANDATORY ELSE MEMORY LEAK
 	}
