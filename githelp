@@ -17,8 +17,6 @@ git push			: push your commited changes online
 pour un clone rapide : 
 git clone git@github.com:ildyria/Arimaa.git
 
-
-
 REVERT CHANGES :
 git checkout -- <file>		: reset your file/folder to the last commit
 git stash			: reset your local repo to the last commit
@@ -38,9 +36,22 @@ git difftool			: merge the files
 Edit the files (chose the right parts), commit and push.
 
 
-
 MORE ADVANCED STUFF :
 git stash save <message>	: save temporarly your changes and revert
 git stash list			: show the list of the previous \"stash\"
 git stash clear			: clear the previous list
 git stash pop			: return to your working state"
+
+
+BRANCHES
+git checkout -b <branch name> : create a branch <branch name>
+git checkout <branch name> : switch to branch <branch name>
+git push -u --all
+
+git checkout <commit number> : switch to this commit /!\ DANGEROUS
+
+MERGE /!\ DANGEROUS
+git merge <branch name> merges ROOT BRANCH (the one you are on, see git status) with <branch name>.
+The changes are done on ROOT BRANCH.
+
+alias gtree='git log --oneline --decorate --all --graph'
