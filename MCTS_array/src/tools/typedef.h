@@ -7,7 +7,7 @@ typedef unsigned int u_int;
 typedef unsigned long u_long;
 typedef unsigned short u_short;
 
-typedef std::pair<u_long, u_long> p_stat;
+typedef std::pair<double, double> p_stat;
 typedef std::pair <u_long, p_stat> n_stat;
 typedef std::vector<n_stat> v_stat;
 
@@ -17,6 +17,9 @@ p_stat operator += (p_stat a, p_stat b);
 
 //Adds up the statistics that share the same IDs (the vector is considered unordered)
 v_stat operator += (v_stat a, v_stat b);
+
+bool first (n_stat a, n_stat b);
+bool second (n_stat a, n_stat b);
 
 typedef struct prog_options {
 	double percent_memory; 			// 8
