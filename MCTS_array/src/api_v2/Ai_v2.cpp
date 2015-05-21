@@ -2,7 +2,7 @@
 
 using namespace mcts;
 
-namespace api {
+namespace api_v2 {
 /*
 	mcts::MctsArgs* _param;
 	mcts::Mcts* _ai;

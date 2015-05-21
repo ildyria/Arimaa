@@ -19,21 +19,21 @@ p_stat operator += (p_stat a, p_stat b);
 v_stat operator += (v_stat a, v_stat b);
 
 typedef struct prog_options {
-	double percent_memory; // 8
-	short hard_memory; // 2
-	short time_to_search; // 2 
-	bool memory_limited; // 1
-	bool think_while_waiting; // 1
-	bool updated;	// 1
-	bool bench;		// 1
+	double percent_memory; 			// 8
+
+	u_short hard_memory;			// 2
+	u_short time_to_search;			// 2 
+	bool memory_limited;			// 1
+	bool think_while_waiting;		// 1
+	bool updated;					// 1
+	bool bench;						// 1
+
+	u_short visit_before_expand;	// 2
+	u_short simul_per_leaves;		// 2
 	bool test_api;	// 1
 	bool arimaa;	// 1
-	bool foo2;		// 1
-	bool foo3;		// 1
-	bool foo4;		// 1
-	bool foo5;		// 1
-	bool foo6;		// 1
-	bool foo7;		// 1
+	bool foo1;	// 1
+	bool foo2;	// 1
 } prog_options;
 
 #define elseif else if
