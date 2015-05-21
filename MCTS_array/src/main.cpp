@@ -1,8 +1,8 @@
 #include "tools/typedef.h"
 
-#include "api/Game.h"
-#include "api/Ai.h"
-#include "api/test_api.h"
+// #include "api/Game.h"
+// #include "api/Ai.h"
+// #include "api/test_api.h"
 
 #include "api_v2/Game_v2.h"
 #include "api_v2/Ai_v2.h"
