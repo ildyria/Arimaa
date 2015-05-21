@@ -58,8 +58,6 @@ namespace api_v2 {
 
 		double estimateWinChances();
 
-		v_stat getMovesStatistics();
-
 		void displayASCII();
 	};
 }
