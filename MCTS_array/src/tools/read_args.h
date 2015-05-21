@@ -13,14 +13,13 @@ prog_options read_args(int& argc, char const* argv[])
 	options.updated = false;
 	options.bench = false;
 
+	options.visit_before_expand = 2;
+	options.simul_per_leaves = 2;
 	options.test_api = false;
 	options.arimaa = false;
+
+	options.foo1 = false;
 	options.foo2 = false;
-	options.foo3 = false;
-	options.foo4 = false;
-	options.foo5 = false;
-	options.foo6 = false;
-	options.foo7 = false;
 
 	// report settings
 	for (int i = 1; i < argc; i++)
@@ -95,6 +94,36 @@ prog_options read_args(int& argc, char const* argv[])
 				exit(1);
 			}
 		}
+		elseif(strcmp(argv[i],"-sl") == 0 || strcmp(argv[i],"--simul-per-leaves") == 0)
+		{
+			if(i + 1 < argc)
+			{
+				i++;
+				options.simul_per_leaves = options.simul_per_leaves < static_cast<u_short>(std::stoi(argv[i],nullptr,0)) ? static_cast<u_short>(std::stoi(argv[i],nullptr,0)) : options.simul_per_leaves; // minimum 2
+				std::cout << options.simul_per_leaves << " simulations will be done per leaves." << std::endl;
+				options.updated = true;
+			}
+			else
+			{
+				std::cout << "-sl require an additionnal parameter (" << options.simul_per_leaves << "<)." << std::endl;
+				exit(1);
+			}
+		}
+		elseif(strcmp(argv[i],"-se") == 0 || strcmp(argv[i],"--simul-b4-expand") == 0)
+		{
+			if(i + 1 < argc)
+			{
+				i++;
+				options.visit_before_expand = options.visit_before_expand < static_cast<u_short>(std::stoi(argv[i],nullptr,0)) ? static_cast<u_short>(std::stoi(argv[i],nullptr,0)) : options.visit_before_expand; // minimum 2
+				std::cout << options.visit_before_expand << " visits will be done before expansion." << std::endl;
+				options.updated = true;
+			}
+			else
+			{
+				std::cout << "-se require an additionnal parameter (" << options.simul_per_leaves << "<)." << std::endl;
+				exit(1);
+			}
+		}
 		elseif(strcmp(argv[i],"-hm") == 0)
 		{
 			if(!options.memory_limited)
@@ -110,10 +139,10 @@ prog_options read_args(int& argc, char const* argv[])
 			options.updated = true;
 			options.time_to_search = 30;
 		}
-		elseif(strcmp(argv[i],"-A") == 0 || strcmp(argv[i],"--arimaa") == 0)
-		{
-			options.arimaa = true;
-		}
+		// elseif(strcmp(argv[i],"-A") == 0 || strcmp(argv[i],"--arimaa") == 0)
+		// {
+		// 	options.arimaa = true;
+		// }
 		elseif(strcmp(argv[i],"-a") == 0 || strcmp(argv[i],"--api") == 0)
 		{
 			options.test_api = true;
@@ -123,10 +152,12 @@ prog_options read_args(int& argc, char const* argv[])
 		elseif(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"--help") == 0 || strcmp(argv[i],"help") == 0)
 		{
 				std::cout << "-nothx : programm doesn't think while waiting for player's move." << std::endl;
-				std::cout << "-n <num> : number of process to use while thinking." << std::endl;
-				std::cout << "-m <num> : max memory to use (Mo)." << std::endl;
+				std::cout << "-n <int> : number of process to use while thinking." << std::endl;
+				std::cout << "-m <int> : max memory to use (Mo)." << std::endl;
 				std::cout << "-hm : memory limited (2 Go by default)." << std::endl;
-				std::cout << "-p <num> : percent of max memory to use." << std::endl;
+				std::cout << "-p <float> : percent of max memory to use ([0.20 ; 0.95])." << std::endl;
+				std::cout << "-sl <int> : simulations per leaves (" << options.simul_per_leaves << "<)." << std::endl;
+				std::cout << "-se <int> : simulations b4 expansion (" << options.visit_before_expand << "<)." << std::endl;
 				std::cout << "-----------------" << std::endl;
 				std::cout << "-a : test api." << std::endl;
 				std::cout << "-b : benchmark." << std::endl;

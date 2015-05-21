@@ -125,12 +125,26 @@ namespace mcts
 		};
 
 		/**
+		 * \fn resetRoot()
+		 * \brief clear the root and reset it's "player" value to the _state player value
+		 */
+		void resetRoot();
+
+
+		/**
 		 * \fn move_played(Move& move)
 		 * \brief play a move on the tree, prune all the node that are useless.
 		 * 
 		 * \param move move played
 		 */
 		Bitboard* move_played(Move& move);
+
+
+		/**
+		 * \fn get_current_bitboard()
+		 * \brief return the current state of the bitboard (at root)
+		 */
+		Bitboard* get_current_bitboard();
 
 		/**
 		* \fn explore()
@@ -160,7 +174,7 @@ namespace mcts
 
 		/**
 		 * \fn kill_tree()
-		 * @brief clear all the branches of the tree.
+		 * \brief clear all the branches of the tree.
 		 */
 		void kill_tree();
 
