@@ -214,6 +214,15 @@ namespace mcts
 		 */
 		inline double get_UCT() { return _uct; };
 
+
+		/**
+		 * \fn get_player()
+		 * \brief getter for the player to move
+		 *
+		 * \return the player with the move
+	 	 */
+		inline void set_player(u_short toplay) { _toplay = (toplay > 2) ? 2 : toplay; };
+
 		/**
 		 * \fn get_player()
 		 * \brief getter for the player to move

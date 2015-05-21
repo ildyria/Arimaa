@@ -1,0 +1,104 @@
+%this file is the second report
+%a % comment anything after % until the end of the line
+
+%minimum references to begin our article
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage{rotating}
+\usepackage{caption}
+\usepackage{pdfpages}
+
+%for code
+\usepackage{color}
+\definecolor{grey}{rgb}{0.9,0.9,0.9}
+\definecolor{teal}{rgb}{0.0,0.5,0.5}
+\definecolor{violet}{rgb}{0.5,0,0.5}
+
+\usepackage{listings}
+\usepackage{listingsutf8}
+\lstloadlanguages{[Visual]C++}
+\lstdefinestyle{listing}{
+  language=Java,
+  captionpos=t,
+  inputencoding=utf8/latin1,
+  extendedchars=true,
+  resetmargins=true,
+%  xleftmargin=-60pt,
+%  xrightmargin=-70pt,
+%  frame=single,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=5pt,
+  breaklines=true,
+  breakatwhitespace=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2,
+  basicstyle=\footnotesize\ttfamily,
+%  backgroundcolor=\color{grey},
+  keywordstyle=\color{blue}\bfseries,
+  commentstyle=\color{teal},
+  identifierstyle=\color{black},
+  stringstyle=\color{red},
+  numberstyle=\color{violet},
+}
+\lstset{style=listing}
+
+
+\newcommand{\sectionbreak}{\clearpage}
+
+%\setlength{\parskip}{10pt plus 1pt minus 1pt} %Adds spacing between paragraphs 
+\usepackage{parskip}
+\setlength{\parindent}{15pt}
+
+\pagestyle{fancy}
+%\cfoot{Fast and furious game playing: Monte Carlo drift}
+% the last extension makes it possible to add images
+
+%presentation of the document
+\title{Fast and Furious Game Playing: Monte Carlo Drift\smallbreak Design report} %not sure about the name of this report
+\author{Prateek \textsc{Bhatnagar}, Gabriel \textsc{Prevosto}, \\
+        Benoît \textsc{Viguier} \\
+        \\
+        Supervisors: Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
+\date{02/02/2015}
+\setlength\parindent{15pt}
+\begin{document}
+\maketitle
+
+\begin{figure}[!h] 
+\centerline{\includegraphics[scale=0.50]{Pictures/arimaa}}
+\end{figure}
+\newpage
+
+%to add a table of contents
+\tableofcontents
+\newpage
+
+
+\section{Introduction}				\label{sec:introduction} 		\input{Introduction/text.tex}
+
+\newpage
+
+\newpage
+	\section{Conclusion}			\label{sec:conclusion}			\input{Conclusion/text.tex}
+\newpage	
+
+\bibliography{bibliography}
+\bibliographystyle{plain}
+
+\end{document}

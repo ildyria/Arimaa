@@ -48,8 +48,26 @@ namespace mcts{
 		Node** address = _index.get();
 		_tree[0].set(*random, address);
 #endif 
-		_tree[0].has_parent();
+		_tree[0].set_player(static_cast<u_short>(_state->get_player()));
 		_next = (&_tree[0]) + 1;
+	}
+
+	void Mcts::resetRoot()
+	{
+		_tree[0].unset();
+		Move* random = new Move();
+#if defined(DOUBLE_TREE)
+		_tree[0].set(*random);
+#else
+		Node** address = _index.get();
+		_tree[0].set(*random, address);
+#endif 
+		_tree[0].set_player(static_cast<u_short>(_state->get_player()));
+	}
+
+	Bitboard* Mcts::get_current_bitboard()
+	{
+		return _state;
 	}
 
 	Bitboard* Mcts::move_played(Move& move)
@@ -319,9 +337,9 @@ namespace mcts{
 
 	void Mcts::kill_tree()
 	{
-		Tree<Node>::clean_tree(_tree);
+		Tree<Node>::clean_tree_force(_tree);
 #if defined(DOUBLE_TREE)
-		Tree<Node>::clean_tree(_buff);
+		Tree<Node>::clean_tree_force(_buff);
 #endif
 //		_tree.clear();
 	}
@@ -349,7 +367,7 @@ namespace mcts{
 		auto first = listChildren.first;
 		for (u_int i = 0; i < listChildren.second; ++i)
 		{
-			return_vect[i] = n_stat(first->get_move().get_move(), p_stat(first->get_wins(), first->get_visits()));
+			return_vect[i] = n_stat(first->get_move().get_move(), p_stat(static_cast<double>(first->get_wins()), static_cast<double>(first->get_visits() > 0 ? first->get_visits() : 1)));
 			++first;
 		}
 

@@ -29,3 +29,13 @@ v_stat operator += (v_stat a, v_stat b)
 	}
 	return a;
 }
+
+bool first (n_stat a, n_stat b)
+{
+	return a.first < b.first;
+}
+
+bool second (n_stat a, n_stat b)
+{
+	return (a.second.first/a.second.second) > (b.second.first/b.second.second);
+}
