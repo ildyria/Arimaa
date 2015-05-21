@@ -123,7 +123,13 @@ public:
 	* \return winner of the current game
 	*/
 	virtual int play_random_moves(Bitboard* board) override;
-	
+	/**
+	* \fn convert_move
+	* \brief converts move played by the palyer into a pair of <char,int>
+	*
+	* \param move string is the move made by the player
+	* \return future move of the current game
+	*/
 	Move convert_move(std::string move);
 };
 

@@ -1,4 +1,4 @@
-#pragma once
+  #pragma once
 #include "Game.h"
 #include "../mcts/Mcts.h"
 #include "../tools/typedef.h"
