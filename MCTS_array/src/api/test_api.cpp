@@ -1,11 +1,6 @@
-#include "Game.h"
-#include "Ai.h"
-#include "../tools/typedef.h"
+#include "test_api.h"
 
-using namespace api;
-using namespace std;
-
-inline void test_api(prog_options& options)
+void api::test::run(prog_options& options)
 {
 	Game* game = new Game();
 	Ai* ai = new Ai(2);

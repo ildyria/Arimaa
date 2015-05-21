@@ -2,7 +2,7 @@
 
 #include "api/Game.h"
 #include "api/Ai.h"
-#include "api/test.h"
+#include "api/test_api.h"
 
 //	#define DISPLAY_TREE
 #include "tools/Memory.h"
@@ -25,7 +25,6 @@
 #include "tools/benching/Bench.h"
 #include "tools/read_args.h"
 
-using namespace api;
 using namespace mcts;
 using std::cout;
 using std::cin;
@@ -45,7 +44,7 @@ int main(int argc, char const *argv[])
 
 	if(options.test_api)
 	{
-		test_api(options);
+		api::test::run(options);
 		exit(1);
 	}
 
