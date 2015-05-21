@@ -14,12 +14,12 @@ namespace api_v2 {
 	 */
 	class Ai
 	{
+	public:
 		mcts::MctsArgs* _param;
 		mcts::Mcts* _ai;
 		Bitboard* _board;
 		TheGame* _game;
 
-	public:
 		Ai();
 
 		explicit Ai(prog_options& options);
@@ -85,7 +85,9 @@ namespace api_v2 {
 
 		/**
 		 * \fn setState
-		 * \details this function redifine the root bitboard. Warning, that bitboard must be the same kind/size of the one imported. Beware this function also fully cleans the tree !!
+		 * \details this function redifine the root bitboard.
+		 * /!\ Warning, that bitboard must be the same kind/size of the one imported.
+		 * /!\ Beware this function also fully cleans the tree !!
 		 * \param state serialized version of the Bitboard
 		 */
 		void setState(std::vector<u_long> state);

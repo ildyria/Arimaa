@@ -54,6 +54,7 @@ namespace mcts{
 
 	void Mcts::resetRoot()
 	{
+		_tree[0].unset();
 		Move* random = new Move();
 #if defined(DOUBLE_TREE)
 		_tree[0].set(*random);
@@ -336,9 +337,9 @@ namespace mcts{
 
 	void Mcts::kill_tree()
 	{
-		Tree<Node>::clean_tree(_tree);
+		Tree<Node>::clean_tree_force(_tree);
 #if defined(DOUBLE_TREE)
-		Tree<Node>::clean_tree(_buff);
+		Tree<Node>::clean_tree_force(_buff);
 #endif
 //		_tree.clear();
 	}

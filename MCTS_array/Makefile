@@ -5,7 +5,7 @@ CFLAGS=-g -O3 -Wpadded -fopenmp -c -Wall -std=c++11 $(INCLUDE)
 LDFLAGS=-g -O3 -fopenmp -std=c++11
 
 SOURCES_TOOLS = Random.cpp Count.cpp Bench.cpp Graph.cpp typedef.cpp 
-SOURCES_API = Ai.cpp Game.cpp test_api.cpp 
+SOURCES_API = Ai.cpp Game.cpp test_api.cpp Ai_v2.cpp Game_v2.cpp test_v2.cpp 
 SOURCES_GAMES = BitboardConnect4.cpp Connect4.cpp Bitboard.cpp Arimaa.cpp Move.cpp
 SOURCES_MCTS = Mcts.cpp Node.cpp
 SOURCES = $(SOURCES_TOOLS) $(SOURCES_API) $(SOURCES_GAMES) $(SOURCES_MCTS) main.cpp
