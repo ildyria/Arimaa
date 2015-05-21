@@ -17,6 +17,7 @@ prog_options read_args(int& argc, char const* argv[])
 	options.simul_per_leaves = 2;
 	options.test_api = false;
 	options.arimaa = false;
+
 	options.foo1 = false;
 	options.foo2 = false;
 

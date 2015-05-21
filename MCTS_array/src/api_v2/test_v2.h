@@ -1,8 +1,6 @@
-#include "Game.h"
-#include "Ai.h"
+#include "Game_v2.h"
+#include "Ai_v2.h"
 #include "../tools/typedef.h"
-
-using namespace std;
 
 namespace api_v2 {
 	class test
@@ -11,6 +9,6 @@ namespace api_v2 {
 		~test();
 
 		public:
-			static run(prog_options& options);
+		static void run(prog_options& options);
 	};
 }

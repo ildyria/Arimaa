@@ -1,8 +1,12 @@
 #include "tools/typedef.h"
 
-#include "api/Game.h"
-#include "api/Ai.h"
-#include "api/test_api.h"
+// #include "api/Game.h"
+// #include "api/Ai.h"
+// #include "api/test_api.h"
+
+#include "api_v2/Game_v2.h"
+#include "api_v2/Ai_v2.h"
+#include "api_v2/test_v2.h"
 
 //	#define DISPLAY_TREE
 #include "tools/Memory.h"
@@ -44,7 +48,7 @@ int main(int argc, char const *argv[])
 
 	if(options.test_api)
 	{
-		api::test::run(options);
+		api_v2::test::run(options);
 		exit(1);
 	}
 

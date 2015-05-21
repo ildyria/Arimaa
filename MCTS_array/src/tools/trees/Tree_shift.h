@@ -213,6 +213,20 @@ public:
 		std::cout << "clean tree : " << Count::format(ptr - &T[0]) << std::endl;
 	}
 
+	static void clean_tree_force(std::vector<N> &T)
+	{
+		N* ptr = &T[1];
+		N* lstptr = &T[(T.size() - 1)];
+		while (ptr != lstptr)
+		{
+			ptr->unset();
+			++ptr;
+		}
+#ifdef TREE_CLEAN_DISPLAY
+		std::cout << "forced clean tree : " << Count::format(ptr - &T[0]) << std::endl;
+#endif // TREE_CACHE_H
+	}
+
 	static void find_next(std::vector<N>& T, N*& n)
 	{
 		n = &T[1];
