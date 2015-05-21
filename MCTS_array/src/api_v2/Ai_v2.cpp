@@ -44,11 +44,6 @@ namespace api_v2 {
 		return _ai->winning_chances();
 	}
 
-	v_stat Ai::getMovesStatistics()
-	{
-		return _ai->get_moves_statistics();
-	}
-
 	void Ai::explore(){
 		_ai->get_best_move();
 	}
@@ -73,5 +68,17 @@ namespace api_v2 {
 		_ai->kill_tree();
 		_ai->get_current_bitboard()->import(state);
 	}
+
+	v_stat getMovesStatistics(int num_of_best_moves = 1000)
+	{
+		v_stat stats = _ai->get_moves_statistics();
+		sort(stats.begin(), stats.end(), second); // sort by proba DECREASING ORDER
+		int size_vect = static_cast<int>(stats.size());
+		size_vect = (size_vect < num_of_best_moves) ? size_vect : num_of_best_moves;
+		stats.resize(size_vect);
+		sort(stats.begin(), stats.end(), first); // sort by move INCREASING ORDER
+		return stats;
+	}
+
 
 }

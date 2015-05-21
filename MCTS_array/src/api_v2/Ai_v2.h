@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>    	// std::vector
+#include <algorithm>    // std::sort
 #include "Game.h"
 #include "../mcts/Mcts.h"
 #include "../tools/typedef.h"
