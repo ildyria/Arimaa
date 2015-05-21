@@ -2,7 +2,7 @@
 
 #include "api/Game.h"
 #include "api/Ai.h"
-#include "api/test.h"
+#include "api/test_api.h"
 
 //	#define DISPLAY_TREE
 #include "tools/Memory.h"
@@ -14,7 +14,6 @@
 
 #if defined(ARIMAA)
 	#include "arimaa_simple/Arimaa.h"
-//	#include "arimaa_simple/BitboardConnect4.h"
 #else
 	#include "connect4/Connect4.h"
 	#include "connect4/BitboardConnect4.h"
@@ -26,7 +25,6 @@
 #include "tools/benching/Bench.h"
 #include "tools/read_args.h"
 
-using namespace api;
 using namespace mcts;
 using std::cout;
 using std::cin;
@@ -46,7 +44,7 @@ int main(int argc, char const *argv[])
 
 	if(options.test_api)
 	{
-		test_api(options);
+		api::test::run(options);
 		exit(1);
 	}
 
@@ -57,10 +55,20 @@ int main(int argc, char const *argv[])
 	Bitboard* Bb = new Bitboard((NB_PIECE+1)*2,1);
 	std::string t = "";
 	game->diplay_board(Bb);
-	while (t != "exit")
+	Move temp;
+	while (true)
 	{
 		cin >> t;
-		game->convert_move(t);
+		if(t == "exit") break;
+		try
+		{
+			Move temp = Arimaa_tools::convert_move(t);
+			cout << Arimaa_tools::convert_move(temp) << endl;
+		}
+		catch(...)
+		{
+			cout << "mouvement non valide." << endl;
+		}
 	}
 	exit(1);
 #else

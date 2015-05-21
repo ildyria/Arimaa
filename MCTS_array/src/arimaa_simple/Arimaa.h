@@ -19,7 +19,6 @@
 class Arimaa : public TheGame
 {
 	/*
-
 	order of checks :
 	check border
 	check friend
@@ -55,7 +54,11 @@ class Arimaa : public TheGame
 	u_long get_mask_s(const u_long& mask);
 	u_long get_mask_w(const u_long& mask);
 
+	u_long is_rabbit(const u_short& piece_rank, const int player);
+
 	bool is_frozen(const u_long& situation);
+
+	void apply_traps(Bitboard* board);
 
 	u_short possible_move(const u_long& situation);
 
@@ -63,16 +66,23 @@ class Arimaa : public TheGame
 
 	std::vector<std::list<int>> get_pieces(Bitboard* board);
 
-	std::list<u_long> generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board); // possible_push is copied THIS IS INTENDED
+	std::list<u_long> generate_move_simple(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board);
+	std::list<u_long> generate_move_double(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board);
+
+	template<int num> std::list<u_long> list_moves_available(Bitboard* board);
+
+	void play_simple_move(const u_long& );
+
+
 public:
 	/**
-	 * \fn Connect4()
-	 * \brief constructor of the Game Connect4.
+	 * \fn Arimaa()
+	 * \brief constructor of the Game Arimaa.
 	 */
 	Arimaa();
 
 	/**
-	 * \fn ~Connect4()
+	 * \fn ~Arimaa()
 	 * \brief basic destructor
 	 */
 	virtual ~Arimaa() {}
@@ -123,14 +133,4 @@ public:
 	* \return winner of the current game
 	*/
 	virtual int play_random_moves(Bitboard* board) override;
-	/**
-	* \fn convert_move
-	* \brief converts move played by the palyer into a pair of <char,int>
-	*
-	* \param move string is the move made by the player
-	* \return future move of the current game
-	*/
-	Move convert_move(std::string move);
 };
-
-

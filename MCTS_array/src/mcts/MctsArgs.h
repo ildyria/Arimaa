@@ -75,13 +75,12 @@ namespace mcts {
 
 		explicit inline MctsArgs(
 			prog_options& options,
-			u_int depth = 44,
-			u_int numVisitExplo = 2
+			u_int depth = 44
 			) : _depth(depth),
 				_timeLimitsimulationPerRoot(options.time_to_search*1000),
 				_simulationPerRoot(100000000),
-				_simulationPerLeaves(2),
-				_numberOfVisitBeforeExploration(2*numVisitExplo),
+				_simulationPerLeaves(options.simul_per_leaves),
+				_numberOfVisitBeforeExploration(options.visit_before_expand),
 				_percentRAM(options.percent_memory)
 		{
 

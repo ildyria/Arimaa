@@ -3,24 +3,28 @@
 
 using std::string;
 using std::list;
+
 // TODO :
 // 
-//	rabbits should not move backward
+//	rabbits should not move backward => DONE
 // 
-//	traps
+//	traps => DONE
 //
 //	end condition :
-// 		> X turns => to be sure that random simulation happend to finish
-// 		rabbit to an end
-// 		no piece can move	
+// 		> X turns => to be sure that random simulation happend to finish => to be implemented in the play random
+// 		rabbit to an end => DONE
+// 		every rabbits are dead => DONE
+// 		no piece can move => DONE but only during simulations
 //
-//	generate 4 moves
+//	generate 4 moves => DONE
 //	
-//	play move
-//	
-//	play random move
-//		chose random piece
-//		play a random generated move
+//	play single move => DONE
+//
+//	play multiple move => DONE
+//
+//	play random move => DONE
+//		chose random piece => DONE
+//		play a random generated move => DONE
 //	
 //	start board ???
 
@@ -64,7 +68,7 @@ u_short Arimaa::get_piece_board_num(const u_long& mask, Bitboard* board)
 	}
 
 	printf("SHOULD NEVER HAPPEN\n");
-	// should never be the case	
+	// should never be the case
 	return 0;
 };
 
@@ -111,23 +115,41 @@ u_long Arimaa::checkBorder(const u_long& mask)
 
 int Arimaa::end(const Bitboard* board)
 {
-	throw std::logic_error("move not implemented.");
+	// win by no rabit
+	if(board->get_board(0) == 0) 			return 2; // player 1 has no rabits => player 2 win
+	if(board->get_board(NB_PIECE + 1) == 0) return 1; // player 2 has no rabits => player 1 win
 
+
+	// win by rabit to border
+	if(TOP_BORDER & board->get_board(0))				return 2;
+	if(BOTTOM_BORDER & board->get_board(NB_PIECE + 1))	return 1;
+
+	// win by no move possible
+	// DO I REALLY HAVE TO CHECK THAT ONE ? ='(
 	return 0;
 }
 
 void Arimaa::play(Move& position, Bitboard* board)
 {
-	u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
-	boardused >>= (SIZEX - position.get_move());
-	int i = 0;
-	while( (boardused & 1) == 1)
+	constexpr u_long move_mask = (static_cast<u_long>(1) << 16) - 1;
+	constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
+	constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
+	constexpr u_long nsew_mask = (static_cast<u_long>(1) << 2) - 1;
+	int num_board;
+	u_short pos;
+	int nsew;
+
+	u_long moves = position.get_move();
+
+	for(int i = 0 ; i < 4; ++i)
 	{
-		i++;
-		boardused >>= SIZEX;
+		nsew = static_cast<int>((moves & move_mask) & nsew_mask);
+		pos = static_cast<u_short>(((moves & move_mask) >> 2) & pos_mask);
+		num_board = static_cast<int>(((moves & move_mask) >> 8) & num_mask);
+		move(board, num_board, pos, nsew);
+		moves >>= 16;
 	}
-	
-	board->setBit(board->get_player() - 1, SIZEX - static_cast<int>(position.get_move()), i); // to update
+
 	board->play();
 }
 
@@ -144,7 +166,6 @@ void Arimaa::diplay_board(const Bitboard* board)
 	std::stringbuf buffer;
 	std::ostream os(&buffer);
 	os << std::endl;
-	static const std::vector<char> colChar = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 	for (int y = (SIZEY - 1); y >= 0; --y)
 	{
 		os << "   ";
@@ -228,11 +249,20 @@ void Arimaa::diplay_board(const Bitboard* board)
 	for (int k = 0; k < SIZEX; ++k) os << "+---";
 	os << "+" << std::endl;
 	os << "   ";
-	for (int k = 0; k < SIZEX; ++k) os << "  " << (k + 'A') << " ";
-	// for (int k = 0; k < SIZEX; ++k) os << "  " << colChar[k] << " ";
+	for (int k = 0; k < SIZEX; ++k) os << "  " << static_cast<char>(k + 'A') << " ";
 	os << std::endl;
 	std::cout << buffer.str() << std::endl;
 }
+
+u_long Arimaa::is_rabbit(const u_short& piece_rank, const int player)
+{
+	if (!piece_rank == 0) return static_cast<u_long>(0);
+
+	// n e s w : 8 4 2 1
+	if (player == 1) return static_cast<u_long>(8); // player 1 is north so rabbit can't go north => define him as being on the north border
+	return static_cast<u_long>(4); // idem mutatis mutandis
+}
+
 
 u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 {
@@ -242,8 +272,8 @@ u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 
 	u_short piece_rank = get_piece_rank(mask, board);
 	int player = board->get_player(); // 1 or 2 // 0 or 1 ???
-
-	/*in theory there is no need to do the top and bottom check. Only left and Right are mandatory : slight optimisation possible later */
+	u_long rabbit = is_rabbit(piece_rank,player);
+	/*in theory there is no need to do the top and bottom check. Only left and Right are mandatory : slight optimisation possible later ? */
 
 	// /!\ HERE WE ASSUME a strictly positive number is equivalent to bool(true)
 	if (!(result & 8)) // NOT ON BORDER TOP
@@ -274,7 +304,7 @@ u_long Arimaa::get_situation(const u_short& pos, Bitboard* board)
 		returnval |= (check_neighbour(board, mask_w, piece_rank, player));
 	}
 
-	returnval |= (result << 4);
+	returnval |= ((result|rabbit) << 4);
 	return returnval;
 }
 
@@ -377,7 +407,31 @@ u_long Arimaa::possible_push(const u_long& mask, const u_long& situation, const 
 	return result;
 }
 
-std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
+std::list<u_long> Arimaa::generate_move_simple(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
+{
+	std::list<u_long> res = std::list<u_long>();
+	// generate pull and normal move
+	u_short possible_move_res = possible_move(situation);
+	u_short nsew = 0;
+	u_long mask_push = static_cast<u_long>(1);
+	while (possible_move_res != 0)
+	{
+		if((possible_move_res & mask_push) > 0)
+		{
+			// normal move
+			u_long move = static_cast<u_long>(board_num);
+			move = (move << 6) | static_cast<u_long>(pos);
+			move = (move << 2) | static_cast<u_long>(nsew);
+			res.push_back(move);
+		}
+		possible_move_res ^= mask_push;
+		mask_push<<=1;
+		nsew++;
+	}
+	return res;
+}
+
+std::list<u_long> Arimaa::generate_move_double(const u_long& situation, const u_short& pos, const u_short& board_num, Bitboard* board)
 {
 	u_long mask = get_mask(pos);
 	u_long possible_push_result = possible_push(mask, situation, board);
@@ -390,7 +444,7 @@ std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& 
 	{
 		if((possible_push_result & mask_push) > 0)
 		{
-			u_short pos_to_move = pos + Arimaa_tools::get_pos_push(nsew/4);
+			u_short pos_to_move = pos + Arimaa_tools::get_pos_next(nsew/4);
 			u_short board_num_prey = get_piece_board_num(pos_to_move, board);
 
 			// prey move
@@ -422,7 +476,7 @@ std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& 
 			u_long move = static_cast<u_long>(board_num);
 			move = (move << 6) | static_cast<u_long>(pos);
 			move = (move << 2) | static_cast<u_long>(nsew);
-			res.push_back(move);
+			// res.push_back(move);
 
 			u_long mask_pull = static_cast<u_long>(1);
 			// add pull now (prey)
@@ -430,7 +484,7 @@ std::list<u_long> Arimaa::generate_move(const u_long& situation, const u_short& 
 			{
 				if((situation & mask_pull) > 0)
 				{
-					u_short pos_to_move = pos + Arimaa_tools::get_pos_push(nsew/4);
+					u_short pos_to_move = pos + Arimaa_tools::get_pos_next(nsew/4);
 					u_short board_num_prey = get_piece_board_num(pos_to_move, board);
 
 					u_long move2 = static_cast<u_long>(board_num_prey);
@@ -481,13 +535,111 @@ u_long Arimaa::check_neighbour(const Bitboard* board, const u_long& mask, const 
 	return static_cast<u_long>(frozen) << 12 | static_cast<u_long>(close) << 8 | static_cast<u_long>(same) << 4 | static_cast<u_long>(prey);
 }
 
+void Arimaa::apply_traps(Bitboard* board)
+{
+	std::vector<u_long> boards = std::vector<u_long>((NB_PIECE+1)*2, 0);
+	for (u_int i = 0; i < boards.size(); ++i)
+	{
+		boards[i] = board->get_board(i);
+	}
+	#if SIZEX == 6
+		constexpr int pos_trap1 = 7;
+		constexpr int pos_trap2 = 10;
+		constexpr int pos_trap3 = 25;
+		constexpr int pos_trap4 = 28;
+		constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
+		constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
+		constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
+		constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
+		constexpr u_long friends1 = (static_cast<u_long>(1) << 1) | (static_cast<u_long>(1) << 6) | (static_cast<u_long>(1) << 8) | (static_cast<u_long>(1) << 13); 
+		constexpr u_long friends2 = friends1 << 2; 
+		constexpr u_long friends3 = friends1 << 18;
+		constexpr u_long friends4 = friends3 << 4; 
+	#else
+		constexpr int pos_trap1 = 18;
+		constexpr int pos_trap2 = 21;
+		constexpr int pos_trap3 = 42;
+		constexpr int pos_trap4 = 45;
+		constexpr u_long trap1 = static_cast<u_long>(1) << pos_trap1;
+		constexpr u_long trap2 = static_cast<u_long>(1) << pos_trap2;
+		constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
+		constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
+		constexpr u_long friends1 = (static_cast<u_long>(1) << 10) | (static_cast<u_long>(1) << 17) | (static_cast<u_long>(1) << 19) | (static_cast<u_long>(1) << 26); 
+		constexpr u_long friends2 = friends1 << 4;
+		constexpr u_long friends3 = friends1 << 24;
+		constexpr u_long friends4 = friends3 << 4;
+	#endif
+
+	// player 1
+	if((boards[NB_PIECE] & trap1) && !(boards[NB_PIECE] & friends1))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap1);
+		}
+	}
+	if((boards[NB_PIECE] & trap2) && !(boards[NB_PIECE] & friends2))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap2);
+		}
+	}
+	if((boards[NB_PIECE] & trap3) && !(boards[NB_PIECE] & friends3))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap3);
+		}
+	}
+	if((boards[NB_PIECE] & trap4) && !(boards[NB_PIECE] & friends4))
+	{
+		for (int i = 0; i <= NB_PIECE; ++i)
+		{
+			board->clearBit(i, pos_trap4);
+		}
+	}
+
+	// player 2
+	if((boards[2*NB_PIECE+1] & trap1) && !(boards[2*NB_PIECE+1] & friends1))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap1);
+		}
+	}
+	if((boards[2*NB_PIECE+1] & trap2) && !(boards[2*NB_PIECE+1] & friends2))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap2);
+		}
+	}
+	if((boards[2*NB_PIECE+1] & trap3) && !(boards[2*NB_PIECE+1] & friends3))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap3);
+		}
+	}
+	if((boards[2*NB_PIECE+1] & trap4) && !(boards[2*NB_PIECE+1] & friends4))
+	{
+		for (int i = NB_PIECE+1; i <= 2*NB_PIECE+1; ++i)
+		{
+			board->clearBit(i, pos_trap4);
+		}
+	}
+}
+
 void Arimaa::move(Bitboard* board, int n, u_short pos, int type)
 {
-	throw std::logic_error("move not implemented.");
-	// TO BE COMPLETED !!!!!
-
 	board->clearBit(n, static_cast<int>(pos));
-	board->setBit(n, (pos + Arimaa_tools::get_pos_push(type)));
+	board->clearBit(NB_PIECE + static_cast<int>(n/(NB_PIECE+1))*(NB_PIECE + 1), static_cast<int>(pos));
+
+	board->setBit(n, pos + Arimaa_tools::get_pos_next(type));
+	board->setBit(NB_PIECE + static_cast<int>(n/(NB_PIECE+1))*(NB_PIECE + 1), pos + Arimaa_tools::get_pos_next(type));
+
+	apply_traps(board);
 }
 
 bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& boardnum)
@@ -497,8 +649,13 @@ bool Arimaa::close_piece(const Bitboard* board, const u_long& mask, const int& b
 	return (boards & mask) > 0;
 }
 
-list<Move> Arimaa::list_possible_moves(Bitboard* board)
+template<int num> std::list<u_long> Arimaa::list_moves_available(Bitboard* board)
 {
+	std::list<u_long> moves_available = std::list<u_long>();
+	std::list<u_long> moves_available_simple;
+	std::list<u_long> moves_available_double;
+	std::list<u_long>::iterator it;
+
 	std::vector<std::list<int>> pieces = get_pieces(board);
 	for (auto piece_rank = pieces.begin() ; piece_rank != pieces.end(); ++piece_rank)
 	{
@@ -509,51 +666,266 @@ list<Move> Arimaa::list_possible_moves(Bitboard* board)
 			u_short board_num = get_piece_board_num(position, board);
 			if(!is_frozen(situation))
 			{
-				std::list<u_long> moves_available = generate_move(situation, position, board_num, board);
+				if(num > 1)
+				{
+					moves_available_double = generate_move_double(situation, position, board_num, board);
+					it = moves_available.begin();
+					moves_available.splice(it,moves_available_double);
+				}
+				moves_available_simple = generate_move_simple(situation, position, board_num, board);
+				it = moves_available.begin();
+				moves_available.splice(it,moves_available_simple);
 			}
 		}
 	}
 
-	list<Move> moves;
+	return moves_available;
+}
+
+
+list<Move> Arimaa::list_possible_moves(Bitboard* board)
+{
+	Bitboard* board_temp;
+	Bitboard* board_temp2;
+	Bitboard* board_temp3;
+	std::list<u_long> first_moves_available;
+	std::list<u_long> moves_available1;
+	std::list<u_long> moves_available2;
+	std::list<u_long> moves_available3;
+	list<Move> moves = list<Move>();
+	
+	constexpr u_long move_mask_1 = (static_cast<u_long>(1) << 16) - 1;
+	constexpr u_long move_mask_2 = move_mask_1 << 16;
+	//	constexpr u_long move_mask_3 = move_mask_2 << 16;
+	//	constexpr u_long move_mask_4 = move_mask_3 << 16;
+
+	constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
+	constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
+	constexpr u_long nsew_mask = (static_cast<u_long>(1) << 2) - 1;
+
+	// move is : num | pos | nsew
+
+	// 1 2 1
+	// 1 1 2
+	// 1 1 1 1
+	// 2   1 1
+	// 2   2
+	u_long temp_move;
+	u_long temp_move2;
+	u_long temp_move3;
+
+	first_moves_available = list_moves_available<4>(board);
+	for (auto iter_moves = first_moves_available.begin(), iter_end = first_moves_available.end(); iter_moves != iter_end; ++iter_moves)
+	{
+		temp_move = *iter_moves;
+
+		int num_board = static_cast<int>((temp_move >> 8) & num_mask);
+		u_short pos = static_cast<u_short>(((temp_move & move_mask_1) >> 2) & pos_mask);
+		int nsew = static_cast<int>((temp_move & move_mask_1) & nsew_mask);
+		board_temp = board->clone();
+		move(board_temp, num_board, pos, nsew);
+
+		if(temp_move & move_mask_2) // 2 moves at once
+		{
+			int num_board = static_cast<int>(((temp_move >> 16) >> 8) & num_mask);
+			u_short pos = static_cast<u_short>(((temp_move >> 16) >> 2) & pos_mask);
+			int nsew = static_cast<int>((temp_move >> 16) & nsew_mask);
+			board_temp2 = board->clone();
+			move(board_temp2, num_board, pos, nsew);
+
+			// 2 moves are applied now we can start the search... for the next 2 moves... 
+			moves_available1 = Arimaa::list_moves_available<2>(board_temp2);
+			for(auto iter_move2 = moves_available1.begin(), iter_end2 = moves_available1.end(); iter_move2 != iter_end2  ; ++iter_move2)
+			{
+				temp_move2 = *iter_move2;
+				if(temp_move2 & move_mask_2) // 2 moves at once
+				{
+					u_long result = temp_move2 << 32 | temp_move;
+					moves.push_back(Move(result)); // 2 2
+				}
+				else
+				{
+					int num_board = static_cast<int>(((temp_move2 & move_mask_1) >> 8) & num_mask);
+					u_short pos = static_cast<u_short>(((temp_move2 & move_mask_1) >> 2) & pos_mask);
+					int nsew = static_cast<int>((temp_move2 & move_mask_1) & nsew_mask);
+					board_temp3 = board_temp2->clone();
+					move(board_temp3, num_board, pos, nsew);
+					moves_available2 = Arimaa::list_moves_available<1>(board_temp3);
+					
+					for(auto iter_move3 = moves_available2.begin(), iter_end3 = moves_available2.end(); iter_move3 != iter_end3  ; ++iter_move3)
+					{
+						u_long result = (*iter_move3) << 48 | temp_move2 << 32 | temp_move;
+						moves.push_back(Move(result)); // 2 1 1
+					}
+					delete board_temp3;
+				}
+			}
+			delete board_temp2; // MANDATORY ELSE MEMORY LEAK
+		}
+		else
+		{
+			// here we have still 3 moves lefts
+			moves_available1 = Arimaa::list_moves_available<3>(board_temp);
+			for(auto iter_move2 = moves_available1.begin(), iter_end2 = moves_available1.end(); iter_move2 != iter_end2  ; ++iter_move2)
+			{
+				temp_move2 = *iter_move2;
+				int num_board = static_cast<int>((temp_move2 >> 8) & num_mask);
+				u_short pos = static_cast<u_short>(((temp_move2 & move_mask_1) >> 2) & pos_mask);
+				int nsew = static_cast<int>((temp_move2 & move_mask_1) & nsew_mask);
+				board_temp2 = board_temp->clone();
+				move(board_temp2, num_board, pos, nsew);
+
+				if(temp_move2 & move_mask_2) // 1 2
+				{
+					int num_board = static_cast<int>(((temp_move2 >> 16) >> 8) & num_mask);
+					u_short pos = static_cast<u_short>(((temp_move2 >> 16) >> 2) & pos_mask);
+					int nsew = static_cast<int>((temp_move2 >> 16) & nsew_mask);
+					board_temp3 = board_temp2->clone();
+					move(board_temp3, num_board, pos, nsew);
+
+					moves_available2 = Arimaa::list_moves_available<1>(board_temp3);
+					for(auto iter_move3 = moves_available2.begin(), iter_end3 = moves_available2.end(); iter_move3 != iter_end3  ; ++iter_move3)
+					{
+						u_long result = (*iter_move3) << 48 | temp_move2 << 16 | temp_move;
+						moves.push_back(Move(result)); // 1 2 1
+					}
+					delete board_temp3;
+				}
+				else // 1 1 
+				{
+					// 2 moves are applied now we can start the search... for the next 2 moves... 
+					moves_available2 = Arimaa::list_moves_available<2>(board_temp2);
+					for(auto iter_move3 = moves_available2.begin(), iter_end2 = moves_available2.end(); iter_move3 != iter_end2  ; ++iter_move3)
+					{
+						temp_move3 = *iter_move3;
+						if(temp_move3 & move_mask_2) // 2 moves at once
+						{
+							u_long result = temp_move3 << 32 | temp_move2 << 16 | temp_move;
+							moves.push_back(Move(result)); // 1 1 2
+						}
+						else
+						{
+							int num_board = static_cast<int>(((temp_move3 & move_mask_1) >> 8) & num_mask);
+							u_short pos = static_cast<u_short>(((temp_move3 & move_mask_1) >> 2) & pos_mask);
+							int nsew = static_cast<int>((temp_move3 & move_mask_1) & nsew_mask);
+							board_temp3 = board_temp2->clone();
+							move(board_temp3, num_board, pos, nsew);
+							moves_available3 = Arimaa::list_moves_available<1>(board_temp3);
+							
+							for(auto iter_move3 = moves_available3.begin(), iter_end3 = moves_available3.end(); iter_move3 != iter_end3  ; ++iter_move3)
+							{
+								u_long result = (*iter_move3) << 48 | temp_move3 << 32 | temp_move2 << 16 | temp_move;
+								moves.push_back(Move(result)); // 1 1 1 1
+							}
+							delete board_temp3;
+						}
+					}
+				}
+				delete board_temp2;
+			}
+		}
+		delete board_temp; // MANDATORY ELSE MEMORY LEAK
+	}
 	return moves;
 }
 
 int Arimaa::play_random_moves(Bitboard* board)
 {
-	throw std::logic_error("move not implemented.");
+	int iterations = 0;
+	while(iterations < 120)
+	{
+		u_short num_move = 0;
+		while(num_move < 4)
+		{
+			bool valable = false;
+			std::vector<std::list<int>> pieces = get_pieces(board);
+			std::list<u_long> moves_available = std::list<u_long>();
 
-	auto nodet = end(board);
-	return nodet;
+			int array_size = static_cast<int>(pieces.size());
+			while(!valable && array_size > 0)
+			{
+				auto chosen = Random::I()->get_min_max(0, array_size - 1);
+				std::list<int> list_piece = pieces[chosen];
+
+				auto it = list_piece.begin();
+				int num = list_piece.size();
+				int pos;
+				if(num)
+				{
+					advance(it, Random::I()->get_min_max(0, num - 1));
+					pos = *it;
+				}
+				else
+				{
+					pieces.erase (pieces.begin()+chosen);
+					array_size --;
+					continue;
+				}
+
+				u_short position = static_cast<u_short>(pos);
+				u_long situation = get_situation(position, board);
+				u_short board_num = get_piece_board_num(position, board);
+
+				if(!is_frozen(situation))
+				{
+
+					if(num_move < 3)
+					{
+						auto moves_available_double = generate_move_double(situation, position, board_num, board);
+						auto iter_moves = moves_available.begin();
+						moves_available.splice(iter_moves,moves_available_double);
+					}
+					auto moves_available_simple = generate_move_simple(situation, position, board_num, board);
+					auto iter_moves = moves_available.begin();
+					moves_available.splice(iter_moves,moves_available_simple);
+				}
+
+				if(moves_available.size() > 0)
+				{
+					valable = true;
+				}
+				else
+				{
+					list_piece.erase(it);
+				}
+			}
+
+			if (array_size == 0) // no moves possibles
+			{
+				return 1 - board->get_player();
+			}
+			else
+			{
+				constexpr u_long move_mask = (static_cast<u_long>(1) << 16) - 1;
+				constexpr u_long num_mask = (static_cast<u_long>(1) << 8) - 1;
+				constexpr u_long pos_mask = (static_cast<u_long>(1) << 6) - 1;
+				constexpr u_long nsew_mask = (static_cast<u_long>(1) << 2) - 1;
+
+				int num_board;
+				u_short pos;
+				int nsew;
+
+				auto it = moves_available.begin();
+				advance(it, Random::I()->get_min_max(0, static_cast<int>(moves_available.size()) - 1));
+
+				u_long moves = *it;
+
+				while(moves)
+				{
+					nsew = static_cast<int>((moves & move_mask) & nsew_mask);
+					pos = static_cast<u_short>(((moves & move_mask) >> 2) & pos_mask);
+					num_board = static_cast<int>(((moves & move_mask) >> 8) & num_mask);
+					move(board, num_board, pos, nsew);
+					moves >>= 16;
+					num_move++;
+				}
+			}
+		}
+		board->play();
+		auto nodet = end(board);
+		if(nodet > 0) return nodet;
+		iterations ++;
+	}
+	return 0;
 }
 
-Move Arimaa::convert_move(string move)
-{
-	auto transform = std::map<char, int>();
-	transform.insert(std::pair<char, int>('n', 3)); // north
-	transform.insert(std::pair<char, int>('e', 2)); // east
-	transform.insert(std::pair<char, int>('w', 1)); // west
-	transform.insert(std::pair<char, int>('s', 0)); // south
-	transform.insert(std::pair<char, int>('A', SIZEX - 1)); // first col
-	transform.insert(std::pair<char, int>('B', SIZEX - 2)); // second col...
-	transform.insert(std::pair<char, int>('C', SIZEX - 3));
-	transform.insert(std::pair<char, int>('D', SIZEX - 4));
-	transform.insert(std::pair<char, int>('E', SIZEX - 5));
-	transform.insert(std::pair<char, int>('F', SIZEX - 6));
-	transform.insert(std::pair<char, int>('G', SIZEX - 7));
-	transform.insert(std::pair<char, int>('H', SIZEX - 8));
-	transform.insert(std::pair<char, int>('1', 1)); // first row
-	transform.insert(std::pair<char, int>('2', 2)); // second row...
-	transform.insert(std::pair<char, int>('3', 3));
-	transform.insert(std::pair<char, int>('4', 4));
-	transform.insert(std::pair<char, int>('5', 5));
-	transform.insert(std::pair<char, int>('6', 6));
-	transform.insert(std::pair<char, int>('7', 7));
-	transform.insert(std::pair<char, int>('8', 8));
-
-	u_long futurmove;
-	// futurmove = NESW | pos  
-	futurmove = transform[move[0]] + (transform[move[1]] - 1)*SIZEX + 64 * transform[move[2]];
-	std::cout << futurmove << std::endl;
-	//	std::cout << (futurmove >> 6) << std::endl;
-	return Move(futurmove);
-}

@@ -233,28 +233,21 @@ int Connect4::play_random_moves(Bitboard* board)
 	{
 		ListOfMoves = board->get_empty(0);
 		chosen = Random::I()->get_min_max(0, static_cast<int>(ListOfMoves.size()) - 1);
-		for (iter = ListOfMoves.begin(); iter != ListOfMoves.end(); ++iter)
-		{
-			if (chosen == 0)
-			{
+		iter = ListOfMoves.begin();
+		advance(iter,chosen);
 #ifdef DISPLAY_C4
-				std::cout << " > " << *iter ;
+		std::cout << " > " << *iter ;
 #endif // DISPLAY_C4
-				u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
-				boardused >>= (SIZEX - *iter);
-				int i = 0;
-				while ((boardused & 1) == 1)
-				{
-					i++;
-					boardused >>= SIZEX;
-				}
-
-				board->setBit(board->get_player() - 1, SIZEX - *iter, i);
-				board->play();
-				break;
-			}
-			--chosen;
+		u_long boardused = board->get_board(0) | board->get_board(1); // get what places are used.
+		boardused >>= (SIZEX - *iter);
+		int i = 0;
+		while ((boardused & 1) == 1)
+		{
+			i++;
+			boardused >>= SIZEX;
 		}
+		board->setBit(board->get_player() - 1, SIZEX - *iter, i);
+		board->play();
 		nodet = end(board);
 		ListOfMoves.clear();
 	}
