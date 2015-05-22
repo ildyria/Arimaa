@@ -37,12 +37,13 @@ void Bench::status_bar(int state, int full, int num ,int total)
     int barWidth = 70;
 	float progress = static_cast<float>(state)/full;
     std::cout << "[";
-    int pos = barWidth * progress;
+	int pos = static_cast<int>(barWidth * progress);
     for (int i = 0; i < barWidth; ++i) {
-        if (i <= pos) std::cout << "\u2591";
-        else std::cout << " ";
+//        if (i <= pos) std::cout << "\u2591";
+		if (i <= pos) std::cout << "X";
+		else std::cout << " ";
     }
-    std::cout << "] " << int(progress * 100.0) << " \u0025 : ";
+    std::cout << "] " << int(progress * 100.0) << " % : ";
 	std::cout << num << "/" << total << "\r";
     std::cout.flush();
 }

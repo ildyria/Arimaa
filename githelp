@@ -40,7 +40,7 @@ MORE ADVANCED STUFF :
 git stash save <message>	: save temporarly your changes and revert
 git stash list			: show the list of the previous \"stash\"
 git stash clear			: clear the previous list
-git stash pop			: return to your working state"
+git stash pop			: return to your working state
 
 
 BRANCHES
@@ -54,4 +54,4 @@ MERGE /!\ DANGEROUS
 git merge <branch name> merges ROOT BRANCH (the one you are on, see git status) with <branch name>.
 The changes are done on ROOT BRANCH.
 
-alias gtree='git log --oneline --decorate --all --graph'
+alias gtree='git log --oneline --decorate --all --graph'"

@@ -8,6 +8,7 @@
  */
 #pragma once
 #include "../tools/typedef.h"
+#include "../tools/Memory.h"
 
 #if defined(DOUBLE_TREE)
 	#define DIVIDE 2 * sizeof(Node)

@@ -9,12 +9,12 @@ Graph::Graph(std::vector<double>& data, double xscale) :
 {
 	double max_val = *std::max_element(data.begin(), data.end());
 
-	_num_data = _data.size();
-	_scale_x = xscale*GRAPH_SIZE_Y/(max_val+1);
+	_num_data = static_cast<u_long>(_data.size());
+	_scale_x = static_cast<u_long>(xscale*GRAPH_SIZE_Y / (max_val + 1));
 	for (u_int i = 0; i < _num_data; ++i)
 	{
 		u_int xpos = (i+1)*(GRAPH_SIZE_X/(_num_data+1));
-		u_int ypos = _data[i]*GRAPH_SIZE_Y/(max_val+1);
+		u_int ypos = static_cast<u_int>(_data[i] * GRAPH_SIZE_Y / (max_val + 1));
 		_map[xpos][ypos] = 1;
 		_vals.push_back(coord(xpos,ypos));
 	}

@@ -1,10 +1,10 @@
 #pragma once
 #include <algorithm>    // std::min_element, std::max_element
-#include "typedef.h"
+#include "../typedef.h"
 #include "Graph.h"
-#include "../interfaces/TheGame.h"
-#include "../mcts/Mcts.h"
-#include "../mcts/MctsArgs.h"
+#include "../../interfaces/TheGame.h"
+#include "../../mcts/Mcts.h"
+#include "../../mcts/MctsArgs.h"
 
 class Bench
 {
