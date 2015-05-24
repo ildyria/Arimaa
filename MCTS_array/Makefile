@@ -11,7 +11,7 @@ SOURCES_API_V1 = Ai.cpp Game.cpp test_api.cpp
 SOURCES_API_V2 =Ai_v2.cpp Game_v2.cpp test_v2.cpp
 SOURCES_GAMES = BitboardConnect4.cpp Connect4.cpp Bitboard.cpp Arimaa.cpp Move.cpp
 SOURCES_MCTS = Mcts.cpp Node.cpp
-SOURCES = $(SOURCES_TOOLS) $(SOURCES_API_V2) $(SOURCES_GAMES) $(SOURCES_MCTS) main.cpp
+SOURCES = $(SOURCES_TOOLS) $(SOURCES_API_V2) $(SOURCES_GAMES) $(SOURCES_MCTS) tests.cpp main.cpp
 SOURCES_AI = $(SOURCES_TOOLS) $(SOURCES_GAMES) $(SOURCES_MCTS) Ai_v2.cpp
 SOURCES_G = $(SOURCES_TOOLS) $(SOURCES_GAMES) Game_v2.cpp
 

@@ -134,7 +134,7 @@ public:
 			}
 			// take the maximum
 			returnValue = (returnValue2 > returnValue) ? returnValue2 : returnValue;
-			std::cout << "There are " << returnValue <<" free MB of physical memory.\n" << std::endl;
+			std::cout << "There are " << (returnValue)/1024 <<" free MB of physical memory.\n" << std::endl;
 			return static_cast<u_long>(returnValue <<10);
 		}
 #endif
