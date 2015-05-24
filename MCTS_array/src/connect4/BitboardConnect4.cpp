@@ -18,7 +18,7 @@ list<int> BitboardConnect4::get_empty(int n) const
 {
 	list<int> rtm;
 	int i = SIZEX;
-	unsigned long long board = (get_board(0) | get_board(1)) >> ((SIZEY - 1) * SIZEX);
+	u_long board = (get_board(0) | get_board(1)) >> ((SIZEY - 1) * SIZEX);
 	while (board != 0 && i > 0)
 	{
 		if ((board & 1) == 0)
