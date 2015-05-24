@@ -27,9 +27,9 @@ namespace api_v2 {
 		_param->set_time_limit_simulation_per_root(t * CLOCKTOCK);
 	}
 
-	double Ai::getThinkingTime()
+	int Ai::getThinkingTime()
 	{
-		return _param->get_time_limit_simulation_per_root() / CLOCKTOCK;
+		return static_cast<int>(_param->get_time_limit_simulation_per_root()) / CLOCKTOCK;
 	}
 
 	void Ai::makeMove(u_long move)
