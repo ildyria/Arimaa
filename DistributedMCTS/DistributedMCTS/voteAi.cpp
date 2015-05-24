@@ -56,7 +56,8 @@ void VoteAI::setState(std::vector<u_long> state)
 	MPI_Waitall(size - 1, &requests[0], &status[0]);
 }
 
-int VoteAI::makeMove(bool player)
+
+u_long VoteAI::makeMove()
 {
 	clock_t begin = clock(); //start time
 
@@ -128,8 +129,18 @@ int VoteAI::makeMove(bool player)
 		cout << "Vote : " << nextMove << " (" << nextMoveChances << "%)" << endl;
 	}
 
+	m_ai.makeMove(nextMove);
+
 	return nextMove;
 }
+
+
+bool VoteAI::acknowledgeMove(u_long move)
+{
+	m_ai.makeMove(move);
+	return true;
+}
+
 
 double VoteAI::estimateWinChances()
 {

@@ -70,13 +70,20 @@ public:
 
 	/**
 	* \fn makeMove()
-	* \brief ask a move to the IA
-	* \details play the player's move if i is not provided and the look for the best move and returns it.
+	* \brief chosses and plays a move.
 	*
-	* \param player : did the player play ?
 	* \return the column played by the IA.
 	*/
-	int makeMove(bool player = true);
+	u_long makeMove();
+
+
+	/**
+	* \fn acknowledgeMove()
+	* \brief acknowledges a move done by the oponent
+	*
+	* \return true if valid move.
+	*/
+	bool acknowledgeMove(u_long move);
 
 	/**
 	* \fn estimateWinChances()

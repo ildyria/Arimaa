@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "workerAi.h"
 #include "tools/read_args.h"
+#include "api_v2/Game_v2.h"
 
 
 //int _tmain(int argc, _TCHAR* argv[])
@@ -49,6 +50,70 @@ main(int argc, char *argv[])
 	if (rank == MASTER)
 	{
 		VoteAI master(options);
+
+		api_v2::Game game;
+		master.setState(game.getState());
+
+		int result = 0;
+		int IA = 2;
+
+		while (result == 0)
+		{
+			game.displayASCII();
+
+			if (game.activePlayer() != IA)
+			{
+				int moveok = 0;
+
+				while (moveok == 0)
+				{
+					std::string tmp;
+					std::cout << std::endl << "Your move ?" << std::endl;
+					std::cin >> tmp;
+					int move = std::stoi(tmp);
+					if (game.canMakeMove(move))
+					{
+						moveok += 1;
+						master.acknowledgeMove(move);
+						game.makeMove(move);
+					}
+					elseif(tmp == "exit")
+					{
+						exit(0);
+					}
+					elseif(tmp == "-1")
+					{
+						IA = (IA == 2) ? 1 : 2;
+						moveok += 1;
+					}
+				}
+			}
+			elseif(game.activePlayer() == IA)
+			{
+				std::cout << std::endl << "AI turn... please wait." << std::endl;
+				int move = master.makeMove();
+				game.makeMove(move);
+				std::cout << std::endl << "chosen move : " << move << std::endl;
+			}
+
+			result = game.getWinner();
+		}
+		std::cout << std::endl;
+		game.displayASCII();
+
+		if (result == 1)
+		{
+			std::cout << std::endl << "player 1 wins." << std::endl;
+		}
+		elseif(result == 2)
+		{
+			std::cout << std::endl << "player 2 wins." << std::endl;
+		}
+		else
+		{
+			std::cout << std::endl << "Board full : TIE." << std::endl;
+		}
+
 	}
 	else //WORKER
 	{
