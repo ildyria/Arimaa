@@ -21,10 +21,10 @@
 
 #define TIME_LIMIT_S 5
 
-#include "../../Connect4/API/Game.h"
-#include "../../Connect4/API/Ai.h"
+#include "api_v2/Game_v2.h"
+#include "api_v2/Ai_v2.h"
 
-enum MessageTag { THINK_TIME, GAME_STATE, RESUTLS };
+enum MessageTag { OPTIONS, THINK_TIME, GAME_STATE, RESUTLS };
 
 class VoteAI
 {
@@ -35,7 +35,7 @@ public:
 	*
 	* \param t time in seconds
 	*/
-	explicit VoteAI(int t = 5);
+	explicit VoteAI(prog_options& options);
 
 	/**
 	* \fn ~Ai()
@@ -60,12 +60,13 @@ public:
 	void setThinkingTime(int t = 5); // t in seconds
 
 	/**
-	* \fn init(Game* g)
-	* \brief initialize the AI with a Game
-	*
-	* \param g pointer to the game to initialize with
+	* \fn setState
+	* \details this function redefine the root bitboard.
+	* /!\ Warning, that bitboard must be the same kind/size of the one imported.
+	* /!\ Beware this function also fully cleans the tree !!
+	* \param state serialized version of the Bitboard
 	*/
-	void init(api::Game* g); // permet a l'IA de connaitre le jeu.
+	void setState(std::vector<u_long> state);
 
 	/**
 	* \fn makeMove()
@@ -87,10 +88,20 @@ public:
 	* \return winning chances
 	*/
 	double estimateWinChances();
+
+	static double getValue(n_stat ns);
 	
 private:
-	api::Game* m_game;
-	api::Ai m_ai;
+	int rank;
+	int size;
+
+	api_v2::Game* m_game;
+	api_v2::Ai m_ai;
+	int nextMove;
+	double nextMoveChances;
+
+	void sendTime(int* t);
+	void sendOptions(prog_options* options);
 };
 
 static int getMPIRank()

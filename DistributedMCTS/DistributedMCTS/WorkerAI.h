@@ -5,17 +5,17 @@
 class WorkerAI
 {
 public:
-	explicit WorkerAI(int t = 5);
+	explicit WorkerAI(prog_options& options);
 	~WorkerAI();
 
 private:
-	api::Game* m_game;
-	api::Ai m_ai;
+	api_v2::Game* m_game;
+	api_v2::Ai m_ai;
 
 	void run();
 
 	bool onTimeRecv(int ttime);
-	bool onGameRecv(api::Game* game);
+	bool onStateRecv();// std::vector<u_long> state);
 
 	void vote();
 };

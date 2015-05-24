@@ -1,13 +1,15 @@
 #include "WorkerAI.h"
 
-WorkerAI::WorkerAI(int t) : m_ai()
+WorkerAI::WorkerAI(prog_options& options) : m_ai(options)
 {
 	if (getMPIRank() == MASTER)
 	{
 		std::cerr << "Worker created on master thread" << std::endl;
 	}
-	m_ai.setThinkingTime(t);
-	run();
+	else
+	{
+		run();
+	}
 }
 
 
@@ -18,32 +20,45 @@ WorkerAI::~WorkerAI()
 
 void WorkerAI::run()
 {
-	int msgRecieved;
+	//int msgRecieved;
 	MPI_Status status;
 	bool keepGoing = true;
 
 	while(keepGoing)
 	{
-		//checks message for thinking time
-		MPI_Iprobe(MASTER, THINK_TIME, MPI_COMM_WORLD, &msgRecieved, &status);
-		if (msgRecieved)
-		{
-			int ttime;
-			MPI_Request r;
-			MPI_Recv(&ttime, 1, MPI_INT, MASTER, THINK_TIME, MPI_COMM_WORLD, &status);
-			keepGoing = onTimeRecv(ttime);
-		}
 
 		//checks message for game state
-		MPI_Iprobe(MASTER, GAME_STATE, MPI_COMM_WORLD, &msgRecieved, &status);
-		if (msgRecieved)
-		{
+		//MPI_Iprobe(MASTER, GAME_STATE, MPI_COMM_WORLD, &msgRecieved, &status);
+		//if (msgRecieved)
+		//{
+			u_long* state = &(m_ai.getState()[0]);
+
+			MPI_Recv((void *)state,			//data
+				(int) m_ai.getState().size(),		//nb items
+				MPI_UNSIGNED_LONG,			//item type
+				MASTER,						//source
+				GAME_STATE,					//tag
+				MPI_COMM_WORLD,				//comm
+				&status);
+
+			keepGoing = onStateRecv();
+		//}
+
+		//checks message for thinking time
+		//MPI_Iprobe(MASTER, THINK_TIME, MPI_COMM_WORLD, &msgRecieved, &status);
+		//if (msgRecieved)
+		//{
 			int ttime;
-			MPI_Request r;
-			//TODO : make game from message
-			//MPI_Recv(&ttime, 1, MPI_INT, MASTER, GAME_STATE, MPI_COMM_WORLD, &status);
-			//keepGoing = onGameRecv(game);
-		}
+			MPI_Recv(&ttime,
+				1,
+				MPI_INT,
+				MASTER,
+				THINK_TIME,
+				MPI_COMM_WORLD,
+				&status);
+
+			keepGoing = onTimeRecv(ttime);
+		//}
 	}
 }
 
@@ -51,15 +66,35 @@ void WorkerAI::run()
 bool WorkerAI::onTimeRecv(int ttime)
 {
 	m_ai.setThinkingTime(ttime);
-	vote();
+
+	if (ttime > 0)
+		vote(); //also trigegrs the vote
+
+	return (ttime > 0);
 }
 
-bool WorkerAI::onGameRecv(api::Game* game)
+bool WorkerAI::onStateRecv()//std::vector<u_long> state)
 {
-	m_ai.init(game);
+	//m_ai.setState(state); //already done on message recieved
+	return true;
 }
 
 void WorkerAI::vote()
 {
+	int rank, size;
+	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+	MPI_Comm_size(MPI_COMM_WORLD, &size);
 
+
+	v_stat scores = m_ai.getMovesStatistics();
+
+	//sends message
+	MPI_Send(
+		(void *)&scores[0],		//data
+		POSSIBILITIES * sizeof(n_stat),	//nb items
+		MPI_BYTE,			//item type
+		MASTER,			//dest
+		RESUTLS,				//tag
+		MPI_COMM_WORLD
+		);
 }
