@@ -29,6 +29,8 @@
 #include "tools/benching/Bench.h"
 #include "tools/read_args.h"
 
+#include "tools/tests.h"
+
 using namespace mcts;
 using std::cout;
 using std::cin;
@@ -94,6 +96,13 @@ int main(int argc, char const *argv[])
 	else
 	{
 		args = new MctsArgs();
+	}
+
+	if(options.testing)
+	{
+		fun_test1();
+
+		exit(1);
 	}
 
 	if(options.bench)

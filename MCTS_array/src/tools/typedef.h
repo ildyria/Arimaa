@@ -2,6 +2,7 @@
 #include <cinttypes>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 typedef unsigned int u_int;
 typedef unsigned long u_long;
@@ -13,10 +14,15 @@ typedef std::vector<n_stat> v_stat;
 
 
 //Adds up the 2 statistics
-p_stat operator += (p_stat a, p_stat b);
+p_stat& operator += (p_stat& a, p_stat b);
+p_stat operator + (p_stat a, p_stat b);
 
 //Adds up the statistics that share the same IDs (the vector is considered unordered)
-v_stat operator += (v_stat a, v_stat b);
+v_stat operator + (v_stat a, v_stat b);
+v_stat& operator += (v_stat& a, v_stat b);
+
+std::ostream& operator<< (std::ostream& stream, v_stat &stat);
+
 
 bool first (n_stat a, n_stat b);
 bool second (n_stat a, n_stat b);
@@ -33,10 +39,10 @@ typedef struct prog_options {
 
 	u_short visit_before_expand;	// 2
 	u_short simul_per_leaves;		// 2
-	bool test_api;	// 1
-	bool arimaa;	// 1
-	bool foo1;	// 1
-	bool foo2;	// 1
+	bool test_api;					// 1
+	bool arimaa;					// 1
+	bool testing;					// 1
+	bool foo2;						// 1
 } prog_options;
 
 #define elseif else if
