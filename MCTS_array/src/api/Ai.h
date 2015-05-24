@@ -86,18 +86,18 @@ namespace api {
 
 		/*
 		 *  \fn getMovesStatistics()
-		 *  \brief returns the statistics of the move like the cost associated with the move
+		 *  \brief returns the statistics of the move like the cost(i.e. probability of winning) associated with the move
 		*/
 
 		v_stat getMovesStatistics();
 		/*
 		*  \fn explore()
-		*  \brief returns the best move to the AI
+		*  \brief finds the best move to the AI
 		*/
 		void explore();
 		/*
 		*  \fn exploreSingle()
-		*  \brief returns all the possible available moves for the AI
+		*  \brief explore the best move to the depth
 		*/
 		void exploreSingle();
 	};

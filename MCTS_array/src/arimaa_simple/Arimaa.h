@@ -31,10 +31,37 @@ class Arimaa : public TheGame
 	4 bits : position of same threat enemy (OR PIECE ON BORDER) => no push / no frozen
 	4 bits : position nesw smaller enemy => maybe possible push / pull
 	*/
-	u_short get_piece_board_num(const u_short& pos, Bitboard* board);
-	u_short get_piece_board_num(const u_long& mask, Bitboard* board);
+	/*
+	  * fn get_piece_board_num(const u_short& pos, Bitboard* board)
+	  * brief returns the position of the type of piece on the board
+	  * param pos is the position of type of piece on the board,board pointer pointing to the bit board
+	  * returns the position of the type of piece on the board
 
+	*/
+	u_short get_piece_board_num(const u_short& pos, Bitboard* board);
+	/*
+	* fn get_piece_board_num(const u_long& mask, Bitboard* board)
+	* brief returns the position of the type of piece on the board based on the binary mask
+	* param mask is the 4 bit binary position of the type of piece on the board,board pointer pointing to the bit board
+	* returns the position of the type of piece on the board
+
+	*/
+	u_short get_piece_board_num(const u_long& mask, Bitboard* board);
+	/*
+	* fn get_piece_rank(const u_short& pos, Bitboard* board)
+	* brief returns the order or priority of the type of piece on the board based on the position
+	* param pos is the position of type of piece on the board,board pointer pointing to the bit board
+	* returns the order or priority of the type of piece on the board
+
+	*/
 	u_short get_piece_rank(const u_short& pos, Bitboard* board);
+	/*
+	* fn u_short get_piece_rank(const u_long& mask, Bitboard* board)
+	* brief returns the order or priority of the type of piece on the board based on the binary mask
+	* param mask is the 4 bit binary position of the type of piece on the board,board pointer pointing to the bit board
+	* returns the order or priority of the type of piece on the board
+
+	*/
 	u_short get_piece_rank(const u_long& mask, Bitboard* board);
 
 	u_long get_situation(const u_short& pos, Bitboard* board);
