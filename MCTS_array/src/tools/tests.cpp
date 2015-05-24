@@ -28,23 +28,29 @@ void fun_test1 ()
 	std::cout << vect1;
 
 	std::cout << std::endl;
-	std::cout << "vect1 sorted second:" << std::endl;
+	std::cout << "vect1 sorted second :" << std::endl;
 	sort(vect1.begin(),vect1.end(),second);
 	std::cout << vect1;
 
 	std::cout << std::endl;
-	std::cout << "vect1 sorted first:" << std::endl;
+	std::cout << "vect1 sorted first :" << std::endl;
 	sort(vect1.begin(),vect1.end(),first);
 	std::cout << vect1;
 
 	std::cout << std::endl;
-	std::cout << "vect2 sorted first:" << std::endl;
+	std::cout << "vect2 sorted first :" << std::endl;
 	sort(vect2.begin(),vect2.end(),first);
 	std::cout << vect2;
 
 	v_stat v = vect1 + vect2;
 
 	std::cout << std::endl;
-	std::cout << "v :" << std::endl;
-	std::cout << v << std::endl;
+	std::cout << "v = vect1 + vect2 :" << std::endl;
+	std::cout << v;
+
+	vect1 += vect2;
+
+	std::cout << std::endl;
+	std::cout << "vect1 += vect2 :" << std::endl;
+	std::cout << vect1 << std::endl;
 }

@@ -1,7 +1,7 @@
 #include "typedef.h"
 
 //Adds up the 2 statistics
-p_stat operator += (p_stat a, p_stat b)
+p_stat& operator += (p_stat& a, p_stat b)
 {
 	a.first += b.first;
 	a.second += b.second;
@@ -75,6 +75,13 @@ v_stat operator + (v_stat a, v_stat b)
 	// }
 	// return a;
 }
+
+v_stat& operator += (v_stat& a, v_stat b)
+{
+	a = a + b;
+	return a;
+}
+
 
 std::ostream& operator<< (std::ostream& stream, v_stat &stat)
 {

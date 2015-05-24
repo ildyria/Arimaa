@@ -14,11 +14,12 @@ typedef std::vector<n_stat> v_stat;
 
 
 //Adds up the 2 statistics
-p_stat operator += (p_stat a, p_stat b);
+p_stat& operator += (p_stat& a, p_stat b);
 p_stat operator + (p_stat a, p_stat b);
 
 //Adds up the statistics that share the same IDs (the vector is considered unordered)
 v_stat operator + (v_stat a, v_stat b);
+v_stat& operator += (v_stat& a, v_stat b);
 
 std::ostream& operator<< (std::ostream& stream, v_stat &stat);
 
