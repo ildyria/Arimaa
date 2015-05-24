@@ -1,4 +1,4 @@
-#include "VoteAi.h"
+#include "voteAi.h"
 
 using namespace std;
 

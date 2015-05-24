@@ -1,5 +1,5 @@
 #pragma once
-#include "tools/typedef.h"
+#include "typedef.h"
 
 prog_options read_args(int& argc, char const* argv[])
 {

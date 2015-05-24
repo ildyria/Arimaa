@@ -8,7 +8,7 @@
  */
 #pragma once
 #include <iostream>
-#include "Memory.h"
+#include "../Memory.h"
 #include "../typedef.h"
 #include <string>
 

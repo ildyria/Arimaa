@@ -1,10 +1,16 @@
 // DistributedMCTS.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
-#include "workerAi.h"
-#include "tools/read_args.h"
-#include "api_v2/Game_v2.h"
+#if defined(_WIN32) || defined(_WIN64)
+	#include "stdafx.h"
+	#include "WorkerAI.h"
+	#include "tools/read_args.h"
+	#include "api_v2/Game_v2.h"
+#else
+	#include "WorkerAI.h"
+	#include "../../MCTS_array/src/tools/read_args.h"
+	#include "../../MCTS_array/src/api_v2/Game_v2.h"
+#endif
 
 
 //int _tmain(int argc, _TCHAR* argv[])

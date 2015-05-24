@@ -21,9 +21,13 @@
 
 #define TIME_LIMIT_S 5
 
-#include "api_v2/Game_v2.h"
-#include "api_v2/Ai_v2.h"
-
+#if defined(_WIN32) || defined(_WIN64)
+	#include "api_v2/Game_v2.h"
+	#include "api_v2/Ai_v2.h"
+#else
+	#include "../../MCTS_array/src/api_v2/Game_v2.h"
+	#include "../../MCTS_array/src/api_v2/Ai_v2.h"
+#endif
 enum MessageTag { OPTIONS, THINK_TIME, GAME_STATE, RESUTLS };
 
 class VoteAI
