@@ -12,7 +12,7 @@ VoteAI::VoteAI(prog_options& options) : m_ai(options)
 
 	if (rank != MASTER)
 	{
-		std::cerr << "Master created on worker thread" << std::endl;
+		fprintf(stderr,"Master created on worker thread\n");
 	}
 	//else
 	//{
@@ -34,7 +34,7 @@ VoteAI::~VoteAI()
 void VoteAI::setThinkingTime(int t)
 {
 	if (t <= 1)
-		std::cerr << "low think time not supported" << std::endl;
+		fprintf(stderr,"low think time not supported\n");
 	thinkTime = t;
 	m_ai.setThinkingTime(workerThinkTime());
 }
@@ -73,17 +73,17 @@ u_long VoteAI::makeMove()
 
 	//sends the allowed time to the workers, also works as a start order
 	int ttime = workerThinkTime();
-	std::cout << "sending time..." << std::endl;
+	printf("sending time...\n");
 	sendTime(&ttime);
-	std::cout << "time sent." << std::endl;
+	printf("time sent.\n");
 
 	double begin = MPI_Wtime(); //start time
 
 	// Compute its own results
-	std::cout << "master process..." << std::endl;
+	printf("master process...\n");
 	m_ai.explore();
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
-	std::cout << "master process done." << std::endl;
+	printf("master process done.\n");
 
 	int nbRes = 1; //the number of results recieved
 
@@ -107,7 +107,7 @@ u_long VoteAI::makeMove()
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
-				std::cout << "recieved message from " << node << std::endl;
+				printf("recieved message from %d\n",node);
 				MPI_Request r;
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());
@@ -117,11 +117,11 @@ u_long VoteAI::makeMove()
 		}
 	}
 
-	std::cout << nbRes << " results recieved (including master)." << std::endl;
+	printf("%d results recieved (including master).\n",nbRes);
 
 	MPI_Waitall(requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
-	std::cout << "combining data..." << std::endl;
+	printf("combining data...\n");
 	//addition
 	for (int node = 1; node < size; node++) //all but master
 	{
@@ -129,10 +129,10 @@ u_long VoteAI::makeMove()
 		scores += buf[node - 1];
 		nbRes++; //one more result received
 	}
-	std::cout << "combinned." << std::endl;
+	printf("combinned.\n");
 
 	if (rc != MPI_SUCCESS)
-		cout << rank << " : failure on something" << endl;
+		printf("%d : failure on something\n",rank);
 
 	// The master thread displays the percentage for each value and the maximum value
 	nextMoveChances = 0;
@@ -147,10 +147,10 @@ u_long VoteAI::makeMove()
 				nextMove = scores.at(i).first;
 			}
 #if TALKATIVE > 0
-			cout << scores.at(i).first << " : " << getValue(scores.at(i)) << "%" << endl;
+			printf("%ld : %f %% \n",scores.at(i).first,getValue(scores.at(i)));
 #endif
 		}
-		cout << "Vote : " << nextMove << " (" << nextMoveChances << "%)" << endl;
+		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances);
 	}
 
 	m_ai.makeMove(nextMove);
