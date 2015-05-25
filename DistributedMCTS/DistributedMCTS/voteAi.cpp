@@ -5,7 +5,10 @@ using namespace std;
 
 VoteAI::VoteAI(prog_options& options) : m_ai(options)
 {
-	if (getMPIRank() != MASTER)
+	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+	MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+	if (rank != MASTER)
 	{
 		std::cerr << "Master created on worker thread" << std::endl;
 	}
@@ -64,12 +67,11 @@ u_long VoteAI::makeMove()
 	int rc = MPI_SUCCESS; // Return code
 	//MPI_Status status;
 
-	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-	MPI_Comm_size(MPI_COMM_WORLD, &size);
-
 	//sends the allowed time to the workers, also works as a start order
 	int ttime = (int) m_ai.getThinkingTime();
+	std::cout << "sending time..." << std::endl;
 	sendTime(&ttime);
+	std::cout << "time sent." << std::endl;
 
 	// Compute its own results
 	v_stat scores = m_ai.getMovesStatistics();

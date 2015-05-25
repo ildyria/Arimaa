@@ -53,12 +53,20 @@ main(int argc, char *argv[])
 
 
 	prog_options options = read_args(argc, (const char**) argv);
+	options.percent_memory = 0.2;
+	options.think_while_waiting = false;
+
+
 	if (rank == MASTER)
 	{
 		VoteAI master(options);
 
+		std::cout << "created master" << std::endl;
+
 		api_v2::Game game;
-		master.setState(game.getState());
+		//master.setState(game.getState());
+
+		std::cout << "state sent (or not)" << std::endl;
 
 		int result = 0;
 		int IA = 2;
@@ -77,21 +85,32 @@ main(int argc, char *argv[])
 					std::cout << std::endl << "Your move ?" << std::endl;
 					std::cin >> tmp;
 					int move = std::stoi(tmp);
+
+					std::cout << "move recognized as " << move << std::endl;
+
 					if (game.canMakeMove(move))
 					{
+
+						std::cout << "can make move" << std::endl;
+
 						moveok += 1;
+						std::cout << "sending move to master" << std::endl;
 						master.acknowledgeMove(move);
+						std::cout << "sending move to game" << std::endl;
 						game.makeMove(move);
 					}
 					elseif(tmp == "exit")
 					{
+						std::cout << "exiting" << std::endl;
 						exit(0);
 					}
 					elseif(tmp == "-1")
 					{
+						std::cout << "AI" << std::endl;
 						IA = (IA == 2) ? 1 : 2;
 						moveok += 1;
 					}
+					std::cout << "Done." << std::endl;
 				}
 			}
 			elseif(game.activePlayer() == IA)
@@ -124,6 +143,7 @@ main(int argc, char *argv[])
 	else //WORKER
 	{
 		WorkerAI worker(options);
+		std::cout << "created worker " << rank << std::endl;
 	}
 
 	

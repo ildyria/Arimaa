@@ -31,17 +31,19 @@ void WorkerAI::run()
 		//MPI_Iprobe(MASTER, GAME_STATE, MPI_COMM_WORLD, &msgRecieved, &status);
 		//if (msgRecieved)
 		//{
-			u_long* state = &(m_ai.getState()[0]);
 
-			MPI_Recv((void *)state,			//data
-				(int) m_ai.getState().size(),		//nb items
-				MPI_UNSIGNED_LONG,			//item type
-				MASTER,						//source
-				GAME_STATE,					//tag
-				MPI_COMM_WORLD,				//comm
-				&status);
+			//u_long* state = &(m_ai.getState()[0]);
 
-			keepGoing = onStateRecv();
+			//MPI_Recv((void *)state,			//data
+			//	(int) m_ai.getState().size(),		//nb items
+			//	MPI_UNSIGNED_LONG,			//item type
+			//	MASTER,						//source
+			//	GAME_STATE,					//tag
+			//	MPI_COMM_WORLD,				//comm
+			//	&status);
+
+			//keepGoing = onStateRecv();
+
 		//}
 
 		//checks message for thinking time
@@ -57,6 +59,8 @@ void WorkerAI::run()
 				MPI_COMM_WORLD,
 				&status);
 
+			std::cout << "tmie recieved by " << getMPIRank() << std::endl;
+
 			keepGoing = onTimeRecv(ttime);
 		//}
 	}
@@ -67,8 +71,12 @@ bool WorkerAI::onTimeRecv(int ttime)
 {
 	m_ai.setThinkingTime(ttime);
 
+	std::cout << "starting vote..." << std::endl;
+
 	if (ttime > 0)
 		vote(); //also trigegrs the vote
+
+	std::cout << "vote done." << std::endl;
 
 	return (ttime > 0);
 }
