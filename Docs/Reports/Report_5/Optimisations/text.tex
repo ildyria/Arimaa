@@ -1,0 +1,7 @@
+\subsection{Node structure}
+
+As stated in the previous report, the order of the data in the node has been changed in order to have it use the least possible place.
+
+At the begining of the project each node used to have its board game stored as a Bitboard and the move that led to it. As some nodes had the same state (Bitboard), we tried to use an unordered\_map in order to group them and decrease the size of the tree. However due to the high number of nodes, each time we created one we had to check wether or not it was referenced. As the size of the map kept increasing, therefore the time . This leads to a big diminution of the number of simulations and therefore decrease the reliability of the results provided.
+
+As the algorithm goes down through the search tree, the game can be 

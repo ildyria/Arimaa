@@ -7,7 +7,6 @@
 #include <stdlib.h>
 #include <time.h>
 //#include <unistd.h>
-#include <ctime>
 
 #define TALKATIVE 2 // How much info is displayed
 

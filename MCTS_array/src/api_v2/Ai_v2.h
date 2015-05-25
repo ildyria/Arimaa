@@ -47,7 +47,7 @@ namespace api_v2 {
 		 * 
 		 * \return thinking time in seconds
 		 */
-		double getThinkingTime();
+		int getThinkingTime();
 
 		/**
 		 * \fn makeMove(u_long move)
