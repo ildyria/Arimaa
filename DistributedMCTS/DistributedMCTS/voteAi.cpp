@@ -74,7 +74,9 @@ u_long VoteAI::makeMove()
 	std::cout << "time sent." << std::endl;
 
 	// Compute its own results
-	v_stat scores = m_ai.getMovesStatistics();
+	std::cout << "master process..." << std::endl;
+	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
+	std::cout << "master process done." << std::endl;
 
 	int nbRes = 1; //the number of results recieved
 
@@ -86,7 +88,7 @@ u_long VoteAI::makeMove()
 
 	//check for messages from other nodes
 	SAY("start while");
-	while ((double(clock() - begin) / CLOCKS_PER_SEC) < TIME_LIMIT_S) //while there is still time
+	while ((double(clock() - begin) / CLOCKS_PER_SEC) < ttime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
 		{
@@ -95,12 +97,14 @@ u_long VoteAI::makeMove()
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
+				std::cout << "recieved message from " << node << std::endl;
 				MPI_Request r;
 				MPI_Irecv(&buf[node - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &r);
 			}
 		}
 	}
 
+	std::cout << "combining data..." << std::endl;
 	//addition
 	for (int node = 1; node < size; node++) //all but master
 	{
@@ -108,6 +112,7 @@ u_long VoteAI::makeMove()
 		scores += buf[node - 1];
 		nbRes++; //one more result received
 	}
+	std::cout << "combinned." << std::endl;
 
 	if (rc != MPI_SUCCESS)
 		cout << rank << " : failure on something" << endl;

@@ -94,15 +94,19 @@ void WorkerAI::vote()
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 
 
-	v_stat scores = m_ai.getMovesStatistics();
+	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
+
+	std::cout << "sending result " << getMPIRank() << "..." << std::endl;
 
 	//sends message
 	MPI_Send(
-		(void *)&scores[0],		//data
+		(void *)&(scores[0]),		//data
 		POSSIBILITIES * sizeof(n_stat),	//nb items
 		MPI_BYTE,			//item type
 		MASTER,			//dest
 		RESUTLS,				//tag
 		MPI_COMM_WORLD
 		);
+
+	std::cout << "result " << getMPIRank() << " sent." << std::endl;
 }
