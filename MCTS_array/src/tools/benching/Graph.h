@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>     // std::cout
 #include <algorithm>    // std::min_element, std::max_element
+#include "../typedef.h"
 
 typedef std::pair<u_short, u_short> coord;
 

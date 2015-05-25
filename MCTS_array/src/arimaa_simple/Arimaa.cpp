@@ -54,7 +54,7 @@ u_short Arimaa::get_piece_board_num(const u_short& pos, Bitboard* board)
 			return i;
 	}
 
-	printf("SHOULD NEVER HAPPEN\n");
+	printf("SHOULD NOT GO THERE %s : %d .\n",__FILE__,__LINE__);
 	// should never be the case	
 	return 0;
 };
@@ -67,7 +67,7 @@ u_short Arimaa::get_piece_board_num(const u_long& mask, Bitboard* board)
 			return i;
 	}
 
-	printf("SHOULD NEVER HAPPEN\n");
+	printf("SHOULD NOT GO THERE %s : %d .\n",__FILE__,__LINE__);
 	// should never be the case
 	return 0;
 };

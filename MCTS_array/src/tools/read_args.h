@@ -18,7 +18,7 @@ prog_options read_args(int& argc, char const* argv[])
 	options.test_api = false;
 	options.arimaa = false;
 
-	options.foo1 = false;
+	options.testing = false;
 	options.foo2 = false;
 
 	// report settings
@@ -149,6 +149,10 @@ prog_options read_args(int& argc, char const* argv[])
 			options.updated = true;
 			options.time_to_search = 2;
 		}
+		elseif(strcmp(argv[i],"-tm") == 0)
+		{
+			options.testing = true;
+		}
 		elseif(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"--help") == 0 || strcmp(argv[i],"help") == 0)
 		{
 				std::cout << "-nothx : programm doesn't think while waiting for player's move." << std::endl;
@@ -159,6 +163,7 @@ prog_options read_args(int& argc, char const* argv[])
 				std::cout << "-sl <int> : simulations per leaves (" << options.simul_per_leaves << "<)." << std::endl;
 				std::cout << "-se <int> : simulations b4 expansion (" << options.visit_before_expand << "<)." << std::endl;
 				std::cout << "-----------------" << std::endl;
+				std::cout << "-tm : testing mode." << std::endl;
 				std::cout << "-a : test api." << std::endl;
 				std::cout << "-b : benchmark." << std::endl;
 	//			std::cout << "-A : define the game as Arimaa." << std::endl;
