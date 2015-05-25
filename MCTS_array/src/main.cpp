@@ -59,24 +59,6 @@ int main(int argc, char const *argv[])
 #if defined(ARIMAA)
 	Arimaa* game = new Arimaa();
 	Bitboard* Bb = new Bitboard((NB_PIECE+1)*2,1);
-	std::string t = "";
-	game->diplay_board(Bb);
-	Move temp;
-	while (true)
-	{
-		cin >> t;
-		if(t == "exit") break;
-		try
-		{
-			Move temp = Arimaa_tools::convert_move(t);
-			cout << Arimaa_tools::convert_move(temp) << endl;
-		}
-		catch(...)
-		{
-			cout << "mouvement non valide." << endl;
-		}
-	}
-	exit(1);
 #else
 	Connect4* game = new Connect4();
 	BitboardConnect4* Bb = new BitboardConnect4();
@@ -100,8 +82,26 @@ int main(int argc, char const *argv[])
 
 	if(options.testing)
 	{
-		fun_test1();
+//		fun_test1();
+		fun_test_Arimaa(options);
 
+		// std::string t = "";
+		// game->diplay_board(Bb);
+		// Move temp;
+		// while (true)
+		// {
+		// 	cin >> t;
+		// 	if(t == "exit") break;
+		// 	try
+		// 	{
+		// 		Move temp = Arimaa_tools::convert_move(t);
+		// 		cout << Arimaa_tools::convert_move(temp) << endl;
+		// 	}
+		// 	catch(...)
+		// 	{
+		// 		cout << "mouvement non valide." << endl;
+		// 	}
+		// }
 		exit(1);
 	}
 

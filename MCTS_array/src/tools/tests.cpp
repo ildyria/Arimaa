@@ -54,3 +54,8 @@ void fun_test1 ()
 	std::cout << "vect1 += vect2 :" << std::endl;
 	std::cout << vect1 << std::endl;
 }
+
+void fun_test_Arimaa(prog_options options)
+{
+	
+}
