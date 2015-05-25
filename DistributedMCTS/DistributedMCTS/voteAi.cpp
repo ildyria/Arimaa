@@ -67,7 +67,6 @@ void VoteAI::setState(std::vector<u_long> state)
 
 u_long VoteAI::makeMove()
 {
-	clock_t begin = clock(); //start time
 
 	int rc = MPI_SUCCESS; // Return code
 	//MPI_Status status;
@@ -77,6 +76,8 @@ u_long VoteAI::makeMove()
 	std::cout << "sending time..." << std::endl;
 	sendTime(&ttime);
 	std::cout << "time sent." << std::endl;
+
+	double begin = MPI_Wtime(); //start time
 
 	// Compute its own results
 	std::cout << "master process..." << std::endl;
@@ -97,7 +98,7 @@ u_long VoteAI::makeMove()
 	std::vector<MPI_Status> status;
 
 	SAY("start while");
-	while ((double(clock() - begin) / CLOCKS_PER_SEC) < ttime) //while there is still time
+	while ((MPI_Wtime() - begin) < (double) thinkTime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
 		{
