@@ -53,7 +53,6 @@ main(int argc, char *argv[])
 
 
 	prog_options options = read_args(argc, (const char**) argv);
-	options.percent_memory = 0.2;
 	options.think_while_waiting = false;
 
 

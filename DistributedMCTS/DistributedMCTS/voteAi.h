@@ -108,6 +108,9 @@ private:
 	api_v2::Ai m_ai;
 	int nextMove;
 	double nextMoveChances;
+	int thinkTime;
+
+	int workerThinkTime() { return thinkTime - 1; };
 
 	void sendTime(int* t);
 	void sendOptions(prog_options* options);

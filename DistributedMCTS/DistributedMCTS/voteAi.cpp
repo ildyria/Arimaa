@@ -5,6 +5,8 @@ using namespace std;
 
 VoteAI::VoteAI(prog_options& options) : m_ai(options)
 {
+	setThinkingTime(options.time_to_search);
+
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);
 
@@ -20,7 +22,7 @@ VoteAI::VoteAI(prog_options& options) : m_ai(options)
 
 int VoteAI::getThinkingTime()
 {
-	return (int) m_ai.getThinkingTime();
+	return thinkTime;
 }
 
 VoteAI::~VoteAI()
@@ -31,7 +33,10 @@ VoteAI::~VoteAI()
 
 void VoteAI::setThinkingTime(int t)
 {
-	m_ai.setThinkingTime(t);
+	if (t <= 1)
+		std::cerr << "low think time not supported" << std::endl;
+	thinkTime = t;
+	m_ai.setThinkingTime(workerThinkTime());
 }
 
 void VoteAI::setState(std::vector<u_long> state)
@@ -68,13 +73,14 @@ u_long VoteAI::makeMove()
 	//MPI_Status status;
 
 	//sends the allowed time to the workers, also works as a start order
-	int ttime = (int) m_ai.getThinkingTime();
+	int ttime = workerThinkTime();
 	std::cout << "sending time..." << std::endl;
 	sendTime(&ttime);
 	std::cout << "time sent." << std::endl;
 
 	// Compute its own results
 	std::cout << "master process..." << std::endl;
+	m_ai.explore();
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
 	std::cout << "master process done." << std::endl;
 
@@ -87,6 +93,9 @@ u_long VoteAI::makeMove()
 			buf[i].push_back(n_stat());
 
 	//check for messages from other nodes
+	std::vector<MPI_Request> requests;
+	std::vector<MPI_Status> status;
+
 	SAY("start while");
 	while ((double(clock() - begin) / CLOCKS_PER_SEC) < ttime) //while there is still time
 	{
@@ -99,10 +108,17 @@ u_long VoteAI::makeMove()
 			{
 				std::cout << "recieved message from " << node << std::endl;
 				MPI_Request r;
-				MPI_Irecv(&buf[node - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &r);
+				requests.push_back(MPI_Request());
+				status.push_back(MPI_Status());
+				MPI_Irecv(&buf[node - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
+				nbRes++;
 			}
 		}
 	}
+
+	std::cout << nbRes << " results recieved (including master)." << std::endl;
+
+	MPI_Waitall(requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
 	std::cout << "combining data..." << std::endl;
 	//addition
