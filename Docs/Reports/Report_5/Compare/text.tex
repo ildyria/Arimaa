@@ -13,7 +13,7 @@ pruning in MCTS while simulation & no pruning in MCTS while simulation\\
 \hline
 interface between bot \& other AI & not yet implemented \\
 \hline
-a choice among OpenMP, C++11 and MPI & openMP was chosen  \\
+parallelization : choice between OpenMP, C++11 and MPI & openMP was chosen  \\
 \hline
 actor model & cannot be used as it requires\\ & administrative rights of machine  \\ & to get installed \\
 \hline
@@ -21,8 +21,8 @@ GPU parallelisation & could not be done because of time \\ & constraint\\
 \hline
 converter & \cmark \\
 \hline
-use of sockets/ZMQ for parallelisation on clusters & \xmark \\
-use of MPI for parallelisation on clusters &  \cmark \\
+use of sockets/ZMQ for distribution on clusters & \xmark \\
+use of MPI for distribution on clusters &  \cmark \\
 \hline
 
 \end{tabular}
@@ -65,4 +65,4 @@ GUI on connect4 &  implemented and linked\\
 \end{tabular}
 \end{center}
 
-Most of the task that have been conceptualised during specification and design phase are implemented as per the plan. Some issues that are not implemented like GPU are because of time constraints and not because of technical reasons.
+Most of the tasks that have been conceptualised during the specification and design phase are implemented as per the plan. Some issues were not implemented like GPU parallelization, because of time constraints and not because of technical reasons.
