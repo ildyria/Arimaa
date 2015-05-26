@@ -36,8 +36,10 @@ The second one is inspired on the defragmentation of a hard disk drive the idea 
 - move the nodes in order to compact the tree. \\
 
 
-PICTURE 
-
+\begin{figure}[H] 
+\centerline{\includegraphics[width=\textwidth]{Optimisations/array.png}}
+\caption{\label{fig:Defrag}\textit{defragmentation model, the nodes are compacted to the left.}}
+\end{figure}
 
 The aim of this method is to use the RAM for only one tree instead of having to use half of it due to the \textit{buffer}. That way the size of the tree is increased by 50\%.
 
@@ -45,3 +47,7 @@ However that second method requires many more updates than expected :
 each time a node is moved, it is required to change the pointer of its parent if it is the first node. It also require to update the parent pointer of its children. All this increase greatly the call in the memory. In order to solve such a problem, we used another array, \textit{index} which reference the adress of each node. On moving one, it is only required to change its reference while the parent and children point to that redirection.
 
 While the benefits of such implementation is clear. On greater trees the time spend compacting grows too much in comparison to the first method. Due to such heavy drawback. That second method has been droped.
+
+\subsection{Scalling}
+
+
