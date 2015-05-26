@@ -46,7 +46,7 @@ main(int argc, char *argv[])
 	memset(name + len, 0, MPI_MAX_PROCESSOR_NAME - len);
 
 #if TALKATIVE > 1
-	std::cout << "New task : Number of tasks=" << size << " My rank=" << rank << " My name=" << name << "." << std::endl;
+	printf("New task : Number of tasks=%d My rank=%d My name=%s.\n",size,rank,name);
 #endif
 
 	srand((unsigned)time(NULL) + rank*size + len); // Different seed for each process
@@ -60,12 +60,12 @@ main(int argc, char *argv[])
 	{
 		VoteAI master(options);
 
-		std::cout << "created master" << std::endl;
+		printf("created master.\n");
 
 		api_v2::Game game;
 		//master.setState(game.getState());
 
-		std::cout << "state sent (or not)" << std::endl;
+		printf("state sent (or not)\n");
 
 		int result = 0;
 		int IA = 2;
@@ -81,68 +81,68 @@ main(int argc, char *argv[])
 				while (moveok == 0)
 				{
 					std::string tmp;
-					std::cout << std::endl << "Your move ?" << std::endl;
+					printf("\nYour move ?\n");
 					std::cin >> tmp;
 					int move = std::stoi(tmp);
 
-					std::cout << "move recognized as " << move << std::endl;
+					printf("move recognized as %d\n",move);
 
 					if (game.canMakeMove(move))
 					{
 
-						std::cout << "can make move" << std::endl;
+						printf("can make move\n");
 
 						moveok += 1;
-						std::cout << "sending move to master" << std::endl;
+						printf("sending move to master\n");
 						master.acknowledgeMove(move);
-						std::cout << "sending move to game" << std::endl;
+						printf("sending move to game\n");
 						game.makeMove(move);
 					}
 					elseif(tmp == "exit")
 					{
-						std::cout << "exiting" << std::endl;
+						printf("exiting\n");
 						exit(0);
 					}
 					elseif(tmp == "-1")
 					{
-						std::cout << "AI" << std::endl;
+						printf("AI\n");
 						IA = (IA == 2) ? 1 : 2;
 						moveok += 1;
 					}
-					std::cout << "Done." << std::endl;
+					printf("Done.\n");
 				}
 			}
 			elseif(game.activePlayer() == IA)
 			{
-				std::cout << std::endl << "AI turn... please wait." << std::endl;
+				printf("\nAI turn... please wait.\n");
 				int move = master.makeMove();
 				game.makeMove(move);
-				std::cout << std::endl << "chosen move : " << move << std::endl;
+				printf("\nchosen move : %d\n", move);
 			}
 
 			result = game.getWinner();
 		}
-		std::cout << std::endl;
+		printf("\n");;
 		game.displayASCII();
 
 		if (result == 1)
 		{
-			std::cout << std::endl << "player 1 wins." << std::endl;
+			printf("\nplayer 1 wins.\n");
 		}
 		elseif(result == 2)
 		{
-			std::cout << std::endl << "player 2 wins." << std::endl;
+			printf("\nplayer 2 wins.\n");
 		}
 		else
 		{
-			std::cout << std::endl << "Board full : TIE." << std::endl;
+			printf("\nBoard full : TIE.\n");
 		}
 
 	}
 	else //WORKER
 	{
 		WorkerAI worker(options);
-		std::cout << "created worker " << rank << std::endl;
+		printf("created worker %d\n",rank);
 	}
 
 	

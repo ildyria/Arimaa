@@ -4,7 +4,7 @@ WorkerAI::WorkerAI(prog_options& options) : m_ai(options)
 {
 	if (getMPIRank() == MASTER)
 	{
-		std::cerr << "Worker created on master thread" << std::endl;
+		fprintf(stderr,"Worker created on master thread\n");
 	}
 	else
 	{
@@ -60,7 +60,7 @@ void WorkerAI::run()
 				MPI_COMM_WORLD,
 				&status);
 
-			std::cout << "tmie recieved by " << getMPIRank() << std::endl;
+			printf("tmie recieved by %d\n",getMPIRank());
 
 			keepGoing = onTimeRecv(ttime);
 		//}
@@ -72,12 +72,12 @@ bool WorkerAI::onTimeRecv(int ttime)
 {
 	m_ai.setThinkingTime(ttime);
 
-	std::cout << "starting vote..." << std::endl;
+	printf("starting vote...\n");
 
 	if (ttime > 0)
 		vote(); //also trigegrs the vote
 
-	std::cout << "vote done." << std::endl;
+	printf("vote done.\n");
 
 	return (ttime > 0);
 }
@@ -97,7 +97,7 @@ void WorkerAI::vote()
 	m_ai.explore();
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
 
-	std::cout << "sending result " << getMPIRank() << "..." << std::endl;
+	printf("sending result %d ...\n",getMPIRank());
 
 	//sends message
 	MPI_Send(
@@ -109,5 +109,6 @@ void WorkerAI::vote()
 		MPI_COMM_WORLD
 		);
 
-	std::cout << (int)MPI_Wtime() % 60 << "s : result " << getMPIRank() << " sent." << std::endl;
+	printf("%d : result %d sent.\n",(int)MPI_Wtime() % 60,getMPIRank());
+
 }

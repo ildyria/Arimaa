@@ -5,7 +5,7 @@ BIN=bin
 # LIB_G=lib_g
 LIBRARY=../MCTS_array/lib_ai/ai.a ../MCTS_array/lib_g/game.a
 INCLUDE=-I DistributedMCTS
-CFLAGS=-g -O3 -Wpadded -fopenmp -c -Wall -std=c++11 $(INCLUDE)
+CFLAGS=-g -O3 -fopenmp -c -Wall -std=c++11 $(INCLUDE)
 LDFLAGS=-g -O3 -fopenmp -std=c++11
 
 SOURCES = voteAi.cpp WorkerAI.cpp DistributedMCTS.cpp
@@ -34,7 +34,7 @@ $(EXECUTABLE): $(OBJECTS)
 -include $(BIN)/$(OBJECTS:.o=.d)
 
 $(BIN)/%.o: %.cpp
-	$(CC) -c $(CFLAGS) $(LIBRARY) $< -o $(BIN)/$*.o
+	$(CC) -c $(CFLAGS) $< -o $(BIN)/$*.o
 	$(CC) -MM $(CFLAGS) $< > $(BIN)/$*.d 
 	@mv -f $(BIN)/$*.d $(BIN)/$*.d.tmp
 	@sed -e 's|.*:|$(BIN)/$*.o:|' < $(BIN)/$*.d.tmp > $(BIN)/$*.d
