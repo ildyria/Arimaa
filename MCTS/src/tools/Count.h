@@ -89,7 +89,7 @@ public:
 		count->_bitboadsC4_saved = count->_bitboadsC4;
 		count->_nbleaves_saved = count->_nbleaves;
 		count->_nodes_created = 0;
-		Memory::WinFUllInfo();
+		Memory::get_free_memory();
 		return stream;
 	};
 

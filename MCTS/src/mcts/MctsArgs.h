@@ -44,7 +44,7 @@ namespace mcts {
 		 */
 		explicit inline MctsArgs(
 			int depth = 40,
-			int timelimit = 20000,
+			int timelimit = 100000,
 			int simulR = 10000000,
 			int simulL = 1,
 			int numVisitExplo = 1
