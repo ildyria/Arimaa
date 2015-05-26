@@ -16,9 +16,10 @@ With the same number of nodes this represent a diminution of the tree size by $7
 \subsection{Tree structure : List vs Array}
 
 In december, each node used to contain the list of its children. Theses were allocated at the creation of the list. Thus the costly memory allocation was done during the exploration.
-In order to improve this matter, we created a list of \"available nodes\" where nodes were allocated in the memory but not used by the tree. On exploration, they were moved to the children list.
+In order to improve this matter, we created a list of \"available nodes\" where nodes were allocated in the memory but not used by the tree. On exploration, they were moved to the children list. Whereas on prunning they were put back in that \"available nodes\" list.
 
-While the idea is interesting, the children are not stored in continuous regions. During the UCT selection, each node children is visited, thus we didn't take advantage of 
+While the idea is interesting, the children are not stored in continuous regions. During the UCT selection, each node children is visited, thus we didn't take advantage of cache. This is the reason why, on the advice of Pascal Garcia we moved on an array structure. At the begining of the programm, a large array of Node is allocated, making provisions for the follow up demands. Each node only has to contain the pointer to its first children and the number of them, thus making sure that they are stored subsequently. On loading the first child, with the processor optimisations, the followup are also loaded resulting to a great increase of speed.
+
+Moving to a simple List implementation without pre-allocation to the Array structure result to an increase of the number of simulations by 2
 
 \subsection{Prunning : Defragmentation model vs buffer copy model}
-
