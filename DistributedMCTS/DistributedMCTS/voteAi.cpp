@@ -41,27 +41,7 @@ void VoteAI::setThinkingTime(int t)
 
 void VoteAI::setState(std::vector<u_long> state)
 {
-	std::vector<MPI_Request> requests;
-	std::vector<MPI_Status> status;
-	for (int node = 1; node < size; node++) //for all nodes except master
-	{
-		requests.push_back(MPI_Request());
-		//sends message
-		MPI_Isend(
-			(void *)&state,		//data
-			(int) state.size(),	//nb items
-			MPI_UNSIGNED_LONG,			//item type
-			node,			//dest
-			GAME_STATE,				//tag
-			MPI_COMM_WORLD,
-			&requests[node-1]
-			);
-	}
-
 	m_ai.setState(state);
-
-	//wait since the state will be gone after function ends
-	MPI_Waitall(size - 1, &requests[0], &status[0]);
 }
 
 
@@ -76,6 +56,8 @@ u_long VoteAI::makeMove()
 	printf("sending time...\n");
 	sendTime(&ttime);
 	printf("time sent.\n");
+
+	sendState();
 
 	double begin = MPI_Wtime(); //start time
 
@@ -97,7 +79,7 @@ u_long VoteAI::makeMove()
 	std::vector<MPI_Request> requests;
 	std::vector<MPI_Status> status;
 
-	SAY("start while");
+	SAY((int)MPI_Wtime() % 60 << "s : start while");
 	while ((MPI_Wtime() - begin) < (double) thinkTime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
@@ -107,7 +89,8 @@ u_long VoteAI::makeMove()
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
-				printf("recieved message from %d\n",node);
+				printf("%d : recieved message from %d\n",(int)MPI_Wtime() % 60,node);
+
 				MPI_Request r;
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());
@@ -119,7 +102,7 @@ u_long VoteAI::makeMove()
 
 	printf("%d results recieved (including master).\n",nbRes);
 
-	MPI_Waitall(requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
+	MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
 	printf("combining data...\n");
 	//addition
@@ -206,6 +189,33 @@ void VoteAI::sendOptions(prog_options* options)
 			&request
 			);
 	}
+}
+
+void VoteAI::sendState()
+{
+	auto state = m_ai.getState();
+
+	std::vector<MPI_Request> requests;
+	std::vector<MPI_Status> status;
+	for (int node = 1; node < size; node++) //for all nodes except master
+	{
+		std::cout << "sending state" << std::endl;
+
+		requests.push_back(MPI_Request());
+		//sends message
+		MPI_Isend(
+			(void *)&state,		//data
+			(int)state.size(),	//nb items
+			MPI_UNSIGNED_LONG,			//item type
+			node,			//dest
+			GAME_STATE,				//tag
+			MPI_COMM_WORLD,
+			&requests[node - 1]
+			);
+	}
+
+	//wait since the state will be gone after function ends
+	MPI_Waitall(size - 1, &requests[0], &status[0]);
 }
 
 double VoteAI::getValue(n_stat ns)
