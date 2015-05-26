@@ -51,7 +51,7 @@ typedef struct prog_options {
 
 //#define TEST_API
 
-//#define ARIMAA
+#define ARIMAA
 
 #ifdef ARIMAA
 	#define SIZEX 6
