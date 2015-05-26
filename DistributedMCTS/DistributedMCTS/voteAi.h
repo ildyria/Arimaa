@@ -113,6 +113,7 @@ private:
 
 	void sendTime(int* t);
 	void sendOptions(prog_options* options);
+	void sendState();
 };
 
 static int getMPIRank()
