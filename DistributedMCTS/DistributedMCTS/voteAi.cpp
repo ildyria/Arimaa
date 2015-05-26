@@ -99,14 +99,14 @@ u_long VoteAI::makeMove()
 		}
 	}
 
-	printf("%d results recieved.\n",buf.size());
+	printf("%ld results recieved.\n",buf.size());
 
 	printf("\n================\n");
 	for (auto s : scores)
 	{
-		printf("%lu : %f / %f\n", s.first, s.second.first, s.second.second);
+		printf("%lu : %.1f / %.1f\n", s.first, s.second.first, s.second.second);
 	}
-	for (int i = 0; i < buf.size(); i++)
+	for (u_int i = 0; i < buf.size(); i++)
 	{
 		int recv;
 		MPI_Test(&requests[i], &recv, &status[i]);
@@ -115,7 +115,7 @@ u_long VoteAI::makeMove()
 			printf("================\n");
 			for (auto s : buf[i])
 			{
-				printf("%lu : %f / %f\n", s.first, s.second.first, s.second.second);
+				printf("%lu : %.1f / %.1f\n", s.first, s.second.first, s.second.second);
 			}
 		}
 	}
@@ -123,7 +123,7 @@ u_long VoteAI::makeMove()
 
 	printf("Combining data...\n");
 	//addition
-	for (int i = 1; i < buf.size(); i++)
+	for (u_int i = 1; i < buf.size(); i++)
 	{
 		int recv;
 		MPI_Test(&requests[i], &recv, &status[i]);
@@ -151,7 +151,7 @@ u_long VoteAI::makeMove()
 				nextMove = scores.at(i).first;
 			}
 #if TALKATIVE > 0
-			printf("%ld : %f %% \n",scores.at(i).first,getValue(scores.at(i))*100);
+			printf("%ld : %.2f %% \n",scores.at(i).first,getValue(scores.at(i))*100);
 #endif
 		}
 		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances*100);
