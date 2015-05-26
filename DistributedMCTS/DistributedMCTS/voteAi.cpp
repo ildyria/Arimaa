@@ -92,36 +92,45 @@ u_long VoteAI::makeMove()
 
 				MPI_Request r;
 				requests.push_back(MPI_Request());
+				printf("1 : %d\n", requests.size());
 				status.push_back(MPI_Status());
+				printf("2 : %d\n", status.size());
 				buf.push_back(v_stat());
-				MPI_Irecv(&(buf[buf.size() - 1]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
+				printf("3 : %d\n", buf.size());
+				MPI_Irecv(&(buf[buf.size() - 1]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
+				printf("4\n");
 			}
 		}
 	}
 
 	printf("%d results recieved.\n",buf.size());
 
-	for (v_stat v : buf)
+	//MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
+
+	for (int i = 1; i < buf.size(); i++)
 	{
-		printf("================\n");
-		for (auto s : v)
+		int recv;
+		MPI_Test(&requests[i], &recv, &status[i]);
+		if (recv)
 		{
-			printf("%f : %f / %f\n",s.first, s.second.first, s.second.second);
+			printf("================\n");
+			for (auto s : buf[i])
+			{
+				printf("%f : %f / %f\n", s.first, s.second.first, s.second.second);
+			}
 		}
 	}
 
-	MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
-
 	printf("combining data...\n");
 	//addition
-	for (int node = 1; node < size; node++) //all but master
+	for (int i = 1; i < buf.size(); i++)
 	{
 		int recv;
-		MPI_Test(&requests[node - 1], &recv, &status[node - 1]);
+		MPI_Test(&requests[i], &recv, &status[i]);
 		if (recv)
 		{
 			//adds the results to the score
-			scores += buf[node - 1];
+			scores += buf[i];
 		}
 	}
 	printf("combinned.\n");
