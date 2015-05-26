@@ -2,30 +2,27 @@
 \title{\textbf{Specification Vs Implementation}}
 \bigskip
 \begin{center}
-\begin{tabular}{ | p{7cm} || p{7cm} | } 
+\begin{tabular}{ | p{7cm} || c | } 
 \hline
  \textbf{Specification} & \textbf{Implementation} \\ 
 \hline
 \hline
-root parallelisation on CPU &  tree parallelisation on CPU\\ 
+\emph{root} parallelisation on CPU &  \emph{tree} parallelisation on CPU\\ 
 \hline
 pruning in MCTS while simulation & no pruning in MCTS while simulation\\ 
 \hline
 interface between bot \& other AI & not yet implemented \\
 \hline
-
 a choice among OpenMP, C++11 and MPI & openMP was chosen  \\
 \hline
-actor model & cannot be used as it requires\\ & administrative rights of machine to get installed \\
+actor model & cannot be used as it requires\\ & administrative rights of machine  \\ & to get installed \\
 \hline
-
- 
+GPU parallelisation & could not be done because of time \\ & constraint\\
+\hline
 converter & \cmark \\
-\hline 
-GPU parallelisation & \xmark\\
 \hline
-use of sockets/ZMQ for parallelisation on clusters & \xmark\\
-use of MPI for parallelisation on clusters & \cmark\\
+use of sockets/ZMQ for parallelisation on clusters & \xmark \\
+use of MPI for parallelisation on clusters &  \cmark \\
 \hline
 
 \end{tabular}
@@ -38,7 +35,7 @@ use of MPI for parallelisation on clusters & \cmark\\
 \bigskip
 
 \begin{center}
-\begin{tabular}{ | p{5cm} || p{5cm} | } 
+\begin{tabular}{ | p{7cm} || c | } 
 \hline
  \textbf{Design} & \textbf{Implementation} \\ 
 \hline
@@ -62,8 +59,8 @@ Mersennes twister as a random generator & \cmark\\
 root parallelisation on cluster & \cmark\\
 switching from root parallelisation to tree parallelisation on CPU & \cmark \\
 \hline
-GUI on Arima & not implemented yet\\
-GUI on connect4 &  linked and connected\\
+GUI on Arima &  implemented but not yet linked\\
+GUI on connect4 &  implemented and linked\\
 \hline
 \end{tabular}
 \end{center}
