@@ -1,20 +1,66 @@
+
+\title{\textbf{Specification Vs Implementation}}
+\bigskip
 \begin{center}
 \begin{tabular}{ | c || c | } 
 \hline
- Specification & Implementation \\ 
+ \textbf{Specification} & \textbf{Implementation} \\ 
 \hline
 \hline
-root &  tree \\ 
+Root parallelisation on CPU &  Tree parallelisation on CPU\\ 
 \hline
 Pruning in MCTS & No pruning in MCTS \\ 
 \hline
-interface between bot \& other AI & Not yet implemented \\
+Interface between bot \& other AI & Not yet implemented \\
 \hline
 Converter & \cmark \\
 \hline 
 OpenMP & \cmark \\
 C++11 & \xmark \\
-MPI & \cmark \\
+MPI & \xmark \\
 \hline 
+GPU & \xmark\\
+\hline
+Use of sockets/ZMQ for parallelisation on clusters & \xmark\\
+Use of MPI for parallelisation on clusters & \cmark\\
+\hline
+Actor Model & \xmark\\
+\hline
+\end{tabular}
+\end{center}
+
+\bigskip
+\bigskip
+
+\title{\textbf{Design Vs Implementation}}
+\bigskip
+
+\begin{center}
+\begin{tabular}{ | c || c | } 
+\hline
+ \textbf{Design} & \textbf{Implementation} \\ 
+\hline
+\hline
+Base Algorithm(MCTS) & \cmark \\ 
+\hline
+Data structure & \cmark \\ 
+\hline
+Pruning after simulation & \cmark \\
+\hline
+Bitboard & \cmark \\
+\hline 
+Game abstract & \cmark \\
+\hline
+Parameters(MCTS arguments) & \cmark \\
+\hline
+Fast log & \cmark \\
+\hline 
+Mersennes twister & \cmark\\
+\hline
+Root parallelisation on cluster & \cmark\\
+Switching from root parallelisation to tree parallelisation on CPU & \cmark \\
+\hline
+GUI & \cmark\\
+\hline
 \end{tabular}
 \end{center}
