@@ -35,7 +35,6 @@ The second one is inspired on the defragmentation of a hard disk drive the idea 
 - mark the nodes to be deleted. \\
 - move the nodes in order to compact the tree. \\
 
-
 \begin{figure}[H] 
 \centerline{\includegraphics[width=\textwidth]{Optimisations/array.png}}
 \caption{\label{fig:Defrag}\textit{defragmentation model, the nodes are compacted to the left.}}
@@ -48,6 +47,21 @@ each time a node is moved, it is required to change the pointer of its parent if
 
 While the benefits of such implementation is clear. On greater trees the time spend compacting grows too much in comparison to the first method. Due to such heavy drawback. That second method has been droped.
 
-\subsection{Scalling}
+\subsection{Scalling on multicore machine}
+
+A bench mode (\textit{-b} or \textit{--bench}) has been implemented in order to easily follow the evolution of the scaling through the subsequent iterations and improvements. We had access to rodrigue an old (2009) 24-core-server. It permited us to compare the number of simulations done by our algorithm through an increasing number of core (see the following figures).
+
+\begin{figure}[H] 
+\centerline{\includegraphics[width=0.8\textwidth]{Optimisations/bench_T1700.png}}
+\caption{\label{fig:Defrag}\textit{Bench test on Dell Precision T1700 (4 physical cores, 8 logical cores)}}
+\end{figure}
+
+It is shown that the number of simulations scales not that well with the number of cores. We expected better results. However these figures are probably due to a poor implementation.
+We could also notice on rodrigue that from 9 cores, the number of simulations stabilize. This might be caused by a possible the saturation of memory bus as a resulted of too many access from the processors and a possible recuring cache invalidation.
+
+\begin{figure}[H] 
+\centerline{\includegraphics[width=\textwidth]{Optimisations/bench_rodrigue.png}}
+\caption{\label{fig:Defrag}\textit{Bench test on rodrigue (24 physical cores, 24 logical cores)}}
+\end{figure}
 
 
