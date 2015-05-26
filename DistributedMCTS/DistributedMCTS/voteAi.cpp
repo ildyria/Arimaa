@@ -99,7 +99,7 @@ u_long VoteAI::makeMove()
 				for (int i = 0; i < POSSIBILITIES; ++i)
 					buf[buf.size() - 1].push_back(n_stat());
 				printf("3 : %d\n", buf.size());
-				MPI_Irecv((void*) &(buf[buf.size() - 1]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
+				MPI_Irecv((void*) &(buf[buf.size() - 1][0]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
 				printf("4\n");
 			}
 		}
@@ -112,7 +112,7 @@ u_long VoteAI::makeMove()
 	printf("\n================\n");
 	for (auto s : scores)
 	{
-		printf("%f : %f / %f\n", s.first, s.second.first, s.second.second);
+		printf("%lu : %f / %f\n", s.first, s.second.first, s.second.second);
 	}
 	for (int i = 0; i < buf.size(); i++)
 	{
@@ -123,7 +123,7 @@ u_long VoteAI::makeMove()
 			printf("================\n");
 			for (auto s : buf[i])
 			{
-				printf("%f : %f / %f\n", s.first, s.second.first, s.second.second);
+				printf("%lu : %f / %f\n", s.first, s.second.first, s.second.second);
 			}
 		}
 	}
