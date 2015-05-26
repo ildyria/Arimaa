@@ -3,8 +3,21 @@
 //Adds up the 2 statistics
 p_stat& operator += (p_stat& a, p_stat b)
 {
-	a.first += b.first;
-	a.second += b.second;
+	if((a.first == 42 && a.second == 1)|| (b.first == 42 && b.second == 1))
+	{
+		a.first = 42;
+		a.second = 1;
+	}
+	if((a.first == -1 && a.second == 1)|| (b.first == -1 && b.second == 1))
+	{
+		a.first = -1;
+		a.second = 1;
+	}
+	else
+	{
+		a.first += b.first;
+		a.second += b.second;
+	}
 	return a;
 }
 
