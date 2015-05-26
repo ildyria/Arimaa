@@ -45,6 +45,8 @@ void VoteAI::setState(std::vector<u_long> state)
 	std::vector<MPI_Status> status;
 	for (int node = 1; node < size; node++) //for all nodes except master
 	{
+		std::cout << "sending state" << std::endl;
+
 		requests.push_back(MPI_Request());
 		//sends message
 		MPI_Isend(

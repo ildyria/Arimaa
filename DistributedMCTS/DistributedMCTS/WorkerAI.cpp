@@ -31,6 +31,7 @@ void WorkerAI::run()
 		//MPI_Iprobe(MASTER, GAME_STATE, MPI_COMM_WORLD, &msgRecieved, &status);
 		//if (msgRecieved)
 		//{
+			std::cout << "waiting for state : " << getMPIRank() << std::endl;
 
 			u_long* state = &(m_ai.getState()[0]);
 
