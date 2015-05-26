@@ -26,13 +26,11 @@ Moving to a simple List implementation without pre-allocation to the Array struc
 
 Two ways of prunning the tree have been thought of. The first one, as  explained in the previous report, uses two arrays \textit{buffer} and \textit{tree}. While the second one uses only one array \textit{tree}.
 \medskip\\
-
 The first and simplest one had three steps : \\
 - copy only the selected nodes to the \textit{buffer} \\
 - clean the first array (\textit{tree}) \\
 - copy back the \textit{buffer} to the \textit{tree}.
-
-\medskip
+\medskip\\
 The second one is inspired on the defragmentation of a hard disk drive: the idea is not to copy the elements to be keep but move them inside the array. It is done in two steps : \\
 - mark the nodes to be deleted. \\
 - move the nodes in order to compact the tree.
