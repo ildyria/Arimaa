@@ -67,13 +67,12 @@ u_long VoteAI::makeMove()
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
 	printf("master process done.\n");
 
-	int nbRes = 1; //the number of results recieved
-
 	//prepares buffer		
-	v_stat* buf = new v_stat[size - 1];
-	for (int i = 0; i < (size - 1); ++i)
-		for (int j = 0; j < POSSIBILITIES; ++j)
-			buf[i].push_back(n_stat());
+	//v_stat* buf = new v_stat[size - 1];
+	//for (int i = 0; i < (size - 1); ++i)
+	//	for (int j = 0; j < POSSIBILITIES; ++j)
+	//		buf[i].push_back(n_stat());
+	std::vector<v_stat> buf;
 
 	//check for messages from other nodes
 	std::vector<MPI_Request> requests;
@@ -85,7 +84,7 @@ u_long VoteAI::makeMove()
 		for (int node = 1; node < size; node++) //for all nodes except master
 		{
 			MPI_Status s;
-			int msg_recieved;
+			int msg_recieved = 0;
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
@@ -94,23 +93,28 @@ u_long VoteAI::makeMove()
 				MPI_Request r;
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());
-				MPI_Irecv(&buf[node - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
-				nbRes++;
+				buf.push_back(v_stat());
+				MPI_Irecv(&buf[buf.size() - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
 			}
 		}
 	}
 
-	printf("%d results recieved (including master).\n",nbRes);
+	printf("%d results recieved.\n",buf.size());
 
-	MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
+	//MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
 	printf("combining data...\n");
 	//addition
 	for (int node = 1; node < size; node++) //all but master
 	{
-		//adds the results to the score
-		scores += buf[node - 1];
-		nbRes++; //one more result received
+		int recv;
+		MPI_Test(&requests[node - 1], &recv, &status[node - 1]);
+		if (recv)
+		{
+			//adds the results to the score
+			scores += buf[node - 1];
+			nbRes++; //one more result received
+		}
 	}
 	printf("combinned.\n");
 
@@ -201,6 +205,7 @@ void VoteAI::sendState()
 	{
 		std::cout << "sending state" << std::endl;
 
+		status.push_back(MPI_Status());
 		requests.push_back(MPI_Request());
 		//sends message
 		MPI_Isend(
