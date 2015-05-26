@@ -70,9 +70,9 @@ main(int argc, char *argv[])
 		int result = 0;
 		int IA = 2;
 
-		game.displayASCII();
 		while (result == 0)
 		{
+			game.displayASCII();
 			if (game.activePlayer() != IA)
 			{
 				int moveok = 0;
