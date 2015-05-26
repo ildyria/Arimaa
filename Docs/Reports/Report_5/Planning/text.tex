@@ -1,1 +1,10 @@
-As stated in the third report, we used the agile methodology with iterations to implements our solutions. However some parts of the plannification went wrong. While we were ahead of schedule for two months, we relaxed and lost our advantage.
+As stated in the third report, we used the agile methodology with iterations to implements our solutions. However some parts of the planning went wrong. While we were ahead of schedule for two months, we relaxed and lost our advantage.
+
+\subsection{Distribution}
+For the distributed version of our algorithm, development was pushed back because of blocked ports at the computer science department, that made it impossible for us to test it there.
+As we had no means to easily recreate a Linux environment of a sufficient amount of machines, we had to wait for this issue to be addressed. The development of the distributed algorithm was thus delayed by almost one month.
+As the development went on and it appeared that we would be short on time, we decided to drop the ZeroMQ implementation in order to concentrate our efforts on MPI.
+
+\subsection{Interface}
+The development of the interface happened without much problems, but we realized after it was finished that it used 32bit, and that or algorithm needed 64bits.
+At the time of this writing a solution is still to be found, as SFML 1.6 seems not to be compatible with 64bit, and the use of SFML 2.0 would require some changes done to the code.
