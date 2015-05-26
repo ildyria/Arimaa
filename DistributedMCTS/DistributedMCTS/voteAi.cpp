@@ -90,14 +90,16 @@ u_long VoteAI::makeMove()
 			{
 				printf("%d : recieved message from %d\n",(int)MPI_Wtime() % 60,node);
 
-				MPI_Request r;
+				//MPI_Request r;
 				requests.push_back(MPI_Request());
 				printf("1 : %d\n", requests.size());
 				status.push_back(MPI_Status());
 				printf("2 : %d\n", status.size());
 				buf.push_back(v_stat());
+				for (int i = 0; i < POSSIBILITIES; ++i)
+					buf[buf.size() - 1].push_back(n_stat());
 				printf("3 : %d\n", buf.size());
-				MPI_Irecv(&(buf[buf.size() - 1]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
+				MPI_Irecv((void*) &(buf[buf.size() - 1]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
 				printf("4\n");
 			}
 		}
@@ -107,7 +109,12 @@ u_long VoteAI::makeMove()
 
 	//MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
-	for (int i = 1; i < buf.size(); i++)
+	printf("\n================\n");
+	for (auto s : scores)
+	{
+		printf("%f : %f / %f\n", s.first, s.second.first, s.second.second);
+	}
+	for (int i = 0; i < buf.size(); i++)
 	{
 		int recv;
 		MPI_Test(&requests[i], &recv, &status[i]);
@@ -120,6 +127,7 @@ u_long VoteAI::makeMove()
 			}
 		}
 	}
+	printf("================\n\n");
 
 	printf("combining data...\n");
 	//addition
@@ -151,13 +159,15 @@ u_long VoteAI::makeMove()
 				nextMove = scores.at(i).first;
 			}
 #if TALKATIVE > 0
-			printf("%ld : %f %% \n",scores.at(i).first,getValue(scores.at(i)));
+			printf("%ld : %f %% \n",scores.at(i).first,getValue(scores.at(i))*100);
 #endif
 		}
-		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances);
+		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances*100);
 	}
 
+	printf("making chosen move...\n");
 	m_ai.makeMove(nextMove);
+	printf("move made.\n");
 
 	return nextMove;
 }

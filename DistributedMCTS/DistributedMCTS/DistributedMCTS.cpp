@@ -70,10 +70,9 @@ main(int argc, char *argv[])
 		int result = 0;
 		int IA = 2;
 
+		game.displayASCII();
 		while (result == 0)
 		{
-			game.displayASCII();
-
 			if (game.activePlayer() != IA)
 			{
 				int moveok = 0;
@@ -116,11 +115,13 @@ main(int argc, char *argv[])
 			{
 				printf("\nAI turn... please wait.\n");
 				int move = master.makeMove();
-				game.makeMove(move);
 				printf("\nchosen move : %d\n", move);
+				game.makeMove(move);
+				printf("move made in game\n", move);
 			}
 
 			result = game.getWinner();
+			printf("Game win : %d\n", result);
 		}
 		printf("\n");;
 		game.displayASCII();
