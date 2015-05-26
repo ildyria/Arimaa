@@ -94,14 +94,23 @@ u_long VoteAI::makeMove()
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());
 				buf.push_back(v_stat());
-				MPI_Irecv(&buf[buf.size() - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
+				MPI_Irecv(&(buf[buf.size() - 1]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
 			}
 		}
 	}
 
 	printf("%d results recieved.\n",buf.size());
 
-	//MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
+	for (v_stat v : buf)
+	{
+		printf("================\n");
+		for (auto s : v)
+		{
+			printf("%f : %f / %f\n",s.first, s.second.first, s.second.second);
+		}
+	}
+
+	MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
 	printf("combining data...\n");
 	//addition
@@ -113,7 +122,6 @@ u_long VoteAI::makeMove()
 		{
 			//adds the results to the score
 			scores += buf[node - 1];
-			nbRes++; //one more result received
 		}
 	}
 	printf("combinned.\n");
