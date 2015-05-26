@@ -57,7 +57,7 @@ u_long VoteAI::makeMove()
 	sendTime(&ttime);
 	printf("time sent.\n");
 
-	sendState()
+	sendState();
 
 	double begin = MPI_Wtime(); //start time
 
@@ -102,7 +102,7 @@ u_long VoteAI::makeMove()
 
 	printf("%d results recieved (including master).\n",nbRes);
 
-	MPI_Waitall(requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
+	MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
 	printf("combining data...\n");
 	//addition
