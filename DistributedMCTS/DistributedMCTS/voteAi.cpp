@@ -2,6 +2,7 @@
 
 using namespace std;
 
+int VoteAI::kill;
 
 VoteAI::VoteAI(prog_options& options) : m_ai(options)
 {
@@ -12,12 +13,10 @@ VoteAI::VoteAI(prog_options& options) : m_ai(options)
 
 	if (rank != MASTER)
 	{
-		fprintf(stderr,"Master created on worker thread\n");
+		fprintf(stderr, "Master created on worker thread\n");
 	}
-	//else
-	//{
-	//	sendOptions(&options); //options are not lost at the end of function because they are a reference
-	//}
+
+	VoteAI::kill = -1;
 }
 
 int VoteAI::getThinkingTime()
@@ -27,14 +26,14 @@ int VoteAI::getThinkingTime()
 
 VoteAI::~VoteAI()
 {
-	int kill = -1;
+	sendState(); //necessary before sending time
 	sendTime(&kill); //orders the workers to exit
 }
 
 void VoteAI::setThinkingTime(int t)
 {
 	if (t <= 1)
-		fprintf(stderr,"low think time not supported\n");
+		fprintf(stderr,"Low think time not supported\n");
 	thinkTime = t;
 	m_ai.setThinkingTime(workerThinkTime());
 }
@@ -53,19 +52,18 @@ u_long VoteAI::makeMove()
 
 	//sends the allowed time to the workers, also works as a start order
 	int ttime = workerThinkTime();
-	printf("sending time...\n");
-	sendTime(&ttime);
-	printf("time sent.\n");
-
+	printf("Sending data...\n");
 	sendState();
+	sendTime(&ttime);
+	printf("Data sent.\n");
 
 	double begin = MPI_Wtime(); //start time
 
 	// Compute its own results
-	printf("master process...\n");
+	printf("Master process...\n");
 	m_ai.explore();
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
-	printf("master process done.\n");
+	printf("Master process done.\n");
 
 	//prepares buffer		
 	//v_stat* buf = new v_stat[size - 1];
@@ -78,7 +76,7 @@ u_long VoteAI::makeMove()
 	std::vector<MPI_Request> requests;
 	std::vector<MPI_Status> status;
 
-	SAY((int)MPI_Wtime() % 60 << "s : start while");
+	SAY("Waiting for results...");
 	while ((MPI_Wtime() - begin) < (double) thinkTime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
@@ -88,26 +86,20 @@ u_long VoteAI::makeMove()
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
-				printf("%d : recieved message from %d\n",(int)MPI_Wtime() % 60,node);
+				printf("Recieved message from %d\n", node);
 
 				//MPI_Request r;
 				requests.push_back(MPI_Request());
-				printf("1 : %d\n", requests.size());
 				status.push_back(MPI_Status());
-				printf("2 : %d\n", status.size());
 				buf.push_back(v_stat());
 				for (int i = 0; i < POSSIBILITIES; ++i)
 					buf[buf.size() - 1].push_back(n_stat());
-				printf("3 : %d\n", buf.size());
 				MPI_Irecv((void*) &(buf[buf.size() - 1][0]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
-				printf("4\n");
 			}
 		}
 	}
 
 	printf("%d results recieved.\n",buf.size());
-
-	//MPI_Waitall((int) requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
 
 	printf("\n================\n");
 	for (auto s : scores)
@@ -129,7 +121,7 @@ u_long VoteAI::makeMove()
 	}
 	printf("================\n\n");
 
-	printf("combining data...\n");
+	printf("Combining data...\n");
 	//addition
 	for (int i = 1; i < buf.size(); i++)
 	{
@@ -141,7 +133,7 @@ u_long VoteAI::makeMove()
 			scores += buf[i];
 		}
 	}
-	printf("combinned.\n");
+	printf("Combinned.\n");
 
 	if (rc != MPI_SUCCESS)
 		printf("%d : failure on something\n",rank);
@@ -165,9 +157,7 @@ u_long VoteAI::makeMove()
 		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances*100);
 	}
 
-	printf("making chosen move...\n");
 	m_ai.makeMove(nextMove);
-	printf("move made.\n");
 
 	return nextMove;
 }
@@ -230,8 +220,6 @@ void VoteAI::sendState()
 	std::vector<MPI_Status> status;
 	for (int node = 1; node < size; node++) //for all nodes except master
 	{
-		std::cout << "sending state" << std::endl;
-
 		status.push_back(MPI_Status());
 		requests.push_back(MPI_Request());
 		//sends message
