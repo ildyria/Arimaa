@@ -2,25 +2,25 @@
 
 As stated in the previous report, the order of the data in the node has been changed in order to have it use the least possible space.
 
-At the beginning of the project each node used to have its board game stored as a Bitboard and the move that lead to it. As some nodes had the same state (Bitboard), we tried to use an unordered\_map in order to group them and decrease the size of the tree. However due to the high number of nodes, each time we created one we had to check whether or not it was referenced. The time required for this operation increased with the size of the tree. This lead to a big diminution of the number of simulations and therefore decreased the reliability of the results provided.
+At the begining of the project each node used to have its board game stored as a \textit{Bitboard} and the move that led to it. As some nodes were having the same state (\textit{Bitboard}), we tried to use an \textit{unordered\_map} in order to group them to reduce redundancy and thereby decreasing the size of the tree. However, due to the high number of nodes, each time we created one we had to check whether it was referenced or not. The time required for this operation increases with the size of the tree. This lead to a big cut down in the number of simulations and therefore decreased the reliability of the results provided.
 
-As the algorithm goes down through the search tree, the game can be retraced by playing the chosen moves on the a clone of the root board. That way, we saved the space used by each node's board.
+As the algorithm goes down through the search tree, the game can be retraced by playing the chosen move on the a clone of the root board. That way, we saved the space used by each node's board.
 
 \noindent
 Size of a board : $120$ octets\\
 Size of a node with the board : $168$ octets\\
 Size of a node without the board : $48$ octets
 
-With the same number of nodes this represent a diminution of the tree size by $70\%$. Therefore while using the same space, the new tree is $3,5$ times bigger.
+With the same number of nodes this represent a reduction in the tree size by $70\%$. Therefore, while using the same space the new tree is $3,5$ times bigger.
 
 \subsection{Tree structure : List vs Array}
 
-In December, each node used to contain the list of its children. Theses were allocated at the creation of the list. Thus the costly memory allocation was done during the exploration.
-In order to improve this matter, we created a list of ''available nodes'' where nodes were allocated in the memory but not used by the tree. On exploration, they were moved to the children list. Whereas on pruning they were put back in that ''available nodes'' list.
+Initially, each node used to contain the list of its children. These were allocated at the time of creation of the list. Thus the costly memory allocation was done during exploration.
+In order to improve, we created a list of \"available nodes\" where nodes were allocated in the memory but not used by the tree. On exploration, they were moved to the children list. Whereas on pruning they were put back in the \"available nodes\" list.
 
-While the idea is interesting, the children are not stored in continuous regions. During the UCT selection, each node children is visited, thus we didn't take advantage of cache. This is the reason why, on the advice of Pascal Garcia we moved on to an array structure. At the beginning of the program, a large array of Node is allocated, making provisions for the follow up demands. Each node only has to contain the number of children and a pointer to the first one, thus making sure that they are stored consequently. Upon loading the first child, with the processor optimizations, the follow-up nodes are also loaded, resulting to a great increase of speed.
+While the idea is interesting, the child nodes were not stored in continuous regions. During the UCT selection, each child node is visited, thus we didn't take advantage of caching. This is the reason, we moved on to an array structure following the advice of Pascal Garcia. At the start of the program, a large array of node is allocated thus making provisions for the follow up of demands. Each node has to contain the number of children and a pointer to the first one, thereby making sure that they are stored consequently. In the process of loading the first child with the processor optimizations, the follow-up nodes are also loaded, resulting to a great increase of speed.
 
-Moving to a simple List implementation without pre-allocation to the Array structure and optimized implementation resulted to an increase of the number of simulations by 700\%.
+Moving from a list without pre-allocation implementation to the Array structure and optimized implementation resulted in an increase of the number of simulations by 700\%.
 
 \subsection{Prunning : Defragmentation model vs buffer copy model}
 
