@@ -97,7 +97,7 @@ u_long VoteAI::makeMove()
 	std::vector<MPI_Request> requests;
 	std::vector<MPI_Status> status;
 
-	SAY("start while");
+	SAY((int)MPI_Wtime() % 60 << "s : start while");
 	while ((MPI_Wtime() - begin) < (double) thinkTime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
@@ -107,7 +107,7 @@ u_long VoteAI::makeMove()
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
-				std::cout << "recieved message from " << node << std::endl;
+				std::cout << (int)MPI_Wtime() % 60 << "s : recieved message from " << node << std::endl;
 				MPI_Request r;
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());

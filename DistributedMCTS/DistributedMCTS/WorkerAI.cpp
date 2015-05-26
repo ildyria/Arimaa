@@ -32,18 +32,19 @@ void WorkerAI::run()
 		//if (msgRecieved)
 		//{
 
-			//u_long* state = &(m_ai.getState()[0]);
+			u_long* state = &(m_ai.getState()[0]);
 
-			//MPI_Recv((void *)state,			//data
-			//	(int) m_ai.getState().size(),		//nb items
-			//	MPI_UNSIGNED_LONG,			//item type
-			//	MASTER,						//source
-			//	GAME_STATE,					//tag
-			//	MPI_COMM_WORLD,				//comm
-			//	&status);
+			MPI_Recv((void *)state,			//data
+				(int) m_ai.getState().size(),		//nb items
+				MPI_UNSIGNED_LONG,			//item type
+				MASTER,						//source
+				GAME_STATE,					//tag
+				MPI_COMM_WORLD,				//comm
+				&status);
 
-			//keepGoing = onStateRecv();
+			keepGoing = onStateRecv();
 
+			std::cout << "state recieved by " << getMPIRank() << std::endl;
 		//}
 
 		//checks message for thinking time
@@ -108,5 +109,5 @@ void WorkerAI::vote()
 		MPI_COMM_WORLD
 		);
 
-	std::cout << "result " << getMPIRank() << " sent." << std::endl;
+	std::cout << (int)MPI_Wtime() % 60 << "s : result " << getMPIRank() << " sent." << std::endl;
 }
