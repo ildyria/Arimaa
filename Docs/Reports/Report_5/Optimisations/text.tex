@@ -1,4 +1,4 @@
-\subsection{Node structure}
+\subsection{Node structure and impact on the size of the tree}
 
 As stated in the previous report, the order of the data in the node has been changed in order to have it use the least possible place.
 
@@ -6,9 +6,19 @@ At the begining of the project each node used to have its board game stored as a
 
 As the algorithm goes down through the search tree, the game can be retraced by playing the chosen moves on the a clone of the root board. That way, we saved the space used by each nodes board.
 
-Size of a Board : $120$ octets
-Size of a node with the board : $168$ octet
-Size of a node without the board : $48$ octet
+\noindent
+Size of a board : $120$ octets\\
+Size of a node with the board : $168$ octets\\
+Size of a node without the board : $48$ octets
 
-With the same number of nodes this represent a deacrease of the tree size by $70\%$.
-Using the same space, the improved tree is $3,5$ times bigger.
+With the same number of nodes this represent a diminution of the tree size by $70\%$. Therefore while using the same space, the improved tree is $3,5$ times bigger.
+
+\subsection{Tree structure : List vs Array}
+
+In december, each node used to contain the list of its children. Theses were allocated at the creation of the list. Thus the costly memory allocation was done during the exploration.
+In order to improve this matter, we created a list of \"available nodes\" where nodes were allocated in the memory but not used by the tree. On exploration, they were moved to the children list.
+
+While the idea is interesting, the children are not stored in continuous regions. During the UCT selection, each node children is visited, thus we didn't take advantage of 
+
+\subsection{Prunning : Defragmentation model vs buffer copy model}
+
