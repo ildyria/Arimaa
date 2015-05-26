@@ -4,4 +4,11 @@ As stated in the previous report, the order of the data in the node has been cha
 
 At the begining of the project each node used to have its board game stored as a Bitboard and the move that led to it. As some nodes had the same state (Bitboard), we tried to use an unordered\_map in order to group them and decrease the size of the tree. However due to the high number of nodes, each time we created one we had to check wether or not it was referenced. As the size of the map kept increasing, therefore the time . This leads to a big diminution of the number of simulations and therefore decrease the reliability of the results provided.
 
-As the algorithm goes down through the search tree, the game can be 
+As the algorithm goes down through the search tree, the game can be retraced by playing the chosen moves on the a clone of the root board. That way, we saved the space used by each nodes board.
+
+Size of a Board : $120$ octets
+Size of a node with the board : $168$ octet
+Size of a node without the board : $48$ octet
+
+With the same number of nodes this represent a deacrease of the tree size by $70\%$.
+Using the same space, the improved tree is $3,5$ times bigger.
