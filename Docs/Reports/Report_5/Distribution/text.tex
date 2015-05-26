@@ -1,1 +1,12 @@
+\subsection{Distribution strategy}
 Distribution was achieved with \textit{MPI}  (Message Passing Interface).
+It was, as planned, designed using a Master-Worker approach.
+While the first design planned for a merging of all trees, testing proved it to be too heavy on both processing and communications.
+That is why a different approach was used: each worker choses the \textit{n} more promising moves, and sends their winning ratio and number of simulations.
+Thanks to this, results can be easily merged while only losing data on the moves that were not promising.
+The \textit{n} factor is chosen in regards to the tested time of communications and merging, as well as on the game (simple games can have this \textit{n} be their total number of possible moves).
+
+\subsection{Non-blocking calls}
+With optimization in mind, non-blocking calls were used as often as possible. They allow the process to keep running while the message is not sent or received.
+However, when the results of a non-blocking receive must be used (or when the buffer of a non-blocking send is reused or otherwise made inaccessible), it requires the use of a waiting function, to ensure that all the data has been correctly sent or received.
+That means the time gained is comprised between the non-blocking call and this waiting function.
