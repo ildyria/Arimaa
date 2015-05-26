@@ -25,22 +25,20 @@ Moving to a simple List implementation without pre-allocation to the Array struc
 \subsection{Prunning : Defragmentation model vs buffer copy model}
 
 Two way of prunning the tree has been thought of. The first one, as  explained in the previous report, uses two arrays \textit{buffer} and \textit{tree}. While the second one uses only one array \textit{tree}.
-
+\medskip\\
 The first and simplest one had three steps : \\
 - copy only the selected nodes to the \textit{buffer} \\
 - clean the first array (\textit{tree}) \\
 - copy back the \textit{buffer} to the \textit{tree}.
-
+\medskip\\
 The second one is inspired on the defragmentation of a hard disk drive the idea is not to copy the elements to be keep but move them inside the array. It is done in two steps : \\
 - mark the nodes to be deleted. \\
-- move the nodes in order to compact the tree. \\
-
+- move the nodes in order to compact the tree.
 \begin{figure}[H] 
 \centerline{\includegraphics[width=\textwidth]{Optimisations/array.png}}
 \caption{\label{fig:Defrag}\textit{defragmentation model, the nodes are compacted to the left.}}
 \end{figure}
-
-The aim of this method is to use the RAM for only one tree instead of having to use half of it due to the \textit{buffer}. That way the size of the tree is increased by 50\%.
+The aim of this method is to use the RAM for only one tree instead of having to use half of it due to the \textit{buffer}. That way the size of the tree is increased by roughtly 50\%.
 
 However that second method requires many more updates than expected : 
 each time a node is moved, it is required to change the pointer of its parent if it is the first node. It also require to update the parent pointer of its children. All this increase greatly the call in the memory. In order to solve such a problem, we used another array, \textit{index} which reference the adress of each node. On moving one, it is only required to change its reference while the parent and children point to that redirection.
