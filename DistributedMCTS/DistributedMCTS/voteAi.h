@@ -103,6 +103,8 @@ private:
 	int rank;
 	int size;
 
+	static int kill;
+
 	api_v2::Game* m_game;
 	api_v2::Ai m_ai;
 	int nextMove;
