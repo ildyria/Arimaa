@@ -2,30 +2,32 @@
 \title{\textbf{Specification Vs Implementation}}
 \bigskip
 \begin{center}
-\begin{tabular}{ | c || c | } 
+\begin{tabular}{ | p{7cm} || p{7cm} | } 
 \hline
  \textbf{Specification} & \textbf{Implementation} \\ 
 \hline
 \hline
-Root parallelisation on CPU &  Tree parallelisation on CPU\\ 
+root parallelisation on CPU &  tree parallelisation on CPU\\ 
 \hline
-Pruning in MCTS & No pruning in MCTS \\ 
+pruning in MCTS while simulation & no pruning in MCTS while simulation\\ 
 \hline
-Interface between bot \& other AI & Not yet implemented \\
+interface between bot \& other AI & not yet implemented \\
 \hline
-Converter & \cmark \\
+
+a choice among OpenMP, C++11 and MPI & openMP was chosen  \\
+\hline
+actor model & cannot be used as it requires\\ & administrative rights of machine to get installed \\
+\hline
+
+ 
+converter & \cmark \\
 \hline 
-OpenMP & \cmark \\
-C++11 & \xmark \\
-MPI & \xmark \\
-\hline 
-GPU & \xmark\\
+GPU parallelisation & \xmark\\
 \hline
-Use of sockets/ZMQ for parallelisation on clusters & \xmark\\
-Use of MPI for parallelisation on clusters & \cmark\\
+use of sockets/ZMQ for parallelisation on clusters & \xmark\\
+use of MPI for parallelisation on clusters & \cmark\\
 \hline
-Actor Model & \xmark\\
-\hline
+
 \end{tabular}
 \end{center}
 
@@ -36,31 +38,32 @@ Actor Model & \xmark\\
 \bigskip
 
 \begin{center}
-\begin{tabular}{ | c || c | } 
+\begin{tabular}{ | p{5cm} || p{5cm} | } 
 \hline
  \textbf{Design} & \textbf{Implementation} \\ 
 \hline
 \hline
-Base Algorithm(MCTS) & \cmark \\ 
+base algorithm(MCTS) & \cmark \\ 
 \hline
-Data structure & \cmark \\ 
+data structure as assumed in reports & \cmark \\ 
 \hline
-Pruning after simulation & \cmark \\
+pruning after simulation & \cmark \\
 \hline
-Bitboard & \cmark \\
+bitboard & \cmark \\
 \hline 
-Game abstract & \cmark \\
+game abstraction & \cmark \\
 \hline
-Parameters(MCTS arguments) & \cmark \\
+parameters(MCTS arguments) & \cmark \\
 \hline
-Fast log & \cmark \\
+fast log & \cmark \\
 \hline 
-Mersennes twister & \cmark\\
+Mersennes twister as a random generator & \cmark\\
 \hline
-Root parallelisation on cluster & \cmark\\
-Switching from root parallelisation to tree parallelisation on CPU & \cmark \\
+root parallelisation on cluster & \cmark\\
+switching from root parallelisation to tree parallelisation on CPU & \cmark \\
 \hline
-GUI & \cmark\\
+GUI on Arima & not implemented yet\\
+GUI on connect4 &  linked and connected\\
 \hline
 \end{tabular}
 \end{center}
