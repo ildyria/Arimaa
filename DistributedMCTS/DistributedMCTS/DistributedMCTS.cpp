@@ -63,10 +63,11 @@ main(int argc, char *argv[])
 		api_v2::Game game;
 		master.setState(game.getState());
 
+		bool exit = false;
 		int result = 0;
 		int IA = 2;
 
-		while (result == 0)
+		while (result == 0 && !exit)
 		{
 			game.displayASCII();
 			if (game.activePlayer() != IA)
@@ -81,7 +82,7 @@ main(int argc, char *argv[])
 
 					if(tmp == "exit")
 					{
-						exit(0);
+						exit = true;
 					}
 					elseif(tmp == "-1")
 					{
@@ -111,20 +112,24 @@ main(int argc, char *argv[])
 
 			result = game.getWinner();
 		}
-		printf("\n");;
-		game.displayASCII();
 
-		if (result == 1)
+		if (!exit)
 		{
-			printf("\nplayer 1 wins.\n");
-		}
-		elseif(result == 2)
-		{
-			printf("\nplayer 2 wins.\n");
-		}
-		else
-		{
-			printf("\nBoard full : TIE.\n");
+			printf("\n");;
+			game.displayASCII();
+
+			if (result == 1)
+			{
+				printf("\nplayer 1 wins.\n");
+			}
+			elseif(result == 2)
+			{
+				printf("\nplayer 2 wins.\n");
+			}
+			else
+			{
+				printf("\nBoard full : TIE.\n");
+			}
 		}
 	}
 	else //WORKER
