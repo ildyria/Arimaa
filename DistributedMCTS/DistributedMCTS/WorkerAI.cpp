@@ -15,12 +15,10 @@ WorkerAI::WorkerAI(prog_options& options) : m_ai(options)
 
 WorkerAI::~WorkerAI()
 {
-	delete m_game;
 }
 
 void WorkerAI::run()
 {
-	//int msgRecieved;
 	MPI_Status status;
 	bool keepGoing = true;
 
@@ -55,7 +53,7 @@ void WorkerAI::run()
 bool WorkerAI::onTimeRecv(int ttime)
 {
 	m_ai.setThinkingTime(ttime);
-
+	
 	if (ttime > 0)
 		vote(); //also trigegrs the vote
 

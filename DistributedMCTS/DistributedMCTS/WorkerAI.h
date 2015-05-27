@@ -9,7 +9,7 @@ public:
 	~WorkerAI();
 
 private:
-	api_v2::Game* m_game;
+	//api_v2::Game* m_game;
 	api_v2::Ai m_ai;
 
 	void run();

@@ -214,7 +214,7 @@ void VoteAI::sendOptions(prog_options* options)
 
 void VoteAI::sendState()
 {
-	auto state = m_ai.getState();
+	std::vector<u_long> state = m_ai.getState();
 
 	std::vector<MPI_Request> requests;
 	std::vector<MPI_Status> status;
@@ -224,7 +224,7 @@ void VoteAI::sendState()
 		requests.push_back(MPI_Request());
 		//sends message
 		MPI_Isend(
-			(void *)&state,		//data
+			(void *)&state[0],		//data
 			(int)state.size(),	//nb items
 			MPI_UNSIGNED_LONG,			//item type
 			node,			//dest
