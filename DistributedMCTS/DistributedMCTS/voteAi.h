@@ -118,7 +118,7 @@ private:
 	void sendState();
 };
 
-static int getMPIRank()
+static inline int getMPIRank()
 {
 	int rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);

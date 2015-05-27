@@ -26,7 +26,7 @@ int
 main(int argc, char *argv[])
 {
 
-	int rc = MPI_SUCCESS; // Return code
+//	int rc = MPI_SUCCESS; // Return code
 	//MPI_Status status;
 
 	MPI_Init(&argc, &argv);
