@@ -82,6 +82,7 @@ main(int argc, char *argv[])
 
 					if(tmp == "exit")
 					{
+						moveok += 1;
 						exit = true;
 					}
 					elseif(tmp == "-1")
