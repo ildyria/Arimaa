@@ -111,7 +111,7 @@ private:
 	double nextMoveChances;
 	int thinkTime;
 
-	int workerThinkTime() { return thinkTime - 5; };
+	int workerThinkTime() { return thinkTime - 1; };
 
 	void sendTime(int* t);
 	void sendOptions(prog_options* options);
