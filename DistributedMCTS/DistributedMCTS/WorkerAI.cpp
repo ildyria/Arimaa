@@ -68,9 +68,12 @@ bool WorkerAI::onStateRecv(std::vector<u_long> state)
 
 void WorkerAI::vote()
 {
+	printf("%d : start exploration\n",getMPIRank());
 	m_ai.explore();
+	printf("%d : get statistics\n",getMPIRank());
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
 
+	printf("%d : finished exploration\n",getMPIRank());
 	//sends message
 	MPI_Send(
 		(void *)&(scores[0]),		//data
@@ -80,4 +83,5 @@ void WorkerAI::vote()
 		RESUTLS,				//tag
 		MPI_COMM_WORLD
 		);
+	printf("%d : sent data\n",getMPIRank());
 }

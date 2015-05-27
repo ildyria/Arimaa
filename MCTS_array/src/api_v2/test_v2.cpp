@@ -28,20 +28,91 @@ namespace api_v2 {
 
 		auto dump = ai->getMovesStatistics();
 		sort(dump.begin(), dump.end(), second);
-		auto move_chosen = (*(dump.begin())).first;
+		u_long move_chosen = (*(dump.begin())).first;
 		std::cout << "move - win / full" << std::endl;
 		for(auto t = dump.begin(); t != dump.end(); ++t)
 		{
 			std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
 		}
 
-		ai->makeMove(move_chosen);
-		serialized_bitboard = ai->getState();
-		ai->displayASCII();
-
-
-		game->setState(serialized_bitboard);
+		game->makeMove(move_chosen);
+		serialized_bitboard = game->getState();
 		game->displayASCII();
+
+		ai->setState(serialized_bitboard);
+		ai->explore();
+
+		dump = ai->getMovesStatistics();
+		sort(dump.begin(), dump.end(), second);
+		move_chosen = (*(dump.begin())).first;
+		std::cout << "move - win / full" << std::endl;
+		for(auto t = dump.begin(); t != dump.end(); ++t)
+		{
+			std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+		}
+		game->makeMove(move_chosen);
+		serialized_bitboard = game->getState();
+		game->displayASCII();
+
+		ai->setState(serialized_bitboard);
+		ai->explore();
+
+		dump = ai->getMovesStatistics();
+		sort(dump.begin(), dump.end(), second);
+		move_chosen = (*(dump.begin())).first;
+		std::cout << "move - win / full" << std::endl;
+		for(auto t = dump.begin(); t != dump.end(); ++t)
+		{
+			std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+		}
+		game->makeMove(move_chosen);
+		serialized_bitboard = game->getState();
+		game->displayASCII();
+
+		ai->setState(serialized_bitboard);
+		ai->explore();
+
+		dump = ai->getMovesStatistics();
+		sort(dump.begin(), dump.end(), second);
+		move_chosen = (*(dump.begin())).first;
+		std::cout << "move - win / full" << std::endl;
+		for(auto t = dump.begin(); t != dump.end(); ++t)
+		{
+			std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+		}
+		game->makeMove(move_chosen);
+		serialized_bitboard = game->getState();
+		game->displayASCII();
+
+		ai->setState(serialized_bitboard);
+		ai->explore();
+
+		dump = ai->getMovesStatistics();
+		sort(dump.begin(), dump.end(), second);
+		move_chosen = (*(dump.begin())).first;
+		std::cout << "move - win / full" << std::endl;
+		for(auto t = dump.begin(); t != dump.end(); ++t)
+		{
+			std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+		}
+		game->makeMove(move_chosen);
+		serialized_bitboard = game->getState();
+		game->displayASCII();
+
+		ai->setState(serialized_bitboard);
+		ai->explore();
+
+		dump = ai->getMovesStatistics();
+		sort(dump.begin(), dump.end(), second);
+		move_chosen = (*(dump.begin())).first;
+		std::cout << "move - win / full" << std::endl;
+		for(auto t = dump.begin(); t != dump.end(); ++t)
+		{
+			std::cout << (*t).first << " - " << (*t).second.first << "/" << (*t).second.second << std::endl;
+		}
+		game->makeMove(move_chosen);
+		game->displayASCII();
+
 
 
 		cout << "#####################" << endl;

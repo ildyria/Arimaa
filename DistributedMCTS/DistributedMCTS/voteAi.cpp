@@ -62,6 +62,7 @@ u_long VoteAI::makeMove()
 	// Compute its own results
 	printf("Master process...\n");
 	m_ai.explore();
+	printf("Master get statistics...\n");
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
 	printf("Master process done.\n");
 
