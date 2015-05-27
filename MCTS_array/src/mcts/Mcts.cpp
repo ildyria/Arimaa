@@ -63,6 +63,7 @@ namespace mcts{
 		_tree[0].set(*random, address);
 #endif 
 		_tree[0].set_player(static_cast<u_short>(_state->get_player()));
+		_next = (&_tree[0]) + 1;
 	}
 
 	Bitboard* Mcts::get_current_bitboard()
@@ -367,11 +368,11 @@ namespace mcts{
 		auto first = listChildren.first;
 		for (u_int i = 0; i < listChildren.second; ++i)
 		{
-			if(_tree[0].get_UCT() == 42)
+			if(first->get_UCT() == 42)
 			{
 				return_vect[i] = n_stat(first->get_move().get_move(), p_stat(42, 1));
 			}
-			else if(_tree[0].get_UCT() == -1)
+			else if(first->get_UCT() == -1)
 			{
 				return_vect[i] = n_stat(first->get_move().get_move(), p_stat(-1, 1));
 			}

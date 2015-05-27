@@ -73,6 +73,7 @@ namespace api_v2 {
 
 	v_stat Ai::getMovesStatistics(int num_of_best_moves)
 	{
+		_ai->update_root();
 		v_stat stats = _ai->get_moves_statistics();
 		sort(stats.begin(), stats.end(), second); // sort by proba DECREASING ORDER
 		int size_vect = static_cast<int>(stats.size());

@@ -78,15 +78,8 @@ main(int argc, char *argv[])
 					std::string tmp;
 					printf("\nYour move ?\n");
 					std::cin >> tmp;
-					int move = std::stoi(tmp);
 
-					if (game.canMakeMove(move))
-					{
-						moveok += 1;
-						master.acknowledgeMove(move); //sending move to master
-						game.makeMove(move); //sending move to game
-					}
-					elseif(tmp == "exit")
+					if(tmp == "exit")
 					{
 						exit(0);
 					}
@@ -95,6 +88,17 @@ main(int argc, char *argv[])
 						IA = (IA == 2) ? 1 : 2;
 						moveok += 1;
 					}
+					else
+					{
+						int move = std::stoi(tmp);
+						if(game.canMakeMove(move))
+						{
+							moveok += 1;
+							master.acknowledgeMove(move); //sending move to master
+							game.makeMove(move); //sending move to game
+						}
+					}
+
 				}
 			}
 			elseif(game.activePlayer() == IA)
