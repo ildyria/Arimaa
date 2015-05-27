@@ -57,7 +57,7 @@ u_long VoteAI::makeMove()
 	sendTime(&ttime);
 	printf("Data sent.\n");
 
-	double begin = MPI_Wtime(); //start time
+//	double begin = MPI_Wtime(); //start time
 
 	// Compute its own results
 	printf("Master process...\n");

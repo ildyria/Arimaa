@@ -62,6 +62,7 @@ bool WorkerAI::onTimeRecv(int ttime)
 
 bool WorkerAI::onStateRecv(std::vector<u_long> state)
 {
+	printf("%d : %ld ; %ld ; %ld \n",getMPIRank(), state[0], state[1], state[2]);
 	m_ai.setState(state);
 	return true;
 }
