@@ -65,23 +65,29 @@
 \usepackage{parskip}
 \setlength{\parindent}{15pt}
 
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\ajrn}{\ding{224}}
+\newcommand{\xmark}{\ding{55}}
+
 \pagestyle{fancy}
 %\cfoot{Fast and furious game playing: Monte Carlo drift}
 % the last extension makes it possible to add images
 
 %presentation of the document
-\title{Fast and Furious Game Playing: Monte Carlo Drift\smallbreak Design report} %not sure about the name of this report
+\title{Fast and Furious Game Playing: Monte Carlo Drift\smallbreak Final report} %not sure about the name of this report
 \author{Prateek \textsc{Bhatnagar}, Gabriel \textsc{Prevosto}, \\
         Benoît \textsc{Viguier} \\
         \\
         Supervisors: Nikolaos \textsc{Parlavantzas}, Christian \textsc{Raymond}}
 \date{02/02/2015}
 \setlength\parindent{15pt}
+\setlength\belowcaptionskip{-10pt}
 \begin{document}
 \maketitle
 
 \begin{figure}[!h] 
-\centerline{\includegraphics[scale=0.50]{Pictures/arimaa}}
+\centerline{\includegraphics[scale=0.50]{Pictures/Arimaa}}
 \end{figure}
 \newpage
 
@@ -92,13 +98,18 @@
 
 \section{Introduction}				\label{sec:introduction} 		\input{Introduction/text.tex}
 
+\lhead{ }
 \newpage
+	\section{Achievements with respect to conceptualisation}			\label{sec:compare}			\input{Compare/text.tex}
 
+\newpage
+  \section{Optimisations and results}        \label{sec:optimisations}    \input{Optimisations/text.tex}
+\newpage
+  \section{Implementation of distribution}        \label{sec:distribution}    \input{Distribution/text.tex}
+\newpage
+  \section{Planning}        \label{sec:planning}    \input{Planning/text.tex}
 \newpage
 	\section{Conclusion}			\label{sec:conclusion}			\input{Conclusion/text.tex}
 \newpage	
-
-\bibliography{bibliography}
-\bibliographystyle{plain}
 
 \end{document}

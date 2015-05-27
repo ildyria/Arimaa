@@ -1,0 +1,68 @@
+
+\title{\textbf{Specification Vs Implementation}}
+\bigskip
+\begin{center}
+\begin{tabular}{ | p{7cm} || c | } 
+\hline
+ \textbf{Specification} & \textbf{Implementation} \\ 
+\hline
+\hline
+\emph{root} parallelisation on CPU &  \emph{tree} parallelisation on CPU\\ 
+\hline
+pruning in MCTS while simulation & no pruning in MCTS while simulation\\ 
+\hline
+interface between bot \& other AI & not yet implemented \\
+\hline
+parallelization : choice between OpenMP, C++11 and MPI & openMP was chosen  \\
+\hline
+actor model & cannot be used as it requires\\ & administrative rights of machine  \\ & to get installed \\
+\hline
+GPU parallelisation & could not be done because of time \\ & constraint\\
+\hline
+converter & \cmark \\
+\hline
+use of sockets/ZMQ for distribution on clusters & \xmark \\
+use of MPI for distribution on clusters &  \cmark \\
+\hline
+
+\end{tabular}
+\end{center}
+
+\bigskip
+\bigskip
+
+\title{\textbf{Design Vs Implementation}}
+\bigskip
+
+\begin{center}
+\begin{tabular}{ | p{7cm} || c | } 
+\hline
+ \textbf{Design} & \textbf{Implementation} \\ 
+\hline
+\hline
+base algorithm(MCTS) & \cmark \\ 
+\hline
+data structure as assumed in reports & \cmark \\ 
+\hline
+pruning after simulation & \cmark \\
+\hline
+bitboard & \cmark \\
+\hline 
+game abstraction & \cmark \\
+\hline
+parameters(MCTS arguments) & \cmark \\
+\hline
+fast log & \cmark \\
+\hline 
+Mersennes twister as a random generator & \cmark\\
+\hline
+root parallelisation on cluster & \cmark\\
+switching from root parallelisation to tree parallelisation on CPU & \cmark \\
+\hline
+GUI on Arima &  implemented but not yet linked\\
+GUI on connect4 &  implemented and linked\\
+\hline
+\end{tabular}
+\end{center}
+
+Most of the tasks that have been conceptualised during the specification and design phase are implemented as per the plan. Some issues were not implemented like GPU parallelization, because of time constraints and not because of technical reasons.

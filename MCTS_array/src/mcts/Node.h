@@ -106,7 +106,7 @@ namespace mcts
 		 * \brief Destructor of the Node
 		 * \details call Delete on the bitboard.
 		 */
-		virtual ~Node();
+		~Node();
 
 		/**
 		 * \fn set_terminal(u_int terminal)

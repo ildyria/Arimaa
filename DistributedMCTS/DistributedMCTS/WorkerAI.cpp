@@ -26,30 +26,18 @@ void WorkerAI::run()
 
 	while(keepGoing)
 	{
+			u_long* state = &(m_ai.getState()[0]);
 
-		//checks message for game state
-		//MPI_Iprobe(MASTER, GAME_STATE, MPI_COMM_WORLD, &msgRecieved, &status);
-		//if (msgRecieved)
-		//{
+			MPI_Recv((void *)state,			//data
+				(int) m_ai.getState().size(),		//nb items
+				MPI_UNSIGNED_LONG,			//item type
+				MASTER,						//source
+				GAME_STATE,					//tag
+				MPI_COMM_WORLD,				//comm
+				&status);
 
-			//u_long* state = &(m_ai.getState()[0]);
+			keepGoing = onStateRecv();
 
-			//MPI_Recv((void *)state,			//data
-			//	(int) m_ai.getState().size(),		//nb items
-			//	MPI_UNSIGNED_LONG,			//item type
-			//	MASTER,						//source
-			//	GAME_STATE,					//tag
-			//	MPI_COMM_WORLD,				//comm
-			//	&status);
-
-			//keepGoing = onStateRecv();
-
-		//}
-
-		//checks message for thinking time
-		//MPI_Iprobe(MASTER, THINK_TIME, MPI_COMM_WORLD, &msgRecieved, &status);
-		//if (msgRecieved)
-		//{
 			int ttime;
 			MPI_Recv(&ttime,
 				1,
@@ -59,10 +47,7 @@ void WorkerAI::run()
 				MPI_COMM_WORLD,
 				&status);
 
-			printf("tmie recieved by %d\n",getMPIRank());
-
 			keepGoing = onTimeRecv(ttime);
-		//}
 	}
 }
 
@@ -71,12 +56,8 @@ bool WorkerAI::onTimeRecv(int ttime)
 {
 	m_ai.setThinkingTime(ttime);
 
-	printf("starting vote...\n");
-
 	if (ttime > 0)
 		vote(); //also trigegrs the vote
-
-	printf("vote done.\n");
 
 	return (ttime > 0);
 }
@@ -96,8 +77,6 @@ void WorkerAI::vote()
 	m_ai.explore();
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
 
-	printf("sending result %d ...\n",getMPIRank());
-
 	//sends message
 	MPI_Send(
 		(void *)&(scores[0]),		//data
@@ -107,6 +86,4 @@ void WorkerAI::vote()
 		RESUTLS,				//tag
 		MPI_COMM_WORLD
 		);
-
-	printf("result %d sent.\n",getMPIRank());
 }

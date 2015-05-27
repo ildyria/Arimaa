@@ -367,7 +367,18 @@ namespace mcts{
 		auto first = listChildren.first;
 		for (u_int i = 0; i < listChildren.second; ++i)
 		{
-			return_vect[i] = n_stat(first->get_move().get_move(), p_stat(static_cast<double>(first->get_wins()), static_cast<double>(first->get_visits() > 0 ? first->get_visits() : 1)));
+			if(_tree[0].get_UCT() == 42)
+			{
+				return_vect[i] = n_stat(first->get_move().get_move(), p_stat(42, 1));
+			}
+			else if(_tree[0].get_UCT() == -1)
+			{
+				return_vect[i] = n_stat(first->get_move().get_move(), p_stat(-1, 1));
+			}
+			else
+			{
+				return_vect[i] = n_stat(first->get_move().get_move(), p_stat(static_cast<double>(first->get_wins()), static_cast<double>(first->get_visits() > 0 ? first->get_visits() : 1)));
+			}
 			++first;
 		}
 

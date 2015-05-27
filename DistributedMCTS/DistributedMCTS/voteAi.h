@@ -103,6 +103,8 @@ private:
 	int rank;
 	int size;
 
+	static int kill;
+
 	api_v2::Game* m_game;
 	api_v2::Ai m_ai;
 	int nextMove;
@@ -113,9 +115,10 @@ private:
 
 	void sendTime(int* t);
 	void sendOptions(prog_options* options);
+	void sendState();
 };
 
-static int getMPIRank()
+static inline int getMPIRank()
 {
 	int rank;
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);

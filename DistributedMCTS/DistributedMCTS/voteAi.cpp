@@ -2,6 +2,7 @@
 
 using namespace std;
 
+int VoteAI::kill;
 
 VoteAI::VoteAI(prog_options& options) : m_ai(options)
 {
@@ -12,12 +13,10 @@ VoteAI::VoteAI(prog_options& options) : m_ai(options)
 
 	if (rank != MASTER)
 	{
-		fprintf(stderr,"Master created on worker thread\n");
+		fprintf(stderr, "Master created on worker thread\n");
 	}
-	//else
-	//{
-	//	sendOptions(&options); //options are not lost at the end of function because they are a reference
-	//}
+
+	VoteAI::kill = -1;
 }
 
 int VoteAI::getThinkingTime()
@@ -27,41 +26,21 @@ int VoteAI::getThinkingTime()
 
 VoteAI::~VoteAI()
 {
-	int kill = -1;
+	sendState(); //necessary before sending time
 	sendTime(&kill); //orders the workers to exit
 }
 
 void VoteAI::setThinkingTime(int t)
 {
 	if (t <= 1)
-		fprintf(stderr,"low think time not supported\n");
+		fprintf(stderr,"Low think time not supported\n");
 	thinkTime = t;
 	m_ai.setThinkingTime(workerThinkTime());
 }
 
 void VoteAI::setState(std::vector<u_long> state)
 {
-	std::vector<MPI_Request> requests;
-	std::vector<MPI_Status> status;
-	for (int node = 1; node < size; node++) //for all nodes except master
-	{
-		requests.push_back(MPI_Request());
-		//sends message
-		MPI_Isend(
-			(void *)&state,		//data
-			(int) state.size(),	//nb items
-			MPI_UNSIGNED_LONG,			//item type
-			node,			//dest
-			GAME_STATE,				//tag
-			MPI_COMM_WORLD,
-			&requests[node-1]
-			);
-	}
-
 	m_ai.setState(state);
-
-	//wait since the state will be gone after function ends
-	MPI_Waitall(size - 1, &requests[0], &status[0]);
 }
 
 
@@ -73,63 +52,88 @@ u_long VoteAI::makeMove()
 
 	//sends the allowed time to the workers, also works as a start order
 	int ttime = workerThinkTime();
-	printf("sending time...\n");
+	printf("Sending data...\n");
+	sendState();
 	sendTime(&ttime);
-	printf("time sent.\n");
+	printf("Data sent.\n");
 
 	double begin = MPI_Wtime(); //start time
 
 	// Compute its own results
-	printf("master process...\n");
+	printf("Master process...\n");
 	m_ai.explore();
 	v_stat scores = m_ai.getMovesStatistics(POSSIBILITIES);
-	printf("master process done.\n");
-
-	int nbRes = 1; //the number of results recieved
+	printf("Master process done.\n");
 
 	//prepares buffer		
-	v_stat* buf = new v_stat[size - 1];
-	for (int i = 0; i < (size - 1); ++i)
-		for (int j = 0; j < POSSIBILITIES; ++j)
-			buf[i].push_back(n_stat());
+	//v_stat* buf = new v_stat[size - 1];
+	//for (int i = 0; i < (size - 1); ++i)
+	//	for (int j = 0; j < POSSIBILITIES; ++j)
+	//		buf[i].push_back(n_stat());
+	std::vector<v_stat> buf;
 
 	//check for messages from other nodes
 	std::vector<MPI_Request> requests;
 	std::vector<MPI_Status> status;
 
-	SAY("start while");
+	SAY("Waiting for results...");
 	while ((MPI_Wtime() - begin) < (double) thinkTime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
 		{
 			MPI_Status s;
-			int msg_recieved;
+			int msg_recieved = 0;
 			MPI_Iprobe(node, RESUTLS, MPI_COMM_WORLD, &msg_recieved, &s);
 			if (msg_recieved)
 			{
-				printf("recieved message from %d\n",node);
-				MPI_Request r;
+				printf("Recieved message from %d\n", node);
+
+				//MPI_Request r;
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());
-				MPI_Irecv(&buf[node - 1], POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size()-1]);
-				nbRes++;
+				buf.push_back(v_stat());
+				for (int i = 0; i < POSSIBILITIES; ++i)
+					buf[buf.size() - 1].push_back(n_stat());
+				MPI_Irecv((void*) &(buf[buf.size() - 1][0]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
 			}
 		}
 	}
 
-	printf("%d results recieved (including master).\n",nbRes);
+	printf("%ld results recieved.\n",buf.size());
 
-	MPI_Waitall(requests.size(), &requests[0], &status[0]); //waits before combining data that all results are correctly recieved
-
-	printf("combining data...\n");
-	//addition
-	for (int node = 1; node < size; node++) //all but master
+	printf("\n================\n");
+	for (auto s : scores)
 	{
-		//adds the results to the score
-		scores += buf[node - 1];
-		nbRes++; //one more result received
+		printf("%lu : %.1f / %.1f\n", s.first, s.second.first, s.second.second);
 	}
-	printf("combinned.\n");
+	for (u_int i = 0; i < buf.size(); i++)
+	{
+		int recv;
+		MPI_Test(&requests[i], &recv, &status[i]);
+		if (recv)
+		{
+			printf("================\n");
+			for (auto s : buf[i])
+			{
+				printf("%lu : %.1f / %.1f\n", s.first, s.second.first, s.second.second);
+			}
+		}
+	}
+	printf("================\n\n");
+
+	printf("Combining data...\n");
+	//addition
+	for (u_int i = 1; i < buf.size(); i++)
+	{
+		int recv;
+		MPI_Test(&requests[i], &recv, &status[i]);
+		if (recv)
+		{
+			//adds the results to the score
+			scores += buf[i];
+		}
+	}
+	printf("Combinned.\n");
 
 	if (rc != MPI_SUCCESS)
 		printf("%d : failure on something\n",rank);
@@ -147,10 +151,10 @@ u_long VoteAI::makeMove()
 				nextMove = scores.at(i).first;
 			}
 #if TALKATIVE > 0
-			printf("%ld : %f %% \n",scores.at(i).first,getValue(scores.at(i)));
+			printf("%ld : %.2f %% \n",scores.at(i).first,getValue(scores.at(i))*100);
 #endif
 		}
-		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances);
+		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances*100);
 	}
 
 	m_ai.makeMove(nextMove);
@@ -206,6 +210,32 @@ void VoteAI::sendOptions(prog_options* options)
 			&request
 			);
 	}
+}
+
+void VoteAI::sendState()
+{
+	auto state = m_ai.getState();
+
+	std::vector<MPI_Request> requests;
+	std::vector<MPI_Status> status;
+	for (int node = 1; node < size; node++) //for all nodes except master
+	{
+		status.push_back(MPI_Status());
+		requests.push_back(MPI_Request());
+		//sends message
+		MPI_Isend(
+			(void *)&state,		//data
+			(int)state.size(),	//nb items
+			MPI_UNSIGNED_LONG,			//item type
+			node,			//dest
+			GAME_STATE,				//tag
+			MPI_COMM_WORLD,
+			&requests[node - 1]
+			);
+	}
+
+	//wait since the state will be gone after function ends
+	MPI_Waitall(size - 1, &requests[0], &status[0]);
 }
 
 double VoteAI::getValue(n_stat ns)
