@@ -66,10 +66,6 @@ u_long VoteAI::makeMove()
 	printf("Master process done.\n");
 
 	//prepares buffer		
-	//v_stat* buf = new v_stat[size - 1];
-	//for (int i = 0; i < (size - 1); ++i)
-	//	for (int j = 0; j < POSSIBILITIES; ++j)
-	//		buf[i].push_back(n_stat());
 	std::vector<v_stat> buf;
 
 	//check for messages from other nodes
@@ -77,6 +73,8 @@ u_long VoteAI::makeMove()
 	std::vector<MPI_Status> status;
 
 	SAY("Waiting for results...");
+
+#ifdef TIME_EXACT
 	while ((MPI_Wtime() - begin) < (double) thinkTime) //while there is still time
 	{
 		for (int node = 1; node < size; node++) //for all nodes except master
@@ -98,6 +96,18 @@ u_long VoteAI::makeMove()
 			}
 		}
 	}
+#else
+	for (int node = 1; node < size; node++) //for all nodes except master
+	{
+		requests.push_back(MPI_Request());
+		status.push_back(MPI_Status());
+		buf.push_back(v_stat());
+		for (int i = 0; i < POSSIBILITIES; ++i)
+			buf[buf.size() - 1].push_back(n_stat());
+		MPI_Irecv((void*)&(buf[buf.size() - 1][0]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
+	}
+	MPI_Waitall(size - 1, &requests[0], &status[0]);
+#endif
 
 	printf("%ld results recieved.\n",buf.size());
 
