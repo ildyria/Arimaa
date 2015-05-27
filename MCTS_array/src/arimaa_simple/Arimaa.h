@@ -31,6 +31,7 @@ class Arimaa : public TheGame
 	4 bits : position of same threat enemy (OR PIECE ON BORDER) => no push / no frozen
 	4 bits : position nesw smaller enemy => maybe possible push / pull
 	*/
+public:
 	u_short get_piece_board_num(const u_short& pos, Bitboard* board);
 	u_short get_piece_board_num(const u_long& mask, Bitboard* board);
 
@@ -74,7 +75,7 @@ class Arimaa : public TheGame
 	void play_simple_move(const u_long& );
 
 
-public:
+//public:
 	/**
 	 * \fn Arimaa()
 	 * \brief constructor of the Game Arimaa.

@@ -182,8 +182,8 @@ void Arimaa::diplay_board(const Bitboard* board)
 		for (int x = 0; x < SIZEX; ++x)
 		{
 			os << "| ";
-			if ((boards[NB_PIECE] & check) == check)
-			{
+			// if ((boards[NB_PIECE] & check) == check)
+			// {
 				if ((boards[0] & check) == check)
 				{
 					os << "R";
@@ -196,6 +196,7 @@ void Arimaa::diplay_board(const Bitboard* board)
 				{
 					os << "D";
 				}
+#if NB_PIECE > 3
 				elseif((boards[3] & check) == check)
 				{
 					os << "H";
@@ -208,10 +209,11 @@ void Arimaa::diplay_board(const Bitboard* board)
 				{
 					os << "E";
 				}
-			}
-			elseif((boards[2*NB_PIECE + 1] & check) == check)
-			{
-				if ((boards[NB_PIECE + 1] & check) == check)
+#endif
+			// }
+			// elseif((boards[2*NB_PIECE + 1] & check) == check)
+			// {
+				elseif ((boards[NB_PIECE + 1] & check) == check)
 				{
 					os << "r";
 				}
@@ -223,6 +225,7 @@ void Arimaa::diplay_board(const Bitboard* board)
 				{
 					os << "d";
 				}
+#if NB_PIECE > 3
 				elseif((boards[NB_PIECE + 4] & check) == check)
 				{
 					os << "h";
@@ -235,7 +238,8 @@ void Arimaa::diplay_board(const Bitboard* board)
 				{
 					os << "e";
 				}
-			}
+#endif
+			// }
 			else
 			{
 				os << " ";
@@ -552,9 +556,9 @@ void Arimaa::apply_traps(Bitboard* board)
 		constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
 		constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
 		constexpr u_long friends1 = (static_cast<u_long>(1) << 1) | (static_cast<u_long>(1) << 6) | (static_cast<u_long>(1) << 8) | (static_cast<u_long>(1) << 13); 
-		constexpr u_long friends2 = friends1 << 2; 
+		constexpr u_long friends2 = friends1 << 3;
 		constexpr u_long friends3 = friends1 << 18;
-		constexpr u_long friends4 = friends3 << 4; 
+		constexpr u_long friends4 = friends3 << 3; 
 	#else
 		constexpr int pos_trap1 = 18;
 		constexpr int pos_trap2 = 21;
@@ -565,9 +569,9 @@ void Arimaa::apply_traps(Bitboard* board)
 		constexpr u_long trap3 = static_cast<u_long>(1) << pos_trap3;
 		constexpr u_long trap4 = static_cast<u_long>(1) << pos_trap4;
 		constexpr u_long friends1 = (static_cast<u_long>(1) << 10) | (static_cast<u_long>(1) << 17) | (static_cast<u_long>(1) << 19) | (static_cast<u_long>(1) << 26); 
-		constexpr u_long friends2 = friends1 << 4;
+		constexpr u_long friends2 = friends1 << 3;
 		constexpr u_long friends3 = friends1 << 24;
-		constexpr u_long friends4 = friends3 << 4;
+		constexpr u_long friends4 = friends3 << 3;
 	#endif
 
 	// player 1

@@ -82,26 +82,15 @@ int main(int argc, char const *argv[])
 
 	if(options.testing)
 	{
-//		fun_test1();
-//		fun_test_Arimaa(options);
+//		fun_test1(); // vector test
 
-		std::string t = "";
-		game->diplay_board(Bb);
-		Move temp;
-		while (true)
-		{
-			cin >> t;
-			if(t == "exit") break;
-			try
-			{
-				Move temp = Arimaa_tools::convert_move(t);
-				cout << Arimaa_tools::convert_move(temp) << endl;
-			}
-			catch(...)
-			{
-				cout << "mouvement non valide." << endl;
-			}
-		}
+		display_board_num(); // board display
+
+//		fun_test_Arimaa1(options); // board => move num
+//		fun_test_Arimaa2(options); // board display => OK
+//		fun_test_Arimaa3(options); // trap test => OK
+		fun_test_Arimaa4(options); // trap test => OK
+
 		exit(1);
 	}
 
