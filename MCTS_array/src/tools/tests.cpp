@@ -191,6 +191,9 @@ void fun_test_Arimaa4(prog_options options)
 	Bb->setBit(NB_PIECE, 7);
 	game->diplay_board(Bb);
 
-	game->list_moves_available(Bb);
-	
+	auto list_moves = game->list_possible_moves(Bb);
+	for (auto it = list_moves.begin(); it != list_moves.end(); ++it)
+	{
+		std::cout << Arimaa_tools::convert_move(*it) << std::endl;
+	}
 }
