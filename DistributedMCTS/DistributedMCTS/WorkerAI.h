@@ -15,7 +15,7 @@ private:
 	void run();
 
 	bool onTimeRecv(int ttime);
-	bool onStateRecv();// std::vector<u_long> state);
+	bool onStateRecv(std::vector<u_long> state);
 
 	void vote();
 };

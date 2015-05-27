@@ -26,9 +26,9 @@ void WorkerAI::run()
 
 	while(keepGoing)
 	{
-			u_long* state = &(m_ai.getState()[0]);
+			std::vector<u_long> state = m_ai.getState(); //used to get correct length
 
-			MPI_Recv((void *)state,			//data
+			MPI_Recv((void *)&state[0],			//data
 				(int) m_ai.getState().size(),		//nb items
 				MPI_UNSIGNED_LONG,			//item type
 				MASTER,						//source
@@ -36,7 +36,7 @@ void WorkerAI::run()
 				MPI_COMM_WORLD,				//comm
 				&status);
 
-			keepGoing = onStateRecv();
+			keepGoing = onStateRecv(state);
 
 			int ttime;
 			MPI_Recv(&ttime,
@@ -62,9 +62,9 @@ bool WorkerAI::onTimeRecv(int ttime)
 	return (ttime > 0);
 }
 
-bool WorkerAI::onStateRecv()//std::vector<u_long> state)
+bool WorkerAI::onStateRecv(std::vector<u_long> state)
 {
-	//m_ai.setState(state); //already done on message recieved
+	m_ai.setState(state);
 	return true;
 }
 
