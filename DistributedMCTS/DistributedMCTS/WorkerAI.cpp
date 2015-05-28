@@ -22,8 +22,19 @@ void WorkerAI::run()
 	MPI_Status status;
 	bool keepGoing = true;
 
+	u_long move;
+	MPI_Recv(&move,
+		1,
+		MPI_UNSIGNED_LONG,
+		MASTER,
+		MOVE,
+		MPI_COMM_WORLD,
+		&status);
+
+	keepGoing = onMoveRecv(move);
+
 	while(keepGoing)
-	{
+	{/*
 			std::vector<u_long> state = m_ai.getState(); //used to get correct length
 
 			MPI_Recv((void *)&state[0],			//data
@@ -34,7 +45,7 @@ void WorkerAI::run()
 				MPI_COMM_WORLD,				//comm
 				&status);
 
-			keepGoing = onStateRecv(state);
+			keepGoing = onStateRecv(state);*/
 
 			int ttime;
 			MPI_Recv(&ttime,
@@ -46,6 +57,22 @@ void WorkerAI::run()
 				&status);
 
 			keepGoing = onTimeRecv(ttime);
+
+			for(int i = 0; i < 2; ++i)
+			{
+				u_long move;
+				MPI_Recv(&move,
+					1,
+					MPI_UNSIGNED_LONG,
+					MASTER,
+					MOVE,
+					MPI_COMM_WORLD,
+					&status);
+
+				keepGoing = onMoveRecv(move);
+
+			}
+
 	}
 }
 
@@ -58,6 +85,13 @@ bool WorkerAI::onTimeRecv(int ttime)
 		vote(); //also trigegrs the vote
 
 	return (ttime > 0);
+}
+
+bool WorkerAI::onMoveRecv(u_long move)
+{
+	m_ai.makeMove(move);
+	
+	return true;
 }
 
 bool WorkerAI::onStateRecv(std::vector<u_long> state)
@@ -78,7 +112,7 @@ void WorkerAI::vote()
 	//sends message
 	MPI_Send(
 		(void *)&(scores[0]),		//data
-		POSSIBILITIES * sizeof(n_stat),	//nb items
+		scores.size() * sizeof(n_stat),	//nb items
 		MPI_BYTE,			//item type
 		MASTER,			//dest
 		RESUTLS,				//tag

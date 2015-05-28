@@ -13,7 +13,7 @@
 #define SAYT(X, Y)  if(TALKATIVE > Y) cout << X << endl
 #define SAY(X)  if(TALKATIVE > 1) cout << X << endl
 
-
+ #define TIME_EXACT
 //void srandom(unsigned seed);
 #define MASTER 0        // task ID of master task
 #define POSSIBILITIES 7
@@ -25,7 +25,7 @@
 	#include "../../MCTS_array/src/api_v2/Game_v2.h"
 	#include "../../MCTS_array/src/api_v2/Ai_v2.h"
 #endif
-enum MessageTag { OPTIONS, THINK_TIME, GAME_STATE, RESUTLS };
+enum MessageTag { OPTIONS, THINK_TIME, GAME_STATE, MOVE, RESUTLS };
 
 class VoteAI
 {
@@ -116,6 +116,7 @@ private:
 	void sendTime(int* t);
 	void sendOptions(prog_options* options);
 	void sendState();
+	void sendMove(u_long move);
 };
 
 static inline int getMPIRank()
