@@ -78,7 +78,7 @@ void WorkerAI::vote()
 	//sends message
 	MPI_Send(
 		(void *)&(scores[0]),		//data
-		POSSIBILITIES * sizeof(n_stat),	//nb items
+		scores.size() * sizeof(n_stat),	//nb items
 		MPI_BYTE,			//item type
 		MASTER,			//dest
 		RESUTLS,				//tag

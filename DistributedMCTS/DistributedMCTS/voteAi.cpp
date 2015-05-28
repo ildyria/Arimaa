@@ -57,7 +57,10 @@ u_long VoteAI::makeMove()
 	sendTime(&ttime);
 	printf("Data sent.\n");
 
-//	double begin = MPI_Wtime(); //start time
+#ifdef TIME_EXACT
+	double begin = MPI_Wtime(); //start time
+#endif
+
 
 	// Compute its own results
 	printf("Master process...\n");
@@ -91,9 +94,9 @@ u_long VoteAI::makeMove()
 				requests.push_back(MPI_Request());
 				status.push_back(MPI_Status());
 				buf.push_back(v_stat());
-				for (int i = 0; i < POSSIBILITIES; ++i)
+				for (unsigned int i = 0; i < scores.size(); ++i)
 					buf[buf.size() - 1].push_back(n_stat());
-				MPI_Irecv((void*) &(buf[buf.size() - 1][0]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
+				MPI_Irecv((void*) &(buf[buf.size() - 1][0]), scores.size() * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
 			}
 		}
 	}
@@ -103,9 +106,9 @@ u_long VoteAI::makeMove()
 		requests.push_back(MPI_Request());
 		status.push_back(MPI_Status());
 		buf.push_back(v_stat());
-		for (int i = 0; i < POSSIBILITIES; ++i)
+		for (unsigned int i = 0; i < scores.size(); ++i)
 			buf[buf.size() - 1].push_back(n_stat());
-		MPI_Irecv((void*)&(buf[buf.size() - 1][0]), POSSIBILITIES * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
+		MPI_Irecv((void*)&(buf[buf.size() - 1][0]), scores.size() * sizeof(n_stat), MPI_BYTE, node, RESUTLS, MPI_COMM_WORLD, &requests[requests.size() - 1]);
 	}
 	MPI_Waitall(size - 1, &requests[0], &status[0]);
 #endif
@@ -150,23 +153,22 @@ u_long VoteAI::makeMove()
 		printf("%d : failure on something\n",rank);
 
 	// The master thread displays the percentage for each value and the maximum value
-	nextMoveChances = 0;
-	nextMove = -1;
-	if (rank == MASTER)
+	//nextMoveChances = 0;
+	nextMove = scores.at(0).first;
+	nextMoveChances = getValue(scores.at(0));
+
+	for (unsigned int i = 1; i < scores.size(); i++)
 	{
-		for (int i = 0; i < POSSIBILITIES; i++)
+		if (nextMoveChances < getValue(scores.at(i)))
 		{
-			if (nextMoveChances < getValue(scores.at(i)))
-			{
-				nextMoveChances = getValue(scores.at(i));
-				nextMove = scores.at(i).first;
-			}
-#if TALKATIVE > 0
-			printf("%ld : %.2f %% \n",scores.at(i).first,getValue(scores.at(i))*100);
-#endif
+			nextMoveChances = getValue(scores.at(i));
+			nextMove = scores.at(i).first;
 		}
-		printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances*100);
+#if TALKATIVE > 0
+		printf("%ld : %.2f %% \n",scores.at(i).first,getValue(scores.at(i))*100);
+#endif
 	}
+	printf("Vote : %d (%lf %% )\n",nextMove,nextMoveChances*100);
 
 	m_ai.makeMove(nextMove);
 

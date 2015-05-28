@@ -5,8 +5,8 @@ BIN=bin
 # LIB_G=lib_g
 LIBRARY=../MCTS_array/lib_ai/ai.a ../MCTS_array/lib_g/game.a
 INCLUDE=-I DistributedMCTS
-CFLAGS=-g -O3 -fopenmp -c -Wall -std=c++11 $(INCLUDE)
-LDFLAGS=-g -O3 -fopenmp -std=c++11
+CFLAGS=-g -fopenmp -c -Wall -std=c++11 $(INCLUDE)
+LDFLAGS=-g -fopenmp -std=c++11
 
 SOURCES = voteAi.cpp WorkerAI.cpp DistributedMCTS.cpp
 # SOURCES_AI = $(SOURCES_TOOLS) $(SOURCES_GAMES) $(SOURCES_MCTS) Ai_v2.cpp

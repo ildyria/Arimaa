@@ -30,6 +30,7 @@ main(int argc, char *argv[])
 	//MPI_Status status;
 
 	MPI_Init(&argc, &argv);
+	MPI_Errhandler_set(MPI_COMM_WORLD, MPI_ERRORS_RETURN);
 	int rank, size;
 	MPI_Comm_rank(MPI_COMM_WORLD, &rank);
 	MPI_Comm_size(MPI_COMM_WORLD, &size);

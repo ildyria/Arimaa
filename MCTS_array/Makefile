@@ -3,8 +3,8 @@ BIN=bin
 LIB_AI=lib_ai
 LIB_G=lib_g
 INCLUDE=-I src/connect4 -I src/interfaces -I src/mcts -I src/tools -I src/benching -I src/api -I src/api_v2 -I src/arimaa_simple -I src
-CFLAGS=-g -O3 -Wpadded -fopenmp -c -Wall -std=c++11 $(INCLUDE)
-LDFLAGS=-g -O3 -fopenmp -std=c++11
+CFLAGS=-g -Wpadded -fopenmp -c -Wall -std=c++11 $(INCLUDE)
+LDFLAGS=-g -fopenmp -std=c++11
 
 SOURCES_TOOLS = Random.cpp Count.cpp Bench.cpp Graph.cpp typedef.cpp 
 SOURCES_API_V1 = Ai.cpp Game.cpp test_api.cpp
